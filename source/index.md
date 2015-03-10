@@ -30,7 +30,7 @@ Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/w
   }
    ```
 
-> response:
+> Response:
 
 > **200**:
 
@@ -89,73 +89,60 @@ Returns a user object if the call succeeded. The returned object will have an AP
 > **200**:
 
    ```json
-    {
-        "title": "Recipe JSON schema",
-        "type": "object",
-        "properties": {
-            "accounts" : {
-                "type": "object",
-                "properties": {
-                    "amazonmws": {
-                        "type": "object",
-                        "properties": {
-                            "credentials": {
-                                "type": "object",
-                                "properties": {
-                                    "sellerId": {
-                                        "type": "string",
-                                        "description": "Seller ID"
-                                    },
-                                    "marketplace": {
-                                        "type": "string",
-                                        "description": "Marketplace",
-                                        "options": [
-                                            "china",
-                                            "france",
-                                            "germany",
-                                            "india",
-                                            "italy",
-                                            "japan",
-                                            "spain",
-                                            "usa"
-                                        ]
-                                    },
-                                    "mwsAuthToken": {
-                                        "type": "string",
-                                        "description": "MWS Auth Token"
-                                    }
-                                },
-                                "required": ["sellerId", "marketplace"]
-                            }
-                        }
-                    },
-                    "shopware": {
-                        "type": "object",
-                        "properties": {
-                            "credentials": {
-                                "type": "object",
-                                "properties": {
-                                    "baseUrl": {
-                                        "type": "string",
-                                        "description": "Your Shopware domain"
-                                    },
-                                    "user": {
-                                        "type": "string",
-                                        "description": "Your login"
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "description": "Your API key"
-                                    }
-                                },
-                                "required": ["baseUrl", "user", "password"]
-                            }
-                        }
-                    }
+{
+    "id": "some-recipe-id",
+    "title": "Something to Something recipe",
+    "description": "Smart and long recipe description",
+    "accounts": {
+        "amazonmws": {
+            "credentials": {
+                "sellerId": {
+                    "type": "string",
+                    "description": "Seller ID",
+                    "required": true
+                },
+                "marketplace": {
+                    "type": "string",
+                    "description": "Marketplace",
+                    "required": true,
+                    "options": [
+                        "china",
+                        "france",
+                        "germany",
+                        "india",
+                        "italy",
+                        "japan",
+                        "spain",
+                        "usa"
+                    ]
+                },
+                "mwsAuthToken": {
+                    "type": "string",
+                    "description": "MWS Auth Token"
+                }
+            }
+        },
+        "shopware": {
+            "credentials": {
+                "baseUrl": {
+                    "type": "string",
+                    "description": "Your Shopware domain",
+                    "required": true
+                },
+                "user": {
+                    "type": "string",
+                    "description": "Your login",
+                    "required": true
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Your API key",
+                    "required": true
                 }
             }
         }
     }
+}
    ```
 
 ### HTTP request
@@ -179,30 +166,31 @@ This endpoint creates tasks from a given recipe.
 > Example request:
 
    ```json
-   {
-      "Authorization" : "Basic dXNlcjpzZWNyZXQ="
-   }
+{
+  "Authorization" : "Basic dXNlcjpzZWNyZXQ="
+}
 
-   {
-      "accounts" : {
-      	"amazonmws" : {
-           "credentials": {
-              "sellerId": "asdasd7a7sd60asasdasd",
-              "marketplace": "china",
-              "mwsAuthToken": "345lkj34k5j3l45k"
-           },
-        },
-        "shopware": {
-           "credentials": {
-              "baseUrl": "even-more.me",
-              "user": "ani.maki@mail.com",
-              "password": "123213123123"
-           }
-        }
-   }
+{
+  "accounts" : {
+    "amazonmws" : {
+       "credentials": {
+          "sellerId": "asdasd7a7sd60asasdasd",
+          "marketplace": "china",
+          "mwsAuthToken": "345lkj34k5j3l45k"
+       }
+    },
+    "shopware": {
+       "credentials": {
+          "baseUrl": "even-more.me",
+          "user": "ani.maki@mail.com",
+          "password": "123213123123"
+       }
+    }
+}
    ```
 
 > Response:
+
 > **200**:
 
    ```json
