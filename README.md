@@ -7,11 +7,11 @@ Welcome to the elastic.io REST API v.1!
 You should authenticate to the elastic.io API by providing your API key in the request.
 
 Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). Provide your API key as the basic auth username. You do not need to provide a password.
+> Example request
 
-````curl
-curl https://api.elastic.io/v1/ \
-   -u {USERNAME}:{PASSWORD}
-````
+   ```curl 
+   curl https://api.elastic.io/v1/ -u {USERNAME}:{PASSWORD}
+   ```
 
 
 # Users
@@ -25,7 +25,8 @@ curl https://api.elastic.io/v1/ \
   {
     "email": "chiki.pikov@ani.me",
     "password": "animakisyakisraki",
-    "name": "Chiki Pikov", 
+    "first_name": "John",
+    "last_name": "Doe",
     "address": "Montenegro"
   }
    ```
