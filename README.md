@@ -13,7 +13,6 @@ Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/w
    curl https://api.elastic.io/v1/ -u {USERNAME}:{PASSWORD}
    ```
 
-
 # Users
 
 ## Register new user     
@@ -39,10 +38,10 @@ Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/w
    ```json
    {
       "id": "23kjhj32kj4hkj2h34234",
-      "apiSecret": "super-secret-api-secret" 
+      "api_secret": "super-secret-api-secret"
    }
    ```
-   **_note_**: _apiSecret_ - generated unique api key for this User
+   **_note_**: _api_secret_ - generated unique api key for this User
    
    **40x**:
    
@@ -54,7 +53,7 @@ Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/w
    
 ### HTTP request
 
-`POST https://api.elastic.io/v1/user`
+`POST https://api.elastic.io/v1/users`
 
 3. **_Shopware_** make request to get recipe schema using hardcoded id `amazon_to_shopware`
    Request:
