@@ -16,10 +16,9 @@ Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/w
 
 # Users
 
-## User registration.     
-> Example Request:
+## Register new user     
 
-   **__POST__** `/v1/user/register`
+> Example request:
    
    ```json
   {
@@ -52,6 +51,10 @@ Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/w
      "message": "Some required fields was not provided"
    }
    ```
+   
+### HTTP request
+
+`POST https://api.elastic.io/v1/user`
 
 3. **_Shopware_** make request to get recipe schema using hardcoded id `amazon_to_shopware`
    Request:
