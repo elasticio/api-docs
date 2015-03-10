@@ -30,11 +30,9 @@ Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/w
   }
    ```
 
-   **_note_**: all fields are required
+> response:
 
-> Response:
-
-   **200**:
+> **200**:
 
    ```json
    {
@@ -42,9 +40,8 @@ Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/w
       "api_secret": "super-secret-api-secret"
    }
    ```
-   **_note_**: _api_secret_ - generated unique api key for this User
 
-   **40x**:
+> **40x**:
 
    ```json
    {
@@ -66,25 +63,30 @@ first_name | User’s first name.
 last_name | User’s last name.
 address | User's address
 
+**_note_**: all fields are required
+
+
 ### Returns
 
 Returns a user object if the call succeeded. The returned object will have an API secret used to make requests on user's behalf.
+
+**_note_**: _api_secret_ - generated unique api key for this User
 
 # Recipes
 
 ## Get recipe schema
 
-> Example request:
+> Example request headers:
 
    ```json
-   headers : {
+   {
       "Authorization" : "Basic dXNlcjpzZWNyZXQ="
    }
    ```
 
 > Response:
 
-   **200**:
+> **200**:
 
    ```json
     {
@@ -177,7 +179,7 @@ This endpoint creates tasks from a given recipe.
 > Example request:
 
    ```json
-   headers : {
+   {
       "Authorization" : "Basic dXNlcjpzZWNyZXQ="
    }
 
@@ -201,8 +203,7 @@ This endpoint creates tasks from a given recipe.
    ```
 
 > Response:
-
-   **200**:
+> **200**:
 
    ```json
    {
@@ -210,17 +211,13 @@ This endpoint creates tasks from a given recipe.
    }
    ```
 
-   **40x**:
+> **40x**:
 
    ```json
    {
       "message": "some error message"
    }
    ```
-   **_note_**: Possible error messages are:
-   - wrong api-secret
-   - no recipe with provided id found
-   - wrong account details (It's that we are make acc verification here)
 
 ### HTTP request
 
@@ -237,18 +234,20 @@ accounts | Hash of credential fields provided by `GET /v1/recipes/{recipeId}`
 
 Returns a recipe's tasks array.
 
+**_note_**: Possible error messages are:
+
+* wrong api-secret
+* no recipe with provided id found
+* wrong account details (It's that we are make acc verification here)
+
 # Generating API docs
 
-``cd api``
+`cd api`
 
 First you need to install the dependencies, if not yet done.
 
-````bash
-user@host:api user$ bundle install
-````
+`bundle install`
 
 Once you have them, regenerate the docs by invoking:
 
-````bash
-user@host:api user$ rake build
-````
+`rake build`
