@@ -24,22 +24,19 @@ You authenticate to the elastic.io API by providing your API key in the request.
 Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). Provide your API key as the basic auth username. You do not need to provide a password.
 
 ````curl
-curl https://api.elastic.io/v1/ \
+curl https://api.elastic.io/v1/users \
    -u {USERNAME}:{PASSWORD}
 ````
 
 # Users
 
-## Register new user
+## Retrieve your user
 
 > Example Request:
 
 ```curl
 curl https://api.elastic.io/v1/users \
-   -u {USERNAME}:{PASSWORD} \
-   -d email="test@example.com" \
-   -d first_name="John" \
-   -d last_name="Doe"
+   -u {USERNAME}:{PASSWORD}
 ```
 
 > Example Response:
@@ -49,8 +46,7 @@ curl https://api.elastic.io/v1/users \
   "id": "54f4be3fe7d5224f91000001",
   "first_name": "John",
   "last_name": "Doe",
-  "email": "test@example.com",
-  "api_secret_key": "781fb2a9-a5ce-4f5c-b166-74dd743409fb"
+  "email": "test@example.com"
 }
 ```
 
@@ -58,19 +54,12 @@ This endpoint registers a new user.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/users`
+`GET https://api.elastic.io/v1/users`
 
-### Arguments
-
-Parameter | Description
---------- | -----------
-email | User’s email address.
-first_name | User’s first name.
-last_name | User’s last name.
 
 #### Returns
 
-Returns a user object if the call succeeded. The returned object will have an API secret used to make requests on user's behalf.
+Returns a user object if the call succeeded.
 
 # Recipes
 
@@ -89,11 +78,58 @@ curl https://api.elastic.io/v1/recipes/{RECIPE_ID} \
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "id": "53d61965a6b9e9183f000001",
+    "title": "Synchronise your data between Amazon MWS and your Shopware instance",
+    "description": "Synchronises Shopware products to Amazon and orders back to Shopware",
+    "accounts": {
+        "amazonmws": {
+            "credentials": {
+                "sellerId": {
+                    "type": "string",
+                    "description": "Seller ID",
+                    "required": true
+                },
+                "marketplace": {
+                    "type": "string",
+                    "description": "Marketplace",
+                    "required": true,
+                    "options": [
+                        "china",
+                        "france",
+                        "germany",
+                        "india",
+                        "italy",
+                        "japan",
+                        "spain",
+                        "usa"
+                    ]
+                },
+                "mwsAuthToken": {
+                    "type": "string",
+                    "description": "MWS Auth Token"
+                }
+            }
+        },
+        "shopware": {
+            "credentials": {
+                "baseUrl": {
+                    "type": "string",
+                    "description": "Your Shopware domain",
+                    "required": true
+                },
+                "user": {
+                    "type": "string",
+                    "description": "Your login",
+                    "required": true
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Your API key",
+                    "required": true
+                }
+            }
+        }
+    }
 }
 ```
 
@@ -122,18 +158,42 @@ Returns a recipe's metadata object if the call succeeded. The returned object wi
 ```curl
 curl https://api.elastic.io/v1/recipes \
    -u {USERNAME}:{PASSWORD} \
-   -d accounts="ACCOUNTS"
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d'
+   {
+     "recipeId" : "53d61965a6b9e9183f000001",
+     "accounts" : {
+       "amazonmws" : {
+          "credentials": {
+             "sellerId": "asdasd7a7sd60asasdasd",
+             "marketplace": "us",
+             "mwsAuthToken": "345lkj34k5j3l45k"
+          }
+       },
+       "shopware": {
+          "credentials": {
+             "baseUrl": "mysuperawesomeshop.com",
+             "user": "text@example.com",
+             "password": "secret"
+          }
+       }
+   }'
 ```
 
 > Example Response:
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "tasks" : [
+    {
+      "id" : "540492e623773659c5000002",
+      "title" : "Synchronize Shopware Products to Amazon"
+    },
+    {
+      "id" : "540490c023773659c5000001",
+      "title" : "Synchronize Amazon Orders to Shopware"
+    }
+  ]
 }
 ```
 
@@ -147,5 +207,5 @@ This endpoint creates tasks from a given recipe.
 
 Parameter | Description
 --------- | -----------
-accounts | Lorem ipsum
+accounts | A hash of key/value pairs representing user's account credentials. The keys are the ids of connectors and the values are the credentials.
 
