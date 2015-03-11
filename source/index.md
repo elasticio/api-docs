@@ -36,7 +36,8 @@ curl https://api.elastic.io/v1/users \
 
 ```curl
 curl https://api.elastic.io/v1/users \
-   -u {USERNAME}:{PASSWORD}
+   -u {USERNAME}:{PASSWORD} \
+   -H 'Accept: application/json'
 ```
 
 > Example Response:
@@ -71,7 +72,8 @@ Returns a user object if the call succeeded.
 
 ```curl
 curl https://api.elastic.io/v1/recipes/{RECIPE_ID} \
-   -u {USERNAME}:{PASSWORD}
+   -u {USERNAME}:{PASSWORD} \
+   -H 'Accept: application/json'
 ```
 
 > Example Response:
@@ -79,54 +81,57 @@ curl https://api.elastic.io/v1/recipes/{RECIPE_ID} \
 ```json
 {
     "id": "53d61965a6b9e9183f000001",
-    "title": "Synchronise your data between Amazon MWS and your Shopware instance",
-    "description": "Synchronises Shopware products to Amazon and orders back to Shopware",
+    "title": "Synchronise Amazon MWS and your Shopware data",
+    "description": "Synchronises products and orders between Shopware and Amazon",
     "accounts": {
         "amazonmws": {
             "credentials": {
-                "sellerId": {
-                    "type": "string",
-                    "description": "Seller ID",
-                    "required": true
+                "type" : "object",
+                "properties": {
+                    "sellerId": {
+                        "type": "string",
+                        "description": "Seller ID"
+                    },
+                    "marketplace": {
+                        "type": "string",
+                        "description": "Marketplace",
+                        "options": [
+                            "china",
+                            "france",
+                            "germany",
+                            "india",
+                            "italy",
+                            "japan",
+                            "spain",
+                            "usa"
+                        ]
+                    },
+                    "mwsAuthToken": {
+                        "type": "string",
+                        "description": "MWS Auth Token"
+                    }
                 },
-                "marketplace": {
-                    "type": "string",
-                    "description": "Marketplace",
-                    "required": true,
-                    "options": [
-                        "china",
-                        "france",
-                        "germany",
-                        "india",
-                        "italy",
-                        "japan",
-                        "spain",
-                        "usa"
-                    ]
-                },
-                "mwsAuthToken": {
-                    "type": "string",
-                    "description": "MWS Auth Token"
-                }
+                "required": ["sellerId", "marketplace"]
             }
         },
         "shopware": {
             "credentials": {
-                "baseUrl": {
-                    "type": "string",
-                    "description": "Your Shopware domain",
-                    "required": true
+                "type": "object",
+                "properties" : {
+                    "baseUrl": {
+                        "type": "string",
+                        "description": "Your Shopware domain"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "Your username"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Your Password"
+                    }
                 },
-                "user": {
-                    "type": "string",
-                    "description": "Your login",
-                    "required": true
-                },
-                "password": {
-                    "type": "string",
-                    "description": "Your API key",
-                    "required": true
-                }
+                "required": ["baseUrl", "user", "password"]
             }
         }
     }
@@ -134,8 +139,6 @@ curl https://api.elastic.io/v1/recipes/{RECIPE_ID} \
 ```
 
 This endpoint retrieves a recipe by given ID.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
 
 ### HTTP Request
 
