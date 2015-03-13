@@ -162,23 +162,24 @@ Returns a recipe's metadata object if the call succeeded. The returned object wi
 curl https://api.elastic.io/v1/recipes \
    -u {USERNAME}:{PASSWORD} \
    -H 'Accept: application/json' \
-   -H 'Content-Type: application/json' -d'
+   -H 'Content-Type: application/json' -d '
    {
-     "recipeId" : "53d61965a6b9e9183f000001",
-     "accounts" : {
-       "amazonmws" : {
-          "credentials": {
-             "sellerId": "asdasd7a7sd60asasdasd",
-             "marketplace": "us",
-             "mwsAuthToken": "345lkj34k5j3l45k"
-          }
-       },
-       "shopware": {
-          "credentials": {
-             "baseUrl": "mysuperawesomeshop.com",
-             "user": "text@example.com",
-             "password": "secret"
-          }
+       "recipeId": "53d61965a6b9e9183f000001",
+       "accounts": {
+           "amazonmws": {
+               "credentials": {
+                   "sellerId": "asdasd7a7sd60asasdasd",
+                   "marketplace": "us",
+                   "mwsAuthToken": "345lkj34k5j3l45k"
+               }
+           },
+           "shopware": {
+               "credentials": {
+                   "baseUrl": "mysuperawesomeshop.com",
+                   "user": "text@example.com",
+                   "password": "secret"
+               }
+           }
        }
    }'
 ```
