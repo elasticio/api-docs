@@ -64,6 +64,46 @@ Returns a user object if the call succeeded.
 
 # Recipes
 
+## Retrieve all Recipes
+
+> Example Request:
+
+
+```curl
+curl https://api.elastic.io/v1/recipes/ \
+   -u {USERNAME}:{PASSWORD} \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```json
+[
+    {
+        "id": "google_contacts_to_mailjet",
+        "title": "Google Contacts to Mailjet"
+    },
+    {
+        "id": "mandrill_to_keenio",
+        "title": "Mandrill to Keen.io"
+    },
+    {
+        "id": "salesforce_to_debitoor",
+        "title": "Salesforce to Debitoor"
+    }
+]
+```
+
+This endpoint retrieves all available recipes.
+
+### HTTP Request
+
+`GET https://api.elastic.io/v1/recipes/`
+
+### Returns
+
+Returns all recipe's available for activation. Please note that in order to get all the data of a recipe you would need to get a recipe by id.
+
 ## Retrieve a Recipe
 
 
@@ -154,7 +194,7 @@ RECIPE_ID | The ID of the recipe to retrieve
 
 Returns a recipe's metadata object if the call succeeded. The returned object will have an recipe's title and account metadata.
 
-## Create a Recipe
+## Activate a Recipe
 
 > Example Request:
 
