@@ -51,7 +51,7 @@ curl https://api.elastic.io/v1/users \
 }
 ```
 
-This endpoint registers a new user.
+This endpoint returns your own user.
 
 ### HTTP Request
 
@@ -61,6 +61,61 @@ This endpoint registers a new user.
 #### Returns
 
 Returns a user object if the call succeeded.
+
+## Create a user
+
+> Example Request:
+
+```curl
+curl https://api.elastic.io/v1/users \
+   -u {USERNAME}:{PASSWORD} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+   {
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "test@example.com",
+      "password": "secret",
+      "company": "Doe & Partners"
+   }'
+```
+
+> Example Response:
+
+```json
+{
+  "id": "54f4be3fe7d5224f91000001",
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "test@example.com",
+  "company": "Doe & Partners",
+  "api_secret":"7a00b1ec-a0a8-4cea-84d2-d26052c8b788"
+}
+```
+
+This endpoint registers a new user.
+
+### HTTP Request
+
+`POST https://api.elastic.io/v1/users`
+
+### Arguments
+
+Parameter | Required | Description
+--------- | ----------- | -----------
+first_name | yes | The user's first name
+last_name | yes | The user's last name
+email | yes | The user's email
+password | yes | The user's password
+company | no | The user's company
+
+### Returns
+
+A created user object.
+
+New user objects will be provided with an ``id`` and ``api_secret`` fields - these values cannot be created or edited by clients.
+
+The ``api_secret`` field is used to communicate with the API on user's behalf.
 
 # Recipes
 
