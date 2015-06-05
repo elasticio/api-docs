@@ -326,15 +326,13 @@ curl https://api.elastic.io/v1/sshkey/ \
 > Example Response:
 
 ```json
-{
-  "sshkey": [
-    {
-      "title": "keyTitle",
-      "fingerPrint": "fingerprint",
-      "_id": "key_id"
-    }
-  ]
-}
+[
+  {
+    "id": "54982ee6bdf2a2030000000f",
+    "title": "My Key",
+    "fingerprint": "fingerprint"
+  }
+]
 ```
 
 This endpoint retrieves list of user's keys
@@ -356,22 +354,23 @@ Returns a ssh key's metadata object if the call succeeded. The returned object w
 
 
 ```curl
-curl https://api.elastic.io/v1/sshkey/ \
+ curl https://api.elastic.io/v1/sshkey/ \
    -u {USERNAME}:{PASSWORD} \
-   -H POST \
-   -d '{"key": "ssh-rsa key", "title":"key title"}' \
-   -H 'Accept: application/json'
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+   {
+       "key": "ssh-rsa YOUR KEY GOES HERE,
+       "title": "My Key"
+   }'
 ```
 
 > Example Response:
 
 ```json
 {
-  "sshkey":  {
-      "title": "key title",
-      "fingerPrint": "fingerprint",
-      "_id": "key_id"
-  }
+  "id": "54982ee6bdf2a2030000000f",
+  "title": "My Key",
+  "fingerprint": "fingerprint"
 }
 ```
 
@@ -384,10 +383,10 @@ This endpoint adds new key to list of user's keys
 
 ### Arguments
 
-Parameter | Description
---------- | -----------
-key       | valid ssh public key
-title     | key title
+Parameter | Required | Description
+--------- | ----------- | -----------
+key       | yes | valid RSA or DSA SSH public key
+title     | no | key title
 
 
 ### Returns
@@ -402,10 +401,10 @@ Returns a ssh key's metadata object if the call succeeded. The returned object w
 
 
 ```curl
-curl https://api.elastic.io/v1/sshkey/{id} \
+curl https://api.elastic.io/v1/sshkey/{KEY_ID} \
    -u {USERNAME}:{PASSWORD} \
+   -H 'Accept: application/json' \
    -X DELETE
-   -H 'Accept: application/json'
 ```
 
 > Example Response:
@@ -418,14 +417,14 @@ This endpoint delete specified ssh key
 
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v1/sshkey/{id}`
+`DELETE https://api.elastic.io/v1/sshkey/{ID}`
 
 
 ### Arguments
 
-Parameter | Description
---------- | -----------
-id        | key id
+Parameter | Required | Description
+--------- | ----------- | -----------
+KEY_ID    | yes | Key ID
 
 
 ### Returns
@@ -518,7 +517,6 @@ Returns repositories metadata object if the call succeeded.
 ```curl
 curl https://api.elastic.io/v1/repos/ \
    -u {USERNAME}:{PASSWORD} \
-   -X POST \
    -d '{"name": "repository name"}' \
    -H 'Accept: application/json'
 ```
@@ -527,10 +525,8 @@ curl https://api.elastic.io/v1/repos/ \
 
 ```json
 {
-  "repo": {
     "name":"repository name",
-    "_id": "repo_id"
-  }
+    "id": "repo_id"
 }
 ```
 
@@ -540,10 +536,10 @@ This endpoint creates new custom repository
 
 `POST https://api.elastic.io/v1/repos/`
 
-Parameter | Description
---------- | -----------
-name      | repository title (optional)
-teamId    | team, repo will belong to (optional, will create new, or use existing for user one)
+Parameter | Required | Description
+--------- | -----------| -----------
+name      | no | repository name
+team_id   | no | team this repo will belong to
 
 
 ### Returns
@@ -570,9 +566,12 @@ curl https://api.elastic.io/v1/teams/ \
 ```json
 [
     {
-        "_id":"team_id",
-        "name":"team name",
-        "memberIds":["member_id"]
+        "id":"55083c567aea6f030000001a",
+        "name":"My team",
+        "members":[
+            "5508411b34e5ac0300000019", 
+            "510fc14d173cff0200000003"
+        ]
     }
 ]
 ```
@@ -596,20 +595,22 @@ Returns teams metadata object if the call succeeded.
 
 
 ```curl
-curl https://api.elastic.io/v1/teams/ \
+ curl https://api.elastic.io/v1/teams \
    -u {USERNAME}:{PASSWORD} \
-   -X POST \
-   -d '{"name":"team name"}' \
-   -H 'Accept: application/json'
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+   {
+       "name": "My team"
+   }'
 ```
 
 > Example Response:
 
 ```json
 {
-    "_id":"team_id",
-    "name":"team name",
-    "memberIds":["member_id"]
+    "id":"55083c567aea6f030000001a",
+    "name":"My team",
+    "members":["5508411b34e5ac0300000019"]
 }
 ```
 
@@ -619,9 +620,9 @@ This endpoint creates new team for user
 
 `POST https://api.elastic.io/v1/teams/`
 
-Parameter | Description
---------- | -----------
-name      | team title (optional)
+Parameter| Required | Description
+--------- | -----------| -----------
+name      | no | team name
 
 ### Returns
 
