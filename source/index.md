@@ -441,7 +441,7 @@ Returns empty response on success request
 
 
 ```curl
-curl https://api.elastic.io/v1/components/ \
+curl https://api.elastic.io/v1/components/mine \
    -u {USERNAME}:{PASSWORD} \
    -H 'Accept: application/json'
 ```
@@ -463,7 +463,7 @@ This endpoint retrieves list of user's components
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/components/`
+`GET https://api.elastic.io/v1/components/mine`
 
 
 ### Returns
@@ -478,7 +478,7 @@ Returns repositories metadata object if the call succeeded.
 
 
 ```curl
-curl https://api.elastic.io/v1/components/public \
+curl https://api.elastic.io/v1/components \
    -u {USERNAME}:{PASSWORD} \
    -H 'Accept: application/json'
 ```
