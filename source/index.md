@@ -308,3 +308,321 @@ Parameter | Description
 --------- | -----------
 accounts | A hash of key/value pairs representing user's account credentials. The keys are the ids of connectors and the values are the credentials.
 
+
+#SSH keys
+
+## Get keys list
+
+
+> Example Request:
+
+
+```curl
+curl https://api.elastic.io/v1/sshkey/ \
+   -u {USERNAME}:{PASSWORD} \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```json
+{
+  "sshkey": [
+    {
+      "title": "keyTitle",
+      "fingerPrint": "fingerprint",
+      "_id": "key_id"
+    }
+  ]
+}
+```
+
+This endpoint retrieves list of user's keys
+
+### HTTP Request
+
+`GET https://api.elastic.io/v1/sshkey/`
+
+
+### Returns
+
+Returns a ssh key's metadata object if the call succeeded. The returned object will have an keys's title, id and fingerPrint metadata.
+
+
+## Add new key
+
+
+> Example Request:
+
+
+```curl
+curl https://api.elastic.io/v1/sshkey/ \
+   -u {USERNAME}:{PASSWORD} \
+   -H POST \
+   -d '{"key": "ssh-rsa key", "title":"key title"}' \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```json
+{
+  "sshkey":  {
+      "title": "key title",
+      "fingerPrint": "fingerprint",
+      "_id": "key_id"
+  }
+}
+```
+
+This endpoint adds new key to list of user's keys
+
+### HTTP Request
+
+`POST https://api.elastic.io/v1/sshkey/`
+
+
+### Arguments
+
+Parameter | Description
+--------- | -----------
+key       | valid ssh public key
+title     | key title
+
+
+### Returns
+
+Returns a ssh key's metadata object if the call succeeded. The returned object will have an keys's title, id and fingerPrint metadata.
+
+
+## Delete key
+
+
+> Example Request:
+
+
+```curl
+curl https://api.elastic.io/v1/sshkey/{id} \
+   -u {USERNAME}:{PASSWORD} \
+   -X DELETE
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```json
+{}
+```
+
+This endpoint delete specified ssh key
+
+### HTTP Request
+
+`DELETE https://api.elastic.io/v1/sshkey/{id}`
+
+
+### Arguments
+
+Parameter | Description
+--------- | -----------
+id        | key id
+
+
+### Returns
+
+Returns empty response on success request
+
+
+#Repositories
+
+## Get custom component's repositories list
+
+
+> Example Request:
+
+
+```curl
+curl https://api.elastic.io/v1/repos/ \
+   -u {USERNAME}:{PASSWORD} \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```json
+{
+  "components": {
+    "component_id": {
+        "name": "title"
+    }
+  }
+  
+}
+```
+
+This endpoint retrieves list of user's components
+
+### HTTP Request
+
+`GET https://api.elastic.io/v1/repos/`
+
+
+### Returns
+
+Returns repositories metadata object if the call succeeded.
+
+
+## Get public components repositories list
+
+
+> Example Request:
+
+
+```curl
+curl https://api.elastic.io/v1/repos/public \
+   -u {USERNAME}:{PASSWORD} \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```json
+{
+  "components": {
+    "component_id": {
+        "name": "title"
+    }
+  }
+  
+}
+```
+
+This endpoint retrieves list of public components
+
+### HTTP Request
+
+`GET https://api.elastic.io/v1/repos/public`
+
+
+### Returns
+
+Returns repositories metadata object if the call succeeded.
+
+
+## Create repository
+
+
+> Example Request:
+
+
+```curl
+curl https://api.elastic.io/v1/repos/ \
+   -u {USERNAME}:{PASSWORD} \
+   -X POST \
+   -d '{"name": "repository name"}' \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```json
+{
+  "repo": {
+    "name":"repository name",
+    "_id": "repo_id"
+  }
+}
+```
+
+This endpoint creates new custom repository
+
+### HTTP Request
+
+`POST https://api.elastic.io/v1/repos/`
+
+Parameter | Description
+--------- | -----------
+name      | repository title (optional)
+teamId    | team, repo will belong to (optional, will create new, or use existing for user one)
+
+
+### Returns
+
+Returns repositories metadata object if the call succeeded.
+
+
+#Teams
+
+## Get user's teams
+
+
+> Example Request:
+
+
+```curl
+curl https://api.elastic.io/v1/teams/ \
+   -u {USERNAME}:{PASSWORD} \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```json
+[
+    {
+        "_id":"team_id",
+        "name":"team name",
+        "memberIds":["member_id"]
+    }
+]
+```
+
+This endpoint retrieves list of user's teams
+
+### HTTP Request
+
+`GET https://api.elastic.io/v1/teams/`
+
+
+### Returns
+
+Returns teams metadata object if the call succeeded.
+
+
+## Create team
+
+
+> Example Request:
+
+
+```curl
+curl https://api.elastic.io/v1/teams/ \
+   -u {USERNAME}:{PASSWORD} \
+   -X POST \
+   -d '{"name":"team name"}' \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```json
+{
+    "_id":"team_id",
+    "name":"team name",
+    "memberIds":["member_id"]
+}
+```
+
+This endpoint creates new team for user
+
+### HTTP Request
+
+`POST https://api.elastic.io/v1/teams/`
+
+Parameter | Description
+--------- | -----------
+name      | team title (optional)
+
+### Returns
+
+Returns teams metadata object if the call succeeded.
