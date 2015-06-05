@@ -311,7 +311,7 @@ accounts | A hash of key/value pairs representing user's account credentials. Th
 
 #SSH keys
 
-## Get keys list
+## Retrieve all keys
 
 
 > Example Request:
@@ -394,7 +394,7 @@ title     | no | key title
 Returns a ssh key's metadata object if the call succeeded. The returned object will have an keys's title, id and fingerPrint metadata.
 
 
-## Delete key
+## Delete a key
 
 
 > Example Request:
@@ -432,16 +432,16 @@ KEY_ID    | yes | Key ID
 Returns empty response on success request
 
 
-#Repositories
+# Components
 
-## Get custom component's repositories list
+## Retrieve private components
 
 
 > Example Request:
 
 
 ```curl
-curl https://api.elastic.io/v1/repos/ \
+curl https://api.elastic.io/v1/components/ \
    -u {USERNAME}:{PASSWORD} \
    -H 'Accept: application/json'
 ```
@@ -463,7 +463,7 @@ This endpoint retrieves list of user's components
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/repos/`
+`GET https://api.elastic.io/v1/components/`
 
 
 ### Returns
@@ -471,14 +471,14 @@ This endpoint retrieves list of user's components
 Returns repositories metadata object if the call succeeded.
 
 
-## Get public components repositories list
+## Retrieve public components
 
 
 > Example Request:
 
 
 ```curl
-curl https://api.elastic.io/v1/repos/public \
+curl https://api.elastic.io/v1/components/public \
    -u {USERNAME}:{PASSWORD} \
    -H 'Accept: application/json'
 ```
@@ -500,13 +500,15 @@ This endpoint retrieves list of public components
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/repos/public`
+`GET https://api.elastic.io/v1/components/public`
 
 
 ### Returns
 
 Returns repositories metadata object if the call succeeded.
 
+
+#Repositories
 
 ## Create repository
 
