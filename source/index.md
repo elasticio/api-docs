@@ -588,9 +588,10 @@ Returns repositories metadata object if the call succeeded.
 ```curl
 curl https://api.elastic.io/v1/repos/ \
    -u {USERNAME}:{PASSWORD} \
-   -X POST \
-   -d '{"name": "repository name"}' \
-   -H 'Accept: application/json'
+   -H 'Accept: application/json' -d '
+   {
+       "name": "My Repo"
+   }'
 ```
 
 > Example Response:
