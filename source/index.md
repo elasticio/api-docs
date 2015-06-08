@@ -514,6 +514,69 @@ Returns repositories metadata object if the call succeeded.
 
 #Repositories
 
+## Get user's repositories
+
+> Example Request:
+
+```curl
+curl https://api.elastic.io/v1/repos/ \
+   -u {USERNAME}:{PASSWORD} \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```json
+[
+  {
+    "id": "555c5ade13c2298a9d32fe67",
+    "name": "testrepo",
+    "team_id": "5538bc1c9c0f0522391900d4"
+  }
+]
+```
+
+### HTTP Request
+
+`GET https://api.elastic.io/v1/repos/`
+
+### Returns
+
+Returns repositories metadata object if the call succeeded.
+
+## Get user's repository
+
+> Example Request:
+
+```curl
+curl https://api.elastic.io/v1/repos/{ID} \
+   -u {USERNAME}:{PASSWORD} \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```json
+  {
+    "id": "555c5ade13c2298a9d32fe67",
+    "name": "testrepo",
+    "team_id": "5538bc1c9c0f0522391900d4"
+  }
+```
+
+### HTTP Request
+
+`GET https://api.elastic.io/v1/repos/{ID}`
+
+Parameter | Required | Description
+--------- | ---------| -----------
+id        | yes      | repository id
+
+### Returns
+
+Returns repositories metadata object if the call succeeded.
+
+
 ## Create repository
 
 
@@ -523,6 +586,7 @@ Returns repositories metadata object if the call succeeded.
 ```curl
 curl https://api.elastic.io/v1/repos/ \
    -u {USERNAME}:{PASSWORD} \
+   -X POST \
    -d '{"name": "repository name"}' \
    -H 'Accept: application/json'
 ```
@@ -553,6 +617,37 @@ team_id   | no | team this repo will belong to
 ### Returns
 
 Returns repositories metadata object if the call succeeded.
+
+
+## Delete repository
+
+
+> Example Request:
+
+
+```curl
+curl https://api.elastic.io/v1/repos/{ID} \
+   -u {USERNAME}:{PASSWORD} \
+   -X DELETE \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```json
+{}
+```
+
+This endpoint delete repository
+
+### HTTP Request
+
+`DELETE https://api.elastic.io/v1/repos/{ID}`
+
+Parameter | Required | Description
+--------- | ---------| -----------
+id        | yes      | repository id
+
 
 
 #Teams
