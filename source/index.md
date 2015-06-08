@@ -330,7 +330,9 @@ curl https://api.elastic.io/v1/sshkey/ \
   {
     "id": "54982ee6bdf2a2030000000f",
     "title": "My Key",
-    "fingerprint": "fingerprint"
+    "fingerprint": "fingerprint",
+    "user_id": "user_id",
+    "key":"ssh_key"
   }
 ]
 ```
@@ -370,7 +372,9 @@ Returns a ssh key's metadata object if the call succeeded. The returned object w
 {
   "id": "54982ee6bdf2a2030000000f",
   "title": "My Key",
-  "fingerprint": "fingerprint"
+  "fingerprint": "fingerprint",
+  "user_id": "user_id",
+  "key":"ssh_key"
 }
 ```
 
@@ -528,7 +532,9 @@ curl https://api.elastic.io/v1/repos/ \
 ```json
 {
     "name":"repository name",
-    "id": "repo_id"
+    "id": "repo_id",
+    "team_id": "team_id",
+     "is_public": false
 }
 ```
 
