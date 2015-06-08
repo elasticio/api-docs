@@ -566,11 +566,13 @@ curl https://api.elastic.io/v1/repos/{ID} \
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/repos/{ID}`
+`GET https://api.elastic.io/v1/repos/{REPO_ID}`
+
+### URL Parameters
 
 Parameter | Required | Description
 --------- | ---------| -----------
-id        | yes      | repository id
+REPO_ID   | yes      | repository id
 
 ### Returns
 
@@ -626,7 +628,7 @@ Returns repositories metadata object if the call succeeded.
 
 
 ```curl
-curl https://api.elastic.io/v1/repos/{ID} \
+curl https://api.elastic.io/v1/repos/{REPO_ID} \
    -u {USERNAME}:{PASSWORD} \
    -X DELETE \
    -H 'Accept: application/json'
@@ -644,9 +646,11 @@ This endpoint delete repository
 
 `DELETE https://api.elastic.io/v1/repos/{ID}`
 
+### URL Parameters
+
 Parameter | Required | Description
 --------- | ---------| -----------
-id        | yes      | repository id
+REPO_ID        | yes      | repository id
 
 
 
