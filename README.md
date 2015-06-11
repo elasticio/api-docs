@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to the elastic.io REST API v.1!
+The docs are generated with [Slate](https://github.com/tripit/slate).
 
 
  
