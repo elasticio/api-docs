@@ -42,7 +42,10 @@ curl https://api.elastic.io/v1/users \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
   "id": "54f4be3fe7d5224f91000001",
   "first_name": "John",
@@ -82,7 +85,10 @@ curl https://api.elastic.io/v1/users \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 201 OK
+Content-Type: application/json
+
 {
   "id": "54f4be3fe7d5224f91000001",
   "first_name": "John",
@@ -132,7 +138,10 @@ curl https://api.elastic.io/v1/recipes/ \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 [
     {
         "id": "google_contacts_to_mailjet",
@@ -173,7 +182,10 @@ curl https://api.elastic.io/v1/recipes/{RECIPE_ID} \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
     "id": "53d61965a6b9e9183f000001",
     "title": "Synchronise Amazon MWS and your Shopware data",
@@ -281,7 +293,10 @@ curl https://api.elastic.io/v1/recipes \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
   "tasks" : [
     {
@@ -325,7 +340,10 @@ curl https://api.elastic.io/v1/sshkey/ \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 [
   {
     "id": "54982ee6bdf2a2030000000f",
@@ -368,7 +386,10 @@ Returns a ssh key's metadata object if the call succeeded. The returned object w
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 201 OK
+Content-Type: application/json
+
 {
   "id": "54982ee6bdf2a2030000000f",
   "title": "My Key",
@@ -413,7 +434,10 @@ curl https://api.elastic.io/v1/sshkey/{KEY_ID} \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {}
 ```
 
@@ -452,7 +476,10 @@ curl https://api.elastic.io/v1/components/mine \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
   "components": {
     "component_id": {
@@ -489,7 +516,10 @@ curl https://api.elastic.io/v1/components \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
   "components": {
     "component_id": {
@@ -526,7 +556,10 @@ curl https://api.elastic.io/v1/repos/ \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 [
   {
     "id": "555c5ade13c2298a9d32fe67",
@@ -556,7 +589,10 @@ curl https://api.elastic.io/v1/repos/{ID} \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
   {
     "id": "555c5ade13c2298a9d32fe67",
     "name": "testrepo",
@@ -596,7 +632,10 @@ curl https://api.elastic.io/v1/repos/ \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 201 OK
+Content-Type: application/json
+
 {
     "name":"repository name",
     "id": "repo_id",
@@ -637,7 +676,10 @@ curl https://api.elastic.io/v1/repos/{REPO_ID} \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {}
 ```
 
@@ -667,7 +709,10 @@ curl -X POST https://api.elastic.io/v1/tasks/start/{TASK_ID} \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
   "id": "5538bd9646208d02b3000005",
   "status":"active"
@@ -705,7 +750,10 @@ curl -X POST https://api.elastic.io/v1/tasks/stop/{TASK_ID} \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
   "id": "5538bd9646208d02b3000005",
   "status":"inactive"
@@ -746,7 +794,10 @@ curl https://api.elastic.io/v1/teams/ \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 [
     {
         "id":"55083c567aea6f030000001a",
@@ -789,7 +840,10 @@ Returns teams metadata object if the call succeeded.
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 201 OK
+Content-Type: application/json
+
 {
     "id":"55083c567aea6f030000001a",
     "name":"My team",
