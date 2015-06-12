@@ -903,7 +903,7 @@ It responds with the resource to poll on, in order to get the result of the sche
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/teams/`
+`POST https://api.elastic.io/v1/exec/schedule`
 
 Parameter| Required | Description
 --------- | -----------| -----------
