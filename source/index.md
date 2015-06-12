@@ -907,9 +907,9 @@ It responds with the resource to poll on, in order to get the result of the sche
 
 Parameter| Required | Description
 --------- | -----------| -----------
-executionType | yes | meta_model, select_model or verify_credentials
-actionOrTrigger | yes | The name of action or trigger on the connector which the execution will be done for
-modelMethod | no | Optional name of the method to execute on the specified connectors action or trigger
+execution_type | yes | meta_model, select_model or verify_credentials
+action_or_trigger | yes | The name of action or trigger on the connector which the execution will be done for
+model_method | no | Optional name of the method to execute on the specified connectors action or trigger
 component | yes | Specifies the name(id) of the connector to be executed
 accountId | yes | The account id setup for the connector
 
@@ -931,7 +931,7 @@ curl https://api.elastic.io/v1/exec/poll/{EXECUTION_ID} \
    -H 'Accept: application/json'
 ```
 
-> Example Response:
+> Example Response (Result ready):
 
 ```http
 HTTP/1.1 303 See Other
@@ -943,15 +943,26 @@ Location: '/v1/exec/result/540492e623773659c5000002'
 }
 ```
 
+> Example Response (In progress):
+
+```http
+HTTP/1.1 303 See Other
+Content-Type: application/json
+
+{
+  "message": "Ready."
+}
+```
+
 This endpoint provides information about the status of a scheduled component execution. Once the execution is done, the endpoint responds with status code 303 and provides a resource to query the result in the 'Location' header.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/exec/{EXECUTION_ID}`
+`GET https://api.elastic.io/v1/exec/poll/{EXECUTION_ID}`
 
 Parameter| Required | Description
 --------- | -----------| -----------
-execution_id | yes | The id of a previously scheduled execution
+EXECUTION_ID | yes | The id of a previously scheduled execution
 
 ### Returns
 
@@ -960,6 +971,7 @@ Status Code| Body | Header |Description
 500 | `{message: 'Internal Server Error'}` | - | An error occured on the server
 404 | `{message: 'Result does not exist.'}` | - | An attempt to poll for a non scheduled execution was made
 404 | `{message: 'Expired.'}` | - | The execution has expired 
+200 | `{message: 'Result not ready yet.'}` | - | The execution hasn't completed yet
 303 | `{ message: "Ready." }` | Location | The execution is finished and the result is ready. Resource to get the result is found in the 'Location header'
 
 
@@ -993,11 +1005,11 @@ This endpoint exposes the component execution result(error) and is the final res
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/exec/{EXECUTION_ID}`
+`GET https://api.elastic.io/v1/exec/result/{EXECUTION_ID}`
 
 Parameter| Required | Description
 --------- | -----------| -----------
-execution_id | yes | The id of a previously scheduled execution
+EXECUTION_ID | yes | The id of a previously scheduled execution
 
 ### Returns
 
