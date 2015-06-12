@@ -879,11 +879,10 @@ Returns teams metadata object if the call succeeded.
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
     {
-      executionType: "meta_model",
-      actionOrTrigger: "put",
-      modelMethod: "",
-      component: "dropbox",
-      accountId: "540492e623773659c5000002"
+      "executionType": "meta_model",
+      "actionOrTrigger": "put",
+      "component": "dropbox",
+      "accountId": "540492e623773659c5000002"
     }'
 ```
 
@@ -895,7 +894,7 @@ Content-Type: application/json
 Location: '/v1/exec/poll/540492e623773659c5000002'
 
 {
-  message: 'ok'
+  "message": 'ok'
 }
 ```
 
@@ -940,7 +939,7 @@ Content-Type: application/json
 Location: '/v1/exec/result/540492e623773659c5000002'
 
 {
-  message: "Ready."
+  "message": "Ready."
 }
 ```
 
