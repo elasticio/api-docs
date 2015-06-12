@@ -957,11 +957,11 @@ execution_id | yes | The id of a previously scheduled execution
 ### Returns
 
 Status Code| Body | Header |Description
---------- | -----------| -----------
-500 | {message: 'Internal Server Error'} | \ | An error occured on the server
-404 | {message: 'Result does not exist.'} | \ | An attempt to poll for a non scheduled execution was made
-404 | {message: 'Expired.'} | \ | The execution has expired 
-303 | { message: "Ready." } | Location | The execution is finished and the result is ready. Resource to get the result is found in the 'Location header'
+--------- | -----------| ----------- | -----------
+500 | `{message: 'Internal Server Error'}` | - | An error occured on the server
+404 | `{message: 'Result does not exist.'}` | - | An attempt to poll for a non scheduled execution was made
+404 | `{message: 'Expired.'}` | - | The execution has expired 
+303 | `{ message: "Ready." }` | Location | The execution is finished and the result is ready. Resource to get the result is found in the 'Location header'
 
 
 ## Get execution result
@@ -1003,8 +1003,8 @@ execution_id | yes | The id of a previously scheduled execution
 ### Returns
 
 Status Code| Body | Header |Description
---------- | -----------| -----------
-500 | {message: 'Internal Server Error'} | \ | An error occured on the server
-404 | {message: 'Result does not exist.'} | \ | An attempt to poll for a non scheduled execution was made
-400 | {message: 'Rejected.', reason: {...}} | \ | The execution has resulted in an error. The body of the response will contain the error object under the 'reason' property of the response. 
-200 | { data: {...} } | \ | The json representation of the execution result can be found under the 'data' property of the response.
+--------- | ----------- | ----------- | -----------
+500 | `{message: 'Internal Server Error'}` | - | An error occured on the server
+404 | `{message: 'Result does not exist.'}` | - | An attempt to poll for a non scheduled execution was made
+400 | `{message: 'Rejected.', reason: {...}}` | - | The execution has resulted in an error. The body of the response will contain the error object under the 'reason' property of the response. 
+200 | `{ data: {...} }` | - | The json representation of the execution result can be found under the 'data' property of the response.
