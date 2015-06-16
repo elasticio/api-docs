@@ -891,10 +891,10 @@ Returns teams metadata object if the call succeeded.
 ```http
 HTTP/1.1 202 Accepted
 Content-Type: application/json
-Location: '/v1/exec/poll/540492e623773659c5000002'
+Location: 'https://api.elastic.io/v1/exec/poll/540492e623773659c5000002'
 
 {
-  "message": 'ok'
+  "message": "ok"
 }
 ```
 
@@ -936,7 +936,7 @@ curl https://api.elastic.io/v1/exec/poll/{EXECUTION_ID} \
 ```http
 HTTP/1.1 303 See Other
 Content-Type: application/json
-Location: '/v1/exec/result/540492e623773659c5000002'
+Location: 'https://api.elastic.io/v1/exec/result/540492e623773659c5000002'
 
 {
   "message": "Ready."
@@ -992,11 +992,11 @@ curl https://api.elastic.io/v1/exec/result/{EXECUTION_ID} \
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-Location: '/v1/exec/result/540492e623773659c5000002'
+Location: 'https://api.elastic.io/v1/exec/result/540492e623773659c5000002'
 
 {
-  data: {
-    some: "value"
+  "data": {
+    "some": "value"
   }
 }
 ```
