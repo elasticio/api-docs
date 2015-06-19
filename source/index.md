@@ -65,9 +65,10 @@ This endpoint returns your own user.
 
 Returns a user object if the call succeeded.
 
+
 ## Create a user
 
-> Example Request:
+> Example Request (No callback):
 
 ```curl
 curl https://api.elastic.io/v1/users \
@@ -83,7 +84,7 @@ curl https://api.elastic.io/v1/users \
    }'
 ```
 
-> Example Response:
+> Example Response (No callback):
 
 ```http
 HTTP/1.1 201 OK
@@ -96,6 +97,34 @@ Content-Type: application/json
   "email": "test@example.com",
   "company": "Doe & Partners",
   "api_secret":"7a00b1ec-a0a8-4cea-84d2-d26052c8b788"
+}
+```
+
+> Example Request (With callback)
+
+```curl
+curl https://api.elastic.io/v1/users \
+   -u {USERNAME}:{PASSWORD} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+   {
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "test@example.com",
+      "password": "secret",
+      "company": "Doe & Partners",
+      "callback_url": "http://my.awesome.callback/path"
+   }'
+```
+
+> Example Response (With callback):
+
+```http
+HTTP/1.1 202 Accepted
+Content-Type: application/json
+
+{
+  "message": "accepted"
 }
 ```
 
@@ -114,10 +143,22 @@ last_name | yes | The user's last name
 email | yes | The user's email
 password | yes | The user's password
 company | no | The user's company
+callback | no | Callback Url to call the result with
 
 ### Returns
 
+#### No Callback Provided
 A created user object.
+
+New user objects will be provided with an ``id`` and ``api_secret`` fields - these values cannot be created or edited by clients.
+
+The ``api_secret`` field is used to communicate with the API on user's behalf.
+
+#### With Callback Provided
+
+`{"message": "accepted"}`
+
+When the user is created the provided `callback_url` will be called with the resulting user object.
 
 New user objects will be provided with an ``id`` and ``api_secret`` fields - these values cannot be created or edited by clients.
 
