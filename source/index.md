@@ -158,7 +158,7 @@ The ``api_secret`` field is used to communicate with the API on user's behalf.
 
 `{"message": "accepted"}`
 
-When the user is created the provided `callback_url` will be called with the resulting user object.
+When the user is created the provided ``callback_url`` will be called with the resulting user object.
 
 New user objects will be provided with an ``id`` and ``api_secret`` fields - these values cannot be created or edited by clients.
 
