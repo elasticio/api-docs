@@ -551,7 +551,7 @@ Returns repositories metadata object if the call succeeded.
 
 ```curl
 curl https://api.elastic.io/v1/components \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
@@ -591,7 +591,7 @@ Returns repositories metadata object if the call succeeded.
 
 ```curl
 curl https://api.elastic.io/v1/repos/ \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
@@ -624,7 +624,7 @@ Returns repositories metadata object if the call succeeded.
 
 ```curl
 curl https://api.elastic.io/v1/repos/{ID} \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
@@ -664,7 +664,7 @@ Returns repositories metadata object if the call succeeded.
 
 ```curl
 curl https://api.elastic.io/v1/repos/ \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' -d '
    {
        "name": "My Repo"
@@ -710,7 +710,7 @@ Returns repositories metadata object if the call succeeded.
 
 ```curl
 curl https://api.elastic.io/v1/repos/{REPO_ID} \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -X DELETE \
    -H 'Accept: application/json'
 ```
@@ -745,7 +745,7 @@ REPO_ID        | yes      | repository id
 
 ```curl
 curl -X POST https://api.elastic.io/v1/tasks/start/{TASK_ID} \
-   -u {USERNAME}:{PASSWORD}
+   -u {EMAIL}:{APIKEY}
 ```
 
 > Example Response:
@@ -786,7 +786,7 @@ Result of starting the task.
 
 ```curl
 curl -X POST https://api.elastic.io/v1/tasks/stop/{TASK_ID} \
-   -u {USERNAME}:{PASSWORD}
+   -u {EMAIL}:{APIKEY}
 ```
 
 > Example Response:
@@ -829,7 +829,7 @@ Result of stopping the task.
 
 ```curl
 curl https://api.elastic.io/v1/teams/ \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
@@ -871,7 +871,7 @@ Returns teams metadata object if the call succeeded.
 
 ```curl
  curl https://api.elastic.io/v1/teams \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
    {
@@ -916,7 +916,7 @@ Returns teams metadata object if the call succeeded.
 
 ```curl
  curl https://api.elastic.io/v1/exec/schedule \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
     {
@@ -968,7 +968,7 @@ The 'Location' header specifies a resource to poll on until the execution result
 
 ```curl
 curl https://api.elastic.io/v1/exec/poll/{EXECUTION_ID} \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
@@ -1024,7 +1024,7 @@ Status Code| Body | Header |Description
 
 ```curl
 curl https://api.elastic.io/v1/exec/result/{EXECUTION_ID} \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
