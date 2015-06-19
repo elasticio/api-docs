@@ -25,7 +25,7 @@ Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/w
 
 ````curl
 curl https://api.elastic.io/v1/users \
-   -u {USERNAME}:{PASSWORD}
+   -u {EMAIL}:{APIKEY}
 ````
 
 # Users
@@ -36,7 +36,7 @@ curl https://api.elastic.io/v1/users \
 
 ```curl
 curl https://api.elastic.io/v1/users \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
@@ -72,7 +72,7 @@ Returns a user object if the call succeeded.
 
 ```curl
 curl https://api.elastic.io/v1/users \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
    {
@@ -104,7 +104,7 @@ Content-Type: application/json
 
 ```curl
 curl https://api.elastic.io/v1/users \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
    {
@@ -173,7 +173,7 @@ The ``api_secret`` field is used to communicate with the API on user's behalf.
 
 ```curl
 curl https://api.elastic.io/v1/recipes/ \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
@@ -217,7 +217,7 @@ Returns all recipe's available for activation. Please note that in order to get 
 
 ```curl
 curl https://api.elastic.io/v1/recipes/{RECIPE_ID} \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
@@ -308,7 +308,7 @@ Returns a recipe's metadata object if the call succeeded. The returned object wi
 
 ```curl
 curl https://api.elastic.io/v1/recipes \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
    {
@@ -375,7 +375,7 @@ accounts | A hash of key/value pairs representing user's account credentials. Th
 
 ```curl
 curl https://api.elastic.io/v1/sshkey/ \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
@@ -416,7 +416,7 @@ Returns a ssh key's metadata object if the call succeeded. The returned object w
 
 ```curl
  curl https://api.elastic.io/v1/sshkey/ \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
    {
@@ -468,7 +468,7 @@ Returns a ssh key's metadata object if the call succeeded. The returned object w
 
 ```curl
 curl https://api.elastic.io/v1/sshkey/{KEY_ID} \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -X DELETE
 ```
@@ -511,7 +511,7 @@ Returns empty response on success request
 
 ```curl
 curl https://api.elastic.io/v1/components/mine \
-   -u {USERNAME}:{PASSWORD} \
+   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
