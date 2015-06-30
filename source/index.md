@@ -980,7 +980,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint retrieves list of user's accounts
+This endpoint retrieves one of user's accounts
 
 ### HTTP Request
 
