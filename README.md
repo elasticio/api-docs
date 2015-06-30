@@ -3,12 +3,11 @@
 The docs are generated with [Slate](https://github.com/tripit/slate).
 
 
+# Generating API docs
 You need a `bundler` Ruby package manager to be installed.
 ````bash
 gem install bundler
 ````
-
-# Generating API docs
 
 ``cd api-docs``
 
