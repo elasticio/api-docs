@@ -972,6 +972,7 @@ Content-Type: application/json
 {
     "id": "55083c567aea6f030000001a",
     "name": "My Dropbox account",
+    "type": "dropbox",
     "keys": {
         "oauth": {
             "key": "some key"
@@ -986,6 +987,11 @@ This endpoint retrieves one of user's accounts
 
 `GET https://api.elastic.io/v1/accounts/{ACCOUNT_ID}/`
 
+### URL Parameters
+
+Parameter  | Description
+---------- | -----------
+ACCOUNT_ID | The ID of the account 
 
 ### Returns
 
@@ -999,9 +1005,10 @@ Returns an account object if the call succeeded.
 
 
 ```curl
-curl -X PUT https://api.elastic.io/v1/accounts/{ACCOUNT_ID}/ \
+curl https://api.elastic.io/v1/accounts/{ACCOUNT_ID}/ \
    -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json'
+   -X PUT \
+   -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
       {
           "name": "New account name"
@@ -1017,6 +1024,7 @@ Content-Type: application/json
 {
     "id": "55083c567aea6f030000001a",
     "name": "New account name",
+    "type": "dropbox",
     "keys": {
         "oauth": {
             "key": "some key"
@@ -1031,6 +1039,19 @@ This endpoint modifies user's account
 
 `PUT https://api.elastic.io/v1/accounts/{ACCOUNT_ID}/`
 
+### URL Parameters
+
+Parameter  | Description
+---------- | -----------
+ACCOUNT_ID | The ID of the account
+
+### Arguments
+
+Parameter | Required | Description
+--------- | ----------- | -----------
+name | no | Account name
+type | no | Account type (e.g. "dropbox")
+keys | no | An object which represents component's configuration (OAuth keys, etc.)
 
 ### Returns
 
