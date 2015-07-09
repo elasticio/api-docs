@@ -736,6 +736,85 @@ Parameter | Required | Description
 --------- | ---------| -----------
 REPO_ID        | yes      | repository id
 
+
+## Get env vars
+
+> Example Request:
+
+```curl
+curl https://api.elastic.io/v1/repos/{REPO_ID}/env/ \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+    "API_KEY": "key",
+    "API_SECRET": "secret"
+}
+```
+
+### HTTP Request
+
+`GET https://api.elastic.io/v1/repos/{REPO_ID}/env/`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---------| -----------
+REPO_ID   | yes      | Repository ID
+
+### Returns
+
+Returns environment variables of repository if the call succeeded.
+
+
+## Modify env vars
+Update env vars for repository. You can update existing env vars by setting them again, and remove by setting it to NULL.
+
+> Example Request:
+
+```curl
+curl https://api.elastic.io/v1/repos/{REPO_ID}/env/ \
+   -X PUT \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' -d '
+   {
+       "API_KEY": "new_key",
+       "API_SECRET": null
+   }'
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+    "API_KEY": "new_key"
+}
+```
+
+### HTTP Request
+
+`PUT https://api.elastic.io/v1/repos/{REPO_ID}/env/`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---------| -----------
+REPO_ID   | yes      | Repository ID
+
+
+### Returns
+
+Returns updated environment variables of repository if the call succeeded.
+
+
 #Tasks
 
 ## Start a Task
