@@ -124,8 +124,29 @@ HTTP/1.1 202 Accepted
 Content-Type: application/json
 
 {
-  "message": "accepted"
+  "id": "54f4be3fe7d5224f91000001",
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "test@example.com",
+  "company": "Doe & Partners",
+  "api_secret":"7a00b1ec-a0a8-4cea-84d2-d26052c8b788"
 }
+```
+
+> Example Callback Request:
+
+```curl
+curl http://my.awesome.callback/path \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+  {
+    "id": "54f4be3fe7d5224f91000001",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "test@example.com",
+    "company": "Doe & Partners",
+    "api_secret":"7a00b1ec-a0a8-4cea-84d2-d26052c8b788"
+  }'
 ```
 
 This endpoint registers a new user.
