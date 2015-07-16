@@ -185,6 +185,38 @@ New user objects will be provided with an ``id`` and ``api_secret`` fields - the
 
 The ``api_secret`` field is used to communicate with the API on user's behalf.
 
+
+## Delete one of users
+
+> Example Request:
+
+```curl
+curl https://api.elastic.io/v1/users/123456789 \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "message" : "Successfully delete user id=123456789"
+}
+```
+
+### HTTP Request
+
+`DELETE https://api.elastic.io/v1/users/123456`
+
+#### Returns
+
+Returns an HTTP 200 in case of successfull deletion
+
+
 # Recipes
 
 ## Retrieve all Recipes
