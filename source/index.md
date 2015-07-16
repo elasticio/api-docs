@@ -186,7 +186,12 @@ New user objects will be provided with an ``id`` and ``api_secret`` fields - the
 The ``api_secret`` field is used to communicate with the API on user's behalf.
 
 
-## Delete one of users
+## Delete one of the created users
+
+This method works with following limitations:
+
+ - You can only delete users that you created 
+ - You can not delete a user who's identity is provided via authentication for a call
 
 > Example Request:
 
@@ -214,7 +219,7 @@ Content-Type: application/json
 
 #### Returns
 
-Returns an HTTP 200 in case of successfull deletion
+Returns an HTTP 200 in case of successful deletion
 
 
 # Recipes
