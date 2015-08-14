@@ -370,15 +370,14 @@ curl https://api.elastic.io/v1/recipes \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
    {
-       "recipeId": "53d61965a6b9e9183f000001",
+       "recipeId": "shopware_to_mailchimp",
        "accounts": {
-           "amazonmws": {
-               "credentials": {
-                   "sellerId": "asdasd7a7sd60asasdasd",
-                   "marketplace": "us",
-                   "mwsAuthToken": "345lkj34k5j3l45k"
-               }
-           },
+          "accounts" : {
+            "mailchimp" : {
+              "name": "My MailChimp account",
+              "apiKey": "2314123412341234-eu1"
+            }
+          },
            "shopware": {
                "credentials": {
                    "baseUrl": "mysuperawesomeshop.com",
@@ -397,14 +396,16 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "tasks" : [
+  "syncAppId": "55cdf472aebbe9650d000008",
+  "syncAppTitle": "Shopware to Mailchimp",
+  "tasks": [
     {
-      "id" : "540492e623773659c5000002",
-      "title" : "Synchronize Shopware Products to Amazon"
+      "id": "55cdf472aebbe9650d000006",
+      "name": "New Mailchimp subscriber"
     },
     {
-      "id" : "540490c023773659c5000001",
-      "title" : "Synchronize Amazon Orders to Shopware"
+      "id": "55cdf472aebbe9650d000007",
+      "name": "Un-subscribe from Mailchimp"
     }
   ]
 }
