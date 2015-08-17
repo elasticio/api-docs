@@ -412,7 +412,17 @@ Content-Type: application/json
 }
 ```
 
-This endpoint creates tasks from a given recipe.
+This endpoint creates tasks from a given recipe. You should supply necessary for recipe activation data such as:
+ * Mandatory account information - in case you have multiple tasks you need multiple accounts for each unique component, for example you have two tasks first ```Webhook to Mailchimp``` and second ```Mailchimp to Shopware``` you need to specify accounts for ```Mailchimp``` and ```Shopware```
+ * Optional configuration information - if we continue sample above to get the ```Mailchimp``` component running you need a mailchimp list ID where to store/export user's data (or any other required configuration), here you can supply the default configuration properties that will be set to all ```mailchimp``` steps by using following JSON:
+   ```json
+   "configuration" : {
+    "mailchimp" : {
+      "listId: "foo",
+      "anything" : "else"
+    }
+   }
+   ```
 
 ### HTTP Request
 
