@@ -365,17 +365,18 @@ Returns a recipe's metadata object if the call succeeded. The returned object wi
 > Example Request:
 
 ```curl
-curl https://api.elastic.io/v1/recipes \
+curl https://api.elastic.io/v1/recipes/shopware_to_mailchimp \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
    {
-       "recipeId": "shopware_to_mailchimp",
        "accounts": {
           "accounts" : {
             "mailchimp" : {
-              "name": "My MailChimp account",
-              "apiKey": "2314123412341234-eu1"
+              "name": "Optional name",
+              "credentials" : {
+                "apiKey": "2314123412341234-eu1"
+              }
             }
           },
            "shopware": {
