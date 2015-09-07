@@ -16,7 +16,7 @@ Install ruby-dev
 ```
 sudo apt-get install ruby-dev
 ```
-Than
+Then
 ````bash
 Igors-Mac:api-docs igor$ bundle install
 ````
