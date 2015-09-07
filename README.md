@@ -11,7 +11,8 @@ gem install bundler
 ``cd api-docs``
 
 First you need to install the dependencies, if not yet done.
-# Install ruby-dev
+
+Install ruby-dev
 ```
 sudo apt-get install ruby-dev
 ```
