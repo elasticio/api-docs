@@ -2,7 +2,6 @@
 
 The docs are generated with [Slate](https://github.com/tripit/slate).
 
-
 # Generating API docs
 You need a `bundler` Ruby package manager to be installed.
 ````bash
@@ -12,7 +11,11 @@ gem install bundler
 ``cd api-docs``
 
 First you need to install the dependencies, if not yet done.
-
+# Install ruby-dev
+```
+sudo apt-get install ruby-dev
+```
+Than
 ````bash
 Igors-Mac:api-docs igor$ bundle install
 ````
