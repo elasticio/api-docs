@@ -1251,10 +1251,10 @@ Parameter| Required | Description | Used in
 --------- | -----------| ----------- | -----------
 executionType | yes | getMetaModel, selectModel or verifyCredentials | all requests
 component | yes | Specifies the name(id) of the connector to be executed | all requests
-accountData | yes | Account data | verifyCredentials
+accountData | yes | Account data for validation | verifyCredentials
 actionOrTrigger | yes | The name of action or trigger from connector | getMetaModel, selectModel
-accountId | yes | Account id | getMetaModel, selectModel
-modelMethod | yes | Name of the method | selectModel
+accountId | yes | Account id for execution | getMetaModel, selectModel
+modelMethod | yes | Name of the method from action or trigger to get model | selectModel
 cfg | no | Object with additional parameters | getMetaModel, selectModel
 
 
