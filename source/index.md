@@ -1247,15 +1247,15 @@ It responds with the resource to poll on, in order to get the result of the sche
 
 `POST https://api.elastic.io/v1/exec/schedule`
 
-Parameter| Required | Description
+Parameter| Required | Description | Note
 --------- | -----------| -----------
 executionType | yes | getMetaModel, selectModel or verifyCredentials
 component | yes | Specifies the name(id) of the connector to be executed
-actionOrTrigger | no | The name of action or trigger from connector (for getMetaModel or selectModel)
-accountId | no | Account id (for getMetaModel or selectModel)
-accountData | no | Account data (only for verifyCredentials) 
-modelMethod | no | Name of the method (only for selectModel)
-cfg | no | Additional parameters (for getMetaModel or selectModel)
+actionOrTrigger | no | The name of action or trigger from connector | for getMetaModel and selectModel
+accountId | no | Account id | for getMetaModel and selectModel
+accountData | no | Account data | only for verifyCredentials
+modelMethod | no | Name of the method | only for selectModel
+cfg | no | Additional parameters | for getMetaModel and selectModel
 
 
 ### Returns
