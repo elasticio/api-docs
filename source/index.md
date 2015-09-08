@@ -1249,7 +1249,7 @@ It responds with the resource to poll on, in order to get the result of the sche
 
 Parameter| Required | Description | Used in  
 --------- | -----------| ----------- | -----------
-execution_type | yes | get_meta_model, select_model or verify_credentials | all requests
+execution_type | yes | "get_meta_model", "select_model" or "verify_credentials" | all requests
 component | yes | Specifies the name(id) of the connector to be executed | all requests
 account_aata | yes | Account data for validation | verify_credentials
 action_or_trigger | yes | The name of action or trigger from connector | get_meta_model, select_model
