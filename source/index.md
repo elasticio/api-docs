@@ -592,16 +592,36 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "components": {
-    "component_id": {
-        "name": "title"
+  "components": [
+    {
+      "data": {
+        "actions": {
+          "update": {}
+        },
+        "credentials": {
+          "fields": {
+            "name": {
+              "viewClass": "TextFieldView",
+              "required": true,
+              "label": "Your name"
+            }
+          }
+        },
+        "icon": "string", //<Base64>
+        "description": "Description",
+        "title": "Component title",
+        "triggers": {
+          "select": {}
+        }
+      },
+      "repo_id": "MONGO_ID"
     }
-  }
-  
+  ]
 }
 ```
 
-This endpoint retrieves list of user's components
+This endpoint retrieves list of user's components.
+More details you can find [here](http://docs.elastic.io/docs/component-descriptor).
 
 ### HTTP Request
 
@@ -620,7 +640,7 @@ Returns repositories metadata object if the call succeeded.
 
 
 ```curl
-curl https://api.elastic.io/v1/components \
+curl https://api.elastic.io/v1/components/public \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -632,16 +652,53 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "components": {
-    "component_id": {
-        "name": "title"
+  "components": [
+    {  
+      "data": {
+        "description": "Timer",
+        "fields": {
+          "interval": {
+            "label": "Interval",
+            "model": {
+              "day": "Every Day",
+              "hour": "Every Hour",
+              "minute": "Every Minute"
+            },
+            "prompt": "Please select an interval",
+            "required": true,
+            "viewClass": "SelectView"
+          }
+        },
+        "icon": "string", //<Base64>
+        "title": "Timer",
+        "triggers": {
+          "timer": {
+            "main": "./timer.js",
+            "metadata": {
+              "out": {
+                "properties": {
+                  "fireTime": {
+                    "format": "date-time",
+                    "required": true,
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "title": "Timer",
+            "type": "polling"
+          }
+        }
+      },
+      "repo_id": "MONGO_ID"
     }
-  }
-  
+  ]
 }
 ```
 
 This endpoint retrieves list of public components
+More details you can find [here](http://docs.elastic.io/docs/component-descriptor).
 
 ### HTTP Request
 
