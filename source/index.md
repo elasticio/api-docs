@@ -1221,7 +1221,7 @@ Returns a modified account object if the call succeeded.
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
     {
-      "executionType": "meta_model",
+      "executionType": "getMetaModel",
       "actionOrTrigger": "put",
       "component": "dropbox",
       "accountId": "540492e623773659c5000002"
@@ -1249,11 +1249,13 @@ It responds with the resource to poll on, in order to get the result of the sche
 
 Parameter| Required | Description
 --------- | -----------| -----------
-execution_type | yes | meta_model, select_model or verify_credentials
-action_or_trigger | yes | The name of action or trigger on the connector which the execution will be done for
-model_method | no | Optional name of the method to execute on the specified connectors action or trigger
+executionType | yes | getMetaModel, selectModel or verifyCredentials
 component | yes | Specifies the name(id) of the connector to be executed
-accountId | yes | The account id setup for the connector
+actionOrTrigger | no | The name of action or trigger from connector (for getMetaModel or selectModel)
+accountId | no | Account id (for getMetaModel or selectModel)
+accountData | no | Account data (only for verifyCredentials) 
+modelMethod | no | Name of the method (only for selectModel)
+cfg | no | Additional parameters (for getMetaModel or selectModel)
 
 
 ### Returns
