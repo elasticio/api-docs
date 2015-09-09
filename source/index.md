@@ -1295,8 +1295,8 @@ Returns a modified account object if the call succeeded.
     {
       "execution_type": "get_meta_model",
       "action_or_trigger": "put",
-      "component": "55d059dbcf15060500000007",
-      "account_id": "540492e623773659c5000002"
+      "component": "{CONNECTOR_ID}",
+      "account_id": "{ACCOUNT_ID}"
     }'
 ```
 
