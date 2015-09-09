@@ -595,9 +595,9 @@ Content-Type: application/json
   "components": [
     {
       "data": {
-        "actions": {
-          "update": {}
-        },
+        "title": "Component title",
+        "description": "Description",
+        "icon": "<String>",
         "credentials": {
           "fields": {
             "name": {
@@ -607,11 +607,11 @@ Content-Type: application/json
             }
           }
         },
-        "icon": "string", //<Base64>
-        "description": "Description",
-        "title": "Component title",
         "triggers": {
-          "select": {}
+          "select": "<Triggers Object>"
+        },
+        "actions": {
+          "update": "<Actions Object>"
         }
       },
       "repo_id": "MONGO_ID"
@@ -632,6 +632,13 @@ More details you can find [here](http://docs.elastic.io/docs/component-descripto
 
 Returns repositories metadata object if the call succeeded.
 
+### Response fields
+
+Field     | Type     | Description
+--------- | ---------| --------------------------
+icon      | String   | Icon in base64
+triggers  | Object   | [&lt;Triggers Object&gt;](http://docs.elastic.io/docs/component-descriptor#triggers-object)
+actions   | Object   | [&lt;Actions Object&gt;](http://docs.elastic.io/docs/component-descriptor#actions-object)
 
 ## Retrieve public components
 
@@ -653,9 +660,11 @@ Content-Type: application/json
 
 {
   "components": [
-    {  
+    {
       "data": {
+        "title": "Timer",
         "description": "Timer",
+        "icon": "<String>",
         "fields": {
           "interval": {
             "label": "Interval",
@@ -669,11 +678,11 @@ Content-Type: application/json
             "viewClass": "SelectView"
           }
         },
-        "icon": "string", //<Base64>
-        "title": "Timer",
         "triggers": {
           "timer": {
+            "title": "Timer",
             "main": "./timer.js",
+            "type": "polling",
             "metadata": {
               "out": {
                 "properties": {
@@ -685,9 +694,7 @@ Content-Type: application/json
                 },
                 "type": "object"
               }
-            },
-            "title": "Timer",
-            "type": "polling"
+            }
           }
         }
       },
@@ -708,6 +715,14 @@ More details you can find [here](http://docs.elastic.io/docs/component-descripto
 ### Returns
 
 Returns repositories metadata object if the call succeeded.
+
+### Response fields
+
+Field     | Type     | Description
+--------- | ---------| --------------------------
+icon      | String   | Icon in base64
+triggers  | Object   | [&lt;Triggers Object&gt;](http://docs.elastic.io/docs/component-descriptor#triggers-object)
+actions   | Object   | [&lt;Actions Object&gt;](http://docs.elastic.io/docs/component-descriptor#actions-object)
 
 
 #Repositories
