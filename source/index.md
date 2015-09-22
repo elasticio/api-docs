@@ -369,25 +369,21 @@ curl https://api.elastic.io/v1/recipes/shopware_to_mailchimp \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
-   {
-       "accounts": {
-          "accounts" : {
+    {
+        "accounts" : {
             "mailchimp" : {
-              "name": "Optional name",
-              "credentials" : {
-                "apiKey": "2314123412341234-eu1"
-              }
+                "name": "Account for plugin",
+                "credentials" : {
+                    "apiKey": "123456789-eu1"
+                }
             }
-          },
-           "shopware": {
-               "credentials": {
-                   "baseUrl": "mysuperawesomeshop.com",
-                   "user": "text@example.com",
-                   "password": "secret"
-               }
-           }
-       }
-   }'
+        },
+        "configuration" : {
+            "mailchimp" : {
+                "listId" : "112233"
+            }
+        }
+    }'
 ```
 
 > Example Response:
@@ -433,6 +429,7 @@ This endpoint creates tasks from a given recipe. You should supply necessary for
 Parameter | Description
 --------- | -----------
 accounts | A hash of key/value pairs representing user's account credentials. The keys are the ids of connectors and the values are the credentials.
+configuration | A hash of key/value pairs representing fields used to configure connectors. The keys are the ids of connectors and the values are values of fields.
 
 
 #SSH keys
@@ -1281,6 +1278,24 @@ Returns a modified account object if the call succeeded.
 
 #Component Execution
 
+A component execution is an asynchronous operation. Upon an client request an execution is scheduled
+and needs toto wait for the next available worker. Once a worker is available the component is executed
+the the results are sent be to the client. Because the results of an execution cannot be created and
+returned immediately the clients needs to wait and poll for the results.
+
+For more details about asynchronous REST please read [RESTful CookBook](http://restcookbook.com/Resources/asynchroneous-operations/)
+and [A day in the life of - Asynchronous operations in REST](https://www.adayinthelifeof.nl/2011/06/02/asynchronous-operations-in-rest/).
+
+The following diagram displays the process of component scheduling:
+
+1. A component execution is scheduled by sending a request to ``exec/schedule``. The API responds with ``202 Accepted``. The resource in the ``Location`` HTTP header is the url to poll for execution results.
+2. The execution results are polled periodically by sending requests to the polling resource``exec/poll/{EXECUTION_ID}``. The API responds with ``200 OK`` if the result is not available yet.
+3. Once the result is available the polling resource responds with ``303 See Other``. The resource in the ``Location`` HTTP header is the url to get the results from.
+4. The results are retrieved from ``exec/result/{EXECUTION_ID}``. Please note that the result may be retrieved only once.
+
+![Component execution](images/exec_sequence_diagram.png "Component execution")
+
+
 ## Schedule a component execution
 
 
@@ -1347,23 +1362,24 @@ curl https://api.elastic.io/v1/exec/poll/{EXECUTION_ID} \
    -H 'Accept: application/json'
 ```
 
-> Example Response (Result ready):
+
+> Response "In progress":
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "message": "Result is not ready yet"
+}
+```
+
+> Response "Result ready":
 
 ```http
 HTTP/1.1 303 See Other
 Content-Type: application/json
 Location: 'https://api.elastic.io/v1/exec/result/540492e623773659c5000002'
-
-{
-  "message": "Ready."
-}
-```
-
-> Example Response (In progress):
-
-```http
-HTTP/1.1 303 See Other
-Content-Type: application/json
 
 {
   "message": "Ready."
@@ -1403,7 +1419,7 @@ curl https://api.elastic.io/v1/exec/result/{EXECUTION_ID} \
    -H 'Accept: application/json'
 ```
 
-> Example Response:
+> Response "Result available"
 
 ```http
 HTTP/1.1 200 OK
@@ -1414,6 +1430,17 @@ Location: 'https://api.elastic.io/v1/exec/result/540492e623773659c5000002'
   "data": {
     "some": "value"
   }
+}
+```
+
+> Response "Result not found"
+
+```http
+HTTP/1.1 404 Not found
+Content-Type: application/json
+
+{
+  "message": "Result does not exist"
 }
 ```
 
