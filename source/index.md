@@ -1279,9 +1279,9 @@ Returns a modified account object if the call succeeded.
 #Component Execution
 
 A component execution is an asynchronous operation. Upon an client request an execution is scheduled
-and needs toto wait for the next available worker. Once a worker is available the component is executed
-the the results are sent be to the client. Because the results of an execution cannot be created and
-returned immediately the clients needs to wait and poll for the results.
+and needs to wait for the next available worker. Once a worker is available the component is executed
+and the results are sent back to the client. Because the results of an execution cannot be created and
+returned immediately the client needs to wait and poll for the results.
 
 For more details about asynchronous REST please read [RESTful CookBook](http://restcookbook.com/Resources/asynchroneous-operations/)
 and [A day in the life of - Asynchronous operations in REST](https://www.adayinthelifeof.nl/2011/06/02/asynchronous-operations-in-rest/).
