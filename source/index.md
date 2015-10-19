@@ -2,7 +2,8 @@
 title: API Reference
 
 language_tabs:
-  - curl
+- shell: curl
+- javascript: Node.js
 
 toc_footers:
   - <a href='https://app.elastic.io'>Sign Up for a Developer Key</a>
@@ -23,10 +24,16 @@ You authenticate to the elastic.io API by providing your API key in the request.
 
 Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). Provide your API key as the basic auth username. You do not need to provide a password.
 
-````curl
+```shell
 curl https://api.elastic.io/v1/users \
    -u {EMAIL}:{APIKEY}
-````
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+```
 
 # Users
 
@@ -34,10 +41,21 @@ curl https://api.elastic.io/v1/users \
 
 > Example Request:
 
-```curl
+```shell
 curl https://api.elastic.io/v1/users \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.users.me()
+    .then(function(user) {
+        // do something with your user
+    });
 ```
 
 > Example Response:
@@ -68,9 +86,9 @@ Returns a user object if the call succeeded.
 
 ## Create a user
 
-> Example Request (No callback):
+> Example Request:
 
-```curl
+```shell
 curl https://api.elastic.io/v1/users \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -84,7 +102,23 @@ curl https://api.elastic.io/v1/users \
    }'
 ```
 
-> Example Response (No callback):
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.users.create({
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "test@example.com",
+    "password": "secret",
+    "company": "Doe & Partners"
+}).then(function(user) {
+    // do something with the user
+});
+```
+
+> Example Response:
 
 ```http
 HTTP/1.1 201 OK
@@ -98,55 +132,6 @@ Content-Type: application/json
   "company": "Doe & Partners",
   "api_secret":"7a00b1ec-a0a8-4cea-84d2-d26052c8b788"
 }
-```
-
-> Example Request (With callback)
-
-```curl
-curl https://api.elastic.io/v1/users \
-   -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json' \
-   -H 'Content-Type: application/json' -d '
-   {
-      "first_name": "John",
-      "last_name": "Doe",
-      "email": "test@example.com",
-      "password": "secret",
-      "company": "Doe & Partners",
-      "callback_url": "http://my.awesome.callback/path"
-   }'
-```
-
-> Example Response (With callback):
-
-```http
-HTTP/1.1 202 Accepted
-Content-Type: application/json
-
-{
-  "id": "54f4be3fe7d5224f91000001",
-  "first_name": "John",
-  "last_name": "Doe",
-  "email": "test@example.com",
-  "company": "Doe & Partners",
-  "api_secret":"7a00b1ec-a0a8-4cea-84d2-d26052c8b788"
-}
-```
-
-> Example Callback Request:
-
-```curl
-curl http://my.awesome.callback/path \
-   -H 'Accept: application/json' \
-   -H 'Content-Type: application/json' -d '
-  {
-    "id": "54f4be3fe7d5224f91000001",
-    "first_name": "John",
-    "last_name": "Doe",
-    "email": "test@example.com",
-    "company": "Doe & Partners",
-    "api_secret":"7a00b1ec-a0a8-4cea-84d2-d26052c8b788"
-  }'
 ```
 
 This endpoint registers a new user.
@@ -195,11 +180,19 @@ This method works with following limitations:
 
 > Example Request:
 
-```curl
-curl https://api.elastic.io/v1/users/123456789 \
+```shell
+curl https://api.elastic.io/v1/users/{USER_ID} \
    -X DELETE \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.users.delete({USER_ID});
 ```
 
 > Example Response:
@@ -229,7 +222,7 @@ Returns an HTTP 200 in case of successful deletion
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/recipes/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -273,7 +266,7 @@ Returns all recipe's available for activation. Please note that in order to get 
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/recipes/{RECIPE_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -364,7 +357,7 @@ Returns a recipe's metadata object if the call succeeded. The returned object wi
 
 > Example Request:
 
-```curl
+```shell
 curl https://api.elastic.io/v1/recipes/shopware_to_mailchimp \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -440,10 +433,21 @@ configuration | A hash of key/value pairs representing fields used to configure 
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/sshkey/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.sshkeys.list()
+    .then(function(keys) {
+        // do something with the keys
+    });
 ```
 
 > Example Response:
@@ -481,7 +485,7 @@ Returns a ssh key's metadata object if the call succeeded. The returned object w
 > Example Request:
 
 
-```curl
+```shell
  curl https://api.elastic.io/v1/sshkey/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -490,6 +494,19 @@ Returns a ssh key's metadata object if the call succeeded. The returned object w
        "key": "ssh-rsa YOUR KEY GOES HERE,
        "title": "My Key"
    }'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.sshkeys.create({
+    "key": "ssh-rsa YOUR KEY GOES HERE",
+    "title": "My Key"
+}).then(function(key) {
+    // do something with the key
+});
 ```
 
 > Example Response:
@@ -533,11 +550,19 @@ Returns a ssh key's metadata object if the call succeeded. The returned object w
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/sshkey/{KEY_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -X DELETE
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.sshkeys.delete({KEY_ID});
 ```
 
 > Example Response:
@@ -576,10 +601,21 @@ Returns empty response on success request
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/components/mine \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.components.mine()
+    .then(function(components) {
+        // do something with components
+    });
 ```
 
 > Example Response:
@@ -643,10 +679,22 @@ actions   | Object   | [&lt;Actions Object&gt;](http://docs.elastic.io/docs/comp
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/components/public \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
+```
+
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.components.public()
+    .then(function(components) {
+        // do something with components
+    });
 ```
 
 > Example Response:
@@ -728,7 +776,7 @@ actions   | Object   | [&lt;Actions Object&gt;](http://docs.elastic.io/docs/comp
 
 > Example Request:
 
-```curl
+```shell
 curl https://api.elastic.io/v1/repos/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -761,7 +809,7 @@ Returns repositories metadata object if the call succeeded.
 
 > Example Request:
 
-```curl
+```shell
 curl https://api.elastic.io/v1/repos/{ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -801,7 +849,7 @@ Returns repositories metadata object if the call succeeded.
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/repos/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' -d '
@@ -847,7 +895,7 @@ Returns repositories metadata object if the call succeeded.
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/repos/{REPO_ID} \
    -u {EMAIL}:{APIKEY} \
    -X DELETE \
@@ -880,7 +928,7 @@ REPO_ID        | yes      | repository id
 
 > Example Request:
 
-```curl
+```shell
 curl https://api.elastic.io/v1/repos/{REPO_ID}/env/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -917,7 +965,7 @@ Update env vars for repository. You can update existing env vars by setting them
 
 > Example Request:
 
-```curl
+```shell
 curl https://api.elastic.io/v1/repos/{REPO_ID}/env/ \
    -X PUT \
    -u {EMAIL}:{APIKEY} \
@@ -961,7 +1009,7 @@ Returns updated environment variables of repository if the call succeeded.
 > Example Request:
 
 
-```curl
+```shell
 curl -X POST https://api.elastic.io/v1/tasks/start/{TASK_ID} \
    -u {EMAIL}:{APIKEY}
 ```
@@ -1002,7 +1050,7 @@ Result of starting the task.
 > Example Request:
 
 
-```curl
+```shell
 curl -X POST https://api.elastic.io/v1/tasks/stop/{TASK_ID} \
    -u {EMAIL}:{APIKEY}
 ```
@@ -1045,7 +1093,7 @@ Result of stopping the task.
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/teams/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -1087,7 +1135,7 @@ Returns teams metadata object if the call succeeded.
 > Example Request:
 
 
-```curl
+```shell
  curl https://api.elastic.io/v1/teams \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -1132,7 +1180,7 @@ Returns teams metadata object if the call succeeded.
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/accounts/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -1175,7 +1223,7 @@ Returns a list of accounts if the call succeeded.
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/accounts/{ACCOUNT_ID}/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -1222,7 +1270,7 @@ Returns an account object if the call succeeded.
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/accounts/{ACCOUNT_ID}/ \
    -u {EMAIL}:{APIKEY} \
    -X PUT \
@@ -1302,7 +1350,7 @@ The following diagram displays the process of component scheduling:
 > Example Request:
 
 
-```curl
+```shell
  curl https://api.elastic.io/v1/exec/schedule \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -1356,7 +1404,7 @@ The 'Location' header specifies a resource to poll on until the execution result
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/exec/poll/{EXECUTION_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -1413,7 +1461,7 @@ Status Code| Body | Header |Description
 > Example Request:
 
 
-```curl
+```shell
 curl https://api.elastic.io/v1/exec/result/{EXECUTION_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
