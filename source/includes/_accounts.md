@@ -111,6 +111,81 @@ ACCOUNT_ID | The ID of the account
 
 Returns an account object if the call succeeded.
 
+## Add new account
+
+
+> Example Request:
+
+
+```shell
+ curl https://api.elastic.io/v1/accounts/ \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+   {
+      "name": "My Dropbox account",
+      "type": "dropbox",
+      "keys": {
+         "oauth": {
+            "key": "some key"
+      }
+   }'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.accounts.create({
+    "name": "My Dropbox account",
+    "type": "dropbox",
+    "keys": {
+        "oauth": {
+            "key": "some key"
+        }
+    }
+}).then(function(account) {
+    // do something with the account
+});
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 201 OK
+Content-Type: application/json
+
+{
+  "id": "54982ee6bdf2a2030000000f",
+  "title": "My Key",
+  "fingerprint": "fingerprint",
+  "user_id": "user_id",
+  "key":"ssh_key"
+}
+```
+
+This endpoint adds new key to list of user's keys
+
+### HTTP Request
+
+`POST https://api.elastic.io/v1/accounts/`
+
+
+### Arguments
+
+Parameter | Required | Description
+--------- | ----------- | -----------
+name | no | Account name
+type | no | Account type (e.g. "dropbox")
+keys | no | An object which represents component's configuration (OAuth keys, etc.)
+
+
+### Returns
+
+Returns a ssh key's metadata object if the call succeeded. The returned object will have an keys's title, id and fingerPrint metadata.
+
+
 
 ## Modify user's account
 
