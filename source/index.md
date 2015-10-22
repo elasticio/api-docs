@@ -10,15 +10,15 @@ toc_footers:
 
 includes:
   - authentication
-  - users
-  - recipes
-  - sshkeys
+  - accounts
   - components
+  - recipes
   - repositories
+  - executions
+  - sshkeys
   - tasks
   - teams
-  - accounts
-  - executions
+  - users
   - errors
 
 search: true

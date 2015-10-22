@@ -1,4 +1,4 @@
-#Component Execution
+#Scheduled Executions
 
 A component execution is an asynchronous operation. Upon an client request an execution is scheduled
 and needs to wait for the next available worker. Once a worker is available the component is executed
