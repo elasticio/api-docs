@@ -10,6 +10,17 @@ curl https://api.elastic.io/v1/repos/ \
    -H 'Accept: application/json'
 ```
 
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.repos.list()
+    .then(function(repos) {
+        // do something with the repos
+    });
+```
+
 > Example Response:
 
 ```http
@@ -38,9 +49,20 @@ Returns repositories metadata object if the call succeeded.
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v1/repos/{ID} \
+curl https://api.elastic.io/v1/repos/{REPO_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.repos.retrieve({REPO_ID})
+    .then(function(repo) {
+        // do something with the repo
+    });
 ```
 
 > Example Response:
@@ -84,6 +106,18 @@ curl https://api.elastic.io/v1/repos/ \
    {
        "name": "My Repo"
    }'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.repos.create({
+    "name": "My Repo"
+}).then(function(repo) {
+    // do something with the repo
+ });
 ```
 
 > Example Response:
@@ -130,6 +164,14 @@ curl https://api.elastic.io/v1/repos/{REPO_ID} \
    -H 'Accept: application/json'
 ```
 
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.repos.delete({REPO_ID});
+```
+
 > Example Response:
 
 ```http
@@ -160,6 +202,17 @@ REPO_ID        | yes      | repository id
 curl https://api.elastic.io/v1/repos/{REPO_ID}/env/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.repos.retrieveEnvVars({REPO_ID})
+    .then(function(vars) {
+        // do something with the env vars
+    });
 ```
 
 > Example Response:
@@ -200,8 +253,19 @@ curl https://api.elastic.io/v1/repos/{REPO_ID}/env/ \
    -H 'Accept: application/json' -d '
    {
        "API_KEY": "new_key",
-       "API_SECRET": null
+       "API_SECRET": "new_secret"
    }'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.repos.updateEnvVars({REPO_ID}, {
+    "API_KEY": "new_key",
+    "API_SECRET": "new_secret"
+});
 ```
 
 > Example Response:

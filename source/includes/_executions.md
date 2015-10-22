@@ -37,6 +37,23 @@ The following diagram displays the process of component scheduling:
     }'
 ```
 
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.exec.schedule({
+    "execution_type": "get_meta_model",
+    "action_or_trigger": "put",
+    "component": "{CONNECTOR_ID}",
+    "account_id": "{ACCOUNT_ID}"
+}).then(function(result) {
+
+    // location contains the url to poll for results
+    var location = result.location;
+});
+```
+
 > Example Response:
 
 ```http
@@ -82,6 +99,22 @@ The 'Location' header specifies a resource to poll on until the execution result
 curl https://api.elastic.io/v1/exec/poll/{EXECUTION_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.exec.pollResult({EXECUTION_ID})
+    .then(function(response) {
+        if (response.ready) {
+            // do something with the result
+            var result = response.result;
+       } else {
+            // poll again
+       }
+    });
 ```
 
 
@@ -141,12 +174,17 @@ curl https://api.elastic.io/v1/exec/result/{EXECUTION_ID} \
    -H 'Accept: application/json'
 ```
 
+```javascript
+// As client.exec.pollResult will follow the HTTP 3003 redirect,
+// Node.js client does not provide extra functionality to retrieve the results.
+// Read the docs of client.exec.pollResult above.
+```
+
 > Response "Result available"
 
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-Location: 'https://api.elastic.io/v1/exec/result/540492e623773659c5000002'
 
 {
   "data": {
@@ -180,7 +218,7 @@ EXECUTION_ID | yes | The id of a previously scheduled execution
 
 Status Code| Body | Header |Description
 --------- | ----------- | ----------- | -----------
-500 | `{message: 'Internal Server Error'}` | - | An error occured on the server
+500 | `{message: 'Internal Server Error'}` | - | An error occurred on the server
 404 | `{message: 'Result does not exist.'}` | - | An attempt to poll for a non scheduled execution was made
 400 | `{message: 'Rejected.', reason: {...}}` | - | The execution has resulted in an error. The body of the response will contain the error object under the 'reason' property of the response.
 200 | `{ data: {...} }` | - | The json representation of the execution result can be found under the 'data' property of the response.

@@ -12,6 +12,17 @@ curl https://api.elastic.io/v1/accounts/ \
    -H 'Accept: application/json'
 ```
 
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.accounts.list()
+    .then(function(accounts) {
+        // do something with the accounts
+    });
+```
+
 > Example Response:
 
 ```http
@@ -53,6 +64,17 @@ Returns a list of accounts if the call succeeded.
 curl https://api.elastic.io/v1/accounts/{ACCOUNT_ID}/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.accounts.retrieve({ACCOUNT_ID})
+    .then(function(account) {
+        // do something with the account
+    });
 ```
 
 > Example Response:
@@ -105,6 +127,17 @@ curl https://api.elastic.io/v1/accounts/{ACCOUNT_ID}/ \
       {
           "name": "New account name"
       }'
+```
+
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.accounts.update({ACCOUNT_ID}, {
+    "name": "New account name"
+});
 ```
 
 > Example Response:

@@ -11,6 +11,17 @@ curl https://api.elastic.io/v1/recipes/ \
    -H 'Accept: application/json'
 ```
 
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.recipes.list()
+    .then(function(recipes) {
+        // do something with the recipes
+    });
+```
+
 > Example Response:
 
 ```http
@@ -53,6 +64,17 @@ Returns all recipe's available for activation. Please note that in order to get 
 curl https://api.elastic.io/v1/recipes/{RECIPE_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.recipes.retrieve({RECIPE_ID})
+    .then(function(recipe) {
+        // do something with the recipe
+    });
 ```
 
 > Example Response:
@@ -160,6 +182,31 @@ curl https://api.elastic.io/v1/recipes/shopware_to_mailchimp \
             }
         }
     }'
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.recipes.activate("shopware_to_mailchimp", {
+    "accounts" : {
+        "mailchimp" : {
+            "name": "Account for plugin",
+            "credentials" : {
+                "apiKey": "123456789-eu1"
+            }
+        }
+    },
+    "configuration" : {
+        "mailchimp" : {
+            "listId" : "112233"
+        }
+    }
+}).then(function(result) {
+
+    // do something with the result
+});
 ```
 
 > Example Response:

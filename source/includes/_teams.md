@@ -12,6 +12,17 @@ curl https://api.elastic.io/v1/teams/ \
    -H 'Accept: application/json'
 ```
 
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.teams.list()
+    .then(function(teams) {
+        // do something with the teams
+    });
+```
+
 > Example Response:
 
 ```http
@@ -56,6 +67,19 @@ Returns teams metadata object if the call succeeded.
    {
        "name": "My team"
    }'
+```
+
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.teams.create({
+    "name": "My team"
+}).then(function(team) {
+    // do something with the team
+});
 ```
 
 > Example Response:

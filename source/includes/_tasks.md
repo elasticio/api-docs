@@ -10,6 +10,14 @@ curl -X POST https://api.elastic.io/v1/tasks/start/{TASK_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.tasks.start({TASK_ID});
+```
+
 > Example Response:
 
 ```http
@@ -49,6 +57,14 @@ Result of starting the task.
 ```shell
 curl -X POST https://api.elastic.io/v1/tasks/stop/{TASK_ID} \
    -u {EMAIL}:{APIKEY}
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.tasks.stop({TASK_ID});
 ```
 
 > Example Response:
