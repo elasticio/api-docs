@@ -14,6 +14,7 @@ includes:
   - components
   - recipes
   - repositories
+  - resources
   - executions
   - sshkeys
   - tasks
