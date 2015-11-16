@@ -30,7 +30,7 @@
                         "email_type" : "html",
                         "email" : "{{email}}"
                     },
-                    "lookup-tables": {
+                    "lookup_tables": {
                         "salutation": "lookup-table-id-to-be-used-for-salutation"
                     }
                }
@@ -71,7 +71,7 @@ client.tasks.create({
                     "email_type" : "html",
                     "email" : "{{email}}"
                 },
-                "lookupTables": {
+                "lookup_tables": {
                     "salutation": "lookup-table-id-to-be-used-for-salutation"
                 }
            }
