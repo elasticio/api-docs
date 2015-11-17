@@ -101,7 +101,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint creates new team for user
+This endpoint creates a new task for user
 
 ### HTTP Request
 
