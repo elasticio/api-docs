@@ -12,7 +12,6 @@ includes:
   - authentication
   - accounts
   - components
-  - recipes
   - repositories
   - resources
   - executions
