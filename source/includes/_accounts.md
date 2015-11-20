@@ -153,15 +153,18 @@ client.accounts.create({
 > Example Response:
 
 ```http
-HTTP/1.1 201 OK
+HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
   "id": "54982ee6bdf2a2030000000f",
-  "title": "My Key",
-  "fingerprint": "fingerprint",
-  "user_id": "user_id",
-  "key":"ssh_key"
+  "name": "My Dropbox account",
+  "type": "dropbox",
+  "keys": {
+    "oauth": {
+      "key": "some key"
+    }
+  }
 }
 ```
 
@@ -183,7 +186,7 @@ keys | no | An object which represents component's configuration (OAuth keys, et
 
 ### Returns
 
-Returns a ssh key's metadata object if the call succeeded. The returned object will have an keys's title, id and fingerPrint metadata.
+Returns account object if the call succeeded.
 
 
 
