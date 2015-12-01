@@ -37,7 +37,7 @@
             },
             {
                 "action" : "elsaticio/mailchimp:subscribe",
-                "account_id" : "54536902230d250700000016",
+                "account" : "54536902230d250700000016",
                 "config": {
                     "listId" : "8779dd762e"
                }
@@ -78,9 +78,9 @@ client.tasks.create({
         },
         {
             "action" : "elsaticio/mailchimp:subscribe",
+            "account" : "54536902230d250700000016",
             "config": {
-                "listId" : "8779dd762e",
-                "_account" : "54536902230d250700000016"
+                "listId" : "8779dd762e"
            }
         }
     ]
