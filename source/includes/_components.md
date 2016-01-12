@@ -173,3 +173,113 @@ Field     | Type     | Description
 icon      | String   | Icon in base64
 triggers  | Object   | [&lt;Triggers Object&gt;](http://docs.elastic.io/docs/component-descriptor#triggers-object)
 actions   | Object   | [&lt;Actions Object&gt;](http://docs.elastic.io/docs/component-descriptor#actions-object)
+
+
+## Retrieve an single component descriptor
+
+
+> Example Request:
+
+
+```shell
+curl https://api.elastic.io/v1/components/55828f5a630d500800000003 \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.components.retrieve("55828f5a630d500800000003")
+    .then(function(components) {
+        // do something with components
+    });
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "repo_id": "55828f5a630d500800000003",
+  "data": {
+    "title": "mock component",
+    "description": "mock",
+    "credentials": {
+      "fields": {
+        "name": {
+          "label": "Your name",
+          "required": true,
+          "viewClass": "TextFieldView"
+        }
+      }
+    },
+    "triggers": {
+      "getHello": {
+        "main": "./lib/triggers/getHello.js",
+        "type": "polling",
+        "title": "Query Hello",
+        "metadata": {
+          "out": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "required": false,
+                "title": "Hello string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "actions": {
+      "updateHello": {
+        "main": "./lib/actions/updateHello.js",
+        "title": "Update Hello",
+        "fields": {
+          "dynamicSelect": {
+            "viewClass": "SelectView",
+            "prompt": "Select your value",
+            "label": "Value",
+            "required": false,
+            "model": "getModel"
+          }
+        },
+        "dynamicMetadata": true
+      }
+    },
+    "language": "nodejs",
+    "sailor_version": "0.0.4",
+    "icon": "iVBORw0KGgoAAAANSUhEAAASUVORK5CYII="
+  },
+  "name": "mock-component",
+  "team": "elasticio"
+}
+```
+
+This endpoint retrieves an information about single component by it's ID
+More details you can find [here](http://docs.elastic.io/docs/component-descriptor).
+
+### HTTP Request
+
+`GET https://api.elastic.io/v1/components/55828f5a630d500800000003`
+
+
+### Returns
+
+Returns repositories metadata object if the call succeeded.
+
+### Response fields
+
+Field     | Type     | Description
+--------- | ---------| --------------------------
+repo_id   | String   | ID of the component 
+data      | Object   | A component descriptor, see [&lt;here&gt;](http://docs.elastic.io/docs/component-descriptor)
+name      | String   | A name of the component repository
+team      | String   | A name of the component repository team
