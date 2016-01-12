@@ -182,7 +182,7 @@ actions   | Object   | [&lt;Actions Object&gt;](http://docs.elastic.io/docs/comp
 
 
 ```shell
-curl https://api.elastic.io/v1/components/55828f5a630d500800000003 \
+curl https://api.elastic.io/v1/components/{COMPONENT_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -193,7 +193,7 @@ var client = require('elasticio-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
-client.components.retrieve("55828f5a630d500800000003")
+client.components.retrieve({COMPONENT_ID})
     .then(function(components) {
         // do something with components
     });
@@ -268,7 +268,7 @@ More details you can find [here](http://docs.elastic.io/docs/component-descripto
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/components/55828f5a630d500800000003`
+`GET https://api.elastic.io/v1/components/{COMPONENT_ID}`
 
 
 ### Returns
