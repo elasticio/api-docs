@@ -260,4 +260,4 @@ TASK_ID | The ID of the task to delete
 
 ### Returns
 
-Result of task deletion: task id and its new status
+Result of task deletion: task id and its new status ("deleted")
