@@ -213,3 +213,51 @@ TASK_ID | The ID of the task to stop
 ### Returns
 
 Result of stopping the task.
+
+## Delete a Task
+
+> Example Request:
+
+
+```shell
+curl -X DELETE https://api.elastic.io/v1/tasks/{TASK_ID} \
+   -u {EMAIL}:{APIKEY}
+```
+
+```javascript
+var client = require('elasticio-rest-node')(
+    'YOUR_EMAIL', 'YOUR_API_KEY'
+);
+
+client.tasks.delete({TASK_ID});
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "5538bd9646208d02b3000005",
+  "status":"deleted"
+}
+```
+
+This endpoint deleted a given integration task.
+
+### HTTP Request
+
+`DELETE https://api.elastic.io/v1/tasks/{TASK_ID}`
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+TASK_ID | The ID of the task to delete
+
+
+### Returns
+
+Result of task deletion: task id and its new status ("deleted")
