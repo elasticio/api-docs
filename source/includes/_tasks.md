@@ -15,13 +15,13 @@
         "name" : "WebHook to Mailchimp",
         "nodes" : [
             {
-                "action" : "elasticio/webhook:receive",
+                "function" : "elasticio/webhook:receive",
                 "config": {
                     "payload": "email,first,last"
                 }
             },
             {
-                "action" : "elasticio/mapper:map",
+                "function" : "elasticio/mapper:map",
                 "config": {
                     "mapper" : {
                         "lastName" : "{{last}}",
