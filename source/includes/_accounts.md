@@ -32,7 +32,7 @@ Content-Type: application/json
 [
     {
         "id":"55083c567aea6f030000001a",
-        "name":"My Dropbox account",
+        "name":"My Component account",
         "keys": {
             "oauth": {
                 "key": "some key"
@@ -85,8 +85,8 @@ Content-Type: application/json
 
 {
     "id": "55083c567aea6f030000001a",
-    "name": "My Dropbox account",
-    "type": "dropbox",
+    "name": "My Component account",
+    "type": "55ffca6ecc04c20600000001",
     "keys": {
         "oauth": {
             "key": "some key"
@@ -123,8 +123,8 @@ Returns an account object if the call succeeded.
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
    {
-      "name": "My Dropbox account",
-      "type": "dropbox",
+      "name": "My Component account",
+      "type": "{COMPONENT_ID}",
       "keys": {
          "oauth": {
             "key": "some key"
@@ -138,8 +138,8 @@ var client = require('elasticio-rest-node')(
 );
 
 client.accounts.create({
-    "name": "My Dropbox account",
-    "type": "dropbox",
+    "name": "My Component account",
+    "type": "{COMPONENT_ID}",
     "keys": {
         "oauth": {
             "key": "some key"
@@ -158,8 +158,8 @@ Content-Type: application/json
 
 {
   "id": "54982ee6bdf2a2030000000f",
-  "name": "My Dropbox account",
-  "type": "dropbox",
+  "name": "My Component account",
+  "type": "55ffca6ecc04c20600000001",
   "keys": {
     "oauth": {
       "key": "some key"
@@ -180,7 +180,7 @@ This endpoint adds new key to list of user's keys
 Parameter | Required | Description
 --------- | ----------- | -----------
 name | no | Account name
-type | no | Account type (e.g. "dropbox")
+type | no | The component id this account is for
 keys | no | An object which represents component's configuration (OAuth keys, etc.)
 
 
@@ -227,7 +227,7 @@ Content-Type: application/json
 {
     "id": "55083c567aea6f030000001a",
     "name": "New account name",
-    "type": "dropbox",
+    "type": "55ffca6ecc04c20600000001",
     "keys": {
         "oauth": {
             "key": "some key"
@@ -253,7 +253,7 @@ ACCOUNT_ID | The ID of the account
 Parameter | Required | Description
 --------- | ----------- | -----------
 name | no | Account name
-type | no | Account type (e.g. "dropbox")
+type | no | The component id this account is for
 keys | no | An object which represents component's configuration (OAuth keys, etc.)
 
 ### Returns
