@@ -36,7 +36,7 @@
                }
             },
             {
-                "action" : "elsaticio/mailchimp:subscribe",
+                "function" : "elsaticio/mailchimp:subscribe",
                 "account" : "54536902230d250700000016",
                 "config": {
                     "listId" : "8779dd762e"
@@ -56,13 +56,13 @@ client.tasks.create({
     "name" : "WebHook to Mailchimp",
     "nodes" : [
         {
-            "action" : "elasticio/webhook:receive",
+            "function" : "elasticio/webhook:receive",
             "config": {
                 "payload": "email,first,last"
             }
         },
         {
-            "action" : "elasticio/mapper:map",
+            "function" : "elasticio/mapper:map",
             "config": {
                 "mapper" : {
                     "lastName" : "{{last}}",
@@ -77,7 +77,7 @@ client.tasks.create({
            }
         },
         {
-            "action" : "elsaticio/mailchimp:subscribe",
+            "function" : "elsaticio/mailchimp:subscribe",
             "account" : "54536902230d250700000016",
             "config": {
                 "listId" : "8779dd762e"
