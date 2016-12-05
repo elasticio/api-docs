@@ -2,4 +2,4 @@
 
 docker build -t api-docs .
 CURRENT_DIR=$(pwd)
-docker run -it -v $CURRENT_DIR:/api-docs name:api-docs  bundle exec middleman build
+docker run -it -v $CURRENT_DIR:/api-docs api-docs:latest  bundle exec middleman build
