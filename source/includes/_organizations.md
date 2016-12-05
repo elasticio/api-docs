@@ -4,6 +4,14 @@
 
 this request requires user to be tenant admin
 
+Parameter    | Required | Description
+-------------| ---------| -----------
+name         | yes      | Organization name
+members      | no       | Array of objects with email and role keys
+members.email| yes      | User's email
+members.role | no       | User's role, may be 'admin', 'integrator' or 'guest'
+
+
 > Example Request:
 
 ```shell
@@ -22,7 +30,7 @@ this request requires user to be tenant admin
    }'
 ```
 
-```javascript
+```
  TBD
 ```
 
