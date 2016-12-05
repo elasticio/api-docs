@@ -12,6 +12,10 @@ members.email| yes      | User's email
 members.role | no       | User's role, may be 'admin', 'integrator' or 'guest'
 
 
+##Returns
+
+Returns Organization object if the call succeeded
+
 > Example Request:
 
 ```shell
