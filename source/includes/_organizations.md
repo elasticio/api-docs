@@ -60,6 +60,11 @@ Returns Organization object if the call succeeded
 Operation requires organization admin access. Ownership of
 user's Tasks, Accounts, Lookups and Teams would be transferred to admin User performing this operation.
 
+
+###Returns
+
+Request returns 200 OK status code and empty body if succeeded.
+
 > Example Request:
 
 ```shell
