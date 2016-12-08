@@ -2,20 +2,6 @@
 
 ## Create organization
 
-this request requires user to be tenant admin
-
-Parameter    | Required | Description
--------------| ---------| -----------
-name         | yes      | Organization name
-members      | no       | Array of objects with email and role keys
-members.email| yes      | User's email
-members.role | no       | User's role, may be 'admin', 'integrator' or 'guest'
-
-
-###Returns
-
-Returns Organization object if the call succeeded
-
 > Example Request:
 
 ```shell
@@ -55,15 +41,21 @@ Returns Organization object if the call succeeded
 
 ```
 
-##Remove member from organization
+this request requires user to be tenant admin
 
-Operation requires organization admin access. Ownership of
-user's Tasks, Accounts, Lookups and Teams would be transferred to admin User performing this operation.
-
+Parameter    | Required | Description
+-------------| ---------| -----------
+name         | yes      | Organization name
+members      | no       | Array of objects with email and role keys
+members.email| yes      | User's email
+members.role | no       | User's role, may be 'admin', 'integrator' or 'guest'
 
 ###Returns
 
-Request returns 200 OK status code and empty body if succeeded.
+Returns Organization object if the call succeeded
+
+
+##Remove member from organization
 
 > Example Request:
 
@@ -76,3 +68,16 @@ Request returns 200 OK status code and empty body if succeeded.
 ```
  TBD
 ```
+
+> Example Response:
+
+```shell
+HTTP/1.1 200 OK
+```
+
+Operation requires organization admin access. Ownership of
+user's Tasks, Accounts, Lookups and Teams would be transferred to admin User performing this operation.
+
+###Returns
+
+Request returns 200 OK status code and empty body if succeeded.
