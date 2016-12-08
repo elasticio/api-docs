@@ -12,7 +12,7 @@ members.email| yes      | User's email
 members.role | no       | User's role, may be 'admin', 'integrator' or 'guest'
 
 
-##Returns
+###Returns
 
 Returns Organization object if the call succeeded
 
@@ -53,4 +53,21 @@ Returns Organization object if the call succeeded
   "meta": {} 
 }
 
+```
+
+##Remove member from organization
+
+Operation requires organization admin access. Ownership of
+user's Tasks, Accounts, Lookups and Teams would be transferred to admin User performing this operation.
+
+> Example Request:
+
+```shell
+ curl https://api.elastic.io/v2/organizations/{OrganizationId}/members/{UserId} \
+    -XDELETE    \
+    -u {EMAIL}:{APIKEY}'
+```
+
+```
+ TBD
 ```
