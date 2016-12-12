@@ -56,7 +56,7 @@ client.tasks.create({
     "name" : "WebHook to Mailchimp",
     "nodes" : [
         {
-            "function" : "elasticio/webhook:receive",
+            "function" : "elasticio/webhook:receive@1234abc",
             "config": {
                 "payload": "email,first,last"
             }
@@ -112,6 +112,21 @@ Parameter| Required | Description
 name      | yes | task name
 nodes      | yes | task nodes
 cron      | no | cron expression defining task's scheduling period
+
+#### Nodes format
+
+```json
+{
+    "function" : "{TEAM}/{COMPONENT}:{ACTION}@{REVISION}",
+    "config": {
+        "{KEY}": "{VALUE}",
+        ...
+    }
+}
+```
+`function` key represents component to run. `{TEAM}` is name of team which owns component, `{COMPONENT}` is name of teams's repository with component code, `{ACTION}` is action/trigger name to run and `{REVISION}` is git hash of commit in repository. If `@{REVISION}` is ommited - latest successfull build for `{TEAM}/{COMPONENT}` is used.
+
+`config` key represents data which will be passed as config argument to action/trigger.
 
 ### Returns
 
