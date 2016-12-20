@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - authentication
   - organizations
+  - tasks
 
 search: true
 ---
