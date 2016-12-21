@@ -7,7 +7,7 @@
 
 
 ```shell
-curl https://api.elastic.io/v2/credentials/?[component_id={COMPONENT_ID}] \
+curl https://api.elastic.io/v2/credentials/?[component={COMPONENT_ID}] \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -30,11 +30,29 @@ Content-Type: application/json
             "type": "credential",
             "attributes": {
                 "name": "CMS primary",
-                "component_id": "585430d2f02852a8a9fac456",
-                "user": "585430d3f02852a8a9fac45d",
                 "keys": {
                     "oauth": {
                         "key": "secret1"
+                    }
+                }
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "585430d3f02852a8a9fac45d",
+                        "type": "user"
+                    },
+                    "links": {
+                        "self": "/v2/users/585430d3f02852a8a9fac45d"
+                    }
+                },
+                "component": {
+                    "data": {
+                        "id": "585430d2f02852a8a9fac456",
+                        "type": "component"
+                    },
+                    "links": {
+                        "self": "/v2/components/585430d2f02852a8a9fac456"
                     }
                 }
             }
@@ -44,15 +62,33 @@ Content-Type: application/json
             "type": "credential",
             "attributes": {
                 "name": "Refined CRM Manager login",
-                "component_id": "585430d2f02852a8a9fac457",
-                "user": "585430d3f02852a8a9fac45d",
                 "keys": {
                     "oauth": {
                         "key": "secret2"
                     },
                     "allowOption": "enabled"
                 }
-            }
+            },
+             "relationships": {
+                 "user": {
+                     "data": {
+                         "id": "585430d3f02852a8a9fac45d",
+                         "type": "user"
+                     },
+                     "links": {
+                         "self": "/v2/users/585430d3f02852a8a9fac45d"
+                     }
+                 },
+                 "component": {
+                     "data": {
+                         "id": "585430d2f02852a8a9fac457",
+                         "type": "component"
+                     },
+                     "links": {
+                         "self": "/v2/components/585430d2f02852a8a9fac457"
+                     }
+                 }
+             }
         }
     ]
 }
@@ -106,14 +142,32 @@ Content-Type: application/json
         "type": "credential",
         "attributes": {
             "name": "CMS primary",
-            "component_id": "585430d2f02852a8a9fac456",
-            "user": "585430d3f02852a8a9fac45d",
             "keys": {
                 "oauth": {
                     "key": "secret1"
                 }
             }
-        }
+        },
+        "relationships": {
+            "user": {
+                "data": {
+                    "id": "585430d3f02852a8a9fac45d",
+                    "type": "user"
+                },
+                "links": {
+                    "self": "/v2/users/585430d3f02852a8a9fac45d"
+                }
+            },
+            "component": {
+                "data": {
+                    "id": "585430d2f02852a8a9fac456",
+                    "type": "component"
+                },
+                "links": {
+                    "self": "/v2/components/585430d2f02852a8a9fac456"
+                }
+            }
+        }        
     }
 }
 ```
@@ -141,24 +195,30 @@ Returns a credential object if the call succeeded.
 
 
 ```shell
-//TODO discuss if we are going to consider type as obligatory param in JSON
- curl https://api.elastic.io/v2/credentials/ \
-   -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json' \
-   -H 'Content-Type: application/json' -d '
+curl https://api.elastic.io/v2/credentials/ \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
     {
-       "data": {
-           "type": "credential",
-           "attributes": {
-               "name": "Spreadsheet",
-               "component_id": "585430d2f02852a8a9fac456",
-               "keys": {
-                   "oauth": {
-                       "key": "secret1"
-                   }
-               }
-           }
-       }
+        "data": {
+            "type": "credential",
+            "attributes": {
+                "name": "Spreadsheet",
+                    "keys": {
+                        "oauth": {
+                            "key": "secret1"
+                        }
+                }
+            },
+            "relationships": {
+                "component": {
+                    "data": {
+                        "id": "585430d2f02852a8a9fac456",
+                        "type": "component"
+                    }
+                }
+            }
+        }
     }'
 ```
 
@@ -178,14 +238,32 @@ Content-Type: application/json
        "type": "credential",
        "attributes": {
            "name": "CMS primary",
-           "component_id": "585430d2f02852a8a9fac456",
-           "user": "585430d3f02852a8a9fac45d",
            "keys": {
                "oauth": {
                    "key": "secret1"
                }
            }
-       }
+       },
+        "relationships": {
+            "user": {
+                "data": {
+                    "id": "585430d3f02852a8a9fac45d",
+                    "type": "user"
+                },
+                "links": {
+                    "self": "/v2/users/585430d3f02852a8a9fac45d"
+                }
+            },
+            "component": {
+                "data": {
+                    "id": "585430d2f02852a8a9fac456",
+                    "type": "component"
+                },
+                "links": {
+                    "self": "/v2/components/585430d2f02852a8a9fac456"
+                }
+            }
+        }         
    }
 }
 ```
@@ -203,7 +281,8 @@ Parameter | Required | Description
 --------- | ----------- | -----------
 type | yes | A value should be "credential"
 attributes.name | no | Credential name. An automatic name will be generated if the parameter is omitted
-attributes.component_id | yes | The component id this credential is for
+relationships.component.data.id | yes | The component id this credential is for
+relationships.component.data.type | yes | A value should be "component"
 attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.)
 
 
@@ -220,21 +299,28 @@ Returns credential object if the call succeeded.
 
 
 ```shell
-//TODO discuss if we are going to consider type and id as obligatory param in JSON
 curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
    -u {EMAIL}:{APIKEY} \
    -X PATCH \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
-      {
-         "data": {
-             "id": "585430d3f02852a8a9fac45e",
-             "type": "credential",
-             "attributes": {
-                 "name": "CMS secondary"               
-             }
-         }
-      }'
+    {
+        "data": {
+            "id": "585430d3f02852a8a9fac45e",
+            "type": "credential",
+            "attributes": {
+                "name": "new name for CMS account"               
+            },
+            "relationships": {
+                "component": {
+                    "data": {
+                        "id": "585430d2f02852a8a9facaaa",
+                        "type": "component"
+                    }
+                }
+            }             
+        }
+    }'
 ```
 
 
@@ -245,7 +331,7 @@ curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
 > Example Response:
 
 ```http
-HTTP/1.1 201 Created
+HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
@@ -254,14 +340,32 @@ Content-Type: application/json
        "type": "credential",
        "attributes": {
            "name": "CMS secondary",
-           "component_id": "585430d2f02852a8a9fac456",
-           "user": "585430d3f02852a8a9fac45d",
            "keys": {
                "oauth": {
                    "key": "secret1"
                }
            }
-       }
+       },
+        "relationships": {
+            "component": {
+                "data": {
+                    "id": "585430d2f02852a8a9facaaa",
+                    "type": "component"
+                },
+                "links": {
+                    "self": "/v2/component/585430d2f02852a8a9facaaa"
+                }                
+            },
+            "user": {
+                "data": {
+                    "id": "585430d3f02852a8a9fac45d",
+                    "type": "user"
+                },
+                "links": {
+                    "self": "/v2/users/585430d3f02852a8a9fac45d"
+                }
+            }
+        }              
    }
 }
 
@@ -269,7 +373,7 @@ This endpoint modifies credential
 
 ### HTTP Request
 
-`PUT https://api.elastic.io/v2/credentials/{CREDENTIAL_ID_ID}/`
+`PATCH https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/`
 
 ### URL Parameters
 
@@ -285,8 +389,9 @@ Parameter | Required | Description
 id | yes | A value should be the same as URL paramether CREDENTIAL_ID
 type | yes | A value should be "credential"
 attributes.name | no | Credential name. Will remain untouched if value omitted.
-attributes.component_id | no | The component id this credential is for. Will remain untouched if value omitted.
-attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.) Will remain untouched if value omitted.
+relationships.component.data.id | no | The component id this credential is for. Will remain untouched if value omitted.
+relationships.component.data.type | no | A value should be "component"
+attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.). Will remain untouched if value omitted.
 
 
 ### Returns
