@@ -1,138 +1,121 @@
 #Tasks
 
-## Create task
+## Retrieve all tasks
 
 
 > Example Request:
 
 
 ```shell
- curl https://api.elastic.io/v1/tasks \
+ curl https://api.elastic.io/v2/tasks \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
-   -H 'Content-Type: application/json' -d '
-    {
-        "name" : "WebHook to Mailchimp",
-        "nodes" : [
-            {
-                "function" : "elasticio/webhook:receive",
-                "config": {
-                    "payload": "email,first,last"
-                }
-            },
-            {
-                "function" : "elasticio/mapper:map",
-                "config": {
-                    "mapper" : {
-                        "lastName" : "{{last}}",
-                        "firstName" : "{{first}}",
-                        "salutation" : "{{salutation}}",
-                        "email_type" : "html",
-                        "email" : "{{email}}"
-                    },
-                    "lookup_tables": {
-                        "salutation": "lookup-table-id-to-be-used-for-salutation"
+   -H 'Content-Type: application/json'
+```
+
+
+```javascript
+TBD
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "data": [
+        {
+            "type": "task",
+            "id": "585918da586224001b96de89",
+            "attributes": {
+              "name": "Timer to E-Mail Test",
+              "status": "inactive",
+              "type": "ordinary",
+              "graph": {
+                "nodes": [
+                  {
+                    "id": "step_1",
+                    "command": "elasticio/timer:timer",
+                    "fields": {
+                      "interval": "minute"
                     }
-               }
+                  },
+                  {
+                    "id": "step_2",
+                    "command": "elasticio/email:send"
+                  }
+                ],
+                "edges": [
+                  {
+                    "source": "step_1",
+                    "target": "step_2",
+                    "config": {
+                      "mapper": {
+                        "to": "igor@elastic.io",
+                        "subject": "Test",
+                        "textBody": "{{fireTime}}"
+                      }
+                    }
+                  }
+                ]
+              }
             },
-            {
-                "function" : "elsaticio/mailchimp:subscribe",
-                "account" : "54536902230d250700000016",
-                "config": {
-                    "listId" : "8779dd762e"
-               }
-            }
-        ]
-    }'
-```
-
-
-```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
-
-client.tasks.create({
-    "name" : "WebHook to Mailchimp",
-    "nodes" : [
-        {
-            "function" : "elasticio/webhook:receive",
-            "config": {
-                "payload": "email,first,last"
-            }
-        },
-        {
-            "function" : "elasticio/mapper:map",
-            "config": {
-                "mapper" : {
-                    "lastName" : "{{last}}",
-                    "firstName" : "{{first}}",
-                    "salutation" : "{{salutation}}",
-                    "email_type" : "html",
-                    "email" : "{{email}}"
+            "relationships": {
+              "user": {
+                "data": {
+                  "type": "user",
+                  "id": "560e5a27734d480a00000002"
                 },
-                "lookup_tables": {
-                    "salutation": "lookup-table-id-to-be-used-for-salutation"
+                "links": {
+                  "self": "/v2/users/560e5a27734d480a00000002"
                 }
-           }
-        },
-        {
-            "function" : "elsaticio/mailchimp:subscribe",
-            "account" : "54536902230d250700000016",
-            "config": {
-                "listId" : "8779dd762e"
-           }
+              },
+              "organization": {
+                "data": {
+                  "type": "organization",
+                  "id": "573dd76962436c349f000003"
+                },
+                "links": {
+                  "self": "/v2/organizations/573dd76962436c349f000003"
+                }
+              }
+            }
         }
-    ]
-})
-.then(function(task) {
-    // do something with the task
-});
-```
+    ],
+    "meta": {
+        "page": 1,
+        "per_page": 50,
+        "total": 1,
+        "total_pages": 1
+    }
 
-> Example Response:
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-    "id":"55083c567aea6f030000001a"
 }
 ```
 
-This endpoint creates a new task for user
+This endpoint retrieves all tasks for user or organization
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/tasks/`
-
-Parameter| Required | Description
---------- | -----------| -----------
-name      | yes | task name
-nodes      | yes | task nodes
-cron      | no | cron expression defining task's scheduling period
+`GET https://api.elastic.io/v2/tasks/`
 
 ### Returns
 
-Returns tasks id object if the call succeeded.
+Returns all tasks belonging to user or organization.
 
-## Start a Task
+## Retrieve a task by ID
 
 > Example Request:
 
 
 ```shell
-curl -X POST https://api.elastic.io/v1/tasks/start/{TASK_ID} \
+curl https://api.elastic.io/v2/tasks/{TASK_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
-
-client.tasks.start({TASK_ID});
+TDB
 ```
 
 > Example Response:
@@ -142,122 +125,81 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "id": "5538bd9646208d02b3000005",
-  "status":"active"
+  "data": {
+    "type": "task",
+    "id": "585918da586224001b96de89",
+    "attributes": {
+      "name": "Timer to E-Mail Test",
+      "status": "inactive",
+      "type": "ordinary",
+      "graph": {
+        "nodes": [
+          {
+            "id": "step_1",
+            "command": "elasticio/timer:timer",
+            "fields": {
+              "interval": "minute"
+            }
+          },
+          {
+            "id": "step_2",
+            "command": "elasticio/email:send"
+          }
+        ],
+        "edges": [
+          {
+            "source": "step_1",
+            "target": "step_2",
+            "config": {
+              "mapper": {
+                "to": "igor@elastic.io",
+                "subject": "Test",
+                "textBody": "{{fireTime}}"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "relationships": {
+      "user": {
+        "data": {
+          "type": "user",
+          "id": "560e5a27734d480a00000002"
+        },
+        "links": {
+          "self": "/v2/users/560e5a27734d480a00000002"
+        }
+      },
+      "organization": {
+        "data": {
+          "type": "organization",
+          "id": "573dd76962436c349f000003"
+        },
+        "links": {
+          "self": "/v2/organizations/573dd76962436c349f000003"
+        }
+      }
+    }
+  },
+  "meta": {}
 }
 ```
 
-This endpoint starts a given integration task.
+This endpoint returns a task for given ID
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/tasks/start/{TASK_ID}`
+`GET https://api.elastic.io/v2/tasks/{TASK_ID}`
 
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-TASK_ID | The ID of the task to start
+TASK_ID | The ID of the task to retrieve
 
 
 ### Returns
 
-Result of starting the task.
-
-## Stop a Task
-
-
-> Example Request:
-
-
-```shell
-curl -X POST https://api.elastic.io/v1/tasks/stop/{TASK_ID} \
-   -u {EMAIL}:{APIKEY}
-```
-
-```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
-
-client.tasks.stop({TASK_ID});
-```
-
-> Example Response:
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "id": "5538bd9646208d02b3000005",
-  "status":"inactive"
-}
-```
-
-This endpoint stops a given integration task.
-
-### HTTP Request
-
-`POST https://api.elastic.io/v1/tasks/stop/{TASK_ID}`
-
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-TASK_ID | The ID of the task to stop
-
-
-### Returns
-
-Result of stopping the task.
-
-## Delete a Task
-
-> Example Request:
-
-
-```shell
-curl -X DELETE https://api.elastic.io/v1/tasks/{TASK_ID} \
-   -u {EMAIL}:{APIKEY}
-```
-
-```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
-
-client.tasks.delete({TASK_ID});
-```
-
-> Example Response:
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "id": "5538bd9646208d02b3000005",
-  "status":"deleted"
-}
-```
-
-This endpoint deleted a given integration task.
-
-### HTTP Request
-
-`DELETE https://api.elastic.io/v1/tasks/{TASK_ID}`
-
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-TASK_ID | The ID of the task to delete
-
-
-### Returns
-
-Result of task deletion: task id and its new status ("deleted")
+The task with given ID
