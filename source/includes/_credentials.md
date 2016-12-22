@@ -7,7 +7,7 @@
 
 
 ```shell
-curl https://api.elastic.io/v2/credentials/?[component={COMPONENT_ID}] \
+curl https://api.elastic.io/v2/credentials/?filter[component]={COMPONENT_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -105,7 +105,7 @@ This endpoint retrieves a list of credentials available for the user
 
 Parameter | Required | Description
 --------- | ----------- | ----------- 
-COMPONENT_ID| no | A filter, which returns only credentials belong to the given component id 
+filter[component]| no | Only credentials belong to the given component id 
 
 
 ### Returns
@@ -309,14 +309,8 @@ curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
             "id": "585430d3f02852a8a9fac45e",
             "type": "credential",
             "attributes": {
-                "name": "new name for CMS account"               
-            },
-            "relationships": {
-                "component": {
-                    "data": {
-                        "id": "585430d2f02852a8a9facaaa",
-                        "type": "component"
-                    }
+                "keys": {
+                    "key1": "updated value"  
                 }
             }             
         }
@@ -339,11 +333,9 @@ Content-Type: application/json
        "id": "585430d3f02852a8a9fac45e",
        "type": "credential",
        "attributes": {
-           "name": "new name for CMS account",
+           "name": "CMS primary",
            "keys": {
-               "oauth": {
-                   "key": "secret1"
-               }
+                "key1": "updated value"
            }
        },
         "relationships": {
@@ -389,9 +381,7 @@ Parameter | Required | Description
 id | yes | A value should be the same as URL paramether CREDENTIAL_ID
 type | yes | A value should be "credential"
 attributes.name | no | Credential name. Will remain untouched if value omitted.
-relationships.component.data.id | no | The component id this credential is for. Will remain untouched if value omitted.
-relationships.component.data.type | no | A value should be "component"
-attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.). Will remain untouched if value omitted.
+attributes.keys | no | An object which represents component's configuration. Will remain untouched if value omitted. Please note, that "keys" object is overwritten entirely.
 
 
 ### Returns
