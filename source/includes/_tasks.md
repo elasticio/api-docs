@@ -190,7 +190,7 @@ This endpoint returns a task for given ID
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/tasks/{TASK_ID}`
+`GET https://api.elastic.io/v2/tasks/{TASK_ID}`
 
 
 ### URL Parameters
