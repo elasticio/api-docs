@@ -325,7 +325,7 @@ curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
 > Example Response:
 
 ```http
-HTTP/1.1 200 OK
+HTTP/1.1 201 Created
 Content-Type: application/json
 
 {
