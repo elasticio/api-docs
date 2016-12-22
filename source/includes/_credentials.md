@@ -94,7 +94,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint retrieves list of credentials available for the user
+This endpoint retrieves a list of credentials available for the user
 
 ### HTTP Request
 
@@ -339,7 +339,7 @@ Content-Type: application/json
        "id": "585430d3f02852a8a9fac45e",
        "type": "credential",
        "attributes": {
-           "name": "CMS secondary",
+           "name": "new name for CMS account",
            "keys": {
                "oauth": {
                    "key": "secret1"
