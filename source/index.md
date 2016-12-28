@@ -12,8 +12,9 @@ includes:
   - authentication
   - credentials
   - flows
-  - organizations
   - lookups
+  - organizations
+  - users
 
 search: true
 ---
