@@ -76,7 +76,7 @@ HTTP/1.1 200 OK
 ```
 
 Operation requires organization admin access. Ownership of
-user's Tasks, Accounts, Lookups and Teams would be transferred to admin User performing this operation.
+user's Flows, Credentials, Lookups and Teams would be transferred to admin User performing this operation.
 
 ###Returns
 

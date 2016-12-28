@@ -1,13 +1,13 @@
-#Tasks
+# Flows
 
-## Retrieve all tasks
+## Retrieve all flows
 
 
 > Example Request:
 
 
 ```shell
- curl https://api.elastic.io/v2/tasks \
+ curl https://api.elastic.io/v2/flows \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json'
@@ -27,7 +27,7 @@ Content-Type: application/json
 {
     "data": [
         {
-            "type": "task",
+            "type": "flow",
             "id": "585918da586224001b96de89",
             "attributes": {
               "name": "Timer to E-Mail Test",
@@ -94,23 +94,23 @@ Content-Type: application/json
 }
 ```
 
-This endpoint retrieves all tasks for user or organization
+This endpoint retrieves all flows for user or organization
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/tasks/`
+`GET https://api.elastic.io/v2/flows/`
 
 ### Returns
 
-Returns all tasks belonging to user or organization.
+Returns all flows belonging to user or organization.
 
-## Retrieve a task by ID
+## Retrieve a flow by ID
 
 > Example Request:
 
 
 ```shell
-curl https://api.elastic.io/v2/tasks/{TASK_ID} \
+curl https://api.elastic.io/v2/flows/{FLOW_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -126,7 +126,7 @@ Content-Type: application/json
 
 {
   "data": {
-    "type": "task",
+    "type": "flow",
     "id": "585918da586224001b96de89",
     "attributes": {
       "name": "Timer to E-Mail Test",
@@ -186,38 +186,38 @@ Content-Type: application/json
 }
 ```
 
-This endpoint returns a task for given ID
+This endpoint returns a flow for given ID
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/tasks/{TASK_ID}`
+`GET https://api.elastic.io/v2/flows/{FLOW_ID}`
 
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-TASK_ID | The ID of the task to retrieve
+FLOW_ID | The ID of the flow to retrieve
 
 
 ### Returns
 
-The task with given ID
+The flow with given ID
 
 
-## Create a task
+## Create a flow
 
 > Example Request:
 
 
 ```shell
- curl https://api.elastic.io/v2/tasks \
+ curl https://api.elastic.io/v2/flows \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
     {
       "data": {
-        "type": "task",
+        "type": "flow",
         "attributes": {
           "name": "Timer to E-Mail",
           "status": "inactive",
@@ -268,7 +268,7 @@ Content-Type: application/json
 
 {
   "data": {
-    "type": "task",
+    "type": "flow",
     "id": "585918da586224001b96de89",
     "attributes": {
       "name": "Timer to E-Mail Test",
@@ -328,23 +328,23 @@ Content-Type: application/json
 }
 ```
 
-This endpoint creates a task for current user or his organization
+This endpoint creates a flow for current user or his organization
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/tasks/`
+`POST https://api.elastic.io/v2/flows/`
 
 ### Arguments
 
 Parameter | Required | Description
 --------- | ----------- | -----------
-type | yes | A value should be "task"
-attributes.name | yes | Task name
-attributes.status | yes | Task status. May be any of: active, inactive
-attributes.type | yes | Task type. May be any of: ordinary, long_running
-attributes.graph | yes | Task graph representing component connections
+type | yes | A value should be "flow"
+attributes.name | yes | Flow name
+attributes.status | yes | Flow status. May be any of: active, inactive
+attributes.type | yes | Flow type. May be any of: ordinary, long_running
+attributes.graph | yes | Flow graph representing component connections
 
 
 ### Returns
 
-Returns the created task
+Returns the created flow
