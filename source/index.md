@@ -13,6 +13,7 @@ includes:
   - credentials
   - organizations
   - tasks
+  - lookups
 
 search: true
 ---
