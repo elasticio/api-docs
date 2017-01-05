@@ -14,7 +14,7 @@ curl https://api.elastic.io/v2/users/me \
 //TBD
 ```
 
-> Example Response (user in an organization):
+> Example Response:
 
 ```http
 HTTP/1.1 200 OK
@@ -23,36 +23,6 @@ Content-Type: application/json
 {
     "data": {
         "id": "54f4be3fe7d5224f91000001",
-        "type": "user",
-        "attributes": {
-            "first_name": "John",
-            "last_name": "Doe",
-            "email": "test@example.com"
-        },
-        "relationships": {
-            "organization": {
-                "data": {
-                    "id": "586e5e94201f1d2c6865d330",
-                    "type": "organization"
-                },
-                "links": {
-                    "self": "/v2/organizations/586e5e94201f1d2c6865d330"
-                }
-            }
-        }
-    }
-}
-```
-
-> Example Response (user without an organization):
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-    "data": {
-        "id": "54f4be3fe7d5224f91000002",
         "type": "user",
         "attributes": {
             "first_name": "John",
@@ -93,37 +63,7 @@ curl https://api.elastic.io/v2/users/{USER_ID} \
 //TBD
 ```
 
-> Example Response (user in an organization):
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-    "data": {
-        "id": "54f4be3fe7d5224f91000001",
-        "type": "user",
-        "attributes": {
-            "first_name": "John",
-            "last_name": "Doe",
-            "email": "test@example.com"
-        },
-        "relationships": {
-            "organization": {
-                "data": {
-                    "id": "586e5e94201f1d2c6865d330",
-                    "type": "organization"
-                },
-                "links": {
-                    "self": "/v2/organizations/586e5e94201f1d2c6865d330"
-                }
-            }
-        }
-    }
-}
-```
-
-> Example Response (user without an organization):
+> Example Response:
 
 ```http
 HTTP/1.1 200 OK
@@ -159,7 +99,6 @@ USER_ID | The ID of a user
 #### Returns
 
 Returns a user object if the call succeeded.
-A relationship to an organization is presented for a members of the organization.
 
 
 
