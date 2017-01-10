@@ -28,7 +28,7 @@ Content-Type: application/json
             "id": "{COMPONENT_ID}",
             "attributes": {
                 "name": "component name",
-                "teamName": "my_hackers"
+                "teamName": "team_name"
             },
             "relationships": {
                 "versions": {
@@ -68,7 +68,7 @@ Content-Type: application/json
                         "language": "nodejs",
                         "repo_name": "repo_name",
                         "sailor_version": "1.0.0",
-                        "team_name": "my_hackers",
+                        "team_name": "team_name",
                         "title": "title",
                         "triggers": {
                             "select": "<Triggers Object>"
@@ -201,7 +201,7 @@ Content-Type: application/json
             "language": "nodejs",
             "repo_name": "repo_name",
             "sailor_version": "1.0.0",
-            "team_name": "my_hackers",
+            "team_name": "team_name",
             "title": "title",
             "triggers": {
                 "select": "<Triggers Object>"
