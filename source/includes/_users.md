@@ -206,7 +206,7 @@ HTTP/1.1 204 No Content
 This endpoint performs delete of the user and associated data:
 
 
-* all teams, when the user is the only member		
+* all teams, where the user is the only member		
 * component repositories, which belongs to deleted teams
 * component builds, which belongs to deleted repositories
 * lookups
@@ -214,6 +214,7 @@ This endpoint performs delete of the user and associated data:
 * credentials
 * tasks (active tasks will be stopped)
 * user's object itself
+* all organizations, where the user is the only member
 
 
 #### Note 1 
