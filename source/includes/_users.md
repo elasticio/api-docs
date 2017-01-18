@@ -217,7 +217,7 @@ This endpoint performs delete of the user and associated data:
 * all organizations, where the user is the only member
 
 
-#### Note 1 
+#### Not deleted immediately
 These data objects are deleted automatically (e.g. due to expiration), hence won't be deleted right after user deletion:
 
 * tasks activity records (which used in order to show runlog)
@@ -227,21 +227,17 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 * slugs (TBD)
 
 
-#### Note 2 
+#### Data associated with organization
 If the user was the only member of any organization(s), they will be deleted with all associated data (TBD).
 
-
-#### Note 3
 User can not be deleted, if he is not the only member of any organization (there is at least one another member in organization). The user should leave those organizations.
 
 
-#### Note 4
+#### Public components
 If there is any public component, associated to the user and the component is used in not deleted flows of someone else, the user can not be deleted automaticaly – contact technical support.
 
 #### Authorization
-A regular user can delete itself only.
-
-A user with `TenantAdmin` role can delete any user.
+You can delete yourself only, unless you have `TenantAdmin` role.
 
    
    
