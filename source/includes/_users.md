@@ -228,9 +228,10 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 
 
 #### Data associated with organization
-If the user was the only member of any organization(s), they will be deleted with all associated data (TBD).
 
-User can not be deleted, if he is not the only member of any organization (there is at least one another member in organization). The user should leave those organizations.
+* If this user is a member of any Organization which has one more member beside him/her then this user needs to leave this Organization before his profile can be deleted.
+* If this user is the only member of Organization(s) then he/she will be deleted along with all the unique data connected with this user.
+
 
 
 #### Public components
