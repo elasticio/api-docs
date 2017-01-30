@@ -388,7 +388,7 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 * tasks activity records (which used in order to show runlog)
 * logs of flow execution and repo build 
 * invitations to a team or an organization 
-* notifications (TBD)
+* notifications
 * slugs (TBD)
 
 
