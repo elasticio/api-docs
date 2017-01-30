@@ -42,7 +42,18 @@
 
 ```
 
-this request requires user to be tenant admin
+This endpoint allows to create an organization.
+
+
+### HTTP Request
+
+`POST https://api.elastic.io/v2/organizations`
+
+
+#### Authorization
+
+This request is authorized only for a user with `TenantAdmin` role.
+
 
 Parameter    | Required | Description
 -------------| ---------| -----------
@@ -167,6 +178,10 @@ Returns Organization object if the call succeeded
 
 This endpoints returns an Organization object for certain organization id.
 
+
+### HTTP Request
+
+`GET https://api.elastic.io/v2/organizations/ORGANIZATION_ID/`
 
 #### Authorization
 
