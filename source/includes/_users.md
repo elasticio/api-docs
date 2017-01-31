@@ -252,7 +252,7 @@ This endpoint returns a list of users.
 
 `GET https://api.elastic.io/v2/users/`
 
-### URL Parameters
+### URL Query Parameters
 
 Parameter   | Required | Description              | Default
 ----------- | -------- | ------------------------ | -----------
