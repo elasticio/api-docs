@@ -83,7 +83,7 @@ Content-Type: application/json
 ```
 
 This endpoint returns requested user if the call succeeded.
-This request is authorized for a member of an organization or for a user with a role as `TenantAdmin`.
+
 
 ### HTTP Request
 
@@ -96,9 +96,181 @@ Parameter  | Description
 USER_ID | The ID of a user
 
 
+#### Authorization
+This request is authorized for a member of an organization or for a user with a role as `TenantAdmin`. Contact support team to get this role.
+
+
 #### Returns
 
 Returns a user object if the call succeeded.
+
+
+
+
+
+
+
+
+
+## Get a list of users
+
+
+> Example Request (with paging):
+
+```shell
+curl https://api.elastic.io/v2/users/?page[size]=1&page[number]=5 \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+
+> Example Response (with paging):
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "meta": {
+        "total": 6,
+        "page": 5,
+        "per_page": 1,
+        "total_pages": 6
+    },
+    "data": [
+        {
+            "id": "588f8bd23abb797f8c293646",
+            "type": "user",
+            "attributes": {
+                "first_name": "Robyn",
+                "last_name": "Kerluke",
+                "email": "robyn@outcast.org",
+                "company": "Olson Group"
+            }
+        }
+    ]
+}
+```
+
+> Example Request (default paging):
+
+```shell
+curl https://api.elastic.io/v2/users/ \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+```javascript
+//TBD
+```
+
+> Example Response (default paging):
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "meta": {
+        "total": 6,
+        "page": 1,
+        "per_page": 50,
+        "total_pages": 1
+    },
+    "data": [
+        {
+            "id": "588f8b04b84a6a7f3e47668d",
+            "type": "user",
+            "attributes": {
+                "first_name": "Joannie",
+                "last_name": "Smitham",
+                "email": "client@my.org",
+                "company": "Ward - Wiegand"
+            }
+        },
+        {
+            "id": "588f8b04b84a6a7f3e47668e",
+            "type": "user",
+            "attributes": {
+                "first_name": "Eulalia",
+                "last_name": "Hyatt",
+                "email": "user-2@my.org",
+                "company": "Pfannerstill and Sons"
+            }
+        },
+        {
+            "id": "588f8b04b84a6a7f3e47668f",
+            "type": "user",
+            "attributes": {
+                "first_name": "Bertram",
+                "last_name": "Davis",
+                "email": "user-1@aliens.org",
+                "company": "Auer, Ebert and Ledner"
+            }
+        },
+        {
+            "id": "588f8b04b84a6a7f3e476690",
+            "type": "user",
+            "attributes": {
+                "first_name": "Marianne",
+                "last_name": "Sawayn",
+                "email": "client@outcast.org",
+                "company": "O'Kon, Abshire and Dooley"
+            }
+        },
+        {
+            "id": "588f8b04b84a6a7f3e476691",
+            "type": "user",
+            "attributes": {
+                "first_name": "Esta",
+                "last_name": "Abbott",
+                "email": "another@outcast.org",
+                "company": "Turcotte - Christiansen"
+            }
+        },
+        {
+            "id": "588f8b04b84a6a7f3e476692",
+            "type": "user",
+            "attributes": {
+                "first_name": "Kayleigh",
+                "last_name": "Howell",
+                "email": "tenant-admin@example.com",
+                "company": "Zemlak, Thiel and O'Kon"
+            }
+        }
+    ]
+}
+```
+
+
+
+This endpoint returns a list of users.
+
+
+
+### HTTP Request
+
+`GET https://api.elastic.io/v2/users/`
+
+### URL Query Parameters
+
+Parameter   | Required | Description              | Default
+----------- | -------- | ------------------------ | -----------
+page[size]  | No       | Amount of items per page | 50
+page[number]| No       | Number of page           | 1
+
+
+#### Authorization
+This request is authorized for a user with `TenantAdmin` role only. Contact support team to get this role.
+
+
+#### Returns
+
+Returns a list of user objects if the call succeeded.
+
+
+
+
 
 
 
@@ -155,7 +327,7 @@ Content-Type: application/json
 ```
 
 This endpoint registers a new user.
-This request is authorized only for a user with `TenantAdmin` role. 
+This request is authorized only for a user with `TenantAdmin` role. Contact support team to get this role.
 
 ### HTTP Request
 
@@ -223,7 +395,7 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 * tasks activity records (which used in order to show runlog)
 * logs of flow execution and repo build 
 * invitations to a team or an organization 
-* notifications (TBD)
+* notifications
 * slugs (TBD)
 
 
@@ -238,7 +410,7 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 If there is any public component, associated to the user and the component is used in not deleted flows of someone else, the user can not be deleted automaticaly – contact technical support.
 
 #### Authorization
-You can delete yourself only, unless you have `TenantAdmin` role.
+You can delete yourself only, unless you have `TenantAdmin` role. Contact support team to get this role.
 
    
    

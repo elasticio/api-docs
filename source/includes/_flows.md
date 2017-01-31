@@ -7,7 +7,7 @@
 
 
 ```shell
- curl https://api.elastic.io/v2/flows \
+ curl https://api.elastic.io/v2/flows?page[size]=20&page[number]=1 \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json'
@@ -86,7 +86,7 @@ Content-Type: application/json
     ],
     "meta": {
         "page": 1,
-        "per_page": 50,
+        "per_page": 20,
         "total": 1,
         "total_pages": 1
     }
@@ -99,6 +99,13 @@ This endpoint retrieves all flows for user or organization
 ### HTTP Request
 
 `GET https://api.elastic.io/v2/flows/`
+
+### URL Query Parameters
+
+Parameter   | Required | Description              | Default
+----------- | -------- | ------------------------ | -----------
+page[size]  | No       | Amount of items per page | 50
+page[number]| No       | Number of page           | 1
 
 ### Returns
 
