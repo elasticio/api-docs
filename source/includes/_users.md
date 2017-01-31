@@ -97,7 +97,7 @@ USER_ID | The ID of a user
 
 
 #### Authorization
-This request is authorized for a member of an organization or for a user with a role as `TenantAdmin`.
+This request is authorized for a member of an organization or for a user with a role as `TenantAdmin`. Contact support team to get this role.
 
 
 #### Returns
@@ -252,9 +252,16 @@ This endpoint returns a list of users.
 
 `GET https://api.elastic.io/v2/users/`
 
+### URL Parameters
+
+Parameter   | Required | Description              | Default
+----------- | -------- | ------------------------ | -----------
+page[size]  | No       | Amount of items per page | 50
+page[number]| No       | Number of page           | 1
+
 
 #### Authorization
-This request is authorized for a user with `TenantAdmin` role only.
+This request is authorized for a user with `TenantAdmin` role only. Contact support team to get this role.
 
 
 #### Returns
@@ -320,7 +327,7 @@ Content-Type: application/json
 ```
 
 This endpoint registers a new user.
-This request is authorized only for a user with `TenantAdmin` role. 
+This request is authorized only for a user with `TenantAdmin` role. Contact support team to get this role.
 
 ### HTTP Request
 
@@ -403,7 +410,7 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 If there is any public component, associated to the user and the component is used in not deleted flows of someone else, the user can not be deleted automaticaly – contact technical support.
 
 #### Authorization
-You can delete yourself only, unless you have `TenantAdmin` role.
+You can delete yourself only, unless you have `TenantAdmin` role. Contact support team to get this role.
 
    
    
