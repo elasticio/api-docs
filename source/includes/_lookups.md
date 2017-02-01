@@ -135,7 +135,7 @@ data      | yes       | key/value
 
 ```shell
  curl https://api.elastic.io/v2/lookups/{LookupId} \
-   -XPUT \
+   -X PUT \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -163,7 +163,7 @@ data      | yes       | key/value
 
 ```shell
  curl https://api.elastic.io/v2/organizations/{LookupId} \
-    -XDELETE    \
+    -X DELETE    \
     -u {EMAIL}:{APIKEY}'
 ```
 
