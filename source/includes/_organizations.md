@@ -193,7 +193,13 @@ Client has to be a member of the organization
 Parameter  | Required | Description
 ---------- | ----------- | -----------
 ORGANIZATION_ID | yes | The ID of the organization
-include | no | Whether include or not full resource objects in response for related entities. Possible values: "members" and/or "invites".
+
+
+### URL Query Parameters
+
+Parameter   | Required | Description              
+----------- | -------- | ------------------------ 
+include     | no       | Whether include or not full resource objects in response for related entities. Possible values: `members` and/or `invites`.
 
 
 
