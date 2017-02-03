@@ -36,7 +36,7 @@ Content-Type: application/json
                         "related": "/v2/components/{COMPONENT_ID}/versions"
                     }
                 },
-                "latestVersion": {
+                "latest_version": {
                     "links": {
                         "self": "/v2/components/{COMPONENT_ID}/versions/latest"
                     },
@@ -64,7 +64,7 @@ Content-Type: application/json
                     "attributes": {
                         "description": "desc",
                         "icon": "BASE64",
-                        "isLatest": true,
+                        "is_latest": true,
                         "language": "nodejs",
                         "repo_name": "repo_name",
                         "sailor_version": "1.0.0",
@@ -197,7 +197,7 @@ Content-Type: application/json
         "attributes": {
             "description": "desc",
             "icon": "BASE64",
-            "isLatest": true,
+            "is_latest": true,
             "language": "nodejs",
             "repo_name": "repo_name",
             "sailor_version": "1.0.0",
