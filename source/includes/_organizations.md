@@ -1,6 +1,6 @@
 #Organizations
 
-## Create organization
+## Create an organization
 
 > Example Request:
 
@@ -52,15 +52,14 @@ This endpoint allows to create an organization.
 
 #### Authorization
 
-This request is authorized only for a user with `TenantAdmin` role.
+This request is authorized only for a user with a `TenantAdmin` role.
 
 
-Parameter    | Required | Description
--------------| ---------| -----------
-name         | yes      | Organization name
-members      | no       | Array of objects with email and role keys
-members.email| yes      | User's email
-members.role | no       | User's role, may be 'admin', 'integrator' or 'guest'
+Parameter | Required | Description
+--------- | ----------- | -----------
+type | yes | A value should be "credential"
+attributes.name | yes | Organization name
+
 
 ###Returns
 
@@ -76,7 +75,7 @@ Returns Organization object if the call succeeded
 
 
 
-## Get an organization
+## Get organization
 
 > Example Request:
 
@@ -203,6 +202,143 @@ include     | no       | Whether include or not full resource objects in respons
 
 
 
+
+
+## Invite a user to organization
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/invite \
+    -X POST \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
+    {
+       "data": {
+           "type": "invite",
+           "attributes": {
+               "email": "user-to-invite@my-company.com",
+               "role": "admin"
+           }
+       }
+    }'
+```
+
+```
+ TBD
+```
+
+> Example Response:
+
+```json
+{
+   "data": {
+       "type": "invite",
+       "attributes": {
+           "email": "user-to-invite@my-company.com",
+           "role": "admin"
+       }
+   }
+}
+
+```
+
+This endpoint allows to invite a user to organization.
+
+
+### HTTP Request
+
+`POST https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/invite`
+
+
+#### Authorization
+This request is authorized for a member of the organization or for a user with `TenantAdmin` role (contact support team to get this role).
+
+
+Parameter        | Required  | Description
+---------        | --------- | -----------
+type             | yes       | A value should be "invite".
+attributes.email | yes       | Email.
+attributes.role  | yes       | Available roles are: admin, integrator and guest.
+
+
+###Returns
+
+Returns invite object if the call succeeded
+
+
+
+
+
+
+
+## Add a new member to organization
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/ \
+    -X POST \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
+    {
+       "data": {
+           "type": "member",
+           "id": {USER_ID}
+           "attributes": {
+               "role": "admin"
+           }
+       }
+    }'
+```
+
+```
+ TBD
+```
+
+> Example Response:
+
+```json
+{
+   "data": {
+        "type": "member",
+        "id": "588f832b87d7c27c7d5cc37a",
+        "attributes": {
+            "first_name": "Santos",
+            "last_name": "Mitchell",
+            "email": "Santos_Mitchell@example.com",
+            "role": "admin"
+        }
+   }
+}
+
+```
+
+This endpoint allows to add made a user member of certain organization. 
+No invites will be sent, user became a member immediately. 
+
+
+### HTTP Request
+
+`POST https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members`
+
+
+#### Authorization
+This request is authorized for a user with `TenantAdmin` role only. Contact support team to get this role.
+
+
+Parameter        | Required  | Description
+---------        | --------- | -----------
+type             | yes       | A value should be "member".
+id               | yes       | id of an already registered user, who will be added as a member of the organization
+attributes.role  | yes       | Available roles are: admin, integrator and guest.
+
+
+###Returns
+
+Returns member object if the call succeeded
 
 
 
