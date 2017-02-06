@@ -13,6 +13,7 @@ includes:
   - credentials
   - flows
   - lookups
+  - components
   - organizations
   - users
 
