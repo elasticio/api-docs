@@ -7,20 +7,13 @@
 
 
 ```shell
-curl https://api.elastic.io/v1/teams/ \
+curl https://api.elastic.io/v2/teams/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
-
-client.teams.list()
-    .then(function(teams) {
-        // do something with the teams
-    });
+TBD
 ```
 
 > Example Response:
@@ -28,24 +21,35 @@ client.teams.list()
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-
-[
-    {
-        "id":"55083c567aea6f030000001a",
-        "name":"My team",
-        "members":[
-            "5508411b34e5ac0300000019",
-            "510fc14d173cff0200000003"
-        ]
-    }
-]
+{
+   "data":[
+      {
+         "attributes":{
+            "name":"singleteam"
+         },
+         "id":"5508411b34e5ac0300000019",
+         "type":"team",
+         "relationships":{
+            "users":{
+               "data":[
+                  {
+                     "type":"user",
+                     "id":"5508411b34e5ac0300000020"
+                  }
+               ]
+            }
+         }
+      }
+   ],
+   "meta":{}
+}
 ```
 
 This endpoint retrieves list of user's teams
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/teams/`
+`GET https://api.elastic.io/v2/teams/`
 
 
 ### Returns
@@ -60,26 +64,22 @@ Returns teams metadata object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v1/teams \
+ curl https://api.elastic.io/v2/teams \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
    {
-       "name": "My team"
+       "data": {
+            "attributes": {
+                "name": "myteam"
+            }
+       }
    }'
 ```
 
 
 ```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
-
-client.teams.create({
-    "name": "My team"
-}).then(function(team) {
-    // do something with the team
-});
+TBD
 ```
 
 > Example Response:
@@ -89,9 +89,28 @@ HTTP/1.1 201 OK
 Content-Type: application/json
 
 {
-    "id":"55083c567aea6f030000001a",
-    "name":"My team",
-    "members":["5508411b34e5ac0300000019"]
+   "data":[
+      {
+         "attributes":{
+            "name":"myteam"
+         },
+         "id":"5508411b34e5ac0300000019",
+         "type":"team",
+         "relationships":{
+            "users":{
+               "data":[
+                  {
+                     "type":"user",
+                     "id":"5508411b34e5ac0300000020"
+                  }
+               ]
+            }
+         }
+      }
+   ],
+   "meta":{
+
+   }
 }
 ```
 
@@ -99,7 +118,7 @@ This endpoint creates new team for user
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/teams/`
+`POST https://api.elastic.io/v2/teams/`
 
 Parameter| Required | Description
 --------- | -----------| -----------
@@ -108,4 +127,152 @@ name      | no | team name
 ### Returns
 
 Returns teams metadata object if the call succeeded.
+
+
+## Add user to a team
+
+
+> Example Request:
+
+
+```shell
+ curl https://api.elastic.io/v2/{{team_id}}/members \
+   -X PATCH \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+   {
+       "data": {
+            "type": "user",
+            "id": "{{user_id}}"
+       }
+   }'
+```
+
+
+```javascript
+TBD
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 201 OK
+Content-Type: application/json
+
+{
+   "data":[
+      {
+         "attributes":{
+            "name":"{{team_name}}"
+         },
+         "id":"5508411b34e5ac0300000019",
+         "type":"team",
+         "relationships":{
+            "users":{
+               "data":[
+                  {
+                     "type":"user",
+                     "id":"{{user_id}}"
+                  }
+               ]
+            }
+         }
+      }
+   ],
+   "meta":{}
+}
+```
+
+This endpoint adds user to a team
+
+### HTTP Request
+
+`PATCH https://api.elastic.io/v2/teams/{{team_id}}/members`
+
+Parameter| Required | Description
+--------- | -----------| -----------
+id      | yes | user's ID
+type      | yes | should be "user"
+
+
+### Returns
+
+Returns teams metadata object if the call succeeded.
+
+
+## Remove team
+
+
+> Example Request:
+
+
+```shell
+ curl https://api.elastic.io/v2/{{team_id}} \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+   {
+       "data": {
+            "type": "user",
+            "id": "{{user_id}}"
+       }
+   }'
+```
+
+
+```javascript
+TBD
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 201 OK
+Content-Type: application/json
+
+{
+   "data":[
+      {
+         "attributes":{
+            "name":"{{team_name}}"
+         },
+         "id":"5508411b34e5ac0300000019",
+         "type":"team",
+         "relationships":{
+            "users":{
+               "data":[
+                  {
+                     "type":"user",
+                     "id":"{{user_id}}"
+                  }
+               ]
+            }
+         }
+      }
+   ],
+   "meta":{}
+}
+```
+
+This endpoint adds user to a team
+
+### HTTP Request
+
+`PATCH https://api.elastic.io/v2/teams/{{team_id}}/members`
+
+Parameter| Required | Description
+--------- | -----------| -----------
+id      | yes | user's ID
+type      | yes | should be "user"
+
+
+### Returns
+
+Returns teams metadata object if the call succeeded.
+
+
+
+
 

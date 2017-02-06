@@ -15,6 +15,7 @@ includes:
   - lookups
   - organizations
   - users
+  - teams
 
 search: true
 ---
