@@ -137,7 +137,7 @@ Returns teams metadata object if the call succeeded.
 
 ```shell
  curl https://api.elastic.io/v2/{team_id}/relationships/members \
-   -X PATCH \
+   -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -188,7 +188,7 @@ This endpoint adds user to a team
 
 ### HTTP Request
 
-`PATCH https://api.elastic.io/v2/teams/{team_id}/relationships/members`
+`POST https://api.elastic.io/v2/teams/{team_id}/relationships/members`
 
 Parameter| Required | Description
 --------- | -----------| -----------
