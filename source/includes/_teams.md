@@ -136,7 +136,7 @@ Returns teams metadata object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v2/{{team_id}}/relationships/members \
+ curl https://api.elastic.io/v2/{team_id}/relationships/members \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -144,7 +144,7 @@ Returns teams metadata object if the call succeeded.
    {
        "data": {
             "type": "user",
-            "id": "{{user_id}}"
+            "id": "{user_id}"
        }
    }'
 ```
@@ -164,7 +164,7 @@ Content-Type: application/json
    "data":[
       {
          "attributes":{
-            "name":"{{team_name}}"
+            "name":"{team_name}"
          },
          "id":"5508411b34e5ac0300000019",
          "type":"team",
@@ -173,7 +173,7 @@ Content-Type: application/json
                "data":[
                   {
                      "type":"user",
-                     "id":"{{user_id}}"
+                     "id":"{user_id}"
                   }
                ]
             }
@@ -188,7 +188,7 @@ This endpoint adds user to a team
 
 ### HTTP Request
 
-`PATCH https://api.elastic.io/v2/teams/{{team_id}}/relationships/members`
+`PATCH https://api.elastic.io/v2/teams/{team_id}/relationships/members`
 
 Parameter| Required | Description
 --------- | -----------| -----------
@@ -208,7 +208,7 @@ Returns teams metadata object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v2/{{team_id}}/relationships/members \
+ curl https://api.elastic.io/v2/{team_id}/relationships/members \
    -X DELETE \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -216,7 +216,7 @@ Returns teams metadata object if the call succeeded.
    {
        "data": {
             "type": "user",
-            "id": "{{user_id}}"
+            "id": "{user_id}"
        }
    }'
 ```
@@ -236,7 +236,7 @@ Content-Type: application/json
    "data":[
       {
          "attributes":{
-            "name":"{{team_name}}"
+            "name":"{team_name}"
          },
          "id":"5508411b34e5ac0300000019",
          "type":"team",
@@ -245,7 +245,7 @@ Content-Type: application/json
                "data":[
                   {
                      "type":"user",
-                     "id":"{{user_id}}"
+                     "id":"{user_id}"
                   }
                ]
             }
@@ -260,7 +260,7 @@ This endpoint removes user from a team
 
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v2/teams/{{team_id}}/relationships/members`
+`DELETE https://api.elastic.io/v2/teams/{team_id}/relationships/members`
 
 Parameter| Required | Description
 --------- | -----------| -----------
@@ -280,7 +280,7 @@ Returns teams metadata object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v2/{{team_id}} \
+ curl https://api.elastic.io/v2/{team_id} \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -303,13 +303,12 @@ This endpoint removes a team. It will only be executed if team has no repositori
 
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v2/teams/{{team_id}}`
+`DELETE https://api.elastic.io/v2/teams/{team_id}`
 
 
 ### Returns
 
-Returns teams metadata object if the call succeeded.
-
+Returns empty body
 
 
 
