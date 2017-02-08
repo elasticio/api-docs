@@ -10,15 +10,12 @@
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
-   {
-       "name": "My Org",
-       "members": [
-            {
-                "email": "test@email.com",
-                "role": "admin"
-            }
-       ]
-   }'
+       { 
+           "type": "organization",
+           "attributes": {
+                "name": "My Org"
+           }
+       }'
 ```
 
 ```
