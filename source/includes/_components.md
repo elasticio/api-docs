@@ -28,7 +28,7 @@ Content-Type: application/json
             "id": "{COMPONENT_ID}",
             "attributes": {
                 "name": "component name",
-                "teamName": "team_name"
+                "team_name": "{team_name}"
             },
             "relationships": {
                 "versions": {
