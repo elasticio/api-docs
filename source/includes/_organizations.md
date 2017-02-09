@@ -49,7 +49,7 @@ This endpoint allows to create an organization.
 
 #### Authorization
 
-This request is authorized only for a user with a `TenantAdmin` role.  Contact support team to get this role.
+This request is authorized to only a user with `TenantAdmin` role. Contact support team to get this role.
 
 
 Parameter       | Required | Description
@@ -463,8 +463,8 @@ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/ \
 
 ```
 
-This endpoint allows to add made a user member of certain organization. 
-No invites will be sent, user became a member immediately. 
+This endpoint allows adding a user to a certain organization as a member. 
+No invitation email will be sent. The user becomes a member immediately. 
 
 
 ### HTTP Request
@@ -537,7 +537,7 @@ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}
 
 ```
 
-This endpoint allows to update a membership of given user. Only `role` attribute is available for update.
+This endpoint allows updating a membership of a given user. Only `role` attribute can be updated.
 In order to update attributes of a User object (e.g. `email`), use `/v2/users` endpoints. 
 
 

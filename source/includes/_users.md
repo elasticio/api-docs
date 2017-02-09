@@ -97,7 +97,7 @@ USER_ID | The ID of a user
 
 
 #### Authorization
-This request is authorized for a member of an organization or for a user with a role as `TenantAdmin` (contact support team to get this role).
+This request is authorized to only a user with `TenantAdmin` role (contact support to get this role).
 
 
 #### Returns
