@@ -1,6 +1,6 @@
 #Organizations
 
-## Create organization
+## Create an organization
 
 > Example Request:
 
@@ -10,15 +10,12 @@
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
-   {
-       "name": "My Org",
-       "members": [
-            {
-                "email": "test@email.com",
-                "role": "admin"
-            }
-       ]
-   }'
+       { 
+           "type": "organization",
+           "attributes": {
+                "name": "My Org"
+           }
+       }'
 ```
 
 ```
@@ -52,15 +49,14 @@ This endpoint allows to create an organization.
 
 #### Authorization
 
-This request is authorized only for a user with `TenantAdmin` role.
+This request is authorized to only a user with `TenantAdmin` role. Contact support team to get this role.
 
 
-Parameter    | Required | Description
--------------| ---------| -----------
-name         | yes      | Organization name
-members      | no       | Array of objects with email and role keys
-members.email| yes      | User's email
-members.role | no       | User's role, may be 'admin', 'integrator' or 'guest'
+Parameter       | Required | Description
+--------------- | -------- | -----------
+type            | yes      | A value should be "organization"
+attributes.name | yes      | Name of the organization
+
 
 ###Returns
 
@@ -76,7 +72,7 @@ Returns Organization object if the call succeeded
 
 
 
-## Get an organization
+## Get organization
 
 > Example Request:
 
@@ -185,7 +181,7 @@ This endpoints returns an Organization object for certain organization id.
 
 #### Authorization
 
-Client has to be a member of the organization
+Client has to be a member of the organization or to have `TenantAdmin` role (contact support team to get this role).
 
 
 ### URL Parameters
@@ -207,6 +203,371 @@ include     | no       | Whether include or not full resource objects in respons
 
 
 
+## Get a list of members of Organization
+
+> Example Request:
+
+```shell
+ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/ \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+```
+ TBD
+```
+
+> Example Response:
+
+```json
+{
+    "meta": {},
+    "data": [
+        {
+            "type": "member",
+            "id": "588f832b87d7c27c7d5cc37a",
+            "attributes": {
+                "first_name": "Santos",
+                "last_name": "Mitchell",
+                "email": "Katelynn_Fritsch@gmail.com",
+                "role": "admin"
+            }
+        },
+        {
+            "type": "member",
+            "id": "588f832b87d7c27c7d5cc37b",
+            "attributes": {
+                "first_name": "Kacie",
+                "last_name": "Howe",
+                "email": "Rusty_Goodwin@hotmail.com",
+                "role": "integrator"
+            }
+        }
+    ]
+}
+
+```
+
+This endpoints returns a list of all members of certain Organization.
+
+
+### HTTP Request
+
+`GET https://api.elastic.io/v2/organizations/ORGANIZATION_ID/members/`
+
+#### Authorization
+
+Client has to be a member of the organization.
+
+
+### URL Parameters
+
+Parameter  | Required | Description
+---------- | ----------- | -----------
+ORGANIZATION_ID | yes | The ID of the organization
+
+
+
+
+
+
+## Get a list of pending members (invites) of Organization
+
+> Example Request:
+
+```shell
+ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/invites/ \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+```
+ TBD
+```
+
+> Example Response:
+
+```json
+{
+    "meta": {},
+    "data": [
+        {
+            "type": "organization-invite",
+            "id": "588f832b87d7c27c7d5cc37e",
+            "attributes": {
+                "email": "invited-1@example.org",
+                "role": "guest"
+            }
+        },
+        {
+            "type": "organization-invite",
+            "id": "588f832b87d7c27c7d5cc37f",
+            "attributes": {
+                "email": "invited-2@example.org",
+                "role": "integrator"
+            }
+        }
+    ]
+}
+
+```
+
+This endpoints returns a list of pending members (invites) for certain Organization.
+
+
+### HTTP Request
+
+`GET https://api.elastic.io/v2/organizations/ORGANIZATION_ID/invites/`
+
+#### Authorization
+
+Client has to be a member of the organization.
+
+
+### URL Parameters
+
+Parameter  | Required | Description
+---------- | ----------- | -----------
+ORGANIZATION_ID | yes | The ID of the organization
+
+
+
+
+
+
+
+
+
+
+
+## Invite a user to organization
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/invites/ \
+    -X POST \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
+    {
+       "data": {
+           "type": "invite",
+           "attributes": {
+               "email": "user-to-invite@my-company.com",
+               "role": "admin"
+           }
+       }
+    }'
+```
+
+```
+ TBD
+```
+
+> Example Response:
+
+```json
+{
+   "data": {
+       "type": "invite",
+       "attributes": {
+           "email": "user-to-invite@my-company.com",
+           "role": "admin"
+       }
+   }
+}
+
+```
+
+This endpoint allows to invite a user to organization.
+
+
+### HTTP Request
+
+`POST https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/invite`
+
+
+#### Authorization
+This request is authorized for organization members with role `Admin`.
+
+
+### URL Parameters
+Parameter        | Required | Description
+---------------- | -------- | -----------
+ORGANIZATION_ID  | yes      | The ID of the organization
+
+
+### Payload Parameters
+Parameter        | Required  | Description
+---------        | --------- | -----------
+type             | yes       | A value should be "invite".
+attributes.email | yes       | Email.
+attributes.role  | yes       | Available roles are: admin, integrator and guest.
+
+
+###Returns
+
+Returns invite object if the call succeeded
+
+
+
+
+
+
+
+
+
+
+
+## Add a new member to organization
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/ \
+    -X POST \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
+    {
+       "data": {
+           "type": "member",
+           "id": "{USER_ID}"
+           "attributes": {
+               "role": "{ROLE}"
+           }
+       }
+    }'
+```
+
+```
+ TBD
+```
+
+> Example Response:
+
+```json
+{
+   "data": {
+        "type": "member",
+        "id": "588f832b87d7c27c7d5cc37a",
+        "attributes": {
+            "first_name": "Santos",
+            "last_name": "Mitchell",
+            "email": "Santos_Mitchell@example.com",
+            "role": "admin"
+        }
+   }
+}
+
+```
+
+This endpoint allows adding a user to a certain organization as a member. 
+No invitation email will be sent. The user becomes a member immediately. 
+
+
+### HTTP Request
+
+`POST https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members`
+
+
+#### Authorization
+This request is authorized for a user with `TenantAdmin` role only. Contact support team to get this role.
+
+### Payload Parameters
+Parameter        | Required  | Description
+---------        | --------- | -----------
+id               | yes       | id of an already registered user, who will be added as a member of the organization
+type             | yes       | A value should be "member".
+attributes.role  | yes       | Available roles are: admin, integrator and guest.
+
+
+###Returns
+Returns member object if the call succeeded
+
+
+
+
+
+
+
+
+
+## Update membership in Organization
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/ \
+    -X PATCH  \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
+    {
+       "data": {
+           "type": "member",
+           "id": "{USER_ID}"
+           "attributes": {
+               "role": "{NEW_ROLE}"
+           }
+       }
+    }'
+```
+
+```
+ TBD
+```
+
+> Example Response:
+
+```json
+{
+   "data": {
+        "type": "member",
+        "id": "588f832b87d7c27c7d5cc37a",
+        "attributes": {
+            "first_name": "Santos",
+            "last_name": "Mitchell",
+            "email": "Santos_Mitchell@example.com",
+            "role": "admin"
+        }
+   }
+}
+
+```
+
+This endpoint allows updating a membership of a given user. Only `role` attribute can be updated.
+In order to update attributes of a User object (e.g. `email`), use `/v2/users` endpoints. 
+
+
+### HTTP Request
+`PATCH https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/`
+
+#### Authorization
+This request is authorized for organization members with role `Admin`.
+
+### URL Parameters
+Parameter        | Required | Description
+---------------- | -------- | -----------
+ORGANIZATION_ID  | yes      | The ID of the organization
+USER_ID          | yes      | The ID of the user to be updated
+
+### Payload Parameters
+Parameter        | Required  | Description
+---------        | --------- | -----------
+type             | yes       | A value should be "member".
+id               | yes       | id of an already registered user, must match URL param {USER_ID}
+attributes.role  | yes       | Available roles are: admin, integrator and guest.
+
+
+###Returns
+Returns member object if the call succeeded
+
+
+
+
+
 
 
 
@@ -215,7 +576,7 @@ include     | no       | Whether include or not full resource objects in respons
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/organizations/{OrganizationId}/members/{UserId} \
+ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/ \
     -X DELETE    \
     -u {EMAIL}:{APIKEY}'
 ```
@@ -230,9 +591,26 @@ include     | no       | Whether include or not full resource objects in respons
 HTTP/1.1 200 OK
 ```
 
-Operation requires organization admin access. Ownership of
-user's Flows, Credentials, Lookups and Teams would be transferred to admin User performing this operation.
+Remove a membership of the User in the Organization.
+Ownership of those user's associated data will be transferred to admin User performing this operation:
+* flows
+* credentials
+* lookups
+* developers teams membership 
+
+
+### HTTP Request
+`DELETE https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/`
+
+#### Authorization
+This request is authorized for a user with `TenantAdmin` role only. Contact support team to get this role.
+
+### URL Parameters
+Parameter        | Required | Description
+---------------- | -------- | -----------
+ORGANIZATION_ID  | yes      | The ID of the organization
+USER_ID          | yes      | The ID of the user, which should leave the organization
+
 
 ###Returns
-
-Request returns 200 OK status code and empty body if succeeded.
+Responds with `204 No content` if the call succeeded (with empty body). 
