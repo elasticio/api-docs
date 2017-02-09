@@ -317,7 +317,7 @@ This endpoints returns a list of pending members (invites) for certain Organizat
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/organizations/ORGANIZATION_ID/intives/`
+`GET https://api.elastic.io/v2/organizations/ORGANIZATION_ID/invites/`
 
 #### Authorization
 
