@@ -25,7 +25,7 @@ Content-Type: application/json
     {
         "id": "589df8b024dbdd0e461fc309",
         "type": "sshkey",
-        "attributes: {
+        "attributes": {
             "title": "My Key",
             "fingerprint": "fingerprint",
             "user_id": "user_id",
@@ -91,7 +91,7 @@ Content-Type: application/json
     {
         "id": "589df8a924dbdd0e461fc308",
         "type": "sshkey",
-        "attributes: {
+        "attributes": {
             "title": "My Key",
             "fingerprint": "fingerprint",
             "user_id": "user_id",
