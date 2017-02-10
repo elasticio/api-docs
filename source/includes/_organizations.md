@@ -185,14 +185,12 @@ Client has to be a member of the organization or to have `TenantAdmin` role (con
 
 
 ### URL Parameters
-
-Parameter  | Required | Description
----------- | ----------- | -----------
-ORGANIZATION_ID | yes | The ID of the organization
+Parameter       | Description
+--------------- | -----------
+ORGANIZATION_ID | The ID of the organization
 
 
 ### URL Query Parameters
-
 Parameter   | Required | Description              
 ----------- | -------- | ------------------------ 
 include     | no       | Whether include or not full resource objects in response for related entities. Possible values: `members` and/or `invites`.
@@ -261,10 +259,9 @@ Client has to be a member of the organization.
 
 
 ### URL Parameters
-
-Parameter  | Required | Description
----------- | ----------- | -----------
-ORGANIZATION_ID | yes | The ID of the organization
+Parameter       | Description
+--------------- | -----------
+ORGANIZATION_ID | The ID of the organization
 
 
 
@@ -325,10 +322,9 @@ Client has to be a member of the organization.
 
 
 ### URL Parameters
-
-Parameter  | Required | Description
----------- | ----------- | -----------
-ORGANIZATION_ID | yes | The ID of the organization
+Parameter       | Description
+--------------- | -----------
+ORGANIZATION_ID | The ID of the organization
 
 
 
@@ -393,9 +389,9 @@ This request is authorized for organization members with role `Admin`.
 
 
 ### URL Parameters
-Parameter        | Required | Description
----------------- | -------- | -----------
-ORGANIZATION_ID  | yes      | The ID of the organization
+Parameter        | Description
+---------------- | -----------
+ORGANIZATION_ID  | The ID of the organization
 
 
 ### Payload Parameters
@@ -548,10 +544,10 @@ In order to update attributes of a User object (e.g. `email`), use `/v2/users` e
 This request is authorized for organization members with role `Admin`.
 
 ### URL Parameters
-Parameter        | Required | Description
----------------- | -------- | -----------
-ORGANIZATION_ID  | yes      | The ID of the organization
-USER_ID          | yes      | The ID of the user to be updated
+Parameter        | Description
+---------------- | -----------
+ORGANIZATION_ID  | The ID of the organization
+USER_ID          | The ID of the user to be updated
 
 ### Payload Parameters
 Parameter        | Required  | Description
@@ -606,10 +602,10 @@ Ownership of those user's associated data will be transferred to admin User perf
 This request is authorized for a user with `TenantAdmin` role only. Contact support team to get this role.
 
 ### URL Parameters
-Parameter        | Required | Description
----------------- | -------- | -----------
-ORGANIZATION_ID  | yes      | The ID of the organization
-USER_ID          | yes      | The ID of the user, which should leave the organization
+Parameter        | Description
+---------------- | -----------
+ORGANIZATION_ID  | The ID of the organization
+USER_ID          | The ID of the user, which should leave the organization
 
 
 ###Returns

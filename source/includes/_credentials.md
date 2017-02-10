@@ -100,12 +100,10 @@ This endpoint retrieves a list of credentials available for the user
 
 `GET https://api.elastic.io/v2/credentials/`
 
-### URL Parameters
-
-
-Parameter | Required | Description
---------- | ----------- | ----------- 
-filter[component]| no | Only credentials belong to the given component id 
+### URL Query Parameters
+Parameter         | Required | Description
+----------------- | -------- | ----------- 
+filter[component] | no       | Only credentials belong to the given component id 
 
 
 ### Returns
@@ -360,28 +358,26 @@ Content-Type: application/json
         }              
    }
 }
+```
 
 This endpoint modifies credential
 
 ### HTTP Request
-
 `PATCH https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/`
 
 ### URL Parameters
-
 Parameter  | Description
 ---------- | -----------
 CREDENTIAL_ID | The ID of the credential
 
 
 ### Arguments
-
-Parameter | Required | Description
---------- | ----------- | -----------
-id | yes | A value should be the same as URL paramether CREDENTIAL_ID
-type | yes | A value should be "credential"
-attributes.name | no | Credential name. Will remain untouched if value omitted.
-attributes.keys | no | An object which represents component's configuration. Will remain untouched if value omitted. Please note, that "keys" object is overwritten entirely.
+Parameter       | Required | Description
+--------------- | -------- | -----------
+id              | yes      | A value should be the same as URL paramether CREDENTIAL_ID
+type            | yes      | A value should be "credential"
+attributes.name | no       | Credential name. Will remain untouched if value omitted.
+attributes.keys | no       | An object which represents component's configuration. Will remain untouched if value omitted. Please note, that "keys" object is overwritten entirely.
 
 
 ### Returns

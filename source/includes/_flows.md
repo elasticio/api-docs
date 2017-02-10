@@ -204,7 +204,7 @@ This endpoint returns a flow for given ID
 
 Parameter | Description
 --------- | -----------
-FLOW_ID | The ID of the flow to retrieve
+FLOW_ID   | The ID of the flow to retrieve
 
 
 ### Returns
