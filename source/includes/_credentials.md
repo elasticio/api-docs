@@ -374,7 +374,7 @@ CREDENTIAL_ID | The ID of the credential
 ### Arguments
 Parameter       | Required | Description
 --------------- | -------- | -----------
-id              | yes      | A value should be the same as URL paramether CREDENTIAL_ID
+id              | yes      | A value should be the same as URL parameter CREDENTIAL_ID
 type            | yes      | A value should be "credential"
 attributes.name | no       | Credential name. Will remain untouched if value omitted.
 attributes.keys | no       | An object which represents component's configuration. Will remain untouched if value omitted. Please note, that "keys" object is overwritten entirely.

@@ -42,7 +42,7 @@ This endpoint retrieves list of user's keys
 
 
 ### Returns
-Returns a ssh key's metadata object if the call succeeded.
+Returns an ssh key's metadata object if the call succeeded.
 
 
 
@@ -114,7 +114,7 @@ attributes.title | no       | key title
 
 
 ### Returns
-Returns a ssh key's metadata object if the call succeeded.
+Returns an ssh key's metadata object if the call succeeded.
 
 
 
