@@ -360,6 +360,7 @@ Content-Type: application/json
         }              
    }
 }
+```
 
 This endpoint modifies credential
 
