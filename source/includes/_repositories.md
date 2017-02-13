@@ -84,9 +84,9 @@ Content-Type: application/json
 
 ### URL Parameters
 
-Parameter | Required | Description
---------- | ---------| -----------
-REPO_ID   | yes      | repository id
+Parameter | Description
+--------- | -----------
+REPO_ID   | repository id
 
 ### Returns
 
@@ -189,9 +189,9 @@ This endpoint delete repository
 
 ### URL Parameters
 
-Parameter | Required | Description
---------- | ---------| -----------
-REPO_ID        | yes      | repository id
+Parameter | Description
+--------- | -----------
+REPO_ID   | repository id
 
 
 ## Get env vars
@@ -232,9 +232,9 @@ Content-Type: application/json
 
 ### URL Parameters
 
-Parameter | Required | Description
---------- | ---------| -----------
-REPO_ID   | yes      | Repository ID
+Parameter | Description
+--------- | -----------
+REPO_ID   | Repository ID
 
 ### Returns
 
@@ -284,9 +284,9 @@ Content-Type: application/json
 
 ### URL Parameters
 
-Parameter | Required | Description
---------- | ---------| -----------
-REPO_ID   | yes      | Repository ID
+Parameter | Description
+--------- | -----------
+REPO_ID   | Repository ID
 
 
 ### Returns

@@ -2,25 +2,17 @@
 
 ## Retrieve all keys
 
-
 > Example Request:
 
 
 ```shell
-curl https://api.elastic.io/v1/sshkey/ \
+curl https://api.elastic.io/v2/sshkeys/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
-
-client.sshkeys.list()
-    .then(function(keys) {
-        // do something with the keys
-    });
+TBD
 ```
 
 > Example Response:
@@ -30,137 +22,143 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 [
-  {
-    "id": "54982ee6bdf2a2030000000f",
-    "title": "My Key",
-    "fingerprint": "fingerprint",
-    "user_id": "user_id",
-    "key":"ssh_key"
-  }
+    {
+        "id": "589df8b024dbdd0e461fc309",
+        "type": "sshkey",
+        "attributes": {
+            "title": "My Key",
+            "fingerprint": "fingerprint",
+            "user_id": "user_id",
+            "key":"ssh_key"
+        }
+    }
 ]
 ```
 
 This endpoint retrieves list of user's keys
 
 ### HTTP Request
-
-`GET https://api.elastic.io/v1/sshkey/`
+`GET https://api.elastic.io/v2/sshkeys/`
 
 
 ### Returns
+Returns an ssh key's metadata object if the call succeeded.
 
-Returns a ssh key's metadata object if the call succeeded. The returned object will have an keys's title, id and fingerPrint metadata.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Add new key
-
 
 > Example Request:
 
 
 ```shell
- curl https://api.elastic.io/v1/sshkey/ \
-   -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json' \
-   -H 'Content-Type: application/json' -d '
-   {
-       "key": "ssh-rsa YOUR KEY GOES HERE,
-       "title": "My Key"
-   }'
+    curl https://api.elastic.io/v2/sshkeys/ \
+        -X POST \
+        -u {EMAIL}:{APIKEY} \
+        -H 'Accept: application/json' \
+        -H 'Content-Type: application/json' -d '
+        {
+            "type": "sshkey",
+            "attributes": {
+                "key": "ssh-rsa YOUR KEY GOES HERE,
+                "title": "My New Key"
+            }
+        }'
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
-
-client.sshkeys.create({
-    "key": "ssh-rsa YOUR KEY GOES HERE",
-    "title": "My Key"
-}).then(function(key) {
-    // do something with the key
-});
+TBD
 ```
 
 > Example Response:
 
 ```http
-HTTP/1.1 201 OK
+HTTP/1.1 201 Created
 Content-Type: application/json
 
-{
-  "id": "54982ee6bdf2a2030000000f",
-  "title": "My Key",
-  "fingerprint": "fingerprint",
-  "user_id": "user_id",
-  "key":"ssh_key"
-}
+    {
+        "id": "589df8a924dbdd0e461fc308",
+        "type": "sshkey",
+        "attributes": {
+            "title": "My Key",
+            "fingerprint": "fingerprint",
+            "user_id": "user_id",
+            "key":"ssh_key"
+        }
+    }
 ```
 
 This endpoint adds new key to list of user's keys
 
 ### HTTP Request
-
-`POST https://api.elastic.io/v1/sshkey/`
+`POST https://api.elastic.io/v2/sshkeys/`
 
 
 ### Arguments
-
-Parameter | Required | Description
---------- | ----------- | -----------
-key       | yes | valid RSA or DSA SSH public key
-title     | no | key title
+Parameter        | Required | Description
+---------------- | -------- | -----------
+attributes.key   | yes      | valid RSA or DSA SSH public key
+attributes.title | no       | key title
 
 
 ### Returns
+Returns an ssh key's metadata object if the call succeeded.
 
-Returns a ssh key's metadata object if the call succeeded. The returned object will have an keys's title, id and fingerPrint metadata.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Delete a key
-
-
 > Example Request:
 
 
 ```shell
-curl https://api.elastic.io/v1/sshkey/{KEY_ID} \
-   -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json' \
+curl https://api.elastic.io/v2/sshkeys/{KEY_ID} \
    -X DELETE
+   -u {EMAIL}:{APIKEY}
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
-
-client.sshkeys.delete({KEY_ID});
+TBD
 ```
 
 > Example Response:
 
 ```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{}
+HTTP/1.1 204 No Content
 ```
 
 This endpoint delete specified ssh key
 
 ### HTTP Request
-
-`DELETE https://api.elastic.io/v1/sshkey/{ID}`
-
-
-### Arguments
-
-Parameter | Required | Description
---------- | ----------- | -----------
-KEY_ID    | yes | Key ID
+`DELETE https://api.elastic.io/v2/sshkeys/{KEY_ID}`
 
 
-### Returns
-
-Returns empty response on success request
+### URL Parameters
+Parameter | Description
+--------- | -----------
+KEY_ID    | Key ID

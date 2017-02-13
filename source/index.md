@@ -16,6 +16,7 @@ includes:
   - components
   - organizations
   - users
+  - sshkeys
   - teams
 
 search: true

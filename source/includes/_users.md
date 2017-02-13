@@ -93,7 +93,7 @@ This endpoint returns requested user if the call succeeded.
 
 Parameter  | Description
 ---------- | -----------
-USER_ID | The ID of a user
+USER_ID    | The ID of a user
 
 
 #### Authorization
@@ -424,5 +424,5 @@ You can delete yourself only, unless you have `TenantAdmin` role. Contact suppor
 
 Parameter  | Description
 ---------- | -----------
-USER_ID | The ID of a user
+USER_ID    | The ID of a user
 
