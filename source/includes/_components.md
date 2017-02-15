@@ -301,7 +301,8 @@ Returns component's metadata object if the call succeeded.
 
 ## Update component access
 
-This request only could be made by tenant admin
+This request will make component accessible to all users in tenant, action is irreversible.
+Request could be done only by tenant admin.
 
 > Example Request:
 
