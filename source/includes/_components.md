@@ -230,3 +230,171 @@ or
 ### Returns
 
 Returns repositories metadata object if the call succeeded.
+
+
+## Create component repository
+
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/components/ \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+   -H 'Content-Type: application/json' -d '
+   {
+       "data": {
+           "type": "component",
+           "attributes": {
+               "name": "mycomponent"
+           },
+           "relationships": {
+               "team": {
+                   "data": {
+                       "type": "team",
+                       "id": "{TEAM_ID}"
+                   }
+               }
+           }
+       }
+   }'
+```
+
+
+```javascript
+TBD
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+    "data": {
+        "type": "component",
+        "id": "58a410b58224d9b2f99a687b",
+        "attributes": {
+            "name": "mycomponent",
+            "team_name": "my_hackers",
+            "icon": "{BASE64_ICON}
+        },
+        "relationships": {
+            "versions": {
+                "links": {
+                    "related": "/v2/components/58a410b58224d9b2f99a687b/versions"
+                }
+            }
+        }
+    },
+    "meta": {}
+}
+```
+
+This endpoint creates repository for component
+
+### Returns
+
+Returns component's metadata object if the call succeeded.
+
+
+## Update component access
+
+This request will make component accessible to all users in tenant, action is irreversible.
+Request could be done only by tenant admin.
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/components/{COMPONENT_ID} \
+   -X PATCH \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+   -H 'Content-Type: application/json' -d '
+   {
+       "data": {
+           "type": "component",
+           "attributes": {
+               "access": "tenant"
+           }
+       }
+   }'
+```
+
+
+```javascript
+TBD
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+    "data": {
+        "type": "component",
+        "id": "58a410b58224d9b2f99a687b",
+        "attributes": {
+            "name": "mycomponent",
+            "team_name": "my_hackers"
+        },
+        "relationships": {
+            "versions": {
+                "links": {
+                    "related": "/v2/components/58a410b58224d9b2f99a687b/versions"
+                }
+            }
+        }
+    },
+    "meta": {}
+}
+```
+
+This endpoint updates component access.
+
+### Returns
+
+Returns component's metadata object if the call succeeded.
+
+
+## Remove component repository
+
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/components/{COMPONENT_ID} \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY}
+```
+
+```javascript
+TBD
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
+
+This endpoint remove component from the database.
+
+### Returns
+
+200 http response code if call succeed, error otherwise.
+
+
+
+
+
+
+
+
+
+
+
+
