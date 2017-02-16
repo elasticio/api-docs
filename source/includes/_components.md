@@ -388,7 +388,99 @@ This endpoint remove component from the database.
 200 http response code if call succeed, error otherwise.
 
 
+## Get component's environment variables
 
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/components/{COMPONENT_ID}/env \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+
+```
+
+```javascript
+TBD
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+    "data": {
+        "attributes": {
+            "vars": {
+                "MY_ENV_VAR": "env_var_value"
+            }
+        },
+        "id": "{REPO_ID}",
+        "type": "component-env"
+    },
+    "meta": {}
+}
+```
+
+This endpoint shows env vars for given component.
+
+### Returns
+
+Returns environment variables
+
+
+## Set component's environment variables
+
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/components/{COMPONENT_ID}/env \
+   -X PUT
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+   -H 'Content-Type: application/json' -d '
+   {
+       "data": {
+           "type": "component-env",
+           "attributes": {
+               "vars": {
+                   "MY_ENV_VAR": "env_var_value"
+               }
+           }
+       }
+   }'
+```
+
+```javascript
+TBD
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+    "data": {
+        "attributes": {
+            "vars": {
+                "MY_ENV_VAR": "env_var_value"
+            }
+        },
+        "id": "{REPO_ID}",
+        "type": "component-env"
+    },
+    "meta": {}
+}
+```
+
+This endpoint replaces env vars for given component.
+
+### Returns
+
+Returns environment variables
 
 
 
