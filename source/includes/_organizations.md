@@ -10,10 +10,12 @@
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
-       { 
-           "type": "organization",
-           "attributes": {
-                "name": "My Org"
+       {
+           "data": {         
+               "type": "organization",
+               "attributes": {
+                   "name": "My Org"
+               }
            }
        }'
 ```
@@ -429,7 +431,7 @@ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/ \
     {
        "data": {
            "type": "member",
-           "id": "{USER_ID}"
+           "id": "{USER_ID}",
            "attributes": {
                "role": "{ROLE}"
            }
@@ -503,7 +505,7 @@ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}
     {
        "data": {
            "type": "member",
-           "id": "{USER_ID}"
+           "id": "{USER_ID}",
            "attributes": {
                "role": "{NEW_ROLE}"
            }
