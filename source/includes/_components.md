@@ -50,6 +50,10 @@ Content-Type: application/json
                 {
                     "type": "version",
                     "id": "{GIT_REVISION}",
+                    "attributes": {
+                        "date": "1487846132213",
+                        "versionNumber": 1
+                    },
                     "relationships": {
                         "descriptor": {
                             "links": {
@@ -144,6 +148,10 @@ Content-Type: application/json
         {
             "type": "version",
             "id": "{GIT_REVISION}",
+            "attributes": {
+                "date": "1487846132213",
+                "versionNumber": 1
+            },
             "relationships": {
                 "descriptor": {
                     "links": {
