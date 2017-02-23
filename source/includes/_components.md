@@ -51,7 +51,7 @@ Content-Type: application/json
                     "type": "version",
                     "id": "{GIT_REVISION}",
                     "attributes": {
-                        "date": "1487846132213",
+                        "date": 1487846132213,
                         "versionNumber": 1
                     },
                     "relationships": {
@@ -149,7 +149,7 @@ Content-Type: application/json
             "type": "version",
             "id": "{GIT_REVISION}",
             "attributes": {
-                "date": "1487846132213",
+                "date": 1487846132213,
                 "versionNumber": 1
             },
             "relationships": {
