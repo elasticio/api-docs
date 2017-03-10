@@ -1,14 +1,14 @@
 #Scheduled Executions
 
-## Preambule
-In order to set up usage of some component in a certain `node` in certain `Flow`, some available configuration options could not be described in advance, because they are depend on context in each case.
+## Preamble
+In order to set up usage of some component in a certain `node` in certain `Flow`, some available configuration options could not be described in advance, because they depend on the context in each case.
 
-Let's consider an example, when we have a component with a module, which allow to retrieve a list of goods from some e-commerce platform.
-In this case we have few configuration parameters, which should be configured in order to use component in some flow, but all available options are different for different e-commerce installations.
+Let's consider an example when we have a component with a module, which allows retrieving a list of goods from some e-commerce platform.
+In this case, we have few configuration parameters, which should be configured in order to use a component in some flow, but all available options are different for different e-commerce installations.
 
-The first such "dynamic" parameter is category of a good. Each installation has its own set of goods categories.
+The first such "dynamic" parameter is a category of a good. Each installation has its own set of goods categories.
 
-Goods in different categories have different attributes set, so structure of data in messages (metadata), produced by the module is dependent on selected category. So metadata also should be retrieved for each case.
+Goods in different categories have different attributes set, so the structure of data in messages (metadata), produced by the module is dependent on selected category. So metadata also should be retrieved for each case.
 
 And finally, each client uses own credential in order to connect connector with the e-commerce platform installation. Credential parameters have to be verified somehow before usage (at least in order to avoid confusing bugs while using component). 
 
@@ -18,12 +18,12 @@ In order to solve each of three problems above, there are so-called scheduled ex
 These methods are:
 
 
-- `selectModel` allows to retrieve available options for certain parameter of configuration, when component/module is used in some node in some flow
-- `getMetaModel` allows to retrieve metadata for certain configuration of some node of some flow
+- `selectModel` allows retrieving available options for certain parameter of configuration, when component/module is used in some node in some flow
+- `getMetaModel` allows retrieving metadata for certain configuration of some node of some flow
 - `verifyCredentials` allows verifying if a configuration of credential of a certain component is valid
 
 
-Each of method is executed in the same environment as a module of component, while executing of flows. 
+Each of the methods is executed in the same environment as a module of a component while executing of flows.  
 
 
 ## Scheduled execution workflow
@@ -113,7 +113,7 @@ The endpoint allows to schedule an execution of `verifyCredentials`.
 Parameter       | Description
 --------------- | -----------
 COMPONENT_ID    | The ID of the component
-GIT_HASH        | Revision of a build of the component. Also there is "keyword" `latest` which means the most recent successful build.
+GIT_HASH        | Revision of the component's build. Also there is "keyword" `latest` which means the most recent successful build.
 
 
 ### Attributes
@@ -121,7 +121,7 @@ GIT_HASH        | Revision of a build of the component. Also there is "keyword" 
 Parameter | Required | Description
 --------- | -------- | -----------
 module    | yes      | Name of a `module` of the `component`.
-keys      | yes      | An object which represents configuration of credential. Semantic is the same as attribute `keys` of `Credential` [see more](#add-a-new-credential).
+keys      | yes      |An object which represents the configuration of credential. Semantic is the same as attribute `keys` of `Credential` [see more](#add-a-new-credential).
 
 
 
@@ -202,7 +202,7 @@ Specified `Credential` (if any) should be available for the client.
 Parameter       | Description
 --------------- | -----------
 COMPONENT_ID    | The ID of the component
-GIT_HASH        | Revision of a build of the component. Also there is "keyword" `latest` which means the most recent successful build.
+GIT_HASH        | Revision of the component's build. Also there is "keyword" `latest` which means the most recent successful build.
 
 
 ### Attributes in request payload
@@ -210,13 +210,13 @@ GIT_HASH        | Revision of a build of the component. Also there is "keyword" 
 Parameter | Required | Description
 --------- | -------- | -----------
 module    | yes      | Name of a `module` of the `component`.
-fields    | yes      | An object which represents configuration. Semantic is the same, when the `module` would be used for a `node` in a `Flow` [see more](#create-a-flow).  
+fields    | yes      | An object which represents configuration. Semantic is the same when the `module` would be used for a `node` in a `Flow` [see more](#create-a-flow).  
 
 ### Relationships in request payload
 
 Parameter  | Required              | Description
 ---------- | --------------------- | -----------
-credential | depends on component  | If credential is specified in component descriptor for the module, credential should be created before and specified here.
+credential | depends on component  | If the credential is specified in the component descriptor for the module, credential should be created before and specified here.
 
 
 
@@ -300,7 +300,7 @@ Specified `Credential` (if any) should be available for the client.
 Parameter       | Description
 --------------- | -----------
 COMPONENT_ID    | The ID of the component
-GIT_HASH        | Revision of a build of the component. Also there is "keyword" `latest` which means the most recent successful build.
+GIT_HASH        | Revision of the component's build. Also there is "keyword" `latest` which means the most recent successful build.
 
 
 ### Attributes in request payload
@@ -308,13 +308,13 @@ GIT_HASH        | Revision of a build of the component. Also there is "keyword" 
 Parameter | Required | Description
 --------- | -------- | -----------
 module    | yes      | Name of a `module` of the `component`.
-fields    | yes      | An object which represents configuration. Semantic is the same, when the `module` would be used for a `node` in a `Flow` [see more](#create-a-flow).  
+fields    | yes      | An object which represents configuration. Semantic is the same when the `module` would be used for a `node` in a `Flow` [see more](#create-a-flow).  
 
 ### Relationships in request payload
 
 Parameter  | Required              | Description
 ---------- | --------------------- | -----------
-credential | depends on component  | If credential is specified in component descriptor for the module, credential should be created before and specified here.
+credential | depends on component  | If the credential is specified in the component descriptor for the module, credential should be created before and specified here.
 
 
 
@@ -380,9 +380,8 @@ Location: 'https://api.elastic.io/v2/exec/result/58becb8059a65f18c5c60e41'
 }
 ```
 
-This endpoint allows to poll a result of execution. 
-Once the execution is done, the endpoint responds with HTTP status code 303 
-and provides a resource to query the result in the 'Location' header.
+This endpoint allows polling a result of the execution. 
+Once the execution is done, the endpoint responds with HTTP status code 303 and provides a resource for querying the result in the 'Location' header.
 
 
 ### HTTP Request
@@ -453,4 +452,4 @@ EXECUTION_ID    | The ID of the execution
 
 ### Returns
 
-This endpoint returns a result of execution. When execution is in progress and result is not ready yet, HTTP status code 409 is returned.
+This endpoint returns a result of the execution. When execution is in progress and result is not ready yet, HTTP status code 409 is returned.
