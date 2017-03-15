@@ -590,11 +590,7 @@ Content-Type: application/json
 ```
 
 #### Authorization
-The component should belongs to one of the client's team or organization respectively unless it has `TenantAdmin` role. Contact support team to get this role.
-
-
-#### Authorization
-The component should belongs to one of the client's team or organization respectively unless it has `TenantAdmin` role. Contact support team to get this role.
+The component should belong to one of the client's team or organization respectively unless it has `TenantAdmin` role. Contact support team to get this role.
 
 
 ### Returns
@@ -643,12 +639,12 @@ This endpoint remove component from the database. Component's slugs will be remo
 
 
 #### Authorization
-The component should belongs to one of the client's team or organization respectively unless it has `TenantAdmin` role. Contact support team to get this role.
+The component should belong to one of the client's team or organization respectively unless it has `TenantAdmin` role. Contact support team to get this role.
 
 
 ### Returns
 
-200 http response code if call succeed, error otherwise.
+200 HTTP response code if the call succeeds, error otherwise.
 
 
 
@@ -779,7 +775,7 @@ This endpoint replaces env vars for given component.
 
 
 #### Authorization
-The component should belongs to one of the client's team or organization respectively unless it has `TenantAdmin` role. Contact support team to get this role.
+The component should belong to one of the client's team or organization respectively unless it has `TenantAdmin` role. Contact support team to get this role.
 
 
 
