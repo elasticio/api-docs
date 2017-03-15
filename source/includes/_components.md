@@ -129,7 +129,7 @@ Returns repositories metadata object if the call succeeded.
 
 Field     | Type     | Description
 --------- | ---------| --------------------------
-icon      | String   | Icon in base64
+icon      | String   | Icon (base64 encoded)
 triggers  | Object   | [&lt;Triggers Object&gt;][component-descriptor-doc]
 actions   | Object   | [&lt;Actions Object&gt;][component-descriptor-doc]
 
@@ -250,7 +250,7 @@ This endpoint returns a component object and includes latest [descriptor](#retri
 
 Field     | Type     | Description
 --------- | ---------| --------------------------
-icon      | String   | Icon in base64
+icon      | String   | Icon (base64 encoded)
 triggers  | Object   | [&lt;Triggers Object&gt;][component-descriptor-doc]
 actions   | Object   | [&lt;Actions Object&gt;][component-descriptor-doc]
 
@@ -356,6 +356,8 @@ The component should be accessible for the client (e.g. component from own team 
 ### Returns
 
 Returns repositories build metadata object if the call succeeded.
+
+
 
 
 
@@ -532,14 +534,13 @@ Returns component's metadata object if the call succeeded.
 
 
 
-##Update component
 
-This endpoint updates component.
 
-A component has two attributes, which could be updated:
+## Update component access
 
-- `icon` base64 encoded representation of component's icon. 
-- `access` allows to [share](#component-access-and-sharing) component. Only `TenantAdmin` can edit this attribute. Note! Making of component shared is irreversible action.
+Allows changing `access` from `team` to `tenant` [mode](#component-access-and-sharing).
+
+Please note, that this action is irreversible i.e. API does not allow to change `access` back to `team`. 
 
 > Example Request:
 
@@ -590,11 +591,13 @@ Content-Type: application/json
 ```
 
 #### Authorization
-The component should belong to one of the client's team or organization respectively unless it has `TenantAdmin` role. Contact support team to get this role.
+This request is authorized for a user with `TenantAdmin` role only. Contact support team to get this role.
 
 
 ### Returns
 Returns updated component's metadata object if the call succeeded.
+
+
 
 
 
@@ -657,6 +660,8 @@ The component should belong to one of the client's team or organization respecti
 
 
 
+
+
 ##Get component's environment variables
 
 
@@ -707,6 +712,8 @@ The component should be accessible for the client (e.g. component from own team 
 ### Returns
 
 Returns environment variables
+
+
 
 
 
