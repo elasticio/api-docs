@@ -6,7 +6,7 @@
 Each `Component` belongs to a `Team`. Each `User`  who is a member of the team can edit the component.
 If a team is created in an `Organization`, it can be said that the component belongs to the organization transitively, so each member of the organization can edit the component.
 
-Component has an attribute `access`, which describes if the component is shared for by the other clients. "Shared" means, that the component can be used by the users in their flows. 
+The component has an attribute `access`, which indicates how is the component shared by the other clients. "Shared" means, that the component can be used by the users in their flows. 
 There are three sharing modes: 
 
 - `team` – no sharing. Only team members can use the component.
@@ -109,7 +109,7 @@ Content-Type: application/json
 
 This endpoint retrieves a list of available components.
 Response includes latest [descriptor](#retrieve-an-single-component-descriptor) for each component.
-More details about component descriptors you can find [here][component-descriptor-doc].
+More details about the component descriptors can be found [here][component-descriptor-doc]. 
 
 ### HTTP Request
 
@@ -238,7 +238,7 @@ Content-Type: application/json
 
 
 #### Authorization
-The component should be accessible for the client (e.g. component from own team or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
+The component should be accessible to the client (e.g. component from the own team or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
   
 
 ### Returns
@@ -350,7 +350,7 @@ This endpoint retrieves list of component's versions
 
 
 #### Authorization
-The component should be accessible for the client (e.g. component from own team or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
+The component should be accessible to the client (e.g. component from the own team or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
 
 
 ### Returns
@@ -632,7 +632,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 ```
 
-This endpoint remove component from the database. Component's slugs will be removed later automatically (TBD).
+This endpoint removes component from the database. Component's slugs will be removed later automatically (TBD).
 
 
 
@@ -706,7 +706,7 @@ This endpoint shows env vars for given component.
 
 
 #### Authorization
-The component should be accessible for the client (e.g. component from own team or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
+The component should be accessible to the client (e.g. component from the own team or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
 
 
 ### Returns
