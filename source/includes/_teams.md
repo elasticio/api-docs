@@ -136,7 +136,7 @@ Returns teams metadata object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v2/{team_id}/relationships/members \
+ curl https://api.elastic.io/v2/teams/{team_id}/relationships/members \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -208,7 +208,7 @@ Returns teams metadata object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v2/{team_id}/relationships/members \
+ curl https://api.elastic.io/v2/teams/{team_id}/relationships/members \
    -X DELETE \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -280,7 +280,7 @@ Returns teams metadata object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v2/{team_id} \
+ curl https://api.elastic.io/v2/teams/{team_id} \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
