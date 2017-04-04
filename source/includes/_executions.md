@@ -66,10 +66,11 @@ TODO – update and paste time sequence diagram.
          "attributes": {
              "module": "getHello",
              "fields": {
-                 "name" : "Kapish"
+                 "apiKey" : "secret"
              }
          }
      }
+ }'
 ```
 
 ```javascript
@@ -158,6 +159,7 @@ keys      | yes      |An object which represents the configuration of credential
             }
         }
     }
+ }'
 ```
 
 ```javascript
@@ -256,6 +258,7 @@ credential | depends on component  | If the credential is specified in the compo
             }
         }
     }
+ }'
 ```
 
 ```javascript
