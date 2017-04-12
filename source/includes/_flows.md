@@ -249,7 +249,7 @@ The flow with given ID
                 "target": "step_2",
                 "config": {
                   "mapper": {
-                    "to": "info@acme.org,
+                    "to": "info@acme.org",
                     "subject": "Test",
                     "textBody": "{{fireTime}}"
                   }
