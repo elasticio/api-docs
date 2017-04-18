@@ -360,7 +360,7 @@ Returns the created flow
 
 > Example request
 
-```
+```shell
 curl https://api.elastic.io/v2/flows/{FLOW_ID} \
    -x PATCH \
    -u {EMAIL}:{APIKEY} \
@@ -385,7 +385,7 @@ TBD
 > Example response
 
 ```http
-HTTP/1.1 201 Created
+HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
