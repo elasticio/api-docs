@@ -355,3 +355,127 @@ attributes.graph | yes | Flow graph representing component connections
 ### Returns
 
 Returns the created flow
+
+## Update flow
+
+> Example request
+
+```
+curl https://api.elastic.io/v2/flows/{FLOW_ID} \
+   -x PATCH \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+    {
+          "data": {
+            "type": "flow",
+            "id": "{FLOW_ID}",
+            "attributes": {
+              "name": "this is a test task"
+            }
+          }
+    }'
+
+```
+
+> Example response
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "data": {
+    "id": "58f07f67401e5f0019275306",
+    "type": "flow",
+    "links": {
+      "self": "/v2/flows/58f07f67401e5f0019275306"
+    },
+    "attributes": {
+      "name": "this is a test task",
+      "status": "inactive",
+      "type": "ordinary",
+      "graph": {
+        "nodes": [
+          {
+            "id": "step_1",
+            "command": "elasticio/timer:timer",
+            "fields": {
+              "interval": "minute"
+            }
+          },
+          {
+            "id": "step_2",
+            "command": "elasticio/email:send"
+          }
+        ],
+        "edges": [
+          {
+            "source": "step_1",
+            "target": "step_2",
+            "config": {
+              "mapper": {
+                "textBody": "{{fireTime}}",
+                "subject": "Test",
+                "to": "info@acme.org"
+              }
+            }
+          }
+        ]
+      },
+      "api_version": "2.0"
+    },
+    "relationships": {
+      "user": {
+        "data": {
+          "id": "58c91bd02e669f0019243fdf",
+          "type": "user"
+        },
+        "links": {
+          "self": "/v2/users/58c91bd02e669f0019243fdf"
+        }
+      },
+      "organization": {
+        "data": {
+          "id": "57595b65cc6b4b0000000003",
+          "type": "organization"
+        },
+        "links": {
+          "self": "/v2/organizations/57595b65cc6b4b0000000003"
+        }
+      }
+    }
+  },
+  "meta": {}
+}
+```
+
+This endpoint updates a flow with given ID.
+Note: if you apply changes that affect timing of triggering, you should restart your flow in
+order for this changes to come true
+
+### HTTP Request
+
+`PATCH https://api.elastic.io/v2/flows/{FLOW_ID}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+FLOW_ID   | The ID of the flow to retrieve
+
+### Arguments
+
+Parameter | Required | Description
+--------- | ----------- | -----------
+type | yes | A value should be "flow"
+id | yes | ID of the flow you want to update
+attributes.name | no | Flow name
+attributes.status | no | Flow status. May be any of: active, inactive
+attributes.type | no | Flow type. May be any of: ordinary, long_running
+attributes.graph | no | Flow graph representing component connections
+attributes.cron | no | Cron expression representing flow timing
+
+### Returns
+
+Returns the updated flow
