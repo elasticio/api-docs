@@ -457,7 +457,7 @@ Content-Type: application/json
 This endpoint updates a flow with given ID.
 Note: if you apply changes that affect timing (cron field) of triggering 
 (i.e. flow graph first node is changed to webhook from polling trigger and vice versa), 
-you should restart your flow in order for this changes to come true
+you should restart your flow in order for this changes to take effect.
 
 ### HTTP Request
 
