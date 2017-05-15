@@ -362,7 +362,7 @@ Returns the created flow
 
 ```shell
 curl https://api.elastic.io/v2/flows/{FLOW_ID} \
-   -x PATCH \
+   -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
