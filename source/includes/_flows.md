@@ -227,7 +227,6 @@ The flow with given ID
         "type": "flow",
         "attributes": {
           "name": "Timer to E-Mail",
-          "status": "inactive",
           "type": "ordinary",
           "graph": {
             "nodes": [
@@ -347,7 +346,6 @@ Parameter | Required | Description
 --------- | ----------- | -----------
 type | yes | A value should be "flow"
 attributes.name | yes | Flow name
-attributes.status | yes | Flow status. May be any of: active, inactive
 attributes.type | yes | Flow type. May be any of: ordinary, long_running
 attributes.graph | yes | Flow graph representing component connections
 
@@ -476,7 +474,6 @@ Parameter | Required | Description
 type | yes | A value should be "flow"
 id | yes | ID of the flow you want to update
 attributes.name | no | Flow name
-attributes.status | no | Flow status. May be any of: active, inactive
 attributes.type | no | Flow type. May be any of: ordinary, long_running
 attributes.graph | no | Flow graph representing component connections
 attributes.cron | no | Cron expression representing flow timing
@@ -484,3 +481,80 @@ attributes.cron | no | Cron expression representing flow timing
 ### Returns
 
 Returns the updated flow
+
+## Start a flow
+
+> Example request
+
+```shell
+curl https://api.elastic.io/v2/flows/{FLOW_ID}/start \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json'
+```
+
+```javascript
+TBD
+```
+
+> Example response
+
+```http
+HTTP/1.1 204 No Content
+```
+
+This endpoint starts a flow with given ID.
+
+### HTTP Request
+
+`POST https://api.elastic.io/v2/flows/{FLOW_ID}/start`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+FLOW_ID   | The ID of the flow to retrieve
+
+### Returns
+
+Empty response
+
+
+## Stop a flow
+
+> Example request
+
+```shell
+curl https://api.elastic.io/v2/flows/{FLOW_ID}/stop \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json'
+```
+
+```javascript
+TBD
+```
+
+> Example response
+
+```http
+HTTP/1.1 204 No Content
+```
+
+This endpoint stops a flow with given ID.
+
+### HTTP Request
+
+`POST https://api.elastic.io/v2/flows/{FLOW_ID}/stop`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+FLOW_ID   | The ID of the flow to retrieve
+
+### Returns
+
+Empty response
