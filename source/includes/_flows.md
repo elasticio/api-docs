@@ -501,7 +501,7 @@ TBD
 > Example response
 
 ```http
-HTTP/1.1 204 No Content
+HTTP/1.1 202 Accepted
 ```
 
 This endpoint starts a flow with given ID.
@@ -540,7 +540,7 @@ TBD
 > Example response
 
 ```http
-HTTP/1.1 204 No Content
+HTTP/1.1 202 Accepted
 ```
 
 This endpoint stops a flow with given ID.
