@@ -1,24 +1,21 @@
 # Components
-[component-descriptor-doc]: https://support.elastic.io/support/solutions/articles/14000036334-component-descriptor-structure
+
+## Accessing and sharing components
+
+Each ``Component`` belongs to a ``Team``. Each ``User``  who is a member of the team can edit the component.
+If a team is created in an ``Organization``, it can be said that the component belongs to the organization transitively, so each member of the organization can edit the component.
+
+The component has an attribute ``access``, which indicates how is the component shared by the other clients. "Shared" means, that the component can be used by the users in their flows.
+There are three sharing modes:
+
+- ``team`` – no sharing. Only team members can use the component.
+- ``tenant`` – component could be used by the other clients in the tenant.
+- ``global`` – special mode for components from the standard set of components of Elastic.io Platform (e.g. ``timer``, ``webhook`` etc). Any user of the platform can use ``global`` components.
+
+Accordingly, a set of components, available for each user is consist of: not shared components from the user's team, components with ``tenant`` access and ``global`` components.
 
 
-## Component access and sharing
-Each `Component` belongs to a `Team`. Each `User`  who is a member of the team can edit the component.
-If a team is created in an `Organization`, it can be said that the component belongs to the organization transitively, so each member of the organization can edit the component.
-
-The component has an attribute `access`, which indicates how is the component shared by the other clients. "Shared" means, that the component can be used by the users in their flows. 
-There are three sharing modes: 
-
-- `team` – no sharing. Only team members can use the component.
-- `tenant` – component could be used by the other clients in the tenant.
-- `global` – special mode for components from the standard set of components of Elastic.io Platform (e.g. `timer`, `webhook` etc). Any user of the Elastic.io Platform can use global component.
-
-
-Accordingly, a set of components, available for each user is consist of: not shared components from the user's team, components with `tenant` access and `global` components.
-
-
-
-##Retrieve components
+## Retrieve all components
 
 
 > Example Request:
@@ -108,7 +105,7 @@ Content-Type: application/json
 ```
 
 This endpoint retrieves a list of available components.
-Response includes latest [descriptor](#retrieve-an-single-component-descriptor) for each component.
+Response includes latest [descriptor](#retrieve-a-component-descriptor) for each component.
 More details about the component descriptors can be found [here][component-descriptor-doc]. 
 
 ### HTTP Request
@@ -116,22 +113,16 @@ More details about the component descriptors can be found [here][component-descr
 `GET https://api.elastic.io/v2/components`
 
 
-### URL Query Parameters
-Parameter      | Required | Description
--------------- | -------- | ----------- 
-filter[access] | no       | Allowed values: `private` (only components from own teams returned), `public` (only shared components from the other teams) and `all` (default value, returns all abailable components).  
+### Query Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| filter[access] | No | Allowed values: ``private`` (only components from own teams returned), ``public`` (only shared components from the other teams) and ``all`` (default value, returns all available components).|
 
 ### Returns
 
 Returns repositories metadata object if the call succeeded.
 
-### Response fields
-
-Field     | Type     | Description
---------- | ---------| --------------------------
-icon      | String   | Icon (base64 encoded)
-triggers  | Object   | [&lt;Triggers Object&gt;][component-descriptor-doc]
-actions   | Object   | [&lt;Actions Object&gt;][component-descriptor-doc]
 
 
 
@@ -142,8 +133,7 @@ actions   | Object   | [&lt;Actions Object&gt;][component-descriptor-doc]
 
 
 
-
-## Retrieve a single component
+## Retrieve a component by ID
 
 
 > Example Request:
@@ -234,25 +224,22 @@ Content-Type: application/json
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/components/{COMPONENT_ID}`
+``GET https://api.elastic.io/v2/components/{COMPONENT_ID}``
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- | :--- |
+| COMPONENT_ID | Yes | Component identifier |
 
 
-#### Authorization
-The component should be accessible to the client (e.g. component from the own team or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
+### Authorization
+The component should be accessible to the client (e.g. component from the own team or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
   
 
 ### Returns
 
-This endpoint returns a component object and includes latest [descriptor](#retrieve-an-single-component-descriptor) for each component.
-
-
-### Response fields
-
-Field     | Type     | Description
---------- | ---------| --------------------------
-icon      | String   | Icon (base64 encoded)
-triggers  | Object   | [&lt;Triggers Object&gt;][component-descriptor-doc]
-actions   | Object   | [&lt;Actions Object&gt;][component-descriptor-doc]
+This endpoint returns a component object and includes latest [descriptor](#retrieve-a-component-descriptor) for each component.
 
 
 
@@ -348,9 +335,15 @@ This endpoint retrieves list of component's versions
 
 `GET https://api.elastic.io/v2/components/{COMPONENT_ID}/versions`
 
+### URL Parameters
 
-#### Authorization
-The component should be accessible to the client (e.g. component from the own team or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
+| Parameter | Required | Description |
+| :--- | :--- | :--- | :--- |
+| COMPONENT_ID | Yes | Component identifier |
+
+
+### Authorization
+The component should be accessible to the client (e.g. component from the own team or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
 
 
 ### Returns
@@ -367,7 +360,7 @@ Returns repositories build metadata object if the call succeeded.
 
 
 
-##Retrieve a single component descriptor
+## Retrieve a component descriptor
 
 
 > Example Request:
@@ -414,8 +407,8 @@ Content-Type: application/json
 }
 ```
 
-This endpoint retrieves an information about single component by it's ID and/or version, for latest version type `latest`
-More details you can find [here]([component-descriptor-doc]).
+This endpoint retrieves an information about single component by it's ``ID`` and/or ``version``,
+for latest version user ``latest``. More details can be find [here]#retrieve-a-component-descriptor).
 
 ### HTTP Request
 
@@ -429,21 +422,20 @@ or
 
 ### URL Parameters
 
-Parameter    | Description
------------- | -----------
-COMPONENT_ID | The ID of a user
-GIT_REVISION | Revision of the component's build. Also there is "keyword" `latest` which means the most recent successful build.
+| Parameter | Required | Description |
+| :--- | :--- | :--- | :--- |
+| COMPONENT_ID | Yes | Component identifier |
+| GIT_REVISION | Yes | Revision of the component’s build. Use ``latest`` to retrieve the descriptor of the most recent successful build. |
 
 
-#### Authorization
+### Authorization
 The component should be accessible for the client (e.g. component from own team or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
 
-  
 
 
 ### Returns
 
-Returns component [descriptor][component-descriptor-doc] if the call succeeded.
+Returns component [descriptor](#retrieve-a-component-descriptor) if the call succeeded.
 
 
 
@@ -457,7 +449,7 @@ Returns component [descriptor][component-descriptor-doc] if the call succeeded.
 
 
 
-##Create component repository
+## Create a component repository
 
 
 > Example Request:
@@ -517,7 +509,23 @@ Content-Type: application/json
 }
 ```
 
-This endpoint creates repository for component
+This resource allows you to create a component repository. A component repository always belongs to a team.
+If you don't have any teams yet, please [create a team](#create-team) first.
+
+### HTTP Request
+
+``POST https://api.elastic.io/v2/components``
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``component`` |
+| attributes.name | yes | Repository name |
+| attributes.icon | no | Component icon as base64 string |
+| relationships.team.data.id | yes | Team ID the repository to create for |
+| relationships.team.data.type | yes | A value must be ``team`` |
+
 
 ### Returns
 
@@ -538,9 +546,9 @@ Returns component's metadata object if the call succeeded.
 
 ## Update component access
 
-Allows changing `access` from `team` to `tenant` [mode](#component-access-and-sharing).
+This resource allows you to changing component's access level.
 
-Please note, that this action is irreversible i.e. API does not allow to change `access` back to `team`. 
+Please note, that this action is irreversible i.e. API does not allow to change `access` back to `team`.
 
 > Example Request:
 
@@ -589,9 +597,26 @@ Content-Type: application/json
     "meta": {}
 }
 ```
+### HTTP Request
 
-#### Authorization
-This request is authorized for a user with `TenantAdmin` role only. Contact support team to get this role.
+``PATCH https://api.elastic.io/v2/components/{COMPONENT_ID}``
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- | :--- |
+| COMPONENT_ID | Yes | Component identifier |
+
+### Access level
+
+A component may have one of the following access level:
+
+- ``team`` – no sharing. Only team members can use the component.
+- ``tenant`` – component could be used by the other clients in the tenant.
+- ``global`` – special mode for components from the standard set of components of Elastic.io Platform (e.g. ``timer``, ``webhook`` etc). Any user of the platform can use ``global`` components.
+
+### Authorization
+This request is authorized for a user with ``TenantAdmin`` role only. Contact support team to get this role.
 
 
 ### Returns
@@ -610,7 +635,7 @@ Returns updated component's metadata object if the call succeeded.
 
 
 
-##Remove a component
+## Delete a component
 
 
 > Example Request:
@@ -632,17 +657,23 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 ```
 
-This endpoint removes component from the database. Component's slugs will be removed later automatically (TBD).
+This resource allows you to delete a component. A component may only be delete if it not used in any flow.
 
 
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/components/{COMPONENT_ID}/`
+``DELETE https://api.elastic.io/v2/components/{COMPONENT_ID}/``
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| COMPONENT_ID | yes | Component ID |
 
 
-#### Authorization
-The component should belong to one of the client's team or organization respectively unless it has `TenantAdmin` role. Contact support team to get this role.
+### Authorization
+The component must belong to one of the client’s team or organization respectively unless it has ``TenantAdmin`` role. Contact support team to get this role.
 
 
 ### Returns
@@ -662,7 +693,7 @@ The component should belong to one of the client's team or organization respecti
 
 
 
-##Get component's environment variables
+## Retrieve component's environment variables
 
 
 > Example Request:
@@ -690,7 +721,7 @@ Content-Type: application/json
                 "MY_ENV_VAR": "env_var_value"
             }
         },
-        "id": "{REPO_ID}",
+        "id": "{COMPONENT_ID}",
         "type": "component-env"
     },
     "meta": {}
@@ -702,11 +733,17 @@ This endpoint shows env vars for given component.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/components/{COMPONENT_ID}/env`
+``GET https://api.elastic.io/v2/components/{COMPONENT_ID}/env``
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| COMPONENT_ID | yes | Component ID |
 
 
-#### Authorization
-The component should be accessible to the client (e.g. component from the own team or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
+### Authorization
+The component should be accessible to the client (e.g. component from the own team or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
 
 
 ### Returns
@@ -726,7 +763,7 @@ Returns environment variables
 
 
 
-##Set component's environment variables
+## Update component's environment variables
 
 
 > Example Request:
@@ -765,7 +802,7 @@ Content-Type: application/json
                 "MY_ENV_VAR": "env_var_value"
             }
         },
-        "id": "{REPO_ID}",
+        "id": "{COMPONENT_ID}",
         "type": "component-env"
     },
     "meta": {}
@@ -778,11 +815,24 @@ This endpoint replaces env vars for given component.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/components/{COMPONENT_ID}/env`
+``PUT https://api.elastic.io/v2/components/{COMPONENT_ID}/env`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| COMPONENT_ID | yes | Component ID |
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``component-env`` |
+| attributes.vars | yes | JSON object representing environmental variables mapped to their values. |
 
 
-#### Authorization
-The component should belong to one of the client's team or organization respectively unless it has `TenantAdmin` role. Contact support team to get this role.
+### Authorization
+The component should be accessible to the client (e.g. component from the own team or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
 
 
 
