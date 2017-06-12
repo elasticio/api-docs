@@ -1,6 +1,6 @@
 #Teams
 
-## Get user's teams
+## Retrieve all teams
 
 
 > Example Request:
@@ -45,7 +45,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint retrieves list of user's teams
+This resource allows you to retrieve all teams the current user is member in.
 
 ### HTTP Request
 
@@ -57,7 +57,7 @@ This endpoint retrieves list of user's teams
 Returns teams metadata object if the call succeeded.
 
 
-## Create team
+## Create a team
 
 
 > Example Request:
@@ -114,29 +114,32 @@ Content-Type: application/json
 }
 ```
 
-This endpoint creates new team for user
+This resource allows you to create a new team.
 
 ### HTTP Request
 
 `POST https://api.elastic.io/v2/teams/`
 
-Parameter| Required | Description
---------- | -----------| -----------
-name      | no | team name
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``team`` |
+| attributes.name | no | A team name. |
 
 ### Returns
 
 Returns teams metadata object if the call succeeded.
 
 
-## Add user to a team
+## Add a new member to a team
 
 
 > Example Request:
 
 
 ```shell
- curl https://api.elastic.io/v2/teams/{team_id}/relationships/members \
+ curl https://api.elastic.io/v2/teams/{TEAM_ID}/relationships/members \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -144,7 +147,7 @@ Returns teams metadata object if the call succeeded.
    {
        "data": {
             "type": "user",
-            "id": "{user_id}"
+            "id": "{USER_ID}"
        }
    }'
 ```
@@ -164,7 +167,7 @@ Content-Type: application/json
    "data":[
       {
          "attributes":{
-            "name":"{team_name}"
+            "name":"myteam"
          },
          "id":"5508411b34e5ac0300000019",
          "type":"team",
@@ -173,7 +176,7 @@ Content-Type: application/json
                "data":[
                   {
                      "type":"user",
-                     "id":"{user_id}"
+                     "id":"{USER_ID}"
                   }
                ]
             }
@@ -184,16 +187,25 @@ Content-Type: application/json
 }
 ```
 
-This endpoint adds user to a team
+This resource allows you to add a new member to a team.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/teams/{team_id}/relationships/members`
+`POST https://api.elastic.io/v2/teams/{TEAM_ID}/relationships/members`
 
-Parameter| Required | Description
---------- | -----------| -----------
-id      | yes | user's ID
-type      | yes | should be "user"
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| TEAM_ID | yes | Team identifier |
+
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``user`` |
+| id | yes | Id of an already registered user, who will be added as a member of the team |
 
 
 ### Returns
@@ -201,14 +213,14 @@ type      | yes | should be "user"
 Returns teams metadata object if the call succeeded.
 
 
-## Remove user from a team
+## Remove a member from a team
 
 
 > Example Request:
 
 
 ```shell
- curl https://api.elastic.io/v2/teams/{team_id}/relationships/members \
+ curl https://api.elastic.io/v2/teams/{TEAM_ID}/relationships/members \
    -X DELETE \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -236,7 +248,7 @@ Content-Type: application/json
    "data":[
       {
          "attributes":{
-            "name":"{team_name}"
+            "name":"myteam"
          },
          "id":"5508411b34e5ac0300000019",
          "type":"team",
@@ -256,16 +268,24 @@ Content-Type: application/json
 }
 ```
 
-This endpoint removes user from a team
+This resource allows you to remove a member from a team.
 
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v2/teams/{team_id}/relationships/members`
+`DELETE https://api.elastic.io/v2/teams/{TEAM_ID}/relationships/members`
 
-Parameter| Required | Description
---------- | -----------| -----------
-id      | yes | user's ID
-type      | yes | should be "user"
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| TEAM_ID | yes | Team identifier |
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``user`` |
+| id | yes | User identifier |
 
 
 ### Returns
@@ -273,14 +293,14 @@ type      | yes | should be "user"
 Returns teams metadata object if the call succeeded.
 
 
-## Remove team
+## Delete a team
 
 
 > Example Request:
 
 
 ```shell
- curl https://api.elastic.io/v2/teams/{team_id} \
+ curl https://api.elastic.io/v2/teams/{TEAM_ID} \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -299,11 +319,17 @@ Content-Type: application/json
 {}
 ```
 
-This endpoint removes a team. It will only be executed if team has no repositories.
+This resource allows you to delete a team.
 
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v2/teams/{team_id}`
+`DELETE https://api.elastic.io/v2/teams/{TEAM_ID}`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| TEAM_ID | yes | Team ID |
 
 
 ### Returns
