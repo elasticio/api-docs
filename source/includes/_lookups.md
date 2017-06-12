@@ -16,36 +16,38 @@ This resource allows you to retrieve all lookup tables.
 ```json
 
 {
-    "data": [{
-        "type": "lookup",
-        "id": "5863f65ecc753f2441c88e68",
-        "attributes": {
-            "title": "lookup title",
-            "data": {
-              "key": "value"
-            }
-        },
-        "relationships": {
-            "user": {
+    "data": [
+        {
+            "type": "lookup",
+            "id": "5863f65ecc753f2441c88e68",
+            "attributes": {
+                "title": "lookup title",
                 "data": {
-                    "type": "user",
-                    "id": "585d389b90ea62ce348a478b"
-                },
-                "links": {
-                    "self": "/v2/users/585d389b90ea62ce348a478b"
+                "key": "value"
                 }
             },
-            "organization": {
-                "data": {
-                    "type": "organization",
-                    "id": "58400dc7c9ab5757f8ef1f81"
+            "relationships": {
+                "user": {
+                    "data": {
+                        "type": "user",
+                        "id": "585d389b90ea62ce348a478b"
+                    },
+                    "links": {
+                        "self": "/v2/users/585d389b90ea62ce348a478b"
+                    }
                 },
-                "links": {
-                    "self": "/v2/organizations/58400dc7c9ab5757f8ef1f81"
+                "organization": {
+                    "data": {
+                        "type": "organization",
+                        "id": "58400dc7c9ab5757f8ef1f81"
+                    },
+                    "links": {
+                        "self": "/v2/organizations/58400dc7c9ab5757f8ef1f81"
+                    }
                 }
             }
         }
-    }],
+    ],
     "meta": {}
 }
 ```

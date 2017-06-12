@@ -15,8 +15,8 @@ includes:
   - flows
   - lookups
   - organizations
-  - sshkeys
   - executions
+  - sshkeys
   - teams
   - users
 
