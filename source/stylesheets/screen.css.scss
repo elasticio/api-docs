@@ -381,7 +381,6 @@ html, body {
     font-size: 30px;
     padding-top: 0.8em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #f4f5f6;
@@ -434,20 +433,16 @@ html, body {
       text-align: left;
       vertical-align: top;
       line-height: 1.6;
+      border: 1px solid #f4f5f6
     }
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #f4f5f6;
       vertical-align: bottom;
     }
 
     td {
       padding: 10px;
-    }
-
-    tr:last-child {
-      border-bottom: 1px solid #ccc;
     }
 
     tr:nth-child(odd)>td {
