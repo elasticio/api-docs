@@ -1,6 +1,6 @@
 #Credentials
 
-## Get all credentials available for the user
+## Retrieve all credentials
 
 
 > Example Request:
@@ -94,16 +94,17 @@ Content-Type: application/json
 }
 ```
 
-This endpoint retrieves a list of credentials available for the user
+This resource allows you to retrieve all credentials belonging to the given user.
 
 ### HTTP Request
 
 `GET https://api.elastic.io/v2/credentials/`
 
-### URL Query Parameters
-Parameter         | Required | Description
------------------ | -------- | ----------- 
-filter[component] | no       | Only credentials belong to the given component id 
+### Query Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| filter[component] | No | Only credentials belong to the given component id
 
 
 ### Returns
@@ -111,7 +112,7 @@ filter[component] | no       | Only credentials belong to the given component id
 Returns a list of credentials if the call succeeded.
 
 
-## Get a credential
+## Retrieve a credential by ID
 
 
 > Example Request:
@@ -170,7 +171,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint retrieves one of a credential available for the user
+This resource allows you to retrieve a credential by its identifier. If the credential with given ID does not belong to the current user an error is returned.
 
 ### HTTP Request
 
@@ -178,15 +179,15 @@ This endpoint retrieves one of a credential available for the user
 
 ### URL Parameters
 
-Parameter  | Description
----------- | -----------
-CREDENTIAL_ID | The ID of the credential
+| Parameter | Required | Description |
+| :--- | :--- | :--- | :--- |
+| CREDENTIAL_ID | Yes | Credential identifier |
 
 ### Returns
 
 Returns a credential object if the call succeeded.
 
-## Add a new credential
+## Create a credential
 
 
 > Example Request:
@@ -266,22 +267,22 @@ Content-Type: application/json
 }
 ```
 
-This endpoint allows to create a new credential
+This resource allows you to create a credential.
 
 ### HTTP Request
 
 `POST https://api.elastic.io/v2/credentials/`
 
 
-### Arguments
+### Body Parameters
 
-Parameter | Required | Description
---------- | ----------- | -----------
-type | yes | A value should be "credential"
-attributes.name | no | Credential name. An automatic name will be generated if the parameter is omitted
-relationships.component.data.id | yes | The component id this credential is for
-relationships.component.data.type | yes | A value should be "component"
-attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.)
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``credential`` |
+| attributes.name | no | Credential name. An automatic name will be generated if the parameter is omitted |
+| relationships.component.data.id | yes | The component id this credential is for |
+| relationships.component.data.type | yes | A value must be ``component`` |
+| attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.) |
 
 
 ### Returns
@@ -290,7 +291,7 @@ Returns credential object if the call succeeded.
 
 
 
-## Modify a credential
+## Update a credential
 
 
 > Example Request:
@@ -360,24 +361,25 @@ Content-Type: application/json
 }
 ```
 
-This endpoint modifies credential
+This resource allows you to update a credential.
 
 ### HTTP Request
 `PATCH https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/`
 
 ### URL Parameters
-Parameter  | Description
----------- | -----------
-CREDENTIAL_ID | The ID of the credential
 
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| CREDENTIAL_ID | yes | Credential ID |
 
-### Arguments
-Parameter       | Required | Description
---------------- | -------- | -----------
-id              | yes      | A value should be the same as URL parameter CREDENTIAL_ID
-type            | yes      | A value should be "credential"
-attributes.name | no       | Credential name. Will remain untouched if value omitted.
-attributes.keys | no       | An object which represents component's configuration. Will remain untouched if value omitted. Please note, that "keys" object is overwritten entirely.
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| id | yes | A value must be the same as URL parameter ``CREDENTIAL_ID`` |
+| type | yes | A value must be ``credential`` |
+| attributes.name | no | Credential name. Will remain untouched if value omitted. |
+| attributes.keys | no | An object which represents component's configuration. Will remain untouched if value omitted. Please note, that ``keys`` object is overwritten entirely. |
 
 
 ### Returns
