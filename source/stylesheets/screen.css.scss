@@ -66,6 +66,7 @@ html, body {
   );
 }
 
+
 .tocify-wrapper {
   @include transition(left ease-in-out 0.3s);
   overflow-y: auto;
@@ -77,8 +78,7 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 14px;
 
   // language selector for mobile devices
   .lang-selector {
@@ -94,13 +94,29 @@ html, body {
     display: block;
   }
 
+  &>img[src="images/logo.png"] {
+    visibility: hidden !important;
+    padding-bottom: 10px !important;
+  }
+
+  &:after {
+    position: absolute;
+    top: 21px;
+    left: 88px;
+    width: 57px;
+    height: 43px;
+    content: '';
+    background: url(https://app.elastic.io/img/logo.svg) no-repeat;
+  }
+
   &>.search {
     position: relative;
 
+    background: #0f1113;
+
     input {
-      background: $nav-bg;
-      border-width: 0 0 1px 0;
-      border-color: $search-box-border-color;
+      background: #0f1113;
+      border: none;
       padding: 6px 0 6px 20px;
       @include box-sizing(border-box);
       margin: $nav-v-padding $nav-padding;
@@ -156,7 +172,8 @@ html, body {
 
 
   .tocify-item>a, .toc-footer li {
-    padding: 0 $nav-padding 0 $nav-padding;
+    //padding: 0 $nav-padding 0 $nav-padding;
+    padding: 7px 15px 7px 15px;
     display: block;
     overflow-x: hidden;
     white-space: nowrap;
@@ -182,8 +199,6 @@ html, body {
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    @include box-shadow(0px 1px 0px $nav-active-shadow);
-    background-color: $nav-active-bg;
     color: $nav-active-text;
   }
 
@@ -193,13 +208,13 @@ html, body {
     display: none; // tocify will override this when needed
     background-color: $nav-subitem-bg;
     font-weight: 500;
+    margin-top: 10px;
+    padding: 10px 0;
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
+      font-size: 14px;
     }
 
-    // for embossed look:
-    @include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -348,7 +363,6 @@ html, body {
     padding: 0 $main-padding;
     @include box-sizing(border-box);
     display: block;
-    @include text-shadow($main-embossed-text-shadow);
 
     @extend %left-col;
   }
@@ -365,15 +379,11 @@ html, body {
   h1 {
     @extend %header-font;
     font-size: 30px;
-    padding-top: 0.5em;
+    padding-top: 0.8em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ddd;
-    @include background-image(
-      linear-gradient(top, #fff, #f9f9f9)
-    );
+    border-top: 1px solid #f4f5f6;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -386,12 +396,9 @@ html, body {
     font-size: 20px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #f4f5f6;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    @include background-image(
-      linear-gradient(top, rgba(#fff,0.4), rgba(#fff, 0))
-    );
   }
 
   // h2s right after h1s should bump right up
@@ -426,20 +433,16 @@ html, body {
       text-align: left;
       vertical-align: top;
       line-height: 1.6;
+      border: 1px solid #f4f5f6
     }
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
       vertical-align: bottom;
     }
 
     td {
       padding: 10px;
-    }
-
-    tr:last-child {
-      border-bottom: 1px solid #ccc;
     }
 
     tr:nth-child(odd)>td {
@@ -547,7 +550,6 @@ html, body {
     clear:right;
 
     @include box-sizing(border-box);
-    @include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
 
     @extend %right-col;
 
@@ -556,7 +558,7 @@ html, body {
     a {
       color: #fff;
       text-decoration: none;
-      border-bottom: dashed 1px #ccc;
+      border-bottom: dashed 1px #f4f5f6;
     }
   }
 
