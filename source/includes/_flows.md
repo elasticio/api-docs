@@ -561,3 +561,36 @@ This endpoint stops a flow with given ID.
 ### Returns
 
 Empty response
+
+## Delete a flow
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/flows/{FLOW_ID} \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY}
+```
+
+```
+ TBD
+```
+
+This resource allows you to delete a flow.
+
+### HTTP Request
+
+``DELETE https://api.elastic.io/v2/flows/{FLOW_ID}``
+
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| FLOW_ID | yes | Flow ID |
+
+> Example Response:
+
+```shell
+HTTP/1.1 204 No Content
+```

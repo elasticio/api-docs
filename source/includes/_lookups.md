@@ -190,9 +190,9 @@ This resource allows you to update a lookup table.
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/organizations/{LOOKUP_ID} \
-    -X DELETE    \
-    -u {EMAIL}:{APIKEY}'
+curl https://api.elastic.io/v2/organizations/{LOOKUP_ID} \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY}
 ```
 
 ```

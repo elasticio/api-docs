@@ -142,7 +142,7 @@ Returns an ssh key's metadata object if the call succeeded.
 
 ```shell
 curl https://api.elastic.io/v2/sshkeys/{KEY_ID} \
-   -X DELETE
+   -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
 
