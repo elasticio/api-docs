@@ -1,6 +1,6 @@
 #SSH keys
 
-## Retrieve all keys
+## Retrieve all SSH keys
 
 > Example Request:
 
@@ -21,21 +21,23 @@ TBD
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-[
-    {
-        "id": "589df8b024dbdd0e461fc309",
-        "type": "sshkey",
-        "attributes": {
-            "title": "My Key",
-            "fingerprint": "fingerprint",
-            "user_id": "user_id",
-            "key":"ssh_key"
+{
+    "data": [
+        {
+            "id": "589df8b024dbdd0e461fc309",
+            "type": "sshkey",
+            "attributes": {
+                "title": "My Key",
+                "fingerprint": "fingerprint",
+                "user_id": "user_id",
+                "key":"ssh_key"
+            }
         }
-    }
-]
+    ]
+}
 ```
 
-This endpoint retrieves list of user's keys
+This resource allows you to retrieve all SSH keys of the current user.
 
 ### HTTP Request
 `GET https://api.elastic.io/v2/sshkeys/`
@@ -58,24 +60,24 @@ Returns an ssh key's metadata object if the call succeeded.
 
 
 
-## Add new key
+## Create a new SSH key
 
 > Example Request:
 
 
 ```shell
-    curl https://api.elastic.io/v2/sshkeys/ \
-        -X POST \
-        -u {EMAIL}:{APIKEY} \
-        -H 'Accept: application/json' \
-        -H 'Content-Type: application/json' -d '
-        {
-            "type": "sshkey",
-            "attributes": {
-                "key": "ssh-rsa YOUR KEY GOES HERE,
-                "title": "My New Key"
-            }
-        }'
+curl https://api.elastic.io/v2/sshkeys/ \
+    -X POST \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
+    {
+        "type": "sshkey",
+        "attributes": {
+            "key": "ssh-rsa YOUR KEY GOES HERE,
+            "title": "My New Key"
+        }
+    }'
 ```
 
 ```javascript
@@ -88,29 +90,31 @@ TBD
 HTTP/1.1 201 Created
 Content-Type: application/json
 
-    {
-        "id": "589df8a924dbdd0e461fc308",
-        "type": "sshkey",
-        "attributes": {
-            "title": "My Key",
-            "fingerprint": "fingerprint",
-            "user_id": "user_id",
-            "key":"ssh_key"
-        }
+{
+    "id": "589df8a924dbdd0e461fc308",
+    "type": "sshkey",
+    "attributes": {
+        "title": "My Key",
+        "fingerprint": "fingerprint",
+        "user_id": "user_id",
+        "key":"ssh_key"
     }
+}
 ```
 
-This endpoint adds new key to list of user's keys
+This resource allows you to create a new SSH key.
 
 ### HTTP Request
 `POST https://api.elastic.io/v2/sshkeys/`
 
 
-### Arguments
-Parameter        | Required | Description
----------------- | -------- | -----------
-attributes.key   | yes      | valid RSA or DSA SSH public key
-attributes.title | no       | key title
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``sshkey`` |
+| attributes.key | yes | A valid RSA or DSA SSH public key. |
+| attributes.title | no | Title of the key |
 
 
 ### Returns
@@ -132,13 +136,13 @@ Returns an ssh key's metadata object if the call succeeded.
 
 
 
-## Delete a key
+## Delete a SSH key
 > Example Request:
 
 
 ```shell
 curl https://api.elastic.io/v2/sshkeys/{KEY_ID} \
-   -X DELETE
+   -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -152,13 +156,14 @@ TBD
 HTTP/1.1 204 No Content
 ```
 
-This endpoint delete specified ssh key
+This resource allows you to delete a SSH key.
 
 ### HTTP Request
 `DELETE https://api.elastic.io/v2/sshkeys/{KEY_ID}`
 
 
 ### URL Parameters
-Parameter | Description
---------- | -----------
-KEY_ID    | Key ID
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| KEY_ID | yes | SSH key ID |

@@ -8,6 +8,7 @@
 
 ```shell
  curl https://api.elastic.io/v2/flows?page[size]=20&page[number]=1 \
+   -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json'
@@ -94,22 +95,24 @@ Content-Type: application/json
 }
 ```
 
-This endpoint retrieves all flows for user or organization
+This resource allows you to retrieve flows.
 
 ### HTTP Request
 
 `GET https://api.elastic.io/v2/flows/`
 
-### URL Query Parameters
+### Query Parameters
 
-Parameter   | Required | Description              | Default
------------ | -------- | ------------------------ | -----------
-page[size]  | No       | Amount of items per page | 50
-page[number]| No       | Number of page           | 1
+| Parameter | Required | Description | Default |
+| :--- | :--- | :--- | :--- |
+| page\[size\] | No | Amount of items per page | 50 |
+| page\[number\] | No | Number of page | 1 |
 
 ### Returns
 
-Returns all flows belonging to user or organization.
+Returns all flows belonging to the given user. If the user is a member of an organization,
+all the flows of the organization are returned. If the user is a member in multiple organizations, the given API key is
+used to match the proper organization.
 
 ## Retrieve a flow by ID
 
@@ -193,7 +196,8 @@ Content-Type: application/json
 }
 ```
 
-This endpoint returns a flow for given ID
+This resource allows you to retrieve a flow by its identifier. If the flow with given ID does not belong to the current
+user or to one of his organizations, an error is returned.
 
 ### HTTP Request
 
@@ -202,9 +206,9 @@ This endpoint returns a flow for given ID
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-FLOW_ID   | The ID of the flow to retrieve
+| Parameter | Required | Description |
+| :--- | :--- | :--- | :--- |
+| FLOW_ID | Yes | Flow identifier |
 
 
 ### Returns
@@ -334,27 +338,27 @@ Content-Type: application/json
 }
 ```
 
-This endpoint creates a flow for current user or his organization
+This resource allows you to create a new flow.
 
 ### HTTP Request
 
 `POST https://api.elastic.io/v2/flows/`
 
-### Arguments
+### Body Parameters
 
-Parameter | Required | Description
---------- | ----------- | -----------
-type | yes | A value should be "flow"
-attributes.name | yes | Flow name
-attributes.type | yes | Flow type. May be any of: ordinary, long_running
-attributes.graph | yes | Flow graph representing component connections
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``flow`` |
+| attributes.name | yes | Flow name |
+| attributes.type | yes | Flow type. May be any of: ``ordinary``, ``long_running`` |
+| attributes.graph | yes | Flow graph representing component connections |
 
 
 ### Returns
 
 Returns the created flow
 
-## Update flow
+## Update a flow
 
 > Example request
 
@@ -452,10 +456,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint updates a flow with given ID.
-Note: if you apply changes that affect timing (cron field) of triggering 
-(i.e. flow graph first node is changed to webhook from polling trigger and vice versa), 
-you should restart your flow in order for this changes to take effect.
+This resource allows you to update the given flow.
 
 ### HTTP Request
 
@@ -463,20 +464,22 @@ you should restart your flow in order for this changes to take effect.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-FLOW_ID   | The ID of the flow to retrieve
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| FLOW_ID | yes | Flow ID |
 
-### Arguments
 
-Parameter | Required | Description
---------- | ----------- | -----------
-type | yes | A value should be "flow"
-id | yes | ID of the flow you want to update
-attributes.name | no | Flow name
-attributes.type | no | Flow type. May be any of: ordinary, long_running
-attributes.graph | no | Flow graph representing component connections
-attributes.cron | no | Cron expression representing flow timing
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``flow`` |
+| id | yes | ID of the flow you want to update
+| attributes.name | no | Flow name |
+| attributes.type | no | Flow type. May be any of: ``ordinary``, ``long_running`` |
+| attributes.graph | no | Flow graph representing component connections |
+| attributes.cron | no | Cron expression representing flow timing |
 
 ### Returns
 
@@ -512,9 +515,9 @@ This endpoint starts a flow with given ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-FLOW_ID   | The ID of the flow to retrieve
+| Parameter | Required | Description |
+| :--- | :--- | :--- | :--- |
+| FLOW_ID | Yes | Flow identifier |
 
 ### Returns
 
@@ -551,10 +554,43 @@ This endpoint stops a flow with given ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-FLOW_ID   | The ID of the flow to retrieve
+| Parameter | Required | Description |
+| :--- | :--- | :--- | :--- |
+| FLOW_ID | Yes | Flow identifier |
 
 ### Returns
 
 Empty response
+
+## Delete a flow
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/flows/{FLOW_ID} \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY}
+```
+
+```
+ TBD
+```
+
+This resource allows you to delete a flow.
+
+### HTTP Request
+
+``DELETE https://api.elastic.io/v2/flows/{FLOW_ID}``
+
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| FLOW_ID | yes | Flow ID |
+
+> Example Response:
+
+```shell
+HTTP/1.1 204 No Content
+```

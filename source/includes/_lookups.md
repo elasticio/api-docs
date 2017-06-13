@@ -1,7 +1,7 @@
-#Lookup tables
+# Lookup tables
 
-## Get lookup tables
-Lists available lookup tables
+## Retrieve all lookup tables
+This resource allows you to retrieve all lookup tables.
 
 > Example Request:
 
@@ -16,41 +16,47 @@ Lists available lookup tables
 ```json
 
 {
-    "data": [{
-        "type": "lookup",
-        "id": "5863f65ecc753f2441c88e68",
-        "attributes": {
-            "title": "lookup title",
-            "data": {
-              "key": "value"
-            }
-        },
-        "relationships": {
-            "user": {
+    "data": [
+        {
+            "type": "lookup",
+            "id": "5863f65ecc753f2441c88e68",
+            "attributes": {
+                "title": "lookup title",
                 "data": {
-                    "type": "user",
-                    "id": "585d389b90ea62ce348a478b"
-                },
-                "links": {
-                    "self": "/v2/users/585d389b90ea62ce348a478b"
+                "key": "value"
                 }
             },
-            "organization": {
-                "data": {
-                    "type": "organization",
-                    "id": "58400dc7c9ab5757f8ef1f81"
+            "relationships": {
+                "user": {
+                    "data": {
+                        "type": "user",
+                        "id": "585d389b90ea62ce348a478b"
+                    },
+                    "links": {
+                        "self": "/v2/users/585d389b90ea62ce348a478b"
+                    }
                 },
-                "links": {
-                    "self": "/v2/organizations/58400dc7c9ab5757f8ef1f81"
+                "organization": {
+                    "data": {
+                        "type": "organization",
+                        "id": "58400dc7c9ab5757f8ef1f81"
+                    },
+                    "links": {
+                        "self": "/v2/organizations/58400dc7c9ab5757f8ef1f81"
+                    }
                 }
             }
         }
-    }],
+    ],
     "meta": {}
 }
 ```
 
-## Create lookup table
+### HTTP Request
+
+``GET https://api.elastic.io/v2/lookups``
+
+## Create a lookup table
 
 > Example Request:
 
@@ -114,27 +120,28 @@ Lists available lookup tables
 }
 ```
 
+### HTTP Request
 
-Parameter    | Required | Description
--------------| ---------| -----------
-title         | yes      | Lookup table name
-data      | yes       | key/value
+``POST https://api.elastic.io/v2/lookups``
 
 
-##Update Lookup table
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``lookup`` |
+| attributes.title | yes | Lookup table title. |
+| attributes.data | yes | A JSON object representing a lookup table |
 
 
-Parameter    | Required | Description
--------------| ---------| -----------
-title         | yes      | Lookup table name
-data      | yes       | key/value
+## Update a lookup table
 
 
 
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/lookups/{LookupId} \
+ curl https://api.elastic.io/v2/lookups/{LOOKUP_ID} \
    -X PUT \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -157,19 +164,53 @@ data      | yes       | key/value
  TBD
 ```
 
-##Remove lookup table
+This resource allows you to update a lookup table.
+
+### HTTP Request
+
+``PUT https://api.elastic.io/v2/lookups``
+
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| LOOKUP_ID | yes | Lookup table ID |
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``lookup`` |
+| attributes.title | yes | Lookup table title. |
+| attributes.data | yes | A JSON object representing a lookup table |
+
+## Delete a lookup table
 
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/organizations/{LookupId} \
-    -X DELETE    \
-    -u {EMAIL}:{APIKEY}'
+curl https://api.elastic.io/v2/organizations/{LOOKUP_ID} \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY}
 ```
 
 ```
  TBD
 ```
+
+This resource allows you to delete a lookup table.
+
+### HTTP Request
+
+``DELETE https://api.elastic.io/v2/lookups/{LOOKUP_ID}``
+
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| LOOKUP_ID | yes | Lookup table ID |
 
 > Example Response:
 
