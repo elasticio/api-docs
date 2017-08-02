@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - components
   - credentials
+  - datasamples
   - flows
   - lookups
   - organizations
