@@ -22,7 +22,7 @@ This resource allows you to retrieve data sample.
             "self": "/v2/samples/585d389b90ea62ce348a478b"
         },
         "relationships": {
-            "componentVersion": {
+            "component_version": {
                 "data": {
                     "id": "latest",
                     "type": "version"
@@ -126,7 +126,7 @@ A member of an organization can get any sample from own organization. User witho
                         "type": "component"
                     }
                 },
-                "componentVersion": {
+                "component_version": {
                     "data": {
                         "id": "latest",
                         "type": "version"
@@ -152,7 +152,7 @@ A member of an organization can get any sample from own organization. User witho
             "self": "/v2/samples/585d389b90ea62ce348a478b"
         },
         "relationships": {
-            "componentVersion": {
+            "component_version": {
                 "data": {
                     "id": "latest",
                     "type": "version"
@@ -205,7 +205,7 @@ A member of an organization can get any sample from own organization. User witho
 | attributes.method | yes | Component's action or trigger name. |
 | attributes.result | yes | Data sample body |
 | relationships.component.data.id | yes | Component's id |
-| relationships.componentVersion.data.id | yes | Revision of the component’s build. Use latest to retrieve the descriptor of the most recent successful build. |
+| relationships.component_version.data.id | yes | Revision of the component’s build. Use latest to retrieve the descriptor of the most recent successful build. |
 
 ### Returns
 
