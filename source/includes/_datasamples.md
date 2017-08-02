@@ -62,9 +62,43 @@ This resource allows you to retrieve data sample.
 }
 ```
 
+#### Authorization
+
+A member of an organization can get any sample from own organization. User without organization can get only own samples.
+
 ### HTTP Request
 
 ``GET https://api.elastic.io/v2/samples/{DATASAMPLE_ID}``
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Create data sample
 
@@ -167,8 +201,12 @@ This resource allows you to retrieve data sample.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| type | yes | A value must be ``lookup`` |
+| type | yes | A value must be ``data-sample`` |
 | attributes.method | yes | Component's action or trigger name. |
 | attributes.result | yes | Data sample body |
 | relationships.component.data.id | yes | Component's id |
-| relationships.componentVersion.data.id | yes | Component's version |
+| relationships.componentVersion.data.id | yes | Revision of the component’s build. Use latest to retrieve the descriptor of the most recent successful build. |
+
+### Returns
+
+Returns data sample object if the call succeeded.
