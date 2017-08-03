@@ -6,7 +6,7 @@ This resource allows you to retrieve data sample.
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/samples/{DATASAMPLE_ID} \
+ curl https://api.elastic.io/v2/data-samples/{DATASAMPLE_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -19,7 +19,7 @@ This resource allows you to retrieve data sample.
         "id": "{DATASAMPLE_ID}",
         "type": "data-sample",
         "links": {
-            "self": "/v2/samples/585d389b90ea62ce348a478b"
+            "self": "/v2/data-samples/585d389b90ea62ce348a478b"
         },
         "relationships": {
             "component_version": {
@@ -68,7 +68,7 @@ A member of an organization can get any sample from own organization. User witho
 
 ### HTTP Request
 
-``GET https://api.elastic.io/v2/samples/{DATASAMPLE_ID}``
+``GET https://api.elastic.io/v2/data-samples/{DATASAMPLE_ID}``
 
 
 
@@ -105,7 +105,7 @@ A member of an organization can get any sample from own organization. User witho
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/samples \
+ curl https://api.elastic.io/v2/data-samples \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -149,7 +149,7 @@ A member of an organization can get any sample from own organization. User witho
         "id": "585d389b90ea62ce348a478b",
         "type": "data-sample",
         "links": {
-            "self": "/v2/samples/585d389b90ea62ce348a478b"
+            "self": "/v2/data-samples/585d389b90ea62ce348a478b"
         },
         "relationships": {
             "component_version": {
@@ -194,7 +194,7 @@ A member of an organization can get any sample from own organization. User witho
 
 ### HTTP Request
 
-``POST https://api.elastic.io/v2/samples``
+``POST https://api.elastic.io/v2/data-samples``
 
 
 ### Body Parameters
