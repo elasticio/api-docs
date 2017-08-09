@@ -576,7 +576,7 @@ Returns member object if the call succeeded
 ```shell
  curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/ \
     -X DELETE    \
-    -u {EMAIL}:{APIKEY}'
+    -u {EMAIL}:{APIKEY}
 ```
 
 ```
