@@ -1,4 +1,4 @@
-# Datasamples
+# Data samples
 
 ## Retrieve data sample
 This resource allows you to retrieve data sample.
