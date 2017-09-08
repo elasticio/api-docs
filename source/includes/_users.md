@@ -61,7 +61,10 @@ curl https://api.elastic.io/v1/users \
       "last_name": "Doe",
       "email": "test@example.com",
       "password": "secret",
-      "company": "Doe & Partners"
+      "company": "Doe & Partners",
+      "organizations": [
+        {"id": "54f4be3fe7d5224f91000001"}
+      ]
    }'
 ```
 
@@ -75,7 +78,10 @@ client.users.create({
     "last_name": "Doe",
     "email": "test@example.com",
     "password": "secret",
-    "company": "Doe & Partners"
+    "company": "Doe & Partners",
+    "organizations": [
+        {"id": "54f4be3fe7d5224f91000001"}
+    ]
 }).then(function(user) {
     // do something with the user
 });
@@ -111,6 +117,7 @@ first_name | yes | The user's first name
 last_name | yes | The user's last name
 email | yes | The user's email
 password | yes | The user's password
+organizations | yes | An array of organizations to join
 company | no | The user's company
 callback | no | Callback Url to call the result with
 
