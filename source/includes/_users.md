@@ -299,6 +299,13 @@ curl https://api.elastic.io/v2/users \
                 "email": "test@example.com",
                 "password": "secret",
                 "company": "Doe & Partners"
+            },
+            "relationships": {
+                "organizations": {
+                    "data": [
+                        {"id": "54f4be3fe7d5224f91000001"}
+                    ]
+                }
             }
         }
     }'
@@ -344,6 +351,7 @@ This resource allows you to create a user.
 | attributes.email | yes | User's email. |
 | attributes.password | yes | User's password. |
 | attributes.company | no | User's company. |
+| relationships.organizations.data | yes | Organizations to join. |
 
 ### Authorization
 
