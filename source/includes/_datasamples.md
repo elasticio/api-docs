@@ -106,6 +106,7 @@ A member of an organization can get any sample from own organization. User witho
 
 ```shell
  curl https://api.elastic.io/v2/data-samples \
+   -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -135,10 +136,6 @@ A member of an organization can get any sample from own organization. User witho
             }
         }
     }'
-```
-
-```
- TBD
 ```
 
 > Example Response:
@@ -217,6 +214,7 @@ Returns data sample object if the call succeeded.
 
 ```shell
  curl https://api.elastic.io/v2/data-samples/{DATASAMPLE_ID} \
+   -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -232,10 +230,6 @@ Returns data sample object if the call succeeded.
             }
         }
     }'
-```
-
-```
- TBD
 ```
 
 > Example Response:
@@ -299,7 +293,6 @@ Returns data sample object if the call succeeded.
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
 | type | yes | A value must be ``data-sample`` |
-| attributes.method | no | Component's action or trigger name. |
 | attributes.result | no | Data sample body |
 
 ### Returns
