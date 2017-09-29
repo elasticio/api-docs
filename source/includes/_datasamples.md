@@ -210,3 +210,98 @@ A member of an organization can get any sample from own organization. User witho
 ### Returns
 
 Returns data sample object if the call succeeded.
+
+## Update data sample
+
+> Example Request:
+
+```shell
+ curl https://api.elastic.io/v2/data-samples/{DATASAMPLE_ID} \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+   {
+        "data": {
+            "type": "data-sample",
+            "attributes": {
+                "method": "hello123",
+                "result": {
+                    "foo": "bar",
+                    "baz": "foo"
+                }
+            }
+        }
+    }'
+```
+
+```
+ TBD
+```
+
+> Example Response:
+
+```json
+{
+    "data": {
+        "id": "585d389b90ea62ce348a478b",
+        "type": "data-sample",
+        "links": {
+            "self": "/v2/data-samples/585d389b90ea62ce348a478b"
+        },
+        "relationships": {
+            "component_version": {
+                "data": {
+                    "id": "latest",
+                    "type": "version"
+                },
+                "links": {
+                    "self": "/v2/components/5863f7136ef9da255ad9a9bc/versions/latest"
+                }
+            },
+            "component": {
+                "data": {
+                    "id": "5863f7136ef9da255ad9a9bc",
+                    "type": "component"
+                },
+                "links": {
+                    "self": "/v2/components/5863f7136ef9da255ad9a9bc"
+                }
+            },
+            "user": {
+                "data": {
+                    "id": "585d389b90ea62ce348a478b",
+                    "type": "user"
+                },
+                "links": {
+                    "self": "/v2/users/${client.id}"
+                }
+            }
+        },
+        "attributes": {
+            "method": "hello123",
+            "result": {
+                "foo": "bar",
+                "baz": "foo"
+            }
+        }
+    },
+    "meta": {}
+}
+```
+
+### HTTP Request
+
+``PATCH https://api.elastic.io/v2/data-samples/{DATASAMPLE_ID}``
+
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``data-sample`` |
+| attributes.method | no | Component's action or trigger name. |
+| attributes.result | no | Data sample body |
+
+### Returns
+
+Returns updated data sample object if the call succeeded.
