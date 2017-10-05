@@ -18,6 +18,7 @@ includes:
   - executions
   - sshkeys
   - teams
+  - agents
   - users
 
 search: true
