@@ -53,7 +53,7 @@ Content-Type: application/json
 }
 ```
 
-Agent allows running ``Flow`` ``Nodes`` in isolated infrastructure outside of platform.
+This resource allows you to retrieve all the agents belonging to the given organization.
 
 ### HTTP Request
 
@@ -61,4 +61,4 @@ Agent allows running ``Flow`` ``Nodes`` in isolated infrastructure outside of pl
 
 ### Returns
 
-Fetches all ``Agents`` belonging to the gievn ``Organization``.
+Returns all the agents belonging to the given organization.
