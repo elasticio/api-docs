@@ -125,7 +125,8 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to create a new agent.
+This resource allows you to create a new agent. The agent is being created with "pending" status. Elastic.io support team will
+create an agent and contact you within 2-3 working days.
 
 ### HTTP Request
 
