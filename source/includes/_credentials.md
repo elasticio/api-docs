@@ -87,6 +87,15 @@ Content-Type: application/json
                      "links": {
                          "self": "/v2/components/585430d2f02852a8a9fac457"
                      }
+                 },
+                 "agent": {
+                    "data": {
+                        "id": "59a410d76b670400182f190e",
+                        "type": "agent"
+                    },
+                    "links": {
+                        "self": "/v2/agents/59a410d76b670400182f190e"
+                    }
                  }
              }
         }
@@ -165,6 +174,15 @@ Content-Type: application/json
                 "links": {
                     "self": "/v2/components/585430d2f02852a8a9fac456"
                 }
+            },
+            "agent": {
+                "data": {
+                    "id": "59a410d76b670400182f190e",
+                    "type": "agent"
+                },
+                "links": {
+                    "self": "/v2/agents/59a410d76b670400182f190e"
+                }
             }
         }        
     }
@@ -215,6 +233,12 @@ curl https://api.elastic.io/v2/credentials/ \
                         "id": "585430d2f02852a8a9fac456",
                         "type": "component"
                     }
+                },
+                "agent": {
+                    "data": {
+                        "id": "59a410d76b670400182f190e",
+                        "type": "agent"
+                    }
                 }
             }
         }
@@ -261,6 +285,16 @@ Content-Type: application/json
                 "links": {
                     "self": "/v2/components/585430d2f02852a8a9fac456"
                 }
+            },
+            "agent": {
+                "data": {
+                    "id": "59a410d76b670400182f190e",
+                        "type": "agent"
+                    },
+                    "links": {
+                        "self": "/v2/agents/59a410d76b670400182f190e"
+                    }
+                }
             }
         }         
    }
@@ -282,6 +316,9 @@ This resource allows you to create a credential.
 | attributes.name | no | Credential name. An automatic name will be generated if the parameter is omitted |
 | relationships.component.data.id | yes | The component id this credential is for |
 | relationships.component.data.type | yes | A value must be ``component`` |
+| relationships.agent | no | The agent relation object |
+| relationships.agent.data.id | no | The agent id this credential is for |
+| relationships.agent.data.type | no | A value must be ``agent`` |
 | attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.) |
 
 
@@ -312,6 +349,15 @@ curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
                     "key1": "updated value"  
                 }
             }             
+        }
+        "relationships": {
+            "agent": {
+                "data": {
+                    "id": "59a410d76b670400182f190e",
+                        "type": "agent"
+                    }
+                }
+            }
         }
     }'
 ```
@@ -356,6 +402,16 @@ Content-Type: application/json
                     "self": "/v2/users/585430d3f02852a8a9fac45d"
                 }
             }
+            "agent": {
+                "data": {
+                    "id": "59a410d76b670400182f190e",
+                        "type": "agent"
+                    },
+                    "links": {
+                        "self": "/v2/agents/59a410d76b670400182f190e"
+                    }
+                }
+            }            
         }              
    }
 }
@@ -380,6 +436,9 @@ This resource allows you to update a credential.
 | type | yes | A value must be ``credential`` |
 | attributes.name | no | Credential name. Will remain untouched if value omitted. |
 | attributes.keys | no | An object which represents component's configuration. Will remain untouched if value omitted. Please note, that ``keys`` object is overwritten entirely. |
+| relationships.agent | no | The agent relation object. Will remain untouched if omitted. |
+| relationships.agent.data.id | no | The agent id this credential is for. |
+| relationships.agent.data.type | no | A value must be ``agent`` |
 
 
 ### Returns
