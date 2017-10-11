@@ -131,6 +131,14 @@ This resource allows you to create a new agent.
 
 `POST https://api.elastic.io/v2/agents/`
 
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``agent`` |
+| attributes.title | yes | Agent title |
+| attributes.description | yes | Agent description |
+
 ### Returns
 
 Returns the created agent object.
