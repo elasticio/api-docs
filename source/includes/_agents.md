@@ -76,13 +76,13 @@ curl https://api.elastic.io/v2/agents \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
     {
-          "data": {
-            "type": "agent",
-            "attributes": {
-              "title": "agent title",
-              "description": "agent description"
-            }
-          }
+      "data": {
+        "type": "agent",
+        "attributes": {
+          "title": "agent title",
+          "description": "agent description"
+        }
+      }
     }'
 ```
 
