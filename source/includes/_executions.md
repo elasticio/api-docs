@@ -326,8 +326,8 @@ The component should be accessible to the client.
 | attributes.module | Yes | Name of the component's module as defined in ``component.json``. |
 | attributes.method | Yes | Name of the method, which returns select model data. |
 | attributes.fields | Yes | Contains values for component's fields. Semantics are same as defining fields for a node in a [flow graph](#create-a-flow).
-| relationships.credential.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
-| relationships.credential.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
+| relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
+| relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
 
 
 
@@ -380,7 +380,7 @@ Content-Type: application/json
 ```http
 HTTP/1.1 303 See Other
 Content-Type: application/json
-Location: 'https://api.elastic.io/v2/exec/result/58becb8059a65f18c5c60e41'
+Location: /v2/exec/result/58becb8059a65f18c5c60e41
 
 {
     "data": {},
