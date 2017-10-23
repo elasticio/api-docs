@@ -71,7 +71,6 @@ HTTP header is the URL to get the results of the execution. Please see how to [p
      "data": {
          "type": "verify-credential",
          "attributes": {
-             "module": "getHello",
              "fields": {
                  "apiKey" : "secret"
              }
@@ -123,15 +122,15 @@ The component should be accessible to the client.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| COMPONENT_ID | yes | Name of a component's module. |
+| COMPONENT_ID | Yes | Name of a component's module. |
 | GIT_REVISION | Yes | Revision of the component’s build. For available versions see [here](#retrieve-component-versions). For latest version use ``latest``. |
 
 ### Body Parameters
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| module | yes | Name of the component's module as defined in ``component.json`` |
-| keys | Yes | An object which represents the configuration of credential. The semantics are same as in [creating a credential](#create-a-credential).
+| type | Yes | A value must be ``verify-credential``. |
+| attributes.fields | Yes | An object which represents the configuration of credential. The semantics are same as in [creating a credential](#create-a-credential).
 
 
 
@@ -163,8 +162,10 @@ curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}
         },
         "relationships": {
             "credential": {
-                "type": "credential",
-                "id": "{CREDENTIAL_ID}"
+                "data": {
+                    "id": "{CREDENTIAL_ID}",
+                    "type": "credential"
+                }
             }
         }
     }
@@ -214,18 +215,18 @@ The component should be accessible to the client.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| COMPONENT_ID | yes | Name of a component's module. |
+| COMPONENT_ID | Yes | Name of a component's module. |
 | GIT_REVISION | Yes | Revision of the component’s build. For available versions see [here](#retrieve-component-versions). For latest version use ``latest``. |
 
 ### Body Parameters
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| type | yes | A value must be ``dynamic-metadata`` |
-| attributes.module | yes | Name of the component's module as defined in ``component.json`` |
+| type | Yes | A value must be ``dynamic-metadata``. |
+| attributes.module | Yes | Name of the component's module as defined in ``component.json``. |
 | attributes.fields | Yes | Contains values for component's fields. Semantics are same as defining fields for a node in a [flow graph](#create-a-flow).
-| relationships.credential.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
-| relationships.credential.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
+| relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
+| relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
 
 
 
@@ -250,9 +251,10 @@ The component should be accessible to the client.
  -X POST -H 'Content-Type: application/json' -d '
  {
     "data": {
-        "type": "dynamic-metadata",
+        "type": "select-model",
         "attributes": {
             "module": "{MODULE}",
+            "method": "{METHOD}",
             "fields": {
                 "some_field" : "value",
                 "another_field" : "another_value"
@@ -260,8 +262,10 @@ The component should be accessible to the client.
         },
         "relationships": {
             "credential": {
-                "type": "credential",
-                "id": "{CREDENTIAL_ID}"
+                "data": {
+                    "id": "{CREDENTIAL_ID}",
+                    "type": "credential"
+                }
             }
         }
     }
@@ -318,11 +322,12 @@ The component should be accessible to the client.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| type | yes | A value must be ``select-model`` |
-| attributes.module | yes | Name of the component's module as defined in ``component.json`` |
+| type | Yes | A value must be ``select-model`` |
+| attributes.module | Yes | Name of the component's module as defined in ``component.json``. |
+| attributes.method | Yes | Name of the method, which returns select model data. |
 | attributes.fields | Yes | Contains values for component's fields. Semantics are same as defining fields for a node in a [flow graph](#create-a-flow).
-| relationships.credential.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
-| relationships.credential.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
+| relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
+| relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
 
 
 
@@ -375,7 +380,7 @@ Content-Type: application/json
 ```http
 HTTP/1.1 303 See Other
 Content-Type: application/json
-Location: 'https://api.elastic.io/v2/exec/result/58becb8059a65f18c5c60e41'
+Location: /v2/exec/result/58becb8059a65f18c5c60e41
 
 {
     "data": {},
@@ -438,8 +443,10 @@ Content-Type: application/json
         "id": "58becb8059a65f18c5c60e41",
         "attributes": {
             "result": {
-                "some_field_of_result": "value",   
-                "another_field": "another_value"   
+                "data": {
+                    "some_field_of_result": "value",
+                    "another_field": "another_value"
+                }
             }
         }
     }
