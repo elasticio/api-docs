@@ -123,6 +123,7 @@ The component should be accessible to the client.
 | type | Yes | A value must be ``verify-credential``. |
 | attributes.fields | Yes | An object which represents the configuration of credential. The semantics are same as in [creating a credential](#create-a-credential).
 | relationships.agent.data.id | No | ID of the agent |
+| relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
 
 ## Retrieve component's metamodel
 
@@ -211,6 +212,7 @@ The component should be accessible to the client.
 | relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
 | relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
 | relationships.agent.data.id | No | ID of the agent |
+| relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
 
 ## Retrieve component's select model
 
@@ -300,14 +302,7 @@ The component should be accessible to the client.
 | relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
 | relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
 | relationships.agent.data.id | No | ID of the agent |
-
-
-
-
-
-
-
-
+| relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
 
 ## Poll a result of an execution
 
