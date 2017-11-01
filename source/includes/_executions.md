@@ -61,8 +61,6 @@ HTTP header is the URL to get the results of the execution. Please see how to [p
 
 > Example Request:
 
-
-
 ```shell
  curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/verify-credential \
  -u {EMAIL}:{APIKEY} \ 
@@ -78,11 +76,6 @@ HTTP header is the URL to get the results of the execution. Please see how to [p
      }
  }'
 ```
-
-```javascript
-TBD
-```
-
 
 > Example Response:
 
@@ -108,7 +101,6 @@ accomplished by sending a request to an external API. The entire process is desc
 describes how to perform the 1st step of this process. Please also read details on
 [polling execution results](#poll-a-result-of-an-execution) and [retrieving execution results](#retrieve-execution-result).
 
-
 ### HTTP Request
 
 `POST https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/verify-credential`
@@ -116,7 +108,6 @@ describes how to perform the 1st step of this process. Please also read details 
 #### Authorization
 
 The component should be accessible to the client.
-
 
 ### URL Parameters
 
@@ -131,15 +122,8 @@ The component should be accessible to the client.
 | :--- | :--- | :--- |
 | type | Yes | A value must be ``verify-credential``. |
 | attributes.fields | Yes | An object which represents the configuration of credential. The semantics are same as in [creating a credential](#create-a-credential).
-
-
-
-
-
-
-
-
-
+| relationships.agent.data.id | No | ID of the agent |
+| relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
 
 ## Retrieve component's metamodel
 
@@ -227,23 +211,12 @@ The component should be accessible to the client.
 | attributes.fields | Yes | Contains values for component's fields. Semantics are same as defining fields for a node in a [flow graph](#create-a-flow).
 | relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
 | relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
-
-
-
-
-
-
-
-
-
-
-
-
+| relationships.agent.data.id | No | ID of the agent |
+| relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
 
 ## Retrieve component's select model
 
 > Example Request:
-
 
 ```shell
  curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_HASH}/select-model\
@@ -328,14 +301,8 @@ The component should be accessible to the client.
 | attributes.fields | Yes | Contains values for component's fields. Semantics are same as defining fields for a node in a [flow graph](#create-a-flow).
 | relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
 | relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
-
-
-
-
-
-
-
-
+| relationships.agent.data.id | No | ID of the agent |
+| relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
 
 ## Poll a result of an execution
 
