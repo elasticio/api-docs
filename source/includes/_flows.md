@@ -215,6 +215,235 @@ user or to one of his organizations, an error is returned.
 
 The flow with given ID
 
+## Retrieve all flow versions by its ID
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/flows/{FLOW_ID}/versions?page[size]=20&page[number]=1 \
+   -u {EMAIL}:{APIKEY}
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+   "data": [
+      {
+         "id": "585918da586224001b96de88",
+         "type": "flow-version",
+         "attributes": {
+            "task_id": "585918da586224001b96de89",
+            "user_id": "585918da586224001b96de90",
+            "version": "c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10",
+            "latest": true,
+            "name": "WebHook to Mailchimp",
+            "cron": "*/3 * * * *",
+            "recipe": {
+               "nodes": [
+                  {
+                     "first": true,
+                     "id": "step_1",
+                     "function": "receive"
+                  },
+                  {
+                     "id": "step_2",
+                     "function": "map"
+                  },
+                  {
+                     "id": "step_3",
+                     "function": "subscribe"
+                  }
+               ],
+               "connections": [
+                  {
+                     "to": "step_2",
+                     "from": "step_1"
+                  },
+                  {
+                     "to": "step_3",
+                     "from": "step_2"
+                  }
+               ]
+            },
+            "data": {
+               "step_1": {
+                  "payload": "email,first,last"
+               },
+               "step_2": {
+                  "mapper": {
+                     "lastName": "{{last}}",
+                     "firstName": "{{first}}",
+                     "email_type": "html",
+                     "email": "{{email}}"
+                  },
+                  "lookupTables": {
+                     "salutation": "lookup-table-id-to-be-used-for-salutation",
+                     "create_new_lookup1": "new-lookup-id",
+                     "create_new_lookup2": "new-lookup-id"
+                  }
+               },
+               "step_3": {
+                  "listId": "8779dd762e"
+               }
+            }
+         },
+         "links": {
+            "self": "/v2/flows/585918da586224001b96de89/versions/c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10"
+         },
+         "relationships": {
+            "flow": {
+               "data": {
+                  "id": "585918da586224001b96de89",
+                  "type": "flow"
+               },
+               "links": {
+                  "self": "/v2/flows/585918da586224001b96de89"
+               }
+            }
+         }
+      }
+   ],
+   "meta": {
+      "page": 1,
+      "per_page": 20,
+      "total": 1,
+      "total_pages": 1
+   }
+}
+```
+
+This resource allows to you retrieve available versions for your flow.
+These versions are indicate the history of changes for the flow.
+
+Each version resource consists of changed flow ID, who is the author of the change (its user ID), version hash and all other fields that was changed.
+
+### HTTP Request
+
+`GET https://api.elastic.io/v2/flows/{FLOW_ID}/versions`
+
+### URL Parameters
+
+| Parameter | Required | Description     |
+| :-------- | :------- | :-------------- |
+| FLOW_ID   | Yes      | Flow identifier |
+
+### Returns
+
+The list of versions for the specified flow.
+
+## Retrieve flow version by flow ID and its hash
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/flows/{FLOW_ID}/versions/{VERSION_HASH} \
+   -u {EMAIL}:{APIKEY}
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+   "data": {
+      "id": "585918da586224001b96de88",
+      "type": "flow-version",
+      "attributes": {
+         "task_id": "585918da586224001b96de89",
+         "user_id": "585918da586224001b96de90",
+         "version": "c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10",
+         "latest": true,
+         "name": "WebHook to Mailchimp",
+         "cron": "*/3 * * * *",
+         "recipe": {
+            "nodes": [
+               {
+                  "first": true,
+                  "id": "step_1",
+                  "function": "receive"
+               },
+               {
+                  "id": "step_2",
+                  "function": "map"
+               },
+               {
+                  "id": "step_3",
+                  "function": "subscribe"
+               }
+            ],
+            "connections": [
+               {
+                  "to": "step_2",
+                  "from": "step_1"
+               },
+               {
+                  "to": "step_3",
+                  "from": "step_2"
+               }
+            ]
+         },
+         "data": {
+            "step_1": {
+               "payload": "email,first,last"
+            },
+            "step_2": {
+               "mapper": {
+                  "lastName": "{{last}}",
+                  "firstName": "{{first}}",
+                  "email_type": "html",
+                  "email": "{{email}}"
+               },
+               "lookupTables": {
+                  "salutation": "lookup-table-id-to-be-used-for-salutation",
+                  "create_new_lookup1": "new-lookup-id",
+                  "create_new_lookup2": "new-lookup-id"
+               }
+            },
+            "step_3": {
+               "listId": "8779dd762e"
+            }
+         }
+      },
+      "links": {
+         "self": "/v2/flows/585918da586224001b96de89/versions/c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10"
+      },
+      "relationships": {
+         "flow": {
+            "data": {
+               "id": "585918da586224001b96de89",
+               "type": "flow"
+            },
+            "links": {
+               "self": "/v2/flows/585918da586224001b96de89"
+            }
+         }
+      }
+   }
+}
+```
+
+This resource allows to you retrieve specific version of the flow by its version hash.
+
+### HTTP Request
+
+`GET https://api.elastic.io/v2/flows/{FLOW_ID}/versions/{VERSION_HASH}`
+
+### URL Parameters
+
+| Parameter    | Required | Description     |
+| :----------- | :------- | :-------------- |
+| FLOW_ID      | Yes      | Flow identifier |
+| VERSION_HASH | Yes      | Version hash    |
+
+### Returns
+
+Specific version of the flow.
 
 ## Create a flow
 
