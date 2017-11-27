@@ -371,7 +371,6 @@ Content-Type: application/json
          "created_at": "2017-11-27T16:22:07.339Z",
          "name": "WebHook to Mailchimp",
          "cron": "*/3 * * * *",
-         "created_at": "",
          "graph": {
             "nodes": [
                {
