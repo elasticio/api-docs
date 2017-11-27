@@ -236,13 +236,12 @@ Content-Type: application/json
          "id": "585918da586224001b96de88",
          "type": "flow-version",
          "attributes": {
-            "task_id": "585918da586224001b96de89",
-            "user_id": "585918da586224001b96de90",
             "version": "c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10",
             "latest": true,
+            "created_at": "2017-11-27T16:22:07.339Z",
             "name": "WebHook to Mailchimp",
             "cron": "*/3 * * * *",
-            "recipe": {
+            "graph": {
                "nodes": [
                   {
                      "first": true,
@@ -295,6 +294,15 @@ Content-Type: application/json
             "self": "/v2/flows/585918da586224001b96de89/versions/c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10"
          },
          "relationships": {
+            "user": {
+                "data": {
+                    "id": "585918da586224001b96de89",
+                    "type": "user"
+                },
+                "links": {
+                    "self": "/v2/users/585918da586224001b96de89"
+                }
+            },
             "flow": {
                "data": {
                   "id": "585918da586224001b96de89",
@@ -327,9 +335,12 @@ Each version resource consists of changed flow ID, who is the author of the chan
 
 ### URL Parameters
 
-| Parameter | Required | Description     |
-| :-------- | :------- | :-------------- |
-| FLOW_ID   | Yes      | Flow identifier |
+| Parameter      | Required | Description              | Default |
+| :------------- | :------- | :----------------------- | :------ |
+| FLOW_ID        | Yes      | Flow identifier          |         |
+| page\[size\]   | No       | Amount of items per page | 50      |
+| page\[number\] | No       | Number of page           | 1       |
+
 
 ### Returns
 
@@ -355,13 +366,13 @@ Content-Type: application/json
       "id": "585918da586224001b96de88",
       "type": "flow-version",
       "attributes": {
-         "task_id": "585918da586224001b96de89",
-         "user_id": "585918da586224001b96de90",
          "version": "c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10",
          "latest": true,
+         "created_at": "2017-11-27T16:22:07.339Z",
          "name": "WebHook to Mailchimp",
          "cron": "*/3 * * * *",
-         "recipe": {
+         "created_at": "",
+         "graph": {
             "nodes": [
                {
                   "first": true,
@@ -414,6 +425,15 @@ Content-Type: application/json
          "self": "/v2/flows/585918da586224001b96de89/versions/c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10"
       },
       "relationships": {
+         "user": {
+            "data": {
+                "id": "585918da586224001b96de89",
+                "type": "user"
+            },
+            "links": {
+                "self": "/v2/users/585918da586224001b96de89"
+            }
+         },
          "flow": {
             "data": {
                "id": "585918da586224001b96de89",
