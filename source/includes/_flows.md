@@ -233,83 +233,81 @@ Content-Type: application/json
 {
    "data": [
       {
-         "id": "585918da586224001b96de88",
          "type": "flow-version",
+         "id": "585918da586224001b96de88",
          "attributes": {
+            "created_at": "2017-11-28T15:07:48.566Z",
             "version": "c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10",
-            "latest": true,
-            "created_at": "2017-11-27T16:22:07.339Z",
             "name": "WebHook to Mailchimp",
             "cron": "*/3 * * * *",
             "graph": {
                "nodes": [
                   {
-                     "first": true,
                      "id": "step_1",
-                     "function": "receive"
-                  },
-                  {
-                     "id": "step_2",
-                     "function": "map"
+                     "command": "my_team/webhook:receive",
+                     "fields": {
+                        "payload": "email,first,last"
+                     }
                   },
                   {
                      "id": "step_3",
-                     "function": "subscribe"
+                     "command": "my_team/mailchimp:subscribe@46d410dd2a64cfc64858ce3d90e015acf531c9b6",
+                     "fields": {
+                        "listId": "8779dd762e"
+                     },
+                     "credentials_id": "585918da586224001b96de88",
+                     "selected_data_samples": [
+                        "54536902230d250700000000"
+                     ],
+                     "out_data_samples": [
+                        "54536902230d250700000000",
+                        "54536902230d250700000001"
+                     ]
                   }
                ],
-               "connections": [
+               "edges": [
                   {
-                     "to": "step_2",
-                     "from": "step_1"
-                  },
-                  {
-                     "to": "step_3",
-                     "from": "step_2"
+                     "id": "step_2",
+                     "source": "step_1",
+                     "target": "step_3",
+                     "config": {
+                        "mapper_type": "handlebars",
+                        "mapper": {
+                           "email": "{{email}}",
+                           "email_type": "html",
+                           "firstName": "{{first}}",
+                           "lastName": "{{last}}"
+                        },
+                        "lookup_tables": {
+                           "salutation": "lookup-table-id-to-be-used-for-salutation",
+                           "create_new_lookup1": "new-lookup-id",
+                           "create_new_lookup2": "new-lookup-id"
+                        }
+                     }
                   }
                ]
-            },
-            "data": {
-               "step_1": {
-                  "payload": "email,first,last"
-               },
-               "step_2": {
-                  "mapper": {
-                     "lastName": "{{last}}",
-                     "firstName": "{{first}}",
-                     "email_type": "html",
-                     "email": "{{email}}"
-                  },
-                  "lookupTables": {
-                     "salutation": "lookup-table-id-to-be-used-for-salutation",
-                     "create_new_lookup1": "new-lookup-id",
-                     "create_new_lookup2": "new-lookup-id"
-                  }
-               },
-               "step_3": {
-                  "listId": "8779dd762e"
-               }
             }
          },
          "links": {
-            "self": "/v2/flows/585918da586224001b96de89/versions/c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10"
+            "self": "/v2/flows/585918da586224001b96de88/versions/c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10"
          },
          "relationships": {
             "user": {
-                "data": {
-                    "id": "585918da586224001b96de89",
-                    "type": "user"
-                },
-                "links": {
-                    "self": "/v2/users/585918da586224001b96de89"
-                }
+               "data": {
+                  "type": "user",
+                  "id": "585918da586224001b96de88"
+               },
+               "links": {
+                  "self": "/v2/users/585918da586224001b96de88"
+               }
             },
             "flow": {
                "data": {
-                  "id": "585918da586224001b96de89",
-                  "type": "flow"
+                  "type": "flow",
+                  "id": "585918da586224001b96de88"
                },
                "links": {
-                  "self": "/v2/flows/585918da586224001b96de89"
+                  "self": "/v2/flows/585918da586224001b96de88"
                }
             }
          }
@@ -317,7 +315,7 @@ Content-Type: application/json
    ],
    "meta": {
       "page": 1,
-      "per_page": 20,
+      "per_page": 50,
       "total": 1,
       "total_pages": 1
    }
@@ -366,80 +364,78 @@ Content-Type: application/json
       "id": "585918da586224001b96de88",
       "type": "flow-version",
       "attributes": {
+         "created_at": "2017-11-28T15:07:48.566Z",
          "version": "c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10",
-         "latest": true,
-         "created_at": "2017-11-27T16:22:07.339Z",
          "name": "WebHook to Mailchimp",
          "cron": "*/3 * * * *",
          "graph": {
             "nodes": [
                {
-                  "first": true,
                   "id": "step_1",
-                  "function": "receive"
-               },
-               {
-                  "id": "step_2",
-                  "function": "map"
+                  "command": "my_team/webhook:receive",
+                  "fields": {
+                     "payload": "email,first,last"
+                  }
                },
                {
                   "id": "step_3",
-                  "function": "subscribe"
+                  "command": "my_team/mailchimp:subscribe@46d410dd2a64cfc64858ce3d90e015acf531c9b6",
+                  "fields": {
+                     "listId": "8779dd762e"
+                  },
+                  "credentials_id": "585918da586224001b96de88",
+                  "selected_data_samples": [
+                     "54536902230d250700000000"
+                  ],
+                  "out_data_samples": [
+                     "54536902230d250700000000",
+                     "54536902230d250700000001"
+                  ]
                }
             ],
-            "connections": [
+            "edges": [
                {
-                  "to": "step_2",
-                  "from": "step_1"
-               },
-               {
-                  "to": "step_3",
-                  "from": "step_2"
+                  "id": "step_2",
+                  "source": "step_1",
+                  "target": "step_3",
+                  "config": {
+                     "mapper_type": "handlebars",
+                     "mapper": {
+                        "email": "{{email}}",
+                        "email_type": "html",
+                        "firstName": "{{first}}",
+                        "lastName": "{{last}}"
+                     },
+                     "lookup_tables": {
+                        "salutation": "lookup-table-id-to-be-used-for-salutation",
+                        "create_new_lookup1": "new-lookup-id",
+                        "create_new_lookup2": "new-lookup-id"
+                     }
+                  }
                }
             ]
-         },
-         "data": {
-            "step_1": {
-               "payload": "email,first,last"
-            },
-            "step_2": {
-               "mapper": {
-                  "lastName": "{{last}}",
-                  "firstName": "{{first}}",
-                  "email_type": "html",
-                  "email": "{{email}}"
-               },
-               "lookupTables": {
-                  "salutation": "lookup-table-id-to-be-used-for-salutation",
-                  "create_new_lookup1": "new-lookup-id",
-                  "create_new_lookup2": "new-lookup-id"
-               }
-            },
-            "step_3": {
-               "listId": "8779dd762e"
-            }
          }
       },
       "links": {
-         "self": "/v2/flows/585918da586224001b96de89/versions/c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10"
+         "self": "/v2/flows/585918da586224001b96de88/versions/c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10"
       },
       "relationships": {
          "user": {
             "data": {
-                "id": "585918da586224001b96de89",
-                "type": "user"
+               "id": "585918da586224001b96de88",
+               "type": "user"
             },
             "links": {
-                "self": "/v2/users/585918da586224001b96de89"
+               "self": "/v2/users/585918da586224001b96de88"
             }
          },
          "flow": {
             "data": {
-               "id": "585918da586224001b96de89",
+               "id": "585918da586224001b96de88",
                "type": "flow"
             },
             "links": {
-               "self": "/v2/flows/585918da586224001b96de89"
+               "self": "/v2/flows/585918da586224001b96de88"
             }
          }
       }
