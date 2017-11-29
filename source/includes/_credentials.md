@@ -444,3 +444,35 @@ This resource allows you to update a credential.
 ### Returns
 
 Returns a modified credential object if the call succeeded.
+
+## Delete a credential
+> Example Request:
+
+
+```shell
+curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY}
+```
+
+```javascript
+TBD
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 204 No Content
+```
+
+This resource allows you to delete a credential.
+
+### HTTP Request
+`DELETE https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/`
+
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| CREDENTIAL_ID | yes | Credential ID |
