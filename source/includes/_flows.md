@@ -234,10 +234,9 @@ Content-Type: application/json
    "data": [
       {
          "type": "flow-version",
-         "id": "585918da586224001b96de88",
+         "id": "{VERSION_HASH}",
          "attributes": {
             "created_at": "2017-11-28T15:07:48.566Z",
-            "version": "c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10",
             "name": "WebHook to Mailchimp",
             "cron": "*/3 * * * *",
             "graph": {
@@ -271,17 +270,12 @@ Content-Type: application/json
                      "source": "step_1",
                      "target": "step_3",
                      "config": {
-                        "mapper_type": "handlebars",
+                        "mapper_type": "jsonata",
                         "mapper": {
-                           "email": "{{email}}",
-                           "email_type": "html",
-                           "firstName": "{{first}}",
-                           "lastName": "{{last}}"
-                        },
-                        "lookup_tables": {
-                           "salutation": "lookup-table-id-to-be-used-for-salutation",
-                           "create_new_lookup1": "new-lookup-id",
-                           "create_new_lookup2": "new-lookup-id"
+                           "email": "email",
+                           "email_type": "\"html\"",
+                           "firstName": "first",
+                           "lastName": "last"
                         }
                      }
                   }
@@ -289,25 +283,25 @@ Content-Type: application/json
             }
          },
          "links": {
-            "self": "/v2/flows/585918da586224001b96de88/versions/c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10"
+            "self": "/v2/flows/{FLOW_ID}/versions/{VERSION_HASH}"
          },
          "relationships": {
             "user": {
                "data": {
                   "type": "user",
-                  "id": "585918da586224001b96de88"
+                  "id": "{USER_ID}"
                },
                "links": {
-                  "self": "/v2/users/585918da586224001b96de88"
+                  "self": "/v2/users/{USER_ID}"
                }
             },
             "flow": {
                "data": {
                   "type": "flow",
-                  "id": "585918da586224001b96de88"
+                  "id": "{FLOW_ID}"
                },
                "links": {
-                  "self": "/v2/flows/585918da586224001b96de88"
+                  "self": "/v2/flows/{FLOW_ID}"
                }
             }
          }
@@ -322,10 +316,10 @@ Content-Type: application/json
 }
 ```
 
-This resource allows to you retrieve available versions for your flow.
-These versions are indicate the history of changes for the flow.
+These versions are represent the history of changes of the flow and are sorted chronologically by `created_at`.
 
-Each version resource consists of changed flow ID, who is the author of the change (its user ID), version hash and all other fields that was changed.
+Each version has an `id` and represents a flow's state at the given `created_at` time.
+It also exposes a relationship to the author of the change.
 
 ### HTTP Request
 
@@ -361,11 +355,10 @@ Content-Type: application/json
 
 {
    "data": {
-      "id": "585918da586224001b96de88",
+      "id": "{VERSION_HASH}",
       "type": "flow-version",
       "attributes": {
          "created_at": "2017-11-28T15:07:48.566Z",
-         "version": "c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10",
          "name": "WebHook to Mailchimp",
          "cron": "*/3 * * * *",
          "graph": {
@@ -399,17 +392,12 @@ Content-Type: application/json
                   "source": "step_1",
                   "target": "step_3",
                   "config": {
-                     "mapper_type": "handlebars",
+                     "mapper_type": "jsonata",
                      "mapper": {
-                        "email": "{{email}}",
-                        "email_type": "html",
-                        "firstName": "{{first}}",
-                        "lastName": "{{last}}"
-                     },
-                     "lookup_tables": {
-                        "salutation": "lookup-table-id-to-be-used-for-salutation",
-                        "create_new_lookup1": "new-lookup-id",
-                        "create_new_lookup2": "new-lookup-id"
+                        "email": "email",
+                        "email_type": "\"html\"",
+                        "firstName": "first",
+                        "lastName": "last"
                      }
                   }
                }
@@ -417,25 +405,25 @@ Content-Type: application/json
          }
       },
       "links": {
-         "self": "/v2/flows/585918da586224001b96de88/versions/c77c09a2b5f9e528c6de443ea5cce5fca4fb8c10"
+         "self": "/v2/flows/{FLOW_ID}/versions/{VERSION_HASH}"
       },
       "relationships": {
          "user": {
             "data": {
-               "id": "585918da586224001b96de88",
+               "id": "{USER_ID}",
                "type": "user"
             },
             "links": {
-               "self": "/v2/users/585918da586224001b96de88"
+               "self": "/v2/users/{USER_ID}"
             }
          },
          "flow": {
             "data": {
-               "id": "585918da586224001b96de88",
+               "id": "{FLOW_ID}",
                "type": "flow"
             },
             "links": {
-               "self": "/v2/flows/585918da586224001b96de88"
+               "self": "/v2/flows/{FLOW_ID}"
             }
          }
       }
