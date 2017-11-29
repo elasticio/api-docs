@@ -316,7 +316,7 @@ Content-Type: application/json
 }
 ```
 
-These versions are represent the history of changes of the flow and are sorted chronologically by `created_at`.
+These versions represent the history of changes of the flow and are sorted chronologically by `created_at`.
 
 Each version has an `id` and represents a flow's state at the given `created_at` time.
 It also exposes a relationship to the author of the change.
