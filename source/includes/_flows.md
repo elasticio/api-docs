@@ -215,7 +215,7 @@ user or to one of his organizations, an error is returned.
 
 The flow with given ID
 
-## Retrieve all flow versions by its ID
+## Retrieve all flow versions
 
 > Example Request:
 
@@ -338,7 +338,7 @@ It also exposes a relationship to the author of the change.
 
 The list of versions for the specified flow.
 
-## Retrieve flow version by flow ID and its hash
+## Retrieve flow version
 
 > Example Request:
 
@@ -818,8 +818,8 @@ This resource allows you to delete a flow.
 ### URL Parameters
 
 | Parameter | Required | Description |
-| :--- | :--- | :--- |
-| FLOW_ID | yes | Flow ID |
+| :-------- | :------- | :---------- |
+| FLOW_ID   | yes      | Flow ID     |
 
 > Example Response:
 

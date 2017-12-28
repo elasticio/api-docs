@@ -13,6 +13,8 @@ includes:
   - credentials
   - datasamples
   - flows
+  - flow-versions
+  - flow-drafts
   - lookups
   - organizations
   - executions
