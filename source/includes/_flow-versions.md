@@ -23,6 +23,7 @@ Content-Type: application/json
          "attributes": {
             "created_at": "2017-11-28T15:07:48.566Z",
             "name": "WebHook to Mailchimp",
+            "description": "Some real description",
             "cron": "*/3 * * * *",
             "graph": {
                "nodes": [
@@ -145,6 +146,7 @@ Content-Type: application/json
       "attributes": {
          "created_at": "2017-11-28T15:07:48.566Z",
          "name": "WebHook to Mailchimp",
+         "description": "Some real description",
          "cron": "*/3 * * * *",
          "graph": {
             "nodes": [

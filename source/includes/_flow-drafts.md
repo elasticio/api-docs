@@ -30,6 +30,7 @@ Content-Type: application/json
     "id": "{DRAFT_ID}",
     "attributes": {
       "name": "Timer to E-Mail Test",
+      "description": "Some real description",
       "cron": "*/3 * * * *",
       "created_at": "2017-11-28T15:07:48.566Z",
       "updated_at": "2017-11-28T15:07:48.566Z",
@@ -120,6 +121,7 @@ Returns a flow draft
         "type": "flow-draft",
         "attributes": {
           "name": "Timer to E-Mail",
+          "description": "Some real description",
           "graph": {
             "nodes": [
               {
@@ -170,6 +172,7 @@ Content-Type: application/json
     "id": "{DRAFT_ID}",
     "attributes": {
       "name": "Timer to E-Mail Test",
+      "description": "Some real description",
       "cron": "*/3 * * * *",
       "created_at": "2017-11-28T15:07:48.566Z",
       "updated_at": "2017-11-28T15:07:48.566Z",
@@ -245,6 +248,7 @@ This resource allows you to create/update a flow draft.
 | :--------------- | :------- | :---------- |
 | type             |    yes   | A value must be ``flow-draft`` |
 | attributes.name  |    no    | Flow name |
+| attributes.description  |    no    | Flow description |
 | attributes.graph |    no    | Flow graph representing component connections |
 | attributes.cron  |    no    | Cron expression |
 
