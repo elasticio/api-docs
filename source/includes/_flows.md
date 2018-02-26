@@ -7,7 +7,7 @@
 
 
 ```shell
- curl https://api.elastic.io/v2/flows?page[size]=20&page[number]=1 \
+ curl "https://api.elastic.io/v2/flows/?page[size]=10&page[number]=2&filter[status]=active&filter[has_draft]=true&sort=title,-updatedAt&search[description]=test" \
    -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -103,10 +103,17 @@ This resource allows you to retrieve flows.
 
 ### Query Parameters
 
-| Parameter | Required | Description | Default |
-| :--- | :--- | :--- | :--- |
-| page\[size\] | No | Amount of items per page | 50 |
-| page\[number\] | No | Number of page | 1 |
+| Parameter             | Required  | Description               | Default   | Example                   |
+| :---                  | :---      | :---                      | :---      | :---                      |
+| page\[size\]          | No        | Amount of items per page  | 50        | 10                        |
+| page\[number\]        | No        | Number of page            | 1         | 2                         |
+| filter\[status\]      | No        | Filter by flow status     | -         | active                    |
+| filter\[author\]      | No        | Filter by flow author     | -         | 5a8cb67d0c2e258702d78e19  |
+| filter\[type\]        | No        | Filter by flow author     | -         | ordinary                  |
+| filter\[has_draft\]   | No        | Filter by flow author     | -         | true                      |
+| search\[title\]       | No        | Search by flow title      | -         | low                       |
+| search\[description\] | No        | Search by flow description| -         | to E-Mail                 |
+| sort                  | No        | Sort by field             | -         | -createdAt,-updatedAt     |
 
 ### Returns
 
