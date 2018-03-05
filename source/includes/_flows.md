@@ -7,7 +7,7 @@
 
 
 ```shell
- curl "https://api.elastic.io/v2/flows/?page[size]=10&page[number]=2&filter[status]=active&filter[has_draft]=true&sort=title,-updatedAt&search[description]=test" \
+ curl https://api.elastic.io/v2/flows?page[size]=20&page[number]=1 \
    -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -103,17 +103,19 @@ This resource allows you to retrieve flows.
 
 ### Query Parameters
 
-| Parameter             | Required  | Description               | Default   | Example                   |
-| :---                  | :---      | :---                      | :---      | :---                      |
-| page\[size\]          | No        | Amount of items per page  | 50        | 10                        |
-| page\[number\]        | No        | Number of page            | 1         | 2                         |
-| filter\[status\]      | No        | Filter by flow status     | -         | active                    |
-| filter\[author\]      | No        | Filter by flow author     | -         | 5a8cb67d0c2e258702d78e19  |
-| filter\[type\]        | No        | Filter by flow author     | -         | ordinary                  |
-| filter\[has_draft\]   | No        | Filter by flow author     | -         | true                      |
-| search\[title\]       | No        | Search by flow title      | -         | low                       |
-| search\[description\] | No        | Search by flow description| -         | to E-Mail                 |
-| sort                  | No        | Sort by field             | -         | -createdAt,-updatedAt     |
+All parameters are optional.
+
+| Parameter             | Description |
+| :---                  | :--- |
+| page\[size\]          | Amount of items per page. Default is `50`. |
+| page\[number\]        | Number of page. Default is `1`. |
+| filter\[status\]      | Filter by `status`. May be any of: `active`, `inactive`. |
+| filter\[user\]        | Filter by `user`. Must be `id` of `User` who created the flow. `user` could be found in relationships of the flow. |
+| filter\[type\]        | Filter by flow `type`. May be any of: `ordinary`, `long_running`. |
+| filter\[has_draft\]   | Filter only flows only with or without a draft. May be `true` or `false`. |
+| sort                  | Sort flows list by certain field. May be `created_at`, `updated_at` or `title`. Prefix field name with `-` for reversed (desc) order e.g. `sort=-updated_at`. Default sort is by `id`. |
+| search\[title\]       | Search flows by a word or a phrase contained in a `title`. Behavior is similar to operator ` LIKE` in SQL. Leading/following spaces are trimmed. |
+| search\[description\] | Search flows by a word or a phrase contained in a `description`. Behavior is similar to operator ` LIKE` in SQL. Leading/following spaces are trimmed. |
 
 ### Returns
 
