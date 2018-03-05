@@ -7,7 +7,7 @@
 
 
 ```shell
- curl https://api.elastic.io/v2/flows?page[size]=20&page[number]=1 \
+ curl https://api.elastic.io/v2/flows?page\[size\]=20&page\[number\]=1 \
    -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -18,7 +18,7 @@
 
 
 ```shell
- curl "https://api.elastic.io/v2/flows?filter[status]=active&sort=-updated_at&search[title]=webhook trigger" \
+ curl 'https://api.elastic.io/v2/flows?filter\[status\]=active&sort=-updated_at&search\[title\]=webhook\ trigger' \
    -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
