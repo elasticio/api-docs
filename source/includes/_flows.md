@@ -14,6 +14,17 @@
    -H 'Content-Type: application/json'
 ```
 
+> Example Request with filter, search and custom sorting:
+
+
+```shell
+ curl "https://api.elastic.io/v2/flows?filter[status]=active&sort=-updated_at&search[title]=webhook trigger" \
+   -g \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json'
+```
+
 
 ```javascript
 TBD
