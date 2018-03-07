@@ -3,11 +3,32 @@
 ## Retrieve all flows
 
 
-> Example Request:
-
+> Example Request (with custom paging):
 
 ```shell
- curl https://api.elastic.io/v2/flows?page[size]=20&page[number]=1 \
+ curl 'https://api.elastic.io/v2/flows?page\[size\]=20&page\[number\]=1' \
+   -g \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json'
+```
+
+
+> Example Request (with filter):
+
+```shell
+ curl 'https://api.elastic.io/v2/flows?filter\[status\]=active' \
+   -g \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json'
+```
+
+
+> Example Request (with custom sorting):
+
+```shell 
+ curl 'https://api.elastic.io/v2/flows?sort=-updated_at' \
    -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -103,10 +124,14 @@ This resource allows you to retrieve flows.
 
 ### Query Parameters
 
-| Parameter | Required | Description | Default |
-| :--- | :--- | :--- | :--- |
-| page\[size\] | No | Amount of items per page | 50 |
-| page\[number\] | No | Number of page | 1 |
+| Parameter             | Required  | Description |
+| :---                  | :---      | :--- |
+| page\[size\]          | no        | Amount of items per page. Default is `50`. |
+| page\[number\]        | no        | Number of page. Default is `1`. |
+| filter\[status\]      | no        | Filter by `status`. May be any of: `active`, `inactive`. |
+| filter\[user\]        | no        | Filter by `user`. Must be `id` of `User` who created the flow. `user` could be found in relationships of the flow. |
+| filter\[type\]        | no        | Filter by flow `type`. May be any of: `ordinary`, `long_running`. |
+| sort                  | no        | Sort flows list by certain field. May be `created_at`, `updated_at` or `title`. Prefix field name with `-` for reversed (desc) order e.g. `sort=-updated_at`. Default sort is by `id`. |
 
 ### Returns
 
