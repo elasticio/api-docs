@@ -7,39 +7,28 @@
 
 
 ```shell
- curl https://api.elastic.io/v2/flows?page\[size\]=20&page\[number\]=1 \
+## with custom paging:
+ curl 'https://api.elastic.io/v2/flows?page\[size\]=20&page\[number\]=1' \
    -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json'
-```
 
-> Example Request with filter:
-
-
-```shell
+## with filter:
  curl 'https://api.elastic.io/v2/flows?filter\[status\]=active' \
    -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json'
-```
 
-> Example Request with search:
-
-
-```shell
+## with search:
  curl 'https://api.elastic.io/v2/flows?search\[title\]=webhook\ trigger' \
    -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json'
-```
-
-> Example Request with custom sorting:
-
-
-```shell
+ 
+## with custom sorting:
  curl 'https://api.elastic.io/v2/flows?sort=-updated_at' \
    -g \
    -u {EMAIL}:{APIKEY} \
