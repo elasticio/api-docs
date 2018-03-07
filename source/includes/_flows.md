@@ -3,32 +3,42 @@
 ## Retrieve all flows
 
 
-> Example Request:
-
+> Example Request (with custom paging):
 
 ```shell
-## with custom paging:
  curl 'https://api.elastic.io/v2/flows?page\[size\]=20&page\[number\]=1' \
    -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json'
+```
 
-## with filter:
+
+> Example Request (with filter):
+
+```shell
  curl 'https://api.elastic.io/v2/flows?filter\[status\]=active' \
    -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json'
+```
 
-## with search:
+
+> Example Request (with search):
+
+```shell
  curl 'https://api.elastic.io/v2/flows?search\[title\]=webhook\ trigger' \
    -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json'
- 
-## with custom sorting:
+```
+
+
+> Example Request (with custom sorting):
+
+```shell 
  curl 'https://api.elastic.io/v2/flows?sort=-updated_at' \
    -g \
    -u {EMAIL}:{APIKEY} \
