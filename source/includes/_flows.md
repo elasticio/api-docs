@@ -19,6 +19,14 @@
 ```
 
 
+> Example Request (with search):
+
+```shell
+ curl 'https://api.elastic.io/v2/flows?search[title]=webhook trigger' \
+   -g -u {EMAIL}:{APIKEY} 
+```
+
+
 > Example Request (with custom sorting):
 
 ```shell 
@@ -115,14 +123,16 @@ This resource allows you to retrieve flows.
 
 ### Query Parameters
 
-| Parameter             | Required  | Description |
-| :---                  | :---      | :--- |
+| Parameter           | Required  | Description |
+| :---                | :---      | :--- |
 | page[size]          | no        | Amount of items per page. Default is `50`. |
 | page[number]        | no        | Number of page. Default is `1`. |
 | filter[status]      | no        | Filter by `status`. May be any of: `active`, `inactive`. |
 | filter[user]        | no        | Filter by `user`. Must be `id` of `User` who created the flow. `user` could be found in relationships of the flow. |
 | filter[type]        | no        | Filter by flow `type`. May be any of: `ordinary`, `long_running`. |
-| sort                  | no        | Sort flows list by certain field. May be `created_at`, `updated_at` or `title`. Prefix field name with `-` for reversed (desc) order e.g. `sort=-updated_at`. Default sort is by `id`. |
+| sort                | no        | Sort flows list by certain field. May be `created_at`, `updated_at` or `title`. Prefix field name with `-` for reversed (desc) order e.g. `sort=-updated_at`. Default sort is by `id`. |
+| search[title]       | no        | Search flows by a word or a phrase contained in a `title`. Behavior is similar to operator ` LIKE` in SQL. Leading/following spaces are trimmed. |
+| search[description] | no        | Search flows by a word or a phrase contained in a `description`. Behavior is similar to operator ` LIKE` in SQL. Leading/following spaces are trimmed. |
 
 ### Returns
 
