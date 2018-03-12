@@ -7,8 +7,7 @@
 
 ```shell
  curl 'https://api.elastic.io/v2/flows?page[size]=20&page[number]=1' \
-   -g \
-   -u {EMAIL}:{APIKEY}
+   -g -u {EMAIL}:{APIKEY}
 ```
 
 
@@ -16,8 +15,7 @@
 
 ```shell
  curl 'https://api.elastic.io/v2/flows?filter[status]=active' \
-   -g \
-   -u {EMAIL}:{APIKEY}
+   -g -u {EMAIL}:{APIKEY}
 ```
 
 
@@ -25,8 +23,7 @@
 
 ```shell 
  curl 'https://api.elastic.io/v2/flows?sort=-updated_at' \
-   -g \
-   -u {EMAIL}:{APIKEY}
+   -g -u {EMAIL}:{APIKEY}
 ```
 
 
