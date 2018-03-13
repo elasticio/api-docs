@@ -127,7 +127,7 @@ This resource allows you to retrieve flows.
 | :---                | :---      | :--- |
 | page[size]          | no        | Amount of items per page. Default is `50`. |
 | page[number]        | no        | Number of page. Default is `1`. |
-| filter[has_draft]   | no        | Filter only flows only with or without a draft. May be `true` or `false`. |
+| filter[has_draft]   | no        | Filter flows only with or without a draft. May be `true` or `false`. |
 | filter[status]      | no        | Filter by `status`. May be any of: `active`, `inactive`. |
 | filter[type]        | no        | Filter by flow `type`. May be any of: `ordinary`, `long_running`. |
 | filter[user]        | no        | Filter by `user`. Must be `id` of `User` who created the flow. `user` could be found in relationships of the flow. |
