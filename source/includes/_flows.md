@@ -22,7 +22,7 @@
 > Example Request (with search):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?search[title]=webhook trigger' \
+ curl 'https://api.elastic.io/v2/flows?search=webhook trigger' \
    -g -u {EMAIL}:{APIKEY} 
 ```
 
