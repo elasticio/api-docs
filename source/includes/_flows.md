@@ -132,7 +132,7 @@ This resource allows you to retrieve flows.
 | filter[type]        | no        | Filter by flow `type`. May be any of: `ordinary`, `long_running`. |
 | filter[user]        | no        | Filter by `user`. Must be `id` of `User` who created the flow. `user` could be found in relationships of the flow. |
 | sort                | no        | Sort flows list by certain field. May be `created_at`, `updated_at` or `title`. Prefix field name with `-` for reversed (desc) order e.g. `sort=-updated_at`. Default sort is by `id`. |
-| search[title]       | no        | Search flows by a word or a phrase contained in a `title`. Behavior is similar to operator ` LIKE` in SQL. Leading/following spaces are trimmed. |
+| search[name]        | no        | Search flows by a word or a phrase contained in a `name`. Behavior is similar to operator ` LIKE` in SQL. Leading/following spaces are trimmed. |
 | search[description] | no        | Search flows by a word or a phrase contained in a `description`. Behavior is similar to operator ` LIKE` in SQL. Leading/following spaces are trimmed. |
 
 ### Returns
