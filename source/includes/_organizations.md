@@ -383,7 +383,7 @@ This endpoint allows to invite a user to organization.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/invite`
+`POST https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/invites/`
 
 
 #### Authorization
