@@ -213,6 +213,7 @@ Returns a credential object if the call succeeded.
 
 ```shell
 curl https://api.elastic.io/v2/credentials/ \
+    -X POST \
     -u {EMAIL}:{APIKEY} \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' -d '
