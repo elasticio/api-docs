@@ -349,18 +349,17 @@ curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
                 "keys": {
                     "key1": "updated value"  
                 }
-            }             
-        }
-        "relationships": {
-            "agent": {
-                "data": {
-                    "id": "59a410d76b670400182f190e",
-                        "type": "agent"
-                    }
-                }
-            }
-        }
-    }'
+            },                     
+            "relationships": {
+               "agent": {
+                   "data": {
+                       "id": "59a410d76b670400182f190e",
+                           "type": "agent"
+                       }
+                   }
+               }
+           }
+        }'
 ```
 
 
