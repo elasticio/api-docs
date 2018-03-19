@@ -412,11 +412,11 @@ for latest version user ``latest``. More details can be find [here]#retrieve-a-c
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/components/{COMPONENT_ID}/version/{GIT_REVISION}/descriptor`
+`GET https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor`
 
 or
 
-`GET https://api.elastic.io/v2/components/{COMPONENT_ID}/version/latest/descriptor`
+`GET https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/latest/descriptor`
 
 
 
@@ -429,7 +429,7 @@ or
 
 
 ### Authorization
-The component should be accessible for the client (e.g. component from own team or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
+The component should be accessible for the client (e.g. component from own organization or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
 
 
 
