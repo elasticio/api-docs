@@ -249,6 +249,7 @@ The flow with given ID
 
 ```shell
  curl https://api.elastic.io/v2/flows \
+   -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
