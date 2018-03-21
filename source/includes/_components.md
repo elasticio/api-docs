@@ -407,7 +407,7 @@ Content-Type: application/json
 ```
 
 This endpoint retrieves an information about single component by it's ``ID`` and/or ``version``,
-for latest version user ``latest``. More details can be find [here](#retrieve-a-component-descriptor).
+for latest version use ``latest``. More details can be find [here](#retrieve-a-component-descriptor).
 
 ### HTTP Request
 
