@@ -331,6 +331,7 @@ This resource allows you to delete a team.
 | :--- | :--- | :--- |
 | TEAM_ID | yes | Team ID |
 
+You cannot remove teams with repos, you should delete them first.
 
 ### Returns
 
