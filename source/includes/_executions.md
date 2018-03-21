@@ -368,8 +368,7 @@ This resource allows you to poll a result of an execution. Once the execution is
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| COMPONENT_ID | yes | Name of a component's module. |
-| GIT_REVISION | Yes | Revision of the component’s build. For available versions see [here](#retrieve-component-versions). For latest version use ``latest``. |
+| EXECUTION_ID	 | yes | Execution identifier.|
 
 
 ### Response status codes
