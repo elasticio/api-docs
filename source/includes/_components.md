@@ -770,9 +770,9 @@ Returns environment variables
 
 ```shell
 curl https://api.elastic.io/v2/components/{COMPONENT_ID}/env \
-   -X PUT
+   -X PUT \
    -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json'
+   -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
    {
        "data": {
