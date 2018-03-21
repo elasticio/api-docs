@@ -297,7 +297,7 @@ curl https://api.elastic.io/v2/users \
                 "first_name": "John",
                 "last_name": "Doe",
                 "email": "test@example.com",
-                "password": "secret",
+                "password": "secret11",
                 "company": "Doe & Partners"
             },
             "relationships": {
