@@ -396,10 +396,9 @@ This resource allows you to delete a user. When a user is delete following data 
 * all teams, where the user is the only member
 * component repositories, which belongs to deleted teams
 * component builds, which belongs to deleted repositories
-* lookups
 * ssh keys
 * credentials
-* tasks (active tasks will be stopped)
+* flows (active flows will be stopped)
 * user's object itself
 * all organizations, where the user is the only member
 
@@ -407,7 +406,7 @@ This resource allows you to delete a user. When a user is delete following data 
 ### Not deleted immediately
 These data objects are deleted automatically (e.g. due to expiration), hence won't be deleted right after user deletion:
 
-* tasks activity records (which used in order to show runlog)
+* flows activity records (which used in order to show runlog)
 * logs of flow execution and repo build
 * invitations to a team or an organization
 * notifications
@@ -416,7 +415,7 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 
 ### Data associated with organization
 
-* If this user is a member of any Organization which has one more member beside him/her then this user needs to leave this Organization before his profile can be deleted.
+* If this user is a member of any Organization which has one more member beside him/her then this user needs to leave this Organization before his/her profile can be deleted.
 * If this user is the only member of Organization(s) then he/she will be deleted along with all the unique data connected with this user.
 
 
@@ -425,7 +424,7 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 If there is any public component, associated to the user and the component is used in not deleted flows of someone else, the user can not be deleted automaticaly – contact technical support.
 
 ### Authorization
-You can delete yourself only, unless you have `TenantAdmin` role. Contact support team to get this role.
+This request is allowed with Organization Admin API key.
 
    
    
