@@ -72,12 +72,14 @@ curl https://api.elastic.io/v2/sshkeys/ \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' -d '
     {
+"data": {
         "type": "sshkey",
         "attributes": {
-            "key": "ssh-rsa YOUR KEY GOES HERE,
-            "title": "My New Key"
-        }
-    }'
+            "key": "ssh-rsa YOUR KEY GOES HERE",
+           "title": "My New Key"
+         }
+    }
+}'
 ```
 
 ```javascript
