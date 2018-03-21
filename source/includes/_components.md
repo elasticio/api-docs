@@ -105,7 +105,7 @@ Content-Type: application/json
 
 This endpoint retrieves a list of available components.
 Response includes latest [descriptor](#retrieve-a-component-descriptor) for each component.
-More details about the component descriptors can be found [here][component-descriptor-doc]. 
+More details about the component descriptors can be found [here](component-descriptor-doc). 
 
 ### HTTP Request
 
@@ -116,7 +116,7 @@ More details about the component descriptors can be found [here][component-descr
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| filter[access] | No | Allowed values: ``private`` (only components from own teams returned), ``public`` (only shared components from the other teams) and ``all`` (default value, returns all available components).|
+| filter[access] | No | Allowed values: ``private`` (only components from own organization returned), ``public`` (only shared components from the other organizations) and ``all`` (default value, returns all available components).|
 
 ### Returns
 
