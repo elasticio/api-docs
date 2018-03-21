@@ -3,16 +3,15 @@
 ## Accessing and sharing components
 
 Each ``Component`` belongs to a ``Team``. Each ``User``  who is a member of the team can edit the component.
-If a team is created in an ``Organization``, it can be said that the component belongs to the organization transitively, so each member of the organization can edit the component.
 
 The component has an attribute ``access``, which indicates how is the component shared by the other clients. "Shared" means, that the component can be used by the users in their flows.
 There are three sharing modes:
 
-- ``team`` – no sharing. Only team members can use the component.
+- ``team`` – no sharing. Only organization members can use the component.
 - ``tenant`` – component could be used by the other clients in the tenant.
 - ``global`` – special mode for components from the standard set of components of Elastic.io Platform (e.g. ``timer``, ``webhook`` etc). Any user of the platform can use ``global`` components.
 
-Accordingly, a set of components, available for each user is consist of: not shared components from the user's team, components with ``tenant`` access and ``global`` components.
+Accordingly, a set of components, available for each user is consist of: not shared components from the user's organization, components with ``tenant`` access and ``global`` components.
 
 
 ## Retrieve all components
