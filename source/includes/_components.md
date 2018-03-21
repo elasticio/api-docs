@@ -105,7 +105,7 @@ Content-Type: application/json
 
 This endpoint retrieves a list of available components.
 Response includes latest [descriptor](#retrieve-a-component-descriptor) for each component.
-More details about the component descriptors can be found [here][component-descriptor-doc]. 
+More details about the component descriptors can be found [here](component-descriptor-doc). 
 
 ### HTTP Request
 
@@ -116,7 +116,7 @@ More details about the component descriptors can be found [here][component-descr
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| filter[access] | No | Allowed values: ``private`` (only components from own teams returned), ``public`` (only shared components from the other teams) and ``all`` (default value, returns all available components).|
+| filter[access] | No | Allowed values: ``private`` (only components from own organizations returned), ``public`` (only shared components from the other organizations) and ``all`` (default value, returns all available components).|
 
 ### Returns
 
@@ -233,7 +233,7 @@ Content-Type: application/json
 
 
 ### Authorization
-The component should be accessible to the client (e.g. component from the own team or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
+The component should be accessible to the client (e.g. component from the own organization or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
   
 
 ### Returns
@@ -342,7 +342,7 @@ This endpoint retrieves list of component's versions
 
 
 ### Authorization
-The component should be accessible to the client (e.g. component from the own team or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
+The component should be accessible to the client (e.g. component from the own organization or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
 
 
 ### Returns
@@ -407,7 +407,7 @@ Content-Type: application/json
 ```
 
 This endpoint retrieves an information about single component by it's ``ID`` and/or ``version``,
-for latest version user ``latest``. More details can be find [here]#retrieve-a-component-descriptor).
+for latest version user ``latest``. More details can be find [here](#retrieve-a-component-descriptor).
 
 ### HTTP Request
 
