@@ -64,7 +64,7 @@ This resource allows you to retrieve data sample.
 
 #### Authorization
 
-A member of an organization can get any sample from own organization. User without organization can get only own samples.
+A member of an organization can get any sample from own organization.
 
 ### HTTP Request
 
