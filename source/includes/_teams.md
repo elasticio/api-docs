@@ -320,6 +320,7 @@ Content-Type: application/json
 ```
 
 This resource allows you to delete a team.
+You cannot remove team which contains the repos, you should delete all repos first.
 
 ### HTTP Request
 
@@ -331,7 +332,6 @@ This resource allows you to delete a team.
 | :--- | :--- | :--- |
 | TEAM_ID | yes | Team ID |
 
-You cannot remove teams with repos, you should delete them first.
 
 ### Returns
 
