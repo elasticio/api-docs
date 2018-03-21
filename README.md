@@ -23,7 +23,7 @@ sudo apt-get install ruby-dev
 ```
 Then
 ````bash
-Igors-Mac:api-docs igor$ bundle install
+bundle install
 ````
 
 Once you have them, regenerate the docs by invoking:
