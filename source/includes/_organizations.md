@@ -535,8 +535,7 @@ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}
 
 ```
 
-This endpoint allows updating a membership of a given user. Only `role` attribute can be updated.
-In order to update attributes of a User object (e.g. `email`), use `/v2/users` endpoints. 
+This endpoint allows updating a membership of a given user. Only `role` attribute can be updated. 
 
 
 ### HTTP Request
