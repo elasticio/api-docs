@@ -268,8 +268,7 @@ The flow with given ID
                         "fields": {
                             "interval": "minute"
                         }
-                        
-                        },
+                     },
                     {
                         "command": "elasticio/email:send@latest",
                         "fields": {},
