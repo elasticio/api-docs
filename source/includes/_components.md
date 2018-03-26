@@ -105,7 +105,7 @@ Content-Type: application/json
 
 This endpoint retrieves a list of available components.
 Response includes latest [descriptor](#retrieve-a-component-descriptor) for each component.
-More details about the component descriptors can be found [here](component-descriptor-doc). 
+More details about the component descriptors can be found [here](#component-descriptor-doc). 
 
 ### HTTP Request
 
