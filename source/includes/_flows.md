@@ -248,48 +248,53 @@ The flow with given ID
 
 
 ```shell
- curl https://api.elastic.io/v2/flows \
-   -X POST \
-   -u {EMAIL}:{APIKEY} \
+ curl -X POST https://api.elastic.io/v2/flows \
+  -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
-    {
-      "data": {
-        "type": "flow",
+     {
+    "data": {
         "attributes": {
-          "name": "Timer to E-Mail",
-          "type": "ordinary",
-          "graph": {
-            "nodes": [
-              {
-                "id": "step_1",
-                "command": "elasticio/timer:timer",
-                "fields": {
-                  "interval": "minute"
-                }
-              },
-              {
-                "id": "step_2",
-                "command": "elasticio/email:send"
-              }
-            ],
-            "edges": [
-              {
-                "source": "step_1",
-                "target": "step_2",
-                "config": {
-                  "mapper": {
-                    "to": "info@acme.org",
-                    "subject": "Test",
-                    "textBody": "{{fireTime}}"
-                  }
-                }
-              }
-            ]
-          }
-        }
-      }
-    }'
+            "default_mapper_type": "jsonata",
+            "type": "ordinary",
+            "name": "Timer to E-Mail",
+            "description": null,
+            "cron": null,
+            "graph": {
+                "nodes": [
+                    {
+                        "id": "step_1",
+                        "command": "elasticio/timer:timer@latest",
+                        "fields": {
+                            "interval": "minute"
+                        }
+                     },
+                    {
+                        "command": "elasticio/email:send@latest",
+                        "fields": {},
+                        "id": "step_2"
+                                            }
+                ],
+                "edges": [
+                    {
+                        "config": {
+                            "mapper_type": "jsonata",
+                            "mapper": {
+                                "to": "info@acme.org",
+                                "subject": "Subject",
+                                "textBody": "fireTime"
+                            }
+                           },
+                        "source": "step_1",
+                        "target": "step_2"
+                    }
+                ]
+            }
+        },
+        "type": "flow"
+    }
+}'
+
 ```
 
 
