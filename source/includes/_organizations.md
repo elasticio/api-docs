@@ -568,7 +568,7 @@ Returns member object if the call succeeded
 
 
 
-##Remove member from organization
+## Remove member from organization
 
 > Example Request:
 
@@ -585,7 +585,7 @@ Returns member object if the call succeeded
 > Example Response:
 
 ```shell
-HTTP/1.1 200 OK
+HTTP/1.1 204 No Content
 ```
 
 Remove a membership of the User in the Organization.
@@ -600,7 +600,7 @@ Ownership of those user's associated data will be transferred to admin User perf
 `DELETE https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/`
 
 #### Authorization
-This request is authorized for a user with `TenantAdmin` role only. Contact support team to get this role.
+This request is authorized for organization members with role `Admin`.
 
 ### URL Parameters
 Parameter        | Description
