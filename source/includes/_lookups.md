@@ -1,4 +1,8 @@
-# Lookup tables
+# Lookup tables (Deprecated)
+
+<aside class="warning">
+Lookup tables has been deprecated. Please use <a href="http://docs.jsonata.org/object-functions.html">JSONata $lookup</a> instead.
+</aside>
 
 ## Retrieve all lookup tables
 This resource allows you to retrieve all lookup tables.
