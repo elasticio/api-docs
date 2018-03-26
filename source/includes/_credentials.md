@@ -103,7 +103,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve all credentials belonging to the given user.
+This resource allows you to retrieve all credentials belonging to user's organization.
 
 ### HTTP Request
 
@@ -189,7 +189,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve a credential by its identifier. If the credential with given ID does not belong to the current user an error is returned.
+This resource allows you to retrieve a credential by its identifier. 
 
 ### HTTP Request
 
