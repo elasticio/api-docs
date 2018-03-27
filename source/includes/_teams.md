@@ -102,32 +102,40 @@ TBD
 > Example Response:
 
 ```http
-HTTP/1.1 201 OK
+HTTP/1.1 201 Created
 Content-Type: application/json
 
 {
-   "data":[
-      {
-         "attributes":{
-            "name":"myteam"
-         },
-         "id":"5508411b34e5ac0300000019",
-         "type":"team",
-         "relationships":{
-            "users":{
-               "data":[
-                  {
-                     "type":"user",
-                     "id":"5508411b34e5ac0300000020"
-                  }
-               ]
+    "data": {
+        "id": "5aabe01bbd6d6400079b45c4",
+        "type": "team",
+        "links": {
+            "self": "/v2/teams/5aabe01bbd6d6400079b45c4"
+        },
+        "attributes": {
+            "name": "1503myteam"
+        },
+        "relationships": {
+            "organization": {
+                "data": {
+                    "id": "59d341e9037f7200184a408b",
+                    "type": "organization"
+                },
+                "links": {
+                    "self": "/v2/organizations/59d341e9037f7200184a408b"
+                }
+            },
+            "users": {
+                "data": [
+                    {
+                        "id": "59d22e7eeb865b0018adc248",
+                        "type": "user"
+                    }
+                ]
             }
-         }
-      }
-   ],
-   "meta":{
-
-   }
+        }
+    },
+    "meta": {}
 }
 ```
 
