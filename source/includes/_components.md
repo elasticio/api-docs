@@ -485,7 +485,7 @@ TBD
 > Example Response:
 
 ```http
-HTTP/1.1 200 OK
+HTTP/1.1 201 Created
 Content-Type: application/json
 {
     "data": {
@@ -652,7 +652,7 @@ TBD
 > Example Response:
 
 ```http
-HTTP/1.1 200 OK
+HTTP/1.1 204 No Content
 Content-Type: application/json
 ```
 
