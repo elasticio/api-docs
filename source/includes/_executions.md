@@ -342,14 +342,14 @@ Content-Type: application/json
     "data": {
         "type": "execution-result",
         "id": "58becb8059a65f18c5c60e41",
+        "links": {
+            "self": "/v2/exec/result/58becb8059a65f18c5c60e41"
+        },
         "attributes": {
             "result": {},
             "status": "Pending request, waiting other process"
         },
-        "links": {
-            "self": "/v2/exec/result/58becb8059a65f18c5c60e41"
-        }
-    },
+     },
     "meta": {}
 }
 ```
