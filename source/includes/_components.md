@@ -385,20 +385,45 @@ Content-Type: application/json
     "data": {
         "id": "{GIT_REVISION}",
         "type": "descriptor",
+        "links": {
+            "self": "/v2/descriptors/{GIT_REVISION}"
+        },
         "attributes": {
-            "description": "desc",
-            "icon": "BASE64",
-            "is_latest": true,
-            "language": "nodejs",
             "repo_name": "repo_name",
-            "sailor_version": "1.0.0",
             "team_name": "team_name",
+            "short_revision": "cf0a2d9",
+            "is_latest": true,
+            "description": "desc",
+            "icon":"BASE64",
+            "language": "nodejs",
+            "sailor_version": "2.2.1",
             "title": "title",
+            "actions": {
+                "update": "<Actions Object>"
+            },
             "triggers": {
                 "select": "<Triggers Object>"
             },
-            "actions": {
-                "update": "<Actions Object>"
+            "credentials": {
+                "fields": {
+                    "apiKey": {
+                        "label": "API key",
+                        "required": true,
+                        "viewClass": "TextFieldWithNoteView",
+                        "note": "note"
+                    }
+                }
+            }
+        },
+        "relationships": {
+            "version": {
+                "data": {
+                    "id": "{GIT_REVISION}",
+                    "type": "version"
+                },
+                "links": {
+                    "self": "/v2/{COMPONENT_ID}/versions/{GIT_REVISION}"
+                }
             }
         }
     },
