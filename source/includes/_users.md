@@ -71,14 +71,21 @@ Content-Type: application/json
 
 {
     "data": {
-        "id": "54f4be3fe7d5224f91000002",
+        "id": "59d3562c68ed850019bde27f",
         "type": "user",
+        "links": {
+            "self": "/v2/users/59d3562c68ed850019bde27f"
+        },
         "attributes": {
             "first_name": "John",
             "last_name": "Doe",
-            "email": "test@example.com"
+            "email": "test@example.com",
+            "company": "company_name",
+            "registered": "2017-10-03T09:19:40.598Z",
+            "last_login": "2018-03-16T10:30:38.656Z"
         }
-    }
+    },
+    "meta": {}
 }
 ```
 
