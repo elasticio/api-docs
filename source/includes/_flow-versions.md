@@ -113,11 +113,11 @@ It also exposes a relationship to the author of the change.
 
 ### URL Parameters
 
-| Parameter      | Required | Description              | Default |
-| :------------- | :------- | :----------------------- | :------ |
-| FLOW_ID        | Yes      | Flow identifier          |         |
-| page\[size\]   | No       | Amount of items per page | 50      |
-| page\[number\] | No       | Number of page           | 1       |
+| Parameter      | Required | Description                        | Default |
+| :------------- | :------- | :----------------------------------| :------ |
+| FLOW_ID        | Yes      | Flow identifier                    |         |
+| page\[size\]   | No       | Amount of items per page           | 50      |
+| page\[number\] | No       | Number of page you want to display | 1       |
 
 
 ### Returns
