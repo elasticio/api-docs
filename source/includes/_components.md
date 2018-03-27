@@ -288,7 +288,7 @@ Content-Type: application/json
             "id": "{GIT_REVISION}",
             "type": "version",
             "links": {
-                "self": "/v2/versions/cf0a2d951b589174cce4b2dcc611ca71f70f1c9b"
+                "self": "/v2/versions/{GIT_REVISION}"
             },
             "attributes": {
                 "date": 1508754889997,
@@ -297,11 +297,11 @@ Content-Type: application/json
             "relationships": {
                 "descriptor": {
                     "data": {
-                        "id": "cf0a2d951b589174cce4b2dcc611ca71f70f1c9b",
+                        "id": "{GIT_REVISION}",
                         "type": "descriptor"
                     },
                     "links": {
-                        "self": "/v2/components/59ed9bf829e45000197a3f12/versions/cf0a2d951b589174cce4b2dcc611ca71f70f1c9b/descriptor"
+                        "self": "/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
                     }
                 },
                 "component": {
@@ -310,7 +310,7 @@ Content-Type: application/json
                         "type": "component"
                     },
                     "links": {
-                        "self": "/v2/components/59ed9bf829e45000197a3f12"
+                        "self": "/v2/components/{COMPONENT_ID}"
                     }
                 }
             }
@@ -318,7 +318,7 @@ Content-Type: application/json
     ],
     "meta": {},
     "links": {
-        "self": "/v2/components/59ed9bf829e45000197a3f12/versions"
+        "self": "/v2/components/{COMPONENT_ID}/versions"
     }
 }
 ```
