@@ -158,7 +158,7 @@ Content-Type: application/json
         "id": "{COMPONENT_ID}",
         "type": "component",
         "links": {
-            "self": "/v2/components/5a0eca5d2715bf0018058ba3"
+            "self": "/v2/components/{COMPONENT_ID}"
         },
         "attributes": {
             "name": "component name",
@@ -167,16 +167,16 @@ Content-Type: application/json
         "relationships": {
             "versions": {
                 "links": {
-                    "related": "/v2/components/5a0eca5d2715bf0018058ba3/versions"
+                    "related": "/v2/components/{COMPONENT_ID}/versions"
                 }
             },
             "latest_version": {
                 "data": {
-                    "id": "df7cf1d1db027d8c050391809d5d2e1ad47e19ca",
+                    "id": "{GIT_REVISION}",
                     "type": "version"
                 },
                 "links": {
-                    "self": "/v2/components/5a0eca5d2715bf0018058ba3/versions/latest"
+                    "self": "/v2/components/{COMPONENT_ID}/versions/latest"
                 }
             }
         }
@@ -184,10 +184,10 @@ Content-Type: application/json
     "meta": {},
     "included": [
         {
-            "id": "df7cf1d1db027d8c050391809d5d2e1ad47e19ca",
+            "id": "{GIT_REVISION}",
             "type": "version",
             "links": {
-                "self": "/v2/versions/df7cf1d1db027d8c050391809d5d2e1ad47e19ca"
+                "self": "/v2/versions/{GIT_REVISION}"
             },
             "attributes": {
                 "date": 1513183339032,
@@ -196,20 +196,20 @@ Content-Type: application/json
             "relationships": {
                 "descriptor": {
                     "data": {
-                        "id": "df7cf1d1db027d8c050391809d5d2e1ad47e19ca",
+                        "id": "{GIT_REVISION}",
                         "type": "descriptor"
                     },
                     "links": {
-                        "self": "/v2/components/5a0eca5d2715bf0018058ba3/versions/df7cf1d1db027d8c050391809d5d2e1ad47e19ca/descriptor"
+                        "self": "/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
                     }
                 },
                 "component": {
                     "data": {
-                        "id": "5a0eca5d2715bf0018058ba3",
+                        "id": "{COMPONENT_ID}",
                         "type": "component"
                     },
                     "links": {
-                        "self": "/v2/components/5a0eca5d2715bf0018058ba3"
+                        "self": "/v2/components/{COMPONENT_ID}"
                     }
                 }
             }
@@ -218,18 +218,18 @@ Content-Type: application/json
             "id": "{GIT_REVISION}",
             "type": "descriptor",
             "links": {
-                "self": "/v2/descriptors/df7cf1d1db027d8c050391809d5d2e1ad47e19ca"
+                "self": "/v2/descriptors/{GIT_REVISION}"
             },
             "attributes": {
                 "repo_name": "repo_name",
                 "team_name": "team_name",
                 "short_revision": "df7cf1d",
                 "is_latest": true,
-                "description": "elastic.io component for testing Scheduled Executions",
+                "description": "desc",
                 "icon": "BASE64",
                 "language": "nodejs",
                 "sailor_version": "2.2.1",
-                "title": "Component With 3 Scheduled Executions",
+                "title": "title",
                 "actions": {update": "<Actions Object>},
                 "triggers": {"select": "<Triggers Object>"},
                 "credentials": {
@@ -250,7 +250,7 @@ Content-Type: application/json
                         "type": "version"
                     },
                     "links": {
-                        "self": "/v2/5a0eca5d2715bf0018058ba3/versions/df7cf1d1db027d8c050391809d5d2e1ad47e19ca"
+                        "self": "/v2/{COMPONENT_ID}/versions/{GIT_REVISION}"
                     }
                 }
             }
