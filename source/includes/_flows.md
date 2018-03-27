@@ -46,72 +46,74 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "data": [
-        {
-            "type": "flow",
-            "id": "585918da586224001b96de89",
-            "attributes": {
-              "name": "Timer to E-Mail Test",
-              "status": "inactive",
-              "type": "ordinary",
-              "graph": {
-                "nodes": [
-                  {
-                    "id": "step_1",
-                    "command": "elasticio/timer:timer",
-                    "fields": {
-                      "interval": "minute"
-                    }
-                  },
-                  {
-                    "id": "step_2",
-                    "command": "elasticio/email:send"
-                  }
-                ],
-                "edges": [
-                  {
-                    "source": "step_1",
-                    "target": "step_2",
-                    "config": {
-                      "mapper": {
-                        "to": "info@acme.org",
-                        "subject": "Test",
-                        "textBody": "{{fireTime}}"
-                      }
-                    }
-                  }
-                ]
+  "data": [
+    {
+      "id": "5aa683400581b5000739c192",
+      "type": "flow",
+      "links": {
+        "self": "/v2/flows/5aa683400581b5000739c192"
+      },
+      "attributes": {
+        "created_at": "2018-03-12T13:40:16.090Z",
+        "current_status": "active",
+        "default_mapper_type": "jsonata",
+        "description": null,
+        "graph": {
+          "nodes": [
+            {
+              "id": "step_1",
+              "command": "elasticio/code:executeTrigger@latest",
+              "name": "",
+              "description": "",
+              "fields": {
+                "code": "// Please note only Node.js code is supported here\nconsole.log('Hello code, incoming message is msg=%j', msg);\n\n// Create message to be emitted\nvar data = messages.newMessageWithBody({message: 'hello world'});\n\n// Emit the data event\nemitter.emit('data', data);\n\n// No need to emit end\nconsole.log('Finished execution');"
               }
-            },
-            "relationships": {
-              "user": {
-                "data": {
-                  "type": "user",
-                  "id": "560e5a27734d480a00000002"
-                },
-                "links": {
-                  "self": "/v2/users/560e5a27734d480a00000002"
-                }
-              },
-              "organization": {
-                "data": {
-                  "type": "organization",
-                  "id": "573dd76962436c349f000003"
-                },
-                "links": {
-                  "self": "/v2/organizations/573dd76962436c349f000003"
-                }
-              }
+              
             }
+          ],
+          "edges": []
+        },
+        "name": "active",
+        "status": "active",
+        "type": "ordinary",
+        "updated_at": "2018-03-12T13:44:56.037Z"
+      },
+      "relationships": {
+        "user": {
+          "data": {
+            "id": "59d22e7eeb865b0018adc248",
+            "type": "user"
+          },
+          "links": {
+            "self": "/v2/users/59d22e7eeb865b0018adc248"
+          }
+        },
+        "organization": {
+          "data": {
+            "id": "5aa681800581b5000739c190",
+            "type": "organization"
+          },
+          "links": {
+            "self": "/v2/organizations/5aa681800581b5000739c190"
+          }
+        },
+        "versions": {
+          "links": {
+            "related": "/v2/flows/5aa683400581b5000739c192/versions"
+          }
+        },
+        "latest_version": {
+          "data": {
+            "id": "12cf7376a34e34b2c4bcda3e35ae84cecc88519c",
+            "type": "flow-version"
+          },
+          "links": {
+            "self": "/v2/flows/5aa683400581b5000739c192/versions/12cf7376a34e34b2c4bcda3e35ae84cecc88519c",
+            "related": "/v2/flows/5aa683400581b5000739c192/versions/12cf7376a34e34b2c4bcda3e35ae84cecc88519c"
+          }
         }
-    ],
-    "meta": {
-        "page": 1,
-        "per_page": 20,
-        "total": 1,
-        "total_pages": 1
-    }
-
+      }
+    },
 }
 ```
 
