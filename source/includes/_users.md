@@ -258,7 +258,7 @@ This endpoint returns a list of users.
 | Parameter | Required | Description | Default |
 | :--- | :--- | :--- | :--- |
 | page\[size\] | No | Amount of items per page | 50 |
-| page\[number\] | No | Number of page | 1 |
+| page\[number\] | No | Number of page you want to display| 1 |
 
 
 ### Authorization
