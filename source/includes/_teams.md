@@ -22,26 +22,43 @@ TBD
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
-   "data":[
-      {
-         "attributes":{
-            "name":"singleteam"
-         },
-         "id":"5508411b34e5ac0300000019",
-         "type":"team",
-         "relationships":{
-            "users":{
-               "data":[
-                  {
-                     "type":"user",
-                     "id":"5508411b34e5ac0300000020"
-                  }
-               ]
+    "data": [
+   {
+            "id": "5aa7de77a0c086000785c53e",
+            "type": "team",
+            "links": {
+                "self": "/v2/teams/5aa7de77a0c086000785c53e"
+            },
+            "attributes": {
+                "name": "Team_name"
+            },
+            "relationships": {
+                "organization": {
+                    "data": {
+                        "id": "59d341e9037f7200184a408b",
+                        "type": "organization"
+                    },
+                    "links": {
+                        "self": "/v2/organizations/59d341e9037f7200184a408b"
+                    }
+                },
+                "users": {
+                    "data": [
+                        {
+                            "id": "5a816bebcad2b40007adcaf2",
+                            "type": "user"
+                        },
+                        //...
+                    ]
+                }
             }
-         }
-      }
-   ],
-   "meta":{}
+        },
+        //...
+    ],
+    "meta": {},
+    "links": {
+        "self": "/v2/teams"
+    }
 }
 ```
 
