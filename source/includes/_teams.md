@@ -284,31 +284,10 @@ TBD
 > Example Response:
 
 ```http
-HTTP/1.1 200 OK
+HTTP/1.1 204 No Content
 Content-Type: application/json
 
-{
-   "data":[
-      {
-         "attributes":{
-            "name":"myteam"
-         },
-         "id":"5508411b34e5ac0300000019",
-         "type":"team",
-         "relationships":{
-            "users":{
-               "data":[
-                  {
-                     "type":"user",
-                     "id":"{user_id}"
-                  }
-               ]
-            }
-         }
-      }
-   ],
-   "meta":{}
-}
+{}
 ```
 
 This resource allows you to remove a member from a team.
@@ -356,7 +335,7 @@ TBD
 > Example Response:
 
 ```http
-HTTP/1.1 200 OK
+HTTP/1.1 204 No Content
 Content-Type: application/json
 
 {}
