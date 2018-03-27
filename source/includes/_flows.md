@@ -619,6 +619,11 @@ TBD
 
 ```http
 HTTP/1.1 202 Accepted
+
+{
+  "data": {},
+  "meta": {}
+ }
 ```
 
 This endpoint starts a flow with given ID.
@@ -658,6 +663,11 @@ TBD
 
 ```http
 HTTP/1.1 202 Accepted
+
+{
+  "data": {},
+  "meta": {}
+ }
 ```
 
 This endpoint stops a flow with given ID.
