@@ -304,7 +304,7 @@ Content-Type: application/json
                 "self": "/v2/organizations/59d22e7eeb865b0018adc247/invite/5aafd335bd6d6400079b4617"
             },
             "attributes": {
-                "email": "hanna+hedwjsefchkvheduhf74@elastic.io",
+                "email": "invited-1@example.org",
                 "role": "integrator"
             }
         },
@@ -315,7 +315,7 @@ Content-Type: application/json
                 "self": "/v2/organizations/59d22e7eeb865b0018adc247/invite/5aafda89bd6d6400079b4618"
             },
             "attributes": {
-                "email": "hanna+cdshcsdhffwsy@elastic.io",
+                "email": "invited-2@example.org",
                 "role": "guest"
             }
         }
