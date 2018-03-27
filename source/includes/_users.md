@@ -146,24 +146,30 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "meta": {
-        "total": 6,
-        "page": 5,
-        "per_page": 1,
-        "total_pages": 6
-    },
     "data": [
         {
-            "id": "588f8bd23abb797f8c293646",
+            "id": "560e5a27734d480a00000002",
             "type": "user",
+            "links": {
+                "self": "/v2/users/560e5a27734d480a00000002"
+            },
             "attributes": {
-                "first_name": "Robyn",
-                "last_name": "Kerluke",
-                "email": "robyn@outcast.org",
-                "company": "Olson Group"
+                "first_name": "John",
+                "last_name": "Doe",
+                "email": "test@example.com",
+                "company": "company_name",
+                "registered": "2015-10-02T10:19:19.697Z",
+                "last_login": "2018-02-08T16:07:52.495Z"
             }
-        }
-    ]
+        },
+        //...
+    ],
+    "meta": {
+        "page": 1,
+        "per_page": 1,
+        "total": 646,
+        "total_pages": 646
+    }
 }
 ```
 
