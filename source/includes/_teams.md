@@ -189,26 +189,44 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-   "data":[
-      {
-         "attributes":{
-            "name":"myteam"
-         },
-         "id":"5508411b34e5ac0300000019",
-         "type":"team",
-         "relationships":{
-            "users":{
-               "data":[
-                  {
-                     "type":"user",
-                     "id":"{USER_ID}"
-                  }
-               ]
+    "data": {
+        "id": "59d3ace74a819c0018e9bb92",
+        "type": "team",
+        "links": {
+            "self": "/v2/teams/59d3ace74a819c0018e9bb92"
+        },
+        "attributes": {
+            "name": "Test_Team"
+        },
+        "relationships": {
+            "organization": {
+                "data": {
+                    "id": "59d22e7eeb865b0018adc247",
+                    "type": "organization"
+                },
+                "links": {
+                    "self": "/v2/organizations/59d22e7eeb865b0018adc247"
+                }
+            },
+            "users": {
+                "data": [
+                    {
+                        "id": "59d22e7eeb865b0018adc248",
+                        "type": "user"
+                    },
+                    {
+                        "id": "59f747c33f1d3c001901a44e",
+                        "type": "user"
+                    },
+                    {
+                        "id": "59d3562c68ed850019bde27f",
+                        "type": "user"
+                    }
+                ]
             }
-         }
-      }
-   ],
-   "meta":{}
+        }
+    },
+    "meta": {}
 }
 ```
 
