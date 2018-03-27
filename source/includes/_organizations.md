@@ -26,7 +26,9 @@
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 { 
   "data":
     { 
@@ -90,7 +92,9 @@ Returns Organization object if the call succeeded
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 {
     "meta": {},
     "data": {
@@ -219,7 +223,9 @@ include     | no       | Whether include or not full resource objects in respons
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 {
     "meta": {},
     "data": [
@@ -286,29 +292,36 @@ ORGANIZATION_ID | The ID of the organization
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 {
-    "meta": {},
     "data": [
         {
+            "id": "5aafd335bd6d6400079b4617",
             "type": "organization-invite",
-            "id": "588f832b87d7c27c7d5cc37e",
+            "links": {
+                "self": "/v2/organizations/59d22e7eeb865b0018adc247/invite/5aafd335bd6d6400079b4617"
+            },
             "attributes": {
                 "email": "invited-1@example.org",
-                "role": "guest"
+                "role": "integrator"
             }
         },
         {
+            "id": "5aafda89bd6d6400079b4618",
             "type": "organization-invite",
-            "id": "588f832b87d7c27c7d5cc37f",
+            "links": {
+                "self": "/v2/organizations/59d22e7eeb865b0018adc247/invite/5aafda89bd6d6400079b4618"
+            },
             "attributes": {
                 "email": "invited-2@example.org",
-                "role": "integrator"
+                "role": "guest"
             }
         }
-    ]
+    ],
+    "meta": {}
 }
-
 ```
 
 This endpoints returns a list of pending members (invites) for certain Organization.
@@ -365,7 +378,9 @@ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/invites/ \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 {
    "data": {
        "type": "invite",
@@ -445,7 +460,9 @@ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/ \
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 {
    "data": {
         "type": "member",
@@ -519,7 +536,9 @@ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}
 
 > Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 {
    "data": {
         "type": "member",
