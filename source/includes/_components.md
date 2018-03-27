@@ -38,68 +38,117 @@ Content-Type: application/json
 {
     "data": [
         {
+            "id": "557aee0d5925ab0900000002",
             "type": "component",
-            "id": "{COMPONENT_ID}",
+            "links": {
+                "self": "/v2/components/557aee0d5925ab0900000002"
+            },
             "attributes": {
-                "name": "component name",
-                "team_name": "{team_name}"
+                "name": "mapper",
+                "team_name": "elasticio"
             },
             "relationships": {
                 "versions": {
                     "links": {
-                        "related": "/v2/components/{COMPONENT_ID}/versions"
+                        "related": "/v2/components/557aee0d5925ab0900000002/versions"
                     }
                 },
                 "latest_version": {
-                    "links": {
-                        "self": "/v2/components/{COMPONENT_ID}/versions/latest"
-                    },
                     "data": {
-                        "type": "version",
-                        "id": "{GIT_REVISION}"
+                        "id": "0eff1d1a46b78ba1f468982e16d0382e8a91280d",
+                        "type": "version"
+                    },
+                    "links": {
+                        "self": "/v2/components/557aee0d5925ab0900000002/versions/latest"
+                    }
+                }
+            }
+        },
+        //........................................
+          ],
+    "meta": {},
+    "included": [
+        {
+            "id": "0eff1d1a46b78ba1f468982e16d0382e8a91280d",
+            "type": "version",
+            "links": {
+                "self": "/v2/versions/0eff1d1a46b78ba1f468982e16d0382e8a91280d"
+            },
+            "attributes": {
+                "date": 1517392057184,
+                "version_number": 69
+            },
+            "relationships": {
+                "descriptor": {
+                    "data": {
+                        "id": "0eff1d1a46b78ba1f468982e16d0382e8a91280d",
+                        "type": "descriptor"
+                    },
+                    "links": {
+                        "self": "/v2/components/557aee0d5925ab0900000002/versions/0eff1d1a46b78ba1f468982e16d0382e8a91280d/descriptor"
+                    }
+                },
+                "component": {
+                    "data": {
+                        "id": "557aee0d5925ab0900000002",
+                        "type": "component"
+                    },
+                    "links": {
+                        "self": "/v2/components/557aee0d5925ab0900000002"
+                    }
+                }
+            }
+        },
+        {
+            "id": "0eff1d1a46b78ba1f468982e16d0382e8a91280d",
+            "type": "descriptor",
+            "links": {
+                "self": "/v2/descriptors/0eff1d1a46b78ba1f468982e16d0382e8a91280d"
+            },
+            "attributes": {
+                "repo_name": "mapper",
+                "team_name": "elasticio",
+                "short_revision": "0eff1d1",
+                "is_latest": true,
+                "description": "Component used to map source data to target data",
+                "icon":{in Base64 format}",
+                "language": "nodejs",
+                "sailor_version": "2.1.6",
+                "title": "Data mapper",
+                "service": "mapper",
+                "actions": {
+                    "map": {
+                        "title": "Mapper",
+                        "main": "./map.js"
+                    },
+                    "jsonataMap": {
+                        "title": "Jsonata mapper",
+                        "main": "./jsonata_map.js"
+                    }
+                },
+                "fields": {
+                    "mapper": {
+                        "viewClass": "MapperView"
                     }
                 }
             },
-            "included": [
-                {
-                    "type": "version",
-                    "id": "{GIT_REVISION}",
-                    "attributes": {
-                        "date": 1487846132213,
-                        "versionNumber": 1
+            "relationships": {
+                "version": {
+                    "data": {
+                        "id": "0eff1d1a46b78ba1f468982e16d0382e8a91280d",
+                        "type": "version"
                     },
-                    "relationships": {
-                        "descriptor": {
-                            "links": {
-                                "self": "/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
-                            }
-                        }
-                    }
-                },
-                {
-                    "id": "{GIT_REVISION}",
-                    "type": "descriptor",
-                    "attributes": {
-                        "description": "desc",
-                        "icon": "BASE64",
-                        "is_latest": true,
-                        "language": "nodejs",
-                        "repo_name": "repo_name",
-                        "sailor_version": "1.0.0",
-                        "team_name": "team_name",
-                        "title": "title",
-                        "triggers": {
-                            "select": "<Triggers Object>"
-                        },
-                        "actions": {
-                            "update": "<Actions Object>"
-                        }
+                    "links": {
+                        "self": "/v2/557aee0d5925ab0900000002/versions/0eff1d1a46b78ba1f468982e16d0382e8a91280d"
                     }
                 }
-            ]
-        }
-    ],
-    "meta": {}
+            }
+        },
+        //........................................
+          ],
+    "links": {
+        "self": "/v2/components"
+    }
 }
 ```
 
