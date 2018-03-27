@@ -285,46 +285,41 @@ Content-Type: application/json
 {
     "data": [
         {
-            "type": "version",
             "id": "{GIT_REVISION}",
-            "relationships": {
-                "descriptor": {
-                    "links": {
-                        "self": "/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
-                    }
-                }
-            }
-        },
-        {
             "type": "version",
-            "id": "{GIT_REVISION}",
+            "links": {
+                "self": "/v2/versions/cf0a2d951b589174cce4b2dcc611ca71f70f1c9b"
+            },
             "attributes": {
-                "date": 1487846132213,
-                "versionNumber": 1
+                "date": 1508754889997,
+                "version_number": 1
             },
             "relationships": {
-                 "component": {
-                    "data": {
-                        "id": {COMPONENT_ID},
-                        "type": 'component'
-                    },
-                    "links": {
-                        "self": "/v2/components/{COMPONENT_ID}"
-                    }
-                },
                 "descriptor": {
                     "data": {
-                        "id": {GIT_REVISION},
-                        "type": 'descriptor'
+                        "id": "cf0a2d951b589174cce4b2dcc611ca71f70f1c9b",
+                        "type": "descriptor"
                     },
                     "links": {
-                        "self": "/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
+                        "self": "/v2/components/59ed9bf829e45000197a3f12/versions/cf0a2d951b589174cce4b2dcc611ca71f70f1c9b/descriptor"
+                    }
+                },
+                "component": {
+                    "data": {
+                        "id": "{COMPONENT_ID}",
+                        "type": "component"
+                    },
+                    "links": {
+                        "self": "/v2/components/59ed9bf829e45000197a3f12"
                     }
                 }
             }
         }
     ],
-    "meta": {}
+    "meta": {},
+    "links": {
+        "self": "/v2/components/59ed9bf829e45000197a3f12/versions"
+    }
 }
 ```
 
