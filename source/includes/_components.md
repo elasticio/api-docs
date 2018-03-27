@@ -597,17 +597,19 @@ HTTP/1.1 201 Created
 Content-Type: application/json
 {
     "data": {
+        "id": "{REPOSITORY_ID}",
         "type": "component",
-        "id": "58a410b58224d9b2f99a687b",
+        "links": {
+            "self": "/v2/components/{REPOSITORY_ID}"
+        },
         "attributes": {
-            "name": "mycomponent",
-            "team_name": "my_hackers",
-            "icon": "{BASE64_ICON}
+            "name": "{REPOSITORY_NAME}",
+            "team_name": "{TEAM_NAME}"
         },
         "relationships": {
             "versions": {
                 "links": {
-                    "related": "/v2/components/58a410b58224d9b2f99a687b/versions"
+                    "related": "/v2/components/{REPOSITORY_ID}/versions"
                 }
             }
         }
