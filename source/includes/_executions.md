@@ -86,13 +86,17 @@ Location: 'https://api.elastic.io/v2/exec/poll/58becb8259a65f18c5c60eb0'
 
 {
     "data": {
+        "id": "5aaf90a2d0516d00077556cf",
         "type": "execution-result",
-        "id": "58becb8259a65f18c5c60eb0",
+        "links": {
+            "self": "/v2/exec/result/5aaf90a2d0516d00077556cf"
+        },
         "attributes": {
             "result": {},
             "status": "Pending request, waiting other process"
         }
-    }
+    },
+    "meta": {}
 }
 ```
 
@@ -170,13 +174,17 @@ Location: 'https://api.elastic.io/v2/exec/poll/58becb8359a65f18c5c60ec4'
 
 {
     "data": {
+        "id": "5aaf9d5bd0516d000775621c",
         "type": "execution-result",
-        "id": "58becb8359a65f18c5c60ec4",
+        "links": {
+            "self": "/v2/exec/result/5aaf9d5bd0516d000775621c"
+        },
         "attributes": {
             "result": {},
             "status": "Pending request, waiting other process"
         }
-    }
+    },
+    "meta": {}
 }
 ```
 
@@ -259,13 +267,17 @@ Location: 'https://api.elastic.io/v2/exec/poll/58becb8059a65f18c5c60e41'
 
 {
     "data": {
+        "id": "5aafb9e1d0516d0007757b71",
         "type": "execution-result",
-        "id": "58becb8059a65f18c5c60e41",
+        "links": {
+            "self": "/v2/exec/result/5aafb9e1d0516d0007757b71"
+        },
         "attributes": {
             "result": {},
             "status": "Pending request, waiting other process"
         }
-    }
+    },
+    "meta": {}
 }
 ```
 
