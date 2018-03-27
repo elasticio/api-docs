@@ -48,70 +48,152 @@ Content-Type: application/json
 {
     "data": [
         {
+            "id": "5aaa5dc27895610007c5e172",
             "type": "flow",
-            "id": "585918da586224001b96de89",
+            "links": {
+                "self": "/v2/flows/5aaa5dc27895610007c5e172"
+            },
             "attributes": {
-              "name": "Timer to E-Mail Test",
-              "status": "inactive",
-              "type": "ordinary",
-              "graph": {
-                "nodes": [
-                  {
-                    "id": "step_1",
-                    "command": "elasticio/timer:timer",
-                    "fields": {
-                      "interval": "minute"
-                    }
-                  },
-                  {
-                    "id": "step_2",
-                    "command": "elasticio/email:send"
-                  }
-                ],
-                "edges": [
-                  {
-                    "source": "step_1",
-                    "target": "step_2",
-                    "config": {
-                      "mapper": {
-                        "to": "info@acme.org",
-                        "subject": "Test",
-                        "textBody": "{{fireTime}}"
-                      }
-                    }
-                  }
-                ]
-              }
+                "created_at": "2018-03-15T11:49:22.039Z",
+                "current_status": "active",
+                "default_mapper_type": "jsonata",
+                "description": null,
+                "graph": {
+                    "nodes": [
+                        {
+                            "id": "step_1",
+                            "command": "1010team/webhook_query:receive@latest",
+                            "name": "",
+                            "description": "",
+                            "fields": {
+                                "payload": "{}"
+                            }
+                        },
+                        {
+                            "id": "step_2",
+                            "command": "elasticio/email:send@b5326d668ff6eeef1bf733902b45373c463f1296",
+                            "name": "",
+                            "description": ""
+                              },
+                        {
+                            "id": "step_3",
+                            "command": "elasticio/code:execute@9abd6053908d9f8c69613649b9dd349eeb097f72",
+                            "name": "",
+                            "description": "ewrqrw",
+                            "fields": {
+                                "code": "//Your NodeJS-code"
+                            }
+                        },
+                        {
+                            "id": "step_4",
+                            "command": "elasticio/jdbc:createOrUpdateRecord@latest",
+                            "name": "",
+                            "description": "",
+                            "fields": {
+                                "tableName": "public.turtles",
+                                "idColumn": "id"
+                            },
+                            "credentials_id": "5aaa7a457895610007c5e1de"
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": "step_1:step_3",
+                            "source": "step_1",
+                            "target": "step_3"
+                        },
+                        {
+                            "id": "mapper:step_3:step_2",
+                            "config": {
+                                "mapper_type": "jsonata",
+                                "mapper": {
+                                    "textBody": "message",
+                                    "subject": "\"1503_SW_WEBB\"",
+                                    "to": "\"test@example.com\""
+                                },
+                                "condition": null
+                            },
+                            "source": "step_3",
+                            "target": "step_2"
+                        },
+                        {
+                            "id": "mapper:step_3:step_4",
+                            "config": {
+                                "mapper_type": "jsonata",
+                                "mapper": {
+                                    "id": "111",
+                                    "name": "\"fffff\"",
+                                    "color": "\"red\""
+                                },
+                                "condition": null
+                            },
+                            "source": "step_3",
+                            "target": "step_4"
+                        }
+                    ]
+                },
+                "name": "1503_Webhook to E-Mail",
+                "status": "active",
+                "type": "ordinary",
+                "updated_at": "2018-03-16T13:45:27.684Z"
             },
             "relationships": {
-              "user": {
-                "data": {
-                  "type": "user",
-                  "id": "560e5a27734d480a00000002"
+                "user": {
+                    "data": {
+                        "id": "59d3562c68ed850019bde27f",
+                        "type": "user"
+                    },
+                    "links": {
+                        "self": "/v2/users/59d3562c68ed850019bde27f"
+                    }
                 },
-                "links": {
-                  "self": "/v2/users/560e5a27734d480a00000002"
-                }
-              },
-              "organization": {
-                "data": {
-                  "type": "organization",
-                  "id": "573dd76962436c349f000003"
+                "organization": {
+                    "data": {
+                        "id": "59d341e9037f7200184a408b",
+                        "type": "organization"
+                    },
+                    "links": {
+                        "self": "/v2/organizations/59d341e9037f7200184a408b"
+                    }
                 },
-                "links": {
-                  "self": "/v2/organizations/573dd76962436c349f000003"
+                "versions": {
+                    "links": {
+                        "related": "/v2/flows/5aaa5dc27895610007c5e172/versions"
+                    }
+                },
+                "latest_version": {
+                    "data": {
+                        "id": "aa80189bb55812f86ed2205ca8dbf9fc6ca756a4",
+                        "type": "flow-version"
+                    },
+                    "links": {
+                        "self": "/v2/flows/5aaa5dc27895610007c5e172/versions/aa80189bb55812f86ed2205ca8dbf9fc6ca756a4",
+                        "related": "/v2/flows/5aaa5dc27895610007c5e172/versions/aa80189bb55812f86ed2205ca8dbf9fc6ca756a4"
+                    }
+                },
+                "draft": {
+                    "data": {
+                        "id": "5aabca77aa56a1749852a29a",
+                        "type": "flow-draft"
+                    },
+                    "links": {
+                        "self": "/v2/flows/5aaa5dc27895610007c5e172/draft",
+                        "related": "/v2/flows/5aaa5dc27895610007c5e172/draft"
+                    }
                 }
-              }
             }
-        }
+        },
+       //...
     ],
     "meta": {
         "page": 1,
-        "per_page": 20,
-        "total": 1,
+        "per_page": 10,
+        "total": 2,
         "total_pages": 1
+    },
+    "links": {
+        "self": "/v2/flows"
     }
-
 }
 ```
 
