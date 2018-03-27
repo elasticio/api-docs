@@ -22,14 +22,21 @@ Content-Type: application/json
 
 {
     "data": {
-        "id": "54f4be3fe7d5224f91000001",
+        "id": "59d22e7eeb865b0018adc248",
         "type": "user",
+        "links": {
+            "self": "/v2/users/59d22e7eeb865b0018adc248"
+        },
         "attributes": {
             "first_name": "John",
             "last_name": "Doe",
-            "email": "test@example.com"
+            "email": "test@example.com",
+            "company": "company",
+            "registered": "2017-10-02T12:18:06.274Z",
+            "last_login": "2018-03-15T16:53:57.696Z"
         }
-    }
+    },
+    "meta": {}
 }
 ```
 
