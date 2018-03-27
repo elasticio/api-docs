@@ -38,11 +38,14 @@ Content-Type: application/json
 {
     "data": [
         {
-            "type": "component",
             "id": "{COMPONENT_ID}",
+            "type": "component",
+            "links": {
+                "self": "/v2/components/{COMPONENT_ID}"
+            },
             "attributes": {
-                "name": "component name",
-                "team_name": "{team_name}"
+                "name": "name",
+                "team_name": "team_name"
             },
             "relationships": {
                 "versions": {
@@ -51,55 +54,101 @@ Content-Type: application/json
                     }
                 },
                 "latest_version": {
+                    "data": {
+                        "id": "{GIT_REVISION}",
+                        "type": "version"
+                    },
                     "links": {
                         "self": "/v2/components/{COMPONENT_ID}/versions/latest"
-                    },
+                    }
+                }
+            }
+        },
+//..........................
+]
+"meta": {},
+    "included": [
+        {
+            "id": "{GIT_REVISION}",
+            "type": "version",
+            "links": {
+                "self": "/v2/versions/{GIT_REVISION}"
+            },
+            "attributes": {
+                "date": 1517392057184,
+                "version_number": 69
+            },
+            "relationships": {
+                "descriptor": {
                     "data": {
-                        "type": "version",
-                        "id": "{GIT_REVISION}"
+                        "id": "0eff1d1a46b78ba1f468982e16d0382e8a91280d",
+                        "type": "descriptor"
+                    },
+                    "links": {
+                        "self": "/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
+                    }
+                },
+                "component": {
+                    "data": {
+                        "id": "{COMPONENT_ID}",
+                        "type": "component"
+                    },
+                    "links": {
+                        "self": "/v2/components/{COMPONENT_ID}"
+                    }
+                }
+            }
+        },
+        {
+            "id": "0eff1d1a46b78ba1f468982e16d0382e8a91280d",
+            "type": "descriptor",
+            "links": {
+                "self": "/v2/descriptors/0eff1d1a46b78ba1f468982e16d0382e8a91280d"
+            },
+            "attributes": {
+                "repo_name": "repo_name",
+                "team_name": "team_name",
+                "short_revision": "0eff1d1",
+                "is_latest": true,
+                "description": "desc",
+                "icon": "BASE64",
+                "language": "nodejs",
+                "sailor_version": "2.1.6",
+                "title": "Data mapper",
+                "service": "mapper",
+                "actions": {
+                    "map": {
+                        "title": "Mapper",
+                        "main": "./map.js"
+                    },
+                    "jsonataMap": {
+                        "title": "Jsonata mapper",
+                        "main": "./jsonata_map.js"
+                    }
+                },
+                "fields": {
+                    "mapper": {
+                        "viewClass": "MapperView"
                     }
                 }
             },
-            "included": [
-                {
-                    "type": "version",
-                    "id": "{GIT_REVISION}",
-                    "attributes": {
-                        "date": 1487846132213,
-                        "versionNumber": 1
+            "relationships": {
+                "version": {
+                    "data": {
+                        "id": "{GIT_REVISION}",
+                        "type": "version"
                     },
-                    "relationships": {
-                        "descriptor": {
-                            "links": {
-                                "self": "/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
-                            }
-                        }
-                    }
-                },
-                {
-                    "id": "{GIT_REVISION}",
-                    "type": "descriptor",
-                    "attributes": {
-                        "description": "desc",
-                        "icon": "BASE64",
-                        "is_latest": true,
-                        "language": "nodejs",
-                        "repo_name": "repo_name",
-                        "sailor_version": "1.0.0",
-                        "team_name": "team_name",
-                        "title": "title",
-                        "triggers": {
-                            "select": "<Triggers Object>"
-                        },
-                        "actions": {
-                            "update": "<Actions Object>"
-                        }
+                    "links": {
+                        "self": "/v2/{COMPONENT_ID}/versions/{GIT_REVISION}"
                     }
                 }
-            ]
-        }
-    ],
-    "meta": {}
+            }
+        },
+//....................................
+],
+    "links": {
+        "self": "/v2/components"
+    }
 }
 ```
 
