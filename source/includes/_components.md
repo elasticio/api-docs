@@ -65,6 +65,7 @@ Content-Type: application/json
             }
         },
 //..........................
+]
 "meta": {},
     "included": [
         {
@@ -84,8 +85,7 @@ Content-Type: application/json
                         "type": "descriptor"
                     },
                     "links": {
-                        "self": "/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}
-/descriptor"
+                        "self": "/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
                     }
                 },
                 "component": {
