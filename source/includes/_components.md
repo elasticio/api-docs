@@ -334,46 +334,41 @@ Content-Type: application/json
 {
     "data": [
         {
-            "type": "version",
             "id": "{GIT_REVISION}",
+            "type": "version",
+            "links": {
+                "self": "/v2/versions/{GIT_REVISION}"
+            },
+            "attributes": {
+                "date": 1508754889997,
+                "version_number": 1
+            },
             "relationships": {
                 "descriptor": {
+                    "data": {
+                        "id": "{GIT_REVISION}",
+                        "type": "descriptor"
+                    },
                     "links": {
                         "self": "/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
                     }
-                }
-            }
-        },
-        {
-            "type": "version",
-            "id": "{GIT_REVISION}",
-            "attributes": {
-                "date": 1487846132213,
-                "versionNumber": 1
-            },
-            "relationships": {
-                 "component": {
+                },
+                "component": {
                     "data": {
-                        "id": {COMPONENT_ID},
-                        "type": 'component'
+                        "id": "{COMPONENT_ID}",
+                        "type": "component"
                     },
                     "links": {
                         "self": "/v2/components/{COMPONENT_ID}"
-                    }
-                },
-                "descriptor": {
-                    "data": {
-                        "id": {GIT_REVISION},
-                        "type": 'descriptor'
-                    },
-                    "links": {
-                        "self": "/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
                     }
                 }
             }
         }
     ],
-    "meta": {}
+    "meta": {},
+    "links": {
+        "self": "/v2/components/{COMPONENT_ID}/versions"
+    }
 }
 ```
 
