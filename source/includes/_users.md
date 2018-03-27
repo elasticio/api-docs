@@ -343,15 +343,21 @@ Content-Type: application/json
 
 {
     "data": {
-        "id": "54f4be3fe7d5224f91000001",
+        "id": "5aabc258bd6d6400079b4592",
         "type": "user",
+        "links": {
+            "self": "/v2/users/5aabc258bd6d6400079b4592"
+        },
         "attributes": {
             "first_name": "John",
             "last_name": "Doe",
             "email": "test@example.com",
-            "company": "Doe & Partners"
+            "company": "Doe & Partners",
+            "registered": "2018-03-16T13:10:48.221Z",
+            "last_login": "2018-03-16T13:10:48.221Z"
         }
-    }
+    },
+    "meta": {}
 }
 ```
 
