@@ -417,8 +417,11 @@ Content-Type: application/json
 
 {
     "data": {
+        "id": "5aafcd56d0516d0007758cff",
         "type": "execution-result",
-        "id": "58becb8059a65f18c5c60e41",
+        "links": {
+            "self": "/v2/exec/result/5aafcd56d0516d0007758cff"
+        },
         "attributes": {
             "result": {
                 "data": {
@@ -427,7 +430,8 @@ Content-Type: application/json
                 }
             }
         }
-    }
+    },
+    "meta": {}
 }
 ```
 
