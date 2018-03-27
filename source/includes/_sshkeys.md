@@ -24,16 +24,33 @@ Content-Type: application/json
 {
     "data": [
         {
-            "id": "589df8b024dbdd0e461fc309",
+            "id": "5a4f59dbcbe7940019697ec5",
             "type": "sshkey",
+            "links": {
+                "self": "/v2/sshkeys/5a4f59dbcbe7940019697ec5"
+            },
             "attributes": {
-                "title": "My Key",
-                "fingerprint": "fingerprint",
-                "user_id": "user_id",
-                "key":"ssh_key"
+                "key": "ssh-key",
+                "title": "test@example-UX430UQ",
+                "fingerprint": "fd:d4:98:92:ed:d7:3a:0c:a2:42:ff:78:57:15:88:fa"
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "59d22e7eeb865b0018adc248",
+                        "type": "user"
+                    },
+                    "links": {
+                        "self": "/v2/users/59d22e7eeb865b0018adc248"
+                    }
+                }
             }
         }
-    ]
+    ],
+    "meta": {},
+    "links": {
+        "self": "/v2/sshkeys"
+    }
 }
 ```
 
@@ -93,14 +110,30 @@ HTTP/1.1 201 Created
 Content-Type: application/json
 
 {
-    "id": "589df8a924dbdd0e461fc308",
-    "type": "sshkey",
-    "attributes": {
-        "title": "My Key",
-        "fingerprint": "fingerprint",
-        "user_id": "user_id",
-        "key":"ssh_key"
-    }
+    "data": {
+        "id": "5aabedf5bd6d6400079b45f1",
+        "type": "sshkey",
+        "links": {
+            "self": "/v2/sshkeys/5aabedf5bd6d6400079b45f1"
+        },
+        "attributes": {
+            "key": "ssh-key",
+            "title": "1603testAndDelMe",
+            "fingerprint": "3a:2b:8e:7c:dc:82:3e:de:54:f4:58:8a:7d:55:fb:15"
+        },
+        "relationships": {
+            "user": {
+                "data": {
+                    "id": "59d22e7eeb865b0018adc248",
+                    "type": "user"
+                },
+                "links": {
+                    "self": "/v2/users/59d22e7eeb865b0018adc248"
+                }
+            }
+        }
+    },
+    "meta": {}
 }
 ```
 
