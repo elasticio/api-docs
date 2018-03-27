@@ -545,7 +545,7 @@ Returns component's metadata object if the call succeeded.
 
 ## Update component access
 
-This resource allows you to changing component's access level.
+This resource allows you to changing component's access level from `team` to `tenant`.
 
 Please note, that this action is irreversible i.e. API does not allow to change `access` back to `team`.
 
