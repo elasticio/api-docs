@@ -154,70 +154,109 @@ TBD
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
-    "data": 
+    "data": {
+        "id": "{COMPONENT_ID}",
+        "type": "component",
+        "links": {
+            "self": "/v2/components/5a0eca5d2715bf0018058ba3"
+        },
+        "attributes": {
+            "name": "component name",
+            "team_name": "{team_name}"
+        },
+        "relationships": {
+            "versions": {
+                "links": {
+                    "related": "/v2/components/5a0eca5d2715bf0018058ba3/versions"
+                }
+            },
+            "latest_version": {
+                "data": {
+                    "id": "df7cf1d1db027d8c050391809d5d2e1ad47e19ca",
+                    "type": "version"
+                },
+                "links": {
+                    "self": "/v2/components/5a0eca5d2715bf0018058ba3/versions/latest"
+                }
+            }
+        }
+    },
+    "meta": {},
+    "included": [
         {
-            "type": "component",
-            "id": "{COMPONENT_ID}",
+            "id": "df7cf1d1db027d8c050391809d5d2e1ad47e19ca",
+            "type": "version",
+            "links": {
+                "self": "/v2/versions/df7cf1d1db027d8c050391809d5d2e1ad47e19ca"
+            },
             "attributes": {
-                "name": "component name",
-                "team_name": "{team_name}"
+                "date": 1513183339032,
+                "version_number": 7
             },
             "relationships": {
-                "versions": {
+                "descriptor": {
+                    "data": {
+                        "id": "df7cf1d1db027d8c050391809d5d2e1ad47e19ca",
+                        "type": "descriptor"
+                    },
                     "links": {
-                        "related": "/v2/components/{COMPONENT_ID}/versions"
+                        "self": "/v2/components/5a0eca5d2715bf0018058ba3/versions/df7cf1d1db027d8c050391809d5d2e1ad47e19ca/descriptor"
                     }
                 },
-                "latest_version": {
-                    "links": {
-                        "self": "/v2/components/{COMPONENT_ID}/versions/latest"
-                    },
+                "component": {
                     "data": {
-                        "type": "version",
-                        "id": "{GIT_REVISION}"
+                        "id": "5a0eca5d2715bf0018058ba3",
+                        "type": "component"
+                    },
+                    "links": {
+                        "self": "/v2/components/5a0eca5d2715bf0018058ba3"
+                    }
+                }
+            }
+        },
+        {
+            "id": "{GIT_REVISION}",
+            "type": "descriptor",
+            "links": {
+                "self": "/v2/descriptors/df7cf1d1db027d8c050391809d5d2e1ad47e19ca"
+            },
+            "attributes": {
+                "repo_name": "repo_name",
+                "team_name": "team_name",
+                "short_revision": "df7cf1d",
+                "is_latest": true,
+                "description": "elastic.io component for testing Scheduled Executions",
+                "icon": "BASE64",
+                "language": "nodejs",
+                "sailor_version": "2.2.1",
+                "title": "Component With 3 Scheduled Executions",
+                "actions": {update": "<Actions Object>},
+                "triggers": {"select": "<Triggers Object>"},
+                "credentials": {
+                    "fields": {
+                        "apiKey": {
+                            "label": "API key",
+                            "required": true,
+                            "viewClass": "TextFieldWithNoteView",
+                            "note": "{note}"
+                        }
                     }
                 }
             },
-            "included": [
-                {
-                    "type": "version",
-                    "id": "{GIT_REVISION}",
-                    "attributes": {
-                        "date": 1487846132213,
-                        "versionNumber": 1
+            "relationships": {
+                "version": {
+                    "data": {
+                        "id": "{GIT_REVISION}",
+                        "type": "version"
                     },
-                    "relationships": {
-                        "descriptor": {
-                            "links": {
-                                "self": "/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
-                            }
-                        }
-                    }
-                },
-                {
-                    "id": "{GIT_REVISION}",
-                    "type": "descriptor",
-                    "attributes": {
-                        "description": "desc",
-                        "icon": "BASE64",
-                        "is_latest": true,
-                        "language": "nodejs",
-                        "repo_name": "repo_name",
-                        "sailor_version": "1.0.0",
-                        "team_name": "team_name",
-                        "title": "title",
-                        "triggers": {
-                            "select": "<Triggers Object>"
-                        },
-                        "actions": {
-                            "update": "<Actions Object>"
-                        }
+                    "links": {
+                        "self": "/v2/5a0eca5d2715bf0018058ba3/versions/df7cf1d1db027d8c050391809d5d2e1ad47e19ca"
                     }
                 }
-            ]
-        },
-        "meta": {}
-    }
+            }
+        }
+    ]
+}
 ```
 
 
