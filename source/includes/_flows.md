@@ -394,22 +394,34 @@ Content-Type: application/json
   "data": {
     "type": "flow",
     "id": "585918da586224001b96de89",
+    "links": {
+            "self": "/v2/flows/585918da586224001b96de89"
+            },
     "attributes": {
       "name": "Timer to E-Mail Test",
       "status": "inactive",
       "type": "ordinary",
+       "created_at": "2018-03-27T15:39:02.825Z",
+       "current_status": "inactive",
+       "default_mapper_type": "jsonata",
+       "description": null,
+       "updated_at": "2018-03-27T15:39:02.923Z",
       "graph": {
         "nodes": [
           {
             "id": "step_1",
             "command": "elasticio/timer:timer",
+             "name": "",
+             "description": "",
             "fields": {
               "interval": "minute"
             }
           },
           {
             "id": "step_2",
-            "command": "elasticio/email:send"
+            "command": "elasticio/email:send",
+             "name": "",
+             "description": ""
           }
         ],
         "edges": [
@@ -445,9 +457,24 @@ Content-Type: application/json
         "links": {
           "self": "/v2/organizations/573dd76962436c349f000003"
         }
-      }
-    }
-  },
+           },
+        "versions": {
+             "links": {
+                "related": "/v2/flows/585918da586224001b96de89/versions"
+                }
+            },
+         "latest_version": {
+              "data": {
+                  "id": "787513ee82625ef46bc10372cb6485a535b54c5f",
+                  "type": "flow-version"
+                },
+            "links": {
+                 "self": "/v2/flows/585918da586224001b96de89/versions/787513ee82625ef46bc10372cb6485a535b54c5f",
+                 "related": "/v2/flows/585918da586224001b96de89/versions/787513ee82625ef46bc10372cb6485a535b54c5f"
+                }
+            }
+        }
+    },
   "meta": {}
 }
 ```
