@@ -837,7 +837,7 @@ Content-Type: application/json
         "type": "component-env",
         "links": {
             "self": "/v2/component-envs/{COMPONENT_ID}"
-        },
+        }
     },
     "meta": {}
 }
