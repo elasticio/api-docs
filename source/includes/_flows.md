@@ -533,27 +533,36 @@ Content-Type: application/json
 
 {
   "data": {
-    "id": "58f07f67401e5f0019275306",
     "type": "flow",
+    "id": "585918da586224001b96de89",
     "links": {
-      "self": "/v2/flows/58f07f67401e5f0019275306"
-    },
+            "self": "/v2/flows/585918da586224001b96de89"
+            },
     "attributes": {
-      "name": "this is a test task",
+      "name": "Timer to E-Mail Test",
       "status": "inactive",
       "type": "ordinary",
+       "created_at": "2018-03-27T15:39:02.825Z",
+       "current_status": "inactive",
+       "default_mapper_type": "jsonata",
+       "description": null,
+       "updated_at": "2018-03-27T15:39:02.923Z",
       "graph": {
         "nodes": [
           {
             "id": "step_1",
             "command": "elasticio/timer:timer",
+             "name": "",
+             "description": "",
             "fields": {
               "interval": "minute"
             }
           },
           {
             "id": "step_2",
-            "command": "elasticio/email:send"
+            "command": "elasticio/email:send",
+             "name": "",
+             "description": ""
           }
         ],
         "edges": [
@@ -562,37 +571,51 @@ Content-Type: application/json
             "target": "step_2",
             "config": {
               "mapper": {
-                "textBody": "{{fireTime}}",
+                "to": "info@acme.org",
                 "subject": "Test",
-                "to": "info@acme.org"
+                "textBody": "{{fireTime}}"
               }
             }
           }
         ]
-      },
-      "api_version": "2.0"
+      }
     },
     "relationships": {
       "user": {
         "data": {
-          "id": "58c91bd02e669f0019243fdf",
-          "type": "user"
+          "type": "user",
+          "id": "560e5a27734d480a00000002"
         },
         "links": {
-          "self": "/v2/users/58c91bd02e669f0019243fdf"
+          "self": "/v2/users/560e5a27734d480a00000002"
         }
       },
       "organization": {
         "data": {
-          "id": "57595b65cc6b4b0000000003",
-          "type": "organization"
+          "type": "organization",
+          "id": "573dd76962436c349f000003"
         },
         "links": {
-          "self": "/v2/organizations/57595b65cc6b4b0000000003"
+          "self": "/v2/organizations/573dd76962436c349f000003"
         }
-      }
-    }
-  },
+           },
+        "versions": {
+             "links": {
+                "related": "/v2/flows/585918da586224001b96de89/versions"
+                }
+            },
+         "latest_version": {
+              "data": {
+                  "id": "787513ee82625ef46bc10372cb6485a535b54c5f",
+                  "type": "flow-version"
+                },
+            "links": {
+                 "self": "/v2/flows/585918da586224001b96de89/versions/787513ee82625ef46bc10372cb6485a535b54c5f",
+                 "related": "/v2/flows/585918da586224001b96de89/versions/787513ee82625ef46bc10372cb6485a535b54c5f"
+                }
+            }
+        }
+    },
   "meta": {}
 }
 ```
