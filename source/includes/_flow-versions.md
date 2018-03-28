@@ -18,80 +18,81 @@ Content-Type: application/json
 {
    "data": [
       {
-         "type": "flow-version",
-         "id": "{VERSION_HASH}",
-         "attributes": {
-            "created_at": "2017-11-28T15:07:48.566Z",
-            "name": "WebHook to Mailchimp",
-            "description": "Some real description",
-            "cron": "*/3 * * * *",
+        "id": "af65130306caf1c421708a1cfe7edcb56900a6af",
+        "type": "flow-version",
+        "links": {
+            "self": "/v2/flows/5ab0eeabbd6d6400079b4628/versions/af65130306caf1c421708a1cfe7edcb56900a6af"
+        },
+        "attributes": {
+            "name": "Node.js Code to Node.js Code draft 2",
+            "description": null,
             "graph": {
-               "nodes": [
-                  {
-                     "id": "step_1",
-                     "command": "my_team/webhook:receive",
-                     "fields": {
-                        "payload": "email,first,last"
-                     }
-                  },
-                  {
-                     "id": "step_3",
-                     "command": "my_team/mailchimp:subscribe@46d410dd2a64cfc64858ce3d90e015acf531c9b6",
-                     "fields": {
-                        "listId": "8779dd762e"
-                     },
-                     "credentials_id": "585918da586224001b96de88",
-                     "selected_data_samples": [
-                        "54536902230d250700000000"
-                     ],
-                     "out_data_samples": [
-                        "54536902230d250700000000",
-                        "54536902230d250700000001"
-                     ]
-                  }
-               ],
-               "edges": [
-                  {
-                     "id": "step_2",
-                     "source": "step_1",
-                     "target": "step_3",
-                     "config": {
-                        "mapper_type": "jsonata",
-                        "mapper": {
-                           "email": "email",
-                           "email_type": "\"html\"",
-                           "firstName": "first",
-                           "lastName": "last"
+                "nodes": [
+                    {
+                        "id": "step_1",
+                        "command": "elasticio/code:executeTrigger@latest",
+                        "name": "",
+                        "description": "",
+                        "fields": {
+                            "code": "//Your NodeJS code"
                         }
-                     }
-                  }
-               ]
-            }
-         },
-         "links": {
-            "self": "/v2/flows/{FLOW_ID}/versions/{VERSION_HASH}"
-         },
-         "relationships": {
+                      },
+                    {
+                        "id": "step_2",
+                        "command": "elasticio/code:execute@latest",
+                        "name": "",
+                        "description": "",
+                        "fields": {
+                            "code": "// Your NodeJS code"
+                        }
+                    },
+                    {
+                        "id": "step_3",
+                        "command": "elasticio/code:execute@latest",
+                        "name": "",
+                        "description": "",
+                        "fields": {
+                            "code": "// Your NodeJS code"
+                        }
+                    }
+                ],
+                "edges": [
+                    {
+                        "id": "step_1:step_2",
+                        "source": "step_1",
+                        "target": "step_2"
+                    },
+                    {
+                        "id": "step_1:step_3",
+                        "source": "step_1",
+                        "target": "step_3"
+                    }
+                ]
+            },
+            "created_at": "2018-03-20T14:12:54.361Z"
+        },
+        "relationships": {
             "user": {
-               "data": {
-                  "type": "user",
-                  "id": "{USER_ID}"
-               },
-               "links": {
-                  "self": "/v2/users/{USER_ID}"
-               }
+                "data": {
+                    "id": "59d22e7eeb865b0018adc248",
+                    "type": "user"
+                },
+                "links": {
+                    "self": "/v2/users/59d22e7eeb865b0018adc248"
+                }
             },
             "flow": {
-               "data": {
-                  "type": "flow",
-                  "id": "{FLOW_ID}"
-               },
-               "links": {
-                  "self": "/v2/flows/{FLOW_ID}"
-               }
+                "data": {
+                    "id": "5ab0eeabbd6d6400079b4628",
+                    "type": "flow"
+                },
+                "links": {
+                    "self": "/v2/flows/5ab0eeabbd6d6400079b4628"
+                }
             }
-         }
-      }
+        }
+    },
+      //...
    ],
    "meta": {
       "page": 1,
@@ -140,81 +141,82 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-   "data": {
-      "id": "{VERSION_HASH}",
-      "type": "flow-version",
-      "attributes": {
-         "created_at": "2017-11-28T15:07:48.566Z",
-         "name": "WebHook to Mailchimp",
-         "description": "Some real description",
-         "cron": "*/3 * * * *",
-         "graph": {
-            "nodes": [
-               {
-                  "id": "step_1",
-                  "command": "my_team/webhook:receive",
-                  "fields": {
-                     "payload": "email,first,last"
-                  }
-               },
-               {
-                  "id": "step_3",
-                  "command": "my_team/mailchimp:subscribe@46d410dd2a64cfc64858ce3d90e015acf531c9b6",
-                  "fields": {
-                     "listId": "8779dd762e"
-                  },
-                  "credentials_id": "585918da586224001b96de88",
-                  "selected_data_samples": [
-                     "54536902230d250700000000"
-                  ],
-                  "out_data_samples": [
-                     "54536902230d250700000000",
-                     "54536902230d250700000001"
-                  ]
-               }
-            ],
-            "edges": [
-               {
-                  "id": "step_2",
-                  "source": "step_1",
-                  "target": "step_3",
-                  "config": {
-                     "mapper_type": "jsonata",
-                     "mapper": {
-                        "email": "email",
-                        "email_type": "\"html\"",
-                        "firstName": "first",
-                        "lastName": "last"
-                     }
-                  }
-               }
-            ]
-         }
-      },
-      "links": {
-         "self": "/v2/flows/{FLOW_ID}/versions/{VERSION_HASH}"
-      },
-      "relationships": {
-         "user": {
-            "data": {
-               "id": "{USER_ID}",
-               "type": "user"
+    "data": {
+        "id": "af65130306caf1c421708a1cfe7edcb56900a6af",
+        "type": "flow-version",
+        "links": {
+            "self": "/v2/flows/5ab0eeabbd6d6400079b4628/versions/af65130306caf1c421708a1cfe7edcb56900a6af"
+        },
+        "attributes": {
+            "name": "Node.js Code to Node.js Code draft 2",
+            "description": null,
+            "graph": {
+                "nodes": [
+                    {
+                        "id": "step_1",
+                        "command": "elasticio/code:executeTrigger@latest",
+                        "name": "",
+                        "description": "",
+                        "fields": {
+                            "code": "//Your NodeJS code"
+                        }
+                      },
+                    {
+                        "id": "step_2",
+                        "command": "elasticio/code:execute@latest",
+                        "name": "",
+                        "description": "",
+                        "fields": {
+                            "code": "// Your NodeJS code"
+                        }
+                    },
+                    {
+                        "id": "step_3",
+                        "command": "elasticio/code:execute@latest",
+                        "name": "",
+                        "description": "",
+                        "fields": {
+                            "code": "// Your NodeJS code"
+                        }
+                    }
+                ],
+                "edges": [
+                    {
+                        "id": "step_1:step_2",
+                        "source": "step_1",
+                        "target": "step_2"
+                    },
+                    {
+                        "id": "step_1:step_3",
+                        "source": "step_1",
+                        "target": "step_3"
+                    }
+                ]
             },
-            "links": {
-               "self": "/v2/users/{USER_ID}"
-            }
-         },
-         "flow": {
-            "data": {
-               "id": "{FLOW_ID}",
-               "type": "flow"
+            "created_at": "2018-03-20T14:12:54.361Z"
+        },
+        "relationships": {
+            "user": {
+                "data": {
+                    "id": "59d22e7eeb865b0018adc248",
+                    "type": "user"
+                },
+                "links": {
+                    "self": "/v2/users/59d22e7eeb865b0018adc248"
+                }
             },
-            "links": {
-               "self": "/v2/flows/{FLOW_ID}"
+            "flow": {
+                "data": {
+                    "id": "5ab0eeabbd6d6400079b4628",
+                    "type": "flow"
+                },
+                "links": {
+                    "self": "/v2/flows/5ab0eeabbd6d6400079b4628"
+                }
             }
-         }
-      }
-   }
+        }
+    },
+    "meta": {}
 }
 ```
 
