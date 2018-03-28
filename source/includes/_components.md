@@ -689,16 +689,19 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 {
     "data": {
+        "id": "{COMPONENT_ID}",
         "type": "component",
-        "id": "58a410b58224d9b2f99a687b",
+        "links": {
+            "self": "/v2/components/{COMPONENT_ID}"
+        },
         "attributes": {
-            "name": "mycomponent",
-            "team_name": "my_hackers"
+            "name": "name",
+            "team_name": "team_name"
         },
         "relationships": {
             "versions": {
                 "links": {
-                    "related": "/v2/components/58a410b58224d9b2f99a687b/versions"
+                    "related": "/v2/components/{COMPONENT_ID}/versions"
                 }
             }
         }
