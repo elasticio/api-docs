@@ -34,6 +34,9 @@ Content-Type: application/json
     { 
       "id": "58455777a0aec4f377faefc1",
       "type": "organization",
+      "links": {
+            "self": "/v2/organizations/58455777a0aec4f377faefc1"
+       },
       "attributes": { 
         "name": "My Org"
       } 
