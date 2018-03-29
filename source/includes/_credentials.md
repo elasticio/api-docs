@@ -28,6 +28,9 @@ Content-Type: application/json
         {
             "id": "585430d3f02852a8a9fac45e",
             "type": "credential",
+            "links": {
+                "self": "/v2/credentials/585430d3f02852a8a9fac45e"
+            },
             "attributes": {
                 "name": "CMS primary",
                 "keys": {
@@ -54,12 +57,24 @@ Content-Type: application/json
                     "links": {
                         "self": "/v2/components/585430d2f02852a8a9fac456"
                     }
+                },
+                "organization": {
+                    "data": {
+                        "id": "59d341e9037f7200184a408b",
+                        "type": "organization"
+                    },
+                    "links": {
+                        "self": "/v2/organizations/59d341e9037f7200184a408b"
+                    }
                 }
             }
         },
         {
             "id": "585430d3f02852a8a9fac45f",
             "type": "credential",
+            "links": {
+                "self": "/v2/credentials/585430d3f02852a8a9fac45f"
+            },
             "attributes": {
                 "name": "Refined CRM Manager login",
                 "keys": {
@@ -88,6 +103,14 @@ Content-Type: application/json
                          "self": "/v2/components/585430d2f02852a8a9fac457"
                      }
                  },
+                 "organization": {
+                    "data": {
+                        "id": "59d341e9037f7200184a408b",
+                        "type": "organization"
+                    },
+                    "links": {
+                        "self": "/v2/organizations/59d341e9037f7200184a408b"
+                    },
                  "agent": {
                     "data": {
                         "id": "59a410d76b670400182f190e",
@@ -99,7 +122,11 @@ Content-Type: application/json
                  }
              }
         }
-    ]
+     }
+    ],
+    "links": {
+        "self": "/v2/credentials"
+    }
 }
 ```
 
