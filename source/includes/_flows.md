@@ -46,155 +46,106 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "data": [
-        {
-            "id": "5aaa5dc27895610007c5e172",
-            "type": "flow",
+  "data": [
+     {
+    "type": "flow",
+    "id": "585918da586224001b96de89",
+    "links": {
+            "self": "/v2/flows/585918da586224001b96de89"
+            },
+    "attributes": {
+      "name": "Timer to E-Mail Test",
+      "status": "inactive",
+      "type": "ordinary",
+       "created_at": "2018-03-27T15:39:02.825Z",
+       "current_status": "inactive",
+       "default_mapper_type": "jsonata",
+       "description": "",
+       "updated_at": "2018-03-27T15:39:02.923Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "step_1",
+            "command": "elasticio/timer:timer",
+             "name": "",
+             "description": "",
+            "fields": {
+              "interval": "minute"
+            }
+          },
+          {
+            "id": "step_2",
+            "command": "elasticio/email:send",
+             "name": "",
+             "description": ""
+          }
+        ],
+        "edges": [
+          {
+              "id": "mapper:step_1:step_2",
+              "config": {
+                    "mapper_type": "jsonata",
+                    "condition": null,
+                    "mapper": {
+                         "to": "\"test@example.com\"",
+                         "subject": "\"StrongMapper\"",
+                         "textBody": "Address.Street"
+                          }
+                      },
+                 "source": "step_1",
+                 "target": "step_2"
+             }
+        ]
+      }
+    },
+    "relationships": {
+      "user": {
+        "data": {
+          "type": "user",
+          "id": "560e5a27734d480a00000002"
+        },
+        "links": {
+          "self": "/v2/users/560e5a27734d480a00000002"
+        }
+      },
+      "organization": {
+        "data": {
+          "type": "organization",
+          "id": "573dd76962436c349f000003"
+        },
+        "links": {
+          "self": "/v2/organizations/573dd76962436c349f000003"
+        }
+           },
+        "versions": {
+             "links": {
+                "related": "/v2/flows/585918da586224001b96de89/versions"
+                }
+            },
+         "latest_version": {
+              "data": {
+                  "id": "787513ee82625ef46bc10372cb6485a535b54c5f",
+                  "type": "flow-version"
+                },
             "links": {
-                "self": "/v2/flows/5aaa5dc27895610007c5e172"
-            },
-            "attributes": {
-                "created_at": "2018-03-15T11:49:22.039Z",
-                "current_status": "active",
-                "default_mapper_type": "jsonata",
-                "description": null,
-                "graph": {
-                    "nodes": [
-                        {
-                            "id": "step_1",
-                            "command": "1010team/webhook_query:receive@latest",
-                            "name": "",
-                            "description": "",
-                            "fields": {
-                                "payload": "{}"
-                            }
-                        },
-                        {
-                            "id": "step_2",
-                            "command": "elasticio/email:send@b5326d668ff6eeef1bf733902b45373c463f1296",
-                            "name": "",
-                            "description": ""
-                              },
-                        {
-                            "id": "step_3",
-                            "command": "elasticio/code:execute@9abd6053908d9f8c69613649b9dd349eeb097f72",
-                            "name": "",
-                            "description": "ewrqrw",
-                            "fields": {
-                                "code": "//Your NodeJS-code"
-                            }
-                        },
-                        {
-                            "id": "step_4",
-                            "command": "elasticio/jdbc:createOrUpdateRecord@latest",
-                            "name": "",
-                            "description": "",
-                            "fields": {
-                                "tableName": "public.turtles",
-                                "idColumn": "id"
-                            },
-                            "credentials_id": "5aaa7a457895610007c5e1de"
-                        }
-                    ],
-                    "edges": [
-                        {
-                            "id": "step_1:step_3",
-                            "source": "step_1",
-                            "target": "step_3"
-                        },
-                        {
-                            "id": "mapper:step_3:step_2",
-                            "config": {
-                                "mapper_type": "jsonata",
-                                "mapper": {
-                                    "textBody": "message",
-                                    "subject": "\"1503_SW_WEBB\"",
-                                    "to": "\"test@example.com\""
-                                },
-                                "condition": null
-                            },
-                            "source": "step_3",
-                            "target": "step_2"
-                        },
-                        {
-                            "id": "mapper:step_3:step_4",
-                            "config": {
-                                "mapper_type": "jsonata",
-                                "mapper": {
-                                    "id": "111",
-                                    "name": "\"fffff\"",
-                                    "color": "\"red\""
-                                },
-                                "condition": null
-                            },
-                            "source": "step_3",
-                            "target": "step_4"
-                        }
-                    ]
-                },
-                "name": "1503_Webhook to E-Mail",
-                "status": "active",
-                "type": "ordinary",
-                "updated_at": "2018-03-16T13:45:27.684Z"
-            },
-            "relationships": {
-                "user": {
-                    "data": {
-                        "id": "59d3562c68ed850019bde27f",
-                        "type": "user"
-                    },
-                    "links": {
-                        "self": "/v2/users/59d3562c68ed850019bde27f"
-                    }
-                },
-                "organization": {
-                    "data": {
-                        "id": "59d341e9037f7200184a408b",
-                        "type": "organization"
-                    },
-                    "links": {
-                        "self": "/v2/organizations/59d341e9037f7200184a408b"
-                    }
-                },
-                "versions": {
-                    "links": {
-                        "related": "/v2/flows/5aaa5dc27895610007c5e172/versions"
-                    }
-                },
-                "latest_version": {
-                    "data": {
-                        "id": "aa80189bb55812f86ed2205ca8dbf9fc6ca756a4",
-                        "type": "flow-version"
-                    },
-                    "links": {
-                        "self": "/v2/flows/5aaa5dc27895610007c5e172/versions/aa80189bb55812f86ed2205ca8dbf9fc6ca756a4",
-                        "related": "/v2/flows/5aaa5dc27895610007c5e172/versions/aa80189bb55812f86ed2205ca8dbf9fc6ca756a4"
-                    }
-                },
-                "draft": {
-                    "data": {
-                        "id": "5aabca77aa56a1749852a29a",
-                        "type": "flow-draft"
-                    },
-                    "links": {
-                        "self": "/v2/flows/5aaa5dc27895610007c5e172/draft",
-                        "related": "/v2/flows/5aaa5dc27895610007c5e172/draft"
-                    }
+                 "self": "/v2/flows/585918da586224001b96de89/versions/787513ee82625ef46bc10372cb6485a535b54c5f",
+                 "related": "/v2/flows/585918da586224001b96de89/versions/787513ee82625ef46bc10372cb6485a535b54c5f"
                 }
             }
-        },
-       //...
-    ],
-    "meta": {
-        "page": 1,
-        "per_page": 10,
-        "total": 2,
-        "total_pages": 1
+        }
     },
-    "links": {
-        "self": "/v2/flows"
+        //...
+        ],
+        "meta": {
+            "page": 1,
+            "per_page": 10,
+            "total": 2,
+            "total_pages": 1
+        },
+        "links": {
+            "self": "/v2/flows"
+        }
     }
-}
 ```
 
 This resource allows you to retrieve flows.
@@ -246,36 +197,51 @@ Content-Type: application/json
   "data": {
     "type": "flow",
     "id": "585918da586224001b96de89",
+    "links": {
+            "self": "/v2/flows/585918da586224001b96de89"
+            },
     "attributes": {
       "name": "Timer to E-Mail Test",
       "status": "inactive",
       "type": "ordinary",
+       "created_at": "2018-03-27T15:39:02.825Z",
+       "current_status": "inactive",
+       "default_mapper_type": "jsonata",
+       "description": "",
+       "updated_at": "2018-03-27T15:39:02.923Z",
       "graph": {
         "nodes": [
           {
             "id": "step_1",
             "command": "elasticio/timer:timer",
+             "name": "",
+             "description": "",
             "fields": {
               "interval": "minute"
             }
           },
           {
             "id": "step_2",
-            "command": "elasticio/email:send"
+            "command": "elasticio/email:send",
+             "name": "",
+             "description": ""
           }
         ],
         "edges": [
           {
-            "source": "step_1",
-            "target": "step_2",
-            "config": {
-              "mapper": {
-                "to": "info@acme.org",
-                "subject": "Test",
-                "textBody": "{{fireTime}}"
-              }
-            }
-          }
+              "id": "mapper:step_1:step_2",
+              "config": {
+                    "mapper_type": "jsonata",
+                    "condition": null,
+                    "mapper": {
+                         "to": "\"test@example.com\"",
+                         "subject": "\"StrongMapper\"",
+                         "textBody": "Address.Street"
+                          }
+                      },
+                 "source": "step_1",
+                 "target": "step_2"
+             }
         ]
       }
     },
@@ -297,9 +263,24 @@ Content-Type: application/json
         "links": {
           "self": "/v2/organizations/573dd76962436c349f000003"
         }
-      }
-    }
-  },
+           },
+        "versions": {
+             "links": {
+                "related": "/v2/flows/585918da586224001b96de89/versions"
+                }
+            },
+         "latest_version": {
+              "data": {
+                  "id": "787513ee82625ef46bc10372cb6485a535b54c5f",
+                  "type": "flow-version"
+                },
+            "links": {
+                 "self": "/v2/flows/585918da586224001b96de89/versions/787513ee82625ef46bc10372cb6485a535b54c5f",
+                 "related": "/v2/flows/585918da586224001b96de89/versions/787513ee82625ef46bc10372cb6485a535b54c5f"
+                }
+            }
+        }
+    },
   "meta": {}
 }
 ```
@@ -432,7 +413,7 @@ Content-Type: application/json
               "mapper": {
                 "to": "info@acme.org",
                 "subject": "Test",
-                "textBody": "{{fireTime}}"
+                "textBody": "FireTime"
               }
             }
           }
@@ -573,7 +554,7 @@ Content-Type: application/json
               "mapper": {
                 "to": "info@acme.org",
                 "subject": "Test",
-                "textBody": "{{fireTime}}"
+                "textBody": "FireTime"
               }
             }
           }
