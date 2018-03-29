@@ -232,6 +232,9 @@ Content-Type: application/json
         {
             "type": "member",
             "id": "588f832b87d7c27c7d5cc37a",
+            "links": {
+                "self": "/v2/members/588f832b87d7c27c7d5cc37a"
+            },
             "attributes": {
                 "first_name": "Santos",
                 "last_name": "Mitchell",
@@ -242,6 +245,9 @@ Content-Type: application/json
         {
             "type": "member",
             "id": "588f832b87d7c27c7d5cc37b",
+            "links": {
+                "self": "/v2/members/588f832b87d7c27c7d5cc37b"
+            },
             "attributes": {
                 "first_name": "Kacie",
                 "last_name": "Howe",
@@ -249,7 +255,10 @@ Content-Type: application/json
                 "role": "integrator"
             }
         }
-    ]
+    ],
+    "links": {
+        "self": "/v2/organizations/{ORGANIZATION_ID}/members"
+    }
 }
 
 ```
