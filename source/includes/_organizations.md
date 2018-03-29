@@ -383,12 +383,17 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 {
    "data": {
-       "type": "invite",
+       "id": "5abceeb7bc984b00073976f6",
+       "type": "organization-invite",
+       "links": {
+            "self": "/v2/organizations/59d22e7eeb865b0018adc247/invite/5abceeb7bc984b00073976f6"
+        },
        "attributes": {
            "email": "user-to-invite@my-company.com",
            "role": "admin"
        }
-   }
+   },
+   "meta": {}
 }
 
 ```
