@@ -31,6 +31,15 @@ This resource allows you to retrieve data sample.
                     "self": "/v2/components/5863f7136ef9da255ad9a9bc/versions/latest"
                 }
             },
+             "organization": {
+                "data": {
+                    "id": "59d341e9037f7200184a408b",
+                    "type": "organization"
+                },
+                "links": {
+                    "self": "/v2/organizations/59d341e9037f7200184a408b"
+                }
+            },
             "component": {
                 "data": {
                     "id": "5863f7136ef9da255ad9a9bc",
@@ -158,6 +167,15 @@ A member of an organization can get any sample from own organization.
                     "self": "/v2/components/5863f7136ef9da255ad9a9bc/versions/latest"
                 }
             },
+             "organization": {
+                "data": {
+                    "id": "59d341e9037f7200184a408b",
+                    "type": "organization"
+                },
+                "links": {
+                    "self": "/v2/organizations/59d341e9037f7200184a408b"
+                }
+            },
             "component": {
                 "data": {
                     "id": "5863f7136ef9da255ad9a9bc",
@@ -250,6 +268,15 @@ Returns data sample object if the call succeeded.
                 },
                 "links": {
                     "self": "/v2/components/5863f7136ef9da255ad9a9bc/versions/latest"
+                }
+            },
+             "organization": {
+                "data": {
+                    "id": "59d341e9037f7200184a408b",
+                    "type": "organization"
+                },
+                "links": {
+                    "self": "/v2/organizations/59d341e9037f7200184a408b"
                 }
             },
             "component": {
