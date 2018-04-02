@@ -557,16 +557,17 @@ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
-   "data": {
+    "data": {
+        "id": "59f747c33f1d3c001901a44e",
         "type": "member",
-        "id": "588f832b87d7c27c7d5cc37a",
+        "links": {
+            "self": "/v2/members/59f747c33f1d3c001901a44e"
+        },
         "attributes": {
-            "first_name": "Santos",
-            "last_name": "Mitchell",
-            "email": "Santos_Mitchell@example.com",
-            "role": "admin"
+            "role": "integrator"
         }
-   }
+    },
+    "meta": {}
 }
 
 ```
