@@ -171,48 +171,51 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "meta": {},
     "data": {
-        "id": "585430d3f02852a8a9fac45e",
+        "id": "59f9f2ba112f28001921f274",
         "type": "credential",
+        "links": {
+            "self": "/v2/credentials/59f9f2ba112f28001921f274"
+        },
         "attributes": {
-            "name": "CMS primary",
+            "name": "SFTP account",
             "keys": {
-                "oauth": {
-                    "key": "secret1"
-                }
+                "host": "sftp.company.org",
+                "username": "lord",
+                "password": "teststetr"
             }
         },
         "relationships": {
             "user": {
                 "data": {
-                    "id": "585430d3f02852a8a9fac45d",
+                    "id": "59f747c33f1d3c001901a44e",
                     "type": "user"
                 },
                 "links": {
-                    "self": "/v2/users/585430d3f02852a8a9fac45d"
+                    "self": "/v2/users/59f747c33f1d3c001901a44e"
                 }
             },
             "component": {
                 "data": {
-                    "id": "585430d2f02852a8a9fac456",
+                    "id": "56793fb4d8057406000000f7",
                     "type": "component"
                 },
                 "links": {
-                    "self": "/v2/components/585430d2f02852a8a9fac456"
+                    "self": "/v2/components/56793fb4d8057406000000f7"
                 }
             },
-            "agent": {
+            "organization": {
                 "data": {
-                    "id": "59a410d76b670400182f190e",
-                    "type": "agent"
+                    "id": "59d341e9037f7200184a408b",
+                    "type": "organization"
                 },
                 "links": {
-                    "self": "/v2/agents/59a410d76b670400182f190e"
+                    "self": "/v2/organizations/59d341e9037f7200184a408b"
                 }
             }
-        }        
-    }
+        }
+    },
+    "meta": {}
 }
 ```
 
@@ -284,48 +287,60 @@ HTTP/1.1 201 Created
 Content-Type: application/json
 
 {
-   "data": {
-       "id": "585430d3f02852a8a9fac45e",
-       "type": "credential",
-       "attributes": {
-           "name": "CMS primary",
-           "keys": {
-               "oauth": {
-                   "key": "secret1"
-               }
-           }
-       },
+    "data": {
+        "id": "5abe11edbec1cf00078b81d1",
+        "type": "credential",
+        "links": {
+            "self": "/v2/credentials/5abe11edbec1cf00078b81d1"
+        },
+        "attributes": {
+            "name": "luzho4ek2",
+            "keys": {
+                "host": "sftp.company.org",
+                "username": "lord",
+                "password": "hdhajdha"
+            }
+        },
         "relationships": {
             "user": {
                 "data": {
-                    "id": "585430d3f02852a8a9fac45d",
+                    "id": "59d3562c68ed850019bde27f",
                     "type": "user"
                 },
                 "links": {
-                    "self": "/v2/users/585430d3f02852a8a9fac45d"
+                    "self": "/v2/users/59d3562c68ed850019bde27f"
                 }
             },
             "component": {
                 "data": {
-                    "id": "585430d2f02852a8a9fac456",
+                    "id": "56793fb4d8057406000000f7",
                     "type": "component"
                 },
                 "links": {
-                    "self": "/v2/components/585430d2f02852a8a9fac456"
+                    "self": "/v2/components/56793fb4d8057406000000f7"
+                }
+            },
+            "organization": {
+                "data": {
+                    "id": "59d341e9037f7200184a408b",
+                    "type": "organization"
+                },
+                "links": {
+                    "self": "/v2/organizations/59d341e9037f7200184a408b"
                 }
             },
             "agent": {
                 "data": {
-                    "id": "59a410d76b670400182f190e",
-                        "type": "agent"
-                    },
-                    "links": {
-                        "self": "/v2/agents/59a410d76b670400182f190e"
-                    }
+                    "id": "5a09deda2d5f49665afb739a",
+                    "type": "agent"
+                },
+                "links": {
+                    "self": "/v2/agents/5a09deda2d5f49665afb739a"
                 }
             }
-        }         
-   }
+        }
+    },
+    "meta": {}
 }
 ```
 
@@ -401,46 +416,60 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-   "data": {
-       "id": "585430d3f02852a8a9fac45e",
-       "type": "credential",
-       "attributes": {
-           "name": "CMS primary",
-           "keys": {
-                "key1": "updated value"
-           }
-       },
+    "data": {
+        "id": "5aaff19dbd6d6400079b4624",
+        "type": "credential",
+        "links": {
+            "self": "/v2/credentials/5aaff19dbd6d6400079b4624"
+        },
+        "attributes": {
+            "name": "luzho4ek777",
+            "keys": {
+                "host": "sftp.company.org",
+                "username": "asssssa",
+                "password": "qweqweqw"
+            }
+        },
         "relationships": {
-            "component": {
-                "data": {
-                    "id": "585430d2f02852a8a9facaaa",
-                    "type": "component"
-                },
-                "links": {
-                    "self": "/v2/component/585430d2f02852a8a9facaaa"
-                }                
-            },
             "user": {
                 "data": {
-                    "id": "585430d3f02852a8a9fac45d",
+                    "id": "59d3562c68ed850019bde27f",
                     "type": "user"
                 },
                 "links": {
-                    "self": "/v2/users/585430d3f02852a8a9fac45d"
+                    "self": "/v2/users/59d3562c68ed850019bde27f"
                 }
-            }
+            },
+            "component": {
+                "data": {
+                    "id": "56793fb4d8057406000000f7",
+                    "type": "component"
+                },
+                "links": {
+                    "self": "/v2/components/56793fb4d8057406000000f7"
+                }
+            },
+            "organization": {
+                "data": {
+                    "id": "59d341e9037f7200184a408b",
+                    "type": "organization"
+                },
+                "links": {
+                    "self": "/v2/organizations/59d341e9037f7200184a408b"
+                }
+            },
             "agent": {
                 "data": {
-                    "id": "59a410d76b670400182f190e",
-                        "type": "agent"
-                    },
-                    "links": {
-                        "self": "/v2/agents/59a410d76b670400182f190e"
-                    }
+                    "id": "5a09deda2d5f49665afb739a",
+                    "type": "agent"
+                },
+                "links": {
+                    "self": "/v2/agents/5a09deda2d5f49665afb739a"
                 }
-            }            
-        }              
-   }
+            }
+        }
+    },
+    "meta": {}
 }
 ```
 
