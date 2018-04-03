@@ -111,8 +111,7 @@ This resource allows you to retrieve a user by ID.
 
 
 ### Authorization
-This request is authorized to only a user with `TenantAdmin` role (contact support to get this role).
-
+This request is authorized to a user with `Admin` role to retrieve users belong to his Organization. User with `TenantAdmin` role (contact support to get this role) can retrieve users from all Organizations of the Tenant.
 
 #### Returns
 
