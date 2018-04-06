@@ -160,9 +160,6 @@ curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}
  }'
 ```
 
-```javascript
-TBD
-```
 
 
 > Example Response:
@@ -253,9 +250,6 @@ The component should be accessible to the client.
  }'
 ```
 
-```javascript
-TBD
-```
 
 
 > Example Response:
@@ -327,9 +321,6 @@ curl https://api.elastic.io/v2/exec/poll/{EXECUTION_ID} \
  -u {EMAIL}:{APIKEY}
 ```
 
-```javascript
-TBD
-```
 
 
 > Response "In progress":
@@ -405,9 +396,6 @@ curl https://api.elastic.io/v2/exec/result/{EXECUTION_ID}  \
  -u {EMAIL}:{APIKEY}
 ```
 
-```javascript
-TBD
-```
 
 > Response
 

@@ -26,9 +26,6 @@ curl https://api.elastic.io/v2/components \
    -H 'Accept: application/json'
 ```
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -193,9 +190,6 @@ curl https://api.elastic.io/v2/components/{COMPONENT_ID} \
    -H 'Accept: application/json'
 ```
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -361,9 +355,6 @@ curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions \
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -455,9 +446,6 @@ curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -586,9 +574,6 @@ curl https://api.elastic.io/v2/components/ \
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -678,9 +663,6 @@ curl https://api.elastic.io/v2/components/{COMPONENT_ID} \
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -758,9 +740,6 @@ curl https://api.elastic.io/v2/components/{COMPONENT_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -817,9 +796,6 @@ curl https://api.elastic.io/v2/components/{COMPONENT_ID}/env \
 
 ```
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -901,9 +877,6 @@ curl https://api.elastic.io/v2/components/{COMPONENT_ID}/env \
    }'
 ```
 
-```javascript
-TBD
-```
 
 > Example Response:
 

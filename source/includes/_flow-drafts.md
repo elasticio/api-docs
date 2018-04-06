@@ -14,9 +14,6 @@
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -183,9 +180,6 @@ Returns a flow draft
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -322,9 +316,6 @@ curl https://api.elastic.io/v2/flows/{FLOW_ID}/draft \
    -u {EMAIL}:{APIKEY}
 ```
 
-```
- TBD
-```
 
 This resource allows you to delete a flow draft.
 

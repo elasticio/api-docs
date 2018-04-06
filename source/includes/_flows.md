@@ -35,9 +35,6 @@
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -361,9 +358,6 @@ The flow with given ID
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -502,9 +496,6 @@ curl https://api.elastic.io/v2/flows/{FLOW_ID} \
 
 ```
 
-```javascript
-TBD
-```
 
 > Example response
 
@@ -642,9 +633,6 @@ curl https://api.elastic.io/v2/flows/{FLOW_ID}/start \
    -H 'Content-Type: application/json'
 ```
 
-```javascript
-TBD
-```
 
 > Example response
 
@@ -686,9 +674,6 @@ curl https://api.elastic.io/v2/flows/{FLOW_ID}/stop \
    -H 'Content-Type: application/json'
 ```
 
-```javascript
-TBD
-```
 
 > Example response
 
@@ -727,9 +712,6 @@ curl https://api.elastic.io/v2/flows/{FLOW_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
-```
- TBD
-```
 
 This resource allows you to delete a flow.
 

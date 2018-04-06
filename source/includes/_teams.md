@@ -12,9 +12,6 @@ curl https://api.elastic.io/v2/teams/ \
    -H 'Accept: application/json'
 ```
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -95,9 +92,6 @@ Returns teams metadata object if the call succeeded.
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -178,9 +172,6 @@ Returns teams metadata object if the call succeeded.
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -277,9 +268,6 @@ Returns teams metadata object if the call succeeded.
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -328,9 +316,6 @@ Returns teams metadata object if the call succeeded.
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 

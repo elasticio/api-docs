@@ -82,9 +82,6 @@ This resource allows you to retrieve all lookup tables.
    }'
 ```
 
-```
- TBD
-```
 
 > Example Response:
 
@@ -164,9 +161,6 @@ This resource allows you to retrieve all lookup tables.
    }'
 ```
 
-```
- TBD
-```
 
 This resource allows you to update a lookup table.
 
@@ -199,9 +193,6 @@ curl https://api.elastic.io/v2/organizations/{LOOKUP_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
-```
- TBD
-```
 
 This resource allows you to delete a lookup table.
 

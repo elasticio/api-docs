@@ -13,9 +13,6 @@ curl https://api.elastic.io/v2/agents \
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -87,9 +84,6 @@ curl https://api.elastic.io/v2/agents \
 ```
 
 
-```javascript
-TBD
-```
 
 > Example Response:
 

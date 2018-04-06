@@ -20,9 +20,6 @@
        }'
 ```
 
-```
- TBD
-```
 
 > Example Response:
 
@@ -89,9 +86,6 @@ Returns Organization object if the call succeeded
    -H 'Accept: application/json'
 ```
 
-```
- TBD
-```
 
 > Example Response:
 
@@ -220,9 +214,6 @@ include     | no       | Whether include or not full resource objects in respons
    -H 'Accept: application/json'
 ```
 
-```
- TBD
-```
 
 > Example Response:
 
@@ -298,9 +289,6 @@ ORGANIZATION_ID | The ID of the organization
    -H 'Accept: application/json'
 ```
 
-```
- TBD
-```
 
 > Example Response:
 
@@ -384,9 +372,6 @@ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/invites/ \
     }'
 ```
 
-```
- TBD
-```
 
 > Example Response:
 
@@ -471,9 +456,6 @@ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/ \
     }'
 ```
 
-```
- TBD
-```
 
 > Example Response:
 
@@ -547,9 +529,6 @@ curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}
     }'
 ```
 
-```
- TBD
-```
 
 > Example Response:
 
@@ -615,9 +594,6 @@ Returns member object if the call succeeded
     -u {EMAIL}:{APIKEY}
 ```
 
-```
- TBD
-```
 
 > Example Response:
 

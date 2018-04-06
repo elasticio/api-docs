@@ -10,9 +10,7 @@ curl https://api.elastic.io/v2/users/me \
    -H 'Accept: application/json'
 ```
 
-```javascript
-//TBD
-```
+
 
 > Example Response:
 
@@ -66,9 +64,7 @@ curl https://api.elastic.io/v2/users/{USER_ID} \
    -H 'Accept: application/json'
 ```
 
-```javascript
-//TBD
-```
+
 
 > Example Response:
 
@@ -180,9 +176,6 @@ curl https://api.elastic.io/v2/users/ \
    -H 'Accept: application/json'
 ```
 
-```javascript
-//TBD
-```
 
 > Example Response (default paging):
 
@@ -330,9 +323,6 @@ curl https://api.elastic.io/v2/users \
     }'
 ```
 
-```javascript
-//TBD
-```
 
 > Example Response:
 
@@ -405,9 +395,6 @@ curl https://api.elastic.io/v2/users/{USER_ID} \
     -u {EMAIL}:{APIKEY}
 ```
 
-```javascript
-//TBD
-```
 
 > Example Response:
 
