@@ -12,10 +12,6 @@ curl https://api.elastic.io/v2/credentials/?filter[component]={COMPONENT_ID} \
    -H 'Accept: application/json'
 ```
 
-```javascript
-// TBD
-```
-
 > Example Response:
 
 ```http
@@ -160,9 +156,6 @@ curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
    -H 'Accept: application/json'
 ```
 
-```javascript
-//TBD
-```
 
 > Example Response:
 
@@ -276,9 +269,6 @@ curl https://api.elastic.io/v2/credentials/ \
     }'
 ```
 
-```javascript
-//TBD
-```
 
 > Example Response:
 
@@ -405,9 +395,6 @@ curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
 ```
 
 
-```javascript
-//TBD
-```
 
 > Example Response:
 
@@ -511,9 +498,6 @@ curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
    -u {EMAIL}:{APIKEY}
 ```
 
-```javascript
-TBD
-```
 
 > Example Response:
 

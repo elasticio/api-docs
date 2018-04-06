@@ -11,9 +11,6 @@ curl https://api.elastic.io/v2/sshkeys/ \
    -H 'Accept: application/json'
 ```
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -99,9 +96,6 @@ curl https://api.elastic.io/v2/sshkeys/ \
 }'
 ```
 
-```javascript
-TBD
-```
 
 > Example Response:
 
@@ -181,9 +175,6 @@ curl https://api.elastic.io/v2/sshkeys/{KEY_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
-```javascript
-TBD
-```
 
 > Example Response:
 
