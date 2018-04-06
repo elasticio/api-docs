@@ -906,7 +906,7 @@ This endpoint replaces env vars for given component.
 
 ### HTTP Request
 
-``PUT https://api.elastic.io/v2/components/{COMPONENT_ID}/env`
+`PUT https://api.elastic.io/v2/components/{COMPONENT_ID}/env`
 
 ### URL Parameters
 
