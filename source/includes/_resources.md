@@ -1,11 +1,11 @@
 # Resources
 
-## Storage: Create a signed url
+## S3: Create a signed url
 
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v1/resources/storage/signed-url \
+curl https://api.elastic.io/v1/resources/s3/signed-url \
    -X POST  \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -17,7 +17,7 @@ var client = require('elasticio-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
-client.resources.storage
+client.resources.s3
     .createSignedUrl()
     .then(function(result) {
         // do something with the result
@@ -37,11 +37,11 @@ Content-Type: application/json
 }
 ```
 
-This endpoint creates a new signed url in Storage
+This endpoint creates a new signed url in S3
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/resources/storage/signed-url`
+`POST https://api.elastic.io/v1/resources/s3/signed-url`
 
 
 ### Returns
