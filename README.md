@@ -1,5 +1,7 @@
 # Introduction
 
+_This repo is deprecated, all the docs have been moved into api repository_
+
 The docs are generated with [Slate](https://github.com/tripit/slate).
 
 # Generating API docs
