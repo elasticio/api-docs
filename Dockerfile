@@ -1,10 +1,13 @@
 FROM ubuntu
 
-RUN apt-get update
-RUN apt-get install -y ruby rubygems ruby-dev build-essential
-RUN gem install bundler
-ADD config.rb /api-docs/
-ADD Gemfile /api-docs/
-ADD Gemfile.lock /api-docs/
 WORKDIR /api-docs
+
+RUN apt-get update && \
+    apt-get install -y ruby rubygems ruby-dev build-essential && \
+    gem install bundler
+
+COPY config.rb /api-docs/
+COPY Gemfile /api-docs/
+COPY Gemfile.lock /api-docs/
+
 RUN bundle install

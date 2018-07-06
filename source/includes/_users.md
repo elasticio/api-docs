@@ -1,25 +1,24 @@
 # Users
 
+Request / Role| Tenant Admin | Organization Admin | Integrator | Guest
+---------- | :---------:| :------------:| :-----------:| :----------:
+Retrieve your user|X|X|X|X|
+Retrieve a user by ID|X|X|X|X|
+Retrieve all users|X|-|-|-|
+Create a user|X|-|-|-|
+Delete a user|X|-|-|-|
+
 ## Retrieve your user
 
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v1/users \
+curl https://api.elastic.io/v2/users/me \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
-```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
 
-client.users.me()
-    .then(function(user) {
-        // do something with your user
-    });
-```
 
 > Example Response:
 
@@ -28,18 +27,30 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "id": "54f4be3fe7d5224f91000001",
-  "first_name": "John",
-  "last_name": "Doe",
-  "email": "test@example.com"
+  "data":{
+    "id":"59d22e7eeb865b0018adc248",
+    "type":"user",
+    "links":{
+      "self":"/v2/users/59d22e7eeb865b0018adc248"
+    },
+    "attributes":{
+      "first_name":"John",
+      "last_name":"Doe",
+      "email":"test@example.com",
+      "company":"company",
+      "registered":"2017-10-02T12:18:06.274Z",
+      "last_login":"2018-03-15T16:53:57.696Z"
+    }
+  },
+  "meta":{}
 }
 ```
 
-This endpoint returns your own user.
+This resource allows you to retrieve your user.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/users`
+`GET https://api.elastic.io/v2/users/me`
 
 
 #### Returns
@@ -47,123 +58,21 @@ This endpoint returns your own user.
 Returns a user object if the call succeeded.
 
 
-## Create a user
+
+
+
+
+## Retrieve a user by ID
 
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v1/users \
-   -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json' \
-   -H 'Content-Type: application/json' -d '
-   {
-      "first_name": "John",
-      "last_name": "Doe",
-      "email": "test@example.com",
-      "password": "secret",
-      "company": "Doe & Partners",
-      "organizations": [
-        {"id": "54f4be3fe7d5224f91000001"}
-      ]
-   }'
-```
-
-```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
-
-client.users.create({
-    "first_name": "John",
-    "last_name": "Doe",
-    "email": "test@example.com",
-    "password": "secret",
-    "company": "Doe & Partners",
-    "organizations": [
-        {"id": "54f4be3fe7d5224f91000001"}
-    ]
-}).then(function(user) {
-    // do something with the user
-});
-```
-
-> Example Response:
-
-```http
-HTTP/1.1 201 OK
-Content-Type: application/json
-
-{
-  "id": "54f4be3fe7d5224f91000001",
-  "first_name": "John",
-  "last_name": "Doe",
-  "email": "test@example.com",
-  "company": "Doe & Partners",
-  "api_secret":"7a00b1ec-a0a8-4cea-84d2-d26052c8b788"
-}
-```
-
-This endpoint registers a new user.
-
-### HTTP Request
-
-`POST https://api.elastic.io/v1/users`
-
-### Arguments
-
-Parameter | Required | Description
---------- | ----------- | -----------
-first_name | yes | The user's first name
-last_name | yes | The user's last name
-email | yes | The user's email
-password | yes | The user's password
-organizations | yes | An array of organizations to join
-company | no | The user's company
-callback | no | Callback Url to call the result with
-
-### Returns
-
-#### No Callback Provided
-A created user object.
-
-New user objects will be provided with an ``id`` and ``api_secret`` fields - these values cannot be created or edited by clients.
-
-The ``api_secret`` field is used to communicate with the API on user's behalf.
-
-#### With Callback Provided
-
-`{"message": "accepted"}`
-
-When the user is created the provided ``callback_url`` will be called with the resulting user object.
-
-New user objects will be provided with an ``id`` and ``api_secret`` fields - these values cannot be created or edited by clients.
-
-The ``api_secret`` field is used to communicate with the API on user's behalf.
-
-
-## Delete one of the created users
-
-This method works with following limitations:
-
- - You can only delete users that you created
- - You can not delete a user who's identity is provided via authentication for a call
-
-> Example Request:
-
-```shell
-curl https://api.elastic.io/v1/users/{USER_ID} \
-   -X DELETE \
+curl https://api.elastic.io/v2/users/{USER_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
-```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
 
-client.users.delete({USER_ID});
-```
 
 > Example Response:
 
@@ -172,14 +81,381 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "message" : "Successfully delete user id=123456789"
+  "data":{
+    "id":"59d3562c68ed850019bde27f",
+    "type":"user",
+    "links":{
+      "self":"/v2/users/59d3562c68ed850019bde27f"
+    },
+    "attributes":{
+      "first_name":"John",
+      "last_name":"Doe",
+      "email":"test@example.com",
+      "company":"company_name",
+      "registered":"2017-10-03T09:19:40.598Z",
+      "last_login":"2018-03-16T10:30:38.656Z"
+    }
+  },
+  "meta":{}
 }
 ```
 
+This resource allows you to retrieve a user by ID.
+
+
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v1/users/123456`
+`GET https://api.elastic.io/v2/users/{USER_ID}`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| USER_ID | yes | User identifier |
+
+
+### Authorization
+This request is authorized to a user with `Admin` role to retrieve users belong to his Organization. User with `TenantAdmin` role (contact support to get this role) can retrieve users from all Organizations of the Tenant.
 
 #### Returns
 
-Returns an HTTP 200 in case of successful deletion
+Returns a user object if the call succeeded.
+
+
+
+
+
+
+
+
+
+## Retrieve all users
+
+
+> Example Request (with paging):
+
+```shell
+curl https://api.elastic.io/v2/users/?page[size]=1&page[number]=5 \
+   -g \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+
+> Example Response (with paging):
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "data":[
+    {
+      "id":"560e5a27734d480a00000002",
+      "type":"user",
+      "links":{
+        "self":"/v2/users/560e5a27734d480a00000002"
+      },
+      "attributes":{
+        "first_name":"John",
+        "last_name":"Doe",
+        "email":"test@example.com",
+        "company":"company_name",
+        "registered":"2015-10-02T10:19:19.697Z",
+        "last_login":"2018-02-08T16:07:52.495Z"
+      }
+    }
+  ],
+  "meta":{
+    "page":1,
+    "per_page":1,
+    "total":646,
+    "total_pages":646
+  }
+}
+```
+
+> Example Request (default paging):
+
+```shell
+curl https://api.elastic.io/v2/users/ \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+
+> Example Response (default paging):
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "meta":{
+    "total":6,
+    "page":1,
+    "per_page":50,
+    "total_pages":1
+  },
+  "data":[
+    {
+      "id":"588f8b04b84a6a7f3e47668d",
+      "type":"user",
+      "attributes":{
+        "first_name":"Joannie",
+        "last_name":"Smitham",
+        "email":"client@my.org",
+        "company":"Ward - Wiegand"
+      }
+    },
+    {
+      "id":"588f8b04b84a6a7f3e47668e",
+      "type":"user",
+      "attributes":{
+        "first_name":"Eulalia",
+        "last_name":"Hyatt",
+        "email":"user-2@my.org",
+        "company":"Pfannerstill and Sons"
+      }
+    },
+    {
+      "id":"588f8b04b84a6a7f3e47668f",
+      "type":"user",
+      "attributes":{
+        "first_name":"Bertram",
+        "last_name":"Davis",
+        "email":"user-1@aliens.org",
+        "company":"Auer, Ebert and Ledner"
+      }
+    },
+    {
+      "id":"588f8b04b84a6a7f3e476690",
+      "type":"user",
+      "attributes":{
+        "first_name":"Marianne",
+        "last_name":"Sawayn",
+        "email":"client@outcast.org",
+        "company":"O'Kon, Abshire and Dooley"
+      }
+    },
+    {
+      "id":"588f8b04b84a6a7f3e476691",
+      "type":"user",
+      "attributes":{
+        "first_name":"Esta",
+        "last_name":"Abbott",
+        "email":"another@outcast.org",
+        "company":"Turcotte - Christiansen"
+      }
+    },
+    {
+      "id":"588f8b04b84a6a7f3e476692",
+      "type":"user",
+      "attributes":{
+        "first_name":"Kayleigh",
+        "last_name":"Howell",
+        "email":"tenant-admin@example.com",
+        "company":"Zemlak, Thiel and O'Kon"
+      }
+    }
+  ]
+}
+```
+
+
+
+This endpoint returns a list of users.
+
+
+
+### HTTP Request
+
+`GET https://api.elastic.io/v2/users/`
+
+### Query Parameters
+
+| Parameter | Required | Description | Default |
+| :--- | :--- | :--- | :--- |
+| page\[size\] | No | Amount of items per page | 50 |
+| page\[number\] | No | Number of page you want to display| 1 |
+
+
+### Authorization
+
+This request is authorized for a user with ``TenantAdmin`` role only. Contact support team to get this role.
+
+
+#### Returns
+
+Returns a list of user objects if the call succeeded.
+
+
+
+
+
+
+
+
+
+
+
+## Create a user
+
+> Example Request:
+
+```bash
+curl https://api.elastic.io/v2/users \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+    {
+        "data": {
+            "type": "user",
+            "attributes": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "email": "test@example.com",
+                "password": "secret11",
+                "company": "Doe & Partners"
+            },
+            "relationships": {
+                "organizations": {
+                    "data": [
+                        {"id": "54f4be3fe7d5224f91000001"}
+                    ]
+                }
+            }
+        }
+    }'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "data":{
+    "id":"5aabc258bd6d6400079b4592",
+    "type":"user",
+    "links":{
+      "self":"/v2/users/5aabc258bd6d6400079b4592"
+    },
+    "attributes":{
+      "first_name":"John",
+      "last_name":"Doe",
+      "email":"test@example.com",
+      "company":"Doe & Partners",
+      "registered":"2018-03-16T13:10:48.221Z",
+      "last_login":"2018-03-16T13:10:48.221Z"
+    }
+  },
+  "meta":{}
+}
+```
+
+This resource allows you to create a user.
+
+### HTTP Request
+
+`POST https://api.elastic.io/v2/users`
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``user`` |
+| attributes.first_name | yes | User's first name. |
+| attributes.last_name | yes | User's last name. |
+| attributes.email | yes | User's email. |
+| attributes.password | yes | User's password. |
+| attributes.company | no | User's company. |
+| relationships.organizations.data | yes | Organizations to join. |
+
+### Authorization
+
+This request is authorized only for a user with ``TenantAdmin`` role. Contact support team to get this role.
+
+### Returns
+
+New user objects will be provided with an ``id`` field - this value cannot be created or edited by clients.
+
+
+
+
+
+
+
+
+
+
+## Delete a user
+
+> Example Request:
+
+```shell
+curl https://api.elastic.io/v2/users/{USER_ID} \
+    -X DELETE \
+    -u {EMAIL}:{APIKEY}
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 204 No Content
+```
+
+This resource allows you to delete a user. When a user is deleted the following data will be deleted as well:
+
+
+* all teams, where the user is the only member
+* component repositories, which belongs to deleted teams
+* component builds, which belongs to deleted repositories
+* ssh keys
+* credentials
+* flows (active flows will be stopped)
+* user's object itself
+* all organizations, where the user is the only member
+
+
+### Not deleted immediately
+These data objects are deleted automatically (e.g. due to expiration), hence won't be deleted right after user deletion:
+
+* flows activity records (which used in order to show runlog)
+* logs of flow execution and repo build
+* invitations to a team or an organization
+* notifications
+* slugs (TBD)
+
+
+### Data associated with organization
+
+* If this user is a member of any Organization which has one more member beside him/her then this user needs to leave this Organization before his/her profile can be deleted.
+* If this user is the only member of Organization(s) then he/she will be deleted along with all the unique data connected with this user.
+
+
+
+### Public components
+If there is any public component, associated to the user and the component is used in not deleted flows of someone else, the user can not be deleted automaticaly – contact technical support.
+
+### Authorization
+This request is allowed with Organization Admin API key.
+
+   
+   
+
+### HTTP Request
+
+`DELETE https://api.elastic.io/v2/users/{USER_ID}`
+
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| USER_ID | yes | User identifier |
+

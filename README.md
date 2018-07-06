@@ -1,11 +1,14 @@
 # Introduction
 
-_This repo is deprecated, all the docs have been moved into api repository_
-
 The docs are generated with [Slate](https://github.com/tripit/slate).
 
 # Generating API docs
-You need a `bundler` Ruby package manager to be installed.
+
+if you have `docker` installed just run
+```bash
+./build.sh
+```
+if not then you need a `bundler` Ruby package manager to be installed.
 ````bash
 gem install bundler
 ````

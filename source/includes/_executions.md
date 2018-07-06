@@ -1,121 +1,339 @@
-#Scheduled Executions
+# Scheduled Executions
+
+## Preamble
+
+### What are scheduled executions?
+
+In order to set up usage of some component in a certain `node` in certain `Flow`, some available configuration options
+could not be described in advance, because they depend on the context in each case.
+
+Let's consider an example when we have a component with a module, which allows retrieving a list of goods from some
+e-commerce platform. In this case, we have few configuration parameters, which should be configured in order to use a
+component in some flow, but all available options are different for different e-commerce installations.
+
+The first such "dynamic" parameter is a category of a good. Each installation has its own set of goods categories.
+
+Goods in different categories have different attributes set, so the structure of data in messages (metadata), produced
+by the module is dependent on selected category. So metadata also should be retrieved for each case.
+
+And finally, each client uses own credential in order to connect connector with the e-commerce platform installation.
+Credential parameters have to be verified somehow before usage (at least in order to avoid confusing bugs while using
+component).
+
+
+In order to solve each of three problems above, there are so-called scheduled executions, which allow running special
+methods of a component.These methods are:
+
+- `selectModel` allows retrieving available options for certain parameter of configuration, when component/module is used in some node in some flow
+- `getMetaModel` allows retrieving metadata for certain configuration of some node of some flow
+- `verifyCredentials` allows verifying if a configuration of credential of a certain component is valid
+
+
+Each of the methods is executed in the same environment as a module of a component while executing of flows.
+
+
+### Scheduled execution workflow
 
 A component execution is an asynchronous operation. Upon an client request an execution is scheduled
 and needs to wait for the next available worker. Once a worker is available the component is executed
 and the results are sent back to the client. Because the results of an execution cannot be created and
 returned immediately the client needs to wait and poll for the results.
 
+
 For more details about asynchronous REST please read [RESTful CookBook](http://restcookbook.com/Resources/asynchroneous-operations/)
 and [A day in the life of - Asynchronous operations in REST](https://www.adayinthelifeof.nl/2011/06/02/asynchronous-operations-in-rest/).
 
+
 The following diagram displays the process of component scheduling:
 
-1. A component execution is scheduled by sending a request to ``exec/schedule``. The API responds with ``202 Accepted``. The resource in the ``Location`` HTTP header is the url to poll for execution results.
-2. The execution results are polled periodically by sending requests to the polling resource``exec/poll/{EXECUTION_ID}``. The API responds with ``200 OK`` if the result is not available yet.
-3. Once the result is available the polling resource responds with ``303 See Other``. The resource in the ``Location`` HTTP header is the url to get the results from.
-4. The results are retrieved from ``exec/result/{EXECUTION_ID}``. Please note that the result may be retrieved only once.
+1. A method execution is scheduled by sending a request corresponding endpoint (see below). The API responds with ``202 Accepted``.
+The resource in the ``Location`` HTTP header is the URL to poll for execution results.
+2. The execution result is polled periodically by sending requests to the polling resource``exec/poll/{EXECUTION_ID}``.
+The API responds with ``200 OK`` if the result is not available yet. Please see how to [poll execution results](#poll-a-result-of-an-execution).
+3. Once the result is available the polling resource responds with ``303 See Other``. The resource in the ``Location``
+HTTP header is the URL to get the results of the execution. Please see how to [poll execution results](#poll-a-result-of-an-execution).
+4. The results are retrieved from ``exec/result/{EXECUTION_ID}``. Please see how to [retrieve execution results](#retrieve-execution-result).
 
-![Component execution](images/exec_sequence_diagram.png "Component execution")
 
+![Scheduled Executions](../images/scheduled_executions.png)
 
-## Schedule a component execution
+Request / Role | Tenant Admin | Organization Admin | Integrator | Guest
+---------- | :---------:| :------------:| :-----------:| :----------:
+Verify credentials|- |X|X|X|
+Retrieve component’s metamodel|-|X|X|X|
+Retrieve component’s select model|-|X|X|X|
+Poll a result of an execution|X|X|X|X|
+Retrieve execution result|X|X|X|X|
 
+## Verify credentials
 
 > Example Request:
 
-
 ```shell
- curl https://api.elastic.io/v1/exec/schedule \
-   -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json' \
-   -H 'Content-Type: application/json' -d '
-    {
-      "execution_type": "get_meta_model",
-      "action_or_trigger": "put",
-      "component": "{CONNECTOR_ID}",
-      "account_id": "{ACCOUNT_ID}"
-    }'
-```
-
-```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
-
-client.exec.schedule({
-    "execution_type": "get_meta_model",
-    "action_or_trigger": "put",
-    "component": "{CONNECTOR_ID}",
-    "account_id": "{ACCOUNT_ID}"
-}).then(function(result) {
-
-    // location contains the url to poll for results
-    var location = result.location;
-});
+ curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/verify-credential \
+ -u {EMAIL}:{APIKEY} \ 
+ -X POST -H 'Content-Type: application/json' -d '
+ {
+     "data": {
+         "type": "verify-credential",
+         "attributes": {
+             "fields": {
+                 "apiKey" : "secret"
+             }
+         }
+     }
+ }'
 ```
 
 > Example Response:
 
 ```http
 HTTP/1.1 202 Accepted
-Content-Type: application/json
-Location: 'https://api.elastic.io/v1/exec/poll/540492e623773659c5000002'
+Content-Type: application/json; charset=utf-8
+Location: 'https://api.elastic.io/v2/exec/poll/58becb8259a65f18c5c60eb0'
 
 {
-  "message": "ok"
+  "data":{
+    "id":"5aaf90a2d0516d00077556cf",
+    "type":"execution-result",
+    "links":{
+      "self":"/v2/exec/result/5aaf90a2d0516d00077556cf"
+    },
+    "attributes":{
+      "result":{
+
+      },
+      "status":"Pending request, waiting other process"
+    }
+  },
+  "meta":{}
 }
 ```
 
-Using this endpoint you can schedule a component execution.
-It responds with the resource to poll on, in order to get the result of the scheduled execution.
+This resource allows you to verify credentials. The verification credential is an asynchronous process because it is
+accomplished by sending a request to an external API. The entire process is described [here](#preamble). This page
+describes how to perform the 1st step of this process. Please also read details on
+[polling execution results](#poll-a-result-of-an-execution) and [retrieving execution results](#retrieve-execution-result).
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/exec/schedule`
+`POST https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/verify-credential`
 
-Parameter| Required | Description | Used in
---------- | -----------| ----------- | -----------
-execution_type | yes | "get_meta_model", "select_model" or "verify_credentials" | all requests
-component | yes | Specifies id of the connector to be executed | all requests
-account_data | yes | Account data for validation | verify_credentials
-action_or_trigger | yes | The name of action or trigger from connector | get_meta_model, select_model
-account_id | yes | Account id | get_meta_model, select_model
-model_method | yes | Name of the method from action or trigger to execute | select_model
-cfg | no | Object with additional parameters | get_meta_model, select_model
+#### Authorization
+
+The component should be accessible to the client.
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| COMPONENT_ID | Yes | Name of a component's module. |
+| GIT_REVISION | Yes | Revision of the component’s build. For available versions see [here](#retrieve-component-versions). For latest version use ``latest``. |
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | Yes | A value must be ``verify-credential``. |
+| attributes.fields | Yes | An object which represents the configuration of credential. The semantics are same as in [creating a credential](#create-a-credential).
+| relationships.agent.data.id | No | ID of the agent |
+| relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
+
+## Retrieve component's metamodel
+
+> Example Request:
 
 
-### Returns
+```shell
+curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/dynamic-metadata \
+ -u {EMAIL}:{APIKEY} \
+ -X POST -H 'Content-Type: application/json' -d '
+ {
+    "data": {
+        "type": "dynamic-metadata",
+        "attributes": {
+            "module": "{MODULE}",
+            "fields": {
+                "some_field" : "value",
+                "another_field" : "another_value"
+            }
+        },
+        "relationships": {
+            "credential": {
+                "data": {
+                    "id": "{CREDENTIAL_ID}",
+                    "type": "credential"
+                }
+            }
+        }
+    }
+ }'
+```
 
-Responds with 202 Accepted and a 'Location' header.
-The 'Location' header specifies a resource to poll on until the execution result is ready.
 
-## Poll execution result status
+
+> Example Response:
+
+```http
+HTTP/1.1 202 Accepted
+Content-Type: application/json; charset=utf-8
+Location: 'https://api.elastic.io/v2/exec/poll/58becb8359a65f18c5c60ec4'
+
+{
+  "data":{
+    "id":"5aaf9d5bd0516d000775621c",
+    "type":"execution-result",
+    "links":{
+      "self":"/v2/exec/result/5aaf9d5bd0516d000775621c"
+    },
+    "attributes":{
+      "result":{
+
+      },
+      "status":"Pending request, waiting other process"
+    }
+  },
+  "meta":{}
+}
+```
+
+This resource allows you to retrieve component's metamodel. The retrieval of metamodel is an asynchronous process
+because it is accomplished by sending a request to an external API. The entire process is described [here](#preamble).
+This page describes how to perform the 1st step of this process. Please also read details on
+[polling execution results](#poll-a-result-of-an-execution) and [retrieving execution results](#retrieve-execution-result).
+
+
+### HTTP Request
+
+`POST https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/dynamic-metadata`
+
+#### Authorization
+
+The component should be accessible to the client.
+
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| COMPONENT_ID | Yes | Name of a component's module. |
+| GIT_REVISION | Yes | Revision of the component’s build. For available versions see [here](#retrieve-component-versions). For latest version use ``latest``. |
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | Yes | A value must be ``dynamic-metadata``. |
+| attributes.module | Yes | Name of the component's module as defined in ``component.json``. |
+| attributes.fields | Yes | Contains values for component's fields. Semantics are same as defining fields for a node in a [flow graph](#create-a-flow).
+| relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
+| relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
+| relationships.agent.data.id | No | ID of the agent |
+| relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
+
+## Retrieve component's select model
+
+> Example Request:
+
+```shell
+ curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_HASH}/select-model\
+ -u {EMAIL}:{APIKEY} \ 
+ -X POST -H 'Content-Type: application/json' -d '
+ {
+    "data": {
+        "type": "select-model",
+        "attributes": {
+            "module": "{MODULE}",
+            "method": "{METHOD}",
+            "fields": {
+                "some_field" : "value",
+                "another_field" : "another_value"
+            }
+        },
+        "relationships": {
+            "credential": {
+                "data": {
+                    "id": "{CREDENTIAL_ID}",
+                    "type": "credential"
+                }
+            }
+        }
+    }
+ }'
+```
+
+
+
+> Example Response:
+
+```http
+HTTP/1.1 202 Accepted
+Content-Type: application/json; charset=utf-8
+Location: 'https://api.elastic.io/v2/exec/poll/58becb8059a65f18c5c60e41'
+{
+  "data":{
+    "id":"5aafb9e1d0516d0007757b71",
+    "type":"execution-result",
+    "links":{
+      "self":"/v2/exec/result/5aafb9e1d0516d0007757b71"
+    },
+    "attributes":{
+      "result":{
+
+      },
+      "status":"Pending request, waiting other process"
+    }
+  },
+  "meta":{}
+}
+```
+
+
+This resource allows you to retrieve component's select model. The retrieval of select model is an asynchronous process because it is
+accomplished by sending a request to an external API. The entire process is described [here](#preamble). This page
+describes how to perform the 1st step of this process. Please also read details on
+[polling execution results](#poll-a-result-of-an-execution) and [retrieving execution results](#retrieve-execution-result).
+
+
+### HTTP Request
+
+`POST https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_HASH}/select-model`
+
+#### Authorization
+
+The component should be accessible to the client.
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| COMPONENT_ID | yes | Name of a component's module. |
+| GIT_REVISION | Yes | Revision of the component’s build. For available versions see [here](#retrieve-component-versions). For latest version use ``latest``. |
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | Yes | A value must be ``select-model`` |
+| attributes.module | Yes | Name of the component's module as defined in ``component.json``. |
+| attributes.method | Yes | Name of the method, which returns select model data. |
+| attributes.fields | Yes | Contains values for component's fields. Semantics are same as defining fields for a node in a [flow graph](#create-a-flow).
+| relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
+| relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
+| relationships.agent.data.id | No | ID of the agent |
+| relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
+
+## Poll a result of an execution
 
 
 > Example Request:
 
 
 ```shell
-curl https://api.elastic.io/v1/exec/poll/{EXECUTION_ID} \
-   -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json'
+curl https://api.elastic.io/v2/exec/poll/{EXECUTION_ID} \
+ -u {EMAIL}:{APIKEY}
 ```
 
-```javascript
-var client = require('elasticio-rest-node')(
-    'YOUR_EMAIL', 'YOUR_API_KEY'
-);
-
-client.exec.pollResult({EXECUTION_ID})
-    .then(function(response) {
-        if (response.ready) {
-            // do something with the result
-            var result = response.result;
-       } else {
-            // poll again
-       }
-    });
-```
 
 
 > Response "In progress":
@@ -123,9 +341,21 @@ client.exec.pollResult({EXECUTION_ID})
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-
 {
-  "message": "Result is not ready yet"
+  "data":{
+    "type":"execution-result",
+    "id":"58becb8059a65f18c5c60e41",
+    "attributes":{
+      "result":{
+
+      },
+      "status":"Pending request, waiting other process"
+    },
+    "links":{
+      "self":"/v2/exec/result/58becb8059a65f18c5c60e41"
+    }
+  },
+  "meta":{}
 }
 ```
 
@@ -134,91 +364,97 @@ Content-Type: application/json
 ```http
 HTTP/1.1 303 See Other
 Content-Type: application/json
-Location: 'https://api.elastic.io/v1/exec/result/540492e623773659c5000002'
+Location: /v2/exec/result/58becb8059a65f18c5c60e41
 
 {
-  "message": "Ready."
+  "data":{},
+  "meta":{}
 }
 ```
 
-This endpoint provides information about the status of a scheduled component execution. Once the execution is done, the endpoint responds with status code 303 and provides a resource to query the result in the 'Location' header.
+
+This resource allows you to poll a result of an execution. Once the execution is done, the endpoint responds with
+``HTTP 303`` and provides a resource for querying the result in the ``Location`` header.
+
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/exec/poll/{EXECUTION_ID}`
+`GET https://api.elastic.io/v2/exec/poll/{EXECUTION_ID}`
 
-Parameter| Required | Description
---------- | -----------| -----------
-EXECUTION_ID | yes | The id of a previously scheduled execution
+### URL Parameters
 
-### Returns
-
-Status Code| Body | Header |Description
---------- | -----------| ----------- | -----------
-500 | `{message: 'Internal Server Error'}` | - | An error occured on the server
-404 | `{message: 'Result does not exist.'}` | - | An attempt to poll for a non scheduled execution was made
-404 | `{message: 'Expired.'}` | - | The execution has expired
-200 | `{message: 'Result not ready yet.'}` | - | The execution hasn't completed yet
-303 | `{ message: "Ready." }` | Location | The execution is finished and the result is ready. Resource to get the result is found in the 'Location header'
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| EXECUTION_ID	 | yes | Execution identifier.|
 
 
-## Get execution result
+### Response status codes
+
+| Status Code | Header   | Description |
+| :--- | :--- | :--- |
+| 200 | -        | The execution is still in progress.
+| 303 | Location | The execution is finished and the result is ready. Resource to get the result is found in the ``Location`` header.
+| 500 | -        | Internal server error
+| 404 | -        | The execution does not exist (e.g. an attempt to poll for a non scheduled execution was made)
+
+
+
+## Retrieve execution result
 
 
 > Example Request:
 
 
 ```shell
-curl https://api.elastic.io/v1/exec/result/{EXECUTION_ID} \
-   -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json'
+curl https://api.elastic.io/v2/exec/result/{EXECUTION_ID}  \
+ -u {EMAIL}:{APIKEY}
 ```
 
-```javascript
-// As client.exec.pollResult will follow the HTTP 3003 redirect,
-// Node.js client does not provide extra functionality to retrieve the results.
-// Read the docs of client.exec.pollResult above.
-```
 
-> Response "Result available"
+> Response
 
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-
 {
-  "data": {
-    "some": "value"
-  }
+  "data":{
+    "id":"5aafcd56d0516d0007758cff",
+    "type":"execution-result",
+    "links":{
+      "self":"/v2/exec/result/5aafcd56d0516d0007758cff"
+    },
+    "attributes":{
+      "result":{
+        "data":{
+          "some_field_of_result":"value",
+          "another_field":"another_value"
+        }
+      }
+    }
+  },
+  "meta":{}
 }
 ```
 
-> Response "Result not found"
-
-```http
-HTTP/1.1 404 Not found
-Content-Type: application/json
-
-{
-  "message": "Result does not exist"
-}
-```
-
-This endpoint exposes the component execution result(error) and is the final resource to call in the component execution flow in the API.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/exec/result/{EXECUTION_ID}`
+`GET https://api.elastic.io/v2/exec/result/{EXECUTION_ID}`
 
-Parameter| Required | Description
---------- | -----------| -----------
-EXECUTION_ID | yes | The id of a previously scheduled execution
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| EXECUTION_ID | yes | Execution identifier. |
+
+### Response status codes
+
+| Status Code | Description |
+| :--- | :--- |
+| 200 | The execution result is ready.
+| 409 | The execution result is not ready yet.
 
 ### Returns
 
-Status Code| Body | Header |Description
---------- | ----------- | ----------- | -----------
-500 | `{message: 'Internal Server Error'}` | - | An error occurred on the server
-404 | `{message: 'Result does not exist.'}` | - | An attempt to poll for a non scheduled execution was made
-400 | `{message: 'Rejected.', reason: {...}}` | - | The execution has resulted in an error. The body of the response will contain the error object under the 'reason' property of the response.
-200 | `{ data: {...} }` | - | The json representation of the execution result can be found under the 'data' property of the response.
+This endpoint returns a result of the execution. When execution is in progress and result is not ready yet, HTTP status code 409 is returned.

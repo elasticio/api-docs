@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-docker build -t api-docs .
-CURRENT_DIR=$(pwd)
-docker run -it -v $CURRENT_DIR:/api-docs api-docs:latest  bundle exec middleman build
+DIRECTORY=$(cd `dirname $0` && pwd)
+
+docker build -t api-docs:latest ${DIRECTORY}/.
+docker run --rm -it -v ${DIRECTORY}:/api-docs api-docs:latest bundle exec middleman build
+cp -a ${DIRECTORY}/build/. ${DIRECTORY}/../public/docs/
