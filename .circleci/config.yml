@@ -2,7 +2,7 @@ version: 2
 jobs:
     build-and-push-docker-image:
         docker:
-            - image: circleci/ubuntu-14.04-xxl-1325-0ccc9ce
+            - image: circleci/node:8-stretch
         steps:
             - checkout
             - setup_remote_docker
