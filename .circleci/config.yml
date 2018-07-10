@@ -1,0 +1,35 @@
+version: 2
+jobs:
+    build-and-push-docker-image:
+        docker:
+            - image: circleci/ubuntu
+        steps:
+            - checkout
+            - setup_remote_docker
+            - run:
+                name: Building Docker Image
+                command: docker build -t elasticio/api-docs:${CIRCLE_SHA1} .
+            - run:
+                name: Tagging Docker Images
+                command: docker tag elasticio/api-docs:${CIRCLE_SHA1} elasticio/api-docs:${CIRCLE_BRANCH}
+            - run:
+                name: Logging in into Docker Hub
+                command: docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
+            - run:
+                name: Pushing Revisioned Docker Image
+                command: docker push elasticio/api-docs:${CIRCLE_SHA1}
+            - run:
+                name: Pushing Branched Docker Image
+                command: docker push elasticio/api-docs:${CIRCLE_BRANCH}
+
+workflows:
+    version: 2
+    build_and_test:
+        jobs:
+            - build-and-push-docker-image:
+                filters:
+                    branches:
+                        only:
+                            - master
+                            - release
+                            - /^stage.+/
