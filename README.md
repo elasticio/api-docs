@@ -47,16 +47,17 @@ docker run -p 8081:80 -d api-docs
 ## 2. "Manually"
 
 1. Install required tools
-```
-apt-get update && \
-    apt-get install -y ruby rubygems ruby-dev build-essential && \
-    gem install bundler && \
-    bundle install
-```
+    ```
+    apt-get update && \
+        apt-get install -y ruby rubygems ruby-dev build-essential && \
+        gem install bundler && \
+        bundle install
+    ```
 2. Create directory `source` and paste there files from `source_{SOME_API_VER}`
 3. Run
-```
-bundle exec middleman build
-```
+    ```
+    bundle exec middleman build
+    ```
 This command will create directory `build` with static website files.
+
 4. Open `build/index.html` in browser
