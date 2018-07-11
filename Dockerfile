@@ -1,4 +1,4 @@
-FROM nginx:stable
+FROM nginx:stable as base
 
 WORKDIR /usr/src/app
 
@@ -11,11 +11,16 @@ COPY Rakefile /usr/src/app/Rakefile
 COPY source_v1 /usr/src/app/source_v1
 COPY source_v2 /usr/src/app/source_v2
 
+FROM base as dependencies
+
 RUN apt-get update && \
     apt-get install -y ruby rubygems ruby-dev build-essential && \
     gem install bundler && \
-    bundle install && \
-    echo "building for api_v1" && \
+    bundle install
+
+FROM dependencies as release
+
+RUN echo "building for api_v1" && \
     echo "copy source_v1 to source" && \
     cp -a ./source_v1 ./source && \
     echo "run middleman build" && \
