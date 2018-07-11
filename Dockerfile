@@ -1,26 +1,24 @@
-FROM nginx:stable as base
+FROM nginx:stable AS base
 
 WORKDIR /usr/src/app
 
 RUN rm /etc/nginx/nginx.conf
 
 COPY .nginx/.conf /etc/nginx/nginx.conf
+
+FROM base AS dependencies
+
 COPY config.rb /usr/src/app/config.rb
 COPY Gemfile /usr/src/app/Gemfile
 COPY Rakefile /usr/src/app/Rakefile
 COPY source_v1 /usr/src/app/source_v1
 COPY source_v2 /usr/src/app/source_v2
 
-FROM base as dependencies
-
 RUN apt-get update && \
     apt-get install -y ruby rubygems ruby-dev build-essential && \
     gem install bundler && \
-    bundle install
-
-FROM dependencies as release
-
-RUN echo "building for api_v1" && \
+    bundle install && \
+    echo "building for api_v1" && \
     echo "copy source_v1 to source" && \
     cp -a ./source_v1 ./source && \
     echo "run middleman build" && \
@@ -43,6 +41,11 @@ RUN echo "building for api_v1" && \
     echo "copy build to build_v2" && \
     mv ./build ./build_v2
 
-EXPOSE 80
+FROM base AS release
+
+COPY --from=dependencies /usr/src/app/build_v1 ./build_v1
+COPY --from=dependencies /usr/src/app/build_v2 ./build_v2
+
+EXPOSE 8000
 
 CMD nginx -g "daemon off;"
