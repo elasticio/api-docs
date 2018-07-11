@@ -25,7 +25,7 @@
             "spec": {
                 "containers": [{
                     "name": "api-docs",
-                    "image": "elasticio/api-docs:api-t-792",
+                    "image": "elasticio/api-docs:master",
                     "envFrom": [],
                     "env": [],
                     "livenessProbe": {

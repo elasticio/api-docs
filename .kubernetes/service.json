@@ -20,6 +20,6 @@
     "selector": {
       "app": "api-docs"
     },
-    "type": "NodePort"
+    "type": "ClusterIP"
   }
 }
