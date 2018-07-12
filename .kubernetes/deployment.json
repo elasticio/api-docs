@@ -3,7 +3,7 @@
     "apiVersion": "apps/v1",
     "metadata": {
         "name": "api-docs",
-        "namespace": "default",
+        "namespace": "platform",
         "labels": {
             "app": "api-docs"
         }
@@ -62,7 +62,7 @@
                     }
                 }],
                 "imagePullSecrets": [{
-                    "name": "secret11"
+                    "name": "elasticiodevops"
                 }],
                 "restartPolicy": "Always",
                 "terminationGracePeriodSeconds": 30
