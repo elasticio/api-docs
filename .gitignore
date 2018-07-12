@@ -10,3 +10,4 @@ reports
 coverage
 .env
 build
+build_v*
