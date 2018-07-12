@@ -32,7 +32,7 @@
                         "initialDelaySeconds": 10,
                         "periodSeconds": 3,
                         "httpGet": {
-                            "port": 80,
+                            "port": 8000,
                             "path": "/healthcheck"
                         }
                     },
@@ -40,7 +40,7 @@
                         "initialDelaySeconds": 10,
                         "periodSeconds": 3,
                         "httpGet": {
-                            "port": 80,
+                            "port": 8000,
                             "path": "/healthcheck"
                         }
                     },
