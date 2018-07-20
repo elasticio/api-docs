@@ -25,10 +25,10 @@ RUN apt-get update && \
     bundle exec middleman build && \
     echo "remove dir source" && \
     rm -rf ./source && \
-    echo "remove dir build_v1" && \
-    rm -rf ./build_v1 && \
-    echo "copy build to build_v1" && \
-    mv ./build ./build_v1 && \
+    echo "remove dir v1" && \
+    rm -rf ./v1 && \
+    echo "copy build to v1" && \
+    mv ./build ./v1 && \
     echo "building for api_v2" && \
     echo "copy source_v2 to source" && \
     cp -a ./source_v2 ./source && \
@@ -36,15 +36,16 @@ RUN apt-get update && \
     bundle exec middleman build && \
     echo "remove dir source" && \
     rm -rf ./source && \
-    echo "remove dir build_v2" && \
-    rm -rf ./build_v2 && \
-    echo "copy build to build_v2" && \
-    mv ./build ./build_v2
+    echo "remove dir v2" && \
+    rm -rf ./v2 && \
+    echo "copy build to v2" && \
+    mv ./build ./v2
 
 FROM base AS release
 
-COPY --from=dependencies /usr/src/app/build_v1 ./build_v1
-COPY --from=dependencies /usr/src/app/build_v2 ./build_v2
+COPY --from=dependencies /usr/src/app/v1 ./v1
+COPY --from=dependencies /usr/src/app/v2 ./v2
+COPY ./docs ./docs
 
 EXPOSE 8000
 
