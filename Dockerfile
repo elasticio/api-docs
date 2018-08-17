@@ -13,6 +13,7 @@ COPY Gemfile /usr/src/app/Gemfile
 COPY Rakefile /usr/src/app/Rakefile
 COPY source_v1 /usr/src/app/source_v1
 COPY source_v2 /usr/src/app/source_v2
+COPY docs /usr/src/app/docs
 
 ARG toc_footer="<a href='http://www.elastic.io/en/demo-request/'>Sign Up for a Developer Key</a>"
 ARG api_base_url="https://api.elastic.io"
@@ -58,13 +59,7 @@ FROM base AS release
 
 COPY --from=dependencies /usr/src/app/v1 ./v1
 COPY --from=dependencies /usr/src/app/v2 ./v2
-COPY ./docs ./docs
-RUN for f in `grep -rl "{{ toc_footer }}" docs/*` ; do sed -i "s%{{ toc_footer }}%$toc_footer%g" $f ; done
-RUN for f in `grep -rl "{{ api_base_url }}" docs/*` ; do sed -i "s%{{ api_base_url }}%$api_base_url%g" $f ; done
-RUN for f in `grep -rl "{{ product_name }}" docs/*` ; do sed -i "s%{{ product_name }}%$product_name%g" $f ; done
-RUN for f in `grep -rl "{{ logo_url }}" docs/*` ; do sed -i "s%{{ logo_url }}%$logo_url%g" $f ; done
-RUN for f in `grep -rl "{{ repo_name }}" docs/*` ; do sed -i "s%{{ repo_name }}%$repo_name%g" $f ; done
-RUN for f in `grep -rl "{{ docs_url }}" docs/*` ; do sed -i "s%{{ docs_url }}%$docs_url%g" $f ; done
+COPY --from=dependencies /usr/src/app/docs ./docs
 
 EXPOSE 8000
 
