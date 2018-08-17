@@ -15,13 +15,13 @@
         "name" : "WebHook to Mailchimp",
         "nodes" : [
             {
-                "function" : "elasticio/webhook:receive",
+                "function" : "{{ repo_name }}/webhook:receive",
                 "config": {
                     "payload": "email,first,last"
                 }
             },
             {
-                "function" : "elasticio/mapper:map",
+                "function" : "{{ repo_name }}/mapper:map",
                 "config": {
                     "mapper" : {
                         "lastName" : "{{last}}",
@@ -48,7 +48,7 @@
 
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -56,13 +56,13 @@ client.tasks.create({
     "name" : "WebHook to Mailchimp",
     "nodes" : [
         {
-            "function" : "elasticio/webhook:receive@1234abc",
+            "function" : "{{ repo_name }}/webhook:receive@1234abc",
             "config": {
                 "payload": "email,first,last"
             }
         },
         {
-            "function" : "elasticio/mapper:map",
+            "function" : "{{ repo_name }}/mapper:map",
             "config": {
                 "mapper" : {
                     "lastName" : "{{last}}",
@@ -143,7 +143,7 @@ curl -X POST {{ api_base_url }}/v1/tasks/start/{TASK_ID} \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -192,7 +192,7 @@ curl -X POST {{ api_base_url }}/v1/tasks/stop/{TASK_ID} \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -240,7 +240,7 @@ curl -X DELETE {{ api_base_url }}/v1/tasks/{TASK_ID} \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 

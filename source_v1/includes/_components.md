@@ -13,7 +13,7 @@ curl {{ api_base_url }}/v1/components/mine \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -92,7 +92,7 @@ curl {{ api_base_url }}/v1/components/public \
 
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -189,7 +189,7 @@ curl {{ api_base_url }}/v1/components/{COMPONENT_ID} \
 
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -259,7 +259,7 @@ Content-Type: application/json
     "icon": "iVBORw0KGgoAAAANSUhEAAASUVORK5CYII="
   },
   "name": "mock-component",
-  "team": "elasticio"
+  "team": "{{ repo_name }}"
 }
 ```
 

@@ -13,7 +13,7 @@ curl {{ api_base_url }}/v1/sshkey/ \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -70,7 +70,7 @@ Returns a ssh key's metadata object if the call succeeded. The returned object w
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -131,7 +131,7 @@ curl {{ api_base_url }}/v1/sshkey/{KEY_ID} \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 

@@ -42,7 +42,7 @@ Content-Type: application/json
         "nodes":[
           {
             "id":"step_1",
-            "command":"elasticio/timer:timer@latest",
+            "command":"{{ repo_name }}/timer:timer@latest",
             "name":"",
             "description":"",
             "agent_id":"5a09deda2d5f49665afb739a",
@@ -52,14 +52,14 @@ Content-Type: application/json
           },
           {
             "id":"step_2",
-            "command":"elasticio/email:send@latest",
+            "command":"{{ repo_name }}/email:send@latest",
             "name":"",
             "description":"",
             "agent_id":"5a09deda2d5f49665afb739a"
           },
           {
             "id":"step_3",
-            "command":"elasticio/code:execute@latest",
+            "command":"{{ repo_name }}/code:execute@latest",
             "name":"",
             "description":"",
             "agent_id":"5a09deda2d5f49665afb739a",
@@ -156,14 +156,14 @@ Returns a flow draft
             "nodes": [
               {
                 "id": "step_1",
-                "command": "elasticio/timer:timer",
+                "command": "{{ repo_name }}/timer:timer",
                 "fields": {
                   "interval": "minute"
                 }
               },
               {
                 "id": "step_2",
-                "command": "elasticio/email:send"
+                "command": "{{ repo_name }}/email:send"
               }
             ],
             "edges": [
@@ -208,7 +208,7 @@ Content-Type: application/json
         "nodes":[
           {
             "id":"step_1",
-            "command":"elasticio/timer:timer@latest",
+            "command":"{{ repo_name }}/timer:timer@latest",
             "name":"",
             "description":"",
             "agent_id":"5a09deda2d5f49665afb739a",
@@ -218,14 +218,14 @@ Content-Type: application/json
           },
           {
             "id":"step_2",
-            "command":"elasticio/email:send@latest",
+            "command":"{{ repo_name }}/email:send@latest",
             "name":"",
             "description":"",
             "agent_id":"5a09deda2d5f49665afb739a"
           },
           {
             "id":"step_3",
-            "command":"elasticio/code:execute@latest",
+            "command":"{{ repo_name }}/code:execute@latest",
             "name":"",
             "description":"",
             "agent_id":"5a09deda2d5f49665afb739a",

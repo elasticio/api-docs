@@ -11,7 +11,7 @@ curl {{ api_base_url }}/v1/repos/ \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -55,7 +55,7 @@ curl {{ api_base_url }}/v1/repos/{REPO_ID} \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -109,7 +109,7 @@ curl {{ api_base_url }}/v1/repos/ \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -165,7 +165,7 @@ curl {{ api_base_url }}/v1/repos/{REPO_ID} \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -205,7 +205,7 @@ curl {{ api_base_url }}/v1/repos/{REPO_ID}/env/ \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -258,7 +258,7 @@ curl {{ api_base_url }}/v1/repos/{REPO_ID}/env/ \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 

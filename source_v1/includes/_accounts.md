@@ -13,7 +13,7 @@ curl {{ api_base_url }}/v1/accounts/ \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -67,7 +67,7 @@ curl {{ api_base_url }}/v1/accounts/{ACCOUNT_ID}/ \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -133,7 +133,7 @@ Returns an account object if the call succeeded.
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -209,7 +209,7 @@ curl {{ api_base_url }}/v1/accounts/{ACCOUNT_ID}/ \
 
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 

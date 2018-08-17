@@ -73,7 +73,7 @@ Content-Type: application/json
           "nodes":[
             {
               "id":"step_1",
-              "command":"elasticio/timer:timer",
+              "command":"{{ repo_name }}/timer:timer",
               "name":"",
               "description":"",
               "fields":{
@@ -82,7 +82,7 @@ Content-Type: application/json
             },
             {
               "id":"step_2",
-              "command":"elasticio/email:send",
+              "command":"{{ repo_name }}/email:send",
               "name":"",
               "description":""
             }
@@ -219,7 +219,7 @@ Content-Type: application/json
         "nodes":[
           {
             "id":"step_1",
-            "command":"elasticio/timer:timer",
+            "command":"{{ repo_name }}/timer:timer",
             "name":"",
             "description":"",
             "fields":{
@@ -228,7 +228,7 @@ Content-Type: application/json
           },
           {
             "id":"step_2",
-            "command":"elasticio/email:send",
+            "command":"{{ repo_name }}/email:send",
             "name":"",
             "description":""
           }
@@ -333,13 +333,13 @@ The flow with given ID
                 "nodes": [
                     {
                         "id": "step_1",
-                        "command": "elasticio/timer:timer@latest",
+                        "command": "{{ repo_name }}/timer:timer@latest",
                         "fields": {
                             "interval": "minute"
                         }
                      },
                     {
-                        "command": "elasticio/email:send@latest",
+                        "command": "{{ repo_name }}/email:send@latest",
                         "fields": {},
                         "id": "step_2"
                                             }
@@ -394,7 +394,7 @@ Content-Type: application/json
         "nodes":[
           {
             "id":"step_1",
-            "command":"elasticio/timer:timer",
+            "command":"{{ repo_name }}/timer:timer",
             "name":"",
             "description":"",
             "fields":{
@@ -403,7 +403,7 @@ Content-Type: application/json
           },
           {
             "id":"step_2",
-            "command":"elasticio/email:send",
+            "command":"{{ repo_name }}/email:send",
             "name":"",
             "description":""
           }
@@ -532,7 +532,7 @@ Content-Type: application/json
         "nodes":[
           {
             "id":"step_1",
-            "command":"elasticio/timer:timer",
+            "command":"{{ repo_name }}/timer:timer",
             "name":"",
             "description":"",
             "fields":{
@@ -541,7 +541,7 @@ Content-Type: application/json
           },
           {
             "id":"step_2",
-            "command":"elasticio/email:send",
+            "command":"{{ repo_name }}/email:send",
             "name":"",
             "description":""
           }

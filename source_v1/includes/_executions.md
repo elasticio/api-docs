@@ -38,7 +38,7 @@ The following diagram displays the process of component scheduling:
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -102,7 +102,7 @@ curl {{ api_base_url }}/v1/exec/poll/{EXECUTION_ID} \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 

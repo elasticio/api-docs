@@ -35,7 +35,7 @@ Content-Type: application/json
           "nodes":[
             {
               "id":"step_1",
-              "command":"elasticio/code:executeTrigger@latest",
+              "command":"{{ repo_name }}/code:executeTrigger@latest",
               "name":"",
               "description":"",
               "fields":{
@@ -44,7 +44,7 @@ Content-Type: application/json
             },
             {
               "id":"step_2",
-              "command":"elasticio/code:execute@latest",
+              "command":"{{ repo_name }}/code:execute@latest",
               "name":"",
               "description":"",
               "fields":{
@@ -53,7 +53,7 @@ Content-Type: application/json
             },
             {
               "id":"step_3",
-              "command":"elasticio/code:execute@latest",
+              "command":"{{ repo_name }}/code:execute@latest",
               "name":"",
               "description":"",
               "fields":{
@@ -158,7 +158,7 @@ Content-Type: application/json
         "nodes":[
           {
             "id":"step_1",
-            "command":"elasticio/code:executeTrigger@latest",
+            "command":"{{ repo_name }}/code:executeTrigger@latest",
             "name":"",
             "description":"",
             "fields":{
@@ -167,7 +167,7 @@ Content-Type: application/json
           },
           {
             "id":"step_2",
-            "command":"elasticio/code:execute@latest",
+            "command":"{{ repo_name }}/code:execute@latest",
             "name":"",
             "description":"",
             "fields":{
@@ -176,7 +176,7 @@ Content-Type: application/json
           },
           {
             "id":"step_3",
-            "command":"elasticio/code:execute@latest",
+            "command":"{{ repo_name }}/code:execute@latest",
             "name":"",
             "description":"",
             "fields":{
