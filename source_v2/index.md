@@ -28,7 +28,7 @@ search: true
 
 # Introduction
 
-Welcome to elastic.io. This documentation is a full reference for the REST API documentation v2.
+Welcome to {{ product_name }}. This documentation is a full reference for the REST API documentation v2.
 The API implements the [JSON API](http://jsonapi.org) specification. We encourage the reader to familiarise himself
 with the details of the [JSON API](http://jsonapi.org) specification.
 
