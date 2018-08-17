@@ -19,6 +19,7 @@ ARG api_base_url="https://api.elastic.io"
 ARG product_name="elastic.io"
 ARG logo_url="https://app.elastic.io/img/logo.svg"
 ARG repo_name="elasticio"
+ARG docs_url="http://docs.elastic.io/docs"
 
 RUN apt-get update
 RUN apt-get install -y ruby rubygems ruby-dev build-essential vim
@@ -29,6 +30,7 @@ RUN for f in `grep -rl "{{ api_base_url }}" *` ; do sed -i "s%{{ api_base_url }}
 RUN for f in `grep -rl "{{ product_name }}" *` ; do sed -i "s%{{ product_name }}%$product_name%g" $f ; done
 RUN for f in `grep -rl "{{ logo_url }}" *` ; do sed -i "s%{{ logo_url }}%$logo_url%g" $f ; done
 RUN for f in `grep -rl "{{ repo_name }}" *` ; do sed -i "s%{{ repo_name }}%$repo_name%g" $f ; done
+RUN for f in `grep -rl "{{ docs_url }}" *` ; do sed -i "s%{{ docs_url }}%$docs_url" $f ; done
 RUN echo "building for api_v1"
 RUN echo "copy source_v1 to source"
 RUN cp -a ./source_v1 ./source
@@ -57,6 +59,12 @@ FROM base AS release
 COPY --from=dependencies /usr/src/app/v1 ./v1
 COPY --from=dependencies /usr/src/app/v2 ./v2
 COPY ./docs ./docs
+RUN for f in `grep -rl "{{ toc_footer }}" docs/*` ; do sed -i "s%{{ toc_footer }}%$toc_footer%g" $f ; done
+RUN for f in `grep -rl "{{ api_base_url }}" docs/*` ; do sed -i "s%{{ api_base_url }}%$api_base_url%g" $f ; done
+RUN for f in `grep -rl "{{ product_name }}" docs/*` ; do sed -i "s%{{ product_name }}%$product_name%g" $f ; done
+RUN for f in `grep -rl "{{ logo_url }}" docs/*` ; do sed -i "s%{{ logo_url }}%$logo_url%g" $f ; done
+RUN for f in `grep -rl "{{ repo_name }}" docs/*` ; do sed -i "s%{{ repo_name }}%$repo_name%g" $f ; done
+RUN for f in `grep -rl "{{ docs_url }}" docs/*` ; do sed -i "s%{{ docs_url }}%$docs_url" $f ; done
 
 EXPOSE 8000
 

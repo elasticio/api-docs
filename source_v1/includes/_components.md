@@ -59,7 +59,7 @@ Content-Type: application/json
 ```
 
 This endpoint retrieves list of user's components.
-More details you can find [here](http://docs.elastic.io/docs/component-descriptor).
+More details you can find [here]({{ docs_url }}/component-descriptor).
 
 ### HTTP Request
 
@@ -75,8 +75,8 @@ Returns repositories metadata object if the call succeeded.
 Field     | Type     | Description
 --------- | ---------| --------------------------
 icon      | String   | Icon in base64
-triggers  | Object   | [&lt;Triggers Object&gt;](http://docs.elastic.io/docs/component-descriptor#triggers-object)
-actions   | Object   | [&lt;Actions Object&gt;](http://docs.elastic.io/docs/component-descriptor#actions-object)
+triggers  | Object   | [&lt;Triggers Object&gt;]({{ docs_url }}/component-descriptor#triggers-object)
+actions   | Object   | [&lt;Actions Object&gt;]({{ docs_url }}/component-descriptor#actions-object)
 
 ## Retrieve public components
 
@@ -155,7 +155,7 @@ Content-Type: application/json
 ```
 
 This endpoint retrieves list of public components
-More details you can find [here](http://docs.elastic.io/docs/component-descriptor).
+More details you can find [here]({{ docs_url }}/component-descriptor).
 
 ### HTTP Request
 
@@ -171,8 +171,8 @@ Returns repositories metadata object if the call succeeded.
 Field     | Type     | Description
 --------- | ---------| --------------------------
 icon      | String   | Icon in base64
-triggers  | Object   | [&lt;Triggers Object&gt;](http://docs.elastic.io/docs/component-descriptor#triggers-object)
-actions   | Object   | [&lt;Actions Object&gt;](http://docs.elastic.io/docs/component-descriptor#actions-object)
+triggers  | Object   | [&lt;Triggers Object&gt;]({{ docs_url }}/component-descriptor#triggers-object)
+actions   | Object   | [&lt;Actions Object&gt;]({{ docs_url }}/component-descriptor#actions-object)
 
 
 ## Retrieve an single component descriptor
@@ -264,7 +264,7 @@ Content-Type: application/json
 ```
 
 This endpoint retrieves an information about single component by it's ID
-More details you can find [here](http://docs.elastic.io/docs/component-descriptor).
+More details you can find [here]({{ docs_url }}/component-descriptor).
 
 ### HTTP Request
 
@@ -280,6 +280,6 @@ Returns repositories metadata object if the call succeeded.
 Field     | Type     | Description
 --------- | ---------| --------------------------
 repo_id   | String   | ID of the component 
-data      | Object   | A component descriptor, see [&lt;here&gt;](http://docs.elastic.io/docs/component-descriptor)
+data      | Object   | A component descriptor, see [&lt;here&gt;]({{ docs_url }}/component-descriptor)
 name      | String   | A name of the component repository
 team      | String   | A name of the component repository team
