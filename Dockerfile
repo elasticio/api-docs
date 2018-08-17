@@ -64,7 +64,7 @@ RUN for f in `grep -rl "{{ api_base_url }}" docs/*` ; do sed -i "s%{{ api_base_u
 RUN for f in `grep -rl "{{ product_name }}" docs/*` ; do sed -i "s%{{ product_name }}%$product_name%g" $f ; done
 RUN for f in `grep -rl "{{ logo_url }}" docs/*` ; do sed -i "s%{{ logo_url }}%$logo_url%g" $f ; done
 RUN for f in `grep -rl "{{ repo_name }}" docs/*` ; do sed -i "s%{{ repo_name }}%$repo_name%g" $f ; done
-RUN for f in `grep -rl "{{ docs_url }}" docs/*` ; do sed -i "s%{{ docs_url }}%$docs_url" $f ; done
+RUN for f in `grep -rl "{{ docs_url }}" docs/*` ; do sed -i "s%{{ docs_url }}%$docs_url%g" $f ; done
 
 EXPOSE 8000
 
