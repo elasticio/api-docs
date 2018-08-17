@@ -10,7 +10,7 @@ Retrieve flow version by hash|X|X|X|X|
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID}/versions?page[size]=20&page[number]=1 \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/versions?page[size]=20&page[number]=1 \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -114,7 +114,7 @@ It also exposes a relationship to the author of the change.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/flows/{FLOW_ID}/versions`
+`GET {{ api_base_url }}/v2/flows/{FLOW_ID}/versions`
 
 ### URL Parameters
 
@@ -134,7 +134,7 @@ The list of versions for the specified flow.
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID}/versions/{VERSION_HASH} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/versions/{VERSION_HASH} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -228,7 +228,7 @@ This resource allows to you retrieve specific version of the flow by its version
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/flows/{FLOW_ID}/versions/{VERSION_HASH}`
+`GET {{ api_base_url }}/v2/flows/{FLOW_ID}/versions/{VERSION_HASH}`
 
 ### URL Parameters
 

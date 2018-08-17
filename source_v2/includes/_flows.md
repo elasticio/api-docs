@@ -16,7 +16,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with custom paging):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?page[size]=20&page[number]=1' \
+ curl '{{ api_base_url }}/v2/flows?page[size]=20&page[number]=1' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -24,7 +24,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with filter):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?filter[status]=active' \
+ curl '{{ api_base_url }}/v2/flows?filter[status]=active' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -32,7 +32,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with search):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?search=webhook' \
+ curl '{{ api_base_url }}/v2/flows?search=webhook' \
    -g -u {EMAIL}:{APIKEY} 
 ```
 
@@ -40,7 +40,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with custom sorting):
 
 ```shell 
- curl 'https://api.elastic.io/v2/flows?sort=-updated_at' \
+ curl '{{ api_base_url }}/v2/flows?sort=-updated_at' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -158,7 +158,7 @@ This resource allows you to retrieve flows.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/flows/`
+`GET {{ api_base_url }}/v2/flows/`
 
 ### Query Parameters
 
@@ -185,7 +185,7 @@ used to match the proper organization.
 
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -296,7 +296,7 @@ user or to one of his organizations, an error is returned.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/flows/{FLOW_ID}`
+`GET {{ api_base_url }}/v2/flows/{FLOW_ID}`
 
 
 ### URL Parameters
@@ -317,7 +317,7 @@ The flow with given ID
 
 
 ```shell
- curl -X POST https://api.elastic.io/v2/flows \
+ curl -X POST {{ api_base_url }}/v2/flows \
   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -467,7 +467,7 @@ This resource allows you to create a new flow.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/flows/`
+`POST {{ api_base_url }}/v2/flows/`
 
 ### Body Parameters
 
@@ -488,7 +488,7 @@ Returns the created flow
 > Example request
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID} \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -605,7 +605,7 @@ This resource allows you to update the given flow.
 
 ### HTTP Request
 
-`PATCH https://api.elastic.io/v2/flows/{FLOW_ID}`
+`PATCH {{ api_base_url }}/v2/flows/{FLOW_ID}`
 
 ### URL Parameters
 
@@ -635,7 +635,7 @@ Returns the updated flow
 > Example request
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID}/start \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/start \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -657,7 +657,7 @@ This endpoint starts a flow with given ID.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/flows/{FLOW_ID}/start`
+`POST {{ api_base_url }}/v2/flows/{FLOW_ID}/start`
 
 ### URL Parameters
 
@@ -675,7 +675,7 @@ Empty response
 > Example request
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID}/stop \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/stop \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -697,7 +697,7 @@ This endpoint stops a flow with given ID.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/flows/{FLOW_ID}/stop`
+`POST {{ api_base_url }}/v2/flows/{FLOW_ID}/stop`
 
 ### URL Parameters
 
@@ -714,7 +714,7 @@ Empty response
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID} \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -724,7 +724,7 @@ This resource allows you to delete a flow.
 
 ### HTTP Request
 
-``DELETE https://api.elastic.io/v2/flows/{FLOW_ID}``
+``DELETE {{ api_base_url }}/v2/flows/{FLOW_ID}``
 
 
 ### URL Parameters

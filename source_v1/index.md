@@ -6,7 +6,7 @@ language_tabs:
 - javascript: Node.js
 
 toc_footers:
-  - <a href='http://www.elastic.io/en/demo-request/'>Sign Up for a Developer Key</a>
+  - {{ toc_footer }}
 
 includes:
   - authentication

@@ -7,7 +7,7 @@
 
 
 ```shell
- curl https://api.elastic.io/v1/tasks \
+ curl {{ api_base_url }}/v1/tasks \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -105,7 +105,7 @@ This endpoint creates a new task for user
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/tasks/`
+`POST {{ api_base_url }}/v1/tasks/`
 
 Parameter| Required | Description
 --------- | -----------| -----------
@@ -138,7 +138,7 @@ Returns tasks id object if the call succeeded.
 
 
 ```shell
-curl -X POST https://api.elastic.io/v1/tasks/start/{TASK_ID} \
+curl -X POST {{ api_base_url }}/v1/tasks/start/{TASK_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -166,7 +166,7 @@ This endpoint starts a given integration task.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/tasks/start/{TASK_ID}`
+`POST {{ api_base_url }}/v1/tasks/start/{TASK_ID}`
 
 
 ### URL Parameters
@@ -187,7 +187,7 @@ Result of starting the task.
 
 
 ```shell
-curl -X POST https://api.elastic.io/v1/tasks/stop/{TASK_ID} \
+curl -X POST {{ api_base_url }}/v1/tasks/stop/{TASK_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -215,7 +215,7 @@ This endpoint stops a given integration task.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/tasks/stop/{TASK_ID}`
+`POST {{ api_base_url }}/v1/tasks/stop/{TASK_ID}`
 
 
 ### URL Parameters
@@ -235,7 +235,7 @@ Result of stopping the task.
 
 
 ```shell
-curl -X DELETE https://api.elastic.io/v1/tasks/{TASK_ID} \
+curl -X DELETE {{ api_base_url }}/v1/tasks/{TASK_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -263,7 +263,7 @@ This endpoint deleted a given integration task.
 
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v1/tasks/{TASK_ID}`
+`DELETE {{ api_base_url }}/v1/tasks/{TASK_ID}`
 
 
 ### URL Parameters

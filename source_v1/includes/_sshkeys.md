@@ -7,7 +7,7 @@
 
 
 ```shell
-curl https://api.elastic.io/v1/sshkey/ \
+curl {{ api_base_url }}/v1/sshkey/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -44,7 +44,7 @@ This endpoint retrieves list of user's keys
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/sshkey/`
+`GET {{ api_base_url }}/v1/sshkey/`
 
 
 ### Returns
@@ -59,7 +59,7 @@ Returns a ssh key's metadata object if the call succeeded. The returned object w
 
 
 ```shell
- curl https://api.elastic.io/v1/sshkey/ \
+ curl {{ api_base_url }}/v1/sshkey/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -101,7 +101,7 @@ This endpoint adds new key to list of user's keys
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/sshkey/`
+`POST {{ api_base_url }}/v1/sshkey/`
 
 
 ### Arguments
@@ -124,7 +124,7 @@ Returns a ssh key's metadata object if the call succeeded. The returned object w
 
 
 ```shell
-curl https://api.elastic.io/v1/sshkey/{KEY_ID} \
+curl {{ api_base_url }}/v1/sshkey/{KEY_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -X DELETE
@@ -151,7 +151,7 @@ This endpoint delete specified ssh key
 
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v1/sshkey/{ID}`
+`DELETE {{ api_base_url }}/v1/sshkey/{ID}`
 
 
 ### Arguments

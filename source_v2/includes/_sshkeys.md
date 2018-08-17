@@ -14,7 +14,7 @@ Delete a SSH key|X*|X|X*|X*|
 
 
 ```shell
-curl https://api.elastic.io/v2/sshkeys/ \
+curl {{ api_base_url }}/v2/sshkeys/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -62,7 +62,7 @@ Content-Type: application/json
 This resource allows you to retrieve all SSH keys of the current user.
 
 ### HTTP Request
-`GET https://api.elastic.io/v2/sshkeys/`
+`GET {{ api_base_url }}/v2/sshkeys/`
 
 
 ### Returns
@@ -88,7 +88,7 @@ Returns an ssh key's metadata object if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v2/sshkeys/ \
+curl {{ api_base_url }}/v2/sshkeys/ \
     -X POST \
     -u {EMAIL}:{APIKEY} \
     -H 'Accept: application/json' \
@@ -142,7 +142,7 @@ Content-Type: application/json
 This resource allows you to create a new SSH key.
 
 ### HTTP Request
-`POST https://api.elastic.io/v2/sshkeys/`
+`POST {{ api_base_url }}/v2/sshkeys/`
 
 
 ### Body Parameters
@@ -178,7 +178,7 @@ Returns an ssh key's metadata object if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v2/sshkeys/{KEY_ID} \
+curl {{ api_base_url }}/v2/sshkeys/{KEY_ID} \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -193,7 +193,7 @@ HTTP/1.1 204 No Content
 This resource allows you to delete a SSH key.
 
 ### HTTP Request
-`DELETE https://api.elastic.io/v2/sshkeys/{KEY_ID}`
+`DELETE {{ api_base_url }}/v2/sshkeys/{KEY_ID}`
 
 
 ### URL Parameters

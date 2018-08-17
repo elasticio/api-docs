@@ -5,7 +5,7 @@
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/resources/storage/signed-url \
+curl {{ api_base_url }}/v2/resources/storage/signed-url \
    -X POST  \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -31,7 +31,7 @@ This endpoint creates a new signed url in Storage
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/resources/storage/signed-url`
+`POST {{ api_base_url }}/v2/resources/storage/signed-url`
 
 
 ### Returns

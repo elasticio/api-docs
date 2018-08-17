@@ -25,7 +25,7 @@ The following diagram displays the process of component scheduling:
 
 
 ```shell
- curl https://api.elastic.io/v1/exec/schedule \
+ curl {{ api_base_url }}/v1/exec/schedule \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -59,7 +59,7 @@ client.exec.schedule({
 ```http
 HTTP/1.1 202 Accepted
 Content-Type: application/json
-Location: 'https://api.elastic.io/v1/exec/poll/540492e623773659c5000002'
+Location: '{{ api_base_url }}/v1/exec/poll/540492e623773659c5000002'
 
 {
   "message": "ok"
@@ -71,7 +71,7 @@ It responds with the resource to poll on, in order to get the result of the sche
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/exec/schedule`
+`POST {{ api_base_url }}/v1/exec/schedule`
 
 Parameter| Required | Description | Used in
 --------- | -----------| ----------- | -----------
@@ -96,7 +96,7 @@ The 'Location' header specifies a resource to poll on until the execution result
 
 
 ```shell
-curl https://api.elastic.io/v1/exec/poll/{EXECUTION_ID} \
+curl {{ api_base_url }}/v1/exec/poll/{EXECUTION_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -134,7 +134,7 @@ Content-Type: application/json
 ```http
 HTTP/1.1 303 See Other
 Content-Type: application/json
-Location: 'https://api.elastic.io/v1/exec/result/540492e623773659c5000002'
+Location: '{{ api_base_url }}/v1/exec/result/540492e623773659c5000002'
 
 {
   "message": "Ready."
@@ -145,7 +145,7 @@ This endpoint provides information about the status of a scheduled component exe
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/exec/poll/{EXECUTION_ID}`
+`GET {{ api_base_url }}/v1/exec/poll/{EXECUTION_ID}`
 
 Parameter| Required | Description
 --------- | -----------| -----------
@@ -169,7 +169,7 @@ Status Code| Body | Header |Description
 
 
 ```shell
-curl https://api.elastic.io/v1/exec/result/{EXECUTION_ID} \
+curl {{ api_base_url }}/v1/exec/result/{EXECUTION_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -208,7 +208,7 @@ This endpoint exposes the component execution result(error) and is the final res
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/exec/result/{EXECUTION_ID}`
+`GET {{ api_base_url }}/v1/exec/result/{EXECUTION_ID}`
 
 Parameter| Required | Description
 --------- | -----------| -----------

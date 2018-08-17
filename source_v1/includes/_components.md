@@ -7,7 +7,7 @@
 
 
 ```shell
-curl https://api.elastic.io/v1/components/mine \
+curl {{ api_base_url }}/v1/components/mine \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -63,7 +63,7 @@ More details you can find [here](http://docs.elastic.io/docs/component-descripto
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/components/mine`
+`GET {{ api_base_url }}/v1/components/mine`
 
 
 ### Returns
@@ -85,7 +85,7 @@ actions   | Object   | [&lt;Actions Object&gt;](http://docs.elastic.io/docs/comp
 
 
 ```shell
-curl https://api.elastic.io/v1/components/public \
+curl {{ api_base_url }}/v1/components/public \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -159,7 +159,7 @@ More details you can find [here](http://docs.elastic.io/docs/component-descripto
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/components/public`
+`GET {{ api_base_url }}/v1/components/public`
 
 
 ### Returns
@@ -182,7 +182,7 @@ actions   | Object   | [&lt;Actions Object&gt;](http://docs.elastic.io/docs/comp
 
 
 ```shell
-curl https://api.elastic.io/v1/components/{COMPONENT_ID} \
+curl {{ api_base_url }}/v1/components/{COMPONENT_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -268,7 +268,7 @@ More details you can find [here](http://docs.elastic.io/docs/component-descripto
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/components/{COMPONENT_ID}`
+`GET {{ api_base_url }}/v1/components/{COMPONENT_ID}`
 
 
 ### Returns

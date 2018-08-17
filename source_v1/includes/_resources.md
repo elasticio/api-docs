@@ -5,7 +5,7 @@
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v1/resources/s3/signed-url \
+curl {{ api_base_url }}/v1/resources/s3/signed-url \
    -X POST  \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -41,7 +41,7 @@ This endpoint creates a new signed url in S3
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/resources/s3/signed-url`
+`POST {{ api_base_url }}/v1/resources/s3/signed-url`
 
 
 ### Returns

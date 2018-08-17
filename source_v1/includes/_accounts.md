@@ -7,7 +7,7 @@
 
 
 ```shell
-curl https://api.elastic.io/v1/accounts/ \
+curl {{ api_base_url }}/v1/accounts/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -46,7 +46,7 @@ This endpoint retrieves list of user's accounts
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/accounts/`
+`GET {{ api_base_url }}/v1/accounts/`
 
 
 ### Returns
@@ -61,7 +61,7 @@ Returns a list of accounts if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v1/accounts/{ACCOUNT_ID}/ \
+curl {{ api_base_url }}/v1/accounts/{ACCOUNT_ID}/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -99,7 +99,7 @@ This endpoint retrieves one of user's accounts
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/accounts/{ACCOUNT_ID}/`
+`GET {{ api_base_url }}/v1/accounts/{ACCOUNT_ID}/`
 
 ### URL Parameters
 
@@ -118,7 +118,7 @@ Returns an account object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v1/accounts/ \
+ curl {{ api_base_url }}/v1/accounts/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -172,7 +172,7 @@ This endpoint adds new key to list of user's keys
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/accounts/`
+`POST {{ api_base_url }}/v1/accounts/`
 
 
 ### Arguments
@@ -197,7 +197,7 @@ Returns account object if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v1/accounts/{ACCOUNT_ID}/ \
+curl {{ api_base_url }}/v1/accounts/{ACCOUNT_ID}/ \
    -u {EMAIL}:{APIKEY} \
    -X PUT \
    -H 'Accept: application/json' \
@@ -240,7 +240,7 @@ This endpoint modifies user's account
 
 ### HTTP Request
 
-`PUT https://api.elastic.io/v1/accounts/{ACCOUNT_ID}/`
+`PUT {{ api_base_url }}/v1/accounts/{ACCOUNT_ID}/`
 
 ### URL Parameters
 

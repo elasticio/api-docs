@@ -14,32 +14,37 @@ COPY Rakefile /usr/src/app/Rakefile
 COPY source_v1 /usr/src/app/source_v1
 COPY source_v2 /usr/src/app/source_v2
 
-RUN apt-get update && \
-    apt-get install -y ruby rubygems ruby-dev build-essential && \
-    gem install bundler && \
-    bundle install && \
-    echo "building for api_v1" && \
-    echo "copy source_v1 to source" && \
-    cp -a ./source_v1 ./source && \
-    echo "run middleman build" && \
-    bundle exec middleman build && \
-    echo "remove dir source" && \
-    rm -rf ./source && \
-    echo "remove dir v1" && \
-    rm -rf ./v1 && \
-    echo "copy build to v1" && \
-    mv ./build ./v1 && \
-    echo "building for api_v2" && \
-    echo "copy source_v2 to source" && \
-    cp -a ./source_v2 ./source && \
-    echo "run middleman build" && \
-    bundle exec middleman build && \
-    echo "remove dir source" && \
-    rm -rf ./source && \
-    echo "remove dir v2" && \
-    rm -rf ./v2 && \
-    echo "copy build to v2" && \
-    mv ./build ./v2
+ARG toc_footer="<a href='http://www.elastic.io/en/demo-request/'>Sign Up for a Developer Key</a>"
+ARG api_base_url="https://api.elastic.io"
+
+RUN apt-get update
+RUN apt-get install -y ruby rubygems ruby-dev build-essential vim
+RUN gem install bundler
+RUN bundle install
+RUN for f in `grep -rl "{{ toc_footer }}" *` ; do sed -i "s%{{ toc_footer }}%$toc_footer%g" $f ; done
+RUN for f in `grep -rl "{{ api_base_url }}" *` ; do sed -i "s%{{ api_base_url }}%$api_base_url%g" $f ; done
+RUN echo "building for api_v1"
+RUN echo "copy source_v1 to source"
+RUN cp -a ./source_v1 ./source
+RUN echo "run middleman build"
+RUN bundle exec middleman build
+RUN echo "remove dir source"
+RUN rm -rf ./source
+RUN echo "remove dir v1"
+RUN rm -rf ./v1
+RUN echo "copy build to v1"
+RUN mv ./build ./v1
+RUN echo "building for api_v2"
+RUN echo "copy source_v2 to source"
+RUN cp -a ./source_v2 ./source
+RUN echo "run middleman build"
+RUN bundle exec middleman build
+RUN echo "remove dir source"
+RUN rm -rf ./source
+RUN echo "remove dir v2"
+RUN rm -rf ./v2
+RUN echo "copy build to v2"
+RUN mv ./build ./v2
 
 FROM base AS release
 

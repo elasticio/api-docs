@@ -39,7 +39,7 @@ Delete Organization|X |- |- |-|
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/organizations \
+ curl {{ api_base_url }}/v2/organizations \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -81,7 +81,7 @@ This endpoint allows to create an organization.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/organizations`
+`POST {{ api_base_url }}/v2/organizations`
 
 
 #### Authorization
@@ -114,7 +114,7 @@ Returns Organization object if the call succeeded
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}?include=members,invites \
+ curl {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID}?include=members,invites \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -212,7 +212,7 @@ This endpoints returns an Organization object for certain organization id.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/organizations/ORGANIZATION_ID/`
+`GET {{ api_base_url }}/v2/organizations/ORGANIZATION_ID/`
 
 #### Authorization
 
@@ -241,7 +241,7 @@ include     | no       | Whether include or not full resource objects in respons
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/ \
+ curl {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID}/members/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -294,7 +294,7 @@ This endpoints returns a list of all members of certain Organization.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/organizations/ORGANIZATION_ID/members/`
+`GET {{ api_base_url }}/v2/organizations/ORGANIZATION_ID/members/`
 
 #### Authorization
 
@@ -316,7 +316,7 @@ ORGANIZATION_ID | The ID of the organization
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/invites/ \
+ curl {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID}/invites/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -361,7 +361,7 @@ This endpoints returns a list of pending members (invites) for certain Organizat
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/organizations/ORGANIZATION_ID/invites/`
+`GET {{ api_base_url }}/v2/organizations/ORGANIZATION_ID/invites/`
 
 #### Authorization
 
@@ -388,7 +388,7 @@ ORGANIZATION_ID | The ID of the organization
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/invites/ \
+curl {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID}/invites/ \
     -X POST \
     -u {EMAIL}:{APIKEY} \
     -H 'Accept: application/json' \
@@ -432,7 +432,7 @@ This endpoint allows to invite a user to organization.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/invites/`
+`POST {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID}/invites/`
 
 
 #### Authorization
@@ -472,7 +472,7 @@ Returns invite object if the call succeeded
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/ \
+curl {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID}/members/ \
     -X POST \
     -u {EMAIL}:{APIKEY} \
     -H 'Accept: application/json' \
@@ -515,7 +515,7 @@ No invitation email will be sent. The user becomes a member immediately.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members`
+`POST {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID}/members`
 
 
 #### Authorization
@@ -545,7 +545,7 @@ Returns member object if the call succeeded
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/ \
+curl {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/ \
     -X PATCH  \
     -u {EMAIL}:{APIKEY} \
     -H 'Accept: application/json' \
@@ -587,7 +587,7 @@ This endpoint allows updating a membership of a given user. Only `role` attribut
 
 
 ### HTTP Request
-`PATCH https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/`
+`PATCH {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/`
 
 #### Authorization
 This request is authorized for organization members with role `Admin`.
@@ -621,7 +621,7 @@ Returns member object if the call succeeded
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/ \
+ curl {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/ \
     -X DELETE    \
     -u {EMAIL}:{APIKEY}
 ```
@@ -643,7 +643,7 @@ Ownership of those user's associated data will be transferred to admin User perf
 
 
 ### HTTP Request
-`DELETE https://api.elastic.io/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/`
+`DELETE {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID}/members/{USER_ID}/`
 
 #### Authorization
 This request is authorized for organization members with role `Admin`.
@@ -669,7 +669,7 @@ Responds with `204 No content` if the call succeeded (with empty body).
 > Example Request:
 
 ```shell
- curl -i https://api.elastic.io/v2/organizations/{ORGANIZATION_ID} \
+ curl -i {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID} \
   -X DELETE \
   -u {EMAIL}:{APIKEY}
 ```
@@ -706,7 +706,7 @@ This endpoint will delete an Organization along with the following items that we
 *An Organization cannot be deleted if any of its Components are used in another Organization's Flow*
 
 ### HTTP Request
-`DELETE https://api.elastic.io/v2/organizations/{ORGANIZATION_ID} \`
+`DELETE {{ api_base_url }}/v2/organizations/{ORGANIZATION_ID} \`
 
 #### Authorization
 This request is authorized for organization members with role `Tenant Admin`.

@@ -7,7 +7,7 @@
 
 
 ```shell
-curl https://api.elastic.io/v1/teams/ \
+curl {{ api_base_url }}/v1/teams/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -45,7 +45,7 @@ This endpoint retrieves list of user's teams
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/teams/`
+`GET {{ api_base_url }}/v1/teams/`
 
 
 ### Returns
@@ -60,7 +60,7 @@ Returns teams metadata object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v1/teams \
+ curl {{ api_base_url }}/v1/teams \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -99,7 +99,7 @@ This endpoint creates new team for user
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/teams/`
+`POST {{ api_base_url }}/v1/teams/`
 
 Parameter| Required | Description
 --------- | -----------| -----------

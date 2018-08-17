@@ -5,7 +5,7 @@ language_tabs:
 - shell: curl
 
 toc_footers:
-  - <a href='http://www.elastic.io/en/demo-request/'>Sign Up for a Developer Key</a>
+  - {{ toc_footer }}
 
 includes:
   - components
@@ -40,7 +40,7 @@ You authenticate to the elastic.io API by providing your API key in the request.
 Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). Provide your email as the basic auth username and API key as the password.
 
 ```shell
-curl https://api.elastic.io/v2/users/me \
+curl {{ api_base_url }}/v2/users/me \
    -u {EMAIL}:{APIKEY}
 ```
 

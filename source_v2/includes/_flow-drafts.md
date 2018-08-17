@@ -12,7 +12,7 @@ Delete a flow draft|X |X|X|X|
 
 
 ```shell
- curl https://api.elastic.io/v2/flows/{FLOW_ID}/draft \
+ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/draft \
    -X GET \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -122,7 +122,7 @@ This resource allows you to get a flow draft.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/flows/{FLOW_ID}/draft`
+`GET {{ api_base_url }}/v2/flows/{FLOW_ID}/draft`
 
 ### URL Parameters
 
@@ -141,7 +141,7 @@ Returns a flow draft
 
 
 ```shell
- curl https://api.elastic.io/v2/flows/{FLOW_ID}/draft \
+ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/draft \
    -X PUT \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -288,7 +288,7 @@ This resource allows you to create/update a flow draft.
 
 ### HTTP Request
 
-`PUT https://api.elastic.io/v2/flows/{FLOW_ID}/draft`
+`PUT {{ api_base_url }}/v2/flows/{FLOW_ID}/draft`
 
 ### URL Parameters
 
@@ -317,7 +317,7 @@ Returns the created/updated flow draft
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID}/draft \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/draft \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -327,7 +327,7 @@ This resource allows you to delete a flow draft.
 
 ### HTTP Request
 
-``DELETE https://api.elastic.io/v2/flows/{FLOW_ID}/draft``
+``DELETE {{ api_base_url }}/v2/flows/{FLOW_ID}/draft``
 
 
 ### URL Parameters

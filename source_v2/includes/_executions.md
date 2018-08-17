@@ -70,7 +70,7 @@ Retrieve execution result|X|X|X|X|
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/verify-credential \
+ curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/verify-credential \
  -u {EMAIL}:{APIKEY} \ 
  -X POST -H 'Content-Type: application/json' -d '
  {
@@ -90,7 +90,7 @@ Retrieve execution result|X|X|X|X|
 ```http
 HTTP/1.1 202 Accepted
 Content-Type: application/json; charset=utf-8
-Location: 'https://api.elastic.io/v2/exec/poll/58becb8259a65f18c5c60eb0'
+Location: '{{ api_base_url }}/v2/exec/poll/58becb8259a65f18c5c60eb0'
 
 {
   "data":{
@@ -117,7 +117,7 @@ describes how to perform the 1st step of this process. Please also read details 
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/verify-credential`
+`POST {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/verify-credential`
 
 #### Authorization
 
@@ -145,7 +145,7 @@ The component should be accessible to the client.
 
 
 ```shell
-curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/dynamic-metadata \
+curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/dynamic-metadata \
  -u {EMAIL}:{APIKEY} \
  -X POST -H 'Content-Type: application/json' -d '
  {
@@ -177,7 +177,7 @@ curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}
 ```http
 HTTP/1.1 202 Accepted
 Content-Type: application/json; charset=utf-8
-Location: 'https://api.elastic.io/v2/exec/poll/58becb8359a65f18c5c60ec4'
+Location: '{{ api_base_url }}/v2/exec/poll/58becb8359a65f18c5c60ec4'
 
 {
   "data":{
@@ -205,7 +205,7 @@ This page describes how to perform the 1st step of this process. Please also rea
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/dynamic-metadata`
+`POST {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/dynamic-metadata`
 
 #### Authorization
 
@@ -236,7 +236,7 @@ The component should be accessible to the client.
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_HASH}/select-model\
+ curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_HASH}/select-model\
  -u {EMAIL}:{APIKEY} \ 
  -X POST -H 'Content-Type: application/json' -d '
  {
@@ -269,7 +269,7 @@ The component should be accessible to the client.
 ```http
 HTTP/1.1 202 Accepted
 Content-Type: application/json; charset=utf-8
-Location: 'https://api.elastic.io/v2/exec/poll/58becb8059a65f18c5c60e41'
+Location: '{{ api_base_url }}/v2/exec/poll/58becb8059a65f18c5c60e41'
 {
   "data":{
     "id":"5aafb9e1d0516d0007757b71",
@@ -297,7 +297,7 @@ describes how to perform the 1st step of this process. Please also read details 
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_HASH}/select-model`
+`POST {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_HASH}/select-model`
 
 #### Authorization
 
@@ -330,7 +330,7 @@ The component should be accessible to the client.
 
 
 ```shell
-curl https://api.elastic.io/v2/exec/poll/{EXECUTION_ID} \
+curl {{ api_base_url }}/v2/exec/poll/{EXECUTION_ID} \
  -u {EMAIL}:{APIKEY}
 ```
 
@@ -379,7 +379,7 @@ This resource allows you to poll a result of an execution. Once the execution is
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/exec/poll/{EXECUTION_ID}`
+`GET {{ api_base_url }}/v2/exec/poll/{EXECUTION_ID}`
 
 ### URL Parameters
 
@@ -406,7 +406,7 @@ This resource allows you to poll a result of an execution. Once the execution is
 
 
 ```shell
-curl https://api.elastic.io/v2/exec/result/{EXECUTION_ID}  \
+curl {{ api_base_url }}/v2/exec/result/{EXECUTION_ID}  \
  -u {EMAIL}:{APIKEY}
 ```
 
@@ -439,7 +439,7 @@ Content-Type: application/json
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/exec/result/{EXECUTION_ID}`
+`GET {{ api_base_url }}/v2/exec/result/{EXECUTION_ID}`
 
 
 ### URL Parameters

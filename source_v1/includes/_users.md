@@ -5,7 +5,7 @@
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v1/users \
+curl {{ api_base_url }}/v1/users \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -39,7 +39,7 @@ This endpoint returns your own user.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/users`
+`GET {{ api_base_url }}/v1/users`
 
 
 #### Returns
@@ -52,7 +52,7 @@ Returns a user object if the call succeeded.
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v1/users \
+curl {{ api_base_url }}/v1/users \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -107,7 +107,7 @@ This endpoint registers a new user.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/users`
+`POST {{ api_base_url }}/v1/users`
 
 ### Arguments
 
@@ -151,7 +151,7 @@ This method works with following limitations:
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v1/users/{USER_ID} \
+curl {{ api_base_url }}/v1/users/{USER_ID} \
    -X DELETE \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -178,7 +178,7 @@ Content-Type: application/json
 
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v1/users/123456`
+`DELETE {{ api_base_url }}/v1/users/123456`
 
 #### Returns
 
