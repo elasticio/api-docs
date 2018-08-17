@@ -1,7 +1,7 @@
 
 # Authentication
 
-You authenticate to the elastic.io API by providing your API key in the request.
+You authenticate to the {{ product_name }} API by providing your API key in the request.
 
 Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). Provide your email as the basic auth username and API key as the password.
 

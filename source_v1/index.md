@@ -26,4 +26,4 @@ search: true
 
 # Introduction
 
-Welcome to the elastic.io REST API!
+Welcome to the {{ product_name }} REST API!

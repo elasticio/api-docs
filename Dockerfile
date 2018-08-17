@@ -16,6 +16,8 @@ COPY source_v2 /usr/src/app/source_v2
 
 ARG toc_footer="<a href='http://www.elastic.io/en/demo-request/'>Sign Up for a Developer Key</a>"
 ARG api_base_url="https://api.elastic.io"
+ARG product_name="elastic.io"
+ARG logo_url="https://app.elastic.io/img/logo.svg"
 
 RUN apt-get update
 RUN apt-get install -y ruby rubygems ruby-dev build-essential vim
@@ -23,6 +25,8 @@ RUN gem install bundler
 RUN bundle install
 RUN for f in `grep -rl "{{ toc_footer }}" *` ; do sed -i "s%{{ toc_footer }}%$toc_footer%g" $f ; done
 RUN for f in `grep -rl "{{ api_base_url }}" *` ; do sed -i "s%{{ api_base_url }}%$api_base_url%g" $f ; done
+RUN for f in `grep -rl "{{ product_name }}" *` ; do sed -i "s%{{ product_name }}%$product_name%g" $f ; done
+RUN for f in `grep -rl "{{ logo_url }}" *` ; do sed -i "s%{{ logo_url }}%$logo_url%g" $f ; done
 RUN echo "building for api_v1"
 RUN echo "copy source_v1 to source"
 RUN cp -a ./source_v1 ./source

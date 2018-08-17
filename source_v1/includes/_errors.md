@@ -1,6 +1,6 @@
 # Errors
 
-The elastic.io API uses the following error codes:
+The {{ product_name }} API uses the following error codes:
 
 
 Error Code | Meaning

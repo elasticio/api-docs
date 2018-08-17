@@ -106,7 +106,7 @@ html, body {
     width: 57px;
     height: 43px;
     content: '';
-    background: url(https://app.elastic.io/img/logo.svg) no-repeat;
+    background: url({{ logo_url }}) no-repeat;
   }
 
   &>.search {
