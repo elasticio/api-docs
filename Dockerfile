@@ -22,38 +22,38 @@ ARG logo_url="https://app.elastic.io/img/logo.svg"
 ARG repo_name="elasticio"
 ARG docs_url="http://docs.elastic.io/docs"
 
-RUN apt-get update
-RUN apt-get install -y ruby rubygems ruby-dev build-essential vim
-RUN gem install bundler
-RUN bundle install
-RUN for f in `grep -rl "{{ toc_footer }}" *` ; do sed -i "s%{{ toc_footer }}%$toc_footer%g" $f ; done
-RUN for f in `grep -rl "{{ api_base_url }}" *` ; do sed -i "s%{{ api_base_url }}%$api_base_url%g" $f ; done
-RUN for f in `grep -rl "{{ product_name }}" *` ; do sed -i "s%{{ product_name }}%$product_name%g" $f ; done
-RUN for f in `grep -rl "{{ logo_url }}" *` ; do sed -i "s%{{ logo_url }}%$logo_url%g" $f ; done
-RUN for f in `grep -rl "{{ repo_name }}" *` ; do sed -i "s%{{ repo_name }}%$repo_name%g" $f ; done
-RUN for f in `grep -rl "{{ docs_url }}" *` ; do sed -i "s%{{ docs_url }}%$docs_url%g" $f ; done
-RUN echo "building for api_v1"
-RUN echo "copy source_v1 to source"
-RUN cp -a ./source_v1 ./source
-RUN echo "run middleman build"
-RUN bundle exec middleman build
-RUN echo "remove dir source"
-RUN rm -rf ./source
-RUN echo "remove dir v1"
-RUN rm -rf ./v1
-RUN echo "copy build to v1"
-RUN mv ./build ./v1
-RUN echo "building for api_v2"
-RUN echo "copy source_v2 to source"
-RUN cp -a ./source_v2 ./source
-RUN echo "run middleman build"
-RUN bundle exec middleman build
-RUN echo "remove dir source"
-RUN rm -rf ./source
-RUN echo "remove dir v2"
-RUN rm -rf ./v2
-RUN echo "copy build to v2"
-RUN mv ./build ./v2
+RUN apt-get update && \
+    apt-get install -y ruby rubygems ruby-dev build-essential vim && \
+    gem install bundler && \
+    bundle install && \
+    for f in `grep -rl "{{ toc_footer }}" *` ; do sed -i "s%{{ toc_footer }}%$toc_footer%g" $f ; done && \
+    for f in `grep -rl "{{ api_base_url }}" *` ; do sed -i "s%{{ api_base_url }}%$api_base_url%g" $f ; done && \
+    for f in `grep -rl "{{ product_name }}" *` ; do sed -i "s%{{ product_name }}%$product_name%g" $f ; done && \
+    for f in `grep -rl "{{ logo_url }}" *` ; do sed -i "s%{{ logo_url }}%$logo_url%g" $f ; done && \
+    for f in `grep -rl "{{ repo_name }}" *` ; do sed -i "s%{{ repo_name }}%$repo_name%g" $f ; done && \
+    for f in `grep -rl "{{ docs_url }}" *` ; do sed -i "s%{{ docs_url }}%$docs_url%g" $f ; done && \
+    echo "building for api_v1" && \
+    echo "copy source_v1 to source" && \
+    cp -a ./source_v1 ./source && \
+    echo "run middleman build" && \
+    bundle exec middleman build && \
+    echo "remove dir source" && \
+    rm -rf ./source && \
+    echo "remove dir v1" && \
+    rm -rf ./v1 && \
+    echo "copy build to v1" && \
+    mv ./build ./v1 && \
+    echo "building for api_v2" && \
+    echo "copy source_v2 to source" && \
+    cp -a ./source_v2 ./source && \
+    echo "run middleman build" && \
+    bundle exec middleman build && \
+    echo "remove dir source" && \
+    rm -rf ./source && \
+    echo "remove dir v2" && \
+    rm -rf ./v2 && \
+    echo "copy build to v2" && \
+    mv ./build ./v2
 
 FROM base AS release
 
