@@ -37,7 +37,7 @@ In case the api-docs have to be "re-branded" for a special customer, there are a
 - toc_footer: 
   The text or HTML-Fragment displayed at the bottom of the Table of Contents 
   (default: Link to sign-up for a developer key)
-- api_base_url: Url of the customers API (default: https://api.elastic.io9
+- api_base_url: Url of the customers API (default: https://api.elastic.io)
 - product_name: Name of this API product (default: elastic.io)
 - logo_url: URL to refer the customers logo (default: https://app.elastic.io/img/logo.svg)
 - repo_name: Name of githaub repository name (default: elasticio)
