@@ -32,6 +32,30 @@ COPY --from=dependencies /usr/src/app/build_v15 ./build_v15
 ```
 (replace v15 with your api version)
 
+# How to customize api docs for a special customer?
+In case the api-docs have to be "re-branded" for a special customer, there are a few build-arguments which point by default to elastic.io original values:
+|Name|Description|Default|
+|----|-----------|-------|
+|toc_footer|The text or HTML-Fragment displayed at the bottom of the Table of Contents|Link to sign-up for a developer key|
+|api_base_url|Url of the customers API|https://api.elastic.io|
+|product_name|Name of this API product|elastic.io|
+|logo_url|URL to refer the customers logo|https://app.elastic.io/img/logo.svg|
+|repo_name|Name of githaub repository name|elasticio|
+|docs_url|Link to the main documentation|http://docs.elastic.io/docs|
+
+So a complete build for a customer overwriting everything may be e.g.:
+```
+docker build -t apidocs:telekom \
+        --build-arg "toc_footer=Deutsche Telekom" \
+        --build-arg "api_base_url=http://api.telekom.de" \
+        --build-arg "product_name=MSP-Telekom" \
+        --build-arg "logo_url=https://www.telekom.de/is-bin/INTERSHOP.static/WFS/EKI-PK-Site/EKI-PK/-/system/favicon.ico" \
+        --build-arg "repo_name=mspio" \
+        .
+```
+
+
+
 # How to build and see api-docs static website locally?
 
 ## 1. Using Docker
