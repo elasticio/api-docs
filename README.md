@@ -46,11 +46,11 @@ In case the api-docs have to be "re-branded" for a special customer, there are a
 So a complete build for a customer overwriting everything may be e.g.:
 ```
 docker build -t apidocs:telekom \
-        --build-arg "toc_footer=Deutsche Telekom" \
-        --build-arg "api_base_url=http://api.telekom.de" \
-        --build-arg "product_name=MSP-Telekom" \
-        --build-arg "logo_url=https://www.telekom.de/is-bin/INTERSHOP.static/WFS/EKI-PK-Site/EKI-PK/-/system/favicon.ico" \
-        --build-arg "repo_name=mspio" \
+        --build-arg "toc_footer=Some Footer Text" \
+        --build-arg "api_base_url=http://api.customer.org" \
+        --build-arg "product_name=Customer API Name" \
+        --build-arg "logo_url=https://customer.logo.url/svg-image.svg" \
+        --build-arg "repo_name=customer-repo" \
         .
 ```
 
