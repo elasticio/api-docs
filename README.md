@@ -3,9 +3,8 @@
 The docs are generated with [Slate](https://github.com/tripit/slate).
 
 # How to edit/add resources documentation to existing api docs?
-Api-docs for api version 1 is placed at directory `source_v1`.
 
-Api-docs for api version 2 is placed at directory `source_v2`.
+Api-docs for api version 2 is placed at directory `source`.
 
 All documentized resources located in directories `source_v{API_VER}/include`. You can edit existing files there or create new files (resources).
 
@@ -42,7 +41,7 @@ docker build -t api-docs .
 ```
 2. Run container of newly built docker image (for example, at port `8081`)
 ```
-docker run -p 8081:8000 -d api-docs
+docker run --rm -p 8081:8000 -d api-docs
 ```
 3. Access docs for api vesion 1 at `localhost:8081/api-v1`, for api vesion 2 at `localhost:8081/api-v2`
 
