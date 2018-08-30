@@ -3,10 +3,13 @@
 Request / Role| Tenant Admin | Organization Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve all teams|-|X|X|X|
+Retrieve team by ID|-|X*|X*|X*|
 Create a team|-|X|-|-|
 Add a new member to a team|-|X|-|-|
 Remove a member from a team|-|X|-|-|
 Delete a team|-|X|-|-|
+
+*- Only teams which belong to given user 
 
 ## Retrieve all teams
 
@@ -38,13 +41,13 @@ Content-Type: application/json
         "name":"Team_name"
       },
       "relationships":{
-        "organization":{
+        "contract":{
           "data":{
             "id":"59d341e9037f7200184a408b",
-            "type":"organization"
+            "type":"contract"
           },
           "links":{
-            "self":"/v2/organizations/59d341e9037f7200184a408b"
+            "self":"/v2/contract/59d341e9037f7200184a408b"
           }
         },
         "users":{
@@ -54,14 +57,22 @@ Content-Type: application/json
               "type":"user"
             }
           ]
+        },
+        "components":{
+          "data":[
+            {
+              "id":"5a96906605f3f60007a76324",
+              "type":"component"
+            }
+          ]
         }
+      },
+      "meta":{},
+      "links":{
+        "self":"/v2/teams"
       }
     }
-  ],
-  "meta":{},
-  "links":{
-    "self":"/v2/teams"
-  }
+  ]
 }
 ```
 
@@ -75,6 +86,92 @@ This resource allows you to retrieve all teams the current user is member in.
 ### Returns
 
 Returns teams metadata object if the call succeeded.
+
+
+## Retrieve team by ID
+
+> Example Request:
+
+
+```shell
+curl https://api.elastic.io/v2/teams/{TEAM_ID} \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+    "data": {
+        "id": "5a660b0309949a000716d4db",
+        "type": "team",
+        "links": {
+            "self": "/v2/teams/5a660b0309949a000716d4db"
+        },
+        "attributes": {
+            "name": "2201team"
+        },
+        "relationships": {
+            "contract": {
+                "data": {
+                    "id": "5b5ed1cf272cf80011ae7b43",
+                    "type": "contract"
+                },
+                "links": {
+                    "self": "/v2/contracts/5b5ed1cf272cf80011ae7b43"
+                }
+            },
+            "users": {
+                "data": [
+                    {
+                        "id": "59d22e7eeb865b0018adc248",
+                        "type": "user"
+                    },
+                    {
+                        "id": "560e5a27734d480a00000002",
+                        "type": "user"
+                    },
+                    {
+                        "id": "59d3562c68ed850019bde27f",
+                        "type": "user"
+                    }
+                ]
+            },
+            "components": {
+                "data": [
+                    {
+                        "id": "5a81a065fcc9380007322e86",
+                        "type": "component"
+                    },
+                    {
+                        "id": "5a6713361231e7000772a9f2",
+                        "type": "component"
+                    }
+                ]
+            }
+        }
+    },
+    "meta": {},
+    "links": {
+        "self": "/v2/teams/5a660b0309949a000716d4db"
+    }
+}
+```
+
+This resource allows you to retrieve the team by ID the current user is member in.
+
+### HTTP Request
+
+`GET https://api.elastic.io/v2/teams/{TEAM_ID}`
+
+
+### Returns
+
+Returns team metadata object if the call succeeded.
 
 
 ## Create a team
@@ -113,16 +210,16 @@ Content-Type: application/json
       "self":"/v2/teams/5aabe01bbd6d6400079b45c4"
     },
     "attributes":{
-      "name":"1503myteam"
+      "name":"myteam"
     },
     "relationships":{
-      "organization":{
+      "contract":{
         "data":{
           "id":"59d341e9037f7200184a408b",
-          "type":"organization"
+          "type":"contract"
         },
         "links":{
-          "self":"/v2/organizations/59d341e9037f7200184a408b"
+          "self":"/v2/contract/59d341e9037f7200184a408b"
         }
       },
       "users":{
@@ -196,13 +293,13 @@ Content-Type: application/json
       "name":"Test_Team"
     },
     "relationships":{
-      "organization":{
+      "contract":{
         "data":{
           "id":"59d22e7eeb865b0018adc247",
-          "type":"organization"
+          "type":"contract"
         },
         "links":{
-          "self":"/v2/organizations/59d22e7eeb865b0018adc247"
+          "self":"/v2/contract/59d22e7eeb865b0018adc247"
         }
       },
       "users":{
