@@ -54,7 +54,8 @@ Content-Type: application/json
       },
       "attributes":{
         "name":"name",
-        "team_name":"team_name"
+        "team_name":"team_name",
+        "access": "tenant"
       },
       "relationships":{
         "versions":{
@@ -215,7 +216,8 @@ Content-Type: application/json
     },
     "attributes":{
       "name":"component name",
-      "team_name":"{team_name}"
+      "team_name":"{team_name}",
+      "access": "team"
     },
     "relationships":{
       "versions":{
@@ -603,7 +605,8 @@ Content-Type: application/json
     },
     "attributes":{
       "name":"{REPOSITORY_NAME}",
-      "team_name":"{TEAM_NAME}"
+      "team_name":"{TEAM_NAME}",
+      "access": "team"
     },
     "relationships":{
       "versions":{
@@ -692,7 +695,8 @@ Content-Type: application/json
     },
     "attributes":{
       "name":"name",
-      "team_name":"team_name"
+      "team_name":"team_name",
+      "access": "tenant"
     },
     "relationships":{
       "versions":{

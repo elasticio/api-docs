@@ -73,6 +73,7 @@ Content-Type: application/json
           "nodes":[
             {
               "id":"step_1",
+              "component_id": "55ba18e35d04040500000004",
               "command":"elasticio/timer:timer",
               "name":"",
               "description":"",
@@ -82,6 +83,7 @@ Content-Type: application/json
             },
             {
               "id":"step_2",
+              "component_id": "593809a16b1d1f00196b74cd",
               "command":"elasticio/email:send",
               "name":"",
               "description":""
@@ -219,6 +221,7 @@ Content-Type: application/json
         "nodes":[
           {
             "id":"step_1",
+            "component_id": "55ba18e35d04040500000004",
             "command":"elasticio/timer:timer",
             "name":"",
             "description":"",
@@ -228,6 +231,7 @@ Content-Type: application/json
           },
           {
             "id":"step_2",
+            "component_id": "593809a16b1d1f00196b74cd",
             "command":"elasticio/email:send",
             "name":"",
             "description":""
@@ -394,6 +398,7 @@ Content-Type: application/json
         "nodes":[
           {
             "id":"step_1",
+            "component_id": "55bb6a58fa35a40c00000009",
             "command":"elasticio/timer:timer",
             "name":"",
             "description":"",
@@ -403,6 +408,7 @@ Content-Type: application/json
           },
           {
             "id":"step_2",
+            "component_id": "55bb491dfa35a40c00000006",
             "command":"elasticio/email:send",
             "name":"",
             "description":""
@@ -532,6 +538,7 @@ Content-Type: application/json
         "nodes":[
           {
             "id":"step_1",
+            "component_id": "55ba18e35d04040500000004",
             "command":"elasticio/timer:timer",
             "name":"",
             "description":"",
@@ -541,6 +548,7 @@ Content-Type: application/json
           },
           {
             "id":"step_2",
+            "component_id": "593809a16b1d1f00196b74cd",
             "command":"elasticio/email:send",
             "name":"",
             "description":""
