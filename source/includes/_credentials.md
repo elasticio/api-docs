@@ -1,6 +1,6 @@
 # Credentials
 
-Request / Role | Tenant Admin | Organization Admin | Integrator | Guest
+Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve all credentials| -|X|X|X|
 Retrieve a credential by ID|X* |X|X|X|
@@ -64,13 +64,13 @@ Content-Type: application/json
             "self":"/v2/components/585430d2f02852a8a9fac456"
           }
         },
-        "organization":{
+        "workspace":{
           "data":{
             "id":"59d341e9037f7200184a408b",
-            "type":"organization"
+            "type":"workspace"
           },
           "links":{
-            "self":"/v2/organizations/59d341e9037f7200184a408b"
+            "self":"/v2/workspaces/59d341e9037f7200184a408b"
           }
         }
       }
@@ -109,13 +109,13 @@ Content-Type: application/json
             "self":"/v2/components/585430d2f02852a8a9fac457"
           }
         },
-        "organization":{
+        "workspace":{
           "data":{
             "id":"59d341e9037f7200184a408b",
-            "type":"organization"
+            "type":"workspace"
           },
           "links":{
-            "self":"/v2/organizations/59d341e9037f7200184a408b"
+            "self":"/v2/workspaces/59d341e9037f7200184a408b"
           },
           "agent":{
             "data":{
@@ -136,7 +136,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve all credentials belonging to user's organization.
+This resource allows you to retrieve all credentials belonging to user's Workspace.
 
 ### HTTP Request
 
@@ -207,13 +207,13 @@ Content-Type: application/json
           "self":"/v2/components/56793fb4d8057406000000f7"
         }
       },
-      "organization":{  
+      "workspace":{  
         "data":{  
           "id":"59d341e9037f7200184a408b",
-          "type":"organization"
+          "type":"workspace"
         },
         "links":{  
-          "self":"/v2/organizations/59d341e9037f7200184a408b"
+          "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       }
     }
@@ -320,13 +320,13 @@ Content-Type: application/json
           "self":"/v2/components/56793fb4d8057406000000f7"
         }
       },
-      "organization":{  
+      "workspace":{  
         "data":{  
           "id":"59d341e9037f7200184a408b",
-          "type":"organization"
+          "type":"workspace"
         },
         "links":{  
-          "self":"/v2/organizations/59d341e9037f7200184a408b"
+          "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       },
       "agent":{  
@@ -446,13 +446,13 @@ Content-Type: application/json
           "self":"/v2/components/56793fb4d8057406000000f7"
         }
       },
-      "organization":{  
+      "workspace":{  
         "data":{  
           "id":"59d341e9037f7200184a408b",
-          "type":"organization"
+          "type":"workspace"
         },
         "links":{  
-          "self":"/v2/organizations/59d341e9037f7200184a408b"
+          "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       },
       "agent":{  
