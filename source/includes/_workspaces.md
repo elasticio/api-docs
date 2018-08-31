@@ -13,15 +13,15 @@ Currently, there are only 3 roles:
 
 Each role is limited to the given Workspace only. The same user in the platform can have different roles in different Workspaces
 
-Request / Role| Tenant Admin | Workspace Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Create a Workspace|- |X|X|X|
-Get Workspace by ID| -|X| X|X|
-Get User's Workspaces|-|X| X|X|
-Add a new member to Workspace|-|X| -|-|
-Update membership in Workspace|- |X |- |-|
-Remove member from Workspace|- |X |- |-|
-Delete Workspace|- |X |- |-|
+Request / Role|  Workspace Admin | Integrator | Guest|
+---------- |:------------:| :-----------:| :----------:|
+Create a Workspace|X|X|X|
+Get Workspace by ID|X| X|X|
+Get User's Workspaces|X| X|X|
+Add a new member to Workspace|X| -|-|
+Update membership in Workspace|X |- |-|
+Remove member from Workspace|X |- |-|
+Delete Workspace|X |- |-|
 
 ## Create a Workspace
 
@@ -364,7 +364,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint returns a Workspaces objects which belong to the given User.
+This endpoint returns a list of Workspaces which belong to the given User.
 
 
 ### HTTP Request
@@ -374,12 +374,6 @@ This endpoint returns a Workspaces objects which belong to the given User.
 #### Authorization
 
 User has to be a member of the Workspace.
-
-
-### URL Parameters
-Parameter       | Description
---------------- | -----------
-WORKSPACE_ID | The ID of the Workspace
 
 
 
@@ -684,17 +678,16 @@ Responds with `204 No content` if the call succeeded (with empty body).
 HTTP/1.1 204 No Content
 ```
 
-This endpoint will delete an Workspace along with the following items that were inside the Workspace:
+This endpoint will delete the Workspace along with the following items that were inside the Workspace:
 
-???
-* Accounts (Credentials)
+* Credentials
 * Agents
 * DataSamples
 * InviteTokens
 * Lookups
 * Flow's DynamicMetadata
 * Flow's DynamicSelectModel
-* Flow'sExecStat
+* Flow's ExecStat
 * Flow's ExecutionResult
 * Flow's MarathonEvent
 * Flow's RequestBin
@@ -702,11 +695,8 @@ This endpoint will delete an Workspace along with the following items that were 
 * Flow's TaskStats
 * Flow's TaskStatError
 * Flow's TaskVersion
-* Teams
-* Repos
-* RepoBuilds
-* User accounts who were only the members of the deleted Organization
-???
+
+*Note, that process of deletion is asynchronous. Actual deletion of all data will be performed after API response, because it will take some time to terminate all containers of Workspace's flows. * 
 
 ### HTTP Request
 `DELETE https://api.elastic.io/v2/workspaces/{WORKSPACE_ID} \`
