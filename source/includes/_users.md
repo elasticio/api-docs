@@ -1,9 +1,9 @@
 # Users
 
-Request / Role| Tenant Admin | Organization Admin | Integrator | Guest
+Request / Role| Tenant Admin | Contract Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve your user|X|X|X|X|
-Retrieve a user by ID|X|X|X|X|
+Retrieve a user by ID|X|-|-|-|
 Retrieve all users|X|-|-|-|
 Create a user|X|-|-|-|
 Delete a user|X|-|-|-|
@@ -115,7 +115,7 @@ This resource allows you to retrieve a user by ID.
 
 
 ### Authorization
-This request is authorized to a user with `Admin` role to retrieve users belong to his Organization. User with `TenantAdmin` role (contact support to get this role) can retrieve users from all Organizations of the Tenant.
+This request is authorized to a user with `TenantAdmin` role (contact support to get this role) can retrieve users from all Contracts of the Tenant.
 
 #### Returns
 
@@ -320,7 +320,7 @@ curl https://api.elastic.io/v2/users \
                 "company": "Doe & Partners"
             },
             "relationships": {
-                "organizations": {
+                "contracts": {
                     "data": [
                         {"id": "54f4be3fe7d5224f91000001"}
                     ]
@@ -373,7 +373,7 @@ This resource allows you to create a user.
 | attributes.email | yes | User's email. |
 | attributes.password | yes | User's password. |
 | attributes.company | no | User's company. |
-| relationships.organizations.data | yes | Organizations to join. |
+| relationships.contracts.data | yes | Contract to join. |
 
 ### Authorization
 
@@ -419,7 +419,7 @@ This resource allows you to delete a user. When a user is deleted the following 
 * credentials
 * flows (active flows will be stopped)
 * user's object itself
-* all organizations, where the user is the only member
+* all workspaces and contracts, where the user is the only member
 
 
 ### Not deleted immediately
@@ -427,23 +427,20 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 
 * flows activity records (which used in order to show runlog)
 * logs of flow execution and repo build
-* invitations to a team or an organization
+* invitations to a team or an contract
 * notifications
 * slugs (TBD)
 
 
-### Data associated with organization
+### Data associated with contract
 
-* If this user is a member of any Organization which has one more member beside him/her then this user needs to leave this Organization before his/her profile can be deleted.
-* If this user is the only member of Organization(s) then he/she will be deleted along with all the unique data connected with this user.
+* If this user is a member of any Contract which has one more member beside him/her then this user needs to leave this Contract before his/her profile can be deleted.
+* If this user is the only member of Contract(s) then he/she will be deleted along with all the unique data connected with this user.
 
 
-
-### Public components
-If there is any public component, associated to the user and the component is used in not deleted flows of someone else, the user can not be deleted automaticaly – contact technical support.
 
 ### Authorization
-This request is allowed with Organization Admin API key.
+This request is allowed with Tenant Admin API key.
 
    
    
