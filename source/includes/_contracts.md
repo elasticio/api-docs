@@ -18,18 +18,18 @@ Each role is limited to the given Contract only. The same user in the platform c
 *Please note only the Tenant Administrator can create a Contracts unit and the first Admin for you. After the unit is created the Contract Admin can invite others and set their level of access. (Tenant is a higher structure, which includes all Contracts that belong to the white-label client)*
 
 
-Request / Role| Tenant Admin | Contract Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Create a contract|X | -|- |-|
-Get contract by Id|X |X| X|X|
-Get contracts|X |X| X|X|
-Get a list of members of contract| -|X| X|X|
-Get a list of pending members (invites) of contract|- |X| X|X|
-Invite a user to contract|X |X|- |-|
-Add a new member to contract|X |X| -|-|
-Update membership in contract|- |X |- |-|
-Remove member from contract|- |X |- |-|
-Delete contract|X |- |- |-|
+Request / Role                                      | Tenant Admin  | Contract Admin    | Integrator    | Guest
+----------                                          | :-----------: | :---------------: | :-----------: | :----------:
+Create a contract                                   |X              |-                  |-              |-              |
+Get contract by Id                                  |X              |X                  |X              |X              |
+Get contracts                                       |-              |X                  |X              |X              |
+Get a list of members of contract                   |-              |X                  |X              |X              |
+Get a list of pending members (invites) of contract |-              |X                  |X              |X              |
+Invite a user to contract                           |X              |X                  |-              |-              |
+Add a new member to contract                        |X              |X                  |-              |-              |
+Update membership in contract                       |-              |X                  |-              |-              |
+Remove member from contract                         |-              |X                  |-              |-              |
+Delete contract                                     |X              |-                  |-              |-              |
 
 ## Create a Contract
 
@@ -39,7 +39,6 @@ Delete contract|X |- |- |-|
  curl https://api.elastic.io/v2/contracts \
    -X POST \
    -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
        {
            "data": {         
@@ -65,7 +64,7 @@ Content-Type: application/json
             "self": "/v2/contracts/5b87aded2dfb980011537690"
         },
         "attributes": {
-            "name": "My COntract"
+            "name": "My Contract"
         }
     },
     "meta": {}
@@ -92,7 +91,7 @@ type            | yes      | A value should be "contract"
 attributes.name | yes      | Name of the Contract
 
 
-###Returns
+### Returns
 
 Returns Contract object if the call succeeded
 
@@ -112,8 +111,7 @@ Returns Contract object if the call succeeded
 
 ```shell
  curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}?include=members,invites \
-   -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json'
+   -u {EMAIL}:{APIKEY}
 ```
 
 
@@ -169,8 +167,8 @@ Content-Type: application/json
       "id":"59d22e7eebrr5b0018adc248",
       "type":"contract-member",
       "attributes":{
-        "first_name":"user1",
-        "last_name":"Trsenko",
+        "first_name":"Alla",
+        "last_name":"Ospik",
         "role":"admin",
         "email":"alla.ospik@elastic.io"
       },
@@ -190,8 +188,8 @@ Content-Type: application/json
       "id":"5a1c298a75be7aee189caf76",
       "type":"contract-member",
       "attributes":{
-        "first_name":"henry",
-        "last_name":"Puskim",
+        "first_name":"Henry",
+        "last_name":"Pushkin",
         "role":"admin",
         "email":"henry@elastic.io"
       },
@@ -245,8 +243,7 @@ include     | no       | Whether include or not full resource objects in respons
 
 ```shell
  curl https://api.elastic.io/v2/contracts/
-   -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json'
+   -u {EMAIL}:{APIKEY}
 ```
 
 
@@ -331,7 +328,7 @@ This endpoints returns all Contract objects for certain user.
 
 #### Authorization
 
-Client has to be a member of the Contract or to have `TenantAdmin` role (contact support team to get this role).
+Client has to be a member of a Contract.
 
 
 
@@ -341,8 +338,7 @@ Client has to be a member of the Contract or to have `TenantAdmin` role (contact
 
 ```shell
  curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}/members/ \
-   -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json'
+   -u {EMAIL}:{APIKEY}
 ```
 
 
@@ -381,7 +377,7 @@ Content-Type: application/json
         "first_name":"Ksu",
         "last_name":"Luzha",
         "role":"admin",
-        "email":"guest@elastic.io"
+        "email":"margarita@elastic.io"
       },
       "relationships":{
         "user":{
@@ -434,8 +430,7 @@ CONTRACT_ID | The ID of the Contract
 
 ```shell
  curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}/invites/ \
-   -u {EMAIL}:{APIKEY} \
-   -H 'Accept: application/json'
+   -u {EMAIL}:{APIKEY}
 ```
 
 
@@ -510,7 +505,6 @@ CONTRACT_ID | The ID of the Contract
 curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}/invites/ \
     -X POST \
     -u {EMAIL}:{APIKEY} \
-    -H 'Accept: application/json' \
     -H 'Content-Type: application/json' -d '
    {
        "data": {
@@ -557,9 +551,9 @@ This request is authorized for Contract members with role `Admin` or `TenantAdmi
 
 
 ### URL Parameters
-Parameter        | Description
----------------- | -----------
-CONTRACT_ID  | The ID of the Contract
+Parameter           | Description
+------------------- | -----------
+CONTRACT_ID         | The ID of the Contract
 
 
 ### Payload Parameters
@@ -592,7 +586,6 @@ Returns invite object if the call succeeded
 curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}/members/ \
     -X POST \
     -u {EMAIL}:{APIKEY} \
-    -H 'Accept: application/json' \
     -H 'Content-Type: application/json' -d '
     {
        "data": {
@@ -666,7 +659,6 @@ Returns member object if the call succeeded
 curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/ \
     -X PATCH  \
     -u {EMAIL}:{APIKEY} \
-    -H 'Accept: application/json' \
     -H 'Content-Type: application/json' -d '
     {
        "data": {
@@ -805,21 +797,21 @@ This endpoint will delete a Contract along with the following items that were in
 * InviteTokens
 * Flow's DynamicMetadata
 * Flow's DynamicSelectModel
-* Flow'sExecStat
+* Flow's ExecStat
 * Flow's ExecutionResult
 * Flow's MarathonEvent
 * Flow's RequestBin
 * Flow's TaskHooksData
-* Flow's TaskStats
 * Flow's TaskStatError
 * Flow's TaskVersion
 * Workspaces
 * Teams
 * Repos
 * RepoBuilds
-* User accounts who were only the members of the deleted Contract
+* User accounts who were only the members of the deleted Contract (and ssh keys associated with him/her).
 
 
+*Note, that process of deletion is asynchronous. Actual deletion of all data will be performed after API response, because it will take some time to terminate all containers of Contract's flows. *
 *A Contract cannot be deleted if any of its Components are used in another Contract's Flow*
 
 ### HTTP Request
@@ -831,7 +823,7 @@ This request is authorized for members with role `Tenant Admin`.
 ### URL Parameters
 Parameter        | Description
 ---------------- | -----------
-CONTRACT_ID  | The ID of the Contract
+CONTRACT_ID      | The ID of the Contract
 
 
 ### Returns
