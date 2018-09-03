@@ -150,7 +150,13 @@ A member of a Workspace can get any sample from own Workspace.
                         "id": "latest",
                         "type": "version"
                     }
-                }
+                },
+	               "workspace": {
+	                  	"data": {
+	                    		"id":"59d341e9037f7200184a408b",
+        	           			"type":"workspace"
+	                  	}
+	               }
             }
         }
     }'
@@ -233,6 +239,8 @@ Content-Type: application/json
 | attributes.result | yes | Data sample body |
 | relationships.component.data.id | yes | Component's id |
 | relationships.component_version.data.id | yes | Revision of the component’s build. Use latest to retrieve the descriptor of the most recent successful build. |
+| relationships.workspace.data.id | yes | An Id of the Wokspace |
+| relationships.workspace.data.type | yes | A value must be ``workspace``  |
 
 ### Returns
 
