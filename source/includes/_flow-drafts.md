@@ -1,6 +1,6 @@
 # Flow drafts
 
-Request / Role| Tenant Admin | Organization Admin | Integrator | Guest
+Request / Role| Tenant Admin | Workspace Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve a flow draft| X|X|X|X|
 Create/update a flow draft|X |X|X|X|
