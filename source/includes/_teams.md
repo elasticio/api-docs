@@ -1,6 +1,6 @@
 # Teams
 
-Request / Role| Tenant Admin | Organization Admin | Integrator | Guest
+Request / Role| Tenant Admin | Contract Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve all teams|-|X|X|X|
 Retrieve team by ID|-|X*|X*|X*|
@@ -12,6 +12,7 @@ Delete a team|-|X|-|-|
 *- Only teams which belong to given user 
 
 ## Retrieve all teams
+
 
 
 > Example Request:
@@ -185,13 +186,21 @@ Returns team metadata object if the call succeeded.
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
-   {
-       "data": {
-            "attributes": {
-                "name": "myteam"
-            }
-       }
-   }'
+   {  
+  "data":{  
+    "attributes":{  
+      "name":"309myteam"
+    },
+    "relationships":{  
+      "contract":{  
+        "data":{  
+          "id":"5b87c916bfeeb2441025c8bb",
+          "type":"contract"
+        }
+      }
+    }
+  }
+}'
 ```
 
 
@@ -207,25 +216,25 @@ Content-Type: application/json
     "id":"5aabe01bbd6d6400079b45c4",
     "type":"team",
     "links":{
-      "self":"/v2/teams/5aabe01bbd6d6400079b45c4"
+      "self":"/v2/teams/5aabe01bbd6d6433079b45c4"
     },
     "attributes":{
-      "name":"myteam"
+      "name":"309myteam"
     },
     "relationships":{
       "contract":{
         "data":{
-          "id":"59d341e9037f7200184a408b",
+          "id":"59d341e9037f72001833408b",
           "type":"contract"
         },
         "links":{
-          "self":"/v2/contract/59d341e9037f7200184a408b"
+          "self":"/v2/contract/59d341e9037f7200133a408b"
         }
       },
       "users":{
         "data":[
           {
-            "id":"59d22e7eeb865b0018adc248",
+            "id":"59d22e7eeb86533018adc248",
             "type":"user"
           }
         ]
@@ -248,6 +257,8 @@ This resource allows you to create a new team.
 | :--- | :--- | :--- |
 | type | yes | A value must be ``team`` |
 | attributes.name | no | A team name. |
+| relationships.contract.data.id | yes | An Id of the contract |
+| relationships.contract.data.type | yes | A value must be ``contract``  |
 
 ### Returns
 
