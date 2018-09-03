@@ -2,16 +2,13 @@
 
 ## What is a Workspace unit?
 
-bla-bla-bla
-
-All members of a Workspace would have their access level or roles.
-Currently, there are only 3 roles:
+A workspace is a space where every user can work on an integration project independently or in collaboration with other users. Every user is a member of at least one Workspace, but, each Workspace can have more than one member. All members of a Workspace have their access level or roles. There are only 3 roles:
 
 - Workspace Admin - this role gives the holder all the rights within the Workspace unit
-- Integrator - this role is usually granted for designing the integration process by building the flows, etc
-- Guest - this role gives view-only rights to examine the work done by Integrators
+- Integrator - this role is granted for designing the integration process by building the flows, etc
+- Guest - this role gives view-only rights to examine the work by Integrators
 
-Each role is limited to the given Workspace only. The same user in the platform can have different roles in different Workspaces
+Each role is limited to the given Workspace only. The same user in the platform can have different roles in different Workspaces.
 
 Request / Role|  Workspace Admin | Integrator | Guest|
 ---------- |:------------:| :-----------:| :----------:|
