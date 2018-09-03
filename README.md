@@ -43,7 +43,7 @@ docker build -t api-docs .
 ```
 docker run --rm -p 8081:8000 -d api-docs
 ```
-3. Access docs for api vesion 1 at `localhost:8081/api-v1`, for api vesion 2 at `localhost:8081/api-v2`
+3. Access docs for api vesion at `localhost:8081`
 
 
 
