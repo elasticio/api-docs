@@ -1,6 +1,6 @@
 # Flows
 
-Request / Role | Tenant Admin | Organization Admin | Integrator | Guest
+Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve all flows|- |X|X|X|
 Retrieve a flow by ID|- |X|X|X|
@@ -117,13 +117,13 @@ Content-Type: application/json
             "self":"/v2/users/560e5a27734d480a00000002"
           }
         },
-        "organization":{
+        "workspace":{
           "data":{
-            "type":"organization",
+            "type":"workspace",
             "id":"573dd76962436c349f000003"
           },
           "links":{
-            "self":"/v2/organizations/573dd76962436c349f000003"
+            "self":"/v2/workspaces/573dd76962436c349f000003"
           }
         },
         "versions":{
@@ -171,15 +171,15 @@ This resource allows you to retrieve flows.
 | filter[has_draft] | no | Filter flows only with or without a draft. May be `true` or `false`. |
 | filter[status]    | no | Filter by `status`. May be any of: `active`, `inactive`. |
 | filter[type]      | no | Filter by flow `type`. May be any of: `ordinary`, `long_running`. |
-| filter[user]      | no | Filter by `user`. Must be `id` of `User` who created the flow. `user` could be found in relationships of the flow. |
+| filter[user]      | no | Filter by `user`. Must be `id` of `User` who created the flow. `User` could be found in relationships of the flow. |
 | sort              | no | Sort flows list by certain field. May be `created_at`, `updated_at` or `name`. Prefix field name with `-` for reversed (desc) order e.g. `sort=-updated_at`. Default sort is by `id`. |
 | search            | no | Search flows by a word or a phrase contained in a `description` OR in a `name`. Behavior is similar to operator `LIKE` in SQL. Case insensitive. Leading/following spaces are trimmed. |
 
 ### Returns
 
-Returns all flows belonging to the given user. If the user is a member of an organization,
-all the flows of the organization are returned. If the user is a member in multiple organizations, the given API key is
-used to match the proper organization.
+Returns all flows belonging to the given user. If the user is a member of a Workspace,
+all the flows of the Workspace are returned. If the user is a member in multiple Workspaces, the given API key is
+used to match the proper Workspace.
 
 ## Retrieve a flow by ID
 
@@ -191,9 +191,7 @@ curl https://api.elastic.io/v2/flows/{FLOW_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
-```javascript
-TDB
-```
+
 
 > Example Response:
 
@@ -265,13 +263,13 @@ Content-Type: application/json
           "self":"/v2/users/560e5a27734d480a00000002"
         }
       },
-      "organization":{
+      "workspace":{
         "data":{
-          "type":"organization",
+          "type":"workspace",
           "id":"573dd76962436c349f000003"
         },
         "links":{
-          "self":"/v2/organizations/573dd76962436c349f000003"
+          "self":"/v2/workspaces/573dd76962436c349f000003"
         }
       },
       "versions":{
@@ -296,7 +294,7 @@ Content-Type: application/json
 ```
 
 This resource allows you to retrieve a flow by its identifier. If the flow with given ID does not belong to the current
-user or to one of his organizations, an error is returned.
+user or to one of his Workspace, an error is returned.
 
 ### HTTP Request
 
@@ -439,13 +437,13 @@ Content-Type: application/json
           "self":"/v2/users/560e5a27734d480a00000002"
         }
       },
-      "organization":{
+      "workspace":{
         "data":{
-          "type":"organization",
+          "type":"workspace",
           "id":"573dd76962436c349f000003"
         },
         "links":{
-          "self":"/v2/organizations/573dd76962436c349f000003"
+          "self":"/v2/workspaces/573dd76962436c349f000003"
         }
       },
       "versions":{
@@ -579,13 +577,13 @@ Content-Type: application/json
           "self":"/v2/users/560e5a27734d480a00000002"
         }
       },
-      "organization":{
+      "workspace":{
         "data":{
-          "type":"organization",
+          "type":"workspace",
           "id":"573dd76962436c349f000003"
         },
         "links":{
-          "self":"/v2/organizations/573dd76962436c349f000003"
+          "self":"/v2/workspaces/573dd76962436c349f000003"
         }
       },
       "versions":{
