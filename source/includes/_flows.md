@@ -1,6 +1,6 @@
 # Flows
 
-Request / Role | Tenant Admin | Organization Admin | Integrator | Guest
+Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve all flows|- |X|X|X|
 Retrieve a flow by ID|- |X|X|X|
@@ -16,7 +16,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with custom paging):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?page[size]=20&page[number]=1' \
+ curl 'https://api.elastic.io/v2/flows?workspace_id=59d341e9037f7200184a408b&page[size]=20&page[number]=1' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -24,7 +24,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with filter):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?filter[status]=active' \
+ curl 'https://api.elastic.io/v2/flows?workspace_id=59d341e9037f7200184a408b&filter[status]=active' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -32,7 +32,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with search):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?search=webhook' \
+ curl 'https://api.elastic.io/v2/flows?workspace_id=59d341e9037f7200184a408b&search=webhook' \
    -g -u {EMAIL}:{APIKEY} 
 ```
 
@@ -40,7 +40,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with custom sorting):
 
 ```shell 
- curl 'https://api.elastic.io/v2/flows?sort=-updated_at' \
+ curl 'https://api.elastic.io/v2/flows?workspace_id=59d341e9037f7200184a408b&sort=-updated_at' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -117,13 +117,13 @@ Content-Type: application/json
             "self":"/v2/users/560e5a27734d480a00000002"
           }
         },
-        "organization":{
+        "workspace":{
           "data":{
-            "type":"organization",
+            "type":"workspace",
             "id":"573dd76962436c349f000003"
           },
           "links":{
-            "self":"/v2/organizations/573dd76962436c349f000003"
+            "self":"/v2/workspaces/573dd76962436c349f000003"
           }
         },
         "versions":{
@@ -166,20 +166,21 @@ This resource allows you to retrieve flows.
 
 | Parameter         | Required  | Description |
 | :---              | :---      | :---        |
+|workspace_id|yes|An Id of the Workspace|
 | page[size]        | no | Amount of items per page. Default is `50`. |
 | page[number]      | no | Number of page you want to display. Default is `1`. |
 | filter[has_draft] | no | Filter flows only with or without a draft. May be `true` or `false`. |
 | filter[status]    | no | Filter by `status`. May be any of: `active`, `inactive`. |
 | filter[type]      | no | Filter by flow `type`. May be any of: `ordinary`, `long_running`. |
-| filter[user]      | no | Filter by `user`. Must be `id` of `User` who created the flow. `user` could be found in relationships of the flow. |
+| filter[user]      | no | Filter by `user`. Must be `id` of `User` who created the flow. `User` could be found in relationships of the flow. |
 | sort              | no | Sort flows list by certain field. May be `created_at`, `updated_at` or `name`. Prefix field name with `-` for reversed (desc) order e.g. `sort=-updated_at`. Default sort is by `id`. |
 | search            | no | Search flows by a word or a phrase contained in a `description` OR in a `name`. Behavior is similar to operator `LIKE` in SQL. Case insensitive. Leading/following spaces are trimmed. |
 
 ### Returns
 
-Returns all flows belonging to the given user. If the user is a member of an organization,
-all the flows of the organization are returned. If the user is a member in multiple organizations, the given API key is
-used to match the proper organization.
+Returns all flows belonging to the given user. If the user is a member of a Workspace,
+all the flows of the Workspace are returned. If the user is a member in multiple Workspaces, the given API key is
+used to match the proper Workspace.
 
 ## Retrieve a flow by ID
 
@@ -191,9 +192,7 @@ curl https://api.elastic.io/v2/flows/{FLOW_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
-```javascript
-TDB
-```
+
 
 > Example Response:
 
@@ -265,13 +264,13 @@ Content-Type: application/json
           "self":"/v2/users/560e5a27734d480a00000002"
         }
       },
-      "organization":{
+      "workspace":{
         "data":{
-          "type":"organization",
+          "type":"workspace",
           "id":"573dd76962436c349f000003"
         },
         "links":{
-          "self":"/v2/organizations/573dd76962436c349f000003"
+          "self":"/v2/workspaces/573dd76962436c349f000003"
         }
       },
       "versions":{
@@ -296,7 +295,7 @@ Content-Type: application/json
 ```
 
 This resource allows you to retrieve a flow by its identifier. If the flow with given ID does not belong to the current
-user or to one of his organizations, an error is returned.
+user or to one of his Workspace, an error is returned.
 
 ### HTTP Request
 
@@ -364,7 +363,15 @@ The flow with given ID
                 ]
             }
         },
-        "type": "flow"
+        "type": "flow",
+        "relationships":{
+					    "workspace":{
+    				 	 "data":{
+    		 			   "id":"59d341e9037f7200184a408b",
+    		 			   "type":"workspace"
+    		 			 }
+					   }
+				  }
     }
 }'
 
@@ -439,13 +446,13 @@ Content-Type: application/json
           "self":"/v2/users/560e5a27734d480a00000002"
         }
       },
-      "organization":{
+      "workspace":{
         "data":{
-          "type":"organization",
+          "type":"workspace",
           "id":"573dd76962436c349f000003"
         },
         "links":{
-          "self":"/v2/organizations/573dd76962436c349f000003"
+          "self":"/v2/workspaces/573dd76962436c349f000003"
         }
       },
       "versions":{
@@ -483,6 +490,8 @@ This resource allows you to create a new flow.
 | attributes.name | yes | Flow name |
 | attributes.type | yes | Flow type. May be any of: ``ordinary``, ``long_running`` |
 | attributes.graph | yes | Flow graph representing component connections |
+| relationships.workspace.data.id | yes | An Id of the Workspace |
+| relationships.workspace.data.type | yes | A value must be ``workspace``  |
 
 
 ### Returns
@@ -579,13 +588,13 @@ Content-Type: application/json
           "self":"/v2/users/560e5a27734d480a00000002"
         }
       },
-      "organization":{
+      "workspace":{
         "data":{
-          "type":"organization",
+          "type":"workspace",
           "id":"573dd76962436c349f000003"
         },
         "links":{
-          "self":"/v2/organizations/573dd76962436c349f000003"
+          "self":"/v2/workspaces/573dd76962436c349f000003"
         }
       },
       "versions":{
