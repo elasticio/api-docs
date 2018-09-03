@@ -78,14 +78,22 @@ curl https://api.elastic.io/v2/agents \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
     {
-      "data": {
-        "type": "agent",
-        "attributes": {
-          "title": "agent title",
-          "description": "agent description"
-        }
-      }
-    }'
+     "data":{
+       "type":"agent",
+       "attributes":{
+         "title":"agent title",
+         "description":"agent description"
+       },
+       "relationships":{
+         "workspace":{
+           "data":{
+             "id":"59d341e9037f7200184a408b",
+             "type":"workspace"
+           }
+         }
+       }
+     }
+   }'
 ```
 
 
@@ -109,7 +117,7 @@ Content-Type: application/json
          "status":"pending"
       },
       "relationships":{
-         "organization":{
+         "workspace":{
             "data":{
                "id":"{WORKSPACE_ID}",
                "type":"workspace"
@@ -138,6 +146,8 @@ We will contact you within 2-3 working days.
 | type | yes | A value must be ``agent`` |
 | attributes.title | yes | Agent title |
 | attributes.description | yes | Agent description |
+| relationships.workspace.data.id | yes | An Id of the Workspace |
+| relationships.workspace.data.type | yes | A value must be ``workspace``  |
 
 ### Returns
 
