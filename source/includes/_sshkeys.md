@@ -1,6 +1,6 @@
 # SSH keys
 
-Request / Role| Tenant Admin | Organization Admin | Integrator | Guest
+Request / Role| Tenant Admin | Workspace Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve all SSH keys|X*|X|X*|X*|
 Create a new SSH key|X*|X|X*|X*|
