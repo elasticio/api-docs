@@ -1,6 +1,6 @@
 # Data samples
 
-Request / Role | Tenant Admin | Organization Admin | Integrator | Guest
+Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve data sample|- | X|X |X|
 Create data sample| X| X| X|-|
@@ -40,13 +40,13 @@ Content-Type: application/json
           "self":"/v2/components/5863f7136ef9da255ad9a9bc/versions/latest"
         }
       },
-      "organization":{
+      "workspace":{
         "data":{
           "id":"59d341e9037f7200184a408b",
-          "type":"organization"
+          "type":"workspace"
         },
         "links":{
-          "self":"/v2/organizations/59d341e9037f7200184a408b"
+          "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       },
       "component":{
@@ -82,7 +82,7 @@ Content-Type: application/json
 
 #### Authorization
 
-A member of an organization can get any sample from own organization.
+A member of a Workspace can get any sample from own Workspace.
 
 ### HTTP Request
 
@@ -150,7 +150,13 @@ A member of an organization can get any sample from own organization.
                         "id": "latest",
                         "type": "version"
                     }
-                }
+                },
+	               "workspace": {
+	                  	"data": {
+	                    		"id":"59d341e9037f7200184a408b",
+        	           			"type":"workspace"
+	                  	}
+	               }
             }
         }
     }'
@@ -179,13 +185,13 @@ Content-Type: application/json
           "self":"/v2/components/5863f7136ef9da255ad9a9bc/versions/latest"
         }
       },
-      "organization":{
+      "workspace":{
         "data":{
           "id":"59d341e9037f7200184a408b",
-          "type":"organization"
+          "type":"workspace"
         },
         "links":{
-          "self":"/v2/organizations/59d341e9037f7200184a408b"
+          "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       },
       "component":{
@@ -233,6 +239,8 @@ Content-Type: application/json
 | attributes.result | yes | Data sample body |
 | relationships.component.data.id | yes | Component's id |
 | relationships.component_version.data.id | yes | Revision of the component’s build. Use latest to retrieve the descriptor of the most recent successful build. |
+| relationships.workspace.data.id | yes | An Id of the Wokspace |
+| relationships.workspace.data.type | yes | A value must be ``workspace``  |
 
 ### Returns
 
@@ -285,13 +293,13 @@ Content-Type: application/json
           "self":"/v2/components/5863f7136ef9da255ad9a9bc/versions/latest"
         }
       },
-      "organization":{
+      "workspace":{
         "data":{
           "id":"59d341e9037f7200184a408b",
-          "type":"organization"
+          "type":"workspace"
         },
         "links":{
-          "self":"/v2/organizations/59d341e9037f7200184a408b"
+          "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       },
       "component":{
