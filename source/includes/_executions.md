@@ -57,7 +57,7 @@ HTTP header is the URL to get the results of the execution. Please see how to [p
 
 ![Scheduled Executions](../images/scheduled_executions.png)
 
-Request / Role | Tenant Admin | Organization Admin | Integrator | Guest
+Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Verify credentials|- |X|X|X|
 Retrieve component’s metamodel|-|X|X|X|
