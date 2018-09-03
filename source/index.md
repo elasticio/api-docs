@@ -8,21 +8,21 @@ toc_footers:
   - <a href='http://www.elastic.io/en/demo-request/'>Sign Up for a Developer Key</a>
 
 includes:
+  - agents
   - components
-  - resources
+  - contracts
   - credentials
   - datasamples
-  - flows
-  - flow-versions
-  - flow-drafts
-  - lookups
-  - organizations
   - executions
+  - flows
+  - flow-drafts
+  - flow-versions
+  - resources
   - sshkeys
   - teams
-  - agents
   - users
-
+  - workspaces
+ 
 search: true
 ---
 
