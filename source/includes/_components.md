@@ -7,13 +7,13 @@ Each ``Component`` belongs to a ``Team``. Each ``User``  who is a member of the 
 The component has an attribute ``access``, which indicates how is the component shared by the other clients. "Shared" means, that the component can be used by the users in their flows.
 There are three sharing modes:
 
-- ``team`` – no sharing. Only organization members can use the component.
+- ``team`` – no sharing. Only Contract members can use the component.
 - ``tenant`` – component could be used by the other clients in the tenant.
-- ``global`` – special mode for components from the standard set of components of Elastic.io Platform (e.g. ``timer``, ``webhook`` etc). Any user of the platform can use ``global`` components.
+- ``global`` – special mode for components from the standard set of components of Elastic.io Platform (e.g. ``Timer``, ``Webhook`` etc). Any user of the platform can use ``global`` components.
 
-Accordingly, a set of components, available for each user is consist of: not shared components from the user's organization, components with ``tenant`` access and ``global`` components.
+Accordingly, a set of components, available for each user is consist of: not shared components from the user's Contract, components with ``tenant`` access and ``global`` components.
 
-Request \ Role | Tenant Admin | Organization Admin | Integrator | Guest
+Request \ Role | Tenant Admin | Contract Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve all components | X| X | X | X |
 Retrieve a component by ID |X|X|X| X|
@@ -173,7 +173,7 @@ More details about the component descriptors can be found [here](#component-desc
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| filter[access] | No | Allowed values: ``private`` (only components from own organizations returned), ``public`` (only shared components from the other organizations) and ``all`` (default value, returns all available components).|
+| filter[access] | No | Allowed values: ``private`` (only components from own Contract returned), ``public`` (only shared components from the other Contracts) and ``all`` (default value, returns all available components).|
 
 ### Returns
 
@@ -331,7 +331,7 @@ Content-Type: application/json
 
 
 ### Authorization
-The component should be accessible to the client (e.g. component from the own organization or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
+The component should be accessible to the client (e.g. component from the own Contract or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
   
 
 ### Returns
@@ -432,7 +432,7 @@ This endpoint retrieves list of component's versions
 
 
 ### Authorization
-The component should be accessible to the client (e.g. component from the own organization or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
+The component should be accessible to the client (e.g. component from the own Contract or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
 
 
 ### Returns
@@ -540,7 +540,7 @@ or
 
 
 ### Authorization
-The component should be accessible for the client (e.g. component from own organization or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
+The component should be accessible for the client (e.g. component from own Contract or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
 
 
 
@@ -725,7 +725,7 @@ A component may have one of the following access level:
 
 - ``team`` – no sharing. Only team members can use the component.
 - ``tenant`` – component could be used by the other clients in the tenant.
-- ``global`` – special mode for components from the standard set of components of Elastic.io Platform (e.g. ``timer``, ``webhook`` etc). Any user of the platform can use ``global`` components.
+- ``global`` – special mode for components from the standard set of components of Elastic.io Platform (e.g. ``Timer``, ``Webhook`` etc). Any user of the platform can use ``global`` components.
 
 ### Authorization
 This request is authorized for a user with ``TenantAdmin`` role only. Contact support team to get this role.
@@ -782,7 +782,7 @@ This resource allows you to delete a component. A component may only be delete i
 
 
 ### Authorization
-The component must belong to one of the client’s team or organization respectively unless it has ``TenantAdmin`` role. Contact support team to get this role.
+The component must belong to one of the client’s team or Contract respectively unless it has ``TenantAdmin`` role. Contact support team to get this role.
 
 
 ### Returns
