@@ -1,6 +1,6 @@
 # Credentials
 
-Request / Role | Tenant Admin | Organization Admin | Integrator | Guest
+Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve all credentials| -|X|X|X|
 Retrieve a credential by ID|X* |X|X|X|
@@ -64,13 +64,13 @@ Content-Type: application/json
             "self":"/v2/components/585430d2f02852a8a9fac456"
           }
         },
-        "organization":{
+        "workspace":{
           "data":{
             "id":"59d341e9037f7200184a408b",
-            "type":"organization"
+            "type":"workspace"
           },
           "links":{
-            "self":"/v2/organizations/59d341e9037f7200184a408b"
+            "self":"/v2/workspaces/59d341e9037f7200184a408b"
           }
         }
       }
@@ -109,13 +109,13 @@ Content-Type: application/json
             "self":"/v2/components/585430d2f02852a8a9fac457"
           }
         },
-        "organization":{
+        "workspace":{
           "data":{
             "id":"59d341e9037f7200184a408b",
-            "type":"organization"
+            "type":"workspace"
           },
           "links":{
-            "self":"/v2/organizations/59d341e9037f7200184a408b"
+            "self":"/v2/workspaces/59d341e9037f7200184a408b"
           },
           "agent":{
             "data":{
@@ -136,7 +136,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve all credentials belonging to user's organization.
+This resource allows you to retrieve all credentials belonging to user's Workspace.
 
 ### HTTP Request
 
@@ -207,13 +207,13 @@ Content-Type: application/json
           "self":"/v2/components/56793fb4d8057406000000f7"
         }
       },
-      "organization":{  
+      "workspace":{  
         "data":{  
           "id":"59d341e9037f7200184a408b",
-          "type":"organization"
+          "type":"workspace"
         },
         "links":{  
-          "self":"/v2/organizations/59d341e9037f7200184a408b"
+          "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       }
     }
@@ -251,32 +251,32 @@ curl https://api.elastic.io/v2/credentials/ \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' -d '
     {
-        "data": {
-            "type": "credential",
-            "attributes": {
-                "name": "Spreadsheet",
-                    "keys": {
-                        "oauth": {
-                            "key": "secret1"
-                        }
-                }
-            },
-            "relationships": {
-                "component": {
-                    "data": {
-                        "id": "585430d2f02852a8a9fac456",
-                        "type": "component"
-                    }
-                },
-                "agent": {
-                    "data": {
-                        "id": "59a410d76b670400182f190e",
-                        "type": "agent"
-                    }
-                }
-            }
-        }
-    }'
+     "data":{
+       "type":"credential",
+       "attributes":{
+         "name":"credname",
+         "keys":{
+           "host":"hostname",
+           "username":"username",
+           "password":"pass"
+         }
+       },
+       "relationships":{
+         "component":{
+           "data":{
+             "id":"56793fb4d8057406000000f7",
+             "type":"component"
+           }
+         },
+         "workspace":{
+           "data":{
+             "id":"59d341e9037f7200184a408b",
+             "type":"workspace"
+           }
+         }
+       }
+     }
+   }'
 ```
 
 
@@ -294,11 +294,11 @@ Content-Type: application/json
       "self":"/v2/credentials/5abe11edbec1cf00078b81d1"
     },
     "attributes":{  
-      "name":"luzho4ek2",
+      "name":"credname",
       "keys":{  
-        "host":"sftp.company.org",
-        "username":"lord",
-        "password":"hdhajdha"
+        "host":"hostname",
+        "username":"username",
+        "password":"pass"
       }
     },
     "relationships":{  
@@ -320,13 +320,13 @@ Content-Type: application/json
           "self":"/v2/components/56793fb4d8057406000000f7"
         }
       },
-      "organization":{  
+      "workspace":{  
         "data":{  
           "id":"59d341e9037f7200184a408b",
-          "type":"organization"
+          "type":"workspace"
         },
         "links":{  
-          "self":"/v2/organizations/59d341e9037f7200184a408b"
+          "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       },
       "agent":{  
@@ -359,6 +359,8 @@ This resource allows you to create a credential.
 | attributes.name | no | Credential name. An automatic name will be generated if the parameter is omitted |
 | relationships.component.data.id | yes | The component id this credential is for |
 | relationships.component.data.type | yes | A value must be ``component`` |
+| relationships.workspace.data.id | yes | The Workspace id this credential is for |
+| relationships.workspace.data.type | yes | A value must be ``workspace`` |
 | relationships.agent | no | The agent relation object |
 | relationships.agent.data.id | no | The agent id this credential is for |
 | relationships.agent.data.type | no | A value must be ``agent`` |
@@ -446,13 +448,13 @@ Content-Type: application/json
           "self":"/v2/components/56793fb4d8057406000000f7"
         }
       },
-      "organization":{  
+      "workspace":{  
         "data":{  
           "id":"59d341e9037f7200184a408b",
-          "type":"organization"
+          "type":"workspace"
         },
         "links":{  
-          "self":"/v2/organizations/59d341e9037f7200184a408b"
+          "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       },
       "agent":{  
