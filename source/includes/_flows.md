@@ -16,7 +16,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with custom paging):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?page[size]=20&page[number]=1' \
+ curl 'https://api.elastic.io/v2/flows?workspace_id=59d341e9037f7200184a408b&page[size]=20&page[number]=1' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -24,7 +24,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with filter):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?filter[status]=active' \
+ curl 'https://api.elastic.io/v2/flows?workspace_id=59d341e9037f7200184a408b&filter[status]=active' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -32,7 +32,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with search):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?search=webhook' \
+ curl 'https://api.elastic.io/v2/flows?workspace_id=59d341e9037f7200184a408b&search=webhook' \
    -g -u {EMAIL}:{APIKEY} 
 ```
 
@@ -40,7 +40,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with custom sorting):
 
 ```shell 
- curl 'https://api.elastic.io/v2/flows?sort=-updated_at' \
+ curl 'https://api.elastic.io/v2/flows?workspace_id=59d341e9037f7200184a408b&sort=-updated_at' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -166,6 +166,7 @@ This resource allows you to retrieve flows.
 
 | Parameter         | Required  | Description |
 | :---              | :---      | :---        |
+|workspace_id|yes|An Id of the Workspace|
 | page[size]        | no | Amount of items per page. Default is `50`. |
 | page[number]      | no | Number of page you want to display. Default is `1`. |
 | filter[has_draft] | no | Filter flows only with or without a draft. May be `true` or `false`. |
@@ -362,7 +363,15 @@ The flow with given ID
                 ]
             }
         },
-        "type": "flow"
+        "type": "flow",
+        "relationships":{
+					    "workspace":{
+    				 	 "data":{
+    		 			   "id":"59d341e9037f7200184a408b",
+    		 			   "type":"workspace"
+    		 			 }
+					   }
+				  }
     }
 }'
 
@@ -481,6 +490,8 @@ This resource allows you to create a new flow.
 | attributes.name | yes | Flow name |
 | attributes.type | yes | Flow type. May be any of: ``ordinary``, ``long_running`` |
 | attributes.graph | yes | Flow graph representing component connections |
+| relationships.workspace.data.id | yes | An Id of the Workspace |
+| relationships.workspace.data.type | yes | A value must be ``workspace``  |
 
 
 ### Returns
