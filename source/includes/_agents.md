@@ -1,6 +1,6 @@
 # Agents
  
- Request / Role | Tenant Admin | Organization Admin | Integrator | Guest
+ Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve all agents|-|X|X|X|
 Сreate agent|-|X|X|X
@@ -39,13 +39,13 @@ Content-Type: application/json
             "last_seen":"2017-10-04T19:02:19.188Z"
          },
          "relationships":{
-            "organization":{
+            "workspace":{
                "data":{
-                  "id":"{ORGANIZATION_ID}",
-                  "type":"organization"
+                  "id":"{WORKSPACE_ID}",
+                  "type":"workspace"
                },
                "links":{
-                  "self":"/v2/organizations/{ORGANIZATION_ID}"
+                  "self":"/v2/workspaces/{WORKSPACE_ID}"
                }
             }
          }
@@ -55,7 +55,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve all the agents belonging to the given organization.
+This resource allows you to retrieve all the agents belonging to the given Workspace.
 
 ### HTTP Request
 
@@ -78,14 +78,22 @@ curl https://api.elastic.io/v2/agents \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
     {
-      "data": {
-        "type": "agent",
-        "attributes": {
-          "title": "agent title",
-          "description": "agent description"
-        }
-      }
-    }'
+     "data":{
+       "type":"agent",
+       "attributes":{
+         "title":"agent title",
+         "description":"agent description"
+       },
+       "relationships":{
+         "workspace":{
+           "data":{
+             "id":"59d341e9037f7200184a408b",
+             "type":"workspace"
+           }
+         }
+       }
+     }
+   }'
 ```
 
 
@@ -109,13 +117,13 @@ Content-Type: application/json
          "status":"pending"
       },
       "relationships":{
-         "organization":{
+         "workspace":{
             "data":{
-               "id":"{ORGANIZATION_ID}",
-               "type":"organization"
+               "id":"{WORKSPACE_ID}",
+               "type":"workspace"
             },
             "links":{
-               "self":"/v2/organizations/{ORGANIZATION_ID}"
+               "self":"/v2/workspaces/{WORKSPACE_ID}"
             }
          }
       }
@@ -138,6 +146,8 @@ We will contact you within 2-3 working days.
 | type | yes | A value must be ``agent`` |
 | attributes.title | yes | Agent title |
 | attributes.description | yes | Agent description |
+| relationships.workspace.data.id | yes | An Id of the Workspace |
+| relationships.workspace.data.type | yes | A value must be ``workspace``  |
 
 ### Returns
 
