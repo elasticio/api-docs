@@ -1,4 +1,4 @@
-# Organizations
+# Organizations (Deprecated)
 
 ## What is an Organizational unit?
 
