@@ -2,20 +2,13 @@
 
 ## What is a Contract unit?
 
-To put this simply: the Contract can be used to encompass all of those development teams as well as to create the integration flows using all of those developed components. However, there are more features included in this unit. Here is a summary of capabilities that Contract can enable:
+A Contract is a structural entity which reflects an agreement Contract between a customer and the platform provider. It can have an unlimited number of members, workspaces and development teams. The purpose of the Contract is to manage all members, workspaces and development teams. It also serves a singular entity for the billing against the consumed resources by all the integration flows.
 
-- Share private components
+Every member of the Contract has one unique access level or role within the current Contract: `Contract Admin`, `Integrator` or a `Guest`. The same user in the platform can have different roles in different Contracts.
 
-All of these possibilities can be enabled or disabled based on the level of access within the Contract unit. All members of a Contract would have their access level or roles.
-Currently, there are only 3 roles:
+*Please note only the Tenant Admin can create a Contracts unit and the first Contract Admin. After the unit is created the Contract Admin can invite others and set their level of access. (Tenant is a higher structure, which includes all Contracts that belong to the white-label client).*
 
-- Contract Admin - this role gives the holder all the rights within the Contract unit
-- Integrator - 
-- Guest - this role gives view-only rights to examine the work done by Integrators
-
-Each role is limited to the given Contract only. The same user in the platform can have different roles in different Contracts
-
-*Please note only the Tenant Administrator can create a Contracts unit and the first Admin for you. After the unit is created the Contract Admin can invite others and set their level of access. (Tenant is a higher structure, which includes all Contracts that belong to the white-label client)*
+The table below lists the access roles against the performed API requests: 
 
 
 Request / Role                                      | Tenant Admin  | Contract Admin    | Integrator    | Guest
