@@ -23,6 +23,7 @@ Add a new member to contract                        |X              |X          
 Update membership in contract                       |-              |X                  |-              |-              |
 Remove member from contract                         |-              |X                  |-              |-              |
 Delete contract                                     |X              |-                  |-              |-              |
+Create a workspace                                  |-              |X                  |X              |X              |
 
 ## Create a Contract
 
@@ -822,3 +823,93 @@ CONTRACT_ID      | The ID of the Contract
 ### Returns
 
 Responds with `204 No content` if the call succeeded (with empty body).
+
+## Create a Workspace
+
+> Example Request:
+
+```shell
+ curl https://api.elastic.io/v2/workspaces \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+       {
+           "data": {         
+               "type": "workspace",
+               "attributes": {
+                   "name": "My first Workspace"
+               }
+           }
+       }'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id":"5b880121f3c1a800112a3bb3",
+    "type":"workspace",
+    "links":{
+      "self":"/v2/workspaces/5b880121f3c1a800112a3bb3"
+    },
+    "attributes":{
+      "name":"My first Workspace from API"
+    },
+    "relationships":{
+      "contract":{
+        "data":{
+          "id":"5b4f337bff4304610483ba67",
+          "type":"contract"
+        },
+        "links":{
+          "self":"/v2/contracts/5b4f337bff4304610483ba67"
+        }
+      },
+      "members":{
+        "data":[
+          {
+            "id":"59d22e7eeb865b0018adc248",
+            "type":"member"
+          }
+        ],
+        "links":{
+          "self":"/v2/workspaces/5b880121f3c1a800112a3bb3/members/"
+        }
+      }
+    }
+  },
+  "meta":{
+
+  }
+}
+
+```
+
+This endpoint allows to create a Workspace.
+
+
+### HTTP Request
+
+`POST https://api.elastic.io/v2/workspaces`
+
+
+#### Authorization
+
+This request is authorized to all user's roles.
+
+Parameter       | Required | Description
+--------------- | -------- | -----------
+type            | yes      | A value should be "workspace"
+attributes.name | yes      | Name of the Workspace
+
+
+### Returns
+
+Returns Workspace object if the call succeeded
+
+
