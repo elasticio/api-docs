@@ -914,7 +914,8 @@ Parameter       | Required | Description
 --------------- | -------- | -----------
 type            | yes      | A value should be "workspace"
 attributes.name | yes      | Name of the Workspace
-
+relationships.contract.data.id | yes | An Id of the contract
+relationships.contract.data.type | yes | A value must be ``contract``
 
 ### Returns
 
