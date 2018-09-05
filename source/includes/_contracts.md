@@ -840,7 +840,15 @@ Responds with `204 No content` if the call succeeded (with empty body).
                "attributes": {
                    "name": "My first Workspace"
                }
-           }
+           },
+               "relationships":{
+                   "contract":{
+                      "data":{
+                          "id":"5b69630eec703400110a4dd4",
+                          "type":"contract"
+                      }
+                   }
+                }
        }'
 ```
 
@@ -890,7 +898,7 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows to create a Workspace.
+This endpoint allows creating a Workspace only by User which is a member of the Contract.
 
 
 ### HTTP Request
