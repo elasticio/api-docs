@@ -631,10 +631,8 @@ HTTP/1.1 204 No Content
 Remove a membership of the User in the Workspace.
 Ownership of those user's associated data will be transferred to Admin User performing this operation:
 
-* ???
-* ???
-* ???
-* ??? 
+* flows
+* credentials
 
 
 ### HTTP Request
