@@ -16,7 +16,7 @@ Get Workspace by ID|X| X|X|
 Get User's Workspaces|X| X|X|
 Add a new member to Workspace|X| -|-|
 Update membership in Workspace|X |- |-|
-Remove member from Workspace|X |- |-|
+Remove member from Workspace (in development)|X |- |-|
 Delete Workspace|X |- |-|
 
 
@@ -518,7 +518,7 @@ Returns member object if the call succeeded
 
 
 
-## Remove member from Workspace
+## Remove member from Workspace (IN DEVELOPMENT!)
 
 > Example Request:
 
