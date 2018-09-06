@@ -21,7 +21,7 @@ Get a list of pending members (invites) of contract |-              |X          
 Invite a user to contract                           |X              |X                  |-              |-              |
 Add a new member to contract                        |X              |X                  |-              |-              |
 Update membership in contract                       |-              |X                  |-              |-              |
-Remove member from contract                         |-              |X                  |-              |-              |
+Remove member from contract (in development)                         |-              |X                  |-              |-              |
 Delete contract                                     |X              |-                  |-              |-              |
 Create a workspace                                  |-              |X                  |X              |X              |
 
@@ -721,7 +721,7 @@ Returns member object if the call succeeded
 
 
 
-## Remove member from Contract
+## Remove member from Contract (IN DEVELOPMENT)
 
 > Example Request:
 
