@@ -16,7 +16,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with custom paging):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?workspace_id=59d341e9037f7200184a408b&page[size]=20&page[number]=1' \
+ curl '{{ api_base_url }}/v2/flows?workspace_id=59d341e9037f7200184a408b&page[size]=20&page[number]=1' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -24,7 +24,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with filter):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?workspace_id=59d341e9037f7200184a408b&filter[status]=active' \
+ curl '{{ api_base_url }}/v2/flows?workspace_id=59d341e9037f7200184a408b&filter[status]=active' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -32,7 +32,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with search):
 
 ```shell
- curl 'https://api.elastic.io/v2/flows?workspace_id=59d341e9037f7200184a408b&search=webhook' \
+ curl '{{ api_base_url }}/v2/flows?workspace_id=59d341e9037f7200184a408b&search=webhook' \
    -g -u {EMAIL}:{APIKEY} 
 ```
 
@@ -40,7 +40,7 @@ Delete a flow|- |X|X|-|
 > Example Request (with custom sorting):
 
 ```shell 
- curl 'https://api.elastic.io/v2/flows?workspace_id=59d341e9037f7200184a408b&sort=-updated_at' \
+ curl '{{ api_base_url }}/v2/flows?workspace_id=59d341e9037f7200184a408b&sort=-updated_at' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -74,7 +74,7 @@ Content-Type: application/json
             {
               "id":"step_1",
               "component_id": "55ba18e35d04040500000004",
-              "command":"elasticio/timer:timer",
+              "command":"{{ repo_name }}/timer:timer",
               "name":"",
               "description":"",
               "fields":{
@@ -84,7 +84,7 @@ Content-Type: application/json
             {
               "id":"step_2",
               "component_id": "593809a16b1d1f00196b74cd",
-              "command":"elasticio/email:send",
+              "command":"{{ repo_name }}/email:send",
               "name":"",
               "description":""
             }
@@ -160,7 +160,7 @@ This resource allows you to retrieve flows.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/flows/`
+`GET {{ api_base_url }}/v2/flows/`
 
 ### Query Parameters
 
@@ -188,7 +188,7 @@ used to match the proper Workspace.
 
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -221,7 +221,7 @@ Content-Type: application/json
           {
             "id":"step_1",
             "component_id": "55ba18e35d04040500000004",
-            "command":"elasticio/timer:timer",
+            "command":"{{ repo_name }}/timer:timer",
             "name":"",
             "description":"",
             "fields":{
@@ -231,7 +231,7 @@ Content-Type: application/json
           {
             "id":"step_2",
             "component_id": "593809a16b1d1f00196b74cd",
-            "command":"elasticio/email:send",
+            "command":"{{ repo_name }}/email:send",
             "name":"",
             "description":""
           }
@@ -299,7 +299,7 @@ user or to one of his Workspace, an error is returned.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/flows/{FLOW_ID}`
+`GET {{ api_base_url }}/v2/flows/{FLOW_ID}`
 
 
 ### URL Parameters
@@ -320,7 +320,7 @@ The flow with given ID
 
 
 ```shell
- curl -X POST https://api.elastic.io/v2/flows \
+ curl -X POST {{ api_base_url }}/v2/flows \
   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -336,13 +336,13 @@ The flow with given ID
                 "nodes": [
                     {
                         "id": "step_1",
-                        "command": "elasticio/timer:timer@latest",
+                        "command": "{{ repo_name }}/timer:timer@latest",
                         "fields": {
                             "interval": "minute"
                         }
                      },
                     {
-                        "command": "elasticio/email:send@latest",
+                        "command": "{{ repo_name }}/email:send@latest",
                         "fields": {},
                         "id": "step_2"
                                             }
@@ -406,7 +406,7 @@ Content-Type: application/json
           {
             "id":"step_1",
             "component_id": "55bb6a58fa35a40c00000009",
-            "command":"elasticio/timer:timer",
+            "command":"{{ repo_name }}/timer:timer",
             "name":"",
             "description":"",
             "fields":{
@@ -416,7 +416,7 @@ Content-Type: application/json
           {
             "id":"step_2",
             "component_id": "55bb491dfa35a40c00000006",
-            "command":"elasticio/email:send",
+            "command":"{{ repo_name }}/email:send",
             "name":"",
             "description":""
           }
@@ -480,7 +480,7 @@ This resource allows you to create a new flow.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/flows/`
+`POST {{ api_base_url }}/v2/flows/`
 
 ### Body Parameters
 
@@ -503,7 +503,7 @@ Returns the created flow
 > Example request
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID} \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -548,7 +548,7 @@ Content-Type: application/json
           {
             "id":"step_1",
             "component_id": "55ba18e35d04040500000004",
-            "command":"elasticio/timer:timer",
+            "command":"{{ repo_name }}/timer:timer",
             "name":"",
             "description":"",
             "fields":{
@@ -558,7 +558,7 @@ Content-Type: application/json
           {
             "id":"step_2",
             "component_id": "593809a16b1d1f00196b74cd",
-            "command":"elasticio/email:send",
+            "command":"{{ repo_name }}/email:send",
             "name":"",
             "description":""
           }
@@ -622,7 +622,7 @@ This resource allows you to update the given flow.
 
 ### HTTP Request
 
-`PATCH https://api.elastic.io/v2/flows/{FLOW_ID}`
+`PATCH {{ api_base_url }}/v2/flows/{FLOW_ID}`
 
 ### URL Parameters
 
@@ -652,7 +652,7 @@ Returns the updated flow
 > Example request
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID}/start \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/start \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -674,7 +674,7 @@ This endpoint starts a flow with given ID.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/flows/{FLOW_ID}/start`
+`POST {{ api_base_url }}/v2/flows/{FLOW_ID}/start`
 
 ### URL Parameters
 
@@ -692,7 +692,7 @@ Empty response
 > Example request
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID}/stop \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/stop \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -714,7 +714,7 @@ This endpoint stops a flow with given ID.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/flows/{FLOW_ID}/stop`
+`POST {{ api_base_url }}/v2/flows/{FLOW_ID}/stop`
 
 ### URL Parameters
 
@@ -731,7 +731,7 @@ Empty response
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID} \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -741,7 +741,7 @@ This resource allows you to delete a flow.
 
 ### HTTP Request
 
-``DELETE https://api.elastic.io/v2/flows/{FLOW_ID}``
+``DELETE {{ api_base_url }}/v2/flows/{FLOW_ID}``
 
 
 ### URL Parameters

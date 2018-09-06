@@ -5,7 +5,7 @@ language_tabs:
 - shell: curl
 
 toc_footers:
-  - <a href='http://www.elastic.io/en/demo-request/'>Sign Up for a Developer Key</a>
+  - {{ toc_footer }}
 
 includes:
   - agents
@@ -28,19 +28,19 @@ search: true
 
 # Introduction
 
-Welcome to elastic.io. This documentation is a full reference for the REST API documentation v2.
+Welcome to {{ product_name }}. This documentation is a full reference for the REST API documentation v2.
 The API implements the [JSON API](http://jsonapi.org) specification. We encourage the reader to familiarise himself
 with the details of the [JSON API](http://jsonapi.org) specification.
 
 
 ## Authentication
 
-You authenticate to the elastic.io API by providing your API key in the request.
+You authenticate to the {{ product_name }} API by providing your API key in the request.
 
 Authentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). Provide your email as the basic auth username and API key as the password.
 
 ```shell
-curl https://api.elastic.io/v2/users/me \
+curl {{ api_base_url }}/v2/users/me \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -49,7 +49,7 @@ curl https://api.elastic.io/v2/users/me \
 
 ### Success
 
-The elastic.io API responds with following status codes upon successful requests:
+The {{ product_name }} API responds with following status codes upon successful requests:
 
 
 Status Code | Meaning
@@ -59,7 +59,7 @@ Status Code | Meaning
 
 ### Errors
 
-The elastic.io API uses the following error codes:
+The {{ product_name }} API uses the following error codes:
 
 
 Error Code | Meaning

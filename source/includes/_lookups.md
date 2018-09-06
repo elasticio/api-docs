@@ -10,7 +10,7 @@ This resource allows you to retrieve all lookup tables.
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/lookups \
+ curl {{ api_base_url }}/v2/lookups \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -58,14 +58,14 @@ This resource allows you to retrieve all lookup tables.
 
 ### HTTP Request
 
-``GET https://api.elastic.io/v2/lookups``
+``GET {{ api_base_url }}/v2/lookups``
 
 ## Create a lookup table
 
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/lookups \
+ curl {{ api_base_url }}/v2/lookups \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -123,7 +123,7 @@ This resource allows you to retrieve all lookup tables.
 
 ### HTTP Request
 
-``POST https://api.elastic.io/v2/lookups``
+``POST {{ api_base_url }}/v2/lookups``
 
 
 ### Body Parameters
@@ -142,7 +142,7 @@ This resource allows you to retrieve all lookup tables.
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/lookups/{LOOKUP_ID} \
+ curl {{ api_base_url }}/v2/lookups/{LOOKUP_ID} \
    -X PUT \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -166,7 +166,7 @@ This resource allows you to update a lookup table.
 
 ### HTTP Request
 
-``PUT https://api.elastic.io/v2/lookups``
+``PUT {{ api_base_url }}/v2/lookups``
 
 
 ### URL Parameters
@@ -188,7 +188,7 @@ This resource allows you to update a lookup table.
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/organizations/{LOOKUP_ID} \
+curl {{ api_base_url }}/v2/organizations/{LOOKUP_ID} \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -198,7 +198,7 @@ This resource allows you to delete a lookup table.
 
 ### HTTP Request
 
-``DELETE https://api.elastic.io/v2/lookups/{LOOKUP_ID}``
+``DELETE {{ api_base_url }}/v2/lookups/{LOOKUP_ID}``
 
 
 ### URL Parameters

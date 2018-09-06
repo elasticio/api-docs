@@ -19,7 +19,7 @@ Delete a team|-|X|-|-|
 
 
 ```shell
-curl https://api.elastic.io/v2/teams/ \
+curl {{ api_base_url }}/v2/teams/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -81,7 +81,7 @@ This resource allows you to retrieve all teams the current user is member in.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/teams/`
+`GET {{ api_base_url }}/v2/teams/`
 
 
 ### Returns
@@ -95,7 +95,7 @@ Returns teams metadata object if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v2/teams/{TEAM_ID} \
+curl {{ api_base_url }}/v2/teams/{TEAM_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -167,7 +167,7 @@ This resource allows you to retrieve the team by ID the current user is member i
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/teams/{TEAM_ID}`
+`GET {{ api_base_url }}/v2/teams/{TEAM_ID}`
 
 
 ### Returns
@@ -182,7 +182,7 @@ Returns team metadata object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v2/teams \
+ curl {{ api_base_url }}/v2/teams \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -249,7 +249,7 @@ This resource allows you to create a new team.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/teams/`
+`POST {{ api_base_url }}/v2/teams/`
 
 ### Body Parameters
 
@@ -272,7 +272,7 @@ Returns teams metadata object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v2/teams/{TEAM_ID}/relationships/members \
+ curl {{ api_base_url }}/v2/teams/{TEAM_ID}/relationships/members \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -339,7 +339,7 @@ This resource allows you to add a new member to a team.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/teams/{TEAM_ID}/relationships/members`
+`POST {{ api_base_url }}/v2/teams/{TEAM_ID}/relationships/members`
 
 ### URL Parameters
 
@@ -368,7 +368,7 @@ Returns teams metadata object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v2/teams/{TEAM_ID}/relationships/members \
+ curl {{ api_base_url }}/v2/teams/{TEAM_ID}/relationships/members \
    -X DELETE \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -394,7 +394,7 @@ This resource allows you to remove a member from a team.
 
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v2/teams/{TEAM_ID}/relationships/members`
+`DELETE {{ api_base_url }}/v2/teams/{TEAM_ID}/relationships/members`
 
 ### URL Parameters
 
@@ -422,7 +422,7 @@ Returns teams metadata object if the call succeeded.
 
 
 ```shell
- curl https://api.elastic.io/v2/teams/{TEAM_ID} \
+ curl {{ api_base_url }}/v2/teams/{TEAM_ID} \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -441,7 +441,7 @@ You cannot remove team which contains the repos, you should delete all repos fir
 
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v2/teams/{TEAM_ID}`
+`DELETE {{ api_base_url }}/v2/teams/{TEAM_ID}`
 
 ### URL Parameters
 

@@ -12,7 +12,7 @@ This resource allows you to retrieve data sample.
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/data-samples/{DATASAMPLE_ID} \
+ curl {{ api_base_url }}/v2/data-samples/{DATASAMPLE_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -86,7 +86,7 @@ A member of a Workspace can get any sample from own Workspace.
 
 ### HTTP Request
 
-``GET https://api.elastic.io/v2/data-samples/{DATASAMPLE_ID}``
+``GET {{ api_base_url }}/v2/data-samples/{DATASAMPLE_ID}``
 
 
 
@@ -123,7 +123,7 @@ A member of a Workspace can get any sample from own Workspace.
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/data-samples \
+ curl {{ api_base_url }}/v2/data-samples \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -227,7 +227,7 @@ Content-Type: application/json
 
 ### HTTP Request
 
-``POST https://api.elastic.io/v2/data-samples``
+``POST {{ api_base_url }}/v2/data-samples``
 
 
 ### Body Parameters
@@ -251,7 +251,7 @@ Returns data sample object if the call succeeded.
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/data-samples/{DATASAMPLE_ID} \
+ curl {{ api_base_url }}/v2/data-samples/{DATASAMPLE_ID} \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -335,7 +335,7 @@ Content-Type: application/json
 
 ### HTTP Request
 
-``PATCH https://api.elastic.io/v2/data-samples/{DATASAMPLE_ID}``
+``PATCH {{ api_base_url }}/v2/data-samples/{DATASAMPLE_ID}``
 
 
 ### Body Parameters

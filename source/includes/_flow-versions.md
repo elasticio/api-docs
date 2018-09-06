@@ -10,7 +10,7 @@ Retrieve flow version by hash|X|X|X|X|
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID}/versions?page[size]=20&page[number]=1 \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/versions?page[size]=20&page[number]=1 \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -35,7 +35,7 @@ Content-Type: application/json
           "nodes":[
             {
               "id":"step_1",
-              "command":"elasticio/code:executeTrigger@latest",
+              "command":"{{ repo_name }}/code:executeTrigger@latest",
               "name":"",
               "description":"",
               "fields":{
@@ -44,7 +44,7 @@ Content-Type: application/json
             },
             {
               "id":"step_2",
-              "command":"elasticio/code:execute@latest",
+              "command":"{{ repo_name }}/code:execute@latest",
               "name":"",
               "description":"",
               "fields":{
@@ -53,7 +53,7 @@ Content-Type: application/json
             },
             {
               "id":"step_3",
-              "command":"elasticio/code:execute@latest",
+              "command":"{{ repo_name }}/code:execute@latest",
               "name":"",
               "description":"",
               "fields":{
@@ -114,7 +114,7 @@ It also exposes a relationship to the author of the change.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/flows/{FLOW_ID}/versions`
+`GET {{ api_base_url }}/v2/flows/{FLOW_ID}/versions`
 
 ### URL Parameters
 
@@ -134,7 +134,7 @@ The list of versions for the specified flow.
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/flows/{FLOW_ID}/versions/{VERSION_HASH} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/versions/{VERSION_HASH} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -158,7 +158,7 @@ Content-Type: application/json
         "nodes":[
           {
             "id":"step_1",
-            "command":"elasticio/code:executeTrigger@latest",
+            "command":"{{ repo_name }}/code:executeTrigger@latest",
             "name":"",
             "description":"",
             "fields":{
@@ -167,7 +167,7 @@ Content-Type: application/json
           },
           {
             "id":"step_2",
-            "command":"elasticio/code:execute@latest",
+            "command":"{{ repo_name }}/code:execute@latest",
             "name":"",
             "description":"",
             "fields":{
@@ -176,7 +176,7 @@ Content-Type: application/json
           },
           {
             "id":"step_3",
-            "command":"elasticio/code:execute@latest",
+            "command":"{{ repo_name }}/code:execute@latest",
             "name":"",
             "description":"",
             "fields":{
@@ -228,7 +228,7 @@ This resource allows to you retrieve specific version of the flow by its version
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/flows/{FLOW_ID}/versions/{VERSION_HASH}`
+`GET {{ api_base_url }}/v2/flows/{FLOW_ID}/versions/{VERSION_HASH}`
 
 ### URL Parameters
 
