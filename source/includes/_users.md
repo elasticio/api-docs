@@ -318,13 +318,6 @@ curl https://api.elastic.io/v2/users \
                 "email": "test@example.com",
                 "password": "secret11",
                 "company": "Doe & Partners"
-            },
-            "relationships": {
-                "contracts": {
-                    "data": [
-                        {"id": "54f4be3fe7d5224f91000001"}
-                    ]
-                }
             }
         }
     }'
