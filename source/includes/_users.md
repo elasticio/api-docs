@@ -316,8 +316,7 @@ curl https://api.elastic.io/v2/users \
                 "first_name": "John",
                 "last_name": "Doe",
                 "email": "test@example.com",
-                "password": "secret11",
-                "company": "Doe & Partners"
+                "password": "secret11"
             }
         }
     }'
@@ -341,7 +340,6 @@ Content-Type: application/json
       "first_name":"John",
       "last_name":"Doe",
       "email":"test@example.com",
-      "company":"Doe & Partners",
       "registered":"2018-03-16T13:10:48.221Z",
       "last_login":"2018-03-16T13:10:48.221Z"
     }
@@ -366,7 +364,9 @@ This resource allows you to create a user.
 | attributes.email | yes | User's email. |
 | attributes.password | yes | User's password. |
 | attributes.company | no | User's company. |
-| relationships.contracts.data | yes | Contract to join. |
+| relationships.contracts.data* | yes | Contract to join. | 
+
+*In development
 
 ### Authorization
 
