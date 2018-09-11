@@ -16,7 +16,7 @@ Get Workspace by ID|X| X|X|
 Get User's Workspaces|X| X|X|
 Add a new member to Workspace|X| -|-|
 Update membership in Workspace|X |- |-|
-Remove member from Workspace (in development)|X |- |-|
+Remove member from Workspace|X |- |-|
 Delete Workspace|X |- |-|
 
 
@@ -518,7 +518,7 @@ Returns member object if the call succeeded
 
 
 
-## Remove member from Workspace (IN DEVELOPMENT!)
+## Remove member from Workspace
 
 > Example Request:
 
@@ -553,7 +553,7 @@ This request is authorized for Workspace members with role `Admin`.
 Parameter        | Description
 ---------------- | -----------
 WORKSPACE_ID  | The ID of the Workspace
-USER_ID          | The ID of the user, which should leave the organization
+USER_ID          | The ID of the user, which should leave the Workspace
 
 
 ### Returns
