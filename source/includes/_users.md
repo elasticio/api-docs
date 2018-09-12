@@ -3,11 +3,12 @@
 Request / Role| Tenant Admin | Contract Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve your user|X|X|X|X|
-Retrieve a user by ID|X|-|-|-|
+Retrieve a user by ID|X|X*|X*|X*|
 Retrieve all users|X|-|-|-|
 Create a user|X|-|-|-|
 Delete a user|X|-|-|-|
 
+* - only for users from the same Contract
 ## Retrieve your user
 
 > Example Request:
@@ -114,8 +115,6 @@ This resource allows you to retrieve a user by ID.
 | USER_ID | yes | User identifier |
 
 
-### Authorization
-This request is authorized to a user with `TenantAdmin` role (contact support to get this role) can retrieve users from all Contracts of the Tenant.
 
 #### Returns
 
