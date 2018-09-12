@@ -33,7 +33,7 @@ Update component’s environment variables|X|X|-| -|
 
 
 ```shell
-curl https://api.elastic.io/v2/components \
+curl https://api.elastic.io/v2/components?contract_id={CONTRACT_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -166,7 +166,13 @@ More details about the component descriptors can be found [here](#component-desc
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/components`
+`GET https://api.elastic.io/v2/components?contract_id={CONTRACT_ID}`
+
+### Query Parameters
+
+| Parameter         | Required  | Description |
+| :---              | :---      | :---        |
+|contract_id|yes|An Id of the Contract|
 
 
 ### Query Parameters
