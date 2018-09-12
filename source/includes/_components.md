@@ -168,17 +168,12 @@ More details about the component descriptors can be found [here](#component-desc
 
 `GET https://api.elastic.io/v2/components?contract_id={CONTRACT_ID}`
 
-### Query Parameters
-
-| Parameter         | Required  | Description |
-| :---              | :---      | :---        |
-|contract_id|yes|An Id of the Contract|
-
 
 ### Query Parameters
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
+|contract_id|yes|An Id of the Contract|
 | filter[access] | No | Allowed values: ``private`` (only components from own Contract returned), ``public`` (only shared components from the other Contracts) and ``all`` (default value, returns all available components).|
 
 ### Returns
