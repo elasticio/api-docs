@@ -19,7 +19,7 @@ Delete a team|-|X|-|-|
 
 
 ```shell
-curl https://api.elastic.io/v2/teams/ \
+curl https://api.elastic.io/v2/teams?contract_id={CONTRACT_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -83,6 +83,11 @@ This resource allows you to retrieve all teams the current user is member in.
 
 `GET https://api.elastic.io/v2/teams/`
 
+### Query Parameters
+
+| Parameter         | Required  | Description |
+| :---              | :---      | :---        |
+|contract_id|yes|An Id of the Contract|
 
 ### Returns
 
