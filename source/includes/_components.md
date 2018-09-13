@@ -583,7 +583,13 @@ curl https://api.elastic.io/v2/components/ \
                    "data": {
                        "type": "team",
                        "id": "{TEAM_ID}"
-                   }
+                   },
+                "contract":{
+               	 "data":{
+               			"type":"contract",
+               			"id":"{CONTRACT_ID}"
+               		}
+               }
                }
            }
        }
@@ -637,6 +643,8 @@ If you don't have any teams yet, please [create a team](#create-team) first.
 | attributes.icon | no | Component icon as base64 string |
 | relationships.team.data.id | yes | Team ID the repository to create for |
 | relationships.team.data.type | yes | A value must be ``team`` |
+| relationships.contract.data.id | no | Contract ID the repository to create for |
+| relationships.contract.data.type | no | A value must be ``contract`` |
 
 
 ### Returns
