@@ -169,7 +169,7 @@ include     | no       | Whether include or not full resource objects in respons
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/workspaces \
+ curl https://api.elastic.io/v2/workspaces?contract_id={CONTRACT_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -273,7 +273,13 @@ This endpoint returns a list of Workspaces which belong to the given User.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/workspaces`
+`GET https://api.elastic.io/v2/workspaces?contract_id={CONTRACT_ID}`
+
+### Query Parameters
+
+| Parameter         | Required  | Description |
+| :---              | :---      | :---        |
+|contract_id|no|An Id of the Contract|
 
 #### Authorization
 
