@@ -327,7 +327,7 @@ Content-Type: application/json
 ### URL Parameters
 
 | Parameter | Required | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | COMPONENT_ID | Yes | Component identifier |
 
 
@@ -428,7 +428,7 @@ This endpoint retrieves list of component's versions
 ### URL Parameters
 
 | Parameter | Required | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | COMPONENT_ID | Yes | Component identifier |
 
 
@@ -535,7 +535,7 @@ or
 ### URL Parameters
 
 | Parameter | Required | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | COMPONENT_ID | Yes | Component identifier |
 | GIT_REVISION | Yes | Revision of the component’s build. Use ``latest`` to retrieve the descriptor of the most recent successful build. |
 
@@ -725,7 +725,7 @@ Content-Type: application/json
 ### URL Parameters
 
 | Parameter | Required | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | 
 | COMPONENT_ID | Yes | Component identifier |
 
 ### Access level
