@@ -128,38 +128,38 @@ A member of a Workspace can get any sample from own Workspace.
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
-   {
-        "data": {
-            "type": "data-sample",
-            "attributes": {
-                "method": "hello123",
-                "result": {
-                    "foo": "bar",
-                    "baz": "foo"
-                }
-            },
-            "relationships": {
-                "component": {
-                    "data": {
-                        "id": "5863f7136ef9da255ad9a9bc",
-                        "type": "component"
-                    }
-                },
-                "component_version": {
-                    "data": {
-                        "id": "latest",
-                        "type": "version"
-                    }
-                },
-	               "workspace": {
-	                  	"data": {
-	                    		"id":"59d341e9037f7200184a408b",
-        	           			"type":"workspace"
-	                  	}
-	               }
-            }
-        }
-    }'
+   	{
+  	"data":{
+    	"type":"data-sample",
+  	  "attributes":{
+  	    "method":"hello123",
+   	   "result":{
+   	     "foo":"bar",
+  	      "baz":"foo"
+  	    }
+  	  },
+  	  "relationships":{
+ 	     "component":{
+  	      "data":{
+  	        "id":"5863f7136ef9da255ad9a9bc",
+  	        "type":"component"
+   	     }
+    	  },
+      	"component_version":{
+     	   "data":{
+     	     "id":"latest",
+     	     "type":"version"
+     	   }
+     	 },
+    	  "workspace":{
+    	    "data":{
+    	      "id":"59d341e9037f7200184a408b",
+     	     "type":"workspace"
+     	   }
+   	   }
+  	  }
+ 	 }
+	}'
 ```
 
 > Example Response:
