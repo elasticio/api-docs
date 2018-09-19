@@ -12,7 +12,7 @@ Retrieve all agents|-|X|X|X|
 
 
 ```shell
-curl {{ api_base_url }}/v2/agents \
+curl {{ api_base_url }}/v2/agents?workspace_id={WORKSPACE_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -59,11 +59,17 @@ This resource allows you to retrieve all the agents belonging to the given Works
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/agents/`
+`GET {{ api_base_url }}/v2/agents?workspace_id={WORKSPACE_ID}`
+
+### Query Parameters
+
+| Parameter         | Required  | Description |
+| :---              | :---      | :---        |
+|workspace_id|yes|An Id of the Workspace|
 
 ### Returns
 
-Returns all the agents belonging to the given organization.
+Returns all the agents belonging to the given Workspace.
 
 
 ## Сreate agent

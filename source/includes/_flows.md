@@ -325,55 +325,57 @@ The flow with given ID
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
      {
-    "data": {
-        "attributes": {
-            "default_mapper_type": "jsonata",
-            "type": "ordinary",
-            "name": "Timer to E-Mail",
-            "description": null,
-            "cron": null,
-            "graph": {
-                "nodes": [
-                    {
-                        "id": "step_1",
-                        "command": "{{ repo_name }}/timer:timer@latest",
-                        "fields": {
-                            "interval": "minute"
-                        }
-                     },
-                    {
-                        "command": "{{ repo_name }}/email:send@latest",
-                        "fields": {},
-                        "id": "step_2"
-                                            }
-                ],
-                "edges": [
-                    {
-                        "config": {
-                            "mapper_type": "jsonata",
-                            "mapper": {
-                                "to": "info@acme.org",
-                                "subject": "Subject",
-                                "textBody": "fireTime"
-                            }
-                           },
-                        "source": "step_1",
-                        "target": "step_2"
-                    }
-                ]
-            }
-        },
-        "type": "flow",
-        "relationships":{
-					    "workspace":{
-    				 	 "data":{
-    		 			   "id":"59d341e9037f7200184a408b",
-    		 			   "type":"workspace"
-    		 			 }
-					   }
-				  }
-    }
-}'
+  	"data":{
+    	"attributes":{
+      	"default_mapper_type":"jsonata",
+    	  "type":"ordinary",
+    	  "name":"Timer to E-Mail",
+    	  "description":null,
+    	  "cron":null,
+    	  "graph":{
+    	    "nodes":[
+     	     {
+     	       "id":"step_1",
+     	       "command":"{{ repo_name }}/timer:timer@latest",
+      	      "fields":{
+       	       "interval":"minute"
+      	      }
+      	    },
+    	      {
+     	       "command":"{{ repo_name }}/email:send@latest",
+     	       "fields":{
+	
+       	     },
+      	      "id":"step_2"
+      	    }
+     	   ],
+     	   "edges":[
+     	     {
+       	     "config":{
+       	       "mapper_type":"jsonata",
+       	       "mapper":{
+       	         "to":"info@acme.org",
+       	         "subject":"Subject",
+       	         "textBody":"fireTime"
+        	      }
+       	     },
+       	     "source":"step_1",
+       	     "target":"step_2"
+       	   }
+      	  ]
+     	 }
+  	  },
+   	 "type":"flow",
+   	 "relationships":{
+   	   "workspace":{
+   	     "data":{
+    	      "id":"59d341e9037f7200184a408b",
+   	       "type":"workspace"
+   	     }
+   	   }
+  	  }
+	  }
+	}'
 
 ```
 

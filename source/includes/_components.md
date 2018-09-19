@@ -33,7 +33,7 @@ Update component’s environment variables|X|X|-| -|
 
 
 ```shell
-curl {{ api_base_url }}/v2/components \
+curl {{ api_base_url }}/v2/components?contract_id={CONTRACT_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -166,13 +166,14 @@ More details about the component descriptors can be found [here](#component-desc
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/components`
+`GET {{ api_base_url }}/v2/components?contract_id={CONTRACT_ID}`
 
 
 ### Query Parameters
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
+|contract_id|yes (only for Tenant Admin)|An Id of the Contract|
 | filter[access] | No | Allowed values: ``private`` (only components from own Contract returned), ``public`` (only shared components from the other Contracts) and ``all`` (default value, returns all available components).|
 
 ### Returns
@@ -326,7 +327,7 @@ Content-Type: application/json
 ### URL Parameters
 
 | Parameter | Required | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | COMPONENT_ID | Yes | Component identifier |
 
 
@@ -427,7 +428,7 @@ This endpoint retrieves list of component's versions
 ### URL Parameters
 
 | Parameter | Required | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | COMPONENT_ID | Yes | Component identifier |
 
 
@@ -534,7 +535,7 @@ or
 ### URL Parameters
 
 | Parameter | Required | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | COMPONENT_ID | Yes | Component identifier |
 | GIT_REVISION | Yes | Revision of the component’s build. Use ``latest`` to retrieve the descriptor of the most recent successful build. |
 
@@ -582,7 +583,13 @@ curl {{ api_base_url }}/v2/components/ \
                    "data": {
                        "type": "team",
                        "id": "{TEAM_ID}"
-                   }
+                   },
+                "contract":{
+               	 "data":{
+               			"type":"contract",
+               			"id":"{CONTRACT_ID}"
+               		}
+               }
                }
            }
        }
@@ -636,6 +643,8 @@ If you don't have any teams yet, please [create a team](#create-team) first.
 | attributes.icon | no | Component icon as base64 string |
 | relationships.team.data.id | yes | Team ID the repository to create for |
 | relationships.team.data.type | yes | A value must be ``team`` |
+| relationships.contract.data.id | no | Contract ID the repository to create for |
+| relationships.contract.data.type | no | A value must be ``contract`` |
 
 
 ### Returns
@@ -716,7 +725,7 @@ Content-Type: application/json
 ### URL Parameters
 
 | Parameter | Required | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | 
 | COMPONENT_ID | Yes | Component identifier |
 
 ### Access level

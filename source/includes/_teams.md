@@ -2,7 +2,7 @@
 
 Request / Role| Tenant Admin | Contract Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve all teams|-|X|X|X|
+Retrieve all teams|X|X|X|X|
 Retrieve team by ID|-|X*|X*|X*|
 Create a team|-|X|-|-|
 Add a new member to a team|-|X|-|-|
@@ -19,7 +19,7 @@ Delete a team|-|X|-|-|
 
 
 ```shell
-curl {{ api_base_url }}/v2/teams/ \
+curl {{ api_base_url }}/v2/teams?contract_id={CONTRACT_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -83,6 +83,11 @@ This resource allows you to retrieve all teams the current user is member in.
 
 `GET {{ api_base_url }}/v2/teams/`
 
+### Query Parameters
+
+| Parameter         | Required  | Description |
+| :---              | :---      | :---        |
+|contract_id|yes (only for Tenant Admin)|An Id of the Contract|
 
 ### Returns
 

@@ -3,11 +3,12 @@
 Request / Role| Tenant Admin | Contract Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
 Retrieve your user|X|X|X|X|
-Retrieve a user by ID|X|-|-|-|
+Retrieve a user by ID|X|X*|X*|X*|
 Retrieve all users|X|-|-|-|
 Create a user|X|-|-|-|
 Delete a user|X|-|-|-|
 
+* - only for users from the same Contract
 ## Retrieve your user
 
 > Example Request:
@@ -114,8 +115,6 @@ This resource allows you to retrieve a user by ID.
 | USER_ID | yes | User identifier |
 
 
-### Authorization
-This request is authorized to a user with `TenantAdmin` role (contact support to get this role) can retrieve users from all Contracts of the Tenant.
 
 #### Returns
 
@@ -316,15 +315,7 @@ curl {{ api_base_url }}/v2/users \
                 "first_name": "John",
                 "last_name": "Doe",
                 "email": "test@example.com",
-                "password": "secret11",
-                "company": "Doe & Partners"
-            },
-            "relationships": {
-                "contracts": {
-                    "data": [
-                        {"id": "54f4be3fe7d5224f91000001"}
-                    ]
-                }
+                "password": "secret11"
             }
         }
     }'
@@ -348,7 +339,6 @@ Content-Type: application/json
       "first_name":"John",
       "last_name":"Doe",
       "email":"test@example.com",
-      "company":"Doe & Partners",
       "registered":"2018-03-16T13:10:48.221Z",
       "last_login":"2018-03-16T13:10:48.221Z"
     }
@@ -373,7 +363,9 @@ This resource allows you to create a user.
 | attributes.email | yes | User's email. |
 | attributes.password | yes | User's password. |
 | attributes.company | no | User's company. |
-| relationships.contracts.data | yes | Contract to join. |
+| relationships.contracts.data* | yes | Contract to join. | 
+
+*In development
 
 ### Authorization
 

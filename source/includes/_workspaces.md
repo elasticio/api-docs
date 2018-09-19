@@ -16,7 +16,7 @@ Get Workspace by ID|X| X|X|
 Get User's Workspaces|X| X|X|
 Add a new member to Workspace|X| -|-|
 Update membership in Workspace|X |- |-|
-Remove member from Workspace (in development)|X |- |-|
+Remove member from Workspace|X |- |-|
 Delete Workspace|X |- |-|
 
 
@@ -169,7 +169,7 @@ include     | no       | Whether include or not full resource objects in respons
 > Example Request:
 
 ```shell
- curl {{ api_base_url }}/v2/workspaces \
+ curl {{ api_base_url }}/v2/workspaces?contract_id={CONTRACT_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -273,7 +273,13 @@ This endpoint returns a list of Workspaces which belong to the given User.
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/workspaces`
+`GET {{ api_base_url }}/v2/workspaces?contract_id={CONTRACT_ID}`
+
+### Query Parameters
+
+| Parameter         | Required  | Description |
+| :---              | :---      | :---        |
+|contract_id|no|An Id of the Contract|
 
 #### Authorization
 
@@ -518,7 +524,7 @@ Returns member object if the call succeeded
 
 
 
-## Remove member from Workspace (IN DEVELOPMENT!)
+## Remove member from Workspace
 
 > Example Request:
 
@@ -553,7 +559,7 @@ This request is authorized for Workspace members with role `Admin`.
 Parameter        | Description
 ---------------- | -----------
 WORKSPACE_ID  | The ID of the Workspace
-USER_ID          | The ID of the user, which should leave the organization
+USER_ID          | The ID of the user, which should leave the Workspace
 
 
 ### Returns

@@ -17,7 +17,7 @@ Delete a credential|X* |X|X|-|
 
 
 ```shell
-curl {{ api_base_url }}/v2/credentials/?filter[component]={COMPONENT_ID} \
+curl {{ api_base_url }}/v2/credentials/?filter[component]={COMPONENT_ID}&workspace_id={WORKSPACE_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -140,12 +140,13 @@ This resource allows you to retrieve all credentials belonging to user's Workspa
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/credentials/`
+`GET {{ api_base_url }}/v2/credentials?workspace_id={WORKSPACE_ID}/`
 
 ### Query Parameters
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
+|workspace_id|yes|An Id of the Workspace|
 | filter[component] | No | Only credentials belong to the given component id
 
 
