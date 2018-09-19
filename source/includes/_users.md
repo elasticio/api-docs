@@ -1,12 +1,12 @@
 # Users
 
-Request / Role| Tenant Admin | Contract Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve your user|X|X|X|X|
-Retrieve a user by ID|X|X*|X*|X*|
-Retrieve all users|X|-|-|-|
-Create a user|X|-|-|-|
-Delete a user|X|-|-|-|
+Request / Role| Tenant Admin | Contract Admin | Member | 
+---------- | :---------:| :------------:| :-----------:| 
+Retrieve your user|X|X|X|
+Retrieve a user by ID|X|X*|X*|
+Retrieve all users|X|-|-|
+Create a user|X|-|-|
+Delete a user|X|-|-|
 
 * - only for users from the same Contract
 ## Retrieve your user
@@ -316,7 +316,13 @@ curl {{ api_base_url }}/v2/users \
                 "last_name": "Doe",
                 "email": "test@example.com",
                 "password": "secret11"
-            }
+            },
+            "relationships":{
+            	"contracts":{
+            		"data":[
+            		{"id":"{CONTRACT_ID}"}]
+        			}
+        	  }
         }
     }'
 ```
@@ -363,9 +369,8 @@ This resource allows you to create a user.
 | attributes.email | yes | User's email. |
 | attributes.password | yes | User's password. |
 | attributes.company | no | User's company. |
-| relationships.contracts.data* | yes | Contract to join. | 
+| relationships.contracts.data | yes | Contract to join. | 
 
-*In development
 
 ### Authorization
 
