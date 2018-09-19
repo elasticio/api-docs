@@ -5,13 +5,13 @@
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v1/repos/ \
+curl {{ api_base_url }}/v1/repos/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -38,7 +38,7 @@ Content-Type: application/json
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/repos/`
+`GET {{ api_base_url }}/v1/repos/`
 
 ### Returns
 
@@ -49,13 +49,13 @@ Returns repositories metadata object if the call succeeded.
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v1/repos/{REPO_ID} \
+curl {{ api_base_url }}/v1/repos/{REPO_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -80,7 +80,7 @@ Content-Type: application/json
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/repos/{REPO_ID}`
+`GET {{ api_base_url }}/v1/repos/{REPO_ID}`
 
 ### URL Parameters
 
@@ -100,7 +100,7 @@ Returns repositories metadata object if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v1/repos/ \
+curl {{ api_base_url }}/v1/repos/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' -d '
    {
@@ -109,7 +109,7 @@ curl https://api.elastic.io/v1/repos/ \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -138,7 +138,7 @@ This endpoint creates new custom repository
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v1/repos/`
+`POST {{ api_base_url }}/v1/repos/`
 
 Parameter | Required | Description
 --------- | -----------| -----------
@@ -158,14 +158,14 @@ Returns repositories metadata object if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v1/repos/{REPO_ID} \
+curl {{ api_base_url }}/v1/repos/{REPO_ID} \
    -u {EMAIL}:{APIKEY} \
    -X DELETE \
    -H 'Accept: application/json'
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -185,7 +185,7 @@ This endpoint delete repository
 
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v1/repos/{ID}`
+`DELETE {{ api_base_url }}/v1/repos/{ID}`
 
 ### URL Parameters
 
@@ -199,13 +199,13 @@ REPO_ID   | repository id
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v1/repos/{REPO_ID}/env/ \
+curl {{ api_base_url }}/v1/repos/{REPO_ID}/env/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -228,7 +228,7 @@ Content-Type: application/json
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v1/repos/{REPO_ID}/env/`
+`GET {{ api_base_url }}/v1/repos/{REPO_ID}/env/`
 
 ### URL Parameters
 
@@ -247,7 +247,7 @@ Update env vars for repository. You can update existing env vars by setting them
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v1/repos/{REPO_ID}/env/ \
+curl {{ api_base_url }}/v1/repos/{REPO_ID}/env/ \
    -X PUT \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' -d '
@@ -258,7 +258,7 @@ curl https://api.elastic.io/v1/repos/{REPO_ID}/env/ \
 ```
 
 ```javascript
-var client = require('elasticio-rest-node')(
+var client = require('{{ repo_name }}-rest-node')(
     'YOUR_EMAIL', 'YOUR_API_KEY'
 );
 
@@ -280,7 +280,7 @@ Content-Type: application/json
 
 ### HTTP Request
 
-`PUT https://api.elastic.io/v1/repos/{REPO_ID}/env/`
+`PUT {{ api_base_url }}/v1/repos/{REPO_ID}/env/`
 
 ### URL Parameters
 

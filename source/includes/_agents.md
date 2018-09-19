@@ -12,7 +12,7 @@ Retrieve all agents|-|X|X|X|
 
 
 ```shell
-curl https://api.elastic.io/v2/agents?workspace_id={WORKSPACE_ID} \
+curl {{ api_base_url }}/v2/agents?workspace_id={WORKSPACE_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -59,7 +59,7 @@ This resource allows you to retrieve all the agents belonging to the given Works
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/agents?workspace_id={WORKSPACE_ID}`
+`GET {{ api_base_url }}/v2/agents?workspace_id={WORKSPACE_ID}`
 
 ### Query Parameters
 
@@ -79,7 +79,7 @@ Returns all the agents belonging to the given Workspace.
 
 
 ```shell
-curl https://api.elastic.io/v2/agents \
+curl {{ api_base_url }}/v2/agents \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
@@ -143,7 +143,7 @@ We will contact you within 2-3 working days.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/agents/`
+`POST {{ api_base_url }}/v2/agents/`
 
 ### Body Parameters
 

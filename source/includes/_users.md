@@ -14,7 +14,7 @@ Delete a user|X|-|-|-|
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/users/me \
+curl {{ api_base_url }}/v2/users/me \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -51,7 +51,7 @@ This resource allows you to retrieve your user.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/users/me`
+`GET {{ api_base_url }}/v2/users/me`
 
 
 #### Returns
@@ -68,7 +68,7 @@ Returns a user object if the call succeeded.
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/users/{USER_ID} \
+curl {{ api_base_url }}/v2/users/{USER_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -106,7 +106,7 @@ This resource allows you to retrieve a user by ID.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/users/{USER_ID}`
+`GET {{ api_base_url }}/v2/users/{USER_ID}`
 
 ### URL Parameters
 
@@ -134,7 +134,7 @@ Returns a user object if the call succeeded.
 > Example Request (with paging):
 
 ```shell
-curl https://api.elastic.io/v2/users/?page[size]=1&page[number]=5 \
+curl {{ api_base_url }}/v2/users/?page[size]=1&page[number]=5 \
    -g \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -177,7 +177,7 @@ Content-Type: application/json
 > Example Request (default paging):
 
 ```shell
-curl https://api.elastic.io/v2/users/ \
+curl {{ api_base_url }}/v2/users/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -269,7 +269,7 @@ This endpoint returns a list of users.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/users/`
+`GET {{ api_base_url }}/v2/users/`
 
 ### Query Parameters
 
@@ -303,7 +303,7 @@ Returns a list of user objects if the call succeeded.
 > Example Request:
 
 ```bash
-curl https://api.elastic.io/v2/users \
+curl {{ api_base_url }}/v2/users \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -351,7 +351,7 @@ This resource allows you to create a user.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/users`
+`POST {{ api_base_url }}/v2/users`
 
 ### Body Parameters
 
@@ -389,7 +389,7 @@ New user objects will be provided with an ``id`` field - this value cannot be cr
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/users/{USER_ID} \
+curl {{ api_base_url }}/v2/users/{USER_ID} \
     -X DELETE \
     -u {EMAIL}:{APIKEY}
 ```
@@ -439,7 +439,7 @@ This request is allowed with Tenant Admin API key.
 
 ### HTTP Request
 
-`DELETE https://api.elastic.io/v2/users/{USER_ID}`
+`DELETE {{ api_base_url }}/v2/users/{USER_ID}`
 
 
 ### URL Parameters
