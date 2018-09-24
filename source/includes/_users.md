@@ -404,7 +404,7 @@ This resource allows you to delete a user.
 ### When a User is deleted the following data will be deleted as well:
 * SSH keys
 * User's object itself
-* all Workspaces and Contracts, where the User is the only member
+* all Workspaces and Contracts, where the User is **the only member**
 
 
 ### Not deleted immediately
@@ -419,7 +419,7 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 ### Data associated with Contract and Workspace
 
 * If this User is a member of any Contract which has one more Admin beside him/her then User's Teams and Repos will be transferred to the next Admin. 
-* If this User is a member of any Workspace which has one more Admin beside him/her then User's Flows and Cedentials will be transferred to the next Admin. 
+* If this User is a member of any Workspace which has one more Admin beside him/her then User's Flows and Credentials will be transferred to the next Admin. 
 * If this User is the last Admin of any Workspace then given Workspace will be deleted with all data. 
 * If this User is the only member of Contract(s) then he/she will be deleted along with Contract and all the unique data connected with this User.
 
