@@ -168,6 +168,9 @@ More details about the component descriptors can be found [here](#component-desc
 
 `GET {{ api_base_url }}/v2/components?contract_id={CONTRACT_ID}`
 
+### HTTP Request with parameters
+
+`GET {{ api_base_url }}/v2/components?contract_id={CONTRACT_ID}&filter[access]=private`
 
 ### Query Parameters
 
