@@ -1,14 +1,17 @@
 # Users
 
-Request / Role| Tenant Admin | Contract Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve your user|X|X|X|X|
-Retrieve a user by ID|X|X*|X*|X*|
-Retrieve all users|X|-|-|-|
-Create a user|X|-|-|-|
-Delete a user|X|-|-|-|
+Request / Role| Tenant Admin | Contract Admin | Member | 
+---------- | :---------:| :------------:| :-----------:| 
+Retrieve your user|X|X|X|
+Retrieve a user by ID|X|X*|X*|
+Retrieve all users|X|-|-|
+Create a user|X|-|-|
+Delete a user|X|X**|X**|
 
-* - only for users from the same Contract
+`*` - only for users from the same Contract
+
+`**` - only himself/herself
+
 ## Retrieve your user
 
 > Example Request:
@@ -38,7 +41,6 @@ Content-Type: application/json
       "first_name":"John",
       "last_name":"Doe",
       "email":"test@example.com",
-      "company":"company",
       "registered":"2017-10-02T12:18:06.274Z",
       "last_login":"2018-03-15T16:53:57.696Z"
     }
@@ -92,7 +94,6 @@ Content-Type: application/json
       "first_name":"John",
       "last_name":"Doe",
       "email":"test@example.com",
-      "company":"company_name",
       "registered":"2017-10-03T09:19:40.598Z",
       "last_login":"2018-03-16T10:30:38.656Z"
     }
@@ -159,7 +160,6 @@ Content-Type: application/json
         "first_name":"John",
         "last_name":"Doe",
         "email":"test@example.com",
-        "company":"company_name",
         "registered":"2015-10-02T10:19:19.697Z",
         "last_login":"2018-02-08T16:07:52.495Z"
       }
@@ -203,8 +203,7 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Joannie",
         "last_name":"Smitham",
-        "email":"client@my.org",
-        "company":"Ward - Wiegand"
+        "email":"client@my.org"
       }
     },
     {
@@ -213,8 +212,7 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Eulalia",
         "last_name":"Hyatt",
-        "email":"user-2@my.org",
-        "company":"Pfannerstill and Sons"
+        "email":"user-2@my.org"
       }
     },
     {
@@ -223,8 +221,7 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Bertram",
         "last_name":"Davis",
-        "email":"user-1@aliens.org",
-        "company":"Auer, Ebert and Ledner"
+        "email":"user-1@aliens.org"
       }
     },
     {
@@ -233,8 +230,7 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Marianne",
         "last_name":"Sawayn",
-        "email":"client@outcast.org",
-        "company":"O'Kon, Abshire and Dooley"
+        "email":"client@outcast.org"
       }
     },
     {
@@ -243,8 +239,7 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Esta",
         "last_name":"Abbott",
-        "email":"another@outcast.org",
-        "company":"Turcotte - Christiansen"
+        "email":"another@outcast.org"
       }
     },
     {
@@ -253,8 +248,7 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Kayleigh",
         "last_name":"Howell",
-        "email":"tenant-admin@example.com",
-        "company":"Zemlak, Thiel and O'Kon"
+        "email":"tenant-admin@example.com"
       }
     }
   ]
@@ -316,7 +310,13 @@ curl {{ api_base_url }}/v2/users \
                 "last_name": "Doe",
                 "email": "test@example.com",
                 "password": "secret11"
-            }
+            },
+            "relationships":{
+            	"contracts":{
+            		"data":[
+            		{"id":"{CONTRACT_ID}"}]
+        			}
+        	  }
         }
     }'
 ```
@@ -362,10 +362,8 @@ This resource allows you to create a user.
 | attributes.last_name | yes | User's last name. |
 | attributes.email | yes | User's email. |
 | attributes.password | yes | User's password. |
-| attributes.company | no | User's company. |
-| relationships.contracts.data* | yes | Contract to join. | 
+| relationships.contracts.data | yes | Contract to join. | 
 
-*In development
 
 ### Authorization
 
@@ -401,22 +399,16 @@ curl {{ api_base_url }}/v2/users/{USER_ID} \
 HTTP/1.1 204 No Content
 ```
 
-This resource allows you to delete a user. When a user is deleted the following data will be deleted as well:
+This resource allows you to delete a user. 
 
-
-* all teams, where the user is the only member
-* component repositories, which belongs to deleted teams
-* component builds, which belongs to deleted repositories
-* ssh keys
-* credentials
-* flows (active flows will be stopped)
-* user's object itself
-* all workspaces and contracts, where the user is the only member
+### When a User is deleted the following data will be deleted as well:
+* SSH keys
+* User's object itself
+* all Workspaces and Contracts, where the User is **the only member**
 
 
 ### Not deleted immediately
-These data objects are deleted automatically (e.g. due to expiration), hence won't be deleted right after user deletion:
-
+These data objects are deleted automatically (e.g. due to expiration), hence won't be deleted right after User deletion:
 * flows activity records (which used in order to show runlog)
 * logs of flow execution and repo build
 * invitations to a team or an contract
@@ -424,15 +416,17 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 * slugs (TBD)
 
 
-### Data associated with contract
+### Data associated with Contract and Workspace
 
-* If this user is a member of any Contract which has one more member beside him/her then this user needs to leave this Contract before his/her profile can be deleted.
-* If this user is the only member of Contract(s) then he/she will be deleted along with all the unique data connected with this user.
+* If this User is a member of any Contract which has one more Admin beside him/her then User's Teams and Repos will be transferred to the next Admin. 
+* If this User is a member of any Workspace which has one more Admin beside him/her then User's Flows and Credentials will be transferred to the next Admin. 
+* If this User is the last Admin of any Workspace then given Workspace will be deleted with all data. 
+* If this User is the only member of Contract(s) then he/she will be deleted along with Contract and all the unique data connected with this User.
 
 
 
 ### Authorization
-This request is allowed with Tenant Admin API key.
+This request is allowed with Tenant Admin API key. But any User also can delete himself/herself.
 
    
    
