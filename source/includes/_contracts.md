@@ -4,26 +4,26 @@
 
 A Contract is a structural entity which reflects an agreement Contract between a customer and the platform provider. It can have an unlimited number of members, workspaces and development teams. The purpose of the Contract is to manage all members, workspaces and development teams. It also serves a singular entity for the billing against the consumed resources by all the integration flows.
 
-Every member of the Contract has one unique access level or role within the current Contract: `Contract Admin`, `Integrator` or a `Guest`. The same user in the platform can have different roles in different Contracts.
+Every member of the Contract has one unique access level or role within the current Contract: `Contract Admin` or a `Member`. The same user in the platform can have different roles in different Contracts.
 
 *Please note only the Tenant Admin can create a Contracts unit and the first Contract Admin. After the unit is created the Contract Admin can invite others and set their level of access. (Tenant is a higher structure, which includes all Contracts that belong to the white-label client).*
 
 The table below lists the access roles against the performed API requests: 
 
 
-Request / Role                                      | Tenant Admin  | Contract Admin    | Integrator    | Guest
-----------                                          | :-----------: | :---------------: | :-----------: | :----------:
-Create a contract                                   |X              |-                  |-              |-              |
-Get contract by Id                                  |X              |X                  |X              |X              |
-Get contracts                                       |-              |X                  |X              |X              |
-Get a list of members of contract                   |-              |X                  |X              |X              |
-Get a list of pending members (invites) of contract |-              |X                  |X              |X              |
-Invite a user to contract                           |X              |X                  |-              |-              |
-Add a new member to contract                        |X              |X                  |-              |-              |
-Update membership in contract                       |-              |X                  |-              |-              |
-Remove member from contract (in development)                         |-              |X                  |-              |-              |
-Delete contract                                     |X              |-                  |-              |-              |
-Create a workspace                                  |-              |X                  |X              |X              |
+Request / Role                                      | Tenant Admin  | Contract Admin      | Member
+----------                                          | :-----------: | :---------------: | :----------:
+Create a contract                                   |X              |-                  |-              |
+Get contract by Id                                  |X              |X                  |X              |
+Get contracts                                       |-              |X                  |X              |
+Get a list of members of contract                   |-              |X                  |X              |
+Get a list of pending members (invites) of contract |-              |X                  |X              |
+Invite a user to contract                           |X              |X                  |-              |
+Add a new member to contract                        |X              |X                  |-              |
+Update membership in contract                       |-              |X                  |-              |
+Remove member from contract                         |X              |X                  |-              |
+Delete contract                                     |X              |-                  |-              |
+Create a workspace                                  |-              |X                  |X              |
 
 ## Create a Contract
 
@@ -448,7 +448,7 @@ Content-Type: application/json
             "type": "contract-invite",
             "attributes": {
                 "email": "hanna+2708test1@{{ product_name }}",
-                "role": "integrator"
+                "role": "member"
             }
         },
         {
@@ -456,7 +456,7 @@ Content-Type: application/json
             "type": "contract-invite",
             "attributes": {
                 "email": "hanna+hfwkjdhvckdjv@{{ product_name }}",
-                "role": "guest"
+                "role": "member"
             }
         }
     ],
@@ -555,7 +555,7 @@ Parameter        | Required  | Description
 ---------        | --------- | -----------
 type             | yes       | A value should be "contract-invite".
 attributes.email | yes       | Email.
-attributes.role  | yes       | Available roles are: admin, integrator and guest.
+attributes.role  | yes       | Available roles are: admin and member.
 
 
 ###Returns
@@ -630,7 +630,7 @@ Parameter        | Required  | Description
 ---------        | --------- | -----------
 id               | yes       | id of an already registered user, who will be added as a member of the Contract
 type             | yes       | A value should be "contract-member".
-attributes.role  | yes       | Available roles are: admin, integrator and guest.
+attributes.role  | yes       | Available roles are: admin and member.
 
 
 ###Returns
@@ -679,7 +679,7 @@ Content-Type: application/json
       "self":"/v2/members/59f747c33f1d3c001901a44e"
     },
     "attributes":{
-      "role":"integrator"
+      "role":"member"
     }
   },
   "meta":{}
@@ -707,7 +707,7 @@ Parameter        | Required  | Description
 ---------        | --------- | -----------
 type             | yes       | A value should be "contract-member".
 id               | yes       | id of an already registered user, must match URL param {USER_ID}
-attributes.role  | yes       | Available roles are: admin, integrator and guest.
+attributes.role  | yes       | Available roles are: admin and member.
 
 
 ###Returns
@@ -721,7 +721,7 @@ Returns member object if the call succeeded
 
 
 
-## Remove member from Contract (IN DEVELOPMENT)
+## Remove member from Contract
 
 > Example Request:
 
@@ -741,14 +741,14 @@ HTTP/1.1 204 No Content
 Remove a membership of the User in the Contract.
 Ownership of those user's associated data will be transferred to admin User performing this operation:
 
-* developers teams membership ???
+* developers teams membership
 
 
 ### HTTP Request
 `DELETE {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/`
 
 #### Authorization
-This request is authorized for contract members with role `Admin`.
+This request is authorized for contract members with role `Admin` and for `Tenant Admin`.
 
 ### URL Parameters
 Parameter        | Description
