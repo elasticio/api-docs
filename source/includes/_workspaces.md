@@ -30,7 +30,7 @@ Delete Workspace|X |- |-|
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/workspaces/{WORKSPACE_ID}?include=members,invites \
+ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}?include=members,invites \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -142,7 +142,7 @@ This endpoints returns a Workspace object for certain Workspace ID.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/workspaces/{WORKSPACE_ID}/`
+`GET {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/`
 
 #### Authorization
 
@@ -169,7 +169,7 @@ include     | no       | Whether include or not full resource objects in respons
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/workspaces?contract_id={CONTRACT_ID} \
+ curl {{ api_base_url }}/v2/workspaces?contract_id={CONTRACT_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -273,7 +273,7 @@ This endpoint returns a list of Workspaces which belong to the given User.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/workspaces?contract_id={CONTRACT_ID}`
+`GET {{ api_base_url }}/v2/workspaces?contract_id={CONTRACT_ID}`
 
 ### Query Parameters
 
@@ -297,7 +297,7 @@ User has to be a member of the Workspace.
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/workspaces/{WORKSPACE_ID}/members/ \
+ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -352,7 +352,7 @@ This endpoints returns a list of all members of certain Workspace.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/workspaces/{WORKSPACE_ID}/members/`
+`GET {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/`
 
 #### Authorization
 
@@ -374,7 +374,7 @@ WORKSPACE_ID | The ID of the Workspace
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/workspaces/{WORKSPACE_ID}/members/ \
+curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/ \
     -X POST \
     -u {EMAIL}:{APIKEY} \
     -H 'Accept: application/json' \
@@ -423,7 +423,7 @@ Notification email will be sent. The User becomes a member immediately.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/workspaces/{WORKSPACE_ID}/members`
+`POST {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members`
 
 
 #### Authorization
@@ -453,7 +453,7 @@ Returns member object if the call succeeded
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/ \
+curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/ \
     -X PATCH  \
     -u {EMAIL}:{APIKEY} \
     -H 'Accept: application/json' \
@@ -495,7 +495,7 @@ This endpoint allows updating a membership of a given User. Only `role` attribut
 
 
 ### HTTP Request
-`PATCH https://api.elastic.io/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/`
+`PATCH {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/`
 
 #### Authorization
 This request is authorized for Workspace members with role `Admin`.
@@ -529,7 +529,7 @@ Returns member object if the call succeeded
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/ \
+ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/ \
     -X DELETE    \
     -u {EMAIL}:{APIKEY}
 ```
@@ -550,7 +550,7 @@ Ownership of those user's associated data will be transferred to Admin User perf
 
 
 ### HTTP Request
-`DELETE https://api.elastic.io/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/`
+`DELETE {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/`
 
 #### Authorization
 This request is authorized for Workspace members with role `Admin`.
@@ -576,7 +576,7 @@ Responds with `204 No content` if the call succeeded (with empty body).
 > Example Request:
 
 ```shell
- curl -i https://api.elastic.io/v2/workspaces/{WORKSPACE_ID} \
+ curl -i {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID} \
   -X DELETE \
   -u {EMAIL}:{APIKEY}
 ```
@@ -608,7 +608,7 @@ This endpoint will delete the Workspace along with the following items that were
 *Note, that process of deletion is asynchronous. Actual deletion of all data will be performed after API response, because it will take some time to terminate all containers of Workspace's flows. * 
 
 ### HTTP Request
-`DELETE https://api.elastic.io/v2/workspaces/{WORKSPACE_ID} \`
+`DELETE {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID} \`
 
 #### Authorization
 This request is authorized for organization members with role `Workspace Admin`.

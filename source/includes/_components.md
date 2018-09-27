@@ -13,17 +13,17 @@ There are three sharing modes:
 
 Accordingly, a set of components, available for each user is consist of: not shared components from the user's Contract, components with ``tenant`` access and ``global`` components.
 
-Request \ Role | Tenant Admin | Contract Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve all components | X| X | X | X |
-Retrieve a component by ID |X|X|X| X|
-Retrieve component versions |X|X|X|X |
-Retrieve a component descriptor|X|X|X|X |
-Create a component repository|X|X|-| -|
-Update component access|X|-|-| -|
-Delete a component|X|X|-| -|
-Retrieve component’s environment variables|X|X|X|X |
-Update component’s environment variables|X|X|-| -|
+Request \ Role | Tenant Admin | Contract Admin | Member |
+---------- | :---------:| :------------:| :-----------:| 
+Retrieve all components | X| X | X |
+Retrieve a component by ID |X|X|X|
+Retrieve component versions |X|X|X|
+Retrieve a component descriptor|X|X|X|
+Create a component repository|X|X|-|
+Update component access|X|-|-|
+Delete a component|X|X|-|
+Retrieve component’s environment variables|X|X|X|
+Update component’s environment variables|X|X|-|
 
 
 ## Retrieve all components
@@ -33,7 +33,7 @@ Update component’s environment variables|X|X|-| -|
 
 
 ```shell
-curl https://api.elastic.io/v2/components?contract_id={CONTRACT_ID} \
+curl {{ api_base_url }}/v2/components?contract_id={CONTRACT_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -166,8 +166,11 @@ More details about the component descriptors can be found [here](#component-desc
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/components?contract_id={CONTRACT_ID}`
+`GET {{ api_base_url }}/v2/components?contract_id={CONTRACT_ID}`
 
+### HTTP Request with parameters
+
+`GET {{ api_base_url }}/v2/components?contract_id={CONTRACT_ID}&filter[access]=private`
 
 ### Query Parameters
 
@@ -197,7 +200,7 @@ Returns repositories metadata object if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v2/components/{COMPONENT_ID} \
+curl {{ api_base_url }}/v2/components/{COMPONENT_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -322,7 +325,7 @@ Content-Type: application/json
 
 ### HTTP Request
 
-``GET https://api.elastic.io/v2/components/{COMPONENT_ID}``
+``GET {{ api_base_url }}/v2/components/{COMPONENT_ID}``
 
 ### URL Parameters
 
@@ -366,7 +369,7 @@ This endpoint returns a component object and includes latest [descriptor](#retri
 
 
 ```shell
-curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions \
+curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -423,7 +426,7 @@ This endpoint retrieves list of component's versions
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/components/{COMPONENT_ID}/versions`
+`GET {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions`
 
 ### URL Parameters
 
@@ -457,7 +460,7 @@ Returns repositories build metadata object if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor \
+curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -524,11 +527,11 @@ for latest version use ``latest``. More details can be find [here](#retrieve-a-c
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor`
+`GET {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor`
 
 or
 
-`GET https://api.elastic.io/v2/components/{COMPONENT_ID}/versions/latest/descriptor`
+`GET {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/latest/descriptor`
 
 
 
@@ -567,7 +570,7 @@ Returns component [descriptor](#retrieve-a-component-descriptor) if the call suc
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/components/ \
+curl {{ api_base_url }}/v2/components/ \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -632,7 +635,7 @@ If you don't have any teams yet, please [create a team](#create-team) first.
 
 ### HTTP Request
 
-``POST https://api.elastic.io/v2/components``
+``POST {{ api_base_url }}/v2/components``
 
 ### Body Parameters
 
@@ -673,7 +676,7 @@ Please note, that this action is irreversible i.e. API does not allow to change 
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/components/{COMPONENT_ID} \
+curl {{ api_base_url }}/v2/components/{COMPONENT_ID} \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
@@ -720,7 +723,7 @@ Content-Type: application/json
 ```
 ### HTTP Request
 
-``PATCH https://api.elastic.io/v2/components/{COMPONENT_ID}``
+``PATCH {{ api_base_url }}/v2/components/{COMPONENT_ID}``
 
 ### URL Parameters
 
@@ -762,7 +765,7 @@ Returns updated component's metadata object if the call succeeded.
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/components/{COMPONENT_ID} \
+curl {{ api_base_url }}/v2/components/{COMPONENT_ID} \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -781,7 +784,7 @@ This resource allows you to delete a component. A component may only be delete i
 
 ### HTTP Request
 
-``DELETE https://api.elastic.io/v2/components/{COMPONENT_ID}/``
+``DELETE {{ api_base_url }}/v2/components/{COMPONENT_ID}/``
 
 ### URL Parameters
 
@@ -817,7 +820,7 @@ The component must belong to one of the client’s team or Contract respectively
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/components/{COMPONENT_ID}/env \
+curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/env \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 
@@ -851,7 +854,7 @@ This endpoint shows env vars for given component.
 
 ### HTTP Request
 
-``GET https://api.elastic.io/v2/components/{COMPONENT_ID}/env``
+``GET {{ api_base_url }}/v2/components/{COMPONENT_ID}/env``
 
 ### URL Parameters
 
@@ -887,7 +890,7 @@ Returns environment variables
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/components/{COMPONENT_ID}/env \
+curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/env \
    -X PUT \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -933,7 +936,7 @@ This endpoint replaces env vars for given component.
 
 ### HTTP Request
 
-`PUT https://api.elastic.io/v2/components/{COMPONENT_ID}/env`
+`PUT {{ api_base_url }}/v2/components/{COMPONENT_ID}/env`
 
 ### URL Parameters
 

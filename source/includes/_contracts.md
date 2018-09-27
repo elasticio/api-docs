@@ -30,7 +30,7 @@ Create a workspace                                  |-              |X          
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/contracts \
+ curl {{ api_base_url }}/v2/contracts \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
@@ -71,7 +71,7 @@ This endpoint allows to create a Contract.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/contracts`
+`POST {{ api_base_url }}/v2/contracts`
 
 
 #### Authorization
@@ -104,7 +104,7 @@ Returns Contract object if the call succeeded
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}?include=members,invites \
+ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}?include=members,invites \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -164,7 +164,7 @@ Content-Type: application/json
         "first_name":"Alla",
         "last_name":"Ospik",
         "role":"admin",
-        "email":"alla.ospik@elastic.io"
+        "email":"alla.ospik@{{ product_name }}"
       },
       "relationships":{
         "user":{
@@ -185,7 +185,7 @@ Content-Type: application/json
         "first_name":"Henry",
         "last_name":"Pushkin",
         "role":"admin",
-        "email":"henry@elastic.io"
+        "email":"henry@{{ product_name }}"
       },
       "relationships":{
         "user":{
@@ -211,7 +211,7 @@ This endpoints returns a Contract object for certain contract id.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/contracts/CONTRACT_ID/`
+`GET {{ api_base_url }}/v2/contracts/CONTRACT_ID/`
 
 #### Authorization
 
@@ -236,7 +236,7 @@ include     | no       | Whether include or not full resource objects in respons
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/contracts/
+ curl {{ api_base_url }}/v2/contracts/
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -318,7 +318,7 @@ This endpoints returns all Contract objects for certain user.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/contracts/`
+`GET {{ api_base_url }}/v2/contracts/`
 
 #### Authorization
 
@@ -331,7 +331,7 @@ Client has to be a member of a Contract.
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}/members/ \
+ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/ \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -350,7 +350,7 @@ Content-Type: application/json
         "first_name":"Hanna",
         "last_name":"Yutsenko",
         "role":"admin",
-        "email":"hanna.yutsenko@elastic.io"
+        "email":"hanna.yutsenko@{{ product_name }}"
       },
       "relationships":{
         "user":{
@@ -371,7 +371,7 @@ Content-Type: application/json
         "first_name":"Ksu",
         "last_name":"Luzha",
         "role":"admin",
-        "email":"margarita@elastic.io"
+        "email":"margarita@{{ product_name }}"
       },
       "relationships":{
         "user":{
@@ -401,7 +401,7 @@ This endpoints returns a list of all members of certain Contract.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/contracts/CONTRACT_ID/members/`
+`GET {{ api_base_url }}/v2/contracts/CONTRACT_ID/members/`
 
 #### Authorization
 
@@ -423,7 +423,7 @@ CONTRACT_ID | The ID of the Contract
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}/invites/ \
+ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/invites/ \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -439,7 +439,7 @@ Content-Type: application/json
             "id": "5b6d663b033b550011fef351",
             "type": "contract-invite",
             "attributes": {
-                "email": "hanna+jflcc53gflsbjfbj@elastic.io",
+                "email": "hanna+jflcc53gflsbjfbj@{{ product_name }}",
                 "role": "admin"
             }
         },
@@ -447,7 +447,7 @@ Content-Type: application/json
             "id": "5b83c0462e7785501158b654",
             "type": "contract-invite",
             "attributes": {
-                "email": "hanna+2708test1@elastic.io",
+                "email": "hanna+2708test1@{{ product_name }}",
                 "role": "member"
             }
         },
@@ -455,7 +455,7 @@ Content-Type: application/json
             "id": "5b855b333a667d5510ce4465",
             "type": "contract-invite",
             "attributes": {
-                "email": "hanna+hfwkjdhvckdjv@elastic.io",
+                "email": "hanna+hfwkjdhvckdjv@{{ product_name }}",
                 "role": "member"
             }
         }
@@ -469,7 +469,7 @@ This endpoints returns a list of pending members (invites) for certain Contract.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/contracts/CONTRACT_ID/invites/`
+`GET {{ api_base_url }}/v2/contracts/CONTRACT_ID/invites/`
 
 #### Authorization
 
@@ -496,7 +496,7 @@ CONTRACT_ID | The ID of the Contract
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}/invites/ \
+curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/invites/ \
     -X POST \
     -u {EMAIL}:{APIKEY} \
     -H 'Content-Type: application/json' -d '
@@ -504,7 +504,7 @@ curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}/invites/ \
        "data": {
            "type": "contract-invite",
            "attributes": {
-               "email": "admin@elastic.io",
+               "email": "admin@{{ product_name }}",
                "role": "admin"
            }
        }
@@ -522,7 +522,7 @@ Content-Type: application/json
     "id":"5b880f7bf3c1a440112a3bb6",
     "type":"contract-invite",
     "attributes":{
-      "email":"admin@elastic.io",
+      "email":"admin@{{ product_name }}",
       "role":"admin"
     }
   },
@@ -537,7 +537,7 @@ This endpoint allows to invite a user to Contract.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/contracts/{CONTRACT_ID}/invites/`
+`POST {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/invites/`
 
 
 #### Authorization
@@ -577,7 +577,7 @@ Returns invite object if the call succeeded
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}/members/ \
+curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/ \
     -X POST \
     -u {EMAIL}:{APIKEY} \
     -H 'Content-Type: application/json' -d '
@@ -619,7 +619,7 @@ No invitation email will be sent. The user becomes a member immediately.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/contracts/{CONTRACT_ID}/members`
+`POST {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members`
 
 
 #### Authorization
@@ -650,7 +650,7 @@ Returns member object if the call succeeded
 > Example Request:
 
 ```shell
-curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/ \
+curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/ \
     -X PATCH  \
     -u {EMAIL}:{APIKEY} \
     -H 'Content-Type: application/json' -d '
@@ -691,7 +691,7 @@ This endpoint allows updating a membership of a given user. Only `role` attribut
 
 
 ### HTTP Request
-`PATCH https://api.elastic.io/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/`
+`PATCH {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/`
 
 #### Authorization
 This request is authorized for Contract members with role `Admin`.
@@ -726,7 +726,7 @@ Returns member object if the call succeeded
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/ \
+ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/ \
     -X DELETE    \
     -u {EMAIL}:{APIKEY}
 ```
@@ -745,7 +745,7 @@ Ownership of those user's associated data will be transferred to admin User perf
 
 
 ### HTTP Request
-`DELETE https://api.elastic.io/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/`
+`DELETE {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/`
 
 #### Authorization
 This request is authorized for contract members with role `Admin` and for `Tenant Admin`.
@@ -772,7 +772,7 @@ Responds with `204 No content` if the call succeeded (with empty body).
 > Example Request:
 
 ```shell
- curl -i https://api.elastic.io/v2/contracts/{CONTRACT_ID} \
+ curl -i {{ api_base_url }}/v2/contracts/{CONTRACT_ID} \
   -X DELETE \
   -u {EMAIL}:{APIKEY}
 ```
@@ -809,7 +809,7 @@ This endpoint will delete a Contract along with the following items that were in
 *A Contract cannot be deleted if any of its Components are used in another Contract's Flow*
 
 ### HTTP Request
-`DELETE https://api.elastic.io/v2/contracts/{CONTRACT_ID} \`
+`DELETE {{ api_base_url }}/v2/contracts/{CONTRACT_ID} \`
 
 #### Authorization
 This request is authorized for members with role `Tenant Admin`.
@@ -829,7 +829,7 @@ Responds with `204 No content` if the call succeeded (with empty body).
 > Example Request:
 
 ```shell
- curl https://api.elastic.io/v2/workspaces \
+ curl {{ api_base_url }}/v2/workspaces \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
@@ -903,7 +903,7 @@ This endpoint allows creating a Workspace only by User which is a member of the 
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/workspaces`
+`POST {{ api_base_url }}/v2/workspaces`
 
 
 #### Authorization

@@ -17,7 +17,7 @@ Delete a credential|X* |X|X|-|
 
 
 ```shell
-curl https://api.elastic.io/v2/credentials/?filter[component]={COMPONENT_ID}&workspace_id={WORKSPACE_ID} \
+curl {{ api_base_url }}/v2/credentials/?filter[component]={COMPONENT_ID}&workspace_id={WORKSPACE_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -140,7 +140,7 @@ This resource allows you to retrieve all credentials belonging to user's Workspa
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/credentials?workspace_id={WORKSPACE_ID}/`
+`GET {{ api_base_url }}/v2/credentials?workspace_id={WORKSPACE_ID}/`
 
 ### Query Parameters
 
@@ -162,7 +162,7 @@ Returns a list of credentials if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
+curl {{ api_base_url }}/v2/credentials/{CREDENTIAL_ID}/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -227,7 +227,7 @@ This resource allows you to retrieve a credential by its identifier.
 
 ### HTTP Request
 
-`GET https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/`
+`GET {{ api_base_url }}/v2/credentials/{CREDENTIAL_ID}/`
 
 ### URL Parameters
 
@@ -246,7 +246,7 @@ Returns a credential object if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v2/credentials/ \
+curl {{ api_base_url }}/v2/credentials/ \
     -X POST \
     -u {EMAIL}:{APIKEY} \
     -H 'Accept: application/json' \
@@ -349,7 +349,7 @@ This resource allows you to create a credential.
 
 ### HTTP Request
 
-`POST https://api.elastic.io/v2/credentials/`
+`POST {{ api_base_url }}/v2/credentials/`
 
 
 ### Body Parameters
@@ -381,7 +381,7 @@ Returns credential object if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
+curl {{ api_base_url }}/v2/credentials/{CREDENTIAL_ID}/ \
    -u {EMAIL}:{APIKEY} \
    -X PATCH \
    -H 'Accept: application/json' \
@@ -476,7 +476,7 @@ Content-Type: application/json
 This resource allows you to update a credential.
 
 ### HTTP Request
-`PATCH https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/`
+`PATCH {{ api_base_url }}/v2/credentials/{CREDENTIAL_ID}/`
 
 ### URL Parameters
 
@@ -506,7 +506,7 @@ Returns a modified credential object if the call succeeded.
 
 
 ```shell
-curl https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/ \
+curl {{ api_base_url }}/v2/credentials/{CREDENTIAL_ID}/ \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -521,7 +521,7 @@ HTTP/1.1 204 No Content
 This resource allows you to delete a credential.
 
 ### HTTP Request
-`DELETE https://api.elastic.io/v2/credentials/{CREDENTIAL_ID}/`
+`DELETE {{ api_base_url }}/v2/credentials/{CREDENTIAL_ID}/`
 
 
 ### URL Parameters
