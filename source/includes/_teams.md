@@ -1,13 +1,13 @@
 # Teams
 
-Request / Role| Tenant Admin | Contract Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve all teams|X|X|X|X|
-Retrieve team by ID|-|X*|X*|X*|
-Create a team|-|X|-|-|
-Add a new member to a team|-|X|-|-|
-Remove a member from a team|-|X|-|-|
-Delete a team|-|X|-|-|
+Request / Role| Tenant Admin | Contract Admin | Member | 
+---------- | :---------:| :------------:| :-----------:| 
+Retrieve all teams|X|X|X|
+Retrieve team by ID|-|X*|X*|
+Create a team|-|X|-|
+Add a new member to a team|-|X|-|
+Remove a member from a team|-|X|-|
+Delete a team|-|X|-|
 
 *- Only teams which belong to given user 
 
