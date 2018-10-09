@@ -64,7 +64,7 @@ Content-Type: application/json
           "type":"user"
         },
         "links":{
-          "self":"/v2/users/${client.id}"
+          "self":"/v2/users/585d389b90ea62ce348a478b"
         }
       }
     },
@@ -209,7 +209,7 @@ Content-Type: application/json
           "type":"user"
         },
         "links":{
-          "self":"/v2/users/${client.id}"
+          "self":"/v2/users/585d389b90ea62ce348a478b"
         }
       }
     },
@@ -317,7 +317,7 @@ Content-Type: application/json
           "type":"user"
         },
         "links":{
-          "self":"/v2/users/${client.id}"
+          "self":"/v2/users/585d389b90ea62ce348a478b"
         }
       }
     },
