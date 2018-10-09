@@ -187,9 +187,7 @@ Location: '{{ api_base_url }}/v2/exec/poll/58becb8359a65f18c5c60ec4'
       "self":"/v2/exec/result/5aaf9d5bd0516d000775621c"
     },
     "attributes":{
-      "result":{
-
-      },
+      "result":{},
       "status":"Pending request, waiting other process"
     }
   },
@@ -278,9 +276,7 @@ Location: '{{ api_base_url }}/v2/exec/poll/58becb8059a65f18c5c60e41'
       "self":"/v2/exec/result/5aafb9e1d0516d0007757b71"
     },
     "attributes":{
-      "result":{
-
-      },
+      "result":{},
       "status":"Pending request, waiting other process"
     }
   },
@@ -346,9 +342,7 @@ Content-Type: application/json
     "type":"execution-result",
     "id":"58becb8059a65f18c5c60e41",
     "attributes":{
-      "result":{
-
-      },
+      "result":{},
       "status":"Pending request, waiting other process"
     },
     "links":{
