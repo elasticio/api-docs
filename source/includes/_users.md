@@ -303,21 +303,24 @@ curl {{ api_base_url }}/v2/users \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
     {
-        "data": {
-            "type": "user",
-            "attributes": {
-                "first_name": "John",
-                "last_name": "Doe",
-                "email": "test@example.com",
-                "password": "secret11"
-            },
-            "relationships":{
-            	"contracts":{
-            		"data":[
-            		{"id":"{CONTRACT_ID}"}]
-        			}
-        	  }
-        }
+      "data":{
+         "type":"user",
+         "attributes":{
+           "first_name":"John",
+           "last_name":"Doe",
+           "email":"test@example.com",
+           "password":"secret11"
+         },
+         "relationships":{
+            "contracts":{
+            "data":[
+               {
+                  "id":"{CONTRACT_ID}"
+               }
+            ]
+            }
+         }
+      }
     }'
 ```
 
