@@ -153,9 +153,7 @@ Content-Type: application/json
       }
     }
   },
-  "meta":{
-
-  },
+  "meta":{},
   "included":[
     {
       "id":"59d22e7eebrr5b0018adc248",
@@ -307,9 +305,7 @@ Content-Type: application/json
       }
     }
   ],
-  "meta":{
-
-  }
+  "meta":{}
 }
 ```
 
@@ -386,9 +382,7 @@ Content-Type: application/json
       }
     }
   ],
-  "meta":{
-
-  },
+  "meta":{},
   "links":{
     "self":"/v2/contracts/5b4f3e093a47244006c71d47/members"
   }
@@ -526,9 +520,7 @@ Content-Type: application/json
       "role":"admin"
     }
   },
-  "meta":{
-
-  }
+  "meta":{}
 }
 ```
 
