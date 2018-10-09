@@ -89,9 +89,7 @@ Content-Type: application/json
       }
     }
   },
-  "meta":{
-
-  },
+  "meta":{},
   "included":[
     {
       "id":"560e5a27734d480a00000002",
@@ -259,9 +257,7 @@ Content-Type: application/json
       }
     }
   ],
-  "meta":{
-
-  },
+  "meta":{},
   "links":{
     "self":"/v2/workspaces"
   }
@@ -337,9 +333,7 @@ Content-Type: application/json
       }
     }
   ],
-  "meta":{
-
-  },
+  "meta":{},
   "links":{
     "self":"/v2/workspaces/5b6d97bf033b500011fef487/members"
   }
@@ -410,9 +404,7 @@ Content-Type: application/json
       "email":"iggy@pop.com"
     }
   },
-  "meta":{
-
-  }
+  "meta":{}
 }
 
 ```
