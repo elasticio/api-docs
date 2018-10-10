@@ -2,9 +2,9 @@
 
 Request / Role| Tenant Admin | Workspace Admin | Integrator | Guest
 ---------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve a flow draft| X|X|X|X|
-Create/update a flow draft|X |X|X|X|
-Delete a flow draft|X |X|X|X|
+Retrieve a flow draft|X|X|X|-|
+Create/update a flow draft|X|X|X|-|
+Delete a flow draft|X|X|X|-|
 
 ## Retrieve a flow draft
 
