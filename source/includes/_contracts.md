@@ -499,7 +499,9 @@ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/invites/ \
            "type": "contract-invite",
            "attributes": {
                "email": "admin@{{ product_name }}",
-               "role": "admin"
+               "role": "admin",
+               "workspace_id":"{WORKSPACE_ID}",
+               "workspace_role":"integrator"
            }
        }
     }'
@@ -533,7 +535,7 @@ This endpoint allows to invite a user to Contract.
 
 
 #### Authorization
-This request is authorized for Contract members with role `Admin` or `TenantAdmin`.
+This request is authorized for Contract members with role `Admin` or `TenantAdmin`. To provide the the workspase_id as an additional perameter user must be member of given Workpsace with Admin role.
 
 
 ### URL Parameters
@@ -548,9 +550,11 @@ Parameter        | Required  | Description
 type             | yes       | A value should be "contract-invite".
 attributes.email | yes       | Email.
 attributes.role  | yes       | Available roles are: admin and member.
+attributes.workspace_id | no | The id of corresponding Workspace.
+attributes.workspace_role  | no | Available roles are: admin, integrator and guest.
 
 
-###Returns
+### Returns
 
 Returns invite object if the call succeeded
 
