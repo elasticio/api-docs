@@ -535,7 +535,7 @@ This endpoint allows to invite a user to Contract.
 
 
 #### Authorization
-This request is authorized for Contract members with role `Admin` or `TenantAdmin`. To provide the the workspase_id as an additional perameter user must be member of given Workpsace with Admin role.
+This request is authorized for Contract members with role `Admin` or `TenantAdmin`. To provide the workspase_id as an additional parameter user must be member of the given Workspace with Admin role.
 
 
 ### URL Parameters
