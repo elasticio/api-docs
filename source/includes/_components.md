@@ -575,28 +575,28 @@ curl {{ api_base_url }}/v2/components/ \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
    -H 'Content-Type: application/json' -d '
-   {
-       "data": {
-           "type": "component",
-           "attributes": {
-               "name": "mycomponent"
-           },
-           "relationships": {
-               "team": {
-                   "data": {
-                       "type": "team",
-                       "id": "{TEAM_ID}"
-                   },
-                "contract":{
-               	 "data":{
-               			"type":"contract",
-               			"id":"{CONTRACT_ID}"
-               		}
-               }
-               }
-           }
-       }
-   }'
+      {
+        "data":{
+          "type":"component",
+          "attributes":{
+            "name":"mycomponent"
+          },
+          "relationships":{
+            "team":{
+              "data":{
+                "type":"team",
+                "id":"{TEAM_ID}"
+              },
+              "contract":{
+                "data":{
+                  "type":"contract",
+                  "id":"{CONTRACT_ID}"
+                }
+              }
+            }
+          }
+        }
+      }'
 ```
 
 
