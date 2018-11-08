@@ -586,12 +586,12 @@ curl {{ api_base_url }}/v2/components/ \
               "data":{
                 "type":"team",
                 "id":"{TEAM_ID}"
-              },
-              "contract":{
-                "data":{
-                  "type":"contract",
-                  "id":"{CONTRACT_ID}"
-                }
+              }
+            },
+            "contract":{
+              "data":{
+                "type":"contract",
+                "id":"{CONTRACT_ID}"
               }
             }
           }
