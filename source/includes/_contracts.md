@@ -19,7 +19,7 @@ Get contracts                                       |-              |X          
 Get a list of members of contract                   |-              |X                  |X              |
 Get a list of pending members (invites) of contract |-              |X                  |X              |
 Invite a user to contract                           |X              |X                  |-              |
-Add a new member to contract                        |X              |X                  |-              |
+Add a new member to contract                        |X              |-                  |-              |
 Update membership in contract                       |-              |X                  |-              |
 Remove member from contract                         |X              |X                  |-              |
 Delete contract                                     |X              |-                  |-              |
