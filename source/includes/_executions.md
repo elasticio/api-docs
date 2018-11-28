@@ -74,15 +74,23 @@ Retrieve execution result|X|X|X|X|
  -u {EMAIL}:{APIKEY} \ 
  -X POST -H 'Content-Type: application/json' -d '
  {
-     "data": {
-         "type": "verify-credential",
-         "attributes": {
-             "fields": {
-                 "apiKey" : "secret"
-             }
-         }
-     }
- }'
+  "data":{
+    "type":"verify-credential",
+    "attributes":{
+      "fields":{
+        "apiKey":"elasticio"
+      }
+    },
+    "relationships":{
+      "workspace":{
+        "data":{
+          "id":"{WORKSPACE_ID}",
+          "type":"workspace"
+        }
+      }
+    }
+  }
+}'
 ```
 
 > Example Response:
