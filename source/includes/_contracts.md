@@ -18,7 +18,7 @@ Get contract by Id                                  |X              |X          
 Get contracts                                       |-              |X                  |X              |
 Get a list of members of contract                   |-              |X                  |X              |
 Get a list of pending members (invites) of contract |-              |X                  |X              |
-Get contract's roles by ID                          |X              |X                  |X              |
+Get contract's roles                                |X              |X                  |X              |
 Invite a user to contract                           |X              |X                  |-              |
 Add a new member to contract                        |X              |-                  |-              |
 Update membership in contract                       |-              |X                  |-              |
@@ -480,7 +480,7 @@ CONTRACT_ID | The ID of the Contract
 
 
 
-## Get contract's roles by ID
+## Get contract's roles
 
 > Example Request:
 
