@@ -18,6 +18,7 @@ Get contract by Id                                  |X              |X          
 Get contracts                                       |-              |X                  |X              |
 Get a list of members of contract                   |-              |X                  |X              |
 Get a list of pending members (invites) of contract |-              |X                  |X              |
+Get contract's roles by ID                          |X              |X                  |X              |
 Invite a user to contract                           |X              |X                  |-              |
 Add a new member to contract                        |X              |-                  |-              |
 Update membership in contract                       |-              |X                  |-              |
@@ -479,8 +480,257 @@ CONTRACT_ID | The ID of the Contract
 
 
 
+## Get contract's roles by ID
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/roles/ \
+   -u {EMAIL}:{APIKEY}
+```
 
 
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id":"{CONTRACT-POLICY_ID}",
+    "type":"contract-policy",
+    "attributes":{
+      "roles":[
+        {
+          "role":"admin",
+          "scope":"contract",
+          "i18n":{
+            "en":"Admin"
+          },
+          "permissions":[
+            {
+              "object":"CONTRACT",
+              "action":"EDIT_MEMBERSHIP"
+            },
+            {
+              "object":"CONTRACT",
+              "action":"CREATE_WORKSPACE"
+            },
+            {
+              "object":"CONTRACT",
+              "action":"LIST_ALL_WORKSPACES"
+            },
+            {
+              "object":"REPOSITORY",
+              "action":"EDIT"
+            },
+            {
+              "object":"REPOSITORY",
+              "action":"EDIT_ENV_VARS"
+            },
+            {
+              "object":"DEV_TEAM",
+              "action":"EDIT"
+            }
+          ]
+        },
+        {
+          "role":"admin",
+          "scope":"workspace",
+          "i18n":{
+            "en":"Admin"
+          },
+          "permissions":[
+            {
+              "object":"ORGANIZATION",
+              "action":"EDIT"
+            },
+            {
+              "object":"TASK",
+              "action":"EDIT"
+            },
+            {
+              "object":"TASK",
+              "action":"TOGGLE_STATUS"
+            },
+            {
+              "object":"TASK",
+              "action":"TOGGLE_REALTIME"
+            },
+            {
+              "object":"TASK",
+              "action":"CLEAN_SNAPSHOT"
+            },
+            {
+              "object":"TASK",
+              "action":"DELETE"
+            },
+            {
+              "object":"ACCOUNT",
+              "action":"EDIT"
+            }
+          ]
+        },
+        {
+          "role":"member",
+          "scope":"contract",
+          "i18n":{
+            "en":"Member"
+          },
+          "permissions":[
+            {
+              "object":"CONTRACT",
+              "action":"CREATE_WORKSPACE"
+            }
+          ]
+        },
+        {
+          "role":"integrator",
+          "scope":"workspace",
+          "i18n":{
+            "en":"Integrator"
+          },
+          "permissions":[
+            {
+              "object":"TASK",
+              "action":"EDIT"
+            },
+            {
+              "object":"TASK",
+              "action":"TOGGLE_STATUS"
+            },
+            {
+              "object":"TASK",
+              "action":"TOGGLE_REALTIME"
+            },
+            {
+              "object":"TASK",
+              "action":"CLEAN_SNAPSHOT"
+            },
+            {
+              "object":"TASK",
+              "action":"DELETE"
+            },
+            {
+              "object":"ACCOUNT",
+              "action":"EDIT"
+            }
+          ]
+        },
+        {
+          "role":"guest",
+          "scope":"workspace",
+          "i18n":{
+            "en":"Guest"
+          },
+          "permissions":[
+
+          ]
+        },
+        {
+          "role":"owner",
+          "scope":"contract",
+          "i18n":{
+            "en":"Owner"
+          },
+          "permissions":[
+            {
+              "object":"CONTRACT",
+              "action":"EDIT_MEMBERSHIP"
+            },
+            {
+              "object":"CONTRACT",
+              "action":"CREATE_WORKSPACE"
+            },
+            {
+              "object":"CONTRACT",
+              "action":"LIST_ALL_WORKSPACES"
+            },
+            {
+              "object":"REPOSITORY",
+              "action":"EDIT"
+            },
+            {
+              "object":"REPOSITORY",
+              "action":"EDIT_ENV_VARS"
+            },
+            {
+              "object":"DEV_TEAM",
+              "action":"EDIT"
+            }
+          ]
+        },
+        {
+          "role":"owner",
+          "scope":"workspace",
+          "i18n":{
+            "en":"Owner"
+          },
+          "permissions":[
+            {
+              "object":"ORGANIZATION",
+              "action":"EDIT"
+            },
+            {
+              "object":"TASK",
+              "action":"EDIT"
+            },
+            {
+              "object":"TASK",
+              "action":"TOGGLE_STATUS"
+            },
+            {
+              "object":"TASK",
+              "action":"TOGGLE_REALTIME"
+            },
+            {
+              "object":"TASK",
+              "action":"CLEAN_SNAPSHOT"
+            },
+            {
+              "object":"TASK",
+              "action":"DELETE"
+            },
+            {
+              "object":"ACCOUNT",
+              "action":"EDIT"
+            }
+          ]
+        }
+      ]
+    },
+    "relationships":{
+      "contract":{
+        "data":{
+          "id":"{CONTRACT_ID}",
+          "type":"contract"
+        },
+        "links":{
+          "self":"/v2/contracts/{CONTRACT_ID}"
+        }
+      }
+    }
+  },
+  "meta":{}
+}
+```
+
+This endpoints returns a list of contract's roles for certain Contract.
+
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/contracts/CONTRACT_ID/roles/`
+
+#### Authorization
+
+Client has to be a member of the Contract.
+
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+CONTRACT_ID | The ID of the Contract
 
 
 
