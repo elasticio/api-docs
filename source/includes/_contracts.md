@@ -503,7 +503,7 @@ Content-Type: application/json
       "roles":[
         {
           "role":"admin",
-          "scope":"contract",
+          "scope":"CONTRACT",
           "i18n":{
             "en":"Admin"
           },
@@ -536,7 +536,7 @@ Content-Type: application/json
         },
         {
           "role":"admin",
-          "scope":"workspace",
+          "scope":"WORKSPACE",
           "i18n":{
             "en":"Admin"
           },
@@ -573,7 +573,7 @@ Content-Type: application/json
         },
         {
           "role":"member",
-          "scope":"contract",
+          "scope":"CONTRACT",
           "i18n":{
             "en":"Member"
           },
@@ -586,7 +586,7 @@ Content-Type: application/json
         },
         {
           "role":"integrator",
-          "scope":"workspace",
+          "scope":"WORKSPACE",
           "i18n":{
             "en":"Integrator"
           },
@@ -619,7 +619,7 @@ Content-Type: application/json
         },
         {
           "role":"guest",
-          "scope":"workspace",
+          "scope":"WORKSPACE",
           "i18n":{
             "en":"Guest"
           },
@@ -629,7 +629,7 @@ Content-Type: application/json
         },
         {
           "role":"owner",
-          "scope":"contract",
+          "scope":"CONTRACT",
           "i18n":{
             "en":"Owner"
           },
@@ -662,7 +662,7 @@ Content-Type: application/json
         },
         {
           "role":"owner",
-          "scope":"workspace",
+          "scope":"WORKSPACE",
           "i18n":{
             "en":"Owner"
           },
