@@ -10,14 +10,14 @@ A workspace is a space where every user can work on an integration project ind
 
 Each role is limited to the given Workspace only. The same user in the platform can have different roles in different Workspaces.
 
-Request / Role|  Workspace Admin | Integrator | Guest|
----------- |:------------:| :-----------:| :----------:|
-Get Workspace by ID|X| X|X|
-Get User's Workspaces|X| X|X|
-Add a new member to Workspace|X| -|-|
-Update membership in Workspace|X |- |-|
-Remove member from Workspace|X |- |-|
-Delete Workspace|X |- |-|
+Request / Role|  Workspace Admin | Integrator | Guest| Contract Admin
+---------- |:------------:| :-----------:| :----------:|:----------:|
+Get Workspace by ID|X| X|X|-|
+Get User's Workspaces|X| X|X|-|
+Add a new member to Workspace|X| -|-|-|
+Update membership in Workspace|X |- |-|-|
+Remove member from Workspace|X |- |-|-|
+Delete Workspace|X |- |-|X|
 
 
 
@@ -603,7 +603,9 @@ This endpoint will delete the Workspace along with the following items that were
 `DELETE {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID} \`
 
 #### Authorization
-This request is authorized for organization members with role `Workspace Admin`.
+This request can be performed by either the Contract’s `Admin` the current Workspace belongs to or just the Workspace’s `Admin`.
+
+
 
 ### URL Parameters
 Parameter        | Description
