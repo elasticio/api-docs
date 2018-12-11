@@ -2,11 +2,11 @@
 
 ## What is a Contract unit?
 
-A Contract is a structural entity which reflects an agreement Contract between a customer and the platform provider. It can have an unlimited number of members, workspaces and development teams. The purpose of the Contract is to manage all members, workspaces and development teams. It also serves a singular entity for the billing against the consumed resources by all the integration flows.
+A Contract is a fundamental entity (scope) that reflects an agreement between a customer and the platform's provider. The Contract scope can have an unlimited number of members, workspaces and development teams. It also serves as a singular entity for the billing department against the consumed resources by all the integration flows.
 
-Every member of the Contract has one unique access level or role within the current Contract: `Contract Admin` or a `Member`. The same user in the platform can have different roles in different Contracts.
+Every member of the Contract's scope has a specific access level or role within the current Contract. These roles are the `Contract Admin` and the `Member`. The same user can have different roles in different Contracts within the Platform.
 
-*Please note only the Tenant Admin can create a Contracts unit and the first Contract Admin. After the unit is created the Contract Admin can invite others and set their level of access. (Tenant is a higher structure, which includes all Contracts that belong to the white-label client).*
+*Please note that the Tenant Admin can create a Contracts unit/scope and the first Contract Admin. Once it is done the Contract Admin can invite the other members and establish their access level (grant access permissions). (Tenant is a higher scope in the Platform's hierarchy. It includes all the Contracts that belong to the white-label client).*
 
 The table below lists the access roles against the performed API requests: 
 
@@ -22,7 +22,7 @@ Get contract's roles                                |X              |X          
 Invite a user to contract                           |X              |X                  |-              |
 Add a new member to contract                        |X              |-                  |-              |
 Update membership in contract                       |-              |X                  |-              |
-Remove member from contract                         |X              |X                  |-              |
+Remove a member from contract                       |X              |X                  |-              |
 Delete contract                                     |X              |-                  |-              |
 Create a workspace                                  |-              |X                  |X              |
 
@@ -67,7 +67,7 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows to create a Contract.
+This endpoint allows creating a Contract.
 
 
 ### HTTP Request
@@ -205,7 +205,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoints returns a Contract object for certain contract id.
+This endpoint returns a Contract object for a specific contract's id.
 
 
 ### HTTP Request
@@ -214,7 +214,7 @@ This endpoints returns a Contract object for certain contract id.
 
 #### Authorization
 
-Client has to be a member of the Contract or to have `TenantAdmin` role (contact support team to get this role).
+A client has to be a member of the Contract's scope or belong to the `Tenant Admin` users group (please contact our support department to get this specific role).
 
 
 ### URL Parameters
@@ -226,7 +226,7 @@ CONTRACT_ID | The ID of the Contract
 ### URL Query Parameters
 Parameter   | Required | Description              
 ----------- | -------- | ------------------------ 
-include     | no       | Whether include or not full resource objects in response for related entities. Possible values: `members` and/or `invites`.
+include     | no       | You may add a parameter, such as the 'include' for more detailed information regarding the Workspace's entities. Possible values are `members` and/or `invites`.
 
 
 
@@ -310,7 +310,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoints returns all Contract objects for certain user.
+This endpoint returns all the Contract's objects for a specific user.
 
 
 ### HTTP Request
@@ -319,11 +319,11 @@ This endpoints returns all Contract objects for certain user.
 
 #### Authorization
 
-Client has to be a member of a Contract.
+A client has to be a member of the Contract's scope.
 
 
 
-## Get a list of members of Contract
+## Get a list of members of the Contract's scope
 
 > Example Request:
 
@@ -391,7 +391,7 @@ Content-Type: application/json
 
 ```
 
-This endpoints returns a list of all members of certain Contract.
+This endpoint returns a list of all members of a specific Contract's scope.
 
 
 ### HTTP Request
@@ -400,7 +400,7 @@ This endpoints returns a list of all members of certain Contract.
 
 #### Authorization
 
-Client has to be a member of the Contract.
+A client has to be a member of the Contract's scope.
 
 
 ### URL Parameters
@@ -413,7 +413,7 @@ CONTRACT_ID | The ID of the Contract
 
 
 
-## Get a list of pending members (invites) of Contract
+## Get a list of pending members (invites) of the Contract's scope
 
 > Example Request:
 
@@ -459,7 +459,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoints returns a list of pending members (invites) for certain Contract.
+This endpoint returns a list of pending members (invites) for a specific Contract's scope.
 
 
 ### HTTP Request
@@ -468,7 +468,7 @@ This endpoints returns a list of pending members (invites) for certain Contract.
 
 #### Authorization
 
-Client has to be a member of the Contract.
+A client has to be a member of the Contract's scope.
 
 
 ### URL Parameters
@@ -480,7 +480,7 @@ CONTRACT_ID | The ID of the Contract
 
 
 
-## Get contract's roles
+## Get the Contract's roles
 
 > Example Request:
 
@@ -715,7 +715,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoints returns a list of contract's roles for certain Contract.
+This endpoint returns a list of the contract's roles for a specific Contract's scope.
 
 
 ### HTTP Request
@@ -724,7 +724,7 @@ This endpoints returns a list of contract's roles for certain Contract.
 
 #### Authorization
 
-Client has to be a member of the Contract.
+A client has to be a member of the Contract's scope.
 
 
 ### URL Parameters
@@ -735,7 +735,7 @@ CONTRACT_ID | The ID of the Contract
 
 
 
-## Invite a user to Contract
+## Invite a user to the Contract's scope
 
 > Example Request:
 
@@ -785,7 +785,7 @@ This endpoint allows to invite a user to Contract.
 
 
 #### Authorization
-This request is authorized for Contract members with role `Admin` or `TenantAdmin`. To provide the workspase_id as an additional parameter user must be member of the given Workspace with Admin role.
+This request is authorized for a Contract's scope members with the `Admin` or the `TenantAdmin` roles. To provide the workspase_id as an additional parameter user has to have Admin privileges and belong to the provided Workspace.
 
 
 ### URL Parameters
@@ -799,14 +799,14 @@ Parameter        | Required  | Description
 ---------        | --------- | -----------
 type             | yes       | A value should be "contract-invite".
 attributes.email | yes       | Email.
-attributes.role  | yes       | Available roles are: admin and member.
-attributes.workspace_id | no | The id of corresponding Workspace.
-attributes.workspace_role  | no | Available roles are: admin, integrator and guest.
+attributes.role  | yes       | Available roles are admin and member.
+attributes.workspace_id | no | The id of the corresponding Workspace.
+attributes.workspace_role  | no | Available roles are Admin, Integrator, and Guest.
 
 
 ### Returns
 
-Returns invite object if the call succeeded
+Returns invite the object if the call succeeded
 
 
 
@@ -818,7 +818,7 @@ Returns invite object if the call succeeded
 
 
 
-## Add a new member to Contract
+## Add a new member to the Contract's scope
 
 > Example Request:
 
@@ -860,7 +860,7 @@ Content-Type: application/json
 ```
 
 This endpoint allows adding a user to a certain Contract as a member. 
-No invitation email will be sent. The user becomes a member immediately. 
+No invitation email message will be sent. The user becomes a member immediately. 
 
 
 ### HTTP Request
@@ -869,19 +869,19 @@ No invitation email will be sent. The user becomes a member immediately.
 
 
 #### Authorization
-This request is authorized for a user with `TenantAdmin` role only. Contact support team to get this role.
+This request is authorized for a user with the `Tenant Admin` role only. Please contact our support department to get this role.
 
 ### Payload Parameters
 Parameter        | Required  | Description
 ---------        | --------- | -----------
-id               | yes       | id of an already registered user, who will be added as a member of the Contract
+id               | yes       | id of an already registered user; the user will be added to the Contract's scope as a member.
 type             | yes       | A value should be "contract-member".
-attributes.role  | yes       | Available roles are: admin and member.
+attributes.role  | yes       | Available roles are Admin and Member.
 
 
 ###Returns
 
-Returns member object if the call succeeded
+Returns Member's object if the call succeeded
 
 
 
@@ -891,7 +891,7 @@ Returns member object if the call succeeded
 
 
 
-## Update membership in Contract
+## Update membership in the Contract's scope
 
 > Example Request:
 
@@ -940,7 +940,7 @@ This endpoint allows updating a membership of a given user. Only `role` attribut
 `PATCH {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/`
 
 #### Authorization
-This request is authorized for Contract members with role `Admin`.
+This request is authorized for the Contract's members with the `Admin` role.
 
 ### URL Parameters
 Parameter        | Description
@@ -951,14 +951,14 @@ USER_ID          | The ID of the user to be updated
 ### Payload Parameters
 Parameter        | Required  | Description
 ---------        | --------- | -----------
-type             | yes       | A value should be "contract-member".
-id               | yes       | id of an already registered user, must match URL param {USER_ID}
-attributes.role  | yes       | Available roles are: admin and member.
+type             | yes       | A value should be the "contract-member".
+id               | yes       | id of an already registered user, must match the {USER_ID} URL param
+attributes.role  | yes       | Available roles are admin and member.
 
 
 ###Returns
 
-Returns member object if the call succeeded
+Returns the member's object if the call succeeded
 
 
 
@@ -967,7 +967,7 @@ Returns member object if the call succeeded
 
 
 
-## Remove member from Contract
+## Remove a member from the Contract's scope.
 
 > Example Request:
 
@@ -984,8 +984,8 @@ Returns member object if the call succeeded
 HTTP/1.1 204 No Content
 ```
 
-Remove a membership of the User in the Contract.
-Ownership of those user's associated data will be transferred to admin User performing this operation:
+Removes User's membership in the Contract's scope.
+User's ownership associated data will be transferred to the admin User by performing the following pattern:
 
 * developers teams membership
 
@@ -994,18 +994,18 @@ Ownership of those user's associated data will be transferred to admin User perf
 `DELETE {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/`
 
 #### Authorization
-This request is authorized for contract members with role `Admin` and for `Tenant Admin`.
+This request is authorized for the contract's scope members with the `Admin` and `Tenant Admin` roles.
 
 ### URL Parameters
 Parameter        | Description
 ---------------- | -----------
-CONTRACT_ID  | The ID of the contract
-USER_ID          | The ID of the user, which should leave the contract
+CONTRACT_ID  | The ID of the contract scope
+USER_ID          | The ID of the user that should leave the contract's scope
 
 
 ###Returns
 
-Responds with `204 No content` if the call succeeded (with empty body). 
+Responds with `204 No content` message if the call succeeded (with empty body). 
 
 
 
@@ -1029,7 +1029,7 @@ Responds with `204 No content` if the call succeeded (with empty body).
 HTTP/1.1 204 No Content
 ```
 
-This endpoint will delete a Contract along with the following items that were inside the Contract:
+The endpoint deletes a Contract's scope along with everything it includes. These items are listed below:
 
 * Accounts (Credentials)
 * Agents
@@ -1048,17 +1048,17 @@ This endpoint will delete a Contract along with the following items that were in
 * Teams
 * Repos
 * RepoBuilds
-* User accounts who were only the members of the deleted Contract (and ssh keys associated with him/her).
+* User accounts who were only the members of the deleted Contract's scope, as well as ssh keys associated with him/her.
 
 
-*Note, that process of deletion is asynchronous. Actual deletion of all data will be performed after API response, because it will take some time to terminate all containers of Contract's flows. *
-*A Contract cannot be deleted if any of its Components are used in another Contract's Flow*
+*Note, the deletion process is asynchronous. The actual data deletion will be performed after an API response, as it requires time for termination of all the Contract's flows containers. *
+*A Contract cannot be deleted in case any of its Components are being used in another Contract's Flow*
 
 ### HTTP Request
 `DELETE {{ api_base_url }}/v2/contracts/{CONTRACT_ID} \`
 
 #### Authorization
-This request is authorized for members with role `Tenant Admin`.
+This request is authorized for members with the `Tenant Admin` role.
 
 ### URL Parameters
 Parameter        | Description
@@ -1068,7 +1068,7 @@ CONTRACT_ID      | The ID of the Contract
 
 ### Returns
 
-Responds with `204 No content` if the call succeeded (with empty body).
+Responds with `204 No content` message if the call succeeded (with empty body).
 
 ## Create a Workspace
 
@@ -1142,7 +1142,7 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows creating a Workspace only by User which is a member of the Contract.
+This endpoint allows creating a Workspace only by the User that is a member of the Contract's scope.
 
 
 ### HTTP Request
