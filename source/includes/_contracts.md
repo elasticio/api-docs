@@ -822,22 +822,22 @@ Responds with `204 No content` message if the call succeeded (with empty body).
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
-       {
-           "data": {         
-               "type": "workspace",
-               "attributes": {
-                   "name": "My first Workspace"
-               }
-           },
-               "relationships":{
-                   "contract":{
-                      "data":{
-                          "id":"5b69630eec703400110a4dd4",
-                          "type":"contract"
-                      }
-                   }
-                }
-       }'
+   {
+     "data":{
+       "type":"workspace",
+       "attributes":{
+         "name":"My test Workspace from API"
+       },
+       "relationships":{
+         "contract":{
+           "data":{
+             "id":"{CONTRACT_ID}",
+             "type":"contract"
+           }
+         }
+       }
+     }
+   }'
 ```
 
 
