@@ -2,7 +2,7 @@
 
 Request / Role| Tenant Admin | Contract Admin | Member | 
 ---------- | :---------:| :------------:| :-----------:| 
-Retrieve all teams|X|X|X|
+Retrieve all teams|-|X*|X*|
 Retrieve team by ID|-|X*|X*|
 Create a team|-|X|-|
 Add a new member to a team|-|X|-|
@@ -87,7 +87,7 @@ This resource allows you to retrieve all teams the current user is member in.
 
 | Parameter         | Required  | Description |
 | :---              | :---      | :---        |
-|contract_id|yes (only for Tenant Admin)|An Id of the Contract|
+|contract_id|yes |An Id of the Contract|
 
 ### Returns
 
