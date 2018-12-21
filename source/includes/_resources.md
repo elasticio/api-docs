@@ -21,7 +21,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "put_url":"https://steward_host/files/1ksksiaö",
+  "put_url":"https://steward_host/files/1ksksiao",
   "get_url":"https://steward_host/files/34rwer34",
   "expires":18000
 }
