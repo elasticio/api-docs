@@ -359,3 +359,6 @@ attributes.roles[].role | no     | Name of a role.
 attributes.roles[].scope | no      | The group of objects, which is affected by this role. Value can be "contracts" or "workspaces" 
 attributes.roles[].permissions[] | yes      | An array of permissions. It can be empty. To get the list of available permissions execute `GET {{ api_base_url }}/v2/permissions` endpoint
 attributes.roles[].i18n.{{language_key}} | no      | The name of a role in different languages. The value is only required for "en" key. For other languages value is optional
+
+
+*Note: these endpoints most likely be modified in a few weeks*
