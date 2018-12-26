@@ -13,19 +13,6 @@ There are three sharing modes:
 
 Accordingly, a set of components, available for each user is consist of: not shared components from the user's Contract, components with ``tenant`` access and ``global`` components.
 
-Request \ Role | Tenant Admin | Contract Admin (Owner) | Member |
----------- | :---------:| :------------:| :-----------:| 
-Retrieve all components |-| X | X |
-Retrieve a component by ID |-|X|X|
-Retrieve component versions |-|X|X|
-Retrieve a component descriptor|-|X|X|
-Create a component repository|-|X|-|
-Update component access|X|-|-|
-Delete a component|-|X|-|
-Retrieve component’s environment variables|-|X|X|
-Update component’s environment variables|-|X|-|
-
-
 ## Retrieve all components
 
 
