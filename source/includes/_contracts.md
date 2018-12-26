@@ -3,29 +3,10 @@
 ## What is a Contract unit?
 
 A Contract is a fundamental entity (scope) that reflects an agreement between a customer and the platform's provider. The Contract scope can have an unlimited number of members, workspaces and development teams. It also serves as a singular entity for the billing department against the consumed resources by all the integration flows.
-
-Every member of the Contract's scope has a specific access level or role within the current Contract. Therefore every new Contract has 3 available default Roles, such as Owner, Contract Admin, and Member. The same user can have different roles in different Contracts within the Platform. 
-
+Every member of the Contract's scope has a specific access level or role within the current Contract. To get all available roles, please execute the "Get the Contract's roles" endpoint. The same user can have different roles in different Contracts within the Platform. 
 Every Contract must have at least one Owner. The Owner’s Role has a predefined/default permissions’ set. It means this role cannot be deleted and the permissions’ set cannot be changed.
 
 *Please note that the Tenant Admin creates a Contract along with the Contract’s Owner. Once it’s done the Contract’s Owner will be able to invite other Users as well as assigning the necessary roles for them. (Tenant is a higher scope in the Platform's hierarchy. It includes all the Contracts that belong to the white-label client).*
-
-The table below lists the access roles against the performed API requests: 
-
-
-Request / Role                                      | Tenant Admin  | Contract Admin (Owner)     | Member
-----------                                          | :-----------: | :---------------: | :----------:
-Create a contract                                   |X              |-                  |-              |
-Get contract by Id                                  |X              |X                  |X              |
-Get contracts                                       |-              |X                  |X              |
-Get a list of members of contract                   |-              |X                  |X              |
-Get a list of pending members (invites) of contract |-              |X                  |X              |
-Get the Contract's roles                            |-              |X                  |X              |
-Invite a user to contract                           |X              |X                  |-              |
-Add a new member to contract                        |X              |-                  |-              |
-Update membership in contract                       |-              |X                  |-              |
-Remove a member from contract                       |X              |X                  |-              |
-Delete contract                                     |X              |-                  |-              |
 
 ## Create a Contract
 
