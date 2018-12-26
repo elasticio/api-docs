@@ -2,30 +2,9 @@
 
 ## What is a Workspace unit?
 
-A Workspace is a space where every user can work on an integration project independently or in collaboration with other users. Every user is a member of at least one Workspace, but, each Workspace can have more than one member. All members of a Workspace have their access level or roles. There are 4 predefined roles:
-- Workspace Owner - this role gives the holder all the rights within the Workspace unit, it cannot be deleted and the permissions’ set cannot be changed.
-- Workspace Admin Role - inherits/duplicates the Owner’s one. Nevertheless, its permissions can be changed if necessary.
-- Integrator - this role is granted for designing the integration process by building the flows, etc.
-- Guest - this role gives view-only rights to examine the work by Integrators.
-
+A Workspace is a space where every user can work on an integration project independently or in collaboration with other users. Each Workspace can have more than one member. All members of a Workspace have their roles. To get all available roles, please execute the "Get the Contract's roles" endpoint.
+There is one predefined role - Workspace Owner. This role gives the holder all the rights within the Workspace unit, it cannot be deleted and the permissions’ set cannot be changed.
 Each role is limited to the given Workspace only. The same user in the platform can have different roles in different Workspaces.
-
-Request / Role|  Workspace Admin (Owner)| Integrator | Guest| Contract Admin (Owner)| Contract Member|
----------- |:------------:| :-----------:| :----------:|:----------:|:----------:|
-Get Workspace by ID|X| X|X|-|-|
-Get User's Workspaces|X| X|X|-|-|
-Get a list of members of Workspace|X| X|X|-|-|
-Create a Workspace |X|X|X|X|X|
-Add a new member to Workspace|X| -|-|-|-|
-Update membership in Workspace|X |- |-|-|-|
-Remove member from Workspace|X |- |-|-|-|
-Delete Workspace|X |- |-|X|-|
-
-
-
-
-
-
 
 ## Get Workspace by ID
 
