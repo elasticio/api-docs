@@ -57,14 +57,6 @@ HTTP header is the URL to get the results of the execution. Please see how to [p
 
 ![Scheduled Executions](../images/scheduled_executions.png)
 
-Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Verify credentials|- |X|X|X|
-Retrieve component’s metamodel|-|X|X|X|
-Retrieve component’s select model|-|X|X|X|
-Poll a result of an execution|X|X|X|X|
-Retrieve execution result|X|X|X|X|
-
 ## Verify credentials
 
 > Example Request:
@@ -129,7 +121,7 @@ describes how to perform the 1st step of this process. Please also read details 
 
 #### Authorization
 
-The component should be accessible to the client.
+This request is authorized for the users with the `workspaces.credential.edit` permission. The component should be accessible to the client.
 
 ### URL Parameters
 
@@ -146,6 +138,8 @@ The component should be accessible to the client.
 | attributes.fields | Yes | An object which represents the configuration of credential. The semantics are same as in [creating a credential](#create-a-credential).
 | relationships.agent.data.id | No | ID of the agent |
 | relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
+
+
 
 ## Retrieve component's metamodel
 
@@ -214,9 +208,7 @@ This page describes how to perform the 1st step of this process. Please also rea
 `POST {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/dynamic-metadata`
 
 #### Authorization
-
-The component should be accessible to the client.
-
+This request is authorized for the users with the `workspaces.flow.edit` permission. The component should be accessible to the client.
 
 ### URL Parameters
 
@@ -304,8 +296,7 @@ describes how to perform the 1st step of this process. Please also read details 
 `POST {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_HASH}/select-model`
 
 #### Authorization
-
-The component should be accessible to the client.
+This request is authorized for the users with the `workspaces.flow.edit` permission. The component should be accessible to the client.
 
 ### URL Parameters
 
