@@ -20,6 +20,7 @@ includes:
   - resources
   - sshkeys
   - teams
+  - tenants
   - users
   - workspaces
  
