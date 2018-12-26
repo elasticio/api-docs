@@ -1,16 +1,5 @@
 # Teams
 
-Request / Role| Tenant Admin | Contract Admin | Member | 
----------- | :---------:| :------------:| :-----------:| 
-Retrieve all teams|-|X*|X*|
-Retrieve team by ID|-|X*|X*|
-Create a team|-|X|-|
-Add a new member to a team|-|X|-|
-Remove a member from a team|-|X|-|
-Delete a team|-|X|-|
-
-*- Only teams which belong to given user 
-
 ## Retrieve all teams
 
 
@@ -77,7 +66,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve all teams the current user is member in.
+This resource allows retrieving all teams where the current user remains a member.
 
 ### HTTP Request
 
@@ -168,7 +157,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve the team by ID the current user is member in.
+This resource allows retrieving the team by ID where the current user remains a member.
 
 ### HTTP Request
 
@@ -265,6 +254,9 @@ This resource allows you to create a new team.
 | relationships.contract.data.id | yes | An Id of the contract |
 | relationships.contract.data.type | yes | A value must be ``contract``  |
 
+### Authorization
+This request is authorized to a user with the `contracts.devTeam.edit` permission.
+
 ### Returns
 
 Returns teams metadata object if the call succeeded.
@@ -360,6 +352,9 @@ This resource allows you to add a new member to a team.
 | type | yes | A value must be ``user`` |
 | id | yes | Id of an already registered user, who will be added as a member of the team |
 
+### Authorization
+
+This request is authorized to a user with the `contracts.devTeam.edit` permission.
 
 ### Returns
 
@@ -414,6 +409,9 @@ This resource allows you to remove a member from a team.
 | type | yes | A value must be ``user`` |
 | id | yes | User identifier |
 
+### Authorization
+
+This request is authorized to a user with the `contracts.devTeam.edit` permission.
 
 ### Returns
 
@@ -454,6 +452,8 @@ You cannot remove team which contains the repos, you should delete all repos fir
 | :--- | :--- | :--- |
 | TEAM_ID | yes | Team ID |
 
+### Authorization
+This request is authorized to a user with the `contracts.devTeam.edit` permission.
 
 ### Returns
 
