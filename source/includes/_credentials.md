@@ -1,15 +1,5 @@
 # Credentials
 
-Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve all credentials| -|X|X|X|
-Retrieve a credential by ID|X* |X|X|X|
-Create a credential| X|X|X|-|
-Update a credential| X*|X|X|-|
-Delete a credential|X* |X|X|-|
-
-*- just only with credentials, which were created by this user
-
 ## Retrieve all credentials
 
 
