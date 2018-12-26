@@ -1,10 +1,6 @@
 # Agents
  
- Request / Role | Tenant Admin | Workspace Admin (Owner) | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve all agents|-|X|X|X|
-Сreate agent|-|X|X|X
- 
+
 ## Retrieve all agents
 
 
