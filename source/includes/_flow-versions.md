@@ -1,10 +1,5 @@
 # Flow versions
 
-Request / Role| Tenant Admin | Workspace Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve all flow versions|X|X|X|X|
-Retrieve flow version by hash|X|X|X|X|
-
 ## Retrieve all flow versions
 
 > Example Request:
