@@ -204,7 +204,7 @@ This endpoint returns all available permissions required for creating a Role.
 
 #### Authorization
 
-This endpoint is available to all the patforms' users.
+This endpoint is available to all the platforms' users.
 
 
 ## Update Tenant's roles 
