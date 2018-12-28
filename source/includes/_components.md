@@ -13,19 +13,6 @@ There are three sharing modes:
 
 Accordingly, a set of components, available for each user is consist of: not shared components from the user's Contract, components with ``tenant`` access and ``global`` components.
 
-Request \ Role | Tenant Admin | Contract Admin | Member |
----------- | :---------:| :------------:| :-----------:| 
-Retrieve all components | X| X | X |
-Retrieve a component by ID |X|X|X|
-Retrieve component versions |X|X|X|
-Retrieve a component descriptor|X|X|X|
-Create a component repository|X|X|-|
-Update component access|X|-|-|
-Delete a component|X|X|-|
-Retrieve component’s environment variables|X|X|X|
-Update component’s environment variables|X|X|-|
-
-
 ## Retrieve all components
 
 
@@ -335,7 +322,7 @@ Content-Type: application/json
 
 
 ### Authorization
-The component should be accessible to the client (e.g. component from the own Contract or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
+The component should be accessible to the client (e.g. component from the own Contract or shared one).
   
 
 ### Returns
@@ -436,7 +423,7 @@ This endpoint retrieves list of component's versions
 
 
 ### Authorization
-The component should be accessible to the client (e.g. component from the own Contract or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
+The component should be accessible to the client (e.g. component from the own Contract or shared one).
 
 
 ### Returns
@@ -544,7 +531,7 @@ or
 
 
 ### Authorization
-The component should be accessible for the client (e.g. component from own Contract or shared one) unless it has `TenantAdmin` role. Contact support team to get this role.
+The component should be accessible for the client (e.g. component from own Contract or shared one).
 
 
 
@@ -649,6 +636,9 @@ If you don't have any teams yet, please [create a team](#create-team) first.
 | relationships.contract.data.id | no | Contract ID the repository to create for |
 | relationships.contract.data.type | no | A value must be ``contract`` |
 
+
+### Authorization
+This request is authorized to a user with `contracts.repository.edit` permission.
 
 ### Returns
 
@@ -794,12 +784,11 @@ This resource allows you to delete a component. A component may only be delete i
 
 
 ### Authorization
-The component must belong to one of the client’s team or Contract respectively unless it has ``TenantAdmin`` role. Contact support team to get this role.
-
+This request is authorized to a user with `contracts.repository.edit` permission. The component must belong to one of the client’s team.
 
 ### Returns
 
-200 HTTP response code if the call succeeds, error otherwise.
+204 HTTP response code if the call succeeds, error otherwise.
 
 
 
@@ -864,7 +853,7 @@ This endpoint shows env vars for given component.
 
 
 ### Authorization
-The component should be accessible to the client (e.g. component from the own team or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
+The component should be accessible to the client (e.g. component from the own team or shared one).
 
 
 ### Returns
@@ -953,7 +942,7 @@ This endpoint replaces env vars for given component.
 
 
 ### Authorization
-The component should be accessible to the client (e.g. component from the own team or shared one) unless it has ``TenantAdmin`` role. Contact support team to get this role.
+The component should be accessible to the client (e.g. component from the own team or shared one).
 
 
 
