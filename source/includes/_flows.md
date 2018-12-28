@@ -1,15 +1,5 @@
 # Flows
 
-Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve all flows|- |X|X|X|
-Retrieve a flow by ID|- |X|X|X|
-Create a flow|- |X|X|-|
-Update a flow|- |X|X|-|
-Start a flow|X |X|X|-|
-Stop a flow|X |X|X|-|
-Delete a flow|- |X|X|-|
-
 ## Retrieve all flows
 
 
@@ -178,9 +168,7 @@ This resource allows you to retrieve flows.
 
 ### Returns
 
-Returns all flows belonging to the given user. If the user is a member of a Workspace,
-all the flows of the Workspace are returned. If the user is a member in multiple Workspaces, the given API key is
-used to match the proper Workspace.
+Returns all flows in the specified Workspace.
 
 ## Retrieve a flow by ID
 
@@ -495,10 +483,15 @@ This resource allows you to create a new flow.
 | relationships.workspace.data.id | yes | An Id of the Workspace |
 | relationships.workspace.data.type | yes | A value must be ``workspace``  |
 
+### Authorization
+
+This request is authorized for a user with the `workspaces.flow.edit` permission.
 
 ### Returns
 
 Returns the created flow
+
+
 
 ## Update a flow
 
@@ -645,6 +638,12 @@ This resource allows you to update the given flow.
 | attributes.graph | no | Flow graph representing component connections |
 | attributes.cron | no | Cron expression representing flow timing |
 
+
+### Authorization
+
+This request is authorized for a user with the `workspaces.flow.edit` permission.
+
+
 ### Returns
 
 Returns the updated flow
@@ -683,6 +682,10 @@ This endpoint starts a flow with given ID.
 | Parameter | Required | Description |
 | :--- | :--- | :--- | :--- |
 | FLOW_ID | Yes | Flow identifier |
+
+### Authorization
+
+This request is authorized for a user with the `workspaces.flow.toggleStatus` permission.
 
 ### Returns
 
@@ -723,6 +726,10 @@ This endpoint stops a flow with given ID.
 | Parameter | Required | Description |
 | :--- | :--- | :--- | :--- |
 | FLOW_ID | Yes | Flow identifier |
+
+### Authorization
+
+This request is authorized for a user with the `workspaces.flow.toggleStatus` permission.
 
 ### Returns
 
