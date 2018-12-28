@@ -1,15 +1,5 @@
 # Credentials
 
-Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve all credentials| -|X|X|X|
-Retrieve a credential by ID|X* |X|X|X|
-Create a credential| X|X|X|-|
-Update a credential| X*|X|X|-|
-Delete a credential|X* |X|X|-|
-
-*- just only with credentials, which were created by this user
-
 ## Retrieve all credentials
 
 
@@ -368,6 +358,9 @@ This resource allows you to create a credential.
 | attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.) |
 
 
+### Authorization
+This request is authorized to only a user with `workspaces.credential.edit` permission
+
 ### Returns
 
 Returns credential object if the call succeeded.
@@ -496,6 +489,9 @@ This resource allows you to update a credential.
 | relationships.agent.data.id | no | The agent id this credential is for. |
 | relationships.agent.data.type | no | A value must be ``agent`` |
 
+### Authorization
+This request is authorized to only a user with `workspaces.credential.edit` permission
+
 
 ### Returns
 
@@ -529,3 +525,11 @@ This resource allows you to delete a credential.
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
 | CREDENTIAL_ID | yes | Credential ID |
+
+### Authorization
+This request is authorized to only a user with `workspaces.credential.edit` permission
+
+### Returns
+204 HTTP response code if the call succeeds, error otherwise.
+
+
