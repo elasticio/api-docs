@@ -1,11 +1,5 @@
 # Data samples
 
-Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve data sample|- | X|X |X|
-Create data sample| X| X| X|-|
-Update data sample| -| X| X|-|
-
 ## Retrieve data sample
 This resource allows you to retrieve data sample.
 
@@ -80,7 +74,7 @@ Content-Type: application/json
 }
 ```
 
-#### Authorization
+### Authorization
 
 A member of a Workspace can get any sample from own Workspace.
 
@@ -242,9 +236,18 @@ Content-Type: application/json
 | relationships.workspace.data.id | yes | An Id of the Wokspace |
 | relationships.workspace.data.type | yes | A value must be ``workspace``  |
 
+### Authorization
+A member of a Workspace with permission `workspaces.flow.edit` can create a sample in own Workspace.
+
+
+
+
 ### Returns
 
 Returns data sample object if the call succeeded.
+
+
+
 
 ## Update data sample
 
@@ -344,6 +347,11 @@ Content-Type: application/json
 | :--- | :--- | :--- |
 | type | yes | A value must be ``data-sample`` |
 | attributes.result | no | Data sample body |
+
+### Authorization
+A member of a Workspace with permission `workspaces.flow.edit` can update a sample in own Workspace.
+
+
 
 ### Returns
 
