@@ -2,30 +2,9 @@
 
 ## What is a Workspace unit?
 
-A workspace is a space where every user can work on an integration project independently or in collaboration with other users. Every user is a member of at least one Workspace, but, each Workspace can have more than one member. All members of a Workspace have their access level or roles. There are only 3 roles:
-
-- Workspace Admin - this role gives the holder all the rights within the Workspace unit
-- Integrator - this role is granted for designing the integration process by building the flows, etc
-- Guest - this role gives view-only rights to examine the work by Integrators
-
+A Workspace is a space where every user can work on an integration project independently or in collaboration with other users. Each Workspace can have more than one member. All members of a Workspace have their roles. To get all available roles, please execute the "Get the Contract's roles" endpoint.
+There is one predefined role - Workspace Owner. This role gives the holder all the rights within the Workspace unit, it cannot be deleted and the permissions’ set cannot be changed.
 Each role is limited to the given Workspace only. The same user in the platform can have different roles in different Workspaces.
-
-Request / Role|  Workspace Admin | Integrator | Guest| Contract Admin| Contract Member|
----------- |:------------:| :-----------:| :----------:|:----------:|:----------:|
-Get Workspace by ID|X| X|X|-|-|
-Get User's Workspaces|X| X|X|-|-|
-Get a list of members of Workspace|X| X|X|-|-|
-Create a Workspace |X|X|X|X|X|
-Add a new member to Workspace|X| -|-|-|-|
-Update membership in Workspace|X |- |-|-|-|
-Remove member from Workspace|X |- |-|-|-|
-Delete Workspace|X |- |-|X|-|
-
-
-
-
-
-
 
 ## Get Workspace by ID
 
@@ -102,7 +81,9 @@ Content-Type: application/json
       "attributes":{
         "first_name":"John",
         "last_name":"Doe",
-        "role":"admin",
+        "roles":[
+          "admin"
+        ],
         "email":"john@doe.com"
       }
     },
@@ -115,7 +96,9 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Bob",
         "last_name":"Smith",
-        "role":"admin",
+        "roles":[
+          "admin"
+        ],
         "email":"bob@smith.com"
       }
     },
@@ -127,7 +110,9 @@ Content-Type: application/json
       },
       "attributes":{
         "email":"test@user.com",
-        "role":"admin"
+        "roles":[
+          "admin"
+        ]
       }
     }
   ],
@@ -317,7 +302,9 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Marilyn",
         "last_name":"Manson",
-        "role":"admin",
+        "roles":[
+          "admin"
+        ],
         "email":"marilyn@manson.com"
       }
     },
@@ -330,7 +317,9 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Ozzy",
         "last_name":"Osborn",
-        "role":"integrator",
+        "roles":[
+          "integrator"
+        ],
         "email":"ozzy@osborn.com"
       }
     }
@@ -444,14 +433,14 @@ This endpoint allows creating a Workspace only by the User that is a member of t
 
 #### Authorization
 
-This request is authorized to all user's roles.
+This request is authorized for the contract's scope members with the `contracts.workspace.create` permission. 
 
 Parameter       | Required | Description
 --------------- | -------- | -----------
 type            | yes      | A value should be "workspace"
 attributes.name | yes      | Name of the Workspace
 relationships.contract.data.id | yes | An Id of the contract
-relationships.contract.data.type | yes | A value must be ``contract``
+relationships.contract.data.type | yes | A value must be "contract"
 
 ### Returns
 
@@ -475,7 +464,10 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/ \
            "type": "member",
            "id": "{USER_ID}",
            "attributes": {
-               "role": "{ROLE}"
+               "roles": [
+                 "{ROLE_1}",
+                 "{ROLE_2}"
+               ]
            }
        }
     }'
@@ -497,7 +489,10 @@ Content-Type: application/json
     "attributes":{
       "first_name":"Iggy",
       "last_name":"Pop",
-      "role":"integrator",
+      "roles": [
+        "{ROLE_1}",
+        "{ROLE_2}"
+      ]
       "email":"iggy@pop.com"
     }
   },
@@ -516,14 +511,14 @@ Notification email will be sent. The User becomes a member immediately.
 
 
 #### Authorization
-This request is authorized for a User with `Workspace Admin` role only.
+This request is authorized for a User with `workspaces.workspace.edit` permission only.
 
 ### Payload Parameters
 Parameter        | Required  | Description
 ---------        | --------- | -----------
 id               | yes       | id of an already registered user, who will be added as a member of the Workspace
 type             | yes       | A value should be "member".
-attributes.role  | yes       | Available roles are: admin, integrator and guest.
+attributes.roles[]  | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint.
 
 
 ### Returns
@@ -552,7 +547,9 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/ \
            "type": "member",
            "id": "{USER_ID}",
            "attributes": {
-               "role": "{NEW_ROLE}"
+               "roles": [
+                 "{NEW_ROLE}"
+               ]
            }
        }
     }'
@@ -572,7 +569,9 @@ Content-Type: application/json
       "self":"/v2/members/59f747c33f1d3c001901a44e"
     },
     "attributes":{
-      "role":"integrator"
+      "roles": [
+        "{NEW_ROLE}"
+      ]
     }
   },
   "meta":{}
@@ -580,14 +579,14 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows updating a membership of a given User. Only `role` attribute can be updated. 
+This endpoint allows updating a membership of a given User. Only `roles` attribute can be updated. 
 
 
 ### HTTP Request
 `PATCH {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/`
 
 #### Authorization
-This request is authorized for Workspace members with role `Admin`.
+This request is authorized for Workspace members with permission `workspaces.workspace.edit`.
 
 ### URL Parameters
 Parameter        | Description
@@ -600,7 +599,7 @@ Parameter        | Required  | Description
 ---------        | --------- | -----------
 type             | yes       | A value should be "member".
 id               | yes       | id of an already registered User, must match URL param {USER_ID}
-attributes.role  | yes       | Available roles are: admin, integrator and guest.
+attributes.roles[]  | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint.
 
 
 ### Returns
@@ -631,7 +630,7 @@ HTTP/1.1 204 No Content
 ```
 
 Remove a membership of the User in the Workspace.
-Ownership of those user's associated data will be transferred to Admin User performing this operation:
+Ownership of those user's associated data will be transferred to the User performing this operation:
 
 * Flows
 * Credentials
@@ -642,7 +641,7 @@ Ownership of those user's associated data will be transferred to Admin User perf
 `DELETE {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/`
 
 #### Authorization
-This request is authorized for Workspace members with role `Admin`.
+This request is authorized for Workspace members with permission `workspaces.workspace.edit`.
 
 ### URL Parameters
 Parameter        | Description
@@ -700,7 +699,7 @@ This endpoint will delete the Workspace along with the following items that were
 `DELETE {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID} \`
 
 #### Authorization
-This request can be performed by either the Contract’s `Admin` the current Workspace belongs to or just the Workspace’s `Admin`.
+This request can be performed by either the Contract’s user (the current Workspace assigned to) with the `contracts.workspace.delete`  permission or just the Workspace’s user with the  `workspaces.workspace.edit` permission.
 
 
 
