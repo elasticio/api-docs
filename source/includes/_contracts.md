@@ -3,26 +3,10 @@
 ## What is a Contract unit?
 
 A Contract is a fundamental entity (scope) that reflects an agreement between a customer and the platform's provider. The Contract scope can have an unlimited number of members, workspaces and development teams. It also serves as a singular entity for the billing department against the consumed resources by all the integration flows.
+Every member of the Contract's scope has a specific access level or role within the current Contract. To get all available roles, please execute the "Get the Contract's roles" endpoint. The same user can have different roles in different Contracts within the Platform. 
+Every Contract must have at least one Owner. The Owner’s Role has a predefined/default permissions’ set. It means this role cannot be deleted and the permissions’ set cannot be changed.
 
-Every member of the Contract's scope has a specific access level or role within the current Contract. These roles are the `Contract Admin` and the `Member`. The same user can have different roles in different Contracts within the Platform.
-
-*Please note that the Tenant Admin can create a Contracts unit/scope and the first Contract Admin. Once it is done the Contract Admin can invite the other members and establish their access level (grant access permissions). (Tenant is a higher scope in the Platform's hierarchy. It includes all the Contracts that belong to the white-label client).*
-
-The table below lists the access roles against the performed API requests: 
-
-
-Request / Role                                      | Tenant Admin  | Contract Admin      | Member
-----------                                          | :-----------: | :---------------: | :----------:
-Create a contract                                   |X              |-                  |-              |
-Get contract by Id                                  |X              |X                  |X              |
-Get contracts                                       |-              |X                  |X              |
-Get a list of members of contract                   |-              |X                  |X              |
-Get a list of pending members (invites) of contract |-              |X                  |X              |
-Invite a user to contract                           |X              |X                  |-              |
-Add a new member to contract                        |X              |-                  |-              |
-Update membership in contract                       |-              |X                  |-              |
-Remove a member from contract                       |X              |X                  |-              |
-Delete contract                                     |X              |-                  |-              |
+*Please note that the Tenant Admin creates a Contract along with the Contract’s Owner. Once it’s done the Contract’s Owner will be able to invite other Users as well as assigning the necessary roles for them. (Tenant is a higher scope in the Platform's hierarchy. It includes all the Contracts that belong to the white-label client).*
 
 ## Create a Contract
 
@@ -160,7 +144,9 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Alla",
         "last_name":"Ospik",
-        "role":"admin",
+        "roles":[
+          "admin"
+        ],
         "email":"alla.ospik@{{ product_name }}"
       },
       "relationships":{
@@ -181,7 +167,9 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Henry",
         "last_name":"Pushkin",
-        "role":"admin",
+        "roles":[
+          "admin"
+        ],
         "email":"henry@{{ product_name }}"
       },
       "relationships":{
@@ -344,7 +332,9 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Hanna",
         "last_name":"Yutsenko",
-        "role":"admin",
+        "roles":[
+          "admin"
+        ],
         "email":"hanna.yutsenko@{{ product_name }}"
       },
       "relationships":{
@@ -365,7 +355,9 @@ Content-Type: application/json
       "attributes":{
         "first_name":"Ksu",
         "last_name":"Luzha",
-        "role":"admin",
+        "roles":[
+          "admin"
+        ],
         "email":"margarita@{{ product_name }}"
       },
       "relationships":{
@@ -432,24 +424,30 @@ Content-Type: application/json
             "id": "5b6d663b033b550011fef351",
             "type": "contract-invite",
             "attributes": {
-                "email": "hanna+jflcc53gflsbjfbj@{{ product_name }}",
-                "role": "admin"
+                "email": "admin@{{ product_name }}",
+                "roles": [
+                  "admin"
+                ]
             }
         },
         {
             "id": "5b83c0462e7785501158b654",
             "type": "contract-invite",
             "attributes": {
-                "email": "hanna+2708test1@{{ product_name }}",
-                "role": "member"
+                "email": "member@{{ product_name }}",
+                "roles": [
+                  "member"
+                ]
             }
         },
         {
             "id": "5b855b333a667d5510ce4465",
             "type": "contract-invite",
             "attributes": {
-                "email": "hanna+hfwkjdhvckdjv@{{ product_name }}",
-                "role": "member"
+                "email": "member@{{ product_name }}",
+                "roles": [
+                  "member"
+                ]
             }
         }
     ],
@@ -475,6 +473,183 @@ Parameter       | Description
 CONTRACT_ID | The ID of the Contract
 
 
+## Get the Contract's roles
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/roles/ \
+   -u {EMAIL}:{APIKEY}
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id":"{CONTRACT-POLICY_ID}",
+    "type":"contract-policy",
+    "attributes":{
+      "roles":[
+        {
+          "i18n":{
+            "en":"Admin"
+          },
+          "role":"admin",
+          "permissions":[
+            "contracts.membership.edit",
+            "contracts.workspace.create",
+            "contracts.workspace.listAll",
+            "contracts.workspace.delete",
+            "contracts.repository.edit",
+            "contracts.devTeam.edit"
+          ],
+          "scope":"contracts"
+        },
+        {
+          "i18n":{
+            "en":"Member"
+          },
+          "role":"member",
+          "permissions":[
+            "contracts.workspace.create"
+          ],
+          "scope":"contracts"
+        },
+        {
+          "i18n":{
+            "en":"Admin"
+          },
+          "role":"admin",
+          "permissions":[
+            "workspaces.workspace.edit",
+            "workspaces.flow.edit",
+            "workspaces.flow.toggleStatus",
+            "workspaces.flow.toggleRealtime",
+            "workspaces.credential.edit"
+          ],
+          "scope":"workspaces"
+        },
+        {
+          "i18n":{
+            "en":"Integrator"
+          },
+          "role":"integrator",
+          "permissions":[
+            "workspaces.flow.edit",
+            "workspaces.flow.toggleStatus",
+            "workspaces.flow.toggleRealtime",
+            "workspaces.credential.edit"
+          ],
+          "scope":"workspaces"
+        },
+        {
+          "i18n":{
+            "en":"Guest"
+          },
+          "role":"guest",
+          "permissions":[
+
+          ],
+          "scope":"workspaces"
+        },
+        {
+          "i18n":{
+            "en":"Custom_role"
+          },
+          "role":"custom_role",
+          "permissions":[
+            "workspaces.flow.edit",
+            "workspaces.flow.toggleRealtime",
+            "workspaces.credential.edit"
+          ],
+          "scope":"workspaces"
+        },
+        {
+          "i18n":{
+            "en":"Custom_role"
+          },
+          "role":"custom_role",
+          "permissions":[
+            "contracts.workspace.create",
+            "contracts.devTeam.edit"
+          ],
+          "scope":"contracts"
+        },
+        {
+          "i18n":{
+            "en":"Owner"
+          },
+          "role":"owner",
+          "permissions":[
+            "contracts.membership.edit",
+            "contracts.workspace.create",
+            "contracts.workspace.listAll",
+            "contracts.workspace.delete",
+            "contracts.repository.edit",
+            "contracts.devTeam.edit"
+          ],
+          "scope":"contracts"
+        },
+        {
+          "i18n":{
+            "en":"Owner"
+          },
+          "role":"owner",
+          "permissions":[
+            "workspaces.workspace.edit",
+            "workspaces.flow.edit",
+            "workspaces.flow.toggleStatus",
+            "workspaces.flow.toggleRealtime",
+            "workspaces.credential.edit"
+          ],
+          "scope":"workspaces"
+        }
+      ]
+    },
+    "relationships":{
+      "contract":{
+        "data":{
+          "id":"{CONTRACT_ID}",
+          "type":"contract"
+        },
+        "links":{
+          "self":"/v2/contracts/{CONTRACT_ID}"
+        }
+      }
+    }
+  },
+  "meta":{
+
+  }
+}
+```
+
+This endpoint returns a list of the contract's roles for a specific Contract's scope.
+
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/contracts/CONTRACT_ID/roles/`
+
+#### Authorization
+
+A client has to be a member of the Contract's scope.
+
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+CONTRACT_ID | The ID of the Contract
+
+
+
+
+
+
 
 ## Invite a user to the Contract's scope
 
@@ -490,9 +665,13 @@ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/invites/ \
            "type": "contract-invite",
            "attributes": {
                "email": "admin@{{ product_name }}",
-               "role": "admin",
+               "roles": [
+                 "admin"
+               ],
                "workspace_id":"{WORKSPACE_ID}",
-               "workspace_role":"integrator"
+               "workspace_roles":[
+                 "integrator"
+               ]
            }
        }
     }'
@@ -506,11 +685,17 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 {
   "data":{
-    "id":"5b880f7bf3c1a440112a3bb6",
+    "id":"5c20bd0376b463001053a6b5",
     "type":"contract-invite",
     "attributes":{
       "email":"admin@{{ product_name }}",
-      "role":"admin"
+      "roles":[
+        "admin"
+      ],
+      "workspace_id":"{WORKSPACE_ID}",
+      "workspace_roles":[
+        "integrator"
+      ]
     }
   },
   "meta":{}
@@ -526,7 +711,7 @@ This endpoint allows to invite a user to Contract.
 
 
 #### Authorization
-This request is authorized for a Contract's scope members with the `Admin` or the `TenantAdmin` roles. To provide the workspase_id as an additional parameter user has to have Admin privileges and belong to the provided Workspace.
+This request is authorized for a Contract's scope members with the permission `contracts.membership.edit` or the `TenantAdmin` role. To provide the `workspase_id` as an additional parameter user has to have permission `workspaces.workspace.edit` and belong to the provided Workspace.
 
 
 ### URL Parameters
@@ -540,9 +725,9 @@ Parameter        | Required  | Description
 ---------        | --------- | -----------
 type             | yes       | A value should be "contract-invite".
 attributes.email | yes       | Email.
-attributes.role  | yes       | Available roles are admin and member.
+attributes.roles[]  | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint.
 attributes.workspace_id | no | The id of the corresponding Workspace.
-attributes.workspace_role  | no | Available roles are Admin, Integrator, and Guest.
+attributes.workspace_roles[]  | no | To get all available roles, please execute the "Get the Contract's roles" endpoint.
 
 
 ### Returns
@@ -573,7 +758,10 @@ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/ \
            "type": "contract-member",
            "id": "{USER_ID}",
            "attributes": {
-               "role": "{ROLE}"
+               "roles": [
+                 "{ROLE_1}",
+                 "{ROLE_2}"
+               ]
            }
        }
     }'
@@ -593,7 +781,10 @@ Content-Type: application/json
       "first_name":"Santos",
       "last_name":"Mitchell",
       "email":"Santos_Mitchell@example.com",
-      "role":"admin"
+      "roles": [
+        "{ROLE_1}",
+        "{ROLE_2}"
+      ]
     }
   }
 }
@@ -617,7 +808,7 @@ Parameter        | Required  | Description
 ---------        | --------- | -----------
 id               | yes       | id of an already registered user; the user will be added to the Contract's scope as a member.
 type             | yes       | A value should be "contract-member".
-attributes.role  | yes       | Available roles are Admin and Member.
+attributes.roles[]   | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint.
 
 
 ###Returns
@@ -646,7 +837,9 @@ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/ \
            "type": "contract-member",
            "id": "{USER_ID}",
            "attributes": {
-               "role": "{NEW_ROLE}"
+               "roles": [
+                 "{NEW_ROLE}"
+               ]
            }
        }
     }'
@@ -666,7 +859,9 @@ Content-Type: application/json
       "self":"/v2/members/59f747c33f1d3c001901a44e"
     },
     "attributes":{
-      "role":"member"
+      "roles":[
+        "member"
+      ]
     }
   },
   "meta":{}
@@ -674,14 +869,14 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows updating a membership of a given user. Only `role` attribute can be updated. 
+This endpoint allows updating a membership of a given user. Only `roles` attribute can be updated. 
 
 
 ### HTTP Request
 `PATCH {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/`
 
 #### Authorization
-This request is authorized for the Contract's members with the `Admin` role.
+This request is authorized for the Contract's members with the `contracts.membership.edit` permission.
 
 ### URL Parameters
 Parameter        | Description
@@ -694,7 +889,7 @@ Parameter        | Required  | Description
 ---------        | --------- | -----------
 type             | yes       | A value should be the "contract-member".
 id               | yes       | id of an already registered user, must match the {USER_ID} URL param
-attributes.role  | yes       | Available roles are admin and member.
+attributes.roles[]  | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint.
 
 
 ###Returns
@@ -726,16 +921,14 @@ HTTP/1.1 204 No Content
 ```
 
 Removes User's membership in the Contract's scope.
-User's ownership associated data will be transferred to the admin User by performing the following pattern:
 
-* developers teams membership
 
 
 ### HTTP Request
 `DELETE {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/members/{USER_ID}/`
 
 #### Authorization
-This request is authorized for the contract's scope members with the `Admin` and `Tenant Admin` roles.
+This request is authorized for the contract's scope members with the `contracts.membership.edit` permission and `Tenant Admin` role.
 
 ### URL Parameters
 Parameter        | Description
