@@ -1,17 +1,5 @@
 # Users
 
-Request / Role| Tenant Admin | Contract Admin | Member | 
----------- | :---------:| :------------:| :-----------:| 
-Retrieve your user|X|X|X|
-Retrieve a user by ID|X|X*|X*|
-Retrieve all users|X|-|-|
-Create a user|X|-|-|
-Delete a user|X|X**|X**|
-
-`*` - only for users from the same Contract
-
-`**` - only himself/herself
-
 ## Retrieve your user
 
 > Example Request:
@@ -429,7 +417,7 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 
 
 ### Authorization
-This request is allowed with Tenant Admin API key. But any User also can delete himself/herself.
+This request is authorized only for a User with ``TenantAdmin`` role. Contact support team to get this role. But any User also can delete himself/herself.
 
    
    
