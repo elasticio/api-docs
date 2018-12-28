@@ -1,10 +1,6 @@
 # Agents
  
- Request / Role | Tenant Admin | Workspace Admin | Integrator | Guest
----------- | :---------:| :------------:| :-----------:| :----------:
-Retrieve all agents|-|X|X|X|
-Сreate agent|-|X|X|X
- 
+
 ## Retrieve all agents
 
 
@@ -93,7 +89,7 @@ curl {{ api_base_url }}/v2/agents \
        "relationships":{
          "workspace":{
            "data":{
-             "id":"59d341e9037f7200184a408b",
+             "id":"{WORKSPACE_ID}",
              "type":"workspace"
            }
          }
