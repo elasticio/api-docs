@@ -361,4 +361,4 @@ attributes.roles[].permissions[] | yes      | An array of permissions. It can be
 attributes.roles[].i18n.{{language_key}} | no      | The name of a role in different languages. The value is only required for "en" key. For other languages value is optional
 
 
-*Note: these endpoints most likely be modified in a few weeks*
+*Note: these endpoints are beta for now and are subjects to changes*
