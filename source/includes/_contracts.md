@@ -914,7 +914,7 @@ Returns the member's object if the call succeeded
 
 > Example Response:
 
-```shell
+```http
 HTTP/1.1 204 No Content
 ```
 
