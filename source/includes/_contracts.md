@@ -551,9 +551,7 @@ Content-Type: application/json
             "en":"Guest"
           },
           "role":"guest",
-          "permissions":[
-
-          ],
+          "permissions":[],
           "scope":"workspaces"
         },
         {
