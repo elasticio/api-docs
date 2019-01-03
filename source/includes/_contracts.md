@@ -105,7 +105,8 @@ Content-Type: application/json
       "self":"/v2/contracts/5b4f3e093a472b06c71d47"
     },
     "attributes":{
-      "name":"LucontractOne"
+      "name":"LucontractOne",
+      "status": "active"
     },
     "relationships":{
       "members":{
@@ -240,7 +241,8 @@ Content-Type: application/json
         "self":"/v2/contracts/5b4f3379ff4304655483ba1a"
       },
       "attributes":{
-        "name":"LuzhaOrg"
+        "name":"LuzhaOrg",
+        "status": "active"
       },
       "relationships":{
         "members":{
@@ -271,7 +273,8 @@ Content-Type: application/json
         "self":"/v2/contracts/5b76b1e104da82441038d5c9"
       },
       "attributes":{
-        "name":"FridayContract"
+        "name":"FridayContract",
+        "status": "active"
       },
       "relationships":{
         "members":{
@@ -940,7 +943,73 @@ USER_ID          | The ID of the user that should leave the contract's scope
 Responds with `204 No content` message if the call succeeded (with empty body). 
 
 
+## Suspend Contract
 
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/suspend \
+ -X POST \
+   -u {EMAIL}:{APIKEY}
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 202 Accepted
+```
+
+This endpoint allows you to suspend the Contract. This is an asynchronous process. Suspending is complited after all flows in given Contract will stopped. While the Contract is suspended all write requests are rejected.
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/contracts/CONTRACT_ID/suspend/`
+
+#### Authorization
+
+The client has to have the privileges of the `Service Account` record type.
+
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+CONTRACT_ID | The ID of the Contract
+
+
+
+## Unsuspend Contract
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/unsuspend \
+ -X POST \
+   -u {EMAIL}:{APIKEY}
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 204 No Content
+```
+
+This endpoint allows you to unsuspend the Contract.
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/contracts/CONTRACT_ID/unsuspend/`
+
+#### Authorization
+
+The client has to have the privileges of the `Service Account` record type.
+
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+CONTRACT_ID | The ID of the Contract
 
 
 
