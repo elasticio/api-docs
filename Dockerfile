@@ -19,7 +19,7 @@ COPY Rakefile ./Rakefile
 COPY docs ./docs
 
 RUN apt-get update && \
-    apt-get install -y ruby rubygems ruby-dev build-essential && \
+    apt-get install -y apt-utils ruby rubygems ruby-dev build-essential && \
     gem install bundler && \
     bundle install
 
