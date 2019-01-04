@@ -2,7 +2,7 @@
 
 ## What is a Contract unit?
 
-A Contract is a fundamental entity (scope) that reflects an agreement between a customer and the platform's provider. The Contract scope can have an unlimited number of members, workspaces and development teams. It also serves as a singular entity for the billing department against the consumed resources by all the integration flows.
+A Contract is a fundamental entity (scope) that reflects an agreement between a customer and the platform's provider. The Contract scope can have an unlimited number of members, workspaces, and development teams. It also serves as a singular entity for the billing department against the consumed resources by all the integration flows.
 Every member of the Contract's scope has a specific access level or role within the current Contract. To get all available roles, please execute the "Get the Contract's roles" endpoint. The same user can have different roles in different Contracts within the Platform. 
 Every Contract must have at least one Owner. The Owner’s Role has a predefined/default permissions’ set. It means this role cannot be deleted and the permissions’ set cannot be changed.
 
@@ -629,7 +629,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint returns a list of the contract's roles for a specific Contract's scope.
+This endpoint returns a list of the contract roles for a specific Contract's scope.
 
 
 ### HTTP Request
@@ -703,7 +703,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint allows to invite a user to Contract.
+This endpoint allows inviting a user to Contract.
 
 
 ### HTTP Request
@@ -733,7 +733,7 @@ attributes.workspace_roles[]  | no | To get all available roles, please execute 
 
 ### Returns
 
-Returns invite the object if the call succeeded
+Returns would invite the object if the call succeeded
 
 
 
@@ -870,7 +870,7 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows updating a membership of a given user. Only `roles` attribute can be updated. 
+This endpoint allows updating membership of a given user. Only `roles` attribute can be updated. 
 
 
 ### HTTP Request
@@ -921,7 +921,7 @@ Returns the member's object if the call succeeded
 HTTP/1.1 204 No Content
 ```
 
-Removes User's membership in the Contract's scope.
+Removing User's membership in the Contract's scope.
 
 
 
@@ -960,7 +960,7 @@ Responds with `204 No content` message if the call succeeded (with empty body).
 HTTP/1.1 202 Accepted
 ```
 
-This endpoint allows you to suspend the Contract. This is an asynchronous process. Suspending is complited after all flows in given Contract will stopped. While the Contract is suspended all write requests are rejected.
+This endpoint allows you to suspend the Contract. The process is asynchronous. Suspending is completed after all flows in given Contract will stop. While the Contract is suspended, all the writing requests will be rejected.
 
 ### HTTP Request
 
@@ -1053,7 +1053,7 @@ The endpoint deletes a Contract's scope along with everything it includes. These
 
 
 *Note, the deletion process is asynchronous. The actual data deletion will be performed after an API response, as it requires time for termination of all the Contract's flows containers. *
-*A Contract cannot be deleted in case any of its Components are being used in another Contract's Flow*
+*A Contract cannot be deleted while any of its Components are being used in another Contract Flow*
 
 ### HTTP Request
 `DELETE {{ api_base_url }}/v2/contracts/{CONTRACT_ID} \`
@@ -1069,5 +1069,5 @@ CONTRACT_ID      | The ID of the Contract
 
 ### Returns
 
-Responds with `204 No content` message if the call succeeded (with empty body).
+Responds with the `204 No content` message if the call succeeded (with empty body).
 
