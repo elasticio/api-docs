@@ -960,7 +960,7 @@ Responds with `204 No content` message if the call succeeded (with empty body).
 HTTP/1.1 202 Accepted
 ```
 
-This endpoint allows you to suspend the Contract. The process is asynchronous. Suspending is completed after all flows in given Contract will stop. While the Contract is suspended, all the writing requests will be rejected.
+This endpoint allows suspending the Contract. The process is asynchronous. Suspending is completed once all of the flows in a given Contract will be stopped. While the Contract gets suspended, all the writing requests will be rejected.
 
 ### HTTP Request
 
