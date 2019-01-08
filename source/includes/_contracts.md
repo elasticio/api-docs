@@ -18,13 +18,23 @@ Every Contract must have at least one Owner. The Owner’s Role has a predefined
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
        {
-           "data": {         
-               "type": "contract",
-               "attributes": {
-                   "name": "My Contract"
-               }
-           }
-       }'
+        "data":{
+          "type":"contract",
+          "attributes":{
+            "name":"My Contract",
+            "available_roles":[
+              {
+                "scope":"contracts",
+                "role":"admin"
+              },
+              {
+                "scope":"workspaces",
+                "role":"admin"
+              }
+            ]
+          }
+        }
+      }'
 ```
 
 
@@ -34,19 +44,37 @@ Every Contract must have at least one Owner. The Owner’s Role has a predefined
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
-    "data": {
-        "id": "5b87aded2dfb980011537690",
-        "type": "contract",
-        "links": {
-            "self": "/v2/contracts/5b87aded2dfb980011537690"
-        },
-        "attributes": {
-            "name": "My Contract"
-        }
+  "data":{
+    "id":"{CONTRACT_ID}",
+    "type":"contract",
+    "links":{
+      "self":"/v2/contracts/{CONTRACT_ID}"
     },
-    "meta": {}
+    "attributes":{
+      "name":"My Contract",
+      "available_roles":[
+        {
+          "role":"admin",
+          "scope":"contracts"
+        },
+        {
+          "role":"admin",
+          "scope":"workspaces"
+        },
+        {
+          "role":"owner",
+          "scope":"workspaces"
+        },
+        {
+          "role":"owner",
+          "scope":"workspaces"
+        }
+      ],
+      "status":"active"
+    }
+  },
+  "meta":{}
 }
-
 ```
 
 This endpoint allows creating a Contract.
@@ -61,11 +89,13 @@ This endpoint allows creating a Contract.
 
 This request is authorized to only a user with `TenantAdmin` role. Contact support team to get this role.
 
+### Payload Parameters
 
 Parameter       | Required | Description
 --------------- | -------- | -----------
 type            | yes      | A value should be "contract"
 attributes.name | yes      | Name of the Contract
+attributes.available_roles[] | no      | The subset of roles from Tenant which given Contract belongs to
 
 
 ### Returns
@@ -106,6 +136,7 @@ Content-Type: application/json
     },
     "attributes":{
       "name":"LucontractOne",
+      "available_roles": [],
       "status": "active"
     },
     "relationships":{
@@ -242,6 +273,7 @@ Content-Type: application/json
       },
       "attributes":{
         "name":"LuzhaOrg",
+        "available_roles": [],
         "status": "active"
       },
       "relationships":{
@@ -274,6 +306,7 @@ Content-Type: application/json
       },
       "attributes":{
         "name":"FridayContract",
+        "available_roles": [],
         "status": "active"
       },
       "relationships":{
@@ -968,7 +1001,8 @@ This endpoint allows suspending the Contract. The process is asynchronous. Suspe
 
 #### Authorization
 
-The client has to have the privileges of the `Service Account` record type.
+A client has to have the `Service Account` record type or the `TenantAdmin` role (contact support team in getting this role).
+
 
 
 ### URL Parameters
@@ -1003,7 +1037,7 @@ This endpoint allows you to unsuspend the Contract.
 
 #### Authorization
 
-The client has to have the privileges of the `Service Account` record type.
+A client has to have the `Service Account` record type or the `TenantAdmin` role (contact support team in getting this role).
 
 
 ### URL Parameters
