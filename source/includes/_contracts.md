@@ -95,7 +95,7 @@ Parameter       | Required | Description
 --------------- | -------- | -----------
 type            | yes      | A value should be "contract"
 attributes.name | yes      | Name of the Contract
-attributes.available_roles[] | no      | The subset of roles from Tenant which given Contract belongs to
+attributes.available_roles[] | no      | The subset of Tenants roles the particular Contract belongs to
 
 
 ### Returns
