@@ -2,7 +2,7 @@
 
 ## What is a Contract unit?
 
-A Contract is a fundamental entity (scope) that reflects an agreement between a customer and the platform's provider. The Contract scope can have an unlimited number of members, workspaces and development teams. It also serves as a singular entity for the billing department against the consumed resources by all the integration flows.
+A Contract is a fundamental entity (scope) that reflects an agreement between a customer and the platform's provider. The Contract scope can have an unlimited number of members, workspaces, and development teams. It also serves as a singular entity for the billing department against the consumed resources by all the integration flows.
 Every member of the Contract's scope has a specific access level or role within the current Contract. To get all available roles, please execute the "Get the Contract's roles" endpoint. The same user can have different roles in different Contracts within the Platform. 
 Every Contract must have at least one Owner. The Owner’s Role has a predefined/default permissions’ set. It means this role cannot be deleted and the permissions’ set cannot be changed.
 
@@ -18,13 +18,23 @@ Every Contract must have at least one Owner. The Owner’s Role has a predefined
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
        {
-           "data": {         
-               "type": "contract",
-               "attributes": {
-                   "name": "My Contract"
-               }
-           }
-       }'
+        "data":{
+          "type":"contract",
+          "attributes":{
+            "name":"My Contract",
+            "available_roles":[
+              {
+                "scope":"contracts",
+                "role":"admin"
+              },
+              {
+                "scope":"workspaces",
+                "role":"admin"
+              }
+            ]
+          }
+        }
+      }'
 ```
 
 
@@ -34,19 +44,37 @@ Every Contract must have at least one Owner. The Owner’s Role has a predefined
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
-    "data": {
-        "id": "5b87aded2dfb980011537690",
-        "type": "contract",
-        "links": {
-            "self": "/v2/contracts/5b87aded2dfb980011537690"
-        },
-        "attributes": {
-            "name": "My Contract"
-        }
+  "data":{
+    "id":"{CONTRACT_ID}",
+    "type":"contract",
+    "links":{
+      "self":"/v2/contracts/{CONTRACT_ID}"
     },
-    "meta": {}
+    "attributes":{
+      "name":"My Contract",
+      "available_roles":[
+        {
+          "role":"admin",
+          "scope":"contracts"
+        },
+        {
+          "role":"admin",
+          "scope":"workspaces"
+        },
+        {
+          "role":"owner",
+          "scope":"workspaces"
+        },
+        {
+          "role":"owner",
+          "scope":"workspaces"
+        }
+      ],
+      "status":"active"
+    }
+  },
+  "meta":{}
 }
-
 ```
 
 This endpoint allows creating a Contract.
@@ -61,11 +89,13 @@ This endpoint allows creating a Contract.
 
 This request is authorized to only a user with `TenantAdmin` role. Contact support team to get this role.
 
+### Payload Parameters
 
 Parameter       | Required | Description
 --------------- | -------- | -----------
 type            | yes      | A value should be "contract"
 attributes.name | yes      | Name of the Contract
+attributes.available_roles[] | no      | The subset of Tenants roles the particular Contract belongs to
 
 
 ### Returns
@@ -105,7 +135,9 @@ Content-Type: application/json
       "self":"/v2/contracts/5b4f3e093a472b06c71d47"
     },
     "attributes":{
-      "name":"LucontractOne"
+      "name":"LucontractOne",
+      "available_roles": [],
+      "status": "active"
     },
     "relationships":{
       "members":{
@@ -240,7 +272,9 @@ Content-Type: application/json
         "self":"/v2/contracts/5b4f3379ff4304655483ba1a"
       },
       "attributes":{
-        "name":"LuzhaOrg"
+        "name":"LuzhaOrg",
+        "available_roles": [],
+        "status": "active"
       },
       "relationships":{
         "members":{
@@ -271,7 +305,9 @@ Content-Type: application/json
         "self":"/v2/contracts/5b76b1e104da82441038d5c9"
       },
       "attributes":{
-        "name":"FridayContract"
+        "name":"FridayContract",
+        "available_roles": [],
+        "status": "active"
       },
       "relationships":{
         "members":{
@@ -626,7 +662,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint returns a list of the contract's roles for a specific Contract's scope.
+This endpoint returns a list of the contract roles for a specific Contract's scope.
 
 
 ### HTTP Request
@@ -700,7 +736,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint allows to invite a user to Contract.
+This endpoint allows inviting a user to Contract.
 
 
 ### HTTP Request
@@ -730,7 +766,7 @@ attributes.workspace_roles[]  | no | To get all available roles, please execute 
 
 ### Returns
 
-Returns invite the object if the call succeeded
+Returns would invite the object if the call succeeded
 
 
 
@@ -867,7 +903,7 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows updating a membership of a given user. Only `roles` attribute can be updated. 
+This endpoint allows updating membership of a given user. Only `roles` attribute can be updated. 
 
 
 ### HTTP Request
@@ -918,7 +954,7 @@ Returns the member's object if the call succeeded
 HTTP/1.1 204 No Content
 ```
 
-Removes User's membership in the Contract's scope.
+Removing User's membership in the Contract's scope.
 
 
 
@@ -940,7 +976,74 @@ USER_ID          | The ID of the user that should leave the contract's scope
 Responds with `204 No content` message if the call succeeded (with empty body). 
 
 
+## Suspend Contract
 
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/suspend \
+ -X POST \
+   -u {EMAIL}:{APIKEY}
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 202 Accepted
+```
+
+This endpoint allows suspending the Contract. The process is asynchronous. Suspending is completed once all of the flows in a given Contract will be stopped. While the Contract gets suspended, all the writing requests will be rejected.
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/contracts/CONTRACT_ID/suspend/`
+
+#### Authorization
+
+A client has to have the `Service Account` record type or the `TenantAdmin` role (contact support team in getting this role).
+
+
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+CONTRACT_ID | The ID of the Contract
+
+
+
+## Unsuspend Contract
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/unsuspend \
+ -X POST \
+   -u {EMAIL}:{APIKEY}
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 204 No Content
+```
+
+This endpoint allows you to unsuspend the Contract.
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/contracts/CONTRACT_ID/unsuspend/`
+
+#### Authorization
+
+A client has to have the `Service Account` record type or the `TenantAdmin` role (contact support team in getting this role).
+
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+CONTRACT_ID | The ID of the Contract
 
 
 
@@ -984,7 +1087,7 @@ The endpoint deletes a Contract's scope along with everything it includes. These
 
 
 *Note, the deletion process is asynchronous. The actual data deletion will be performed after an API response, as it requires time for termination of all the Contract's flows containers. *
-*A Contract cannot be deleted in case any of its Components are being used in another Contract's Flow*
+*A Contract cannot be deleted while any of its Components are being used in another Contract Flow*
 
 ### HTTP Request
 `DELETE {{ api_base_url }}/v2/contracts/{CONTRACT_ID} \`
@@ -1000,5 +1103,5 @@ CONTRACT_ID      | The ID of the Contract
 
 ### Returns
 
-Responds with `204 No content` message if the call succeeded (with empty body).
+Responds with the `204 No content` message if the call succeeded (with empty body).
 
