@@ -136,6 +136,8 @@ This request is authorized for the users with the `workspaces.credential.edit` p
 | :--- | :--- | :--- |
 | type | Yes | A value must be ``verify-credential``. |
 | attributes.fields | Yes | An object which represents the configuration of credential. The semantics are same as in [creating a credential](#create-a-credential).
+| relationships.workspace.data.id | Yes | ID of the Workspace |
+| relationships.workspace.data.type | Yes | Value must be `workspace` |
 | relationships.agent.data.id | No | ID of the agent |
 | relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
 
@@ -151,25 +153,31 @@ curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/dyn
  -u {EMAIL}:{APIKEY} \
  -X POST -H 'Content-Type: application/json' -d '
  {
-    "data": {
-        "type": "dynamic-metadata",
-        "attributes": {
-            "module": "{MODULE}",
-            "fields": {
-                "some_field" : "value",
-                "another_field" : "another_value"
-            }
-        },
-        "relationships": {
-            "credential": {
-                "data": {
-                    "id": "{CREDENTIAL_ID}",
-                    "type": "credential"
-                }
-            }
+  "data":{
+    "type":"dynamic-metadata",
+    "attributes":{
+      "module":"{MODULE}",
+      "fields":{
+        "some_field":"value",
+        "another_field":"another_value"
+      }
+    },
+    "relationships":{
+      "workspace":{
+        "data":{
+          "id":"{WORKSPACE_ID}",
+          "type":"workspace"
         }
+      },
+      "credential":{
+        "data":{
+          "id":"{CREDENTIAL_ID}",
+          "type":"credential"
+        }
+      }
     }
- }'
+  }
+}'
 ```
 
 
@@ -224,6 +232,8 @@ This request is authorized for the users with the `workspaces.flow.edit` permiss
 | type | Yes | A value must be ``dynamic-metadata``. |
 | attributes.module | Yes | Name of the component's module as defined in ``component.json``. |
 | attributes.fields | Yes | Contains values for component's fields. Semantics are same as defining fields for a node in a [flow graph](#create-a-flow).
+| relationships.workspace.data.id | Yes | ID of the Workspace |
+| relationships.workspace.data.type | Yes | Value must be `workspace` |
 | relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
 | relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
 | relationships.agent.data.id | No | ID of the agent |
@@ -238,26 +248,32 @@ This request is authorized for the users with the `workspaces.flow.edit` permiss
  -u {EMAIL}:{APIKEY} \ 
  -X POST -H 'Content-Type: application/json' -d '
  {
-    "data": {
-        "type": "select-model",
-        "attributes": {
-            "module": "{MODULE}",
-            "method": "{METHOD}",
-            "fields": {
-                "some_field" : "value",
-                "another_field" : "another_value"
-            }
-        },
-        "relationships": {
-            "credential": {
-                "data": {
-                    "id": "{CREDENTIAL_ID}",
-                    "type": "credential"
-                }
-            }
+  "data":{
+    "type":"select-model",
+    "attributes":{
+      "module":"{MODULE}",
+      "method":"{METHOD}",
+      "fields":{
+        "some_field":"value",
+        "another_field":"another_value"
+      }
+    },
+    "relationships":{
+      "workspace":{
+        "data":{
+          "id":"{WORKSPACE_ID}",
+          "type":"workspace"
         }
+      },
+      "credential":{
+        "data":{
+          "id":"{CREDENTIAL_ID}",
+          "type":"credential"
+        }
+      }
     }
- }'
+  }
+}'
 ```
 
 
@@ -313,6 +329,8 @@ This request is authorized for the users with the `workspaces.flow.edit` permiss
 | attributes.module | Yes | Name of the component's module as defined in ``component.json``. |
 | attributes.method | Yes | Name of the method, which returns select model data. |
 | attributes.fields | Yes | Contains values for component's fields. Semantics are same as defining fields for a node in a [flow graph](#create-a-flow).
+| relationships.workspace.data.id | Yes | ID of the Workspace |
+| relationships.workspace.data.type | Yes | Value must be `workspace` |
 | relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
 | relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
 | relationships.agent.data.id | No | ID of the agent |
