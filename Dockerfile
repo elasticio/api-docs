@@ -20,7 +20,7 @@ COPY docs ./docs
 
 RUN apt-get update && \
     apt-get install -y ruby rubygems ruby-dev build-essential && \
-    gem install bundler -v '~> 1.1.0' && \
+    gem install bundler -v '~> 1.17.3' && \
     bundle install
 
 RUN for f in `grep -rl "{{ toc_footer }}" *` ; do sed -i "s%{{ toc_footer }}%$toc_footer%g" $f ; done
