@@ -105,7 +105,107 @@ Returns Contract object if the call succeeded
 
 
 
+## Update a Contract
 
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID} \
+   -X PATCH \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Content-Type: application/json' -d '
+       {
+        "data":{
+          "type":"contract",
+          "id":"{CONTRACT_ID}"
+          "attributes":{
+             "available_roles":[
+              {
+                "scope":"contracts",
+                "role":"admin"
+              },
+              {
+                "scope":"workspaces",
+                "role":"admin"
+              },
+              {
+                "scope":"workspaces",
+                "role":"guest"
+              }
+            ]
+          }
+        }
+      }'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id":"{CONTRACT_ID}",
+    "type":"contract",
+    "links":{
+      "self":"/v2/contracts/{CONTRACT_ID}"
+    },
+    "attributes":{
+      "name":"My Contract",
+      "available_roles":[
+        {
+          "role":"admin",
+          "scope":"contracts"
+        },
+        {
+          "role":"admin",
+          "scope":"workspaces"
+        },
+        {
+          "role":"guest",
+          "scope":"workspaces"
+        },
+        {
+          "role":"owner",
+          "scope":"workspaces"
+        },
+        {
+          "role":"owner",
+          "scope":"workspaces"
+        }
+      ],
+      "status":"active"
+    }
+  },
+  "meta":{}
+}
+```
+
+This endpoint allows only to update available roles in the Contract.
+
+
+### HTTP Request
+
+`PATCH {{ api_base_url }}/v2/contracts/{CONTRACT_ID}`
+
+
+#### Authorization
+
+This request is authorized to only a user with `TenantAdmin` role. Contact support team to get this role.
+
+### Payload Parameters
+
+Parameter       | Required | Description
+--------------- | -------- | -----------
+type            | yes      | A value should be "contract"
+attributes.name | yes      | Name of the Contract
+attributes.available_roles[] | no      | The subset of Tenants roles the particular Contract belongs to
+
+
+### Returns
+
+Returns Contract object if the call succeeded
 
 
 
