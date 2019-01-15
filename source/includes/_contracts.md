@@ -41,7 +41,7 @@ Every Contract must have at least one Owner. The Owner’s Role has a predefined
 > Example Response:
 
 ```http
-HTTP/1.1 200 OK
+HTTP/1.1 201 Created
 Content-Type: application/json
 {
   "data":{
