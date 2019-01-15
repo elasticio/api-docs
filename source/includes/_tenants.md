@@ -128,9 +128,7 @@ Content-Type: application/json
       }
     }
   },
-  "meta":{
-
-  },
+  "meta":{},
   "links":{
     "self":"/v2/tenants/{TENANT_ID}/roles"
   }
@@ -327,9 +325,7 @@ Content-Type: application/json
       }
     }
   },
-  "meta":{
-
-  },
+  "meta":{},
   "links":{
     "self":"/v2/tenants/{TENANT_ID}/roles"
   }
