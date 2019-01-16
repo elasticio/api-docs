@@ -298,15 +298,6 @@ curl {{ api_base_url }}/v2/users \
            "last_name":"Doe",
            "email":"test@example.com",
            "password":"secret11"
-         },
-         "relationships":{
-            "contracts":{
-            "data":[
-               {
-                  "id":"{CONTRACT_ID}"
-               }
-            ]
-            }
          }
       }
     }'
@@ -353,7 +344,6 @@ This resource allows you to create a user.
 | attributes.last_name | yes | User's last name. |
 | attributes.email | yes | User's email. |
 | attributes.password | yes | User's password. |
-| relationships.contracts.data | yes | Contract to join. | 
 
 
 ### Authorization
