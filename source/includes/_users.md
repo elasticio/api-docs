@@ -343,7 +343,7 @@ This resource allows you to create a user.
 | attributes.first_name | yes | User's first name. |
 | attributes.last_name | yes | User's last name. |
 | attributes.email | yes | User's email. |
-| attributes.password | yes | User's password. |
+| attributes.password | yes | User's password. Password should be at least 8 characters long and include letters, numbers and special symbols.|
 
 
 ### Authorization
