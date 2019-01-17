@@ -297,7 +297,7 @@ curl {{ api_base_url }}/v2/users \
            "first_name":"John",
            "last_name":"Doe",
            "email":"test@example.com",
-           "password":"secret11"
+           "password":"Secret1%"
          }
       }
     }'
