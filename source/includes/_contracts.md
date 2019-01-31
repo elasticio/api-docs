@@ -64,10 +64,6 @@ Content-Type: application/json
         {
           "role":"owner",
           "scope":"workspaces"
-        },
-        {
-          "role":"owner",
-          "scope":"workspaces"
         }
       ],
       "status":"active"
@@ -164,10 +160,6 @@ Content-Type: application/json
         },
         {
           "role":"guest",
-          "scope":"workspaces"
-        },
-        {
-          "role":"owner",
           "scope":"workspaces"
         },
         {
