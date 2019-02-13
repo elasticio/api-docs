@@ -115,6 +115,7 @@ Returns Contract object if the call succeeded
           "type":"contract",
           "id":"{CONTRACT_ID}"
           "attributes":{
+             "name":"New Contract Name",
              "available_roles":[
               {
                 "scope":"contracts",
@@ -148,7 +149,7 @@ Content-Type: application/json
       "self":"/v2/contracts/{CONTRACT_ID}"
     },
     "attributes":{
-      "name":"My Contract",
+      "name":"New Contract Name",
       "available_roles":[
         {
           "role":"admin",
@@ -174,7 +175,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint allows only to update available roles in the Contract.
+This endpoint allows to change Contracts' name and to update available roles in the Contract.
 
 
 ### HTTP Request
@@ -184,7 +185,8 @@ This endpoint allows only to update available roles in the Contract.
 
 #### Authorization
 
-This request is authorized to only a user with `TenantAdmin` role. Contact support team to get this role.
+For updating Contract name this request is authorized to a users with `contracts.contract.edit` permission. For updating the and subset of Tenants roles the particular Contract belongs to this request is authorized to a users with `TenantAdmin` role. Contact support team to get this role..
+
 
 ### Payload Parameters
 
