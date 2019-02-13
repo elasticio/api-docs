@@ -185,7 +185,7 @@ This endpoint allows to change Contracts' name and to update available roles in 
 
 #### Authorization
 
-For updating Contract name this request is authorized to a users with `contracts.contract.edit` permission. For updating the and subset of Tenants roles the particular Contract belongs to this request is authorized to a users with `TenantAdmin` role. Contact support team to get this role..
+For updating Contract name this request is authorized to the users with `contracts.contract.edit` permission. For updating the set of available roles of the particular Contract this request is authorized to  the user with `TenantAdmin` role. Contact support team to get this role.
 
 
 ### Payload Parameters
