@@ -58,6 +58,10 @@ Content-Type: application/json
           "scope":"contracts"
         },
         {
+          "role":"owner",
+          "scope":"contracts"
+        },
+        {
           "role":"admin",
           "scope":"workspaces"
         },
@@ -153,6 +157,10 @@ Content-Type: application/json
       "available_roles":[
         {
           "role":"admin",
+          "scope":"contracts"
+        },
+        {
+          "role":"owner",
           "scope":"contracts"
         },
         {
@@ -716,9 +724,7 @@ Content-Type: application/json
             "contracts.membership.edit",
             "contracts.workspace.create",
             "contracts.workspace.listAll",
-            "contracts.workspace.delete",
-            "contracts.repository.edit",
-            "contracts.devTeam.edit"
+            "contracts.workspace.delete"
           ],
           "scope":"contracts"
         },
