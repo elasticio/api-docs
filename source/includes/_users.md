@@ -263,7 +263,7 @@ This endpoint returns a list of users.
 
 ### Authorization
 
-This request is authorized for a user with ``TenantAdmin`` role only. Contact support team to get this role.
+This request is authorized for the users with the `tenants.user.list_all` permission.
 
 
 #### Returns
@@ -348,7 +348,7 @@ This resource allows you to create a user.
 
 ### Authorization
 
-This request is authorized only for a user with ``TenantAdmin`` role. Contact support team to get this role.
+This request is authorized for the users with the `tenants.user.create` permission.
 
 ### Returns
 
@@ -409,7 +409,7 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 
 
 ### Authorization
-This request is authorized only for a User with ``TenantAdmin`` role. Contact support team to get this role. But any User also can delete himself/herself.
+This request is authorized for the users with the `tenants.user.delete` permission.
 
    
    
