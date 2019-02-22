@@ -150,7 +150,7 @@ attributes.settings.member_api_key | no      | A value should be true or false
 attributes.links.documentation | no      | The URL which redirects to the documentation page
 
 
-### Returns
+### 
 
 Returns Tenant object if the call succeeded
 
@@ -1215,3 +1215,176 @@ CERTIFICATE_ID      | The ID of the Certificate
 
 Responds with the `204 No content` message if the call succeeded (with empty body).
 
+
+## Granting Tenant Admin's permissions to the user
+
+> Example Request:
+
+```shell
+curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/members/{USER_ID}/ \
+    -X PATCH  \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Content-Type: application/json' -d '
+    {
+       "data": {
+           "type": "tenant-member"
+           "attributes": {
+               "roles": [
+                 "tenant-admin"
+               ]
+           }
+       }
+    }'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+   "data":{
+      "id":"5c06a22e0aba010011aba767",
+      "type":"tenant-member",
+      "attributes":{
+         "roles":[
+            "tenant-admin"
+         ]
+      },
+      "relationships":{
+         "user":{
+            "data":{
+               "id":"5c06a22e0aba010011aba767",
+               "type":"user"
+            },
+            "links":{
+               "self":"/v2/users/5c06a22e0aba010011aba767"
+            }
+         },
+         "tenant":{
+            "data":{
+               "id":"56c207adb9121181e650c0ef",
+               "type":"tenant"
+            },
+            "links":{
+               "self":"/v2/tenants/56c207adb9121181e650c0ef"
+            }
+         }
+      }
+   },
+   "meta":{}
+}
+
+```
+
+This endpoint allows granting Tenant Admin's permissions to the user. 
+
+
+### HTTP Request
+`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/members/{USER_ID}/`
+
+#### Authorization
+This request is authorized for the users with the `tenants.membership.edit` permission.
+
+### URL Parameters
+Parameter        | Description
+---------------- | -----------
+TENANT_ID  | The ID of the Tenant
+USER_ID          | The ID of the user to be updated
+
+### Payload Parameters
+Parameter        | Required  | Description
+---------        | --------- | -----------
+type             | yes       | A value should be the "tenant-member".
+attributes.roles[]  | yes       |A value should be the "tenant-admin".
+
+
+### Returns
+
+Returns the member's object if the call succeeded
+
+
+## Remove Tenant Admin's permissions from the user
+
+> Example Request:
+
+```shell
+curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/members/{USER_ID}/ \
+    -X PATCH  \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Content-Type: application/json' -d '
+    {
+       "data": {
+           "type": "tenant-member"
+           "attributes": {
+               "roles": []
+           }
+       }
+    }'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+   "data":{
+      "id":"5c06a22e0aba010011aba767",
+      "type":"tenant-member",
+      "attributes":{
+         "roles":[]
+      },
+      "relationships":{
+         "user":{
+            "data":{
+               "id":"5c06a22e0aba010011aba767",
+               "type":"user"
+            },
+            "links":{
+               "self":"/v2/users/5c06a22e0aba010011aba767"
+            }
+         },
+         "tenant":{
+            "data":{
+               "id":"56c207adb9121181e650c0ef",
+               "type":"tenant"
+            },
+            "links":{
+               "self":"/v2/tenants/56c207adb9121181e650c0ef"
+            }
+         }
+      }
+   },
+   "meta":{}
+}
+
+```
+
+This endpoint allows remove Tenant Admin's permissions from the user. 
+
+
+### HTTP Request
+`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/members/{USER_ID}/`
+
+#### Authorization
+This request is authorized for the users with the `tenants.membership.edit` permission.
+
+### URL Parameters
+Parameter        | Description
+---------------- | -----------
+TENANT_ID  | The ID of the Tenant
+USER_ID          | The ID of the user to be updated
+
+### Payload Parameters
+Parameter        | Required  | Description
+---------        | --------- | -----------
+type             | yes       | A value should be the "tenant-member".
+attributes.roles[]  | yes       |A value should be an empty array.
+
+
+### Returns
+
+Returns the member's object if the call succeeded
