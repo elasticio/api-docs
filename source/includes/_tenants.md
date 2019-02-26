@@ -104,8 +104,7 @@ Content-Type: application/json
 }
 ```
 
-The endpoint below is responsible for creating a **Tenant**.
-
+This resource allows you to create a new **Tenant**.
 
 ### HTTP Request
 
@@ -236,8 +235,7 @@ Content-Type: application/json
 ```
 
 
-This endpoint allows updating a Tenant.
-
+This resource allows you to update a given **Tenant**.
 
 ### HTTP Request
 
@@ -351,8 +349,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint returns all Tenants objects for a certain user.
-
+This resource allows you to retrieve all **Tenants** of the current user.
 
 ### HTTP Request
 
@@ -421,12 +418,11 @@ Content-Type: application/json
 }
 ```
 
-This endpoint returns a certain Tenant object.
-
+This resource allows you to retrieve a **Tenant** with the given ID.
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/tenants/TENANT_ID/`
+`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/`
 
 #### Authorization
 
@@ -455,7 +451,7 @@ TENANT_ID | The ID of the Tenant
 HTTP/1.1 204 No Content
 ```
 
-The endpoint deletes the Tenants scope along with everything it includes.
+This resource allows you to delete a **Tenant** with the given ID along with everything it includes.
 
 *A Tenant will be deleted only if it will not contain any contracts* 
 
@@ -606,8 +602,7 @@ Content-Type: application/json
 
 ```
 
-This endpoint returns the Roles for a specific Tenant.
-
+This resource allows you to retrieve all roles for a **Tenant** with the given ID.
 
 ### HTTP Request
 
@@ -663,7 +658,7 @@ Content-Type: application/json
    "meta":{}
 }
 ```
-This endpoint returns all available permissions required for creating a Role.
+This endpoint returns all available permissions required for creating a role.
 
 
 ### HTTP Request
@@ -800,6 +795,8 @@ Content-Type: application/json
   }
 }
 ```
+This resource allows you to update the roles for a **Tenant** with the given ID.
+
 
 ### HTTP Request
 
@@ -927,7 +924,7 @@ Content-Type: application/json
 }
 ```
 
-The endpoint below is responsible for creating the **SSL certificate**.
+This resource allows you to create a new **SSL certificate**.
 
 
 ### HTTP Request
@@ -952,7 +949,7 @@ TENANT_ID      | The ID of the Tenant
 
 ### Returns
 
-Returns Certificate object if the call succeeded
+Returns **SSL certificate** object if the call succeeded
 
 
 ## Retrieve a SSL certificate by id
@@ -1033,7 +1030,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint returns a Certificate object for certain certificate id.
+This resource allows you to retrieve a **SSL certificate** with the given ID for the **Tenant** with the given ID.
 
 
 
@@ -1055,7 +1052,7 @@ This request is authorized for the users with the `tenants.certificate.get_encry
 
 ### Returns
 
-Returns Certificate object if the call succeeded
+Returns **SSL certificate** object if the call succeeded
 
 
 ## Update a SSL certificate 
@@ -1149,7 +1146,7 @@ Content-Type: application/json
 }
 ```
 
-The endpoint below is responsible for updating the **SSL certificate**.
+This resource allows you to update a **SSL certificate** with the given ID for the **Tenant** with the given ID.
 
 
 ### HTTP Request
@@ -1194,7 +1191,7 @@ Returns Certificate object if the call succeeded
 HTTP/1.1 204 No Content
 ```
 
-The endpoint deletes a Certificate.
+This resource allows you to delete a **SSL certificate** with the given ID for the **Tenant** with the given ID.
 
 
 ### HTTP Request
@@ -1216,7 +1213,7 @@ CERTIFICATE_ID      | The ID of the Certificate
 Responds with the `204 No content` message if the call succeeded (with empty body).
 
 
-## Granting Tenant Admin's permissions to the user
+## Granting Tenant Admin's permissions to the User
 
 > Example Request:
 
@@ -1278,7 +1275,7 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows granting Tenant Admin's permissions to the user. 
+This endpoint allows granting Tenant Admin's permissions to the **User** with the given ID in the **Tenant** with the given ID. 
 
 
 ### HTTP Request
@@ -1362,9 +1359,7 @@ Content-Type: application/json
 }
 
 ```
-
-This endpoint allows remove Tenant Admin's permissions from the user. 
-
+This endpoint allows remove Tenant Admin's permissions to the **User** with the given ID in the **Tenant** with the given ID. 
 
 ### HTTP Request
 `PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/members/{USER_ID}/`
