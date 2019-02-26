@@ -104,7 +104,7 @@ Content-Type: application/json
 }
 ```
 
-The endpoint below is responsible for creating the **Tenant**.
+The endpoint below is responsible for creating a **Tenant**.
 
 
 ### HTTP Request
@@ -283,7 +283,7 @@ attributes.ssl_certificates.app | no      | An ID of SSL-certificate for a web-U
 attributes.ssl_certificates.api | no| An ID of SSL-certificate for API domain.
 attributes.ssl_certificates.webhooks | no| An ID of SSL-certificate for the webhooks domain.
 
-*If Tenants' domains are matches to the ```*.elastic.io``` (where ```*``` can't be ```.```) then given tenants can use the default certificates. To remove existed certificates specify it as null (e.g. ```"app": null```)*
+*If Tenants' domains are matches to the ```*.elastic.io``` (where ```*``` can't contain ```.```) then given tenants can use the default certificates. To remove existed certificates, specify them as null (e.g. ```"app": null```)*
 
 ### Returns
 
@@ -421,7 +421,7 @@ Content-Type: application/json
 }
 ```
 
-These endpoints return a Tenant object for certain tenant id.
+This endpoint returns a certain Tenant object.
 
 
 ### HTTP Request
@@ -822,7 +822,7 @@ type            | yes      | A value should be "tenant-policy"
 attributes.roles[] | yes      |An array of Tenant's roles. It can be empty. 
 attributes.roles[].role | no     | Name of a role.
 attributes.roles[].scope | no      | The group of objects, which is affected by this role. Value can be "contracts" or "workspaces" 
-attributes.roles[].permissions[] | yes      | An array of permissions. It can be empty. To get the list of available permissions execute [Get the list of available permissions]({{ api_base_url }}/v2/#get-the-list-of-available-permissions) endpoint 
+attributes.roles[].permissions[] | yes      | An array of permissions. It can be empty. To get the list of available permissions execute [Get the list of available permissions]({{ api_base_url }}/docs/v2/#get-the-list-of-available-permissions) endpoint 
 attributes.roles[].i18n.{{language_key}} | no      | The name of a role in different languages. The value is only required for "en" key. For other languages value is optional
 
 
@@ -1033,7 +1033,7 @@ Content-Type: application/json
 }
 ```
 
-These endpoints return a Certificate object for certain ertificate id.
+This endpoint returns a Certificate object for certain certificate id.
 
 
 
@@ -1194,7 +1194,7 @@ Returns Certificate object if the call succeeded
 HTTP/1.1 204 No Content
 ```
 
-The endpoint deletes the Certificate.
+The endpoint deletes a Certificate.
 
 
 ### HTTP Request
