@@ -281,7 +281,7 @@ attributes.ssl_certificates.app | no      | An ID of SSL-certificate for a web-U
 attributes.ssl_certificates.api | no| An ID of SSL-certificate for API domain.
 attributes.ssl_certificates.webhooks | no| An ID of SSL-certificate for the webhooks domain.
 
-*If Tenants' domains are matches to the ``*.elastic.io`` (where ``*`` can't contain ``.``) then given tenants can use the default certificates. To remove existed certificates, specify them as null (e.g. ``"app": null``)*
+*Note*: If Tenant's domains are matches to the `*.elastic.io` (where `*` can not contain `.`) then given Tenants can use the default Certificates. To remove existed Certificates, specify them as null (e.g. `"app": null`)
 
 ### Returns
 
