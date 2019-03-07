@@ -1,4 +1,4 @@
-FROM nginx:stable AS base
+FROM nginx:mainline AS base
 WORKDIR /usr/src/api-docs
 COPY .nginx/.conf /etc/nginx/nginx.conf
 COPY docs ./docs
