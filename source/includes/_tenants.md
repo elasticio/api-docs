@@ -1151,7 +1151,7 @@ This resource allows you to update a **SSL certificate** with the given ID for t
 
 ### HTTP Request
 
-`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/certificates{CERTIFICATE_ID}`
+`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/certificates/{CERTIFICATE_ID}`
 
 
 #### Authorization
@@ -1172,7 +1172,7 @@ attributes.privateKey | yes      | RSA PRIVATE KEY
 
 ### Returns
 
-Returns Certificate object if the call succeeded
+Returns **SSL Certificate** object if the call succeeded
 
 
 ## Delete Certificate
@@ -1180,7 +1180,7 @@ Returns Certificate object if the call succeeded
 > Example Request:
 
 ```shell
- curl -i {{ api_base_url }}/v2/tenants/{TENANT_ID}/certificates{CERTIFICATE_ID} \
+ curl -i {{ api_base_url }}/v2/tenants/{TENANT_ID}/certificates/{CERTIFICATE_ID} \
   -X DELETE \
   -u {EMAIL}:{APIKEY}
 ```
@@ -1195,7 +1195,7 @@ This resource allows you to delete a **SSL certificate** with the given ID for t
 
 
 ### HTTP Request
-`DELETE {{ api_base_url }}/v2/tenants/{TENANT_ID}/certificates{CERTIFICATE_ID} \`
+`DELETE {{ api_base_url }}/v2/tenants/{TENANT_ID}/certificates/{CERTIFICATE_ID} \`
 
 #### Authorization
 
@@ -1383,3 +1383,363 @@ attributes.roles[]  | yes       |A value should be an empty array.
 ### Returns
 
 Returns the member's object if the call succeeded
+
+
+## Create an oauth-client 
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Content-Type: application/json' -d '
+	{
+	    "data": {
+		"type": "oauth-client",
+		"attributes": {
+		    "client_id": "{CLIENT_ID}",
+		    "client_secret": "{CLIENT_SECRET}"
+		},
+		"relationships": {
+		    "component": {
+			"data": {
+			    "id": "{COMPONENT_ID}",
+			    "type": "component"
+			}
+		    }
+		}
+	    }
+	}'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+{  
+  "data":{  
+    "id":"5c80e6b9bb0d200011993332",
+    "type":"oauth-client",
+    "attributes":{  
+      "client_id":"560e5a2323d480a00000002",
+      "client_secret":"c7e56633-5e88-4c97-8da9-3243423412"
+    },
+    "relationships":{  
+      "component":{  
+        "data":{  
+          "id":"5a0c4f03718f9700132d88ef",
+          "type":"component"
+        },
+        "links":{  
+          "self":"/v2/components/5a0c4f03718f9732197d88ef"
+        }
+      }
+    }
+  },
+  "meta":{}
+}
+
+```
+
+This resource allows you to create a new **Oauth-client**. You can create just only one oauth-client for a component per tenant.
+
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients`
+
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.oauth_clients.create` permission.
+
+### Payload Parameters
+Parameter       | Required | Description
+--------------- | -------- | -----------
+type | yes      | A value should be "oauth-client"
+attributes.client_id | yes      | Oauth-client ID
+attributes.client_secret | yes      | Oauth-client secret
+relationships.component.data.id | yes      | Component ID
+relationships.component.data.type  | yes      | A value should be "component"
+
+
+### URL Parameters
+Parameter        | Description
+---------------- | -----------
+TENANT_ID      | The ID of the Tenant
+
+### Returns
+
+Returns **Oauth-client** object if the call succeeded
+
+
+## Retrieve an Oauth-client
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients \
+   -u {EMAIL}:{APIKEY}
+```
+
+> Example Request (with filter):
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/?filter[component]={{COMPONENT_ID}} \
+   -u {EMAIL}:{APIKEY}
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":[
+    {
+      "id":"5c80e6b9bb0d200011333d92",
+      "type":"oauth-client",
+      "attributes":{
+        "client_id":"560e5a27734d423233200002",
+        "client_secret":"c7e56633-5e88-4c97-8da9-f823432423"
+      },
+      "relationships":{
+        "component":{
+          "data":{
+            "id":"5a0c4f03718f9700197328ef",
+            "type":"component"
+          },
+          "links":{
+            "self":"/v2/components/5a0c4f03718f97232397d88ef"
+          }
+        }
+      }
+    },
+    {
+      "id":"5c7d0c362bcf5d0011323b44",
+      "type":"oauth-client",
+      "attributes":{
+        "client_id":"560e5a27734d4802131200001",
+        "client_secret":"c7e56633-5e88-4c97-8da9-f821232311"
+      }
+    }
+  ],
+  "meta":{}
+}
+```
+
+This resource allows you to retrieve **Oauth-clients** for the **Tenant** with the given ID.
+
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients`
+
+### URL Parameters
+Parameter        |Required |Description
+---------------- |------------ |-----------
+TENANT_ID      | yes|The ID of the Tenant
+filter[component] |no     | Filter by component_id
+
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.oauth_clients.get` permission.
+
+
+### Returns
+
+Returns **Oauth-client** object if the call succeeded
+
+## Retrieve an Oauth-client by id
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/{OAUTH-CLIENT_ID} \
+   -u {EMAIL}:{APIKEY}
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id":"5c80e6b9bb0d200033993d92",
+    "type":"oauth-client",
+    "attributes":{
+      "client_id":"560e5a27734d480a23424302",
+      "client_secret":"c7e56633-5e88-4c97-8da9-f82232439d4a7"
+    },
+    "relationships":{
+      "component":{
+        "data":{
+          "id":"5a0c4f03718f9700197d88ef",
+          "type":"component"
+        },
+        "links":{
+          "self":"/v2/components/5a0c4f03718f934134ef"
+        }
+      }
+    }
+  },
+  "meta":{}
+}
+```
+
+This resource allows you to retrieve a **Oauth-client** with the given ID for the **Tenant** with the given ID.
+
+
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/{OAUTH-CLIENT_ID}`
+
+### URL Parameters
+Parameter        |Required |Description
+---------------- |------------ |-----------
+TENANT_ID      | yes|The ID of the Tenant
+OAUTH-CLIENT_ID |yes    | The ID of the Oauth-client
+
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.oauth_clients.get` permission.
+
+
+### Returns
+
+Returns **Oauth-client** object if the call succeeded
+
+## Update an Oauth-client 
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/{OAUTH-CLIENT_ID} \
+   -X PATCH \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Content-Type: application/json' -d '
+	{
+	    "data": {
+		"type": "oauth-client",
+		"attributes": {
+		    "client_id": "{CLIENT_ID}",
+		    "client_secret": "{CLIENT_SECRET}"
+		},
+		"relationships": {
+		    "component": {
+			"data": {
+			    "id": "{COMPONENT_ID}",
+			    "type": "component"
+			}
+		    }
+		}
+	    }
+	}'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id":"5c80e6b9bb0d2000345433d92",
+    "type":"oauth-client",
+    "attributes":{
+      "client_id":"56127089f76793453453402",
+      "client_secret":"c7e56148-5e84-4c97-8da9-f82345357"
+    },
+    "relationships":{
+      "component":{
+        "data":{
+          "id":"5a0c4f03718f97001345348ef",
+          "type":"component"
+        },
+        "links":{
+          "self":"/v2/components/5a0c4f03718f97435348ef"
+        }
+      }
+    }
+  },
+  "meta":{}
+}
+```
+
+This resource allows you to update an **Oauth-client** with the given ID for the **Tenant** with the given ID.
+
+
+### HTTP Request
+
+`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/{OAUTH-CLIENT_ID}`
+
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.oauth_clients.edit` permission.
+
+### URL Parameters
+Parameter        | Description
+---------------- | -----------
+TENANT_ID      | The ID of the Tenant
+OAUTH-CLIENT_ID      | The ID of the Oauth-client
+
+### Payload Parameters
+Parameter       | Required | Description
+--------------- | -------- | -----------
+type | yes      | A value should be "oauth-client"
+attributes.client_id | yes      | Oauth-client ID
+attributes.client_secret | yes      | Oauth-client secret
+relationships.component.data.id | yes      | Component ID
+relationships.component.data.type  | yes      | A value should be "component"
+
+### Returns
+
+Returns **Oauth-client** object if the call succeeded
+
+
+## Delete an Oauth-client
+
+> Example Request:
+
+```shell
+ curl -i {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/{OAUTH-CLIENT_ID} \
+  -X DELETE \
+  -u {EMAIL}:{APIKEY}
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 204 No Content
+```
+
+This resource allows you to delete a **Oauth-client** with the given ID for the **Tenant** with the given ID.
+
+
+### HTTP Request
+`DELETE {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/{OAUTH-CLIENT_ID} \`
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.oauth_clients.delete` permission.
+
+### URL Parameters
+Parameter        | Description
+---------------- | -----------
+TENANT_ID      | The ID of the Tenant
+OAUTH-CLIENT_ID      | The ID of the Oauth-client
+
+
+### Returns
+
+Responds with the `204 No content` message if the call succeeded (with empty body).
