@@ -1075,19 +1075,19 @@ USER_ID          | The ID of the user that should leave the contract's scope
 
 Responds with `204 No content` message if the call succeeded (with empty body). 
 
-### The removal logic of a Contract Owner
+### FAQ on Removing Contract Owner
 
-User to be removed is the only one member of the Contract with Owner role and hasn't any another contracts.
-User is removed from the Platform at all.
+- Is it possible to remove an only member of the Contract with Owner role that hasn’t no another contracts?
+Yes. User also will be removed from the Platform at all.
 
-User to be removed is the last Contract Owner but not the last member in this Contract and hasn't any another Contracts.
-An error returns "You can not remove the last owner in the contract.".
+- Is it possible to remove a member of the Contract with Owner role if no other Contract Owner left?
+No. An error returns "You can not remove the last owner in the contract.".
 
-User to be removed is the Contract Owner but not the last Owner in this Contract and hasn't any another Contracts.
-User is removed from the Platform at all, Contract works as before with another Owner.
+- Is it possible to remove a member of the Contract with Owner role if any other Contract Owner left and this member hasn't any another Contracts?
+Yes. User also will be removed from the Platform at all, Contract will work as before with another Owner.
 
-User to be removed is the only one member of the Contract with Owner role but he/she has another Contracts.
-User is removed from this Contract, but he/she still the member of others Contracts.
+- Is it possible to remove an only member of the Contract with Owner role that has another Contracts.
+Yes. User will be removed from this Contract, but will stay the member of others Contracts.
 
 
 ## Suspend Contract
