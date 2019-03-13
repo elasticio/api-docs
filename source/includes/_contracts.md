@@ -1071,9 +1071,23 @@ CONTRACT_ID  | The ID of the contract scope
 USER_ID          | The ID of the user that should leave the contract's scope
 
 
-###Returns
+### Returns
 
 Responds with `204 No content` message if the call succeeded (with empty body). 
+
+### The removal logic of a Contract Owner
+
+User to be removed is the only one member of the Contract with Owner role and hasn't any another contracts.
+User is removed from the Platform at all.
+
+User to be removed is the last Contract Owner but not the last member in this Contract and hasn't any another Contracts.
+An error returns "You can not remove the last owner in the contract.".
+
+User to be removed is the Contract Owner but not the last Owner in this Contract and hasn't any another Contracts.
+User is removed from the Platform at all, Contract works as before with another Owner.
+
+User to be removed is the only one member of the Contract with Owner role but he/she has another Contracts.
+User is removed from this Contract, but he/she still the member of others Contracts.
 
 
 ## Suspend Contract
