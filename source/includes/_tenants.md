@@ -1385,7 +1385,7 @@ attributes.roles[]  | yes       |A value should be an empty array.
 Returns the member's object if the call succeeded
 
 
-## Create an oauth-client 
+## Create an Oauth-client 
 
 > Example Request:
 
@@ -1394,23 +1394,23 @@ Returns the member's object if the call succeeded
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-	{
-	    "data": {
-		"type": "oauth-client",
-		"attributes": {
-		    "client_id": "{CLIENT_ID}",
-		    "client_secret": "{CLIENT_SECRET}"
-		},
-		"relationships": {
-		    "component": {
-			"data": {
-			    "id": "{COMPONENT_ID}",
-			    "type": "component"
-			}
-		    }
-		}
-	    }
-	}'
+   {  
+     "data":{  
+       "type":"oauth-client",
+       "attributes":{  
+         "client_id":"{CLIENT_ID}",
+         "client_secret":"{CLIENT_SECRET}"
+       },
+       "relationships":{  
+         "component":{  
+           "data":{  
+             "id":"{COMPONENT_ID}",
+             "type":"component"
+           }
+         } 
+       }
+     }
+   }'
 ```
 
 
@@ -1621,28 +1621,29 @@ Returns **Oauth-client** object if the call succeeded
 
 > Example Request:
 
+
 ```shell
  curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/{OAUTH-CLIENT_ID} \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-	{
-	    "data": {
-		"type": "oauth-client",
-		"attributes": {
-		    "client_id": "{CLIENT_ID}",
-		    "client_secret": "{CLIENT_SECRET}"
-		},
-		"relationships": {
-		    "component": {
-			"data": {
-			    "id": "{COMPONENT_ID}",
-			    "type": "component"
-			}
-		    }
-		}
-	    }
-	}'
+   {  
+     "data":{  
+       "type":"oauth-client",
+       "attributes":{  
+         "client_id":"{CLIENT_ID}",
+         "client_secret":"{CLIENT_SECRET}"
+       },
+       "relationships":{  
+         "component":{  
+           "data":{  
+             "id":"{COMPONENT_ID}",
+             "type":"component"
+           }
+         } 
+       }
+     }
+   }'
 ```
 
 
