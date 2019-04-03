@@ -393,7 +393,8 @@ Content-Type: application/json
       "self":"/v2/workspaces/5b880121f3c1a800112a3bb3"
     },
     "attributes":{
-      "name":"My first Workspace from API"
+      "name":"My first Workspace from API",
+      "type":"full"
     },
     "relationships":{
       "contract":{
