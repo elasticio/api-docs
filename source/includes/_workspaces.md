@@ -447,6 +447,92 @@ relationships.contract.data.type | yes | A value must be "contract"
 Returns Workspace object if the call succeeded
 
 
+## Update a Workspace
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID} \
+   -X PATCH \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+    {
+   "data":{
+     "type":"workspace",
+     "attributes":{
+       "name":"New Workspace Name"
+       }
+     }
+   }'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id":"{WORKSPACE_ID}",
+    "type":"workspace",
+    "links":{
+      "self":"/v2/workspaces/{WORKSPACE_ID}"
+    },
+    "attributes":{
+      "name":"New Workspace Name",
+      "type":"full"
+    },
+    "relationships":{
+      "contract":{
+        "data":{
+          "id":"{CONTRACT_ID}",
+          "type":"contract"
+        },
+        "links":{
+          "self":"/v2/contracts/{CONTRACT_ID}"
+        }
+      },
+      "members":{
+        "data":[
+          {
+            "id":"{USER_ID}",
+            "type":"member"
+          }
+        ],
+        "links":{
+          "self":"/v2/workspaces/{WORKSPACE_ID}/members/"
+        }
+      }
+    }
+  },
+  "meta":{}
+}
+
+```
+
+This endpoint allows to update Workspace name.
+
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}`
+
+
+#### Authorization
+
+This request is authorized for the contract's scope members with the `workspaces.workspace.edit` permission. 
+
+Parameter       | Required | Description
+--------------- | -------- | -----------
+type            | yes      | A value should be "workspace"
+attributes.name | yes      | Name of the Workspace
+
+
+### Returns
+
+Returns Workspace object if the call succeeded
 
 
 ## Add a new member to Workspace
