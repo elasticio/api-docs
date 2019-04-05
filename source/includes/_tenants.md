@@ -43,6 +43,14 @@
          "hide_docs":false,
          "powered_by_elasticio":true,
          "css_enabled":false,
+	 "customStylesheets": [
+ 	    {"href": "http://path-to-1.css"},
+	    {"href": "http://path-to-2.css"}
+	  ],
+	 "customScripts": [
+  	    {"src": "http://path-to-1.js"},
+ 	    {"src": "http://path-to-2.js"}
+	  ],
          "settings":{
             "member_api_key":false
          },
@@ -92,6 +100,14 @@ Content-Type: application/json
          "hide_register":false,
          "powered_by_elasticio":true,
          "ssl_certificates":{},
+	 "customStylesheets": [
+ 	   {"href": "http://path-to-1.css"},
+	   {"href": "http://path-to-2.css"}
+	  ],
+	 "customScripts": [
+  	   {"src": "http://path-to-1.js"},
+ 	   {"src": "http://path-to-2.js"}
+	  ],
          "links":{
             "documentation":"https://docs.elastic.io/"
          }
@@ -147,6 +163,8 @@ attributes.powered_by_elasticio | no      | A value should be true or false
 attributes.css_enabled | no      | A value should be true or false
 attributes.settings.member_api_key | no      | A value should be true or false
 attributes.links.documentation | no      | The URL which redirects to the documentation page
+attributes.customStylesheets[] | no      | Customer css stylesheets
+attributes.customScripts[] | no      | Customer js-scripts
 
 
 ### 
@@ -171,6 +189,14 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
          "ssl_certificates":{
             "app":"{{cert_id}}",
             "api":"{{cert_id}}",
+	    "customStylesheets": [
+ 	      {"href": "http://path-to-1.css"},
+	      {"href": "http://path-to-2.css"}
+	    ],
+	   "customScripts": [
+  	      {"src": "http://path-to-1.js"},
+ 	      {"src": "http://path-to-2.js"}
+	    ],
             "webhooks":"{{cert_id}}"
          }
       }
@@ -216,6 +242,14 @@ Content-Type: application/json
             "hide_docs":false,
             "hide_register":false,
             "powered_by_elasticio":true,
+	    "customStylesheets": [
+ 	      {"href": "http://path-to-1.css"},
+	      {"href": "http://path-to-2.css"}
+	    ],
+	   "customScripts": [
+  	      {"src": "http://path-to-1.js"},
+ 	      {"src": "http://path-to-2.js"}
+	    ],
             "ssl_certificates":{
               "app":"{{cert_id}}",
               "api":"{{cert_id}}",
@@ -280,6 +314,8 @@ attributes.links.documentation | no      | The URL which redirects to the docume
 attributes.ssl_certificates.app | no      | An ID of SSL-certificate for a web-UI domain.
 attributes.ssl_certificates.api | no| An ID of SSL-certificate for API domain.
 attributes.ssl_certificates.webhooks | no| An ID of SSL-certificate for the webhooks domain.
+attributes.customStylesheets[] | no      | Customer css stylesheets.
+attributes.customScripts[] | no      | Customer js-scripts.
 
 *Note*: If Tenant's domains are matches to the `*.elastic.io` (where `*` can not contain `.`) then given Tenants can use the default Certificates. To remove existed Certificates, specify them as null (e.g. `"app": null`)
 
