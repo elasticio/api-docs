@@ -859,7 +859,7 @@ Parameter        | Required  | Description
 ---------        | --------- | -----------
 type             | yes       | A value should be "contract-invite".
 attributes.email | yes       | Email.
-attributes.roles[]  | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint. **Note:** The very first member of a contract must contain `owner` role.
+attributes.roles[]  | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint. **Note:** The very first member of a contract must have `owner` role.
 attributes.workspace_id | no | The id of the corresponding Workspace.
 attributes.workspace_roles[]  | no | To get all available roles, please execute the "Get the Contract's roles" endpoint.
 
@@ -868,7 +868,7 @@ attributes.workspace_roles[]  | no | To get all available roles, please execute 
 
 Returns would invite the object if the call succeeded.
 
-Returns `409` if Contract has no members and `attributes.roles` doesn't contain `owner`.
+Returns `409` if Contract has no members and `attributes.roles` doesn't contain `owner` role.
 
 
 
@@ -942,14 +942,14 @@ Parameter        | Required  | Description
 ---------        | --------- | -----------
 id               | yes       | id of an already registered user; the user will be added to the Contract's scope as a member.
 type             | yes       | A value should be "contract-member".
-attributes.roles[]   | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint. **Note:** The very first member of a contract must contain `owner` role.
+attributes.roles[]   | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint. **Note:** The very first member of a contract must have `owner` role.
 
 
 ### Returns
 
 Returns Member's object if the call succeeded.
 
-Returns `409` if Contract has no members and `attributes.roles` doesn't contain `owner`.
+Returns `409` if Contract has no members and `attributes.roles` doesn't contain `owner` role.
 
 
 
