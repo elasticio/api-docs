@@ -189,7 +189,8 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
          "ssl_certificates":{
             "app":"{{cert_id}}",
             "api":"{{cert_id}}",
-	    "customStylesheets": [
+	  } 
+	   "customStylesheets": [
  	      {"href": "http://path-to-1.css"},
 	      {"href": "http://path-to-2.css"}
 	    ],
