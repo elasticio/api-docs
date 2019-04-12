@@ -182,27 +182,34 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
     -X PATCH \
     -u {EMAIL}:{APIKEY} \
     -H 'Content-Type: application/json' -d '
-{
-   "data":{
-      "type":"tenant",
-      "attributes":{
-         "ssl_certificates":{
+    {
+      "data":{
+        "type":"tenant",
+        "attributes":{
+          "ssl_certificates":{
             "app":"{{cert_id}}",
             "api":"{{cert_id}}",
-	  } 
-	   "customStylesheets": [
- 	      {"href": "http://path-to-1.css"},
-	      {"href": "http://path-to-2.css"}
-	    ],
-	   "customScripts": [
-  	      {"src": "http://path-to-1.js"},
- 	      {"src": "http://path-to-2.js"}
-	    ],
             "webhooks":"{{cert_id}}"
-         }
+          },
+          "customStylesheets":[
+            {
+              "href":"http://path-to-1.css"
+            },
+            {
+              "href":"http://path-to-2.css"
+            }
+          ],
+          "customScripts":[
+            {
+              "src":"http://path-to-1.js"
+            },
+            {
+              "src":"http://path-to-2.js"
+            }
+          ]
+        }
       }
-   }
-}'
+    }'
 ```
 
 
