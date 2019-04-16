@@ -518,7 +518,7 @@ This endpoint allows to update Workspace name.
 
 ### HTTP Request
 
-`POST {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}`
+`PATCH {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}`
 
 
 #### Authorization
