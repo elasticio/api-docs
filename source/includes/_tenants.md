@@ -44,14 +44,14 @@
          "powered_by_elasticio":true,
          "css_enabled":false,
          "default_workspace_type": "limited",
-	       "customStylesheets": [
- 	         {"href": "http://path-to-1.css"},
-	         {"href": "http://path-to-2.css"}
-	       ],
-	       "customScripts": [
-  	       {"src": "http://path-to-1.js"},
- 	         {"src": "http://path-to-2.js"}
-	       ],
+	 "customStylesheets": [
+ 	   {"href": "http://path-to-1.css"},
+	   {"href": "http://path-to-2.css"}
+	 ],
+	 "customScripts": [
+  	  {"src": "http://path-to-1.js"},
+ 	  {"src": "http://path-to-2.js"}
+	 ],
          "settings":{
            "member_api_key":false
          },
@@ -102,14 +102,14 @@ Content-Type: application/json
          "powered_by_elasticio":true,
          "default_workspace_type": "limited",
          "ssl_certificates":{},
-	       "customStylesheets": [
- 	         {"href": "http://path-to-1.css"},
-	         {"href": "http://path-to-2.css"}
-	       ],
-	       "customScripts": [
-  	       {"src": "http://path-to-1.js"},
- 	         {"src": "http://path-to-2.js"}
-	       ],
+	 "customStylesheets": [
+ 	   {"href": "http://path-to-1.css"},
+	   {"href": "http://path-to-2.css"}
+	 ],
+	 "customScripts": [
+  	   {"src": "http://path-to-1.js"},
+ 	   {"src": "http://path-to-2.js"}
+	 ],
          "links":{
             "documentation":"https://docs.elastic.io/"
          }
@@ -247,14 +247,14 @@ Content-Type: application/json
             "hide_register":false,
             "powered_by_elasticio":true,
             "default_workspace_type": "full",
-	          "customStylesheets": [
- 	            {"href": "http://path-to-1.css"},
-	            {"href": "http://path-to-2.css"}
-	          ],
-	          "customScripts": [
-  	          {"src": "http://path-to-1.js"},
- 	            {"src": "http://path-to-2.js"}
-	          ],
+	    "customStylesheets": [
+ 	      {"href": "http://path-to-1.css"},
+	      {"href": "http://path-to-2.css"}
+	    ],
+	    "customScripts": [
+  	      {"src": "http://path-to-1.js"},
+ 	      {"src": "http://path-to-2.js"}
+	    ],
             "ssl_certificates":{
               "app":"{{cert_id}}",
               "api":"{{cert_id}}",
