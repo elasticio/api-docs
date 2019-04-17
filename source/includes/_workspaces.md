@@ -143,7 +143,7 @@ WORKSPACE_ID | The ID of the Workspace
 ### URL Query Parameters
 Parameter   | Required | Description              
 ----------- | -------- | ------------------------
-include     | no       | Whether include or not full resource objects in response for related entities. Possible values: `members` and/or `invites`.
+include     | no       | Include full resource objects in response for related entities, or not. Possible values: `members` and/or `invites`.
 
 
 
@@ -524,7 +524,7 @@ This endpoint allows to update Workspace name.
 
 #### Authorization
 
-To update the name of Workspace this request is authorized for the contract's scope members with the `workspaces.workspace.edit` permission.
+The request to update the name of Workspace is authorized for the contract's scope members with the `workspaces.workspace.edit` permission.
 
 To update the type of Workspace this request is authorized for users with the `workspaces.workspace.edit_type` permission.
 
@@ -592,8 +592,8 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows adding a User to a certain Workspace as a member. You can add User only from Contract which current Workspace belong to.
-Notification email will be sent. The User becomes a member immediately.
+This endpoint allows you to add a User to a certain Workspace as a member. You can add User only from the Contract, which current Workspace belongs to.
+A notification email will be sent. The User becomes a member immediately.
 
 
 ### HTTP Request
@@ -784,7 +784,7 @@ This endpoint will delete the Workspace along with the following items that were
 * Flow's TaskStatError
 * Flow's TaskVersion
 
-*Note, that process of deletion is asynchronous. Actual deletion of all data will be performed after API response, because it will take some time to terminate all containers of Workspace's flows. *
+*Note, that the deletion process is asynchronous. Actual deletion of all data will be performed after API response, because it will take some time to terminate all containers of Workspace's flows. *
 
 ### HTTP Request
 `DELETE {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID} \`
