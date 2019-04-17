@@ -43,16 +43,17 @@
          "hide_docs":false,
          "powered_by_elasticio":true,
          "css_enabled":false,
+         "default_workspace_type": "limited",
 	 "customStylesheets": [
- 	    {"href": "http://path-to-1.css"},
-	    {"href": "http://path-to-2.css"}
-	  ],
+ 	   {"href": "http://path-to-1.css"},
+	   {"href": "http://path-to-2.css"}
+	 ],
 	 "customScripts": [
-  	    {"src": "http://path-to-1.js"},
- 	    {"src": "http://path-to-2.js"}
-	  ],
+  	  {"src": "http://path-to-1.js"},
+ 	  {"src": "http://path-to-2.js"}
+	 ],
          "settings":{
-            "member_api_key":false
+           "member_api_key":false
          },
          "links":{
             "documentation":"https://docs.elastic.io/"
@@ -99,15 +100,16 @@ Content-Type: application/json
          "hide_docs":false,
          "hide_register":false,
          "powered_by_elasticio":true,
+         "default_workspace_type": "limited",
          "ssl_certificates":{},
 	 "customStylesheets": [
  	   {"href": "http://path-to-1.css"},
 	   {"href": "http://path-to-2.css"}
-	  ],
+	 ],
 	 "customScripts": [
   	   {"src": "http://path-to-1.js"},
  	   {"src": "http://path-to-2.js"}
-	  ],
+	 ],
          "links":{
             "documentation":"https://docs.elastic.io/"
          }
@@ -154,7 +156,7 @@ attributes.mandrill_email_from | no      | An email of the letters sender
 attributes.mandrill_api_key |no      | The mandrill API key
 attributes.hide_register | no      | A value should be true or false
 attributes.is_default | no      | A value should be true or false. You can set only one default tenant per installation
-attributes.hide_repos | no      |A value should be true or false 
+attributes.hide_repos | no      |A value should be true or false
 attributes.hide_teams | no      | A value should be true or false
 attributes.hide_ssh_keys | no      | A value should be true or false
 attributes.hide_api_key | no      | A value should be true or false
@@ -165,9 +167,10 @@ attributes.settings.member_api_key | no      | A value should be true or false
 attributes.links.documentation | no      | The URL which redirects to the documentation page
 attributes.customStylesheets[] | no      | Customer css stylesheets
 attributes.customScripts[] | no      | Customer js-scripts
+attributes.default_workspace_type | no      | Default Workspace type for Workspaces created in the Tenant. The value can be `full` or `limited`. If not specified, the attribute will be set to `full`or `limited` depending on Tenant settings.
 
 
-### 
+###
 
 Returns Tenant object if the call succeeded
 
@@ -191,21 +194,14 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
             "api":"{{cert_id}}",
             "webhooks":"{{cert_id}}"
           },
+          "default_workspace_type": "full",
           "customStylesheets":[
-            {
-              "href":"http://path-to-1.css"
-            },
-            {
-              "href":"http://path-to-2.css"
-            }
+            {"href":"http://path-to-1.css"},
+            {"href":"http://path-to-2.css"}
           ],
           "customScripts":[
-            {
-              "src":"http://path-to-1.js"
-            },
-            {
-              "src":"http://path-to-2.js"
-            }
+            {"src":"http://path-to-1.js"},
+            {"src":"http://path-to-2.js"}
           ]
         }
       }
@@ -250,11 +246,12 @@ Content-Type: application/json
             "hide_docs":false,
             "hide_register":false,
             "powered_by_elasticio":true,
+            "default_workspace_type": "full",
 	    "customStylesheets": [
  	      {"href": "http://path-to-1.css"},
 	      {"href": "http://path-to-2.css"}
 	    ],
-	   "customScripts": [
+	    "customScripts": [
   	      {"src": "http://path-to-1.js"},
  	      {"src": "http://path-to-2.js"}
 	    ],
@@ -310,7 +307,7 @@ attributes.mandrill_email_from | no      | An email of the letters sender
 attributes.mandrill_api_key |no      | The mandrill API key
 attributes.hide_register | no      | A value should be true or false
 attributes.is_default | no      | A value should be true or false. You can set only one default tenant per installation
-attributes.hide_repos | no      |A value should be true or false 
+attributes.hide_repos | no      |A value should be true or false
 attributes.hide_teams | no      | A value should be true or false
 attributes.hide_ssh_keys | no      | A value should be true or false
 attributes.hide_api_key | no      | A value should be true or false
@@ -324,6 +321,7 @@ attributes.ssl_certificates.api | no| An ID of SSL-certificate for API domain.
 attributes.ssl_certificates.webhooks | no| An ID of SSL-certificate for the webhooks domain.
 attributes.customStylesheets[] | no      | Customer css stylesheets.
 attributes.customScripts[] | no      | Customer js-scripts.
+attributes.default_workspace_type | no      | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`
 
 *Note*: If Tenant's domains are matches to the `*.elastic.io` (where `*` can not contain `.`) then given Tenants can use the default Certificates. To remove existed Certificates, specify them as null (e.g. `"app": null`)
 
@@ -497,7 +495,7 @@ HTTP/1.1 204 No Content
 
 This resource allows you to delete a **Tenant** with the given ID along with everything it includes.
 
-*A Tenant will be deleted only if it will not contain any contracts* 
+*A Tenant will be deleted only if it does not contain any contracts*
 
 ### HTTP Request
 `DELETE {{ api_base_url }}/v2/tenants/{TENANT_ID} \`
@@ -663,7 +661,7 @@ Parameter       | Description
 TENANT_ID | The ID of the Tenant
 
 
-## Get the list of available permissions 
+## Get the list of available permissions
 
 > Example Request:
 
@@ -715,7 +713,7 @@ This endpoint is available to all the platforms' users.
 
 
 
-## Update Tenant's roles 
+## Update Tenant's roles
 
 > Example Request:
 
@@ -860,15 +858,15 @@ TENANT_ID | The ID of the Tenant
 Parameter       | Required | Description
 --------------- | -------- | -----------
 type            | yes      | A value should be "tenant-policy"
-attributes.roles[] | yes      |An array of Tenant's roles. It can be empty. 
+attributes.roles[] | yes      |An array of Tenant's roles. It can be empty.
 attributes.roles[].role | no     | Name of a role.
-attributes.roles[].scope | no      | The group of objects, which is affected by this role. Value can be "contracts" or "workspaces" 
-attributes.roles[].permissions[] | yes      | An array of permissions. It can be empty. To get the list of available permissions execute [Get the list of available permissions]({{ api_base_url }}/docs/v2/#get-the-list-of-available-permissions) endpoint 
+attributes.roles[].scope | no      | The group of objects, which is affected by this role. Value can be "contracts" or "workspaces"
+attributes.roles[].permissions[] | yes      | An array of permissions. It can be empty. To get the list of available permissions execute [Get the list of available permissions]({{ api_base_url }}/docs/v2/#get-the-list-of-available-permissions) endpoint
 attributes.roles[].i18n.{{language_key}} | no      | The name of a role in different languages. The value is only required for "en" key. For other languages value is optional
 
 
 
-## Create a SSL certificate 
+## Create a SSL certificate
 
 > Example Request:
 
@@ -894,7 +892,7 @@ attributes.roles[].i18n.{{language_key}} | no      | The name of a role in diffe
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: multipart/form-data'
    --form "cert=@file"
-	  
+
 ```
 
 
@@ -1099,7 +1097,7 @@ This request is authorized for the users with the `tenants.certificate.get_encry
 Returns **SSL certificate** object if the call succeeded
 
 
-## Update a SSL certificate 
+## Update a SSL certificate
 
 > Example Request:
 
@@ -1319,7 +1317,7 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows granting Tenant Admin's permissions to the **User** with the given ID in the **Tenant** with the given ID. 
+This endpoint allows you to grant Tenant Admin's permissions to the **User** with the given ID in the **Tenant** with the given ID.
 
 
 ### HTTP Request
@@ -1403,7 +1401,7 @@ Content-Type: application/json
 }
 
 ```
-This endpoint allows remove Tenant Admin's permissions to the **User** with the given ID in the **Tenant** with the given ID. 
+This endpoint allows you to remove Tenant Admin's permissions from the **User** with the given ID in the **Tenant** with the given ID.
 
 ### HTTP Request
 `PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/members/{USER_ID}/`
@@ -1429,7 +1427,7 @@ attributes.roles[]  | yes       |A value should be an empty array.
 Returns the member's object if the call succeeded
 
 
-## Create an Oauth-client 
+## Create an Oauth-client
 
 > Example Request:
 
@@ -1451,7 +1449,7 @@ Returns the member's object if the call succeeded
              "id":"{COMPONENT_ID}",
              "type":"component"
            }
-         } 
+         }
        }
      }
    }'
@@ -1661,7 +1659,7 @@ This request is authorized for the users with the `tenants.oauth_clients.get` pe
 
 Returns **Oauth-client** object if the call succeeded
 
-## Update an Oauth-client 
+## Update an Oauth-client
 
 > Example Request:
 
@@ -1684,7 +1682,7 @@ Returns **Oauth-client** object if the call succeeded
              "id":"{COMPONENT_ID}",
              "type":"component"
            }
-         } 
+         }
        }
      }
    }'
