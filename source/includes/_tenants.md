@@ -167,7 +167,7 @@ attributes.settings.member_api_key | no      | A value should be true or false
 attributes.links.documentation | no      | The URL which redirects to the documentation page
 attributes.customStylesheets[] | no      | Customer css stylesheets
 attributes.customScripts[] | no      | Customer js-scripts
-attributes.default_workspace_type | no      | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`. If not specified, the attribute will be set to `full` after Tenant creation
+attributes.default_workspace_type | no      | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`. If not specified, the attribute will be set to `full`or `limited` depend on Tenant settings
 
 
 ###
