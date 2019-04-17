@@ -167,7 +167,7 @@ attributes.settings.member_api_key | no      | A value should be true or false
 attributes.links.documentation | no      | The URL which redirects to the documentation page
 attributes.customStylesheets[] | no      | Customer css stylesheets
 attributes.customScripts[] | no      | Customer js-scripts
-attributes.default_workspace_type | no      | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`. If attribute is not spesified it will be setted to `full` after Tenant creation
+attributes.default_workspace_type | no      | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`. If not specified, the attribute will be set to `full` after Tenant creation
 
 
 ###
@@ -495,7 +495,7 @@ HTTP/1.1 204 No Content
 
 This resource allows you to delete a **Tenant** with the given ID along with everything it includes.
 
-*A Tenant will be deleted only if it will not contain any contracts*
+*A Tenant will be deleted only if it does not contain any contracts*
 
 ### HTTP Request
 `DELETE {{ api_base_url }}/v2/tenants/{TENANT_ID} \`
@@ -1317,7 +1317,7 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows granting Tenant Admin's permissions to the **User** with the given ID in the **Tenant** with the given ID.
+This endpoint allows you to grant Tenant Admin's permissions to the **User** with the given ID in the **Tenant** with the given ID.
 
 
 ### HTTP Request
@@ -1401,7 +1401,7 @@ Content-Type: application/json
 }
 
 ```
-This endpoint allows remove Tenant Admin's permissions to the **User** with the given ID in the **Tenant** with the given ID.
+This endpoint allows you to remove Tenant Admin's permissions from the **User** with the given ID in the **Tenant** with the given ID.
 
 ### HTTP Request
 `PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/members/{USER_ID}/`
