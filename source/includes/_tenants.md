@@ -14,53 +14,61 @@
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
   {
-   "data":{
-      "type":"tenant",
-      "attributes":{
-         "name":"My New Tenant",
-         "app_domain":"{{app_domain}}",
-         "api_domain":"{{api_domain}}",
-         "webhooks_domain":"{{webhooks_domain}}",
-         "git_receiver_host":"git_receiver_host",
-         "code":"{{css_code}}",
-         "header_logo_url":"//cdn.elastic.io/logo-mini.png",
-         "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
-         "email_logo_url":"//cdn.elastic.io/logo-mini.png",
-         "favicon_url":"//cdn.elastic.io/logo-mini.png",
-         "terms_of_usage_url":"https://www.elastic.io/tou/",
-         "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
-         "imprint_url":"https://www.elastic.io/legal-disclosure/",
-         "mailchimp_api_key":"{{mailchimp_api_key}}",
-         "mailchimp_list_id":"{{mailchimp_list_id}}",
-         "mandrill_email_from":"foo@foo.bar",
-         "mandrill_api_key":"{{mandrill_api_key}}",
-         "hide_register":false,
-         "is_default":false,
-         "hide_repos":false,
-         "hide_teams":false,
-         "hide_ssh_keys":false,
-         "hide_api_key":false,
-         "hide_docs":false,
-         "powered_by_elasticio":true,
-         "css_enabled":false,
-         "default_workspace_type": "limited",
-	       "customStylesheets": [
- 	         {"href": "http://path-to-1.css"},
-	         {"href": "http://path-to-2.css"}
-	       ],
-	       "customScripts": [
-  	       {"src": "http://path-to-1.js"},
- 	         {"src": "http://path-to-2.js"}
-	       ],
-         "settings":{
-           "member_api_key":false
-         },
-         "links":{
-            "documentation":"https://docs.elastic.io/"
-         }
+  "data":{
+    "type":"tenant",
+    "attributes":{
+      "name":"My New Tenant",
+      "app_domain":"{{app_domain}}",
+      "api_domain":"{{api_domain}}",
+      "webhooks_domain":"{{webhooks_domain}}",
+      "git_receiver_host":"git_receiver_host",
+      "code":"{{css_code}}",
+      "header_logo_url":"//cdn.elastic.io/logo-mini.png",
+      "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
+      "email_logo_url":"//cdn.elastic.io/logo-mini.png",
+      "favicon_url":"//cdn.elastic.io/logo-mini.png",
+      "terms_of_usage_url":"https://www.elastic.io/tou/",
+      "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
+      "imprint_url":"https://www.elastic.io/legal-disclosure/",
+      "mailchimp_api_key":"{{mailchimp_api_key}}",
+      "mailchimp_list_id":"{{mailchimp_list_id}}",
+      "mandrill_email_from":"foo@foo.bar",
+      "mandrill_api_key":"{{mandrill_api_key}}",
+      "hide_register":false,
+      "is_default":false,
+      "hide_repos":false,
+      "hide_teams":false,
+      "hide_ssh_keys":false,
+      "hide_api_key":false,
+      "hide_docs":false,
+      "powered_by_elasticio":true,
+      "css_enabled":false,
+      "default_workspace_type":"limited",
+      "customStylesheets":[
+        {
+          "href":"http://path-to-1.css"
+        },
+        {
+          "href":"http://path-to-2.css"
+        }
+      ],
+      "customScripts":[
+        {
+          "src":"http://path-to-1.js"
+        },
+        {
+          "src":"http://path-to-2.js"
+        }
+      ],
+      "settings":{
+        "member_api_key":false
+      },
+      "links":{
+        "documentation":"https://docs.elastic.io/"
       }
-   }
-}'
+    }
+  }
+}`
 ```
 
 
@@ -70,55 +78,63 @@
 HTTP/1.1 201 Created
 Content-Type: application/json
 {
-   "data":{
-      "id":"5c6e91b9d5b4b60012a796fe",
-      "type":"tenant",
-      "links":{
-         "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
-      },
-      "attributes":{
-         "name":"My New Tenant",
-         "app_domain":"{{app_domain}}",
-         "api_domain":"{{api_domain}}",
-         "webhooks_domain":"{{webhooks_domain}}",
-         "git_receiver_host":"git_receiver_host",
-         "css_enabled":false,
-         "code":"{{css_code}}",
-         "header_logo_url":"//cdn.elastic.io/logo-mini.png",
-         "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
-         "email_logo_url":"//cdn.elastic.io/logo-mini.png",
-         "favicon_url":"//cdn.elastic.io/logo-mini.png",
-         "terms_of_usage_url":"https://www.elastic.io/tou/",
-         "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
-         "imprint_url":"https://www.elastic.io/legal-disclosure/",
-         "mailchimp_list_id":"{{mailchimp_list_id}}",
-         "mandrill_email_from":"foo@foo.bar",
-         "hide_repos":false,
-         "hide_teams":false,
-         "hide_ssh_keys":false,
-         "hide_api_key":false,
-         "hide_docs":false,
-         "hide_register":false,
-         "powered_by_elasticio":true,
-         "default_workspace_type": "limited",
-         "ssl_certificates":{},
-	       "customStylesheets": [
- 	         {"href": "http://path-to-1.css"},
-	         {"href": "http://path-to-2.css"}
-	       ],
-	       "customScripts": [
-  	       {"src": "http://path-to-1.js"},
- 	         {"src": "http://path-to-2.js"}
-	       ],
-         "links":{
-           "documentation":"https://docs.elastic.io/"
-         }
-      }
-   },
-   "meta":{},
-   "links":{
+  "data":{
+    "id":"5c6e91b9d5b4b60012a796fe",
+    "type":"tenant",
+    "links":{
       "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
-   }
+    },
+    "attributes":{
+      "name":"My New Tenant",
+      "app_domain":"{{app_domain}}",
+      "api_domain":"{{api_domain}}",
+      "webhooks_domain":"{{webhooks_domain}}",
+      "git_receiver_host":"git_receiver_host",
+      "css_enabled":false,
+      "code":"{{css_code}}",
+      "header_logo_url":"//cdn.elastic.io/logo-mini.png",
+      "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
+      "email_logo_url":"//cdn.elastic.io/logo-mini.png",
+      "favicon_url":"//cdn.elastic.io/logo-mini.png",
+      "terms_of_usage_url":"https://www.elastic.io/tou/",
+      "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
+      "imprint_url":"https://www.elastic.io/legal-disclosure/",
+      "mailchimp_list_id":"{{mailchimp_list_id}}",
+      "mandrill_email_from":"foo@foo.bar",
+      "hide_repos":false,
+      "hide_teams":false,
+      "hide_ssh_keys":false,
+      "hide_api_key":false,
+      "hide_docs":false,
+      "hide_register":false,
+      "powered_by_elasticio":true,
+      "default_workspace_type":"limited",
+      "ssl_certificates":{},
+      "customStylesheets":[
+        {
+          "href":"http://path-to-1.css"
+        },
+        {
+          "href":"http://path-to-2.css"
+        }
+      ],
+      "customScripts":[
+        {
+          "src":"http://path-to-1.js"
+        },
+        {
+          "src":"http://path-to-2.js"
+        }
+      ],
+      "links":{
+        "documentation":"https://docs.elastic.io/"
+      }
+    }
+  },
+  "meta":{},
+  "links":{
+    "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
+  }
 }
 ```
 
@@ -215,61 +231,69 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
-   "data":[
-      {
-         "id":"5c6e91b9d5b4b60012a796fe",
-         "type":"tenant",
-         "links":{
-            "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
-         },
-         "attributes":{
-            "name":"My New Tenant",
-            "app_domain":"{{app_domain}}",
-            "api_domain":"{{api_domain}}",
-            "webhooks_domain":"{{webhooks_domain}}",
-            "git_receiver_host":"git_receiver_host",
-            "css_enabled":false,
-            "code":"{{css_code}}",
-            "header_logo_url":"//cdn.elastic.io/logo-mini.png",
-            "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
-            "email_logo_url":"//cdn.elastic.io/logo-mini.png",
-            "favicon_url":"//cdn.elastic.io/logo-mini.png",
-            "terms_of_usage_url":"https://www.elastic.io/tou/",
-            "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
-            "imprint_url":"https://www.elastic.io/legal-disclosure/",
-            "mailchimp_list_id":"{{mailchimp_list_id}}",
-            "mandrill_email_from":"foo@foo.bar",
-            "hide_repos":false,
-            "hide_teams":false,
-            "hide_ssh_keys":false,
-            "hide_api_key":false,
-            "hide_docs":false,
-            "hide_register":false,
-            "powered_by_elasticio":true,
-            "default_workspace_type": "full",
-	          "customStylesheets": [
- 	            {"href": "http://path-to-1.css"},
-	            {"href": "http://path-to-2.css"}
-	          ],
-	          "customScripts": [
-  	          {"src": "http://path-to-1.js"},
- 	            {"src": "http://path-to-2.js"}
-	          ],
-            "ssl_certificates":{
-              "app":"{{cert_id}}",
-              "api":"{{cert_id}}",
-              "webhooks":"{{cert_id}}"
-            }
-            "links":{
-               "documentation":"https://docs.elastic.io/"
-            }
-         }
+  "data":[
+    {
+      "id":"5c6e91b9d5b4b60012a796fe",
+      "type":"tenant",
+      "links":{
+        "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
+      },
+      "attributes":{
+        "name":"My New Tenant",
+        "app_domain":"{{app_domain}}",
+        "api_domain":"{{api_domain}}",
+        "webhooks_domain":"{{webhooks_domain}}",
+        "git_receiver_host":"git_receiver_host",
+        "css_enabled":false,
+        "code":"{{css_code}}",
+        "header_logo_url":"//cdn.elastic.io/logo-mini.png",
+        "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
+        "email_logo_url":"//cdn.elastic.io/logo-mini.png",
+        "favicon_url":"//cdn.elastic.io/logo-mini.png",
+        "terms_of_usage_url":"https://www.elastic.io/tou/",
+        "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
+        "imprint_url":"https://www.elastic.io/legal-disclosure/",
+        "mailchimp_list_id":"{{mailchimp_list_id}}",
+        "mandrill_email_from":"foo@foo.bar",
+        "hide_repos":false,
+        "hide_teams":false,
+        "hide_ssh_keys":false,
+        "hide_api_key":false,
+        "hide_docs":false,
+        "hide_register":false,
+        "powered_by_elasticio":true,
+        "default_workspace_type":"full",
+        "customStylesheets":[
+          {
+            "href":"http://path-to-1.css"
+          },
+          {
+            "href":"http://path-to-2.css"
+          }
+        ],
+        "customScripts":[
+          {
+            "src":"http://path-to-1.js"
+          },
+          {
+            "src":"http://path-to-2.js"
+          }
+        ],
+        "ssl_certificates":{
+          "app":"{{cert_id}}",
+          "api":"{{cert_id}}",
+          "webhooks":"{{cert_id}}"
+        },
+        "links":{
+          "documentation":"https://docs.elastic.io/"
+        }
       }
-   ],
-   "meta":{},
-   "links":{
-      "self":"/v2/tenants"
-   }
+    }
+  ],
+  "meta":{},
+  "links":{
+    "self":"/v2/tenants"
+  }
 }
 ```
 
