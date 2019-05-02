@@ -670,6 +670,8 @@ Content-Type: application/json
 
 This resource allows you to retrieve all roles for a **Tenant** with the given ID.
 
+
+
 ### HTTP Request
 
 `GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/roles`
@@ -733,9 +735,46 @@ This endpoint returns all available permissions required for creating a role.
 
 #### Authorization
 
-This endpoint is available to all the platforms' users.
+This endpoint is available to all the platforms' users. However, it does not list *service permissions* that are only available to *Service Accounts*.
+The list of *service permissions* is in the following table.
 
-
+Permission      |  Description
+--------------- | -------- | -----------
+`global.flow.get_limited_to_stop`            | Select flows that need to be stopped in limited Workspaces. Flow lifetime period is defined in the corresponding environment variable.
+`tenants.user.create`  | Create users in a Tenant.
+`tenants.user.delete` | Remove users from a Platform.
+`tenants.user.list_all` | List all users of a Tenant.
+`tenants.user.get` | Get users by ID in a Tenant.
+`tenants.tenant.edit` |  Edit the Tenant.
+`tenants.tenant.edit_roles` | Edit roles in a Tenant.
+`tenants.tenant.list_roles` | Get the list of roles in a Tenant.
+`tenants.tenant.create` | Create Tenants.
+`tenants.tenant.delete` | Delete Tenants.
+`tenants.tenant.get` | Get Tenants by ID.
+`tenants.contract.create` | Create Contracts in a Tenant.
+`tenants.membership.edit` | Grant or remove *Tenant Admin* role to Platform users.
+`tenants.certificate.get_encrypted` | Get certificate and key in encrypted form.
+`tenants.certificate.get_info` | Get certificate metadata.
+`tenants.certificate.create` | Create certificates.
+`tenants.certificate.edit` | Edit certificates.
+`tenants.certificate.delete` | Delete certificates.
+`tenants.oauth_clients.get` | Get a list of Oauth clients in a Tenant.
+`tenants.oauth_clients.edit` | Edit Oauth clients in a Tenant.
+`tenants.oauth_clients.create` | Create Oauth clients in a Tenant.
+`tenants.oauth_clients.delete` | Delete Oauth clients in a Tenant.
+`contracts.contract.get` | Get Contracts by ID.
+`contracts.contract.edit_available_roles` | Edit available roles in a Contracts.
+`contracts.membership.edit_directly` | Edit user membership by ID.
+`contracts.contract.delete` | Delete Contracts.
+`contracts.contract.finish_delete` | Stop all flows to delete the Contract.
+`contracts.contract.finish_suspend` | Stop all flows to suspend the Contract.
+`contracts.contract.suspend` | Request Contract suspension.
+`contracts.contract.unsuspend` | Request Contract unsuspension.
+`contracts.contract.listAll` | Get list of all contracts **(Work in Progress!)**.
+`contracts.contract.list_blocking_tasks` | List blocking tasks in the Contract.
+`contracts.devTeam.edit_access` | Change repository access level.
+`workspaces.workspace.edit_type` | Edit workspace type.
+`workspaces.workspace.finish_delete` | Stop all flows to delete the Workspace.
 
 ## Update Tenant's roles
 
