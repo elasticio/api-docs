@@ -741,8 +741,8 @@ The list of *service permissions* is in the following table.
 Permission      |  Description
 --------------- | -------- | -----------
 `global.flow.get_limited_to_stop`            | Select flows that need to be stopped in limited Workspaces. Flow lifetime period is defined in the corresponding environment variable.
-`tenants.user.create`  | An array of Tenant's roles. It can be empty.
-`tenants.user.delete` | Remove users from a Tenant.
+`tenants.user.create`  | Create users in a Tenant.
+`tenants.user.delete` | Remove users from a Platform.
 `tenants.user.list_all` | List all users of a Tenant.
 `tenants.user.get` | Get users by ID in a Tenant.
 `tenants.tenant.edit` |  Edit the Tenant.
@@ -752,7 +752,7 @@ Permission      |  Description
 `tenants.tenant.delete` | Delete Tenants.
 `tenants.tenant.get` | Get Tenants by ID.
 `tenants.contract.create` | Create Contracts in a Tenant.
-`tenants.membership.edit` | Edit memberships in the Tenant.
+`tenants.membership.edit` | Grant or remove *Tenant Admin* role to Platform users.
 `tenants.certificate.get_encrypted` | Get certificate and key in encrypted form.
 `tenants.certificate.get_info` | Get certificate metadata.
 `tenants.certificate.create` | Create certificates.
