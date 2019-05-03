@@ -739,7 +739,7 @@ This endpoint is available to all the platforms' users. However, it does not lis
 The list of *service permissions* is in the following table.
 
 Permission      |  Description
---------------- | -------- | -----------
+--------------- |  -----------
 `global.flow.get_limited_to_stop`            | Select flows that need to be stopped in limited Workspaces. Flow lifetime period is defined in the corresponding environment variable.
 `tenants.user.create`  | Create users in a Tenant.
 `tenants.user.delete` | Remove users from a Platform.
