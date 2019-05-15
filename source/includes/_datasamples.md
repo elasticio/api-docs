@@ -11,6 +11,14 @@ This resource allows you to retrieve data sample.
    -H 'Accept: application/json'
 ```
 
+> Example Request with filter:
+
+```shell
+ curl {{ api_base_url }}/v2/data-samples?filter[id]={DATASAMPLE_ID1},{DATASAMPLE_ID2} \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
 > Example Response:
 
 ```http
