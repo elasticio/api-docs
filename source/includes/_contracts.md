@@ -1097,7 +1097,7 @@ Yes. User will be removed from this Contract, but will stay the member of others
 ```shell
  curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/suspend \
  -X POST \
-   -u {EMAIL}:{APIKEY}
+ -u {EMAIL}:{APIKEY}
 ```
 
 
@@ -1133,7 +1133,7 @@ CONTRACT_ID | The ID of the Contract
 ```shell
  curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/unsuspend \
  -X POST \
-   -u {EMAIL}:{APIKEY}
+ -u {EMAIL}:{APIKEY}
 ```
 
 
