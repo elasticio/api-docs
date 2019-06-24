@@ -65,6 +65,15 @@
       },
       "links":{
         "documentation":"https://docs.elastic.io/"
+      },
+      "html_meta":{  
+  	"description":"Lorem ipsum",
+  	"author":"Acme Corporation",
+  	"keywords":[  
+    	  "foo",
+    	  "bar",
+    	  "baz"
+  	]
       }
     }
   }
@@ -128,6 +137,15 @@ Content-Type: application/json
       ],
       "links":{
         "documentation":"https://docs.elastic.io/"
+      },
+      "html_meta":{  
+  	"description":"Lorem ipsum",
+  	"author":"Acme Corporation",
+  	"keywords":[  
+    	  "foo",
+    	  "bar",
+    	  "baz"
+  	]
       }
     }
   },
@@ -184,6 +202,10 @@ attributes.links.documentation | no      | The URL which redirects to the docume
 attributes.customStylesheets[] | no      | Customer css stylesheets
 attributes.customScripts[] | no      | Customer js-scripts
 attributes.default_workspace_type | no      | Default Workspace type for Workspaces created in the Tenant. The value can be `full` or `limited`. If not specified, the attribute will be set to `full`or `limited` depending on Tenant settings.
+attributes.html_meta.description | no      | Customer meta description in html pages
+attributes.html_meta.author | no      | Customer meta author in html pages
+attributes.html_meta.keywords | no      | Customer meta keywords in html pages
+
 
 
 ###
