@@ -69,7 +69,7 @@ docker run --rm -p 8000:8000 -d elasticio/api-docs:master
 docker stop api-doc-master
 ```
 
-
+All docker builds could be checked [here](https://hub.docker.com/r/elasticio/api-docs/tags/).
 
 
 # How to build and see api-docs static website locally?
