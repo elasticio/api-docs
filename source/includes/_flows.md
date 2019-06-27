@@ -313,57 +313,115 @@ The flow with given ID
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
    {  
-  "data":{  
-    "attributes":{  
+    "data":{
+    "attributes":{
       "default_mapper_type":"jsonata",
       "type":"ordinary",
-      "name":"Timer to E-Mail",
-      "description":null,
+      "name":"My flow",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "cron":null,
-      "graph":{  
-        "nodes":[  
-          {  
-            "id":"step_1",
-            "command":"{{ repo_name }}/timer:timer@latest",
-            "fields":{  
-              "interval":"minute"
-            }
-          },
-          {  
-            "command":"{{ repo_name }}/email:send@latest",
-            "fields":{  
+      "graph":{
+        "nodes":[
+          {
+            "name":"",
+            "description":"",
+            "command":"elasticio/simple-trigger-component:timer@latest",
+            "fields":{
 
             },
-            "id":"step_2"
+            "id":"step_1",
+            "selected_data_samples":[
+              "{DATA_SAMPLE_ID}"
+            ]
+          },
+          {
+            "name":"My component",
+            "description":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            "command":"elasticio/code:execute@latest",
+            "fields":{
+              "code":"// Please note only Node.js code is supported here\nasync function run(msg) {\n\tconsole.log('\''Incoming message is %s'\'', JSON.stringify(msg));\n\tconst body = { result : '\''Hello world!'\'' };\n\t// You can emit as many data messages as required\n\tawait this.emit('\''data'\'', { body });\n\tconsole.log('\''Execution finished'\'');\n}"
+            },
+            "id":"step_2",
+            "agent_id":"{AGENT_ID}",
+            "selected_data_samples":[
+              "{DATA_SAMPLE_ID}"
+            ]
+          },
+          {
+            "name":"",
+            "description":"",
+            "command":"help/petstore:createPetWithPromise@latest",
+            "fields":{
+
+            },
+            "id":"step_3",
+            "credentials_id":"{CREDENTIAL_ID}",
+            "selected_data_samples":[
+              "{DATA_SAMPLE_ID}"
+            ]
+          },
+          {
+            "name":"",
+            "description":"",
+            "command":"help/petstore:createPetWithPromise@latest",
+            "fields":{
+
+            },
+            "id":"step_4",
+            "credentials_id":"{CREDENTIAL_ID}",
+            "selected_data_samples":[
+              "{DATA_SAMPLE_ID}"
+            ]
           }
         ],
-        "edges":[  
-          {  
-            "config":{  
-              "mapper_type":"jsonata",
-              "mapper":{  
-                "to":"info@acme.org",
-                "subject":"Subject",
-                "textBody":"fireTime"
-              }
+        "edges":[
+          {
+            "config":{
+              "mapper":{
+
+              },
+              "condition":null
             },
             "source":"step_1",
             "target":"step_2"
+          },
+          {
+            "config":{
+              "mapper_type":"jsonata",
+              "mapper":{
+                "status":"\"sold\"",
+                "name":"result"
+              },
+              "condition":null
+            },
+            "source":"step_2",
+            "target":"step_3"
+          },
+          {
+            "config":{
+              "mapper_type":"jsonata",
+              "mapper":{
+                "status":"\"pending\"",
+                "name":"result"
+              },
+              "condition":null
+            },
+            "source":"step_2",
+            "target":"step_4"
           }
         ]
       }
     },
-    "type":"flow",
-    "relationships":{  
-      "workspace":{  
-        "data":{  
-          "id":"59d341e9037f7200184a408b",
-          "type":"workspace"
+    "relationships":{
+      "workspace":{
+        "data":{
+          "type":"workspace",
+          "id":"{WORKSPACE_ID}"
         }
       }
-    }
-  }
-}'
+    },
+    "type":"flow"
+  }'
 
 ```
 
@@ -377,93 +435,143 @@ Content-Type: application/json
 
 {
   "data":{
+    "id":"{FLOW_ID}",
     "type":"flow",
-    "id":"585918da586224001b96de89",
     "links":{
-      "self":"/v2/flows/585918da586224001b96de89"
+      "self":"/v2/flows/{FLOW_ID}"
     },
     "attributes":{
-      "name":"Timer to E-Mail Test",
-      "status":"inactive",
-      "type":"ordinary",
-      "created_at":"2018-03-27T15:39:02.825Z",
+      "api_version":"2.0",
+      "created_at":"2019-06-27T14:28:17.918Z",
       "current_status":"inactive",
       "default_mapper_type":"jsonata",
-      "description":null,
-      "updated_at":"2018-03-27T15:39:02.923Z",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "graph":{
         "nodes":[
           {
             "id":"step_1",
-            "component_id": "55bb6a58fa35a40c00000009",
-            "command":"{{ repo_name }}/timer:timer",
+            "component_id":"{COMPONENT_ID}",
+            "command":"elasticio/simple-trigger-component:timer@latest",
             "name":"",
             "description":"",
-            "fields":{
-              "interval":"minute"
-            }
+            "selected_data_samples":[
+              "{DATA_SAMPLE_ID}"
+            ]
           },
           {
             "id":"step_2",
-            "component_id": "55bb491dfa35a40c00000006",
-            "command":"{{ repo_name }}/email:send",
+            "component_id":"{COMPONENT_ID}",
+            "command":"elasticio/code:execute@latest",
+            "name":"My component",
+            "description":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            "agent_id":"{AGENT_ID}",
+            "fields":{
+              "code":"// Please note only Node.js code is supported here\nasync function run(msg) {\n\tconsole.log('Incoming message is %s', JSON.stringify(msg));\n\tconst body = { result : 'Hello world!' };\n\t// You can emit as many data messages as required\n\tawait this.emit('data', { body });\n\tconsole.log('Execution finished');\n}"
+            },
+            "selected_data_samples":[
+              "{DATA_SAMPLE_ID}"
+            ]
+          },
+          {
+            "id":"step_3",
+            "component_id":"{COMPONENT_ID}",
+            "command":"help/petstore:createPetWithPromise@latest",
             "name":"",
-            "description":""
+            "description":"",
+            "credentials_id":"{CREDENTIAL_ID}",
+            "selected_data_samples":[
+              "{DATA_SAMPLE_ID}"
+            ]
+          },
+          {
+            "id":"step_4",
+            "component_id":"{COMPONENT_ID}",
+            "command":"help/petstore:createPetWithPromise@latest",
+            "name":"",
+            "description":"",
+            "credentials_id":"{CREDENTIAL_ID}",
+            "selected_data_samples":[
+              "{DATA_SAMPLE_ID}"
+            ]
           }
         ],
         "edges":[
           {
+            "id":"step_1:step_2",
             "source":"step_1",
-            "target":"step_2",
+            "target":"step_2"
+          },
+          {
+            "id":"mapper:step_2:step_3",
             "config":{
+              "mapper_type":"jsonata",
               "mapper":{
-                "to":"info@acme.org",
-                "subject":"Test",
-                "textBody":"FireTime"
-              }
-            }
+                "status":"\"sold\"",
+                "name":"result"
+              },
+              "condition":null
+            },
+            "source":"step_2",
+            "target":"step_3"
+          },
+          {
+            "id":"mapper:step_2:step_4",
+            "config":{
+              "mapper_type":"jsonata",
+              "mapper":{
+                "status":"\"pending\"",
+                "name":"result"
+              },
+              "condition":null
+            },
+            "source":"step_2",
+            "target":"step_4"
           }
         ]
-      }
+      },
+      "last_modified":"2019-06-27T14:28:17.940Z",
+      "name":"My flow",
+      "status":"inactive",
+      "type":"ordinary",
+      "updated_at":"2019-06-27T14:28:17.940Z"
     },
     "relationships":{
       "user":{
         "data":{
-          "type":"user",
-          "id":"560e5a27734d480a00000002"
+          "id":"{USER_ID}",
+          "type":"user"
         },
         "links":{
-          "self":"/v2/users/560e5a27734d480a00000002"
+          "self":"/v2/users/{USER_ID}"
         }
       },
       "workspace":{
         "data":{
-          "type":"workspace",
-          "id":"573dd76962436c349f000003"
+          "id":"{WORKSPACE_ID}",
+          "type":"workspace"
         },
         "links":{
-          "self":"/v2/workspaces/573dd76962436c349f000003"
+          "self":"/v2/workspaces/{WORKSPACE_ID}"
         }
       },
       "versions":{
         "links":{
-          "related":"/v2/flows/585918da586224001b96de89/versions"
+          "related":"/v2/flows/{FLOW_ID}/versions"
         }
       },
       "latest_version":{
         "data":{
-          "id":"787513ee82625ef46bc10372cb6485a535b54c5f",
+          "id":"{FLOW_VERSION_ID}",
           "type":"flow-version"
         },
         "links":{
-          "self":"/v2/flows/585918da586224001b96de89/versions/787513ee82625ef46bc10372cb6485a535b54c5f",
-          "related":"/v2/flows/585918da586224001b96de89/versions/787513ee82625ef46bc10372cb6485a535b54c5f"
+          "self":"/v2/flows/{FLOW_ID}/versions/{FLOW_VERSION_ID}",
+          "related":"/v2/flows/{FLOW_ID}/versions/{FLOW_VERSION_ID}"
         }
       }
     }
   },
   "meta":{}
-}
 ```
 
 This resource allows you to create a new flow.
