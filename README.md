@@ -53,6 +53,25 @@ docker build -t apidocs:telekom \
         .
 ```
 
+# How to check, what is in the `master`
+
+1. Run the `api-docs`:
+```shell
+docker run --rm -p 8000:8000 -d elasticio/api-docs:master
+```
+
+2. Open in your browser: http://localhost:8000/
+
+3. Ensure that everything is ok.
+
+4. Stop the `api-docs`:
+```shell
+docker stop api-doc-master
+```
+
+
+
+
 # How to build and see api-docs static website locally?
 
 ## 1. Using Docker
