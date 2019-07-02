@@ -721,7 +721,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to update the given flow.
+This resource allows you to update the given flow. A new version of the flow will be created. The new version becomes the latest version of the flow.
 
 ### HTTP Request
 
