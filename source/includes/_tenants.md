@@ -67,13 +67,13 @@
         "documentation":"https://docs.elastic.io/"
       },
       "html_meta":{  
-  	"description":"Lorem ipsum",
-  	"author":"Acme Corporation",
-  	"keywords":[  
-    	  "foo",
-    	  "bar",
-    	  "baz"
-  	]
+        "description":"Lorem ipsum",
+        "author":"Acme Corporation",
+        "keywords":[  
+            "foo",
+            "bar",
+            "baz"
+        ]
       }
     }
   }
@@ -139,13 +139,13 @@ Content-Type: application/json
         "documentation":"https://docs.elastic.io/"
       },
       "html_meta":{  
-  	"description":"Lorem ipsum",
-  	"author":"Acme Corporation",
-  	"keywords":[  
-    	  "foo",
-    	  "bar",
-    	  "baz"
-  	]
+      "description":"Lorem ipsum",
+      "author":"Acme Corporation",
+      "keywords":[  
+          "foo",
+          "bar",
+          "baz"
+      ]
       }
     }
   },
@@ -960,13 +960,13 @@ attributes.roles[].i18n.{{language_key}} | no      | The name of a role in diffe
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-	  {
-	   "data":{
-		  "attributes":{
-		     "publicKey":"{CERTIFICATE}",
-		     "privateKey":"{RSA PRIVATE KEY}"
-	   }
-	 }'
+      {
+       "data":{
+          "attributes":{
+             "publicKey":"{CERTIFICATE}",
+             "privateKey":"{RSA PRIVATE KEY}"
+       }
+     }'
 ```
 
 > Example Request (with attachment):
@@ -995,7 +995,7 @@ Content-Type: application/json
       },
       "attributes":{
          "publicKey":"{CERTIFICATE}",
-		 "privateKey":"{RSA PRIVATE KEY}",
+         "privateKey":"{RSA PRIVATE KEY}",
          "salt":"3b07d847ba7580ea",
          "iv":"2df1049e2e6395eb",
          "owner":"5c4a0dde51a3d76ee8d6059d",
@@ -1191,15 +1191,15 @@ Returns **SSL certificate** object if the call succeeded
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-	  {
-	   "data":{
-		  "attributes":{
-		    "publicKey":"{CERTIFICATE}",
-		    "privateKey":"{RSA PRIVATE KEY}"
+      {
+       "data":{
+          "attributes":{
+            "publicKey":"{CERTIFICATE}",
+            "privateKey":"{RSA PRIVATE KEY}"
 
-		  }
-	   }
-	 }'
+          }
+       }
+     }'
 ```
 
 
