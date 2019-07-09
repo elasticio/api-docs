@@ -23,13 +23,13 @@
 
 ```shell
  curl '{{ api_base_url }}/v2/flows?workspace_id=59d341e9037f7200184a408b&search=webhook' \
-   -g -u {EMAIL}:{APIKEY} 
+   -g -u {EMAIL}:{APIKEY}
 ```
 
 
 > Example Request (with custom sorting):
 
-```shell 
+```shell
  curl '{{ api_base_url }}/v2/flows?workspace_id=59d341e9037f7200184a408b&sort=-updated_at' \
    -g -u {EMAIL}:{APIKEY}
 ```
@@ -339,7 +339,7 @@ The flow with given ID
             "description":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
             "command":"elasticio/code:execute@latest",
             "fields":{
-              "code":"// Please note only Node.js code is supported here\nasync function run(msg) {\n\tconsole.log('\''Incoming message is %s'\'', JSON.stringify(msg));\n\tconst body = { result : '\''Hello world!'\'' };\n\t// You can emit as many data messages as required\n\tawait this.emit('\''data'\'', { body });\n\tconsole.log('\''Execution finished'\'');\n}"
+              "code":"{{Put your custom Node.js code here}}"
             },
             "id":"step_2",
             "agent_id":"{AGENT_ID}",
