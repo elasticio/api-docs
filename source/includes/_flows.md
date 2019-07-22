@@ -588,6 +588,7 @@ This resource allows you to create a new flow.
 | attributes.name | yes | Flow name |
 | attributes.type | yes | Flow type. May be any of: ``ordinary``, ``long_running`` |
 | attributes.graph | yes | Flow graph representing component connections |
+|attributes.default_mapper_type|yes |The mapper type. A value must be ``jsonata`` (The *handlebars* is now deprecated)
 | relationships.workspace.data.id | yes | An Id of the Workspace |
 | relationships.workspace.data.type | yes | A value must be ``workspace``  |
 
@@ -638,7 +639,7 @@ Content-Type: application/json
       "self":"/v2/flows/585918da586224001b96de89"
     },
     "attributes":{
-      "name":"Timer to E-Mail Test",
+      "name":"this is a test task",
       "status":"inactive",
       "type":"ordinary",
       "created_at":"2018-03-27T15:39:02.825Z",
