@@ -177,46 +177,46 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 
 ### Payload Parameters
 
-| Parameter                               | Required | Description                                                                                                                                                                                        |
-| --------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type                                    | yes      | A value should be "tenant"                                                                                                                                                                         |
-| attributes.name                         | yes      | Name of the Tenant                                                                                                                                                                                 |
-| attributes.app_domain                   | yes      | Name of the Tenant domain                                                                                                                                                                          |
-| attributes.code                         | yes      | Tenant CSS-style                                                                                                                                                                                   |
-| attributes.api_domain                   | no       | Name of the Tenant API domain                                                                                                                                                                      |
-| attributes.webhooks_domain              | no       | Name of the Tenant webhooks domain                                                                                                                                                                 |
-| attributes.git_receiver_host            | no       | Name of the Tenant git receiver host                                                                                                                                                               |
-| attributes.header_logo_url              | no       | The URL of image which will be displayed in the page header                                                                                                                                        |
-| attributes.loading_logo_url             | no       | The URL of image which will be displayed during the page loading                                                                                                                                   |
-| attributes.email_logo_url               | no       | The URL of image which will be displayed in the emails                                                                                                                                             |
-| attributes.favicon_url                  | no       | The URL of image which will be displayed as favicon                                                                                                                                                |
-| attributes.terms_of_usage_url           | no       | The URL which redirects to the terms of usage page                                                                                                                                                 |
-| attributes.privacy_policy_url           | no       | The URL which redirects to the privacy policy page                                                                                                                                                 |
-| attributes.imprint_url                  | no       | The URL which redirects to the imprint page                                                                                                                                                        |
-| attributes.mailchimp_api_key            | no       | The MailChimp API key                                                                                                                                                                              |
-| attributes.mailchimp_list_id            | no       | The MailChimp list id                                                                                                                                                                              |
-| attributes.mandrill_email_from          | no       | An email of the letters sender                                                                                                                                                                     |
-| attributes.mandrill_api_key             | no       | The mandrill API key                                                                                                                                                                               |
-| attributes.hide_register                | no       | A value should be true or false                                                                                                                                                                    |
-| attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation                                                                                                              |
-| attributes.hide_repos                   | no       | A value should be true or false                                                                                                                                                                    |
-| attributes.hide_teams                   | no       | A value should be true or false                                                                                                                                                                    |
-| attributes.hide_ssh_keys                | no       | A value should be true or false                                                                                                                                                                    |
-| attributes.hide_api_key                 | no       | A value should be true or false                                                                                                                                                                    |
-| attributes.hide_docs                    | no       | A value should be true or false                                                                                                                                                                    |
-| attributes.powered_by_elasticio         | no       | A value should be true or false                                                                                                                                                                    |
-| attributes.css_enabled                  | no       | A value should be true or false                                                                                                                                                                    |
-| attributes.settings.member_api_key      | no       | A value should be true or false                                                                                                                                                                    |
-| attributes.custom_links\[].url          | yes      | The URL which redirects to the needed page                                                                                                                                                         |
-| attributes.custom_links\[].title        | yes      | The link text                                                                                                                                                                                      |
-| attributes.custom_links\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)                                                                                                               |
-| attributes.custom_links\[].custom_class | no       | The class added to <a> tag                                                                                                                                                                         |
-| attributes.customStylesheets\[]         | no       | Customer css stylesheets                                                                                                                                                                           |
-| attributes.customScripts\[]             | no       | Customer js-scripts                                                                                                                                                                                |
+| Parameter                               | Required | Description 
+| --------------------------------------- | -------- | ------------------------------------------------------ |
+| type                                    | yes      | A value should be "tenant"   |  
+| attributes.name                         | yes      | Name of the Tenant    |                                               
+| attributes.app_domain                   | yes      | Name of the Tenant domain   |  
+| attributes.code                         | yes      | Tenant CSS-style     |  
+| attributes.api_domain                   | no       | Name of the Tenant API domain   |
+| attributes.webhooks_domain              | no       | Name of the Tenant webhooks domain     |
+| attributes.git_receiver_host            | no       | Name of the Tenant git receiver host |
+| attributes.header_logo_url              | no       | The URL of image which will be displayed in the page header     |
+| attributes.loading_logo_url             | no       | The URL of image which will be displayed during the page loading  |
+| attributes.email_logo_url               | no       | The URL of image which will be displayed in the emails   |
+| attributes.favicon_url                  | no       | The URL of image which will be displayed as favicon   |
+| attributes.terms_of_usage_url           | no       | The URL which redirects to the terms of usage page |
+| attributes.privacy_policy_url           | no       | The URL which redirects to the privacy policy page |
+| attributes.imprint_url                  | no       | The URL which redirects to the imprint page   |
+| attributes.mailchimp_api_key            | no       | The MailChimp API key   |
+| attributes.mailchimp_list_id            | no       | The MailChimp list id |
+| attributes.mandrill_email_from          | no       | An email of the letters sender   |
+| attributes.mandrill_api_key             | no       | The mandrill API key |
+| attributes.hide_register                | no       | A value should be true or false |
+| attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation      |
+| attributes.hide_repos                   | no       | A value should be true or false   |
+| attributes.hide_teams                   | no       | A value should be true or false |
+| attributes.hide_ssh_keys                | no       | A value should be true or false |
+| attributes.hide_api_key                 | no       | A value should be true or false    |
+| attributes.hide_docs                    | no       | A value should be true or false   |
+| attributes.powered_by_elasticio         | no       | A value should be true or false   |
+| attributes.css_enabled                  | no       | A value should be true or false   |
+| attributes.settings.member_api_key      | no       | A value should be true or false |
+| attributes.custom_links\[].url          | yes      | The URL which redirects to the needed page  |
+| attributes.custom_links\[].title        | yes      | The link text |
+| attributes.custom_links\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)   |
+| attributes.custom_links\[].custom_class | no       | The class added to <a> tag   |
+| attributes.customStylesheets\[]         | no       | Customer css stylesheets  |
+| attributes.customScripts\[]             | no       | Customer js-scripts   |
 | attributes.default_workspace_type       | no       | Default Workspace type for Workspaces created in the Tenant. The value can be `full` or `limited`. If not specified, the attribute will be set to `full`or `limited` depending on Tenant settings. |
-| attributes.html_meta.description        | no       | Customer meta description in html pages                                                                                                                                                            |
-| attributes.html_meta.author             | no       | Customer meta author in html pages                                                                                                                                                                 |
-| attributes.html_meta.keywords           | no       | Customer meta keywords in html pages                                                                                                                                                               |
+| attributes.html_meta.description        | no       | Customer meta description in html pages    |
+| attributes.html_meta.author             | no       | Customer meta author in html pages  |
+| attributes.html_meta.keywords           | no       | Customer meta keywords in html pages     |
 
 ###
 
@@ -359,39 +359,39 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 
 ### Payload Parameters
 
-| Parameter                               | Required | Description                                                                                                |
-| --------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------- |
-| attributes.header_logo_url              | no       | The URL of image which will be displayed in the page header                                                |
-| attributes.loading_logo_url             | no       | The URL of image which will be displayed during the page loading                                           |
-| attributes.email_logo_url               | no       | The URL of image which will be displayed in the emails                                                     |
-| attributes.favicon_url                  | no       | The URL of image which will be displayed as favicon                                                        |
-| attributes.terms_of_usage_url           | no       | The URL which redirects to the terms of usage page                                                         |
-| attributes.privacy_policy_url           | no       | The URL which redirects to the privacy policy page                                                         |
-| attributes.imprint_url                  | no       | The URL which redirects to the imprint page                                                                |
-| attributes.mailchimp_api_key            | no       | The MailChimp API key                                                                                      |
-| attributes.mailchimp_list_id            | no       | The MailChimp list id                                                                                      |
-| attributes.mandrill_email_from          | no       | An email of the letters sender                                                                             |
-| attributes.mandrill_api_key             | no       | The mandrill API key                                                                                       |
-| attributes.hide_register                | no       | A value should be true or false                                                                            |
-| attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation                      |
-| attributes.hide_repos                   | no       | A value should be true or false                                                                            |
-| attributes.hide_teams                   | no       | A value should be true or false                                                                            |
-| attributes.hide_ssh_keys                | no       | A value should be true or false                                                                            |
-| attributes.hide_api_key                 | no       | A value should be true or false                                                                            |
-| attributes.hide_docs                    | no       | A value should be true or false                                                                            |
-| attributes.powered_by_elasticio         | no       | A value should be true or false                                                                            |
-| attributes.css_enabled                  | no       | A value should be true or false                                                                            |
-| attributes.settings.member_api_key      | no       | A value should be true or false                                                                            |
+| Parameter                               | Required | Description  |                                                       
+| --------------------------------------- | -------- | ------------------------------------------------------ |
+| attributes.header_logo_url              | no       | The URL of image which will be displayed in the page header|
+| attributes.loading_logo_url             | no       | The URL of image which will be displayed during the page loading |
+| attributes.email_logo_url               | no       | The URL of image which will be displayed in the emails|
+| attributes.favicon_url                  | no       | The URL of image which will be displayed as favicon|
+| attributes.terms_of_usage_url           | no       | The URL which redirects to the terms of usage page|
+| attributes.privacy_policy_url           | no       | The URL which redirects to the privacy policy page|
+| attributes.imprint_url                  | no       | The URL which redirects to the imprint page|
+| attributes.mailchimp_api_key            | no       | The MailChimp API key|
+| attributes.mailchimp_list_id            | no       | The MailChimp list id|
+| attributes.mandrill_email_from          | no       | An email of the letters sender|
+| attributes.mandrill_api_key             | no       | The mandrill API key|
+| attributes.hide_register                | no       | A value should be true or false     |
+| attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation  |
+| attributes.hide_repos                   | no       | A value should be true or false       |
+| attributes.hide_teams                   | no       | A value should be true or false      |
+| attributes.hide_ssh_keys                | no       | A value should be true or false    |
+| attributes.hide_api_key                 | no       | A value should be true or false  |
+| attributes.hide_docs                    | no       | A value should be true or false  |
+| attributes.powered_by_elasticio         | no       | A value should be true or false  |
+| attributes.css_enabled                  | no       | A value should be true or false |
+| attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_links` instead |
-| attributes.custom_links\[].url          | yes      | The URL which redirects to the needed page                                                                 |
-| attributes.custom_links\[].title        | yes      | The link text                                                                                              |
+| attributes.custom_links\[].url          | yes      | The URL which redirects to the needed page  |
+| attributes.custom_links\[].title        | yes      | The link text  |
 | attributes.custom_links\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)                       |
-| attributes.custom_links\[].custom_class | no       | The class added to <a> tag                                                                                 |
-| attributes.ssl_certificates.app         | no       | An ID of SSL-certificate for a web-UI domain.                                                              |
-| attributes.ssl_certificates.api         | no       | An ID of SSL-certificate for API domain.                                                                   |
-| attributes.ssl_certificates.webhooks    | no       | An ID of SSL-certificate for the webhooks domain.                                                          |
-| attributes.customStylesheets\[]         | no       | Customer css stylesheets.                                                                                  |
-| attributes.customScripts\[]             | no       | Customer js-scripts.                                                                                       |
+| attributes.custom_links\[].custom_class | no       | The class added to <a> tag|
+| attributes.ssl_certificates.app         | no       | An ID of SSL-certificate for a web-UI domain.  |
+| attributes.ssl_certificates.api         | no       | An ID of SSL-certificate for API domain.      |
+| attributes.ssl_certificates.webhooks    | no       | An ID of SSL-certificate for the webhooks domain.   |
+| attributes.customStylesheets\[]         | no       | Customer css stylesheets. |
+| attributes.customScripts\[]             | no       | Customer js-scripts.      |
 | attributes.default_workspace_type       | no       | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`        |
 
 _Note_: If Tenant's domains are matches to the `*.elastic.io` (where `*` can not contain `.`) then given Tenants can use the default Certificates. To remove existed Certificates, specify them as null (e.g. `"app": null`)
