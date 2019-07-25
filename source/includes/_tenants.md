@@ -63,23 +63,27 @@
       "settings":{
         "member_api_key":false
       },
-      "links":{
-        "documentation":"https://docs.elastic.io/"
-      },
+      "custom_links": [
+        {
+        "url": "https://docs.example.com",
+        "title": "Documentation",
+        "icon": "description",
+        "custom_class": "custom_class"
+        }
+      ],
       "html_meta":{  
         "description":"Lorem ipsum",
         "author":"Acme Corporation",
         "keywords":[  
-            "foo",
-            "bar",
-            "baz"
+          "foo",
+          "bar",
+          "baz"
         ]
       }
     }
   }
 }`
 ```
-
 
 > Example Response:
 
@@ -135,9 +139,14 @@ Content-Type: application/json
           "src":"http://path-to-2.js"
         }
       ],
-      "links":{
-        "documentation":"https://docs.elastic.io/"
-      },
+      "custom_links": [
+        {
+        "url": "https://docs.example.com",
+        "title": "Documentation",
+        "icon": "description",
+        "custom_class": "custom_class"
+        }
+      ],
       "html_meta":{  
       "description":"Lorem ipsum",
       "author":"Acme Corporation",
@@ -162,57 +171,56 @@ This resource allows you to create a new **Tenant**.
 
 `POST {{ api_base_url }}/v2/tenants`
 
-
 #### Authorization
 
 This request is authorized for the users with the `tenants.tenant.create` permission.
 
 ### Payload Parameters
-Parameter       | Required | Description
---------------- | -------- | -----------
-type            | yes      | A value should be "tenant"
-attributes.name | yes      | Name of the Tenant
-attributes.app_domain | yes      | Name of the Tenant domain
-attributes.code | yes      |  Tenant CSS-style
-attributes.api_domain | no      | Name of the Tenant API domain
-attributes.webhooks_domain | no      | Name of the Tenant webhooks domain
-attributes.git_receiver_host | no      | Name of the Tenant git receiver host
-attributes.header_logo_url | no      | The URL of image which will be displayed in the page header
-attributes.loading_logo_url | no      | The URL of image which will be displayed during the page loading
-attributes.email_logo_url | no      | The URL of image which will be displayed in the emails
-attributes.favicon_url | no      | The URL of image which will be displayed as favicon
-attributes.terms_of_usage_url | no      | The URL which redirects to the terms of usage page
-attributes.privacy_policy_url | no      | The URL which redirects to the privacy policy page
-attributes.imprint_url | no     | The URL which redirects to the imprint page
-attributes.mailchimp_api_key | no      | The MailChimp API key
-attributes.mailchimp_list_id | no      | The MailChimp list id
-attributes.mandrill_email_from | no      | An email of the letters sender
-attributes.mandrill_api_key |no      | The mandrill API key
-attributes.hide_register | no      | A value should be true or false
-attributes.is_default | no      | A value should be true or false. You can set only one default tenant per installation
-attributes.hide_repos | no      |A value should be true or false
-attributes.hide_teams | no      | A value should be true or false
-attributes.hide_ssh_keys | no      | A value should be true or false
-attributes.hide_api_key | no      | A value should be true or false
-attributes.hide_docs | no      | A value should be true or false
-attributes.powered_by_elasticio | no      | A value should be true or false
-attributes.css_enabled | no      | A value should be true or false
-attributes.settings.member_api_key | no      | A value should be true or false
-attributes.links.documentation | no      | The URL which redirects to the documentation page
-attributes.customStylesheets[] | no      | Customer css stylesheets
-attributes.customScripts[] | no      | Customer js-scripts
-attributes.default_workspace_type | no      | Default Workspace type for Workspaces created in the Tenant. The value can be `full` or `limited`. If not specified, the attribute will be set to `full`or `limited` depending on Tenant settings.
-attributes.html_meta.description | no      | Customer meta description in html pages
-attributes.html_meta.author | no      | Customer meta author in html pages
-attributes.html_meta.keywords | no      | Customer meta keywords in html pages
 
-
+| Parameter                               | Required | Description                                                                                                                                                                                        |
+| --------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type                                    | yes      | A value should be "tenant"                                                                                                                                                                         |
+| attributes.name                         | yes      | Name of the Tenant                                                                                                                                                                                 |
+| attributes.app_domain                   | yes      | Name of the Tenant domain                                                                                                                                                                          |
+| attributes.code                         | yes      | Tenant CSS-style                                                                                                                                                                                   |
+| attributes.api_domain                   | no       | Name of the Tenant API domain                                                                                                                                                                      |
+| attributes.webhooks_domain              | no       | Name of the Tenant webhooks domain                                                                                                                                                                 |
+| attributes.git_receiver_host            | no       | Name of the Tenant git receiver host                                                                                                                                                               |
+| attributes.header_logo_url              | no       | The URL of image which will be displayed in the page header                                                                                                                                        |
+| attributes.loading_logo_url             | no       | The URL of image which will be displayed during the page loading                                                                                                                                   |
+| attributes.email_logo_url               | no       | The URL of image which will be displayed in the emails                                                                                                                                             |
+| attributes.favicon_url                  | no       | The URL of image which will be displayed as favicon                                                                                                                                                |
+| attributes.terms_of_usage_url           | no       | The URL which redirects to the terms of usage page                                                                                                                                                 |
+| attributes.privacy_policy_url           | no       | The URL which redirects to the privacy policy page                                                                                                                                                 |
+| attributes.imprint_url                  | no       | The URL which redirects to the imprint page                                                                                                                                                        |
+| attributes.mailchimp_api_key            | no       | The MailChimp API key                                                                                                                                                                              |
+| attributes.mailchimp_list_id            | no       | The MailChimp list id                                                                                                                                                                              |
+| attributes.mandrill_email_from          | no       | An email of the letters sender                                                                                                                                                                     |
+| attributes.mandrill_api_key             | no       | The mandrill API key                                                                                                                                                                               |
+| attributes.hide_register                | no       | A value should be true or false                                                                                                                                                                    |
+| attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation                                                                                                              |
+| attributes.hide_repos                   | no       | A value should be true or false                                                                                                                                                                    |
+| attributes.hide_teams                   | no       | A value should be true or false                                                                                                                                                                    |
+| attributes.hide_ssh_keys                | no       | A value should be true or false                                                                                                                                                                    |
+| attributes.hide_api_key                 | no       | A value should be true or false                                                                                                                                                                    |
+| attributes.hide_docs                    | no       | A value should be true or false                                                                                                                                                                    |
+| attributes.powered_by_elasticio         | no       | A value should be true or false                                                                                                                                                                    |
+| attributes.css_enabled                  | no       | A value should be true or false                                                                                                                                                                    |
+| attributes.settings.member_api_key      | no       | A value should be true or false                                                                                                                                                                    |
+| attributes.custom_links\[].url          | yes      | The URL which redirects to the needed page                                                                                                                                                         |
+| attributes.custom_links\[].title        | yes      | The link text                                                                                                                                                                                      |
+| attributes.custom_links\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)                                                                                                               |
+| attributes.custom_links\[].custom_class | no       | The class added to <a> tag                                                                                                                                                                         |
+| attributes.customStylesheets\[]         | no       | Customer css stylesheets                                                                                                                                                                           |
+| attributes.customScripts\[]             | no       | Customer js-scripts                                                                                                                                                                                |
+| attributes.default_workspace_type       | no       | Default Workspace type for Workspaces created in the Tenant. The value can be `full` or `limited`. If not specified, the attribute will be set to `full`or `limited` depending on Tenant settings. |
+| attributes.html_meta.description        | no       | Customer meta description in html pages                                                                                                                                                            |
+| attributes.html_meta.author             | no       | Customer meta author in html pages                                                                                                                                                                 |
+| attributes.html_meta.keywords           | no       | Customer meta keywords in html pages                                                                                                                                                               |
 
 ###
 
 Returns Tenant object if the call succeeded
-
-
 
 ## Update a Tenant
 
@@ -233,6 +241,15 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
             "webhooks":"{{cert_id}}"
           },
           "default_workspace_type": "full",
+          "links": null,
+          "custom_links": [
+            {
+            "url": "https://docs.example.com",
+            "title": "Documentation",
+            "icon": "description",
+            "custom_class": "custom_class"
+            }
+          ],
           "customStylesheets":[
             {"href":"http://path-to-1.css"},
             {"href":"http://path-to-2.css"}
@@ -245,7 +262,6 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       }
     }'
 ```
-
 
 > Example Response:
 
@@ -306,9 +322,15 @@ Content-Type: application/json
           "api":"{{cert_id}}",
           "webhooks":"{{cert_id}}"
         },
-        "links":{
-          "documentation":"https://docs.elastic.io/"
-        }
+        "links": null,
+        "custom_links": [
+          {
+          "url": "https://docs.example.com",
+          "title": "Documentation",
+          "icon": "description",
+          "custom_class": "custom_class"
+          }
+        ]
       }
     }
   ],
@@ -319,62 +341,64 @@ Content-Type: application/json
 }
 ```
 
-
 This resource allows you to update a given **Tenant**.
 
 ### HTTP Request
 
 `PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}`
 
-
 #### Authorization
+
 This request is authorized for the users with the `tenants.tenant.edit` permission.
 
-
 ### URL Parameters
-Parameter           | Description
-------------------- | -----------
-TENANT_ID         | The ID of the Tenant
 
+| Parameter | Description          |
+| --------- | -------------------- |
+| TENANT_ID | The ID of the Tenant |
 
 ### Payload Parameters
-Parameter       | Required | Description
---------------- | -------- | -----------
-attributes.header_logo_url | no      | The URL of image which will be displayed in the page header
-attributes.loading_logo_url | no      | The URL of image which will be displayed during the page loading
-attributes.email_logo_url | no      | The URL of image which will be displayed in the emails
-attributes.favicon_url | no      | The URL of image which will be displayed as favicon
-attributes.terms_of_usage_url | no      | The URL which redirects to the terms of usage page
-attributes.privacy_policy_url | no      | The URL which redirects to the privacy policy page
-attributes.imprint_url | no     | The URL which redirects to the imprint page
-attributes.mailchimp_api_key | no      | The MailChimp API key
-attributes.mailchimp_list_id | no      | The MailChimp list id
-attributes.mandrill_email_from | no      | An email of the letters sender
-attributes.mandrill_api_key |no      | The mandrill API key
-attributes.hide_register | no      | A value should be true or false
-attributes.is_default | no      | A value should be true or false. You can set only one default tenant per installation
-attributes.hide_repos | no      |A value should be true or false
-attributes.hide_teams | no      | A value should be true or false
-attributes.hide_ssh_keys | no      | A value should be true or false
-attributes.hide_api_key | no      | A value should be true or false
-attributes.hide_docs | no      | A value should be true or false
-attributes.powered_by_elasticio | no      | A value should be true or false
-attributes.css_enabled | no      | A value should be true or false
-attributes.settings.member_api_key | no      | A value should be true or false
-attributes.links.documentation | no      | The URL which redirects to the documentation page
-attributes.ssl_certificates.app | no      | An ID of SSL-certificate for a web-UI domain.
-attributes.ssl_certificates.api | no| An ID of SSL-certificate for API domain.
-attributes.ssl_certificates.webhooks | no| An ID of SSL-certificate for the webhooks domain.
-attributes.customStylesheets[] | no      | Customer css stylesheets.
-attributes.customScripts[] | no      | Customer js-scripts.
-attributes.default_workspace_type | no      | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`
 
-*Note*: If Tenant's domains are matches to the `*.elastic.io` (where `*` can not contain `.`) then given Tenants can use the default Certificates. To remove existed Certificates, specify them as null (e.g. `"app": null`)
+| Parameter                               | Required | Description                                                                                                |
+| --------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------- |
+| attributes.header_logo_url              | no       | The URL of image which will be displayed in the page header                                                |
+| attributes.loading_logo_url             | no       | The URL of image which will be displayed during the page loading                                           |
+| attributes.email_logo_url               | no       | The URL of image which will be displayed in the emails                                                     |
+| attributes.favicon_url                  | no       | The URL of image which will be displayed as favicon                                                        |
+| attributes.terms_of_usage_url           | no       | The URL which redirects to the terms of usage page                                                         |
+| attributes.privacy_policy_url           | no       | The URL which redirects to the privacy policy page                                                         |
+| attributes.imprint_url                  | no       | The URL which redirects to the imprint page                                                                |
+| attributes.mailchimp_api_key            | no       | The MailChimp API key                                                                                      |
+| attributes.mailchimp_list_id            | no       | The MailChimp list id                                                                                      |
+| attributes.mandrill_email_from          | no       | An email of the letters sender                                                                             |
+| attributes.mandrill_api_key             | no       | The mandrill API key                                                                                       |
+| attributes.hide_register                | no       | A value should be true or false                                                                            |
+| attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation                      |
+| attributes.hide_repos                   | no       | A value should be true or false                                                                            |
+| attributes.hide_teams                   | no       | A value should be true or false                                                                            |
+| attributes.hide_ssh_keys                | no       | A value should be true or false                                                                            |
+| attributes.hide_api_key                 | no       | A value should be true or false                                                                            |
+| attributes.hide_docs                    | no       | A value should be true or false                                                                            |
+| attributes.powered_by_elasticio         | no       | A value should be true or false                                                                            |
+| attributes.css_enabled                  | no       | A value should be true or false                                                                            |
+| attributes.settings.member_api_key      | no       | A value should be true or false                                                                            |
+| attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_links` instead |
+| attributes.custom_links\[].url          | yes      | The URL which redirects to the needed page                                                                 |
+| attributes.custom_links\[].title        | yes      | The link text                                                                                              |
+| attributes.custom_links\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)                       |
+| attributes.custom_links\[].custom_class | no       | The class added to <a> tag                                                                                 |
+| attributes.ssl_certificates.app         | no       | An ID of SSL-certificate for a web-UI domain.                                                              |
+| attributes.ssl_certificates.api         | no       | An ID of SSL-certificate for API domain.                                                                   |
+| attributes.ssl_certificates.webhooks    | no       | An ID of SSL-certificate for the webhooks domain.                                                          |
+| attributes.customStylesheets\[]         | no       | Customer css stylesheets.                                                                                  |
+| attributes.customScripts\[]             | no       | Customer js-scripts.                                                                                       |
+| attributes.default_workspace_type       | no       | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`        |
+
+_Note_: If Tenant's domains are matches to the `*.elastic.io` (where `*` can not contain `.`) then given Tenants can use the default Certificates. To remove existed Certificates, specify them as null (e.g. `"app": null`)
 
 ### Returns
 
 Returns Tenant object if the call succeeded
-
 
 ## Get Tenants
 
@@ -384,7 +408,6 @@ Returns Tenant object if the call succeeded
  curl {{ api_base_url }}/v2/tenants/
    -u {EMAIL}:{APIKEY}
 ```
-
 
 > Example Response:
 
@@ -424,9 +447,14 @@ Content-Type: application/json
             "hide_register":false,
             "powered_by_elasticio":true,
             "ssl_certificates":{},
-            "links":{
-               "documentation":"https://docs.elastic.io/"
-            }
+            "custom_links": [
+              {
+              "url": "https://docs.example.com",
+              "title": "Documentation",
+              "icon": "description",
+              "custom_class": "custom_class"
+              }
+            ]
          }
       }
    ],
@@ -455,7 +483,6 @@ This request is authorized for the users with the `tenants.tenant.get` permissio
  curl {{ api_base_url }}/v2/tenants/{TENANT_ID}
    -u {EMAIL}:{APIKEY}
 ```
-
 
 > Example Response:
 
@@ -494,9 +521,14 @@ Content-Type: application/json
          "hide_register":false,
          "powered_by_elasticio":true,
          "ssl_certificates":{},
-         "links":{
-            "documentation":"https://docs.elastic.io/"
-         }
+         "custom_links": [
+           {
+           "url": "https://docs.example.com",
+           "title": "Documentation",
+           "icon": "description",
+           "custom_class": "custom_class"
+           }
+         ]
       }
    },
    "meta":{},
@@ -516,12 +548,11 @@ This resource allows you to retrieve a **Tenant** with the given ID.
 
 This request is authorized for the users with the `tenants.tenant.get` permission.
 
-
 ### URL Parameters
-Parameter       | Description
---------------- | -----------
-TENANT_ID | The ID of the Tenant
 
+| Parameter | Description          |
+| --------- | -------------------- |
+| TENANT_ID | The ID of the Tenant |
 
 ## Delete Tenant
 
@@ -541,24 +572,25 @@ HTTP/1.1 204 No Content
 
 This resource allows you to delete a **Tenant** with the given ID along with everything it includes.
 
-*A Tenant will be deleted only if it does not contain any contracts*
+_A Tenant will be deleted only if it does not contain any contracts_
 
 ### HTTP Request
+
 `DELETE {{ api_base_url }}/v2/tenants/{TENANT_ID} \`
 
 #### Authorization
+
 This request is authorized for the users with the `tenants.tenant.delete` permission.
 
 ### URL Parameters
-Parameter        | Description
----------------- | -----------
-TENANT_ID      | The ID of the Tenant
 
+| Parameter | Description          |
+| --------- | -------------------- |
+| TENANT_ID | The ID of the Tenant |
 
 ### Returns
 
 Responds with the `204 No content` message if the call succeeded (with empty body).
-
 
 ## Get Tenant's roles
 
@@ -568,7 +600,6 @@ Responds with the `204 No content` message if the call succeeded (with empty bod
  curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/roles
    -u {EMAIL}:{APIKEY}
 ```
-
 
 > Example Response:
 
@@ -687,12 +718,9 @@ Content-Type: application/json
     "self":"/v2/tenants/{TENANT_ID}/roles"
   }
 }
-
 ```
 
 This resource allows you to retrieve all roles for a **Tenant** with the given ID.
-
-
 
 ### HTTP Request
 
@@ -702,12 +730,11 @@ This resource allows you to retrieve all roles for a **Tenant** with the given I
 
 This request is authorized for the users with the `tenants.tenant.list_roles` permission.
 
-
 ### URL Parameters
-Parameter       | Description
---------------- | -----------
-TENANT_ID | The ID of the Tenant
 
+| Parameter | Description          |
+| --------- | -------------------- |
+| TENANT_ID | The ID of the Tenant |
 
 ## Get the list of available permissions
 
@@ -717,7 +744,6 @@ TENANT_ID | The ID of the Tenant
  curl {{ api_base_url }}/v2/permissions
    -u {EMAIL}:{APIKEY}
 ```
-
 
 > Example Response:
 
@@ -748,8 +774,8 @@ Content-Type: application/json
    "meta":{}
 }
 ```
-This endpoint returns all available permissions required for creating a role.
 
+This endpoint returns all available permissions required for creating a role.
 
 ### HTTP Request
 
@@ -757,46 +783,46 @@ This endpoint returns all available permissions required for creating a role.
 
 #### Authorization
 
-This endpoint is available to all the platforms' users. However, it does not list *service permissions* that are only available to *Service Accounts*.
-The list of *service permissions* is in the following table.
+This endpoint is available to all the platforms' users. However, it does not list _service permissions_ that are only available to _Service Accounts_.
+The list of _service permissions_ is in the following table.
 
-Permission      |  Description
---------------- |  -----------
-`global.flow.get_limited_to_stop`            | Select flows that need to be stopped in limited Workspaces. Flow lifetime period is defined in the corresponding environment variable.
-`tenants.user.create`  | Create users in a Tenant.
-`tenants.user.delete` | Remove users from a Platform.
-`tenants.user.list_all` | List all users of a Tenant.
-`tenants.user.get` | Get users by ID in a Tenant.
-`tenants.tenant.edit` |  Edit the Tenant.
-`tenants.tenant.edit_roles` | Edit roles in a Tenant.
-`tenants.tenant.list_roles` | Get the list of roles in a Tenant.
-`tenants.tenant.create` | Create Tenants.
-`tenants.tenant.delete` | Delete Tenants.
-`tenants.tenant.get` | Get Tenants by ID.
-`tenants.contract.create` | Create Contracts in a Tenant.
-`tenants.membership.edit` | Grant or remove *Tenant Admin* role to Platform users.
-`tenants.certificate.get_encrypted` | Get certificate and key in encrypted form.
-`tenants.certificate.get_info` | Get certificate metadata.
-`tenants.certificate.create` | Create certificates.
-`tenants.certificate.edit` | Edit certificates.
-`tenants.certificate.delete` | Delete certificates.
-`tenants.oauth_clients.get` | Get a list of Oauth clients in a Tenant.
-`tenants.oauth_clients.edit` | Edit Oauth clients in a Tenant.
-`tenants.oauth_clients.create` | Create Oauth clients in a Tenant.
-`tenants.oauth_clients.delete` | Delete Oauth clients in a Tenant.
-`contracts.contract.get` | Get Contracts by ID.
-`contracts.contract.edit_available_roles` | Edit available roles in a Contracts.
-`contracts.membership.edit_directly` | Edit user membership by ID.
-`contracts.contract.delete` | Delete Contracts.
-`contracts.contract.finish_delete` | Stop all flows to delete the Contract.
-`contracts.contract.finish_suspend` | Stop all flows to suspend the Contract.
-`contracts.contract.suspend` | Request Contract suspension.
-`contracts.contract.unsuspend` | Request Contract unsuspension.
-`contracts.contract.listAll` | Get list of all contracts **(Work in Progress!)**.
-`contracts.contract.list_blocking_tasks` | List blocking tasks in the Contract.
-`contracts.devTeam.edit_access` | Change repository access level.
-`workspaces.workspace.edit_type` | Edit workspace type.
-`workspaces.workspace.finish_delete` | Stop all flows to delete the Workspace.
+| Permission                                | Description                                                                                                                            |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `global.flow.get_limited_to_stop`         | Select flows that need to be stopped in limited Workspaces. Flow lifetime period is defined in the corresponding environment variable. |
+| `tenants.user.create`                     | Create users in a Tenant.                                                                                                              |
+| `tenants.user.delete`                     | Remove users from a Platform.                                                                                                          |
+| `tenants.user.list_all`                   | List all users of a Tenant.                                                                                                            |
+| `tenants.user.get`                        | Get users by ID in a Tenant.                                                                                                           |
+| `tenants.tenant.edit`                     | Edit the Tenant.                                                                                                                       |
+| `tenants.tenant.edit_roles`               | Edit roles in a Tenant.                                                                                                                |
+| `tenants.tenant.list_roles`               | Get the list of roles in a Tenant.                                                                                                     |
+| `tenants.tenant.create`                   | Create Tenants.                                                                                                                        |
+| `tenants.tenant.delete`                   | Delete Tenants.                                                                                                                        |
+| `tenants.tenant.get`                      | Get Tenants by ID.                                                                                                                     |
+| `tenants.contract.create`                 | Create Contracts in a Tenant.                                                                                                          |
+| `tenants.membership.edit`                 | Grant or remove _Tenant Admin_ role to Platform users.                                                                                 |
+| `tenants.certificate.get_encrypted`       | Get certificate and key in encrypted form.                                                                                             |
+| `tenants.certificate.get_info`            | Get certificate metadata.                                                                                                              |
+| `tenants.certificate.create`              | Create certificates.                                                                                                                   |
+| `tenants.certificate.edit`                | Edit certificates.                                                                                                                     |
+| `tenants.certificate.delete`              | Delete certificates.                                                                                                                   |
+| `tenants.oauth_clients.get`               | Get a list of Oauth clients in a Tenant.                                                                                               |
+| `tenants.oauth_clients.edit`              | Edit Oauth clients in a Tenant.                                                                                                        |
+| `tenants.oauth_clients.create`            | Create Oauth clients in a Tenant.                                                                                                      |
+| `tenants.oauth_clients.delete`            | Delete Oauth clients in a Tenant.                                                                                                      |
+| `contracts.contract.get`                  | Get Contracts by ID.                                                                                                                   |
+| `contracts.contract.edit_available_roles` | Edit available roles in a Contracts.                                                                                                   |
+| `contracts.membership.edit_directly`      | Edit user membership by ID.                                                                                                            |
+| `contracts.contract.delete`               | Delete Contracts.                                                                                                                      |
+| `contracts.contract.finish_delete`        | Stop all flows to delete the Contract.                                                                                                 |
+| `contracts.contract.finish_suspend`       | Stop all flows to suspend the Contract.                                                                                                |
+| `contracts.contract.suspend`              | Request Contract suspension.                                                                                                           |
+| `contracts.contract.unsuspend`            | Request Contract unsuspension.                                                                                                         |
+| `contracts.contract.listAll`              | Get list of all contracts **(Work in Progress!)**.                                                                                     |
+| `contracts.contract.list_blocking_tasks`  | List blocking tasks in the Contract.                                                                                                   |
+| `contracts.devTeam.edit_access`           | Change repository access level.                                                                                                        |
+| `workspaces.workspace.edit_type`          | Edit workspace type.                                                                                                                   |
+| `workspaces.workspace.finish_delete`      | Stop all flows to delete the Workspace.                                                                                                |
 
 ## Update Tenant's roles
 
@@ -840,7 +866,6 @@ Permission      |  Description
       }
     }'
 ```
-
 
 > Example Response:
 
@@ -922,8 +947,8 @@ Content-Type: application/json
   }
 }
 ```
-This resource allows you to update the roles for a **Tenant** with the given ID.
 
+This resource allows you to update the roles for a **Tenant** with the given ID.
 
 ### HTTP Request
 
@@ -933,23 +958,22 @@ This resource allows you to update the roles for a **Tenant** with the given ID.
 
 This request is authorized for the users with the `tenants.tenant.edit_roles` permission.
 
-
 ### URL Parameters
-Parameter       | Description
---------------- | -----------
-TENANT_ID | The ID of the Tenant
+
+| Parameter | Description          |
+| --------- | -------------------- |
+| TENANT_ID | The ID of the Tenant |
 
 ### Payload Parameters
-Parameter       | Required | Description
---------------- | -------- | -----------
-type            | yes      | A value should be "tenant-policy"
-attributes.roles[] | yes      |An array of Tenant's roles. It can be empty.
-attributes.roles[].role | no     | Name of a role.
-attributes.roles[].scope | no      | The group of objects, which is affected by this role. Value can be "contracts" or "workspaces"
-attributes.roles[].permissions[] | yes      | An array of permissions. It can be empty. To get the list of available permissions execute [Get the list of available permissions]({{ api_base_url }}/docs/v2/#get-the-list-of-available-permissions) endpoint
-attributes.roles[].i18n.{{language_key}} | no      | The name of a role in different languages. The value is only required for "en" key. For other languages value is optional
 
-
+| Parameter                                 | Required | Description                                                                                                                                                                                                      |
+| ----------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type                                      | yes      | A value should be "tenant-policy"                                                                                                                                                                                |
+| attributes.roles\[]                       | yes      | An array of Tenant's roles. It can be empty.                                                                                                                                                                     |
+| attributes.roles\[].role                  | no       | Name of a role.                                                                                                                                                                                                  |
+| attributes.roles\[].scope                 | no       | The group of objects, which is affected by this role. Value can be "contracts" or "workspaces"                                                                                                                   |
+| attributes.roles\[].permissions\[]        | yes      | An array of permissions. It can be empty. To get the list of available permissions execute [Get the list of available permissions](<{{ api_base_url }}/docs/v2/#get-the-list-of-available-permissions>) endpoint |
+| attributes.roles\[].i18n.{{language_key}} | no       | The name of a role in different languages. The value is only required for "en" key. For other languages value is optional                                                                                        |
 
 ## Create a SSL certificate
 
@@ -977,9 +1001,7 @@ attributes.roles[].i18n.{{language_key}} | no      | The name of a role in diffe
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: multipart/form-data'
    --form "cert=@file"
-
 ```
-
 
 > Example Response:
 
@@ -1053,31 +1075,30 @@ Content-Type: application/json
 
 This resource allows you to create a new **SSL certificate**.
 
-
 ### HTTP Request
 
 `POST {{ api_base_url }}/v2/tenants/{TENANT_ID}/certificates`
-
 
 #### Authorization
 
 This request is authorized for the users with the `tenants.certificate.create` permission.
 
 ### Payload Parameters
-Parameter       | Required | Description
---------------- | -------- | -----------
-attributes.publicKey | yes      | CERTIFICATE
-attributes.privateKey | yes      | RSA PRIVATE KEY
+
+| Parameter             | Required | Description     |
+| --------------------- | -------- | --------------- |
+| attributes.publicKey  | yes      | CERTIFICATE     |
+| attributes.privateKey | yes      | RSA PRIVATE KEY |
 
 ### URL Parameters
-Parameter        | Description
----------------- | -----------
-TENANT_ID      | The ID of the Tenant
+
+| Parameter | Description          |
+| --------- | -------------------- |
+| TENANT_ID | The ID of the Tenant |
 
 ### Returns
 
 Returns **SSL certificate** object if the call succeeded
-
 
 ## Retrieve a SSL certificate by id
 
@@ -1087,7 +1108,6 @@ Returns **SSL certificate** object if the call succeeded
  curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/certificates/{CERTIFICATE_ID} \
    -u {EMAIL}:{APIKEY}
 ```
-
 
 > Example Response:
 
@@ -1159,28 +1179,24 @@ Content-Type: application/json
 
 This resource allows you to retrieve a **SSL certificate** with the given ID for the **Tenant** with the given ID.
 
-
-
 ### HTTP Request
 
 `GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/certificates/{CERTIFICATE_ID}`
 
 ### URL Parameters
-Parameter        | Description
----------------- | -----------
-TENANT_ID      | The ID of the Tenant
-CERTIFICATE_ID      | The ID of the Certificate
 
+| Parameter      | Description               |
+| -------------- | ------------------------- |
+| TENANT_ID      | The ID of the Tenant      |
+| CERTIFICATE_ID | The ID of the Certificate |
 
 #### Authorization
 
 This request is authorized for the users with the `tenants.certificate.get_encrypted` and/or `tenants.certificate.get_info` permissions.
 
-
 ### Returns
 
 Returns **SSL certificate** object if the call succeeded
-
 
 ## Update a SSL certificate
 
@@ -1201,7 +1217,6 @@ Returns **SSL certificate** object if the call succeeded
        }
      }'
 ```
-
 
 > Example Response:
 
@@ -1275,32 +1290,31 @@ Content-Type: application/json
 
 This resource allows you to update a **SSL certificate** with the given ID for the **Tenant** with the given ID.
 
-
 ### HTTP Request
 
 `PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/certificates/{CERTIFICATE_ID}`
-
 
 #### Authorization
 
 This request is authorized for the users with the `tenants.certificate.edit` permission.
 
 ### URL Parameters
-Parameter        | Description
----------------- | -----------
-TENANT_ID      | The ID of the Tenant
-CERTIFICATE_ID      | The ID of the Certificate
+
+| Parameter      | Description               |
+| -------------- | ------------------------- |
+| TENANT_ID      | The ID of the Tenant      |
+| CERTIFICATE_ID | The ID of the Certificate |
 
 ### Payload Parameters
-Parameter       | Required | Description
---------------- | -------- | -----------
-attributes.publicKey | yes      | CERTIFICATE
-attributes.privateKey | yes      | RSA PRIVATE KEY
+
+| Parameter             | Required | Description     |
+| --------------------- | -------- | --------------- |
+| attributes.publicKey  | yes      | CERTIFICATE     |
+| attributes.privateKey | yes      | RSA PRIVATE KEY |
 
 ### Returns
 
 Returns **SSL Certificate** object if the call succeeded
-
 
 ## Delete Certificate
 
@@ -1320,8 +1334,8 @@ HTTP/1.1 204 No Content
 
 This resource allows you to delete a **SSL certificate** with the given ID for the **Tenant** with the given ID.
 
-
 ### HTTP Request
+
 `DELETE {{ api_base_url }}/v2/tenants/{TENANT_ID}/certificates/{CERTIFICATE_ID} \`
 
 #### Authorization
@@ -1329,16 +1343,15 @@ This resource allows you to delete a **SSL certificate** with the given ID for t
 This request is authorized for the users with the `tenants.certificate.delete` permission.
 
 ### URL Parameters
-Parameter        | Description
----------------- | -----------
-TENANT_ID      | The ID of the Tenant
-CERTIFICATE_ID      | The ID of the Certificate
 
+| Parameter      | Description               |
+| -------------- | ------------------------- |
+| TENANT_ID      | The ID of the Tenant      |
+| CERTIFICATE_ID | The ID of the Certificate |
 
 ### Returns
 
 Responds with the `204 No content` message if the call succeeded (with empty body).
-
 
 ## Granting Tenant Admin's permissions to the User
 
@@ -1360,7 +1373,6 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/members/{USER_ID}/ \
        }
     }'
 ```
-
 
 > Example Response:
 
@@ -1399,35 +1411,35 @@ Content-Type: application/json
    },
    "meta":{}
 }
-
 ```
 
 This endpoint allows you to grant Tenant Admin's permissions to the **User** with the given ID in the **Tenant** with the given ID.
 
-
 ### HTTP Request
+
 `PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/members/{USER_ID}/`
 
 #### Authorization
+
 This request is authorized for the users with the `tenants.membership.edit` permission.
 
 ### URL Parameters
-Parameter        | Description
----------------- | -----------
-TENANT_ID  | The ID of the Tenant
-USER_ID          | The ID of the user to be updated
+
+| Parameter | Description                      |
+| --------- | -------------------------------- |
+| TENANT_ID | The ID of the Tenant             |
+| USER_ID   | The ID of the user to be updated |
 
 ### Payload Parameters
-Parameter        | Required  | Description
----------        | --------- | -----------
-type             | yes       | A value should be the "tenant-member".
-attributes.roles[]  | yes       |A value should be the "tenant-admin".
 
+| Parameter           | Required | Description                            |
+| ------------------- | -------- | -------------------------------------- |
+| type                | yes      | A value should be the "tenant-member". |
+| attributes.roles\[] | yes      | A value should be the "tenant-admin".  |
 
 ### Returns
 
 Returns the member's object if the call succeeded
-
 
 ## Remove Tenant Admin's permissions from the user
 
@@ -1447,7 +1459,6 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/members/{USER_ID}/ \
        }
     }'
 ```
-
 
 > Example Response:
 
@@ -1484,33 +1495,35 @@ Content-Type: application/json
    },
    "meta":{}
 }
-
 ```
+
 This endpoint allows you to remove Tenant Admin's permissions from the **User** with the given ID in the **Tenant** with the given ID.
 
 ### HTTP Request
+
 `PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/members/{USER_ID}/`
 
 #### Authorization
+
 This request is authorized for the users with the `tenants.membership.edit` permission.
 
 ### URL Parameters
-Parameter        | Description
----------------- | -----------
-TENANT_ID  | The ID of the Tenant
-USER_ID          | The ID of the user to be updated
+
+| Parameter | Description                      |
+| --------- | -------------------------------- |
+| TENANT_ID | The ID of the Tenant             |
+| USER_ID   | The ID of the user to be updated |
 
 ### Payload Parameters
-Parameter        | Required  | Description
----------        | --------- | -----------
-type             | yes       | A value should be the "tenant-member".
-attributes.roles[]  | yes       |A value should be an empty array.
 
+| Parameter           | Required | Description                            |
+| ------------------- | -------- | -------------------------------------- |
+| type                | yes      | A value should be the "tenant-member". |
+| attributes.roles\[] | yes      | A value should be an empty array.      |
 
 ### Returns
 
 Returns the member's object if the call succeeded
-
 
 ## Create an Oauth-client
 
@@ -1540,7 +1553,6 @@ Returns the member's object if the call succeeded
    }'
 ```
 
-
 > Example Response:
 
 ```http
@@ -1568,40 +1580,37 @@ Content-Type: application/json
   },
   "meta":{}
 }
-
 ```
 
 This resource allows you to create a new **Oauth-client**. You can create just only one oauth-client for a component per tenant.
 
-
 ### HTTP Request
 
 `POST {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients`
-
 
 #### Authorization
 
 This request is authorized for the users with the `tenants.oauth_clients.create` permission.
 
 ### Payload Parameters
-Parameter       | Required | Description
---------------- | -------- | -----------
-type | yes      | A value should be "oauth-client"
-attributes.client_id | yes      | Oauth-client ID
-attributes.client_secret | yes      | Oauth-client secret
-relationships.component.data.id | yes      | Component ID
-relationships.component.data.type  | yes      | A value should be "component"
 
+| Parameter                         | Required | Description                      |
+| --------------------------------- | -------- | -------------------------------- |
+| type                              | yes      | A value should be "oauth-client" |
+| attributes.client_id              | yes      | Oauth-client ID                  |
+| attributes.client_secret          | yes      | Oauth-client secret              |
+| relationships.component.data.id   | yes      | Component ID                     |
+| relationships.component.data.type | yes      | A value should be "component"    |
 
 ### URL Parameters
-Parameter        | Description
----------------- | -----------
-TENANT_ID      | The ID of the Tenant
+
+| Parameter | Description          |
+| --------- | -------------------- |
+| TENANT_ID | The ID of the Tenant |
 
 ### Returns
 
 Returns **Oauth-client** object if the call succeeded
-
 
 ## Retrieve an Oauth-client
 
@@ -1660,22 +1669,20 @@ Content-Type: application/json
 
 This resource allows you to retrieve **Oauth-clients** for the **Tenant** with the given ID.
 
-
 ### HTTP Request
 
 `GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients`
 
 ### URL Parameters
-Parameter        |Required |Description
----------------- |------------ |-----------
-TENANT_ID      | yes|The ID of the Tenant
-filter[component] |no     | Filter by component_id
 
+| Parameter         | Required | Description            |
+| ----------------- | -------- | ---------------------- |
+| TENANT_ID         | yes      | The ID of the Tenant   |
+| filter[component] | no       | Filter by component_id |
 
 #### Authorization
 
 This request is authorized for the users with the `tenants.oauth_clients.get` permission.
-
 
 ### Returns
 
@@ -1689,7 +1696,6 @@ Returns **Oauth-client** object if the call succeeded
  curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/{OAUTH-CLIENT_ID} \
    -u {EMAIL}:{APIKEY}
 ```
-
 
 > Example Response:
 
@@ -1722,23 +1728,20 @@ Content-Type: application/json
 
 This resource allows you to retrieve a **Oauth-client** with the given ID for the **Tenant** with the given ID.
 
-
-
 ### HTTP Request
 
 `GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/{OAUTH-CLIENT_ID}`
 
 ### URL Parameters
-Parameter        |Required |Description
----------------- |------------ |-----------
-TENANT_ID      | yes|The ID of the Tenant
-OAUTH-CLIENT_ID |yes    | The ID of the Oauth-client
 
+| Parameter       | Required | Description                |
+| --------------- | -------- | -------------------------- |
+| TENANT_ID       | yes      | The ID of the Tenant       |
+| OAUTH-CLIENT_ID | yes      | The ID of the Oauth-client |
 
 #### Authorization
 
 This request is authorized for the users with the `tenants.oauth_clients.get` permission.
-
 
 ### Returns
 
@@ -1747,7 +1750,6 @@ Returns **Oauth-client** object if the call succeeded
 ## Update an Oauth-client
 
 > Example Request:
-
 
 ```shell
  curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/{OAUTH-CLIENT_ID} \
@@ -1772,7 +1774,6 @@ Returns **Oauth-client** object if the call succeeded
      }
    }'
 ```
-
 
 > Example Response:
 
@@ -1805,35 +1806,34 @@ Content-Type: application/json
 
 This resource allows you to update an **Oauth-client** with the given ID for the **Tenant** with the given ID.
 
-
 ### HTTP Request
 
 `PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/{OAUTH-CLIENT_ID}`
-
 
 #### Authorization
 
 This request is authorized for the users with the `tenants.oauth_clients.edit` permission.
 
 ### URL Parameters
-Parameter        | Description
----------------- | -----------
-TENANT_ID      | The ID of the Tenant
-OAUTH-CLIENT_ID      | The ID of the Oauth-client
+
+| Parameter       | Description                |
+| --------------- | -------------------------- |
+| TENANT_ID       | The ID of the Tenant       |
+| OAUTH-CLIENT_ID | The ID of the Oauth-client |
 
 ### Payload Parameters
-Parameter       | Required | Description
---------------- | -------- | -----------
-type | yes      | A value should be "oauth-client"
-attributes.client_id | yes      | Oauth-client ID
-attributes.client_secret | yes      | Oauth-client secret
-relationships.component.data.id | yes      | Component ID
-relationships.component.data.type  | yes      | A value should be "component"
+
+| Parameter                         | Required | Description                      |
+| --------------------------------- | -------- | -------------------------------- |
+| type                              | yes      | A value should be "oauth-client" |
+| attributes.client_id              | yes      | Oauth-client ID                  |
+| attributes.client_secret          | yes      | Oauth-client secret              |
+| relationships.component.data.id   | yes      | Component ID                     |
+| relationships.component.data.type | yes      | A value should be "component"    |
 
 ### Returns
 
 Returns **Oauth-client** object if the call succeeded
-
 
 ## Delete an Oauth-client
 
@@ -1853,8 +1853,8 @@ HTTP/1.1 204 No Content
 
 This resource allows you to delete a **Oauth-client** with the given ID for the **Tenant** with the given ID.
 
-
 ### HTTP Request
+
 `DELETE {{ api_base_url }}/v2/tenants/{TENANT_ID}/oauth-clients/{OAUTH-CLIENT_ID} \`
 
 #### Authorization
@@ -1862,11 +1862,11 @@ This resource allows you to delete a **Oauth-client** with the given ID for the 
 This request is authorized for the users with the `tenants.oauth_clients.delete` permission.
 
 ### URL Parameters
-Parameter        | Description
----------------- | -----------
-TENANT_ID      | The ID of the Tenant
-OAUTH-CLIENT_ID      | The ID of the Oauth-client
 
+| Parameter       | Description                |
+| --------------- | -------------------------- |
+| TENANT_ID       | The ID of the Tenant       |
+| OAUTH-CLIENT_ID | The ID of the Oauth-client |
 
 ### Returns
 
