@@ -241,7 +241,6 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
             "webhooks":"{{cert_id}}"
           },
           "default_workspace_type": "full",
-          "links": null,
           "custom_links": [
             {
             "url": "https://docs.example.com",
@@ -322,7 +321,6 @@ Content-Type: application/json
           "api":"{{cert_id}}",
           "webhooks":"{{cert_id}}"
         },
-        "links": null,
         "custom_links": [
           {
           "url": "https://docs.example.com",
