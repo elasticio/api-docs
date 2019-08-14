@@ -13,10 +13,10 @@
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-  {
-  "data":{
+{  
+  "data":{  
     "type":"tenant",
-    "attributes":{
+    "attributes":{  
       "name":"My New Tenant",
       "app_domain":"{{app_domain}}",
       "api_domain":"{{api_domain}}",
@@ -44,31 +44,69 @@
       "powered_by_elasticio":true,
       "css_enabled":false,
       "default_workspace_type":"limited",
-      "customStylesheets":[
-        {
+      "customStylesheets":[  
+        {  
           "href":"http://path-to-1.css"
         },
-        {
+        {  
           "href":"http://path-to-2.css"
         }
       ],
-      "customScripts":[
-        {
+      "customScripts":[  
+        {  
           "src":"http://path-to-1.js"
         },
-        {
+        {  
           "src":"http://path-to-2.js"
         }
       ],
-      "settings":{
+      "settings":{  
         "member_api_key":false
       },
-      "custom_links": [
-        {
-        "url": "https://docs.example.com",
-        "title": "Documentation",
-        "icon": "description",
-        "custom_class": "custom_class"
+      "custom_nav_menu_items":[  
+        {  
+          "title":"Catalogs",
+          "icon":"catalog-icon",
+          "custom_class":"custom_class",
+          "links":[  
+            {  
+              "url":"https://flow-catalog.example.com",
+              "title":"Flow catalog",
+              "icon":"flow-catalog-icon",
+              "custom_class":"custom_class"
+            },
+            {  
+              "url":"https://components-catalog.example.com",
+              "title":"Components catalog",
+              "icon":"components-catalog-icon",
+              "custom_class":"custom_class"
+            }
+          ]
+        },
+        {  
+          "title":"Information",
+          "icon":"info",
+          "custom_class":"custom_class",
+          "links":[  
+            {  
+              "url":"https://docs.example.com",
+              "title":"Documentation",
+              "icon":"docs-icon",
+              "custom_class":"custom_class"
+            },
+            {  
+              "url":"https://support.example.com",
+              "title":"Support",
+              "icon":"support-icon",
+              "custom_class":"custom_class"
+            },
+            {  
+              "url":"https://video.example.com",
+              "title":"Video",
+              "icon":"video-icon",
+              "custom_class":"custom_class"
+            }
+          ]
         }
       ],
       "html_meta":{  
@@ -90,14 +128,14 @@
 ```http
 HTTP/1.1 201 Created
 Content-Type: application/json
-{
-  "data":{
+{  
+  "data":{  
     "id":"5c6e91b9d5b4b60012a796fe",
     "type":"tenant",
-    "links":{
+    "links":{  
       "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
     },
-    "attributes":{
+    "attributes":{  
       "name":"My New Tenant",
       "app_domain":"{{app_domain}}",
       "api_domain":"{{api_domain}}",
@@ -122,44 +160,84 @@ Content-Type: application/json
       "hide_register":false,
       "powered_by_elasticio":true,
       "default_workspace_type":"limited",
-      "ssl_certificates":{},
-      "customStylesheets":[
-        {
+      "ssl_certificates":{  
+
+      },
+      "customStylesheets":[  
+        {  
           "href":"http://path-to-1.css"
         },
-        {
+        {  
           "href":"http://path-to-2.css"
         }
       ],
-      "customScripts":[
-        {
+      "customScripts":[  
+        {  
           "src":"http://path-to-1.js"
         },
-        {
+        {  
           "src":"http://path-to-2.js"
         }
       ],
-      "custom_links": [
-        {
-        "url": "https://docs.example.com",
-        "title": "Documentation",
-        "icon": "description",
-        "custom_class": "custom_class"
+      "custom_nav_menu_items":[  
+        {  
+          "title":"Catalogs",
+          "icon":"catalog-icon",
+          "custom_class":"custom_class",
+          "links":[  
+            {  
+              "url":"https://flow-catalog.example.com",
+              "title":"Flow catalog",
+              "icon":"flow-catalog-icon",
+              "custom_class":"custom_class"
+            },
+            {  
+              "url":"https://components-catalog.example.com",
+              "title":"Components catalog",
+              "icon":"components-catalog-icon",
+              "custom_class":"custom_class"
+            }
+          ]
+        },
+        {  
+          "title":"Information",
+          "icon":"info",
+          "custom_class":"custom_class",
+          "links":[  
+            {  
+              "url":"https://docs.example.com",
+              "title":"Documentation",
+              "icon":"docs-icon",
+              "custom_class":"custom_class"
+            },
+            {  
+              "url":"https://support.example.com",
+              "title":"Support",
+              "icon":"support-icon",
+              "custom_class":"custom_class"
+            },
+            {  
+              "url":"https://video.example.com",
+              "title":"Video",
+              "icon":"video-icon",
+              "custom_class":"custom_class"
+            }
+          ]
         }
       ],
       "html_meta":{  
-      "description":"Lorem ipsum",
-      "author":"Acme Corporation",
-      "keywords":[  
+        "description":"Lorem ipsum",
+        "author":"Acme Corporation",
+        "keywords":[  
           "foo",
           "bar",
           "baz"
-      ]
+        ]
       }
     }
   },
   "meta":{},
-  "links":{
+  "links":{  
     "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
   }
 }
@@ -207,10 +285,13 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.powered_by_elasticio         | no       | A value should be true or false   |
 | attributes.css_enabled                  | no       | A value should be true or false   |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
-| attributes.custom_links\[].url          | yes      | The URL which redirects to the needed page  |
-| attributes.custom_links\[].title        | yes      | The link text |
-| attributes.custom_links\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)   |
-| attributes.custom_links\[].custom_class | no       | The class added to <a> tag   |
+| attributes.custom_nav_menu_items\[].title        | yes      | The link text |
+| attributes.custom_nav_menu_items\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)   |
+| attributes.custom_nav_menu_items\[].custom_class | no       | The class added to <a> tag   |
+| attributes.custom_nav_menu_items\[].links\[].url   | yes      | The URL which redirects to the needed page  |
+| attributes.custom_nav_menu_items\[].links\[].title   | yes      | The link text |
+| attributes.custom_nav_menu_items\[].links\[].icon  | yes      |The icon name from [material-icons](https://material.io/tools/icons/?style=baseline) |
+| attributes.custom_nav_menu_items\[].links\[].custom_class   | no      | The class added to <a> tag   |
 | attributes.customStylesheets\[]         | no       | Customer css stylesheets  |
 | attributes.customScripts\[]             | no       | Customer js-scripts   |
 | attributes.default_workspace_type       | no       | Default Workspace type for Workspaces created in the Tenant. The value can be `full` or `limited`. If not specified, the attribute will be set to `full`or `limited` depending on Tenant settings. |
@@ -231,35 +312,81 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
     -X PATCH \
     -u {EMAIL}:{APIKEY} \
     -H 'Content-Type: application/json' -d '
-    {
-      "data":{
-        "type":"tenant",
-        "attributes":{
-          "ssl_certificates":{
-            "app":"{{cert_id}}",
-            "api":"{{cert_id}}",
-            "webhooks":"{{cert_id}}"
-          },
-          "default_workspace_type": "full",
-          "custom_links": [
+{
+  "data":{
+    "type":"tenant",
+    "attributes":{
+      "ssl_certificates":{
+        "app":"{{cert_id}}",
+        "api":"{{cert_id}}",
+        "webhooks":"{{cert_id}}"
+      },
+      "default_workspace_type":"full",
+      "custom_nav_menu_items":[
+        {
+          "title":"Catalogs",
+          "icon":"catalog-icon",
+          "custom_class":"custom_class",
+          "links":[
             {
-            "url": "https://docs.example.com",
-            "title": "Documentation",
-            "icon": "description",
-            "custom_class": "custom_class"
+              "url":"https://flow-catalog.example.com",
+              "title":"Flow catalog",
+              "icon":"flow-catalog-icon",
+              "custom_class":"custom_class"
+            },
+            {
+              "url":"https://components-catalog.example.com",
+              "title":"Components catalog",
+              "icon":"components-catalog-icon",
+              "custom_class":"custom_class"
             }
-          ],
-          "customStylesheets":[
-            {"href":"http://path-to-1.css"},
-            {"href":"http://path-to-2.css"}
-          ],
-          "customScripts":[
-            {"src":"http://path-to-1.js"},
-            {"src":"http://path-to-2.js"}
+          ]
+        },
+        {
+          "title":"Information",
+          "icon":"info",
+          "custom_class":"custom_class",
+          "links":[
+            {
+              "url":"https://docs.example.com",
+              "title":"Documentation",
+              "icon":"docs-icon",
+              "custom_class":"custom_class"
+            },
+            {
+              "url":"https://support.example.com",
+              "title":"Support",
+              "icon":"support-icon",
+              "custom_class":"custom_class"
+            },
+            {
+              "url":"https://video.example.com",
+              "title":"Video",
+              "icon":"video-icon",
+              "custom_class":"custom_class"
+            }
           ]
         }
-      }
-    }'
+      ],
+      "customStylesheets":[
+        {
+          "href":"http://path-to-1.css"
+        },
+        {
+          "href":"http://path-to-2.css"
+        }
+      ],
+      "customScripts":[
+        {
+          "src":"http://path-to-1.js"
+        },
+        {
+          "src":"http://path-to-2.js"
+        }
+      ]
+    }
+  }
+}'
 ```
 
 > Example Response:
@@ -268,73 +395,109 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
-  "data":[
-    {
-      "id":"5c6e91b9d5b4b60012a796fe",
-      "type":"tenant",
-      "links":{
-        "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
-      },
-      "attributes":{
-        "name":"My New Tenant",
-        "app_domain":"{{app_domain}}",
-        "api_domain":"{{api_domain}}",
-        "webhooks_domain":"{{webhooks_domain}}",
-        "git_receiver_host":"git_receiver_host",
-        "css_enabled":false,
-        "code":"{{css_code}}",
-        "header_logo_url":"//cdn.elastic.io/logo-mini.png",
-        "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
-        "email_logo_url":"//cdn.elastic.io/logo-mini.png",
-        "favicon_url":"//cdn.elastic.io/logo-mini.png",
-        "terms_of_usage_url":"https://www.elastic.io/tou/",
-        "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
-        "imprint_url":"https://www.elastic.io/legal-disclosure/",
-        "mailchimp_list_id":"{{mailchimp_list_id}}",
-        "mandrill_email_from":"foo@foo.bar",
-        "hide_repos":false,
-        "hide_teams":false,
-        "hide_ssh_keys":false,
-        "hide_api_key":false,
-        "hide_docs":false,
-        "hide_register":false,
-        "powered_by_elasticio":true,
-        "default_workspace_type":"full",
-        "customStylesheets":[
-          {
-            "href":"http://path-to-1.css"
-          },
-          {
-            "href":"http://path-to-2.css"
-          }
-        ],
-        "customScripts":[
-          {
-            "src":"http://path-to-1.js"
-          },
-          {
-            "src":"http://path-to-2.js"
-          }
-        ],
-        "ssl_certificates":{
-          "app":"{{cert_id}}",
-          "api":"{{cert_id}}",
-          "webhooks":"{{cert_id}}"
+  "data":{
+    "id":"5c6e91b9d5b4b60012a796fe",
+    "type":"tenant",
+    "links":{
+      "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
+    },
+    "attributes":{
+      "name":"My New Tenant",
+      "app_domain":"{{app_domain}}",
+      "api_domain":"{{api_domain}}",
+      "webhooks_domain":"{{webhooks_domain}}",
+      "git_receiver_host":"git_receiver_host",
+      "css_enabled":false,
+      "code":"{{css_code}}",
+      "header_logo_url":"//cdn.elastic.io/logo-mini.png",
+      "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
+      "email_logo_url":"//cdn.elastic.io/logo-mini.png",
+      "favicon_url":"//cdn.elastic.io/logo-mini.png",
+      "terms_of_usage_url":"https://www.elastic.io/tou/",
+      "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
+      "imprint_url":"https://www.elastic.io/legal-disclosure/",
+      "mailchimp_list_id":"{{mailchimp_list_id}}",
+      "mandrill_email_from":"foo@foo.bar",
+      "hide_repos":false,
+      "hide_teams":false,
+      "hide_ssh_keys":false,
+      "hide_api_key":false,
+      "hide_docs":false,
+      "hide_register":false,
+      "powered_by_elasticio":true,
+      "default_workspace_type":"full",
+      "customStylesheets":[
+        {
+          "href":"http://path-to-1.css"
         },
-        "custom_links": [
-          {
-          "url": "https://docs.example.com",
-          "title": "Documentation",
-          "icon": "description",
-          "custom_class": "custom_class"
-          }
-        ]
+        {
+          "href":"http://path-to-2.css"
+        }
+      ],
+      "customScripts":[
+        {
+          "src":"http://path-to-1.js"
+        },
+        {
+          "src":"http://path-to-2.js"
+        }
+      ],
+      "ssl_certificates":{
+        "app":"{{cert_id}}",
+        "api":"{{cert_id}}",
+        "webhooks":"{{cert_id}}"
+      },
+      "custom_nav_menu_items":[
+        {
+          "title":"Catalogs",
+          "icon":"catalog-icon",
+          "custom_class":"custom_class",
+          "links":[
+            {
+              "url":"https://flow-catalog.example.com",
+              "title":"Flow catalog",
+              "icon":"flow-catalog-icon",
+              "custom_class":"custom_class"
+            },
+            {
+              "url":"https://components-catalog.example.com",
+              "title":"Components catalog",
+              "icon":"components-catalog-icon",
+              "custom_class":"custom_class"
+            }
+          ]
+        },
+        {
+          "title":"Information",
+          "icon":"info",
+          "custom_class":"custom_class",
+          "links":[
+            {
+              "url":"https://docs.example.com",
+              "title":"Documentation",
+              "icon":"docs-icon",
+              "custom_class":"custom_class"
+            },
+            {
+              "url":"https://support.example.com",
+              "title":"Support",
+              "icon":"support-icon",
+              "custom_class":"custom_class"
+            },
+            {
+              "url":"https://video.example.com",
+              "title":"Video",
+              "icon":"video-icon",
+              "custom_class":"custom_class"
+            }
+          ]
+        }
+      ],
+      "meta":{},
+      "links":{
+        "self":"/v2/tenants"
       }
     }
-  ],
-  "meta":{},
-  "links":{
-    "self":"/v2/tenants"
   }
 }
 ```
@@ -380,11 +543,14 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.powered_by_elasticio         | no       | A value should be true or false  |
 | attributes.css_enabled                  | no       | A value should be true or false |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
-| attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_links` instead |
-| attributes.custom_links\[].url          | yes      | The URL which redirects to the needed page  |
-| attributes.custom_links\[].title        | yes      | The link text  |
-| attributes.custom_links\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)                       |
-| attributes.custom_links\[].custom_class | no       | The class added to <a> tag|
+| attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_nav_menu_items` instead |
+| attributes.custom_nav_menu_items\[].title        | yes      | The link text |
+| attributes.custom_nav_menu_items\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)   |
+| attributes.custom_nav_menu_items\[].custom_class | no       | The class added to <a> tag   |
+| attributes.custom_nav_menu_items\[].links\[].url   | yes      | The URL which redirects to the needed page  |
+| attributes.custom_nav_menu_items\[].links\[].title   | yes      | The link text |
+| attributes.custom_nav_menu_items\[].links\[].icon  | yes      |The icon name from [material-icons](https://material.io/tools/icons/?style=baseline) |
+| attributes.custom_nav_menu_items\[].links\[].custom_class   | no      | The class added to <a> tag   |
 | attributes.ssl_certificates.app         | no       | An ID of SSL-certificate for a web-UI domain.  |
 | attributes.ssl_certificates.api         | no       | An ID of SSL-certificate for API domain.      |
 | attributes.ssl_certificates.webhooks    | no       | An ID of SSL-certificate for the webhooks domain.   |
@@ -413,53 +579,93 @@ Returns Tenant object if the call succeeded
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
-   "data":[
-      {
-         "id":"5c6e91b9d5b4b60012a796fe",
-         "type":"tenant",
-         "links":{
-            "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
-         },
-         "attributes":{
-            "name":"My New Tenant",
-            "app_domain":"{{app_domain}}",
-            "api_domain":"{{api_domain}}",
-            "webhooks_domain":"{{webhooks_domain}}",
-            "git_receiver_host":"git_receiver_host",
-            "css_enabled":false,
-            "code":"{{css_code}}",
-            "header_logo_url":"//cdn.elastic.io/logo-mini.png",
-            "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
-            "email_logo_url":"//cdn.elastic.io/logo-mini.png",
-            "favicon_url":"//cdn.elastic.io/logo-mini.png",
-            "terms_of_usage_url":"https://www.elastic.io/tou/",
-            "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
-            "imprint_url":"https://www.elastic.io/legal-disclosure/",
-            "mailchimp_list_id":"{{mailchimp_list_id}}",
-            "mandrill_email_from":"foo@foo.bar",
-            "hide_repos":false,
-            "hide_teams":false,
-            "hide_ssh_keys":false,
-            "hide_api_key":false,
-            "hide_docs":false,
-            "hide_register":false,
-            "powered_by_elasticio":true,
-            "ssl_certificates":{},
-            "custom_links": [
+  "data":[
+    {
+      "id":"5c6e91b9d5b4b60012a796fe",
+      "type":"tenant",
+      "links":{
+        "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
+      },
+      "attributes":{
+        "name":"My New Tenant",
+        "app_domain":"{{app_domain}}",
+        "api_domain":"{{api_domain}}",
+        "webhooks_domain":"{{webhooks_domain}}",
+        "git_receiver_host":"git_receiver_host",
+        "css_enabled":false,
+        "code":"{{css_code}}",
+        "header_logo_url":"//cdn.elastic.io/logo-mini.png",
+        "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
+        "email_logo_url":"//cdn.elastic.io/logo-mini.png",
+        "favicon_url":"//cdn.elastic.io/logo-mini.png",
+        "terms_of_usage_url":"https://www.elastic.io/tou/",
+        "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
+        "imprint_url":"https://www.elastic.io/legal-disclosure/",
+        "mailchimp_list_id":"{{mailchimp_list_id}}",
+        "mandrill_email_from":"foo@foo.bar",
+        "hide_repos":false,
+        "hide_teams":false,
+        "hide_ssh_keys":false,
+        "hide_api_key":false,
+        "hide_docs":false,
+        "hide_register":false,
+        "powered_by_elasticio":true,
+        "ssl_certificates":{
+
+        },
+        "custom_nav_menu_items":[
+          {
+            "title":"Catalogs",
+            "icon":"catalog-icon",
+            "custom_class":"custom_class",
+            "links":[
               {
-              "url": "https://docs.example.com",
-              "title": "Documentation",
-              "icon": "description",
-              "custom_class": "custom_class"
+                "url":"https://flow-catalog.example.com",
+                "title":"Flow catalog",
+                "icon":"flow-catalog-icon",
+                "custom_class":"custom_class"
+              },
+              {
+                "url":"https://components-catalog.example.com",
+                "title":"Components catalog",
+                "icon":"components-catalog-icon",
+                "custom_class":"custom_class"
               }
             ]
-         }
+          },
+          {
+            "title":"Information",
+            "icon":"info",
+            "custom_class":"custom_class",
+            "links":[
+              {
+                "url":"https://docs.example.com",
+                "title":"Documentation",
+                "icon":"docs-icon",
+                "custom_class":"custom_class"
+              },
+              {
+                "url":"https://support.example.com",
+                "title":"Support",
+                "icon":"support-icon",
+                "custom_class":"custom_class"
+              },
+              {
+                "url":"https://video.example.com",
+                "title":"Video",
+                "icon":"video-icon",
+                "custom_class":"custom_class"
+              }
+            ]
+          }
+        ],
+        "meta":{},
+        "links":{
+          "self":"/v2/tenants"
+        }
       }
-   ],
-   "meta":{},
-   "links":{
-      "self":"/v2/tenants"
-   }
+    }
+  ]
 }
 ```
 
@@ -488,51 +694,91 @@ This request is authorized for the users with the `tenants.tenant.get` permissio
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
-   "data":{
-      "id":"5c6e91b9d5b4b60012a796fe",
-      "type":"tenant",
-      "links":{
-         "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
-      },
-      "attributes":{
-         "name":"My New Tenant",
-         "app_domain":"{{app_domain}}",
-         "api_domain":"{{api_domain}}",
-         "webhooks_domain":"{{webhooks_domain}}",
-         "git_receiver_host":"git_receiver_host",
-         "css_enabled":false,
-         "code":"{{css_code}}",
-         "header_logo_url":"//cdn.elastic.io/logo-mini.png",
-         "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
-         "email_logo_url":"//cdn.elastic.io/logo-mini.png",
-         "favicon_url":"//cdn.elastic.io/logo-mini.png",
-         "terms_of_usage_url":"https://www.elastic.io/tou/",
-         "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
-         "imprint_url":"https://www.elastic.io/legal-disclosure/",
-         "mailchimp_list_id":"{{mailchimp_list_id}}",
-         "mandrill_email_from":"foo@foo.bar",
-         "hide_repos":false,
-         "hide_teams":false,
-         "hide_ssh_keys":false,
-         "hide_api_key":false,
-         "hide_docs":false,
-         "hide_register":false,
-         "powered_by_elasticio":true,
-         "ssl_certificates":{},
-         "custom_links": [
-           {
-           "url": "https://docs.example.com",
-           "title": "Documentation",
-           "icon": "description",
-           "custom_class": "custom_class"
-           }
-         ]
-      }
-   },
-   "meta":{},
-   "links":{
+  "data":{
+    "id":"5c6e91b9d5b4b60012a796fe",
+    "type":"tenant",
+    "links":{
       "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
-   }
+    },
+    "attributes":{
+      "name":"My New Tenant",
+      "app_domain":"{{app_domain}}",
+      "api_domain":"{{api_domain}}",
+      "webhooks_domain":"{{webhooks_domain}}",
+      "git_receiver_host":"git_receiver_host",
+      "css_enabled":false,
+      "code":"{{css_code}}",
+      "header_logo_url":"//cdn.elastic.io/logo-mini.png",
+      "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
+      "email_logo_url":"//cdn.elastic.io/logo-mini.png",
+      "favicon_url":"//cdn.elastic.io/logo-mini.png",
+      "terms_of_usage_url":"https://www.elastic.io/tou/",
+      "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
+      "imprint_url":"https://www.elastic.io/legal-disclosure/",
+      "mailchimp_list_id":"{{mailchimp_list_id}}",
+      "mandrill_email_from":"foo@foo.bar",
+      "hide_repos":false,
+      "hide_teams":false,
+      "hide_ssh_keys":false,
+      "hide_api_key":false,
+      "hide_docs":false,
+      "hide_register":false,
+      "powered_by_elasticio":true,
+      "ssl_certificates":{
+
+      },
+      "custom_nav_menu_items":[
+        {
+          "title":"Catalogs",
+          "icon":"catalog-icon",
+          "custom_class":"custom_class",
+          "links":[
+            {
+              "url":"https://flow-catalog.example.com",
+              "title":"Flow catalog",
+              "icon":"flow-catalog-icon",
+              "custom_class":"custom_class"
+            },
+            {
+              "url":"https://components-catalog.example.com",
+              "title":"Components catalog",
+              "icon":"components-catalog-icon",
+              "custom_class":"custom_class"
+            }
+          ]
+        },
+        {
+          "title":"Information",
+          "icon":"info",
+          "custom_class":"custom_class",
+          "links":[
+            {
+              "url":"https://docs.example.com",
+              "title":"Documentation",
+              "icon":"docs-icon",
+              "custom_class":"custom_class"
+            },
+            {
+              "url":"https://support.example.com",
+              "title":"Support",
+              "icon":"support-icon",
+              "custom_class":"custom_class"
+            },
+            {
+              "url":"https://video.example.com",
+              "title":"Video",
+              "icon":"video-icon",
+              "custom_class":"custom_class"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "meta":{},
+  "links":{
+    "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
+  }
 }
 ```
 
