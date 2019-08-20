@@ -160,9 +160,7 @@ Content-Type: application/json
       "hide_register":false,
       "powered_by_elasticio":true,
       "default_workspace_type":"limited",
-      "ssl_certificates":{  
-
-      },
+      "ssl_certificates":{},
       "customStylesheets":[  
         {  
           "href":"http://path-to-1.css"
@@ -610,9 +608,7 @@ Content-Type: application/json
         "hide_docs":false,
         "hide_register":false,
         "powered_by_elasticio":true,
-        "ssl_certificates":{
-
-        },
+        "ssl_certificates":{},
         "custom_nav_menu_items":[
           {
             "title":"Catalogs",
@@ -724,9 +720,7 @@ Content-Type: application/json
       "hide_docs":false,
       "hide_register":false,
       "powered_by_elasticio":true,
-      "ssl_certificates":{
-
-      },
+      "ssl_certificates":{},
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
