@@ -1027,6 +1027,7 @@ The list of _service permissions_ is in the following table.
 | Permission                                | Description                                                                                                                            |
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | `global.flow.get_limited_to_stop`         | Select flows that need to be stopped in limited Workspaces. Flow lifetime period is defined in the corresponding environment variable. |
+|`global.quota_limits.edit`                 |Set or update quota limits.|
 | `tenants.user.create`                     | Create users in a Tenant.|
 | `tenants.user.delete`                     | Remove users from a Platform.|
 | `tenants.user.list_all`                   | List all users of a Tenant.|
