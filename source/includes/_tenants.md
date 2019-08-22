@@ -43,8 +43,9 @@
       "hide_docs":false,
       "powered_by_elasticio":true,
       "css_enabled":false,
+      "docs_base_url":"https://docs.elastic.io/",
       "default_workspace_type":"limited",
-      "customStylesheets":[  
+      "custom_stylesheets":[  
         {  
           "href":"http://path-to-1.css"
         },
@@ -52,7 +53,7 @@
           "href":"http://path-to-2.css"
         }
       ],
-      "customScripts":[  
+      "custom_scripts":[  
         {  
           "src":"http://path-to-1.js"
         },
@@ -159,9 +160,10 @@ Content-Type: application/json
       "hide_docs":false,
       "hide_register":false,
       "powered_by_elasticio":true,
+      "docs_base_url":"https://docs.elastic.io/",
       "default_workspace_type":"limited",
       "ssl_certificates":{},
-      "customStylesheets":[  
+      "custom_stylesheets":[  
         {  
           "href":"http://path-to-1.css"
         },
@@ -169,7 +171,7 @@ Content-Type: application/json
           "href":"http://path-to-2.css"
         }
       ],
-      "customScripts":[  
+      "custom_scripts":[  
         {  
           "src":"http://path-to-1.js"
         },
@@ -281,6 +283,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.hide_api_key                 | no       | A value should be true or false    |
 | attributes.hide_docs                    | no       | A value should be true or false   |
 | attributes.powered_by_elasticio         | no       | A value should be true or false   |
+| attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
 | attributes.css_enabled                  | no       | A value should be true or false   |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
@@ -290,8 +293,8 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.custom_nav_menu_items\[].links\[].title   | yes      | The link text |
 | attributes.custom_nav_menu_items\[].links\[].icon  | yes      |The icon name from [material-icons](https://material.io/tools/icons/?style=baseline) |
 | attributes.custom_nav_menu_items\[].links\[].custom_class   | no      | The class added to <a> tag   |
-| attributes.customStylesheets\[]         | no       | Customer css stylesheets  |
-| attributes.customScripts\[]             | no       | Customer js-scripts   |
+| attributes.custom_stylesheets\[]         | no       | Customer css stylesheets  |
+| attributes.custom_scripts\[]             | no       | Customer js-scripts   |
 | attributes.default_workspace_type       | no       | Default Workspace type for Workspaces created in the Tenant. The value can be `full` or `limited`. If not specified, the attribute will be set to `full`or `limited` depending on Tenant settings. |
 | attributes.html_meta.description        | no       | Customer meta description in html pages    |
 | attributes.html_meta.author             | no       | Customer meta author in html pages  |
@@ -320,6 +323,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
         "webhooks":"{{cert_id}}"
       },
       "default_workspace_type":"full",
+      "docs_base_url":"https://docs.elastic.io/",
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -366,7 +370,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
           ]
         }
       ],
-      "customStylesheets":[
+      "custom_stylesheets":[
         {
           "href":"http://path-to-1.css"
         },
@@ -374,7 +378,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
           "href":"http://path-to-2.css"
         }
       ],
-      "customScripts":[
+      "custom_scripts":[
         {
           "src":"http://path-to-1.js"
         },
@@ -423,8 +427,9 @@ Content-Type: application/json
       "hide_docs":false,
       "hide_register":false,
       "powered_by_elasticio":true,
+      "docs_base_url":"https://docs.elastic.io/",
       "default_workspace_type":"full",
-      "customStylesheets":[
+      "custom_stylesheets":[
         {
           "href":"http://path-to-1.css"
         },
@@ -432,7 +437,7 @@ Content-Type: application/json
           "href":"http://path-to-2.css"
         }
       ],
-      "customScripts":[
+      "custom_scripts":[
         {
           "src":"http://path-to-1.js"
         },
@@ -542,6 +547,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.css_enabled                  | no       | A value should be true or false |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_nav_menu_items` instead |
+| attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
 | attributes.custom_nav_menu_items\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)   |
 | attributes.custom_nav_menu_items\[].custom_class | no       | The class added to <a> tag   |
@@ -552,8 +558,8 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.ssl_certificates.app         | no       | An ID of SSL-certificate for a web-UI domain.  |
 | attributes.ssl_certificates.api         | no       | An ID of SSL-certificate for API domain.      |
 | attributes.ssl_certificates.webhooks    | no       | An ID of SSL-certificate for the webhooks domain.   |
-| attributes.customStylesheets\[]         | no       | Customer css stylesheets. |
-| attributes.customScripts\[]             | no       | Customer js-scripts.      |
+| attributes.custom_stylesheets\[]         | no       | Customer css stylesheets. |
+| attributes.custom_scripts\[]             | no       | Customer js-scripts.      |
 | attributes.default_workspace_type       | no       | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`        |
 
 _Note_: If Tenant's domains are matches to the `*.elastic.io` (where `*` can not contain `.`) then given Tenants can use the default Certificates. To remove existed Certificates, specify them as null (e.g. `"app": null`)
@@ -608,6 +614,7 @@ Content-Type: application/json
         "hide_docs":false,
         "hide_register":false,
         "powered_by_elasticio":true,
+        "docs_base_url":"https://docs.elastic.io/",
         "ssl_certificates":{},
         "custom_nav_menu_items":[
           {
@@ -720,6 +727,7 @@ Content-Type: application/json
       "hide_docs":false,
       "hide_register":false,
       "powered_by_elasticio":true,
+      "docs_base_url":"https://docs.elastic.io/",
       "ssl_certificates":{},
       "custom_nav_menu_items":[
         {
