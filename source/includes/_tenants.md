@@ -43,6 +43,7 @@
       "hide_docs":false,
       "powered_by_elasticio":true,
       "css_enabled":false,
+      "docs_base_url":"https://docs.elastic.io/",
       "default_workspace_type":"limited",
       "customStylesheets":[  
         {  
@@ -159,6 +160,7 @@ Content-Type: application/json
       "hide_docs":false,
       "hide_register":false,
       "powered_by_elasticio":true,
+      "docs_base_url":"https://docs.elastic.io/",
       "default_workspace_type":"limited",
       "ssl_certificates":{},
       "customStylesheets":[  
@@ -281,6 +283,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.hide_api_key                 | no       | A value should be true or false    |
 | attributes.hide_docs                    | no       | A value should be true or false   |
 | attributes.powered_by_elasticio         | no       | A value should be true or false   |
+| attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
 | attributes.css_enabled                  | no       | A value should be true or false   |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
@@ -320,6 +323,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
         "webhooks":"{{cert_id}}"
       },
       "default_workspace_type":"full",
+      "docs_base_url":"https://docs.elastic.io/",
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -423,6 +427,7 @@ Content-Type: application/json
       "hide_docs":false,
       "hide_register":false,
       "powered_by_elasticio":true,
+      "docs_base_url":"https://docs.elastic.io/",
       "default_workspace_type":"full",
       "customStylesheets":[
         {
@@ -542,6 +547,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.css_enabled                  | no       | A value should be true or false |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_nav_menu_items` instead |
+| attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
 | attributes.custom_nav_menu_items\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)   |
 | attributes.custom_nav_menu_items\[].custom_class | no       | The class added to <a> tag   |
@@ -608,6 +614,7 @@ Content-Type: application/json
         "hide_docs":false,
         "hide_register":false,
         "powered_by_elasticio":true,
+        "docs_base_url":"https://docs.elastic.io/",
         "ssl_certificates":{},
         "custom_nav_menu_items":[
           {
@@ -720,6 +727,7 @@ Content-Type: application/json
       "hide_docs":false,
       "hide_register":false,
       "powered_by_elasticio":true,
+      "docs_base_url":"https://docs.elastic.io/",
       "ssl_certificates":{},
       "custom_nav_menu_items":[
         {
