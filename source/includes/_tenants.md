@@ -997,27 +997,28 @@ This request is authorized for the users with the `tenants.tenant.list_roles` pe
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
-   "data":{
-      "id":null,
-      "type":"permissions",
-      "attributes":{
-         "permissions":[
-            "contracts.contract.edit",
-            "contracts.membership.edit",
-            "contracts.workspace.create",
-            "contracts.workspace.listAll",
-            "contracts.workspace.delete",
-            "contracts.repository.edit",
-            "contracts.devTeam.edit",
-            "workspaces.workspace.edit",
-            "workspaces.flow.edit",
-            "workspaces.flow.toggleStatus",
-            "workspaces.flow.toggleRealtime",
-            "workspaces.credential.edit"
-         ]
-      }
-   },
-   "meta":{}
+  "data":{
+    "id":null,
+    "type":"permissions",
+    "attributes":{
+      "permissions":[
+        "contracts.contract.edit",
+        "contracts.membership.edit",
+        "contracts.workspace.create",
+        "contracts.workspace.listAll",
+        "contracts.workspace.delete",
+        "contracts.repository.edit",
+        "contracts.devTeam.edit",
+        "workspaces.workspace.edit",
+        "workspaces.flow.edit",
+        "workspaces.flow.toggleStatus",
+        "workspaces.flow.toggleRealtime",
+        "workspaces.recipe.edit",
+        "workspaces.credential.edit"
+      ]
+    }
+  },
+  "meta":{}
 }
 ```
 
