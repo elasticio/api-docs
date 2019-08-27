@@ -13,10 +13,10 @@
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-{  
-  "data":{  
+{
+  "data":{
     "type":"tenant",
-    "attributes":{  
+    "attributes":{
       "name":"My New Tenant",
       "app_domain":"{{app_domain}}",
       "api_domain":"{{api_domain}}",
@@ -45,75 +45,70 @@
       "css_enabled":false,
       "docs_base_url":"https://docs.elastic.io/",
       "default_workspace_type":"limited",
-      "custom_stylesheets":[  
-        {  
+      "custom_stylesheets":[
+        {
           "href":"http://path-to-1.css"
         },
-        {  
+        {
           "href":"http://path-to-2.css"
         }
       ],
-      "custom_scripts":[  
-        {  
+      "custom_scripts":[
+        {
           "src":"http://path-to-1.js"
         },
-        {  
+        {
           "src":"http://path-to-2.js"
         }
       ],
-      "settings":{  
+      "settings":{
         "member_api_key":false
       },
-      "custom_nav_menu_items":[  
-        {  
+      "custom_nav_menu_items":[
+        {
           "title":"Catalogs",
           "icon":"catalog-icon",
           "custom_class":"custom_class",
-          "links":[  
-            {  
+          "links":[
+            {
               "url":"https://flow-catalog.example.com",
               "title":"Flow catalog",
               "icon":"flow-catalog-icon",
-              "custom_class":"custom_class"
+              "custom_class":"custom_class",
+              "target":"modal"
             },
-            {  
-              "url":"https://components-catalog.example.com",
+            {
+              "url":"https://components-catalog.example.com?workspaceId={workspaceId}&contractId={contractId}",
               "title":"Components catalog",
               "icon":"components-catalog-icon",
-              "custom_class":"custom_class"
+              "custom_class":"custom_class",
+              "target":"modal"
             }
           ]
         },
-        {  
-          "title":"Information",
-          "icon":"info",
+        {
+          "title":"Quick Help",
+          "icon":"help",
           "custom_class":"custom_class",
-          "links":[  
-            {  
-              "url":"https://docs.example.com",
+          "links":[
+            {
+              "url":"https://docs.elastic.io",
               "title":"Documentation",
-              "icon":"docs-icon",
-              "custom_class":"custom_class"
+              "icon":"description",
+              "target":"_blank"
             },
-            {  
-              "url":"https://support.example.com",
-              "title":"Support",
-              "icon":"support-icon",
-              "custom_class":"custom_class"
-            },
-            {  
-              "url":"https://video.example.com",
-              "title":"Video",
-              "icon":"video-icon",
-              "custom_class":"custom_class"
+            {
+              "title":"Help Center",
+              "icon":"forum",
+              "custom_class":"intercom-launcher"
             }
           ]
         }
       ],
-      "html_meta":{  
+      "html_meta":{
         "description":"Lorem ipsum",
         "author":"Acme Corporation",
-        "keywords":[  
+        "keywords":[
           "foo",
           "bar",
           "baz"
@@ -179,48 +174,43 @@ Content-Type: application/json
           "src":"http://path-to-2.js"
         }
       ],
-      "custom_nav_menu_items":[  
-        {  
+      "custom_nav_menu_items":[
+        {
           "title":"Catalogs",
           "icon":"catalog-icon",
           "custom_class":"custom_class",
-          "links":[  
-            {  
+          "links":[
+            {
               "url":"https://flow-catalog.example.com",
               "title":"Flow catalog",
               "icon":"flow-catalog-icon",
-              "custom_class":"custom_class"
+              "custom_class":"custom_class",
+              "target":"modal"
             },
-            {  
-              "url":"https://components-catalog.example.com",
+            {
+              "url":"https://components-catalog.example.com?workspaceId={workspaceId}&contractId={contractId}",
               "title":"Components catalog",
               "icon":"components-catalog-icon",
-              "custom_class":"custom_class"
+              "custom_class":"custom_class",
+              "target":"modal"
             }
           ]
         },
-        {  
-          "title":"Information",
-          "icon":"info",
+        {
+          "title":"Quick Help",
+          "icon":"help",
           "custom_class":"custom_class",
-          "links":[  
-            {  
-              "url":"https://docs.example.com",
+          "links":[
+            {
+              "url":"https://docs.elastic.io",
               "title":"Documentation",
-              "icon":"docs-icon",
-              "custom_class":"custom_class"
+              "icon":"description",
+              "target":"_blank"
             },
-            {  
-              "url":"https://support.example.com",
-              "title":"Support",
-              "icon":"support-icon",
-              "custom_class":"custom_class"
-            },
-            {  
-              "url":"https://video.example.com",
-              "title":"Video",
-              "icon":"video-icon",
-              "custom_class":"custom_class"
+            {
+              "title":"Help Center",
+              "icon":"forum",
+              "custom_class":"intercom-launcher"
             }
           ]
         }
@@ -293,6 +283,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.custom_nav_menu_items\[].links\[].title   | yes      | The link text |
 | attributes.custom_nav_menu_items\[].links\[].icon  | yes      |The icon name from [material-icons](https://material.io/tools/icons/?style=baseline) |
 | attributes.custom_nav_menu_items\[].links\[].custom_class   | no      | The class added to <a> tag   |
+| attributes.custom_nav_menu_items\[].links\[].target   | no      | A value can be `modal` or `_blank`. In case of "target"="modal" link will be opened in the modal window. In case of "target":"_blank", link will be opened in the new tab. The value by default is `_blank`   |
 | attributes.custom_stylesheets\[]         | no       | Customer css stylesheets  |
 | attributes.custom_scripts\[]             | no       | Customer js-scripts   |
 | attributes.default_workspace_type       | no       | Default Workspace type for Workspaces created in the Tenant. The value can be `full` or `limited`. If not specified, the attribute will be set to `full`or `limited` depending on Tenant settings. |
@@ -324,7 +315,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       },
       "default_workspace_type":"full",
       "docs_base_url":"https://docs.elastic.io/",
-      "custom_nav_menu_items":[
+     "custom_nav_menu_items":[
         {
           "title":"Catalogs",
           "icon":"catalog-icon",
@@ -334,38 +325,33 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
               "url":"https://flow-catalog.example.com",
               "title":"Flow catalog",
               "icon":"flow-catalog-icon",
-              "custom_class":"custom_class"
+              "custom_class":"custom_class",
+              "target":"modal"
             },
             {
-              "url":"https://components-catalog.example.com",
+              "url":"https://components-catalog.example.com?workspaceId={workspaceId}&contractId={contractId}",
               "title":"Components catalog",
               "icon":"components-catalog-icon",
-              "custom_class":"custom_class"
+              "custom_class":"custom_class",
+              "target":"modal"
             }
           ]
         },
         {
-          "title":"Information",
-          "icon":"info",
+          "title":"Quick Help",
+          "icon":"help",
           "custom_class":"custom_class",
           "links":[
             {
-              "url":"https://docs.example.com",
+              "url":"https://docs.elastic.io",
               "title":"Documentation",
-              "icon":"docs-icon",
-              "custom_class":"custom_class"
+              "icon":"description",
+              "target":"_blank"
             },
             {
-              "url":"https://support.example.com",
-              "title":"Support",
-              "icon":"support-icon",
-              "custom_class":"custom_class"
-            },
-            {
-              "url":"https://video.example.com",
-              "title":"Video",
-              "icon":"video-icon",
-              "custom_class":"custom_class"
+              "title":"Help Center",
+              "icon":"forum",
+              "custom_class":"intercom-launcher"
             }
           ]
         }
@@ -460,38 +446,33 @@ Content-Type: application/json
               "url":"https://flow-catalog.example.com",
               "title":"Flow catalog",
               "icon":"flow-catalog-icon",
-              "custom_class":"custom_class"
+              "custom_class":"custom_class",
+              "target":"modal"
             },
             {
-              "url":"https://components-catalog.example.com",
+              "url":"https://components-catalog.example.com?workspaceId={workspaceId}&contractId={contractId}",
               "title":"Components catalog",
               "icon":"components-catalog-icon",
-              "custom_class":"custom_class"
+              "custom_class":"custom_class",
+              "target":"modal"
             }
           ]
         },
         {
-          "title":"Information",
-          "icon":"info",
+          "title":"Quick Help",
+          "icon":"help",
           "custom_class":"custom_class",
           "links":[
             {
-              "url":"https://docs.example.com",
+              "url":"https://docs.elastic.io",
               "title":"Documentation",
-              "icon":"docs-icon",
-              "custom_class":"custom_class"
+              "icon":"description",
+              "target":"_blank"
             },
             {
-              "url":"https://support.example.com",
-              "title":"Support",
-              "icon":"support-icon",
-              "custom_class":"custom_class"
-            },
-            {
-              "url":"https://video.example.com",
-              "title":"Video",
-              "icon":"video-icon",
-              "custom_class":"custom_class"
+              "title":"Help Center",
+              "icon":"forum",
+              "custom_class":"intercom-launcher"
             }
           ]
         }
@@ -555,6 +536,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.custom_nav_menu_items\[].links\[].title   | yes      | The link text |
 | attributes.custom_nav_menu_items\[].links\[].icon  | yes      |The icon name from [material-icons](https://material.io/tools/icons/?style=baseline) |
 | attributes.custom_nav_menu_items\[].links\[].custom_class   | no      | The class added to <a> tag   |
+| attributes.custom_nav_menu_items\[].links\[].target   | no      | A value can be `modal` or `_blank`. In case of "target"="modal" link will be opened in the modal window. In case of "target":"_blank", link will be opened in the new tab. The value by default is `_blank`   |
 | attributes.ssl_certificates.app         | no       | An ID of SSL-certificate for a web-UI domain.  |
 | attributes.ssl_certificates.api         | no       | An ID of SSL-certificate for API domain.      |
 | attributes.ssl_certificates.webhooks    | no       | An ID of SSL-certificate for the webhooks domain.   |
@@ -616,52 +598,47 @@ Content-Type: application/json
         "powered_by_elasticio":true,
         "docs_base_url":"https://docs.elastic.io/",
         "ssl_certificates":{},
-        "custom_nav_menu_items":[
-          {
-            "title":"Catalogs",
-            "icon":"catalog-icon",
-            "custom_class":"custom_class",
-            "links":[
-              {
-                "url":"https://flow-catalog.example.com",
-                "title":"Flow catalog",
-                "icon":"flow-catalog-icon",
-                "custom_class":"custom_class"
-              },
-              {
-                "url":"https://components-catalog.example.com",
-                "title":"Components catalog",
-                "icon":"components-catalog-icon",
-                "custom_class":"custom_class"
-              }
-            ]
-          },
-          {
-            "title":"Information",
-            "icon":"info",
-            "custom_class":"custom_class",
-            "links":[
-              {
-                "url":"https://docs.example.com",
-                "title":"Documentation",
-                "icon":"docs-icon",
-                "custom_class":"custom_class"
-              },
-              {
-                "url":"https://support.example.com",
-                "title":"Support",
-                "icon":"support-icon",
-                "custom_class":"custom_class"
-              },
-              {
-                "url":"https://video.example.com",
-                "title":"Video",
-                "icon":"video-icon",
-                "custom_class":"custom_class"
-              }
-            ]
-          }
-        ],
+       "custom_nav_menu_items":[
+        {
+          "title":"Catalogs",
+          "icon":"catalog-icon",
+          "custom_class":"custom_class",
+          "links":[
+            {
+              "url":"https://flow-catalog.example.com",
+              "title":"Flow catalog",
+              "icon":"flow-catalog-icon",
+              "custom_class":"custom_class",
+              "target":"modal"
+            },
+            {
+              "url":"https://components-catalog.example.com?workspaceId={workspaceId}&contractId={contractId}",
+              "title":"Components catalog",
+              "icon":"components-catalog-icon",
+              "custom_class":"custom_class",
+              "target":"modal"
+            }
+          ]
+        },
+        {
+          "title":"Quick Help",
+          "icon":"help",
+          "custom_class":"custom_class",
+          "links":[
+            {
+              "url":"https://docs.elastic.io",
+              "title":"Documentation",
+              "icon":"description",
+              "target":"_blank"
+            },
+            {
+              "title":"Help Center",
+              "icon":"forum",
+              "custom_class":"intercom-launcher"
+            }
+          ]
+        }
+      ],
         "meta":{},
         "links":{
           "self":"/v2/tenants"
@@ -729,7 +706,7 @@ Content-Type: application/json
       "powered_by_elasticio":true,
       "docs_base_url":"https://docs.elastic.io/",
       "ssl_certificates":{},
-      "custom_nav_menu_items":[
+     "custom_nav_menu_items":[
         {
           "title":"Catalogs",
           "icon":"catalog-icon",
@@ -739,44 +716,37 @@ Content-Type: application/json
               "url":"https://flow-catalog.example.com",
               "title":"Flow catalog",
               "icon":"flow-catalog-icon",
-              "custom_class":"custom_class"
+              "custom_class":"custom_class",
+              "target":"modal"
             },
             {
-              "url":"https://components-catalog.example.com",
+              "url":"https://components-catalog.example.com?workspaceId={workspaceId}&contractId={contractId}",
               "title":"Components catalog",
               "icon":"components-catalog-icon",
-              "custom_class":"custom_class"
+              "custom_class":"custom_class",
+              "target":"modal"
             }
           ]
         },
         {
-          "title":"Information",
-          "icon":"info",
+          "title":"Quick Help",
+          "icon":"help",
           "custom_class":"custom_class",
           "links":[
             {
-              "url":"https://docs.example.com",
+              "url":"https://docs.elastic.io",
               "title":"Documentation",
-              "icon":"docs-icon",
-              "custom_class":"custom_class"
+              "icon":"description",
+              "target":"_blank"
             },
             {
-              "url":"https://support.example.com",
-              "title":"Support",
-              "icon":"support-icon",
-              "custom_class":"custom_class"
-            },
-            {
-              "url":"https://video.example.com",
-              "title":"Video",
-              "icon":"video-icon",
-              "custom_class":"custom_class"
+              "title":"Help Center",
+              "icon":"forum",
+              "custom_class":"intercom-launcher"
             }
           ]
         }
-      ]
-    }
-  },
+      ],
   "meta":{},
   "links":{
     "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
