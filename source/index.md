@@ -17,6 +17,7 @@ includes:
   - flows
   - flow-drafts
   - flow-versions
+  - recipes
   - resources
   - sshkeys
   - teams
