@@ -71,114 +71,6 @@
   }'
 ```
 
-> Example Response:
-
-```http
-HTTP/1.1 201 Created
-Content-Type: application/json
-
-{
-  "data": {
-    "id": "{RECIPE_ID}",
-    "type": "recipe",
-    "links": {
-      "self": "/v2/recipes/{RECIPE_ID}"
-    },
-    "attributes": {
-      "title": "My first recipe 2nd itteration",
-      "cron": "*/3 * * * *",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "help_text": "No setup required",
-      "tags": [
-        
-      ],
-      "graph": {
-        "edges": [
-          {
-            "config": {
-              "condition": null,
-              "mapper": {
-                "textBody": "pets[0].status",
-                "subject": "pets[0].id",
-                "to": "pets[0].name"
-              },
-              "mapper_type": "jsonata"
-            },
-            "source": "step_1",
-            "target": "step_2"
-          }
-        ],
-        "nodes": [
-          {
-            "name": "Step name",
-            "description": "Step description",
-            "command": "elasticio/petstore:getPetsByStatusWithGenerators@latest",
-            "id": "step_1"
-          },
-          {
-            "name": "Step name",
-            "description": "Step description",
-            "command": "elasticio/email:send@latest",
-            "fields": {
-              "dontThrowErrorFlg": true
-            },
-            "id": "step_2"
-          }
-        ]
-      }
-    },
-    "relationships": {
-      "user": {
-        "data": {
-          "id": "{USER_ID}",
-          "type": "user"
-        },
-        "links": {
-          "self": "/v2/users/{USER_ID}"
-        }
-      },
-      "workspace": {
-        "data": {
-          "id": "{WORKSPACE_ID}",
-          "type": "workspace"
-        },
-        "links": {
-          "self": "/v2/workspaces/{WORKSPACE_ID}"
-        }
-      }
-    }
-  },
-  "meta": {
-    
-  }
-}
-```
-
-This resource allows you to create a new recipe without required trigger/action fields.
-
-### HTTP Request
-
-`POST {{ api_base_url }}/v2/recipes/`
-
-### Body Parameters
-
-| Parameter                         | Required | Description                                                                     |
-| :-------------------------------- | :------- | :------------------------------------------------------------------------------ |
-| type                              | yes      | A value must be `recipe`                                                        |
-| attributes.cron                   | no       | Cron expression                                                                 |
-| attributes.name                   | yes      | Recipe name                                                                     |
-| attributes.graph                  | yes      | Recipe graph representing component connections                                 |
-| relationships.workspace.data.id   | yes      | An Id of the Workspace                                                          |
-| relationships.workspace.data.type | yes      | A value must be `workspace`                                                     |
-
-### Authorization
-
-This request is authorized to only a user with `workspaces.recipe.edit` permission
-
-### Returns
-
-Returns the created recipe
-
 > Example Request (with required trigger/action fields):
 
 ```shell
@@ -287,16 +179,13 @@ Content-Type: application/json
         "nodes": [
           {
             "name": "Step name",
-            "description": "Node description",
+            "description": "Step description",
             "command": "elasticio/petstore:getPetsByStatusWithGenerators@latest",
-            "fields": {
-              "status": "pending"
-            },
             "id": "step_1"
           },
           {
             "name": "Step name",
-            "description": "Node description",
+            "description": "Step description",
             "command": "elasticio/email:send@latest",
             "fields": {
               "dontThrowErrorFlg": true
@@ -309,7 +198,7 @@ Content-Type: application/json
     "relationships": {
       "user": {
         "data": {
-              "id": "{USER_ID}",
+          "id": "{USER_ID}",
           "type": "user"
         },
         "links": {
@@ -341,8 +230,6 @@ This resource allows you to create a new recipe.
 
 ### Body Parameters
 
-### Body Parameters
-
 | Parameter                         | Required | Description                                                                     |
 | :-------------------------------- | :------- | :------------------------------------------------------------------------------ |
 | type                              | yes      | A value must be `recipe`                                                        |
@@ -359,6 +246,7 @@ This request is authorized to only a user with `workspaces.recipe.edit` permissi
 ### Returns
 
 Returns the created recipe
+
 
 ## Retrieve a recipe by ID
 
@@ -715,7 +603,7 @@ Create a flow from a recipe. If the recipe contains a component, which requires 
 
 ### Authorization
 
-This request is authorized for a user with the `workspaces.recipe.edit` permission.
+This request is authorized for a user with the `workspaces.flow.edit` permission.
 
 ### Returns
 
