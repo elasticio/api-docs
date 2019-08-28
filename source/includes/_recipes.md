@@ -4,9 +4,9 @@
  <b>The recipes section is an experimental API</b>
  </aside>
 
-## Create a recipe without required trigger/action fields
+## Create a recipe
 
-> Example Request:
+> Example Request (without required trigger/action fields):
 
 ```shell
  curl -X POST {{ api_base_url }} /v2/recipes \
@@ -179,9 +179,7 @@ This request is authorized to only a user with `workspaces.recipe.edit` permissi
 
 Returns the created recipe
 
-## Create a recipe with required trigger/action fields
-
-> Example Request:
+> Example Request (with required trigger/action fields):
 
 ```shell
  curl -X POST {{ api_base_url }} /v2/recipes \
@@ -335,7 +333,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to create a new recipe with required trigger/action fields.
+This resource allows you to create a new recipe.
 
 ### HTTP Request
 
@@ -449,8 +447,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve a recipe by its identifier. If the recipe with given ID does not belong to the current
-user or to one of his Workspace, an error is returned.
+This resource allows you to retrieve a recipe by its ID.
 
 ### HTTP Request
 
@@ -462,11 +459,13 @@ user or to one of his Workspace, an error is returned.
 | :-------- | :------- | :---------------- |
 | RECIPE_ID | Yes      | Recipe identifier |
 
+### Authorization
+
+This request is authorized to a member of the corresponding contract only.
+
 ### Returns
 
 The recipe with given ID
-
-* * *
 
 ## Update a recipe
 
@@ -632,7 +631,7 @@ This resource allows you to update the given recipe.
 | attributes.name                   | yes      | Recipe name                                                                     |
 | attributes.cron                   | no       | Cron expression                                                                 |
 | attributes.graph                  | yes      | Recipe graph representing component connections                                 |
-| relationships.workspace.data.id   | yes      | An Id of the Workspace                                                          |
+| relationships.workspace.data.id   | yes      | MUST be the same as the {RECIPE_ID}                                             |
 | relationships.workspace.data.type | yes      | A value must be `workspace`                                                     |
 
 ### Authorization
@@ -702,7 +701,7 @@ HTTP/1.1 201 Created
 }
 ```
 
-Create a flow from a recipe.
+Create a flow from a recipe. If the recipe contains a component, which requires a credential, it should be provided among the request payload.
 
 ### HTTP Request
 
