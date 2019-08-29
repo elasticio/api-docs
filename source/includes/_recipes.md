@@ -607,7 +607,7 @@ This request is authorized for a user with the `workspaces.flow.edit` permission
 
 ### Returns
 
-todo: fix
+Returns an ID of created Flow
 
 ## Delete a recipe
 
