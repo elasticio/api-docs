@@ -245,7 +245,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 
 ### Payload Parameters
 
-| Parameter                               | Required | Description 
+| Parameter                               | Required | Description
 | --------------------------------------- | -------- | ------------------------------------------------------ |
 | type                                    | yes      | A value should be "tenant"   |  
 | attributes.name                         | yes      | Name of the Tenant    |                                               
@@ -1006,7 +1006,9 @@ The list of _service permissions_ is in the following table.
 | Permission                                | Description                                                                                                                            |
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | `global.flow.get_limited_to_stop`         | Select flows that need to be stopped in limited Workspaces. Flow lifetime period is defined in the corresponding environment variable. |
-|`global.quota_limits.edit`                 |Set or update quota limits.|
+| `global.quota_limits.edit`                |Set or update quota limits.|
+| `global.contract.contract.list_all`       |List all contracts|
+| `global.workspace.get_all`                |List all Workspaces|
 | `tenants.user.create`                     | Create users in a Tenant.|
 | `tenants.user.delete`                     | Remove users from a Platform.|
 | `tenants.user.list_all`                   | List all users of a Tenant.|
