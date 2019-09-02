@@ -1,5 +1,5 @@
 # Recipes (Experimental)
-         
+
  <aside class="warning">
  <b>The recipes section is an experimental API</b>
  </aside>
@@ -21,9 +21,7 @@
         "cron": "*/3 * * * *",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "help_text": "No setup required",
-        "tags": [
-          
-        ],
+        "tags": [],
         "graph": {
           "nodes": [
             {
@@ -86,9 +84,7 @@
          "title": "My first recipe 2nd itteration",
          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
          "help_text": "No setup required",
-         "tags": [
-           
-         ],
+         "tags": [],
          "graph": {
            "nodes": [
              {
@@ -157,9 +153,7 @@ Content-Type: application/json
       "cron": "*/3 * * * *",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "help_text": "No setup required",
-      "tags": [
-        
-      ],
+      "tags": [],
       "graph": {
         "edges": [
           {
@@ -216,9 +210,7 @@ Content-Type: application/json
       }
     }
   },
-  "meta": {
-    
-  }
+  "meta": {}
 }
 ```
 
@@ -274,9 +266,7 @@ Content-Type: application/json
       "title": "My first recipe 2nd itteration",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "help_text": "No setup required",
-      "tags": [
-        
-      ],
+      "tags": [],
       "graph": {
         "edges": [
           {
@@ -329,9 +319,7 @@ Content-Type: application/json
       }
     }
   },
-  "meta": {
-    
-  }
+  "meta": {}
 }
 ```
 
@@ -355,6 +343,186 @@ This request is authorized to a member of the corresponding contract only.
 
 The recipe with given ID
 
+
+## Retrieve all recipes
+
+
+> Example Request (with custom paging):
+
+```shell
+ curl '{{ api_base_url }}/v2/recipes?contract_id={CONTRACT_ID}&page[size]=2&page[number]=1' \
+   -g -u {EMAIL}:{APIKEY}
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "data":[
+    {
+      "id":"{RECIPE_ID}",
+      "type":"recipe",
+      "links":{
+        "self":"/v2/recipes/{RECIPE_ID}"
+      },
+      "attributes":{
+        "title":"My first recipe",
+        "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "help_text":"No setup required",
+        "tags":[],
+        "graph":{
+          "edges":[
+            {
+              "config":{
+                "mapper_type":"jsonata",
+                "mapper":{
+                  "to":"pets[0].name",
+                  "subject":"pets[0].id",
+                  "textBody":"pets[0].status"
+                },
+                "condition":null
+              },
+              "source":"step_1",
+              "target":"step_2"
+            }
+          ],
+          "nodes":[
+            {
+              "command":"elasticio/petstore:getPetsByStatusWithGenerators@7edfbaba2e7457b7d4413dcbfd9e4fa7991c0a1a",
+              "fields":{
+                "status":"pending"
+              },
+              "id":"step_1"
+            },
+            {
+              "command":"elasticio/email:send@b9f4e1483c964e0c2fe6f7600ffe81b6aca8ef33",
+              "fields":{
+                "dontThrowErrorFlg":true
+              },
+              "id":"step_2"
+            }
+          ]
+        }
+      },
+      "relationships":{
+        "user":{
+          "data":{
+            "id":"{USER_ID}",
+            "type":"user"
+          },
+          "links":{
+            "self":"/v2/users/{USER_ID}"
+          }
+        },
+        "workspace":{
+          "data":{
+            "id":"{WORKSPACE_ID}",
+            "type":"workspace"
+          },
+          "links":{
+            "self":"/v2/workspaces/{WORKSPACE_ID}"
+          }
+        }
+      }
+    },
+    {
+      "id":"{RECIPE_ID}",
+      "type":"recipe",
+      "links":{
+        "self":"/v2/recipes/{RECIPE_ID}"
+      },
+      "attributes":{
+        "title":"My second recipe",
+        "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "help_text":"No setup required",
+        "tags":[],
+        "graph":{
+          "edges":[
+            {
+              "config":{
+                "mapper_type":"jsonata",
+                "mapper":{
+                  "to":"pets[0].name",
+                  "subject":"pets[0].id",
+                  "textBody":"pets[0].status"
+                },
+                "condition":null
+              },
+              "source":"step_1",
+              "target":"step_2"
+            }
+          ],
+          "nodes":[
+            {
+              "command":"elasticio/petstore:getPetsByStatusWithGenerators@7edfbaba2e7457b7d4413dcbfd9e4fa7991c0a1a",
+              "fields":{
+                "status":"pending"
+              },
+              "id":"step_1"
+            },
+            {
+              "command":"elasticio/email:send@b9f4e1483c964e0c2fe6f7600ffe81b6aca8ef33",
+              "fields":{
+                "dontThrowErrorFlg":true
+              },
+              "id":"step_2"
+            }
+          ]
+        }
+      },
+      "relationships":{
+        "user":{
+          "data":{
+            "id":"{USER_ID}",
+            "type":"user"
+          },
+          "links":{
+            "self":"/v2/users/{USER_ID}"
+          }
+        },
+        "workspace":{
+          "data":{
+            "id":"{WORKSPACE_ID}",
+            "type":"workspace"
+          },
+          "links":{
+            "self":"/v2/workspaces/{WORKSPACE_ID}"
+          }
+        }
+      }
+    }
+  ],
+  "meta":{
+    "page":1,
+    "per_page":2,
+    "total":16,
+    "total_pages":8
+  }
+}
+```
+
+This resource allows you to retrieve all recipes.
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/recipes/`
+
+### Query Parameters
+
+| Parameter         | Required  | Description |
+| :---              | :---      | :---        |
+|contract_id|yes| An Id of the Contract is required for the first iteration (until private/public recipes will be introduced)|
+| page[size]        | no | Amount of items per page. Default is `50`. |
+| page[number]      | no | Number of page you want to display. Default is `1`. |
+
+### Returns
+
+Returns all recipes in the specified Contract.
+
+
 ## Update a recipe
 
 > Example request
@@ -374,12 +542,10 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
          "cron": "*/3 * * * *",
          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
          "help_text": "No setup required",
-         "tags": [
-           
-         ],
+         "tags": [],
          "graph": {
            "nodes": [
-             { 
+             {
                "name": "New name",
                "description": "New description",
                "command": "elasticio/petstore:getPetsByStatusWithGenerators@latest",
@@ -434,9 +600,7 @@ Content-Type: application/json
       "cron": "*/3 * * * *",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "help_text": "No setup required",
-      "tags": [
-        
-      ],
+      "tags": [],
       "graph": {
         "edges": [
           {
@@ -493,9 +657,7 @@ Content-Type: application/json
       }
     }
   },
-  "meta": {
-    
-  }
+  "meta": {}
 }
 ```
 
@@ -583,9 +745,7 @@ HTTP/1.1 201 Created
       }
     }
   },
-  "meta": {
-    
-  }
+  "meta": {}
 }
 ```
 
@@ -639,7 +799,7 @@ HTTP/1.1 200 Ok
   "data": null,
   "meta": {
     "unlinked_flows": [
-      
+
     ]
   }
 }
