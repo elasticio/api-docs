@@ -21,9 +21,7 @@
         "cron": "*/3 * * * *",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "help_text": "No setup required",
-        "tags": [
-
-        ],
+        "tags": [],
         "graph": {
           "nodes": [
             {
@@ -86,9 +84,7 @@
          "title": "My first recipe 2nd itteration",
          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
          "help_text": "No setup required",
-         "tags": [
-
-         ],
+         "tags": [],
          "graph": {
            "nodes": [
              {
@@ -157,9 +153,7 @@ Content-Type: application/json
       "cron": "*/3 * * * *",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "help_text": "No setup required",
-      "tags": [
-
-      ],
+      "tags": [],
       "graph": {
         "edges": [
           {
@@ -272,9 +266,7 @@ Content-Type: application/json
       "title": "My first recipe 2nd itteration",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "help_text": "No setup required",
-      "tags": [
-
-      ],
+      "tags": [],
       "graph": {
         "edges": [
           {
@@ -380,9 +372,7 @@ Content-Type: application/json
         "title":"My first recipe",
         "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "help_text":"No setup required",
-        "tags":[
-
-        ],
+        "tags":[],
         "graph":{
           "edges":[
             {
@@ -448,9 +438,7 @@ Content-Type: application/json
         "title":"My second recipe",
         "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "help_text":"No setup required",
-        "tags":[
-
-        ],
+        "tags":[],
         "graph":{
           "edges":[
             {
@@ -554,9 +542,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
          "cron": "*/3 * * * *",
          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
          "help_text": "No setup required",
-         "tags": [
-
-         ],
+         "tags": [],
          "graph": {
            "nodes": [
              {
@@ -614,9 +600,7 @@ Content-Type: application/json
       "cron": "*/3 * * * *",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "help_text": "No setup required",
-      "tags": [
-
-      ],
+      "tags": [],
       "graph": {
         "edges": [
           {
