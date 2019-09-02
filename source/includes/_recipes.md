@@ -216,9 +216,7 @@ Content-Type: application/json
       }
     }
   },
-  "meta": {
-
-  }
+  "meta": {}
 }
 ```
 
@@ -329,9 +327,7 @@ Content-Type: application/json
       }
     }
   },
-  "meta": {
-
-  }
+  "meta": {}
 }
 ```
 
@@ -677,9 +673,7 @@ Content-Type: application/json
       }
     }
   },
-  "meta": {
-
-  }
+  "meta": {}
 }
 ```
 
@@ -767,9 +761,7 @@ HTTP/1.1 201 Created
       }
     }
   },
-  "meta": {
-
-  }
+  "meta": {}
 }
 ```
 
