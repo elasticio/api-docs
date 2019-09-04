@@ -916,7 +916,7 @@ This resource allows you to delete a recipe.
 
 | Parameter | Required | Description |
 | :-------- | :------- | :---------- |
-| RECIPE_ID   | yes    | Recipe ID     |
+| RECIPE_ID   | yes    | Recipe ID   |
 
 > Example Response:
 
