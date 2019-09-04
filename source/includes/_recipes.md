@@ -240,6 +240,133 @@ This request is authorized to only a user with `workspaces.recipe.edit` permissi
 Returns the created recipe
 
 
+## Create a recipe from existing flow
+
+> Example Request:
+
+```shell
+ curl -X POST {{ api_base_url }} /v2/flows/{FLOW_ID}/export-to-recipe \
+  -u {EMAIL}:{APIKEY} \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json' -d '
+  {
+    "data": {
+      "type": "flow-export-to-recipe-config",     
+      "relationships": {
+        "workspace": {
+          "data": {
+            "type": "workspace",
+            "id": "{WORKSPACE_ID}"
+          }
+        }
+      }
+    }
+  }'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "data": {
+    "id": "{RECIPE_ID}",
+    "type": "recipe",
+    "links": {
+      "self": "/v2/recipes/{RECIPE_ID}"
+    },
+    "attributes": {
+      "title": "Recipe based on the flow 'My flow'",
+      "cron": "*/3 * * * *",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "help_text": "Recipe based on the flow 'My flow'",
+      "tags": [],
+      "graph": {
+        "edges": [
+          {
+            "config": {
+              "condition": null,
+              "mapper": {
+                "textBody": "pets[0].status",
+                "subject": "pets[0].id",
+                "to": "pets[0].name"
+              },
+              "mapper_type": "jsonata"
+            },
+            "source": "step_1",
+            "target": "step_2"
+          }
+        ],
+        "nodes": [
+          {
+            "name": "Step name",
+            "description": "Step description",
+            "command": "elasticio/petstore:getPetsByStatusWithGenerators@1eb65b1721c45e746c25d64e3ab85888f18f31c5",
+            "id": "step_1"
+          },
+          {
+            "name": "Step name",
+            "description": "Step description",
+            "command": "elasticio/email:send@3746623b98821a291fb1e132f1278978c5f98f9b",
+            "fields": {
+              "dontThrowErrorFlg": true
+            },
+            "id": "step_2"
+          }
+        ]
+      }
+    },
+    "relationships": {
+      "user": {
+        "data": {
+          "id": "{USER_ID}",
+          "type": "user"
+        },
+        "links": {
+          "self": "/v2/users/{USER_ID}"
+        }
+      },
+      "workspace": {
+        "data": {
+          "id": "{WORKSPACE_ID}",
+          "type": "workspace"
+        },
+        "links": {
+          "self": "/v2/workspaces/{WORKSPACE_ID}"
+        }
+      }
+    }
+  },
+  "meta": {}
+}
+```
+
+This resource allows you to export an existing flow as a new recipe.
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/flows/{FLOW_ID}/export-to-recipe`
+
+### Body Parameters
+
+| Parameter                         | Required | Description                                                                     |
+| :-------------------------------- | :------- | :------------------------------------------------------------------------------ |
+| type                              | yes      | A value must be `flow-export-to-recipe-config`                                  |
+| relationships.workspace.data.id   | yes      | An Id of the Workspace                                                          |
+| relationships.workspace.data.type | yes      | A value must be `workspace`                                                     |
+
+### Authorization
+
+This request is authorized to only a user with `workspaces.recipe.edit` permission
+
+### Returns
+
+Returns the created recipe
+
+
 ## Retrieve a recipe by ID
 
 > Example Request:
@@ -789,7 +916,7 @@ This resource allows you to delete a recipe.
 
 | Parameter | Required | Description |
 | :-------- | :------- | :---------- |
-| RECIPE_ID   | yes      | Flow ID     |
+| RECIPE_ID   | yes    | Recipe ID   |
 
 > Example Response:
 
