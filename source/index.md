@@ -17,6 +17,7 @@ includes:
   - flows
   - flow-drafts
   - flow-versions
+  - quota-usages
   - recipes
   - resources
   - sshkeys
@@ -24,7 +25,7 @@ includes:
   - tenants
   - users
   - workspaces
- 
+
 search: true
 ---
 
