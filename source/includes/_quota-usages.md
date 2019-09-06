@@ -42,7 +42,7 @@ This endpoint allows you to retrieve a contract usage metrics by its ID. Memory 
 
 ### Authorization
 
-This request is authorized to a member of the corresponding contract only.
+Only a corresponding contract member can be authorized to send this request.
 
 ### Returns
 
@@ -71,7 +71,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint allows you to retrieve a workspace usage metrics by its ID. Memory usage is reported as a sum of RAM usage for each second during the specified period for each step. CPU usage is reported as an amount of consumed CPU for each step.
+This endpoint allows you to retrieve the usage metrics for a workspace by its ID. Memory usage is reported as a sum of RAM usage for each second during the specified period for each step. CPU usage is reported as an amount of consumed CPU resource for each step.
 
 ### HTTP Request
 
@@ -86,7 +86,7 @@ This endpoint allows you to retrieve a workspace usage metrics by its ID. Memory
 
 ### Authorization
 
-This request is authorized to a member of the corresponding workspace only.
+Only a corresponding contract member can be authorized to send this request.
 
 ### Returns
 
