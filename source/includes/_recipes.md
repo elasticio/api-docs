@@ -9,7 +9,7 @@
 > Example Request (without required trigger/action fields):
 
 ```shell
- curl -X POST {{ api_base_url }} /v2/recipes \
+ curl -X POST {{ api_base_url }}/v2/recipes \
   -u {EMAIL}:{APIKEY} \
   -H 'Accept: application/json' \
   -H 'Content-Type: application/json' -d '
