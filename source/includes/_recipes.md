@@ -1,7 +1,7 @@
 # Recipes (Experimental)
 
  <aside class="warning">
- <b>The recipes section is an experimental API</b>
+ <b>The Recipes section is an experimental API</b>
  </aside>
 
 ## Create a recipe
@@ -251,7 +251,7 @@ Returns the created recipe
   -H 'Content-Type: application/json' -d '
   {
     "data": {
-      "type": "flow-export-to-recipe-config",     
+      "type": "flow-export-to-recipe-config",
       "relationships": {
         "workspace": {
           "data": {
