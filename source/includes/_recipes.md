@@ -9,7 +9,7 @@
 > Example Request (without required trigger/action fields):
 
 ```shell
- curl -X POST {{ api_base_url }} /v2/recipes \
+ curl -X POST {{ api_base_url }}/v2/recipes \
   -u {EMAIL}:{APIKEY} \
   -H 'Accept: application/json' \
   -H 'Content-Type: application/json' -d '
@@ -72,7 +72,7 @@
 > Example Request (with required trigger/action fields):
 
 ```shell
- curl -X POST {{ api_base_url }} /v2/recipes \
+ curl -X POST {{ api_base_url }}/v2/recipes \
   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
@@ -245,7 +245,7 @@ Returns the created recipe
 > Example Request:
 
 ```shell
- curl -X POST {{ api_base_url }} /v2/flows/{FLOW_ID}/export-to-recipe \
+ curl -X POST {{ api_base_url }}/v2/flows/{FLOW_ID}/export-to-recipe \
   -u {EMAIL}:{APIKEY} \
   -H 'Accept: application/json' \
   -H 'Content-Type: application/json' -d '
