@@ -894,7 +894,6 @@ Create a flow from a recipe. If the recipe contains a component, which requires 
 | Parameter                         | Required | Description                                                                     |
 | :-------------------------------- | :------- | :------------------------------------------------------------------------------ |
 | type                              | yes      | A value must be `recipe-activation-config`                                                        |
-| attributes.cron                   | no       | Cron expression                                                                 |
 | attributes.name                   | yes      | Flow name                                                                     |
 | attributes.credentials            | no       | Specify component credentials if needed  |
 | attributes.variables            | no       | Specify values for variables which were defined in Recipe for mapping   |
