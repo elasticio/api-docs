@@ -888,6 +888,18 @@ Create a flow from a recipe. If the recipe contains a component, which requires 
 | :-------- | :------- | :---------------- |
 | RECIPE_ID | Yes      | Recipe identifier |
 
+
+### Body Parameters
+
+| Parameter                         | Required | Description                                                                     |
+| :-------------------------------- | :------- | :------------------------------------------------------------------------------ |
+| type                              | yes      | A value must be `recipe-activation-config`                                                        |
+| attributes.name                   | yes      | Flow name                                                                     |
+| attributes.credentials            | no       | Specify component credentials if needed  |
+| attributes.variables            | no       | Specify values for variables which were defined in Recipe for mapping   |
+| relationships.workspace.data.id   | yes      | An Id of the Workspace                                                          |
+| relationships.workspace.data.type | yes      | A value must be `workspace`                                                     |
+
 ### Authorization
 
 This request is authorized for a user with the `workspaces.flow.edit` permission.
