@@ -130,7 +130,7 @@ This resource allows you to retrieve all credentials belonging to user's Workspa
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/credentials?workspace_id={WORKSPACE_ID}/`
+`GET {{ api_base_url }}/v2/credentials/?workspace_id={WORKSPACE_ID}&filter[component]={COMPONENT_ID}`
 
 ### Query Parameters
 
