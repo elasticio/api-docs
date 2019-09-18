@@ -38,7 +38,9 @@ This endpoint allows you to retrieve a contract usage metrics by its ID. Memory 
 | Parameter   | Required | Description                                                                            |
 | :---------- | :------- | :------------------------------------------------------------------------------------- |
 | CONTRACT_ID | Yes      | Contract identifier                                                                    |
-| PERIOD      | Yes      | Usage period. Allowed values: `week` (current week), `[yyyy]-[mm]` (month of the year) |
+| period      | No (Yes, if from-to range is not specified)| Usage period. Allowed values: `week` (current week), `[yyyy]-[mm]` (month of the year) |
+| from      |No (Yes, if period is not specified)| Usage period. Allowed values: date in ISO 8601 date and time (`[yyyy]-[mm]-[dd]`) format|
+| to      |No (Yes, if periode is not specified)| Usage period. Allowed values: date in ISO 8601 date and time (`[yyyy]-[mm]-[dd]`) format|
 
 ### Authorization
 
@@ -82,7 +84,9 @@ This endpoint allows you to retrieve the usage metrics for a workspace by its ID
 | Parameter    | Required | Description                                                                            |
 | :----------- | :------- | :------------------------------------------------------------------------------------- |
 | WORKSPACE_ID | Yes      | Workspace identifier                                                                   |
-| PERIOD       | Yes      | Usage period. Allowed values: `week` (current week), `[yyyy]-[mm]` (month of the year) |
+| period      | No (Yes, if from-to range is not specified)| Usage period. Allowed values: `week` (current week), `[yyyy]-[mm]` (month of the year) |
+| from      |No (Yes, if period is not specified)| Usage period. Allowed values: date in ISO 8601 date and time (`[yyyy]-[mm]-[dd]`) format|
+| to      |No (Yes, if periode is not specified)| Usage period. Allowed values: date in ISO 8601 date and time (`[yyyy]-[mm]-[dd]`) format|
 
 ### Authorization
 
@@ -144,7 +148,9 @@ This endpoint allows you to retrieve the usage metrics for each flow that was ac
 | Parameter    | Required | Description                                                                            |
 | :----------- | :------- | :------------------------------------------------------------------------------------- |
 | WORKSPACE_ID | Yes      | Workspace identifier                                                                   |
-| PERIOD       | Yes      | Usage period. Allowed values: `week` (current week), `[yyyy]-[mm]` (month of the year) |
+| period      | No (Yes, if from-to range is not specified)| Usage period. Allowed values: `week` (current week), `[yyyy]-[mm]` (month of the year) |
+| from      |No (Yes, if period is not specified)| Usage period. Allowed values: date in ISO 8601 date and time (`[yyyy]-[mm]-[dd]`) format|
+| to      |No (Yes, if periode is not specified)| Usage period. Allowed values: date in ISO 8601 date and time (`[yyyy]-[mm]-[dd]`) format|
 
 ### Authorization
 
