@@ -21,7 +21,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
           "title": "My first recipe 2nd itteration",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "help_text": "No setup required",
+          "help_text": "No setup required"
         },
         "flow_template": {
           "cron": "*/3 * * * *",
