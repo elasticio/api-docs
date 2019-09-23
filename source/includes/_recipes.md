@@ -18,7 +18,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
       "type": "recipe",
       "attributes": {
         "marketplace_content": {
-          "title": "My first recipe 2nd itteration",
+          "title": "My first recipe 2nd iteration",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "help_text": "No setup required"
@@ -86,7 +86,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
       "type": "recipe",
       "attributes": {
         "marketplace_content": {
-          "title": "My first recipe 2nd itteration",
+          "title": "My first recipe 2nd iteration",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "help_text": "No setup required"
@@ -160,7 +160,7 @@ Content-Type: application/json
     },
     "attributes": {
       "marketplace_content": {
-        "title": "My first recipe 2nd itteration",
+        "title": "My first recipe 2nd iteration",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "help_text": "No setup required"
@@ -411,7 +411,7 @@ Content-Type: application/json
     },
     "attributes": {
       "marketplace_content": {
-        "title": "My first recipe 2nd itteration",
+        "title": "My first recipe 2nd iteration",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "help_text": "No setup required"
@@ -698,7 +698,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
        "type": "recipe",
        "attributes": {
          "marketplace_content": {
-           "title": "My first recipe 2nd itteration NEW",
+           "title": "My first recipe 2nd iteration NEW",
            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
            "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
            "help_text": "No setup required"
@@ -761,7 +761,7 @@ Content-Type: application/json
     },
     "attributes": {
       "marketplace_content": {
-        "title": "My first recipe 2nd itteration NEW",
+        "title": "My first recipe 2nd iteration NEW",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "help_text": "No setup required"
