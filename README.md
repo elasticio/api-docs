@@ -6,7 +6,7 @@ The docs are generated with [Slate](https://github.com/tripit/slate).
 
 Api-docs for api version 2 is placed at directory `source`.
 
-All documentized resources located in directories `source_v{API_VER}/include`. You can edit existing files there or create new files (resources).
+All documented resources located in directories `source_v{API_VER}/include`. You can edit existing files there or create new files (resources).
 
 # How to create new api docs for new api version?
 For example, you want to create docs for new api of version 15.
@@ -33,13 +33,13 @@ COPY --from=dependencies /usr/src/app/build_v15 ./build_v15
 
 # How to customize api docs for a special customer?
 In case the api-docs have to be "re-branded" for a special customer, there are a few build-arguments which point by default to elastic.io original values:
-- toc_footer: 
-  The text or HTML-Fragment displayed at the bottom of the Table of Contents 
+- toc_footer:
+  The text or HTML-Fragment displayed at the bottom of the Table of Contents
   (default: Link to sign-up for a developer key)
 - api_base_url: Url of the customers API (default: https://api.elastic.io)
 - product_name: Name of this API product (default: elastic.io)
 - logo_url: URL to refer the customers logo (default: https://app.elastic.io/img/logo.svg)
-- repo_name: Name of githaub repository name (default: elasticio)
+- repo_name: Name of github repository name (default: elasticio)
 - docs_url: Link to the main documentation (default: http://docs.elastic.io/docs)
 
 So a complete build for a customer overwriting everything may be e.g.:
@@ -84,7 +84,7 @@ docker build -t api-docs .
 ```
 docker run --rm -p 8081:8000 -d api-docs
 ```
-3. Access docs for api vesion at `localhost:8081`
+3. Access docs for api version at `localhost:8081`
 
 
 
