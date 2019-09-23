@@ -17,6 +17,16 @@ curl -X POST {{ api_base_url }}/v2/recipes \
     "data": {
       "type": "recipe",
       "attributes": {
+        "activation_config": {
+          "variables": [{
+            "title": "Email to fill a \"CC\" field",
+            "key": "cc"
+          }],
+          "credentials": [{
+            "description": "Credentials to access your Petstore",
+            "stepId": "step_1"
+          }]
+        },
         "marketplace_content": {
           "title": "My first recipe 2nd iteration",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -50,6 +60,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
                   "mapper_type": "jsonata",
                   "mapper": {
                     "to": "pets[0].name",
+                    "cc": "cc",
                     "subject": "pets[0].id",
                     "textBody": "pets[0].status"
                   },
@@ -85,6 +96,16 @@ curl -X POST {{ api_base_url }}/v2/recipes \
     "data": {
       "type": "recipe",
       "attributes": {
+        "activation_config": {
+          "variables": [{
+            "title": "Email to fill a \"CC\" field",
+            "key": "cc"
+          }],
+          "credentials": [{
+            "description": "Credentials to access your Petstore",
+            "stepId": "step_1"
+          }]
+        },
         "marketplace_content": {
           "title": "My first recipe 2nd iteration",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -121,6 +142,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
                   "mapper_type": "jsonata",
                   "mapper": {
                     "to": "pets[0].name",
+                    "cc": "cc",
                     "subject": "pets[0].id",
                     "textBody": "pets[0].status"
                   },
@@ -159,6 +181,16 @@ Content-Type: application/json
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
+      "activation_config": {
+        "variables": [{
+          "title": "Email to fill a \"CC\" field",
+          "key": "cc"
+        }],
+        "credentials": [{
+          "description": "Credentials to access your Petstore",
+          "stepId": "step_1"
+        }]
+      },
       "marketplace_content": {
         "title": "My first recipe 2nd iteration",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -176,7 +208,8 @@ Content-Type: application/json
                 "mapper": {
                   "textBody": "pets[0].status",
                   "subject": "pets[0].id",
-                  "to": "pets[0].name"
+                  "to": "pets[0].name",
+                  "cc": "cc"
                 },
                 "mapper_type": "jsonata"
               },
@@ -240,6 +273,8 @@ This resource allows you to create a new recipe.
 | Parameter                                        | Required | Description                                                      |
 | :----------------------------------------------- | :------- | :--------------------------------------------------------------- |
 | type                                             | yes      | A value must be `recipe`                                         |
+| attributes.activation_config.variables           | no       | List of variables used by steps in a flow                        |
+| attributes.activation_config.credentials         | no       | List of credentials used by steps in a flow                      |
 | attributes.marketplace_content.name              | yes      | Recipe name                                                      |
 | attributes.marketplace_content.description       | yes      | Recipe description                                               |
 | attributes.marketplace_content.short_description | yes      | Recipe short description                                         |
@@ -295,6 +330,12 @@ Content-Type: application/json
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
+      "activation_config": {
+        "credentials": [{
+          "description": "",
+          "stepId": "step_1"
+        }]
+      },
       "marketplace_content": {
         "title": "Recipe based on the flow 'My flow'",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -312,7 +353,8 @@ Content-Type: application/json
                 "mapper": {
                   "textBody": "pets[0].status",
                   "subject": "pets[0].id",
-                  "to": "pets[0].name"
+                  "to": "pets[0].name",
+                  "cc": "cc"
                 },
                 "mapper_type": "jsonata"
               },
@@ -410,6 +452,16 @@ Content-Type: application/json
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
+      "activation_config": {
+        "variables": [{
+          "title": "Email to fill a \"CC\" field",
+          "key": "cc"
+        }],
+        "credentials": [{
+          "description": "Credentials to access your Petstore",
+          "stepId": "step_1"
+        }]
+      },
       "marketplace_content": {
         "title": "My first recipe 2nd iteration",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -426,7 +478,8 @@ Content-Type: application/json
                 "mapper": {
                   "to": "pets[0].name",
                   "subject": "pets[0].id",
-                  "textBody": "pets[0].status"
+                  "textBody": "pets[0].status",
+                  "cc": "cc"
                 },
                 "condition": null
               },
@@ -519,6 +572,16 @@ Content-Type: application/json
         "self": "/v2/recipes/{RECIPE_ID}"
       },
       "attributes": {
+        "activation_config": {
+          "variables": [{
+            "title": "Email to fill a \"CC\" field",
+            "key": "cc"
+          }],
+          "credentials": [{
+            "description": "Credentials to access your Petstore",
+            "stepId": "step_1"
+          }]
+        },
         "marketplace_content": {
           "title": "My first recipe",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -534,6 +597,7 @@ Content-Type: application/json
                   "mapper_type": "jsonata",
                   "mapper": {
                     "to": "pets[0].name",
+                    "cc": "cc",
                     "subject": "pets[0].id",
                     "textBody": "pets[0].status"
                   },
@@ -590,6 +654,16 @@ Content-Type: application/json
         "self": "/v2/recipes/{RECIPE_ID}"
       },
       "attributes": {
+        "activation_config": {
+          "variables": [{
+            "title": "Email to fill a \"CC\" field",
+            "key": "cc"
+          }],
+          "credentials": [{
+            "description": "Credentials to access your Petstore",
+            "stepId": "step_1"
+          }]
+        },
         "marketplace_content": {
           "title": "My second recipe",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -605,6 +679,7 @@ Content-Type: application/json
                   "mapper_type": "jsonata",
                   "mapper": {
                     "to": "pets[0].name",
+                    "cc": "cc",
                     "subject": "pets[0].id",
                     "textBody": "pets[0].status"
                   },
@@ -697,6 +772,12 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
        "id": "{RECIPE_ID}",
        "type": "recipe",
        "attributes": {
+         "activation_config": {
+           "variables": [{
+             "title": "Email to fill a \"CC\" field",
+             "key": "emailCc"
+           }]
+         },
          "marketplace_content": {
            "title": "My first recipe 2nd iteration NEW",
            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -730,6 +811,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
                    "mapper_type": "jsonata",
                    "mapper": {
                      "to": "pets[0].name",
+                     "cc": "emailCc",
                      "subject": "pets[0].id",
                      "textBody": "pets[0].status"
                    },
@@ -760,6 +842,16 @@ Content-Type: application/json
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
+      "activation_config": {
+        "variables": [{
+          "title": "Email to fill a \"CC\" field",
+          "key": "emailCc"
+        }],
+        "credentials": [{
+          "description": "Credentials to access your Petstore",
+          "stepId": "step_1"
+        }]
+      },
       "marketplace_content": {
         "title": "My first recipe 2nd iteration NEW",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -777,7 +869,8 @@ Content-Type: application/json
                 "mapper": {
                   "textBody": "pets[0].status",
                   "subject": "pets[0].id",
-                  "to": "pets[0].name"
+                  "to": "pets[0].name",
+                  "cc": "emailCc"
                 },
                 "mapper_type": "jsonata"
               },
@@ -846,15 +939,17 @@ This resource allows you to update the given recipe.
 
 | Parameter                                        | Required | Description                                                        |
 | :----------------------------------------------- | :------- | :----------------------------------------------------------------- |
-| type                                             | yes     | A value must be `recipe`                                            |
-| attributes.marketplace_content.name              | no      | Recipe name                                                         |
-| attributes.marketplace_content.description       | no      | Recipe description                                                  |
-| attributes.marketplace_content.short_description | no      | Recipe short description                                            |
-| attributes.marketplace_content.help_text         | no      | Recipe help text                                                    |
-| attributes.flow_template.cron                    | no      | Cron expression                                                     |
-| attributes.flow_template.graph                   | yes     | Recipe graph representing component connections                     |
-| relationships.workspace.data.id                  | yes     | MUST be the same as the {RECIPE_ID}                                 |
-| relationships.workspace.data.type                | yes     | A value must be `workspace`                                         |
+| type                                             | yes      | A value must be `recipe`                                           |
+| attributes.activation_config.credentials         | no       | List of credentials used by steps in a flow                        |
+| attributes.activation_config.variables           | no       | List of variables used by steps in a flow                          |
+| attributes.marketplace_content.name              | no       | Recipe name                                                        |
+| attributes.marketplace_content.description       | no       | Recipe description                                                 |
+| attributes.marketplace_content.short_description | no       | Recipe short description                                           |
+| attributes.marketplace_content.help_text         | no       | Recipe help text                                                   |
+| attributes.flow_template.cron                    | no       | Cron expression                                                    |
+| attributes.flow_template.graph                   | yes      | Recipe graph representing component connections                    |
+| relationships.workspace.data.id                  | yes      | MUST be the same as the {RECIPE_ID}                                |
+| relationships.workspace.data.type                | yes      | A value must be `workspace`                                        |
 
 ### Authorization
 
