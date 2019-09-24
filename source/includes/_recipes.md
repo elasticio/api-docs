@@ -975,7 +975,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID}/activate \
        "attributes": {
          "name": "Flow, created from Recipe",
          "credentials": {
-           "step_1": "{STEP_ID}"
+           "step_1": "{CREDENTIAL_ID}"
          },
          "variables": {
            "TO_EMAIL": "goose@elastic.io",
