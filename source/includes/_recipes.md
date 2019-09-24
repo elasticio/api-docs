@@ -21,11 +21,11 @@ curl -X POST {{ api_base_url }}/v2/recipes \
           "title": "My first recipe 2nd itteration",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "help_text": "No setup required"
+          "help_text": "No setup required",
+          "tags": []
         },
         "flow_template": {
           "cron": "*/3 * * * *",
-          "tags": [],
           "graph": {
             "nodes": [
               {
@@ -89,11 +89,11 @@ curl -X POST {{ api_base_url }}/v2/recipes \
           "title": "My first recipe 2nd itteration",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "help_text": "No setup required"
+          "help_text": "No setup required",
+          "tags": []
         },
         "flow_template": {
           "cron": "*/3 * * * *",
-          "tags": [],
           "graph": {
             "nodes": [
               {
@@ -163,11 +163,11 @@ Content-Type: application/json
         "title": "My first recipe 2nd itteration",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "help_text": "No setup required"
+        "help_text": "No setup required",
+        "tags": []
       },
       "flow_template": {
         "cron": "*/3 * * * *",
-        "tags": [],
         "graph": {
           "edges": [
             {
@@ -299,11 +299,11 @@ Content-Type: application/json
         "title": "Recipe based on the flow 'My flow'",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "help_text": "Recipe based on the flow 'My flow'"
+        "help_text": "Recipe based on the flow 'My flow'",
+        "tags": []
       },
       "flow_template": {
         "cron": "*/3 * * * *",
-        "tags": [],
         "graph": {
           "edges": [
             {
@@ -414,10 +414,10 @@ Content-Type: application/json
         "title": "My first recipe 2nd itteration",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "help_text": "No setup required"
+        "help_text": "No setup required",
+        "tags": []
       },
       "flow_template": {
-        "tags": [],
         "graph": {
           "edges": [
             {
@@ -523,10 +523,10 @@ Content-Type: application/json
           "title": "My first recipe",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "help_text": "No setup required"
+          "help_text": "No setup required",
+          "tags": []
         },
         "flow_template": {
-          "tags": [],
           "graph": {
             "edges": [
               {
@@ -594,10 +594,10 @@ Content-Type: application/json
           "title": "My second recipe",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "help_text": "No setup required"
+          "help_text": "No setup required",
+          "tags": []
         },
         "flow_template": {
-          "tags": [],
           "graph": {
             "edges": [
               {
@@ -701,11 +701,11 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
            "title": "My first recipe 2nd itteration NEW",
            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
            "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-           "help_text": "No setup required"
+           "help_text": "No setup required",
+           "tags": []
          },
          "flow_template": {
            "cron": "*/3 * * * *",
-           "tags": [],
            "graph": {
              "nodes": [
                {
@@ -764,11 +764,11 @@ Content-Type: application/json
         "title": "My first recipe 2nd itteration NEW",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "help_text": "No setup required"
+        "help_text": "No setup required",
+        "tags": []
       },
       "flow_template": {
         "cron": "*/3 * * * *",
-        "tags": [],
         "graph": {
           "edges": [
             {
