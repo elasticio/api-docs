@@ -60,7 +60,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
                   "mapper_type": "jsonata",
                   "mapper": {
                     "to": "pets[0].name",
-                    "cc": "cc",
+                    "cc": "vars.cc",
                     "subject": "pets[0].id",
                     "textBody": "pets[0].status"
                   },
@@ -142,7 +142,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
                   "mapper_type": "jsonata",
                   "mapper": {
                     "to": "pets[0].name",
-                    "cc": "cc",
+                    "cc": "vars.cc",
                     "subject": "pets[0].id",
                     "textBody": "pets[0].status"
                   },
@@ -209,7 +209,7 @@ Content-Type: application/json
                   "textBody": "pets[0].status",
                   "subject": "pets[0].id",
                   "to": "pets[0].name",
-                  "cc": "cc"
+                  "cc": "vars.cc"
                 },
                 "mapper_type": "jsonata"
               },
@@ -479,7 +479,7 @@ Content-Type: application/json
                   "to": "pets[0].name",
                   "subject": "pets[0].id",
                   "textBody": "pets[0].status",
-                  "cc": "cc"
+                  "cc": "vars.cc"
                 },
                 "condition": null
               },
@@ -597,7 +597,7 @@ Content-Type: application/json
                   "mapper_type": "jsonata",
                   "mapper": {
                     "to": "pets[0].name",
-                    "cc": "cc",
+                    "cc": "vars.cc",
                     "subject": "pets[0].id",
                     "textBody": "pets[0].status"
                   },
@@ -679,7 +679,7 @@ Content-Type: application/json
                   "mapper_type": "jsonata",
                   "mapper": {
                     "to": "pets[0].name",
-                    "cc": "cc",
+                    "cc": "vars.cc",
                     "subject": "pets[0].id",
                     "textBody": "pets[0].status"
                   },
@@ -811,7 +811,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
                    "mapper_type": "jsonata",
                    "mapper": {
                      "to": "pets[0].name",
-                     "cc": "emailCc",
+                     "cc": "vars.emailCc",
                      "subject": "pets[0].id",
                      "textBody": "pets[0].status"
                    },
@@ -870,7 +870,7 @@ Content-Type: application/json
                   "textBody": "pets[0].status",
                   "subject": "pets[0].id",
                   "to": "pets[0].name",
-                  "cc": "emailCc"
+                  "cc": "vars.emailCc"
                 },
                 "mapper_type": "jsonata"
               },
