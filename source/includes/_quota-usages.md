@@ -36,16 +36,15 @@ This endpoint allows you to retrieve a contract usage metrics by its ID. Memory 
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/quota-usages/contracts/{CONTRACT_ID}?period={PERIOD}`
+`GET {{ api_base_url }}/v2/quota-usages/contracts/{CONTRACT_ID}?from={DATE_FROM}&to={DATE_TO}`
 
 ### URL Parameters
 
-| Parameter   | Required | Description                                                                            |
-| :---------- | :------- | :------------------------------------------------------------------------------------- |
-| CONTRACT_ID | Yes      | Contract identifier                                                                    |
-| period      | No (Yes, if from-to range is not specified)| Usage period. Allowed values: `week` (current week), `[yyyy]-[mm]` (month of the year) |
-| from      |No (Yes, if period is not specified)| Usage period. Allowed values: date in ISO 8601 date and time (`[yyyy]-[mm]-[dd]`) format|
-| to      |No (Yes, if periode is not specified)| Usage period. Allowed values: date in ISO 8601 date and time (`[yyyy]-[mm]-[dd]`) format|
+| Parameter   | Required | Description                                             |
+| :---------- | :------- | :------------------------------------------------------ |
+| CONTRACT_ID | Yes      | Contract identifier                                     |
+| DATE_FROM   | Yes      | Start Date of the period (inclusive). Format – ISO 8601 |
+| DATE_TO     | Yes      | End Date of the period (inclusive). Format – ISO 8601   |
 
 ### Authorization
 
@@ -231,7 +230,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint allows you to retrieve a usage history for certain `Contract`. 
+This endpoint allows you to retrieve a usage history for certain `Contract`.
 `id` – is a date of the day.
 `memory` – is a memory usage, reported as a sum of RAM usage for a day. In [MiB](https://en.wikipedia.org/wiki/Mebibyte).
 `cpu` – is CPU usage, reported as an amount of consumed CPU for a day. In [milli CPU](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu).
@@ -239,15 +238,15 @@ This endpoint allows you to retrieve a usage history for certain `Contract`.
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/quota-usages/contracts/{CONTRACT_ID}/history?from={date_from}&to={date_to}`
+`GET {{ api_base_url }}/v2/quota-usages/contracts/{CONTRACT_ID}/history?from={DATE_FROM}&to={DATE_TO}`
 
 ### URL Parameters
 
 | Parameter     | Required  | Description                                               |
 | :----------   | :-------  | :-------------------------------------------------------- |
-| CONTRACT_ID   | Yes       | `Contract` identifier                                     |
-| date_from     | Yes       | Start Date of the period (inclusive). Format – ISO 8601   |
-| date_to       | Yes       | End Date of the period (not inclusive). Format – ISO 8601 |
+| CONTRACT_ID   | Yes       | Contract identifier                                       |
+| DATE_FROM     | Yes       | Start Date of the period (inclusive). Format – ISO 8601   |
+| DATE_TO       | Yes       | End Date of the period (not inclusive). Format – ISO 8601 |
 
 ### Authorization
 
@@ -255,7 +254,7 @@ Only for contract members.
 
 ### Returns
 
-Array of contract usages per day within specified period. 
+Array of contract usages per day within specified period.
 
 
 
@@ -289,16 +288,15 @@ This endpoint allows you to retrieve the usage metrics for a workspace by its ID
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/quota-usages/workspaces/{WORKSPACE_ID}?period={PERIOD}`
+`GET {{ api_base_url }}/v2/quota-usages/workspaces/{WORKSPACE_ID}?from={DATE_FROM}&to={DATE_TO}`
 
 ### URL Parameters
 
-| Parameter    | Required | Description                                                                            |
-| :----------- | :------- | :------------------------------------------------------------------------------------- |
-| WORKSPACE_ID | Yes      | Workspace identifier                                                                   |
-| period      | No (Yes, if from-to range is not specified)| Usage period. Allowed values: `week` (current week), `[yyyy]-[mm]` (month of the year) |
-| from      |No (Yes, if period is not specified)| Usage period. Allowed values: date in ISO 8601 date and time (`[yyyy]-[mm]-[dd]`) format|
-| to      |No (Yes, if periode is not specified)| Usage period. Allowed values: date in ISO 8601 date and time (`[yyyy]-[mm]-[dd]`) format|
+| Parameter    | Required | Description                                             |
+| :----------- | :------- | :------------------------------------------------------ |
+| WORKSPACE_ID | Yes      | Workspace identifier                                    |
+| DATE_FROM    | Yes      | Start Date of the period (inclusive). Format – ISO 8601 |
+| DATE_TO      | Yes      | End Date of the period (inclusive). Format – ISO 8601   |
 
 ### Authorization
 
@@ -484,7 +482,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint allows you to retrieve a usage history for certain `Workspace`. 
+This endpoint allows you to retrieve a usage history for certain `Workspace`.
 `id` – is a date of the day.
 `memory` – is a memory usage, reported as a sum of RAM usage for a day. In [MiB](https://en.wikipedia.org/wiki/Mebibyte).
 `cpu` – is CPU usage, reported as an amount of consumed CPU for a day. In [milli CPU](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu).
@@ -492,15 +490,15 @@ This endpoint allows you to retrieve a usage history for certain `Workspace`.
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/quota-usages/workspaces/{WORKSPACE_ID}/history?from={date_from}&to={date_to}`
+`GET {{ api_base_url }}/v2/quota-usages/workspaces/{WORKSPACE_ID}/history?from={DATE_FROM}&to={DATE_TO}`
 
 ### URL Parameters
 
 | Parameter     | Required  | Description                                               |
 | :----------   | :-------  | :-------------------------------------------------------- |
-| WORKSPACE_ID  | Yes       | `Workspace` identifier                                    |
-| date_from     | Yes       | Start Date of the period (inclusive). Format – ISO 8601   |
-| date_to       | Yes       | End Date of the period (not inclusive). Format – ISO 8601 |
+| WORKSPACE_ID  | Yes       | Workspace identifier                                      |
+| DATE_FROM     | Yes       | Start Date of the period (inclusive). Format – ISO 8601   |
+| DATE_TO       | Yes       | End Date of the period (not inclusive). Format – ISO 8601 |
 
 ### Authorization
 
@@ -508,7 +506,7 @@ For `Workspace` members or for members of the corresponding `Contract` with the 
 
 ### Returns
 
-Array of workspace usages per day within specified period. 
+Array of workspace usages per day within specified period.
 
 
 
@@ -560,16 +558,15 @@ This endpoint allows you to retrieve the usage metrics for each flow that was ac
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/quota-usages/workspaces/{WORKSPACE_ID}/flows?period={PERIOD}`
+`GET {{ api_base_url }}/v2/quota-usages/workspaces/{WORKSPACE_ID}/flows?from={DATE_FROM}&to={DATE_TO}`
 
 ### URL Parameters
 
-| Parameter    | Required | Description                                                                            |
-| :----------- | :------- | :------------------------------------------------------------------------------------- |
-| WORKSPACE_ID | Yes      | Workspace identifier                                                                   |
-| period      | No (Yes, if from-to range is not specified)| Usage period. Allowed values: `week` (current week), `[yyyy]-[mm]` (month of the year) |
-| from      |No (Yes, if period is not specified)| Usage period. Allowed values: date in ISO 8601 date and time (`[yyyy]-[mm]-[dd]`) format|
-| to      |No (Yes, if periode is not specified)| Usage period. Allowed values: date in ISO 8601 date and time (`[yyyy]-[mm]-[dd]`) format|
+| Parameter    | Required | Description                                             |
+| :----------- | :------- | :------------------------------------------------------ |
+| WORKSPACE_ID | Yes      | Workspace identifier                                    |
+| DATE_FROM    | Yes      | Start Date of the period (inclusive). Format – ISO 8601 |
+| DATE_TO      | Yes      | End Date of the period (inclusive). Format – ISO 8601   |
 
 ### Authorization
 
@@ -578,4 +575,3 @@ Only a corresponding workspace member can be authorized to send this request.
 ### Returns
 
 Flows Id, memory (in [MiB](https://en.wikipedia.org/wiki/Mebibyte)), CPU (in [milli CPU](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu)) usage for the given Workspace ID
-
