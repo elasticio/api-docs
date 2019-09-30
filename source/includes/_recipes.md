@@ -4,6 +4,18 @@
  <b>The Recipes section is an experimental API</b>
  </aside>
 
+## Accessing and sharing recipes
+
+The recipe has an attribute ``visibility``, which indicates how the recipe is shared by other clients. A shared recipe is available to other users for their Flows.
+There are four sharing modes:
+
+- ``workspace`` – Only Workspace members can use the recipe.
+- ``contract`` – Members of all Contract Workspaces can use the recipe.
+- ``tenant`` – Recipe is available to other clients in the tenant.
+- ``global`` – Any user of the platform can use these recipes.
+
+Accordingly, a set of recipes, available for each user consists of: non-shared recipes from the user's Workspace, recipes with ``contract``, ``tenant`` and ``global`` access.
+
 ## Create a recipe
 
 > Example Request (without required trigger/action fields):
@@ -17,6 +29,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
     "data": {
       "type": "recipe",
       "attributes": {
+        "visibility": "workspace",
         "activation_config": {
           "variables": [{
             "title": "Email to fill a \"CC\" field",
@@ -96,6 +109,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
     "data": {
       "type": "recipe",
       "attributes": {
+        "visibility": "workspace",
         "activation_config": {
           "variables": [{
             "title": "Email to fill a \"CC\" field",
@@ -181,6 +195,7 @@ Content-Type: application/json
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
+      "visibility": "workspace",
       "activation_config": {
         "variables": [{
           "title": "Email to fill a \"CC\" field",
@@ -272,19 +287,20 @@ This resource allows you to create a new recipe.
 
 ### Body Parameters
 
-| Parameter                                        | Required | Description                                                      |
-| :----------------------------------------------- | :------- | :--------------------------------------------------------------- |
-| type                                             | yes      | A value must be `recipe`                                         |
-| attributes.activation_config.variables           | no       | List of variables used by steps in a flow                        |
-| attributes.activation_config.credentials         | no       | List of credentials used by steps in a flow                      |
-| attributes.marketplace_content.name              | yes      | Recipe name                                                      |
-| attributes.marketplace_content.description       | yes      | Recipe description                                               |
-| attributes.marketplace_content.short_description | yes      | Recipe short description                                         |
-| attributes.marketplace_content.help_text         | no       | Recipe help text                                                 |
-| attributes.flow_template.cron                    | no       | Cron expression                                                  |
-| attributes.flow_template.graph                   | yes      | Recipe graph representing component connections                  |
-| relationships.workspace.data.id                  | yes      | An Id of the Workspace                                           |
-| relationships.workspace.data.type                | yes      | A value must be `workspace`                                      |
+| Parameter                                        | Required | Description                                                                                              |
+| :----------------------------------------------- | :------- | :------------------------------------------------------------------------------------------------------- |
+| type                                             | yes      | A value must be `recipe`                                                                                 |
+| attributes.visibility                            | no       | Recipe sharing mode. if attribute is not specified the visibility level will set to workspace by default |
+| attributes.activation_config.variables           | no       | List of variables used by steps in a flow                                                                |
+| attributes.activation_config.credentials         | no       | List of credentials used by steps in a flow                                                              |
+| attributes.marketplace_content.name              | yes      | Recipe name                                                                                              |
+| attributes.marketplace_content.description       | yes      | Recipe description                                                                                       |
+| attributes.marketplace_content.short_description | yes      | Recipe short description                                                                                 |
+| attributes.marketplace_content.help_text         | no       | Recipe help text                                                                                         |
+| attributes.flow_template.cron                    | no       | Cron expression                                                                                          |
+| attributes.flow_template.graph                   | yes      | Recipe graph representing component connections                                                          |
+| relationships.workspace.data.id                  | yes      | An Id of the Workspace                                                                                   |
+| relationships.workspace.data.type                | yes      | A value must be `workspace`                                                                              |
 
 ### Authorization
 
@@ -332,6 +348,7 @@ Content-Type: application/json
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
+      "visibility": "workspace",
       "activation_config": {
         "credentials": [{
           "description": "",
@@ -456,6 +473,7 @@ Content-Type: application/json
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
+      "visibility": "workspace",
       "activation_config": {
         "variables": [{
           "title": "Email to fill a \"CC\" field",
@@ -578,6 +596,7 @@ Content-Type: application/json
         "self": "/v2/recipes/{RECIPE_ID}"
       },
       "attributes": {
+        "visibility": "workspace",
         "activation_config": {
           "variables": [{
             "title": "Email to fill a \"CC\" field",
@@ -662,6 +681,7 @@ Content-Type: application/json
         "self": "/v2/recipes/{RECIPE_ID}"
       },
       "attributes": {
+        "visibility": "workspace",
         "activation_config": {
           "variables": [{
             "title": "Email to fill a \"CC\" field",
@@ -782,6 +802,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
        "id": "{RECIPE_ID}",
        "type": "recipe",
        "attributes": {
+         "visibility": "workspace",
          "activation_config": {
            "variables": [{
              "title": "Email to fill a \"CC\" field",
@@ -852,6 +873,7 @@ Content-Type: application/json
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
+      "visibility": "workspace",
       "activation_config": {
         "variables": [{
           "title": "Email to fill a \"CC\" field",
@@ -952,6 +974,7 @@ This resource allows you to update the given recipe.
 | Parameter                                        | Required | Description                                                        |
 | :----------------------------------------------- | :------- | :----------------------------------------------------------------- |
 | type                                             | yes      | A value must be `recipe`                                           |
+| attributes.visibility                            | no       | Recipe sharing mode                                                |
 | attributes.activation_config.credentials         | no       | List of credentials used by steps in a flow                        |
 | attributes.activation_config.variables           | no       | List of variables used by steps in a flow                          |
 | attributes.marketplace_content.name              | no       | Recipe name                                                        |
