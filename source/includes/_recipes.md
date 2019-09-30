@@ -14,7 +14,7 @@ There are four sharing modes:
 - ``tenant`` – Recipe is available to other clients in the tenant.
 - ``global`` – Any user of the platform can use these recipes.
 
-Accordingly, a set of recipes, available for each user consists of: non-shared recipes from the user's Contract, recipes with ``tenant`` access and ``global`` recipes.
+Accordingly, a set of recipes, available for each user consists of: non-shared recipes from the user's Workspace, recipes with ``contract``, ``tenant`` and ``global`` access.
 
 ## Create a recipe
 
