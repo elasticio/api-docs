@@ -6,15 +6,15 @@
 
 ## Accessing and sharing recipes
 
-The recipe has an attribute ``visibility``, which indicates how is the recipe shared by the other clients. "Shared" means, that the recipe can be used by the users in their flows.
-There are three sharing modes:
+The recipe has an attribute ``visibility``, which indicates how the recipe is shared by other clients. A shared recipe is availble to other users for their Flows.
+There are four sharing modes:
 
 - ``workspace`` – Only Workspace members can use the recipe.
 - ``contract`` – Members of all Contract Workspaces can use the recipe.
-- ``tenant`` – Recipe could be used by the other clients in the tenant.
-- ``global`` – Any user of the platform can use ``global`` recipes.
+- ``tenant`` – Recipe is available to other clients in the tenant.
+- ``global`` – Any user of the platform can use these recipes.
 
-Accordingly, a set of recipes, available for each user is consist of: not shared recipes from the user's Contract, recipes with ``tenant`` access and ``global`` recipes.
+Accordingly, a set of recipes, available for each user consists of: non-shared recipes from the user's Contract, recipes with ``tenant`` access and ``global`` recipes.
 
 ## Create a recipe
 
