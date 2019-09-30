@@ -235,7 +235,9 @@ Content-Type: application/json
             }
           ]
         }
-      }
+      },
+      "created_at": "2019-09-30T11:22:19.822Z",
+      "updated_at": "2019-09-30T11:22:19.822Z"
     },
     "relationships": {
       "user": {
@@ -380,7 +382,9 @@ Content-Type: application/json
             }
           ]
         }
-      }
+      },
+      "created_at": "2019-09-30T11:22:19.822Z",
+      "updated_at": "2019-09-30T11:22:19.822Z"
     },
     "relationships": {
       "user": {
@@ -501,7 +505,9 @@ Content-Type: application/json
             }
           ]
         }
-      }
+      },
+      "created_at": "2019-09-29T11:22:19.822Z",
+      "updated_at": "2019-09-30T11:22:19.822Z"
     },
     "relationships": {
       "user": {
@@ -624,7 +630,9 @@ Content-Type: application/json
               }
             ]
           }
-        }
+        },
+        "created_at": "2019-09-29T11:22:19.822Z",
+        "updated_at": "2019-09-29T11:22:19.822Z"
       },
       "relationships": {
         "user": {
@@ -706,7 +714,9 @@ Content-Type: application/json
               }
             ]
           }
-        }
+        },
+        "created_at": "2019-09-30T11:22:19.822Z",
+        "updated_at": "2019-09-30T11:22:19.822Z"
       },
       "relationships": {
         "user": {
@@ -896,7 +906,9 @@ Content-Type: application/json
             }
           ]
         }
-      }
+      },
+      "created_at": "2019-09-30T11:22:19.822Z",
+      "updated_at": "2019-09-30T11:22:19.822Z"
     },
     "relationships": {
       "user": {
