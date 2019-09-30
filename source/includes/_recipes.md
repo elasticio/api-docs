@@ -4,6 +4,18 @@
  <b>The Recipes section is an experimental API</b>
  </aside>
 
+## Accessing and sharing recipes
+
+The recipe has an attribute ``visibility``, which indicates how is the recipe shared by the other clients. "Shared" means, that the recipe can be used by the users in their flows.
+There are three sharing modes:
+
+- ``workspace`` – Only Workspace members can use the recipe.
+- ``contract`` – Members of all Contract Workspaces can use the recipe.
+- ``tenant`` – Recipe could be used by the other clients in the tenant.
+- ``global`` – Any user of the platform can use ``global`` recipes.
+
+Accordingly, a set of recipes, available for each user is consist of: not shared recipes from the user's Contract, recipes with ``tenant`` access and ``global`` recipes.
+
 ## Create a recipe
 
 > Example Request (without required trigger/action fields):
@@ -22,6 +34,7 @@
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "help_text": "No setup required",
         "tags": [],
+        "visibility": "workspace",
         "graph": {
           "nodes": [
             {
@@ -80,11 +93,12 @@
      "data": {
        "type": "recipe",
        "attributes": {
-         "cron": "*/3 * * * *",
          "title": "My first recipe 2nd itteration",
+         "cron": "*/3 * * * *",
          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
          "help_text": "No setup required",
          "tags": [],
+        "visibility": "workspace",
          "graph": {
            "nodes": [
              {
@@ -154,6 +168,7 @@ Content-Type: application/json
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "help_text": "No setup required",
       "tags": [],
+      "visibility": "workspace",
       "graph": {
         "edges": [
           {
@@ -228,6 +243,7 @@ This resource allows you to create a new recipe.
 | attributes.cron                   | no       | Cron expression                                                                 |
 | attributes.name                   | yes      | Recipe name                                                                     |
 | attributes.graph                  | yes      | Recipe graph representing component connections                                 |
+| attributes.visibility             | no       | Recipe sharing mode                                                             |
 | relationships.workspace.data.id   | yes      | An Id of the Workspace                                                          |
 | relationships.workspace.data.type | yes      | A value must be `workspace`                                                     |
 
@@ -284,6 +300,7 @@ Content-Type: application/json
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "help_text": "Recipe based on the flow 'My flow'",
       "tags": [],
+      "visibility": "workspace",
       "graph": {
         "edges": [
           {
@@ -394,6 +411,7 @@ Content-Type: application/json
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "help_text": "No setup required",
       "tags": [],
+      "visibility": "workspace",
       "graph": {
         "edges": [
           {
@@ -500,6 +518,7 @@ Content-Type: application/json
         "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "help_text":"No setup required",
         "tags":[],
+        "visibility": "workspace",
         "graph":{
           "edges":[
             {
@@ -670,6 +689,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
          "help_text": "No setup required",
          "tags": [],
+         "visibility": "workspace",
          "graph": {
            "nodes": [
              {
@@ -728,6 +748,7 @@ Content-Type: application/json
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "help_text": "No setup required",
       "tags": [],
+      "visibility": "workspace",
       "graph": {
         "edges": [
           {
@@ -808,6 +829,7 @@ This resource allows you to update the given recipe.
 | attributes.name                   | yes      | Recipe name                                                                     |
 | attributes.cron                   | no       | Cron expression                                                                 |
 | attributes.graph                  | yes      | Recipe graph representing component connections                                 |
+| attributes.visibility             | no       | Recipe sharing mode                                                             |
 | relationships.workspace.data.id   | yes      | MUST be the same as the {RECIPE_ID}                                             |
 | relationships.workspace.data.type | yes      | A value must be `workspace`                                                     |
 
@@ -893,10 +915,10 @@ Create a flow from a recipe. If the recipe contains a component, which requires 
 
 | Parameter                         | Required | Description                                                                     |
 | :-------------------------------- | :------- | :------------------------------------------------------------------------------ |
-| type                              | yes      | A value must be `recipe-activation-config`                                                        |
-| attributes.name                   | yes      | Flow name                                                                     |
-| attributes.credentials            | no       | Specify component credentials if needed  |
-| attributes.variables            | no       | Specify values for variables which were defined in Recipe for mapping   |
+| type                              | yes      | A value must be `recipe-activation-config`                                      |
+| attributes.name                   | yes      | Flow name                                                                       |
+| attributes.credentials            | no       | Specify component credentials if needed                                         |
+| attributes.variables              | no       | Specify values for variables which were defined in Recipe for mapping           |
 | relationships.workspace.data.id   | yes      | An Id of the Workspace                                                          |
 | relationships.workspace.data.type | yes      | A value must be `workspace`                                                     |
 
