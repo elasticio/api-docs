@@ -272,6 +272,15 @@ Content-Type: application/json
         "links": {
           "self": "/v2/workspaces/{WORKSPACE_ID}"
         }
+      },
+      "contract": {
+        "data": {
+          "id": "{CONTRACT_ID}",
+          "type": "contract"
+        },
+        "links": {
+          "self": "/v2/contracts/{CONTRACT_ID}"
+        }
       }
     }
   },
@@ -421,6 +430,15 @@ Content-Type: application/json
         "links": {
           "self": "/v2/workspaces/{WORKSPACE_ID}"
         }
+      },
+      "contract": {
+        "data": {
+          "id": "{CONTRACT_ID}",
+          "type": "contract"
+        },
+        "links": {
+          "self": "/v2/contracts/{CONTRACT_ID}"
+        }
       }
     }
   },
@@ -544,6 +562,15 @@ Content-Type: application/json
         },
         "links": {
           "self": "/v2/workspaces/{WORKSPACE_ID}"
+        }
+      },
+      "contract": {
+        "data": {
+          "id": "{CONTRACT_ID}",
+          "type": "contract"
+        },
+        "links": {
+          "self": "/v2/contracts/{CONTRACT_ID}"
         }
       }
     }
@@ -671,8 +698,17 @@ Content-Type: application/json
           "links": {
             "self": "/v2/workspaces/{WORKSPACE_ID}"
           }
+        },
+      "contract": {
+        "data": {
+          "id": "{CONTRACT_ID}",
+          "type": "contract"
+        },
+        "links": {
+          "self": "/v2/contracts/{CONTRACT_ID}"
         }
       }
+     }
     },
     {
       "id": "{RECIPE_ID}",
@@ -756,8 +792,17 @@ Content-Type: application/json
           "links": {
             "self": "/v2/workspaces/{WORKSPACE_ID}"
           }
+        },
+      "contract": {
+        "data": {
+          "id": "{CONTRACT_ID}",
+          "type": "contract"
+        },
+        "links": {
+          "self": "/v2/contracts/{CONTRACT_ID}"
         }
       }
+     }
     }
   ],
   "meta": {
@@ -949,6 +994,15 @@ Content-Type: application/json
         },
         "links": {
           "self": "/v2/workspaces/{WORKSPACE_ID}"
+        }
+      },
+      "contract": {
+        "data": {
+          "id": "{CONTRACT_ID}",
+          "type": "contract"
+        },
+        "links": {
+          "self": "/v2/contracts/{CONTRACT_ID}"
         }
       }
     }
