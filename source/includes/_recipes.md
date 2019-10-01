@@ -272,6 +272,15 @@ Content-Type: application/json
         "links": {
           "self": "/v2/workspaces/{WORKSPACE_ID}"
         }
+      },
+      "contract": {
+        "data": {
+          "id": "{CONTRACT_ID}",
+          "type": "contract"
+        },
+        "links": {
+          "self": "/v2/contracts/{CONTRACT_ID}"
+        }
       }
     }
   },
@@ -421,6 +430,15 @@ Content-Type: application/json
         "links": {
           "self": "/v2/workspaces/{WORKSPACE_ID}"
         }
+      },
+      "contract": {
+        "data": {
+          "id": "{CONTRACT_ID}",
+          "type": "contract"
+        },
+        "links": {
+          "self": "/v2/contracts/{CONTRACT_ID}"
+        }
       }
     }
   },
@@ -545,6 +563,15 @@ Content-Type: application/json
         "links": {
           "self": "/v2/workspaces/{WORKSPACE_ID}"
         }
+      },
+      "contract": {
+        "data": {
+          "id": "{CONTRACT_ID}",
+          "type": "contract"
+        },
+        "links": {
+          "self": "/v2/contracts/{CONTRACT_ID}"
+        }
       }
     }
   },
@@ -598,14 +625,18 @@ Content-Type: application/json
       "attributes": {
         "visibility": "workspace",
         "activation_config": {
-          "variables": [{
-            "title": "Email to fill a \"CC\" field",
-            "key": "cc"
-          }],
-          "credentials": [{
-            "description": "Credentials to access your Petstore",
-            "stepId": "step_1"
-          }]
+          "variables": [
+            {
+              "title": "Email to fill a \"CC\" field",
+              "key": "cc"
+            }
+          ],
+          "credentials": [
+            {
+              "description": "Credentials to access your Petstore",
+              "stepId": "step_1"
+            }
+          ]
         },
         "marketplace_content": {
           "title": "My first recipe",
@@ -671,6 +702,15 @@ Content-Type: application/json
           "links": {
             "self": "/v2/workspaces/{WORKSPACE_ID}"
           }
+        },
+        "contract": {
+          "data": {
+            "id": "{CONTRACT_ID}",
+            "type": "contract"
+          },
+          "links": {
+            "self": "/v2/contracts/{CONTRACT_ID}"
+          }
         }
       }
     },
@@ -683,14 +723,18 @@ Content-Type: application/json
       "attributes": {
         "visibility": "workspace",
         "activation_config": {
-          "variables": [{
-            "title": "Email to fill a \"CC\" field",
-            "key": "cc"
-          }],
-          "credentials": [{
-            "description": "Credentials to access your Petstore",
-            "stepId": "step_1"
-          }]
+          "variables": [
+            {
+              "title": "Email to fill a \"CC\" field",
+              "key": "cc"
+            }
+          ],
+          "credentials": [
+            {
+              "description": "Credentials to access your Petstore",
+              "stepId": "step_1"
+            }
+          ]
         },
         "marketplace_content": {
           "title": "My second recipe",
@@ -755,6 +799,15 @@ Content-Type: application/json
           },
           "links": {
             "self": "/v2/workspaces/{WORKSPACE_ID}"
+          }
+        },
+        "contract": {
+          "data": {
+            "id": "{CONTRACT_ID}",
+            "type": "contract"
+          },
+          "links": {
+            "self": "/v2/contracts/{CONTRACT_ID}"
           }
         }
       }
@@ -949,6 +1002,15 @@ Content-Type: application/json
         },
         "links": {
           "self": "/v2/workspaces/{WORKSPACE_ID}"
+        }
+      },
+      "contract": {
+        "data": {
+          "id": "{CONTRACT_ID}",
+          "type": "contract"
+        },
+        "links": {
+          "self": "/v2/contracts/{CONTRACT_ID}"
         }
       }
     }
