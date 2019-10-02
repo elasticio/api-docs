@@ -14,7 +14,7 @@
 > Example Request:
 
 ```shell
-curl {{ api_base_url }}/v2/quota-usages/contracts/{CONTRACT_ID}?period=2019-03 \
+curl {{ api_base_url }}/v2/quota-usages/contracts/{CONTRACT_ID}?from=yyyy-mm-dd&to=yyyy-mm-dd \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -43,8 +43,8 @@ This endpoint allows you to retrieve a contract usage metrics by its ID. Memory 
 | Parameter   | Required | Description                                             |
 | :---------- | :------- | :------------------------------------------------------ |
 | CONTRACT_ID | Yes      | Contract identifier                                     |
-| DATE_FROM   | Yes      | Start Date of the period (inclusive). Format – ISO 8601 |
-| DATE_TO     | Yes      | End Date of the period (inclusive). Format – ISO 8601   |
+| FROM   | Yes      | Start Date of the period (inclusive). Format – ISO 8601 |
+| TO     | Yes      | End Date of the period (inclusive). Format – ISO 8601   |
 
 ### Authorization
 
@@ -64,7 +64,7 @@ Memory (in [MiB](https://en.wikipedia.org/wiki/Mebibyte)) and CPU (in [milli CPU
 > Example Request:
 
 ```shell
-curl {{ api_base_url }}/v2/quota-usages/contracts/{CONTRACT_ID}/history?from=2019-09-01&to=2019-10-01 \
+curl {{ api_base_url }}/v2/quota-usages/contracts/{CONTRACT_ID}/history?from=yyyy-mm-dd&to=yyyy-mm-dd \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -245,8 +245,8 @@ This endpoint allows you to retrieve a usage history for certain `Contract`.
 | Parameter     | Required  | Description                                               |
 | :----------   | :-------  | :-------------------------------------------------------- |
 | CONTRACT_ID   | Yes       | Contract identifier                                       |
-| DATE_FROM     | Yes       | Start Date of the period (inclusive). Format – ISO 8601   |
-| DATE_TO       | Yes       | End Date of the period (not inclusive). Format – ISO 8601 |
+| FROM     | Yes       | Start Date of the period (inclusive). Format – ISO 8601   |
+| TO       | Yes       | End Date of the period (not inclusive). Format – ISO 8601 |
 
 ### Authorization
 
@@ -266,7 +266,7 @@ Array of contract usages per day within specified period.
 > Example Request:
 
 ```shell
-curl {{ api_base_url }}/v2/quota-usages/workspaces/{WORKSPACE_ID}?period=2019-03 \
+curl {{ api_base_url }}/v2/quota-usages/workspaces/{WORKSPACE_ID}?from=yyyy-mm-dd&to=yyyy-mm-dd \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -295,8 +295,8 @@ This endpoint allows you to retrieve the usage metrics for a workspace by its ID
 | Parameter    | Required | Description                                             |
 | :----------- | :------- | :------------------------------------------------------ |
 | WORKSPACE_ID | Yes      | Workspace identifier                                    |
-| DATE_FROM    | Yes      | Start Date of the period (inclusive). Format – ISO 8601 |
-| DATE_TO      | Yes      | End Date of the period (inclusive). Format – ISO 8601   |
+| FROM    | Yes      | Start Date of the period (inclusive). Format – ISO 8601 |
+| TO      | Yes      | End Date of the period (inclusive). Format – ISO 8601   |
 
 ### Authorization
 
@@ -497,8 +497,8 @@ This endpoint allows you to retrieve a usage history for certain `Workspace`.
 | Parameter     | Required  | Description                                               |
 | :----------   | :-------  | :-------------------------------------------------------- |
 | WORKSPACE_ID  | Yes       | Workspace identifier                                      |
-| DATE_FROM     | Yes       | Start Date of the period (inclusive). Format – ISO 8601   |
-| DATE_TO       | Yes       | End Date of the period (not inclusive). Format – ISO 8601 |
+| FROM     | Yes       | Start Date of the period (inclusive). Format – ISO 8601   |
+| TO       | Yes       | End Date of the period (not inclusive). Format – ISO 8601 |
 
 ### Authorization
 
@@ -518,7 +518,7 @@ Array of workspace usages per day within specified period.
 > Example Request:
 
 ```shell
-curl {{ api_base_url }}/v2/quota-usages/workspaces/{WORKSPACE_ID}/flows?period=2019-03 \
+curl {{ api_base_url }}/v2/quota-usages/workspaces/{WORKSPACE_ID}/flows?from=yyyy-mm-dd&to=yyyy-mm-dd \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -565,8 +565,8 @@ This endpoint allows you to retrieve the usage metrics for each flow that was ac
 | Parameter    | Required | Description                                             |
 | :----------- | :------- | :------------------------------------------------------ |
 | WORKSPACE_ID | Yes      | Workspace identifier                                    |
-| DATE_FROM    | Yes      | Start Date of the period (inclusive). Format – ISO 8601 |
-| DATE_TO      | Yes      | End Date of the period (inclusive). Format – ISO 8601   |
+| FROM    | Yes      | Start Date of the period (inclusive). Format – ISO 8601 |
+| TO      | Yes      | End Date of the period (inclusive). Format – ISO 8601   |
 
 ### Authorization
 
