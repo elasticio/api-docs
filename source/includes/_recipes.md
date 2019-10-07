@@ -604,7 +604,7 @@ The recipe with given ID
 > Example Request (with custom paging):
 
 ```shell
-curl '{{ api_base_url }}/v2/recipes?contract_id={CONTRACT_ID}&page[size]=2&page[number]=1' \
+curl '{{ api_base_url }}/v2/recipes?workspace_id={WORKSPACE_ID}&page[size]=2&page[number]=1' \
    -g -u {EMAIL}:{APIKEY}
 ```
 
@@ -830,11 +830,11 @@ This resource allows you to retrieve all recipes.
 
 ### Query Parameters
 
-| Parameter         | Required  | Description |
-| :---              | :---      | :---        |
-|contract_id|yes| An Id of the Contract is required for the first iteration (until private/public recipes will be introduced)|
-| page[size]        | no | Amount of items per page. Default is `50`. |
-| page[number]      | no | Number of page you want to display. Default is `1`. |
+| Parameter         | Required  | Description                                         |
+| :---              | :---      | :---                                                |
+| workspace_id      | yes       | An Id of the Workspace                              |
+| page[size]        | no        | Amount of items per page. Default is `50`.          |
+| page[number]      | no        | Number of page you want to display. Default is `1`. |
 
 ### Returns
 
