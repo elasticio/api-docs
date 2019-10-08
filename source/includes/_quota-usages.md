@@ -238,15 +238,16 @@ This endpoint allows you to retrieve a usage history for certain `Contract`.
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/quota-usages/contracts/{CONTRACT_ID}/history?from={DATE_FROM}&to={DATE_TO}`
+`GET {{ api_base_url }}/v2/quota-usages/contracts/{CONTRACT_ID}/history?from={DATE_FROM}&to={DATE_TO}&group_by={GROUP_BY}`
 
 ### URL Parameters
 
-| Parameter     | Required  | Description                                               |
-| :----------   | :-------  | :-------------------------------------------------------- |
-| CONTRACT_ID   | Yes       | Contract identifier                                       |
-| FROM     | Yes       | Start Date of the period (inclusive). Format – ISO 8601   |
-| TO       | Yes       | End Date of the period (not inclusive). Format – ISO 8601 |
+| Parameter     | Required  | Description                                                  |
+| :----------   | :-------  | :--------------------------------------------------------    |
+| CONTRACT_ID   | Yes       | Contract identifier                                          |
+| FROM          | Yes       | Start Date of the period (inclusive). Format – ISO 8601      |
+| TO            | Yes       | End Date of the period (not inclusive). Format – ISO 8601    |
+| GROUP_BY      | No        | Param to specify aggregation period. Format - 'day', 'month' |
 
 ### Authorization
 
@@ -490,15 +491,16 @@ This endpoint allows you to retrieve a usage history for certain `Workspace`.
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/quota-usages/workspaces/{WORKSPACE_ID}/history?from={DATE_FROM}&to={DATE_TO}`
+`GET {{ api_base_url }}/v2/quota-usages/workspaces/{WORKSPACE_ID}/history?from={DATE_FROM}&to={DATE_TO}&group_by={GROUP_BY}`
 
 ### URL Parameters
 
-| Parameter     | Required  | Description                                               |
-| :----------   | :-------  | :-------------------------------------------------------- |
-| WORKSPACE_ID  | Yes       | Workspace identifier                                      |
-| FROM     | Yes       | Start Date of the period (inclusive). Format – ISO 8601   |
-| TO       | Yes       | End Date of the period (not inclusive). Format – ISO 8601 |
+| Parameter     | Required  | Description                                                  |
+| :----------   | :-------  | :--------------------------------------------------------    |
+| WORKSPACE_ID  | Yes       | Workspace identifier                                         |
+| FROM          | Yes       | Start Date of the period (inclusive). Format – ISO 8601      |
+| TO            | Yes       | End Date of the period (not inclusive). Format – ISO 8601    |
+| GROUP_BY      | No        | Param to specify aggregation period. Format - 'day', 'month' |
 
 ### Authorization
 
