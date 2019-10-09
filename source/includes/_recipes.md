@@ -838,7 +838,7 @@ This resource allows you to retrieve all recipes.
 
 ### Returns
 
-Returns all recipes in the specified Contract.
+Returns all recipes which are available in the specified Workspace.
 
 ## Update a recipe
 
