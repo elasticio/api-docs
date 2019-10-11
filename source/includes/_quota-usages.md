@@ -280,7 +280,8 @@ Content-Type: application/json
 {
   "data": {
     "memory": 2245348201,
-    "cpu": 768877946
+    "cpu": 768877946,
+    "flows": 12
   }
 }
 ```
@@ -305,7 +306,7 @@ Only a corresponding contract member can be authorized to send this request.
 
 ### Returns
 
-Memory (in [MiB](https://en.wikipedia.org/wiki/Mebibyte)) and CPU (in [milli CPU](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu)) usage for the given Workspace ID
+Memory (in [MiB](https://en.wikipedia.org/wiki/Mebibyte)) and CPU (in [milli CPU](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu)) usage with a number of unique flows for the given Workspace ID
 
 
 
