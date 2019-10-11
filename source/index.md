@@ -25,6 +25,7 @@ includes:
   - tenants
   - users
   - workspaces
+  - snapshots
 
 search: true
 ---
