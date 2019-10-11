@@ -3,6 +3,8 @@ This group of api endpoints gives you possibility to work with `snapshots` featu
 
 Data model: every step in flow is able to have associated persistent data. Step identifier is used as identifier of snapshot. Data may be anything serializable in json except undefined.
 
+**Notice:** `snapshot` is flow's runtime data. So it's forbidden to edit snapshots while flow is running.
+
 
 ## Retrieve snapshots for all steps in flow
 > Example Request:
@@ -82,7 +84,7 @@ Content-Type: application/json
 {
     "data": {
         "id":"{STEP_ID}",
-        "type":"agent",
+        "type":"snapshot",
         "links":{
             "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
         },
@@ -101,7 +103,7 @@ This resource allows you to retrieve snapshot for one step in flow
 
 
 ```shell
-curl {{ api_base_url }}/v2/agents \
+curl {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID} \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
@@ -151,7 +153,7 @@ This resource allows you to edit snapshot for step in flow.
 
 
 ```shell
-curl {{ api_base_url }}/v2/agents \
+curl {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID} \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
