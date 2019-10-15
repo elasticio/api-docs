@@ -218,7 +218,7 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/{STEP_ID} \
 > Example Response:
 
 ```http
-HTTP/1.1 201 OK
+HTTP/1.1 201 Created
 Content-Type: application/json
 
 {
