@@ -1,7 +1,7 @@
 # Snapshots
-This group of api endpoints gives you possibility to work with `snapshots` feature of platform. It gives possibility to get snapshots for all steps in flow. It also gives possibility to get/create/edit/remove snapshots individually for steps.
+This group of API endpoints allows you to work with snapshots feature of the Platform. The feature enables taking snapshots for all steps in a Flow. Also, it allows you to get/create/edit/remove snapshots individually for steps.
 
-Data model: every step in flow is able to have associated persistent data. Step identifier is used as identifier of snapshot. Data may be anything serializable in json except undefined.
+Data model: every step in Flow can have associated persistent data. Step identifier is used as identifier of snapshot. Data may be anything serializable in JSON, except undefined.
 
 **Notice:** `snapshot` is flow's runtime data. So it's forbidden to edit snapshots while flow is running.
 
@@ -221,4 +221,4 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to remove snapshot for step in flow.
+This resource allows you to remove a step snapshot in a Flow.
