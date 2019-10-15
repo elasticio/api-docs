@@ -71,6 +71,11 @@ This resource allows you to retrieve snapshots for all steps in flow
 
 The client has to be a member of the Workspace's scope, where the specified Flow is located
 
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+FLOW_ID | The ID of the Flow
+
 ## Retrieve snapshot for one step in flow
 > Example Request:
 
