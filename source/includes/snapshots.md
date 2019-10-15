@@ -11,7 +11,7 @@ Data model: every step in Flow can have associated persistent data. Step identif
 
 
 ```shell
-curl {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -25,50 +25,58 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "data":[
-        {
-            "id": "{STEP_ID}",
-                "type": "snapshot",
-                "links":{
-                    "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
-                },
-                "attributes":{
-                    "snapshot": "{BODY OF SNAPSHOT}"
-                }
-        },
-        {
-            "id":"{STEP_ID}",
-            "type": "snapshot",
-            "links":{
-                "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
-            },
-            "attributes":{
-                "snapshot": "{BODY OF SNAPSHOT}"
-            }
-        },
-        {
-            "id":"{STEP_ID}",
-            "type": "snapshot",
-            "links":{
-                "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
-            },
-            "attributes":{
-                "snapshot": "{BODY OF SNAPSHOT}"
-            }
-        }
-    ],
-    "meta":{}
+  "data":[
+    {
+      "id":"{STEP_ID}",
+      "type":"snapshot",
+      "links":{
+        "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
+      },
+      "attributes":{
+        "snapshot":"{BODY OF SNAPSHOT}"
+      }
+    },
+    {
+      "id":"{STEP_ID}",
+      "type":"snapshot",
+      "links":{
+        "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
+      },
+      "attributes":{
+        "snapshot":"{BODY OF SNAPSHOT}"
+      }
+    },
+    {
+      "id":"{STEP_ID}",
+      "type":"snapshot",
+      "links":{
+        "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
+      },
+      "attributes":{
+        "snapshot":"{BODY OF SNAPSHOT}"
+      }
+    }
+  ],
+  "meta":{}
 }
 ```
 
 This resource allows you to retrieve snapshots for all steps in flow
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots`
+
+### Authorization
+
+The client has to be a member of the Workspace's scope, where the specified Flow is located
 
 ## Retrieve snapshot for one step in flow
 > Example Request:
 
 
 ```shell
-curl {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/{STEP_ID} \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -82,40 +90,57 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "data": {
-        "id":"{STEP_ID}",
-        "type":"snapshot",
-        "links":{
-            "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
-        },
-        "attributes":{
-            "snapshot": "{BODY OF SNAPSHOT}"
-        }
+  "data":{
+    "id":"{STEP_ID}",
+    "type":"snapshot",
+    "links":{
+      "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
     },
-    "meta":{}
+    "attributes":{
+      "snapshot":"{BODY OF SNAPSHOT}"
+    }
+  },
+  "meta":{}
 }
 ```
 
 This resource allows you to retrieve snapshot for one step in flow
+
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID}`
+
+#### Authorization
+
+The client has to be a member of the Workspace's scope, where the specified Flow is located
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+FLOW_ID | The ID of the Flow
+STEP_ID | ID of the Step from the specified Flow
+
+
 
 ## Edit snapshot for one step in flow
 > Example Request:
 
 
 ```shell
-curl {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/{STEP_ID} \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
     {
-        "data":{
-            "type": "snapshot",
-            "id": "{STEP_ID}"
-            "attributes": {
-                "snapshot": "{BODY OF SNAPSHOT}"
-            }
-        }
-    }'
+     "data":{
+       "type":"snapshot",
+       "id":"{STEP_ID}",
+       "attributes":{
+         "snapshot":"{BODY OF SNAPSHOT}"
+       }
+     }
+   }'
 ```
 
 
@@ -127,21 +152,36 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "data":{
-        "id":"{STEP_ID}",
-        "type":"snapshot",
-        "links":{
-            "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
-        },
-        "attributes":{
-            "snapshot": "{BODY_OF_SNAPSHOT}"
-        }
+  "data":{
+    "id":"{STEP_ID}",
+    "type":"snapshot",
+    "links":{
+      "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
     },
-    "meta":{}
+    "attributes":{
+      "snapshot":"{BODY_OF_SNAPSHOT}"
+    }
+  },
+  "meta":{}
 }
 ```
 
 This resource allows you to edit snapshot for step in flow.
+
+### HTTP Request
+
+`PATCH {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID}`
+
+#### Authorization
+
+This request is authorized to a user with the `workspaces.flow.edit` permission.
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+FLOW_ID | The ID of the Flow
+STEP_ID | ID of the Step from the specified Flow
+
 
 ##### Notices
 1. It's forbidden to edit snapshot for step, that does not exist in flow.
@@ -153,19 +193,19 @@ This resource allows you to edit snapshot for step in flow.
 
 
 ```shell
-curl {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/{STEP_ID} \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
     {
-        "data":{
-            "type": "snapshot",
-            "id": "{STEP_ID}"
-            "attributes": {
-                "snapshot": "{BODY OF SNAPSHOT}"
-            }
-        }
-    }'
+     "data":{
+       "type":"snapshot",
+       "id":"{STEP_ID}",
+       "attributes":{
+         "snapshot":"{BODY OF SNAPSHOT}"
+       }
+     }
+   }'
 ```
 
 
@@ -177,21 +217,41 @@ HTTP/1.1 201 OK
 Content-Type: application/json
 
 {
-    "data":{
-        "id":"{STEP_ID}",
-        "type":"snapshot",
-        "links":{
-            "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
-        },
-        "attributes":{
-            "snapshot": "{BODY_OF_SNAPSHOT}"
-        }
+  "data":{
+    "id":"{STEP_ID}",
+    "type":"snapshot",
+    "links":{
+      "self":"/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}"
     },
-    "meta":{}
-}
+    "attributes":{
+      "snapshot":"{BODY_OF_SNAPSHOT}"
+    }
+  },
+  "meta":{}
 ```
 
 This resource allows you to create snapshot for step in flow.
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID}`
+
+#### Authorization
+
+This request is authorized to a user with the `workspaces.flow.edit` permission.
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+FLOW_ID | The ID of the Flow
+STEP_ID | ID of the Step from the specified Flow
+
+### Payload Parameters
+Parameter        | Required  | Description
+---------        | --------- | -----------
+id          | yes       | ID of the Step from the specified Flow (the same as in URL)
+attributes.snapshot | yes       | The body of the snapsot. The value may be anything except `undefined`
+
 
 ##### Notices
 1. It's forbidden to create snapshot for step, that does not exist in flow.
@@ -214,11 +274,22 @@ curl {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID} \
 > Example Response:
 
 ```http
-HTTP/1.1 204 OK
+HTTP/1.1 204 No Content
 Content-Type: application/json
-
-{
-}
 ```
 
 This resource allows you to remove a step snapshot in a Flow.
+
+### HTTP Request
+
+`DELETE {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID}`
+
+#### Authorization
+
+This request is authorized to a user with the `workspaces.flow.edit` permission.
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+FLOW_ID | The ID of the Flow
+STEP_ID | ID of the Step from the specified Flow
