@@ -198,7 +198,7 @@ STEP_ID | ID of the Step from the specified Flow
 
 
 ```shell
-curl {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/{STEP_ID} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/ \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
@@ -249,7 +249,6 @@ This request is authorized to a user with the `workspaces.flow.edit` permission.
 Parameter       | Description
 --------------- | -----------
 FLOW_ID | The ID of the Flow
-STEP_ID | ID of the Step from the specified Flow
 
 ### Payload Parameters
 Parameter        | Required  | Description
