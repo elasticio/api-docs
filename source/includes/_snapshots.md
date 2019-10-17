@@ -239,7 +239,7 @@ This resource allows you to create snapshot for step in flow.
 
 ### HTTP Request
 
-`POST {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID}`
+`POST {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/`
 
 #### Authorization
 
