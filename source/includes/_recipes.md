@@ -14,9 +14,8 @@ is available to other users for their Flows. There are four sharing modes:
 - ``tenant`` – Recipe is available to other clients in the tenant.
 - ``global`` – Any user of the platform can use these recipes.
 
-Accordingly, a set of recipes, available for each user consists of: non-shared recipes from the user's Workspace,
-recipes with `contract`, `tenant` and `global` access. When you create recipe it has default visibility 
-`workspace`.
+Accordingly, a set of recipes available for each user consists of: non-shared recipes from the user's Workspace,
+recipes with `contract`, `tenant` and `global` access. When you create a recipe, it has default visibility `workspace`.
  
 ## Create a recipe
 
@@ -1065,7 +1064,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID}/visibility \
   -H 'Content-Type: application/json' -d '
    {
      "data": {
-       "visibility": "global"
+       "visibility": "contract"
      }
    }'
 ```
@@ -1084,7 +1083,7 @@ Content-Type: application/json
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
-      "visibility": "global",
+      "visibility": "contract",
       "activation_config": {
         "variables": [{
           "title": "Email to fill a \"CC\" field",
@@ -1191,9 +1190,9 @@ This resource allows you to update attribute visibility of the given recipe.
 
 ### Body Parameters
 
-| Parameter                                        | Required | Description                                                        |
-| :----------------------------------------------- | :------- | :----------------------------------------------------------------- |
-| visibility                                       | yes      | Recipe sharing mode                                                |
+| Parameter    | Required | Description                                                                              |
+| :------------| :------- | :--------------------------------------------------------------------------------------- |
+| visibility   | yes      | Recipe sharing mode. Value must be one of `workspace`, `contract`, `tenant` or `global`  |
 
 ### Authorization
 
