@@ -520,7 +520,7 @@ Content-Type: application/json
                   "to": "pets[0].name",
                   "subject": "pets[0].id",
                   "textBody": "pets[0].status",
-                  "cc": "$getFlowVariables()..cc"
+                  "cc": "$getFlowVariables().cc"
                 },
                 "condition": null
               },
@@ -1115,7 +1115,7 @@ Content-Type: application/json
                   "textBody": "pets[0].status",
                   "subject": "pets[0].id",
                   "to": "pets[0].name",
-                  "cc": "vars.emailCc"
+                  "cc": "$getFlowVariables().emailCc"
                 },
                 "mapper_type": "jsonata"
               },
