@@ -41,8 +41,8 @@ curl -X POST {{ api_base_url }}/v2/recipes \
           }]
         },
         "marketplace_content": {
-          "title": "My first recipe 2nd iteration",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "title": "My Recipe",
+          "description": "# Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**.",
           "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "help_text": "No setup required",
           "tags": []
@@ -73,7 +73,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
                   "mapper_type": "jsonata",
                   "mapper": {
                     "to": "pets[0].name",
-                    "cc": "vars.cc",
+                    "cc": "$getFlowVariables().cc",
                     "subject": "pets[0].id",
                     "textBody": "pets[0].status"
                   },
@@ -121,7 +121,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
           }]
         },
         "marketplace_content": {
-          "title": "My first recipe 2nd iteration",
+          "title": "My Recipe",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "help_text": "No setup required",
@@ -156,7 +156,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
                   "mapper_type": "jsonata",
                   "mapper": {
                     "to": "pets[0].name",
-                    "cc": "vars.cc",
+                    "cc": "$getFlowVariables().cc",
                     "subject": "pets[0].id",
                     "textBody": "pets[0].status"
                   },
@@ -207,7 +207,7 @@ Content-Type: application/json
         }]
       },
       "marketplace_content": {
-        "title": "My first recipe 2nd iteration",
+        "title": "My Recipe",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "help_text": "No setup required",
@@ -224,7 +224,7 @@ Content-Type: application/json
                   "textBody": "pets[0].status",
                   "subject": "pets[0].id",
                   "to": "pets[0].name",
-                  "cc": "vars.cc"
+                  "cc": "$getFlowVariables().cc"
                 },
                 "mapper_type": "jsonata"
               },
@@ -305,7 +305,8 @@ This resource allows you to create a new recipe.
 | attributes.marketplace_content.name              | yes      | Recipe name                                                                                              |
 | attributes.marketplace_content.description       | yes      | Recipe description                                                                                       |
 | attributes.marketplace_content.short_description | yes      | Recipe short description                                                                                 |
-| attributes.marketplace_content.help_text         | no       | Recipe help text                                                                                         |
+| attributes.marketplace_content.help_text         | no       | Recipe help text                                             
+                                           
 | attributes.flow_template.cron                    | no       | Cron expression                                                                                          |
 | attributes.flow_template.graph                   | yes      | Recipe graph representing component connections                                                          |
 | relationships.workspace.data.id                  | yes      | An Id of the Workspace                                                                                   |
@@ -318,6 +319,8 @@ This request is authorized to only a user with `workspaces.recipe.edit` permissi
 ### Returns
 
 Returns the created recipe
+
+**Note:** you can use `$getFlowVariables().{variable_name}` only in `attributes.flow_template.edges.config.mapper` section. Variable value will be defined by recipe user during activation. 
 
 ## Create a recipe from existing flow
 
@@ -503,7 +506,7 @@ Content-Type: application/json
         }]
       },
       "marketplace_content": {
-        "title": "My first recipe 2nd iteration",
+        "title": "My Recipe",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "help_text": "No setup required",
@@ -519,7 +522,7 @@ Content-Type: application/json
                   "to": "pets[0].name",
                   "subject": "pets[0].id",
                   "textBody": "pets[0].status",
-                  "cc": "vars.cc"
+                  "cc": "$getFlowVariables()..cc"
                 },
                 "condition": null
               },
@@ -653,7 +656,7 @@ Content-Type: application/json
                   "mapper_type": "jsonata",
                   "mapper": {
                     "to": "pets[0].name",
-                    "cc": "vars.cc",
+                    "cc": "$getFlowVariables()..cc",
                     "subject": "pets[0].id",
                     "textBody": "pets[0].status"
                   },
@@ -751,7 +754,7 @@ Content-Type: application/json
                   "mapper_type": "jsonata",
                   "mapper": {
                     "to": "pets[0].name",
-                    "cc": "vars.cc",
+                    "cc": "$getFlowVariables().cc",
                     "subject": "pets[0].id",
                     "textBody": "pets[0].status"
                   },
@@ -863,7 +866,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
            }]
          },
          "marketplace_content": {
-           "title": "My first recipe 2nd iteration NEW",
+           "title": "My Recipe",
            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
            "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
            "help_text": "No setup required",
@@ -895,7 +898,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
                    "mapper_type": "jsonata",
                    "mapper": {
                      "to": "pets[0].name",
-                     "cc": "vars.emailCc",
+                     "cc": "$getFlowVariables().emailCc",
                      "subject": "pets[0].id",
                      "textBody": "pets[0].status"
                    },
@@ -955,7 +958,7 @@ Content-Type: application/json
                   "textBody": "pets[0].status",
                   "subject": "pets[0].id",
                   "to": "pets[0].name",
-                  "cc": "vars.emailCc"
+                  "cc": "$getFlowVariables().emailCc"
                 },
                 "mapper_type": "jsonata"
               },
