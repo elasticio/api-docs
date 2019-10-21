@@ -6,16 +6,17 @@
 
 ## Accessing and sharing recipes
 
-The recipe has an attribute ``visibility``, which indicates how the recipe is shared by other clients. A shared recipe is available to other users for their Flows.
-There are four sharing modes:
+The recipe has an attribute ``visibility``, which indicates how the recipe is shared by other clients. A shared recipe
+is available to other users for their Flows. There are four sharing modes:
 
 - ``workspace`` – Only Workspace members can use the recipe.
 - ``contract`` – Members of all Contract Workspaces can use the recipe.
 - ``tenant`` – Recipe is available to other clients in the tenant.
 - ``global`` – Any user of the platform can use these recipes.
 
-Accordingly, a set of recipes, available for each user consists of: non-shared recipes from the user's Workspace, recipes with ``contract``, ``tenant`` and ``global`` access.
-
+Accordingly, a set of recipes available for each user consists of: non-shared recipes from the user's Workspace,
+recipes with `contract`, `tenant` and `global` access. When you create a recipe, it has default visibility `workspace`.
+ 
 ## Create a recipe
 
 > Example Request (without required trigger/action fields):
@@ -29,7 +30,6 @@ curl -X POST {{ api_base_url }}/v2/recipes \
     "data": {
       "type": "recipe",
       "attributes": {
-        "visibility": "workspace",
         "activation_config": {
           "variables": [{
             "title": "Email to fill a \"CC\" field",
@@ -109,7 +109,6 @@ curl -X POST {{ api_base_url }}/v2/recipes \
     "data": {
       "type": "recipe",
       "attributes": {
-        "visibility": "workspace",
         "activation_config": {
           "variables": [{
             "title": "Email to fill a \"CC\" field",
@@ -299,7 +298,6 @@ This resource allows you to create a new recipe.
 | Parameter                                        | Required | Description                                                                                              |
 | :----------------------------------------------- | :------- | :------------------------------------------------------------------------------------------------------- |
 | type                                             | yes      | A value must be `recipe`                                                                                 |
-| attributes.visibility                            | no       | Recipe sharing mode. if attribute is not specified the visibility level will set to workspace by default |
 | attributes.activation_config.variables           | no       | List of variables used by steps in a flow                                                                |
 | attributes.activation_config.credentials         | no       | List of credentials used by steps in a flow                                                              |
 | attributes.marketplace_content.name              | yes      | Recipe name                                                                                              |
@@ -858,7 +856,6 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
        "id": "{RECIPE_ID}",
        "type": "recipe",
        "attributes": {
-         "visibility": "workspace",
          "activation_config": {
            "variables": [{
              "title": "Email to fill a \"CC\" field",
@@ -1039,7 +1036,6 @@ This resource allows you to update the given recipe.
 | Parameter                                        | Required | Description                                                        |
 | :----------------------------------------------- | :------- | :----------------------------------------------------------------- |
 | type                                             | yes      | A value must be `recipe`                                           |
-| attributes.visibility                            | no       | Recipe sharing mode                                                |
 | attributes.activation_config.credentials         | no       | List of credentials used by steps in a flow                        |
 | attributes.activation_config.variables           | no       | List of variables used by steps in a flow                          |
 | attributes.marketplace_content.name              | no       | Recipe name                                                        |
@@ -1054,6 +1050,160 @@ This resource allows you to update the given recipe.
 ### Authorization
 
 This request is authorized for a user with the `workspaces.recipe.edit` permission.
+
+### Returns
+
+Returns the updated recipe
+
+## Update a recipe visibility
+
+> Example request
+
+```shell
+curl {{ api_base_url }}/v2/recipes/{RECIPE_ID}/visibility \
+  -X PATCH \
+  -u {EMAIL}:{APIKEY} \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json' -d '
+   {
+     "data": {
+       "visibility": "contract"
+     }
+   }'
+```
+
+> Example response
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "data": {
+    "id": "{RECIPE_ID}",
+    "type": "recipe",
+    "links": {
+      "self": "/v2/recipes/{RECIPE_ID}"
+    },
+    "attributes": {
+      "visibility": "contract",
+      "activation_config": {
+        "variables": [{
+          "title": "Email to fill a \"CC\" field",
+          "key": "emailCc"
+        }],
+        "credentials": [{
+          "description": "Credentials to access your Petstore",
+          "stepId": "step_1"
+        }]
+      },
+      "marketplace_content": {
+        "title": "My first recipe 2nd iteration NEW",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "help_text": "No setup required",
+        "tags": []
+      },
+      "flow_template": {
+        "cron": "*/3 * * * *",
+        "graph": {
+          "edges": [
+            {
+              "config": {
+                "condition": null,
+                "mapper": {
+                  "textBody": "pets[0].status",
+                  "subject": "pets[0].id",
+                  "to": "pets[0].name",
+                  "cc": "vars.emailCc"
+                },
+                "mapper_type": "jsonata"
+              },
+              "source": "step_1",
+              "target": "step_2"
+            }
+          ],
+          "nodes": [
+            {
+              "name": "New name",
+              "description": "New description",
+              "command": "elasticio/petstore:getPetsByStatusWithGenerators@latest",
+              "id": "step_1"
+            },
+            {
+              "name": "New name",
+              "description": "New description",
+              "command": "elasticio/email:send@latest",
+              "fields": {
+                "dontThrowErrorFlg": true
+              },
+              "id": "step_2"
+            }
+          ]
+        }
+      },
+      "created_at": "2019-09-30T11:22:19.822Z",
+      "updated_at": "2019-09-30T11:22:19.822Z"
+    },
+    "relationships": {
+      "user": {
+        "data": {
+          "id": "{USER_ID}",
+          "type": "user"
+        },
+        "links": {
+          "self": "/v2/users/{USER_ID}"
+        }
+      },
+      "workspace": {
+        "data": {
+          "id": "{WORKSPACE_ID}",
+          "type": "workspace"
+        },
+        "links": {
+          "self": "/v2/workspaces/{WORKSPACE_ID}"
+        }
+      },
+      "contract": {
+        "data": {
+          "id": "{CONTRACT_ID}",
+          "type": "contract"
+        },
+        "links": {
+          "self": "/v2/contracts/{CONTRACT_ID}"
+        }
+      }
+    }
+  },
+  "meta": {}
+}
+```
+
+This resource allows you to update attribute visibility of the given recipe.
+
+### HTTP Request
+
+`PATCH {{ api_base_url }}/v2/recipes/{RECIPE_ID}/visibility`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :-------- | :------- | :---------- |
+| RECIPE_ID | yes      | Recipe ID   |
+
+### Body Parameters
+
+| Parameter    | Required | Description                                                                              |
+| :------------| :------- | :--------------------------------------------------------------------------------------- |
+| visibility   | yes      | Recipe sharing mode. Value must be one of `workspace`, `contract`, `tenant` or `global`  |
+
+### Authorization
+
+This request is authorized depend on specified visibility level for a user that has next permission:
+- to `tenant` if user has permission `tenant.recipe.edit_visibilty_tenant`
+- to `global` if user has permission `global.recipe.edit_visibilty_global`
+- to `contract` if user has permission `workspaces.recipe.edit`
+- to `workspace` if user has permission `workspaces.recipe.edit`
 
 ### Returns
 
