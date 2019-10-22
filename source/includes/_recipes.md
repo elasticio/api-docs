@@ -1224,12 +1224,21 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID}/activate \
        "type": "recipe-activation-config",
        "attributes": {
          "name": "Flow, created from Recipe",
+         "description": "Recipe description",
          "credentials": {
            "step_1": "{CREDENTIAL_ID}"
          },
          "variables": {
            "TO_EMAIL": "goose@elastic.io",
            "NAME_IN_SUBJECT": "Neochen Jubata"
+         },
+         "fields": {
+           "step_1": {
+             "code": "console.log(message)"
+           },
+           "step_3":  {
+             "email": "email@example.com"
+           }
          }
        },
        "relationships": {
@@ -1284,9 +1293,10 @@ Create a flow from a recipe. If the recipe contains a component, which requires 
 | Parameter                         | Required | Description                                                                     |
 | :-------------------------------- | :------- | :------------------------------------------------------------------------------ |
 | type                              | yes      | A value must be `recipe-activation-config`                                      |
-| attributes.name                   | yes      | Flow name                                                                       |
+| attributes.name                   | no       | Flow name                                                                       |
 | attributes.credentials            | no       | Specify component credentials if needed                                         |
-| attributes.variables              | no       | Specify values for variables which were defined in Recipe for mapping           |
+| attributes.variables              | yes      | Specify values for variables which were defined in Recipe for mapping           |
+| attributes.fields                 | no       | Specify fields for Recipe steps                                                 |
 | relationships.workspace.data.id   | yes      | An Id of the Workspace                                                          |
 | relationships.workspace.data.type | yes      | A value must be `workspace`                                                     |
 
