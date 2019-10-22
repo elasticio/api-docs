@@ -23,13 +23,13 @@
       "webhooks_domain":"{{webhooks_domain}}",
       "git_receiver_host":"git_receiver_host",
       "code":"{{css_code}}",
-      "header_logo_url":"//cdn.elastic.io/logo-mini.png",
-      "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
-      "email_logo_url":"//cdn.elastic.io/logo-mini.png",
-      "favicon_url":"//cdn.elastic.io/logo-mini.png",
-      "terms_of_usage_url":"https://www.elastic.io/tou/",
-      "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
-      "imprint_url":"https://www.elastic.io/legal-disclosure/",
+      "header_logo_url":"//cdn.example.com/logo-mini.png",
+      "loading_logo_url":"//cdn.example.com/logo-mini.png",
+      "email_logo_url":"//cdn.example.com/logo-mini.png",
+      "favicon_url":"//cdn.example.com/logo-mini.png",
+      "terms_of_usage_url":"https://www.example.com/tou/",
+      "privacy_policy_url":"https://www.example.com/privacy-policy/",
+      "imprint_url":"https://www.example.com/legal-disclosure/",
       "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
@@ -43,7 +43,7 @@
       "hide_docs":false,
       "powered_by_elasticio":true,
       "css_enabled":false,
-      "docs_base_url":"https://docs.elastic.io/",
+      "docs_base_url":"https://docs.example.com/",
       "default_workspace_type":"limited",
       "custom_stylesheets":[
         {
@@ -92,7 +92,7 @@
           "custom_class":"custom_class",
           "links":[
             {
-              "url":"https://docs.elastic.io",
+              "url":"https://docs.example.com",
               "title":"Documentation",
               "icon":"description",
               "target":"_blank"
@@ -139,13 +139,13 @@ Content-Type: application/json
       "git_receiver_host":"git_receiver_host",
       "css_enabled":false,
       "code":"{{css_code}}",
-      "header_logo_url":"//cdn.elastic.io/logo-mini.png",
-      "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
-      "email_logo_url":"//cdn.elastic.io/logo-mini.png",
-      "favicon_url":"//cdn.elastic.io/logo-mini.png",
-      "terms_of_usage_url":"https://www.elastic.io/tou/",
-      "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
-      "imprint_url":"https://www.elastic.io/legal-disclosure/",
+      "header_logo_url":"//cdn.example.com/logo-mini.png",
+      "loading_logo_url":"//cdn.example.com/logo-mini.png",
+      "email_logo_url":"//cdn.example.com/logo-mini.png",
+      "favicon_url":"//cdn.example.com/logo-mini.png",
+      "terms_of_usage_url":"https://www.example.com/tou/",
+      "privacy_policy_url":"https://www.example.com/privacy-policy/",
+      "imprint_url":"https://www.example.com/legal-disclosure/",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
       "hide_repos":false,
@@ -155,7 +155,7 @@ Content-Type: application/json
       "hide_docs":false,
       "hide_register":false,
       "powered_by_elasticio":true,
-      "docs_base_url":"https://docs.elastic.io/",
+      "docs_base_url":"https://docs.example.com/",
       "default_workspace_type":"limited",
       "ssl_certificates":{},
       "custom_stylesheets":[  
@@ -202,7 +202,7 @@ Content-Type: application/json
           "custom_class":"custom_class",
           "links":[
             {
-              "url":"https://docs.elastic.io",
+              "url":"https://docs.example.com",
               "title":"Documentation",
               "icon":"description",
               "target":"_blank"
@@ -314,7 +314,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
         "webhooks":"{{cert_id}}"
       },
       "default_workspace_type":"full",
-      "docs_base_url":"https://docs.elastic.io/",
+      "docs_base_url":"https://docs.example.com/",
      "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -343,7 +343,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
           "custom_class":"custom_class",
           "links":[
             {
-              "url":"https://docs.elastic.io",
+              "url":"https://docs.example.com",
               "title":"Documentation",
               "icon":"description",
               "target":"_blank"
@@ -397,13 +397,13 @@ Content-Type: application/json
       "git_receiver_host":"git_receiver_host",
       "css_enabled":false,
       "code":"{{css_code}}",
-      "header_logo_url":"//cdn.elastic.io/logo-mini.png",
-      "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
-      "email_logo_url":"//cdn.elastic.io/logo-mini.png",
-      "favicon_url":"//cdn.elastic.io/logo-mini.png",
-      "terms_of_usage_url":"https://www.elastic.io/tou/",
-      "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
-      "imprint_url":"https://www.elastic.io/legal-disclosure/",
+      "header_logo_url":"//cdn.example.com/logo-mini.png",
+      "loading_logo_url":"//cdn.example.com/logo-mini.png",
+      "email_logo_url":"//cdn.example.com/logo-mini.png",
+      "favicon_url":"//cdn.example.com/logo-mini.png",
+      "terms_of_usage_url":"https://www.example.com/tou/",
+      "privacy_policy_url":"https://www.example.com/privacy-policy/",
+      "imprint_url":"https://www.example.com/legal-disclosure/",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
       "hide_repos":false,
@@ -413,7 +413,7 @@ Content-Type: application/json
       "hide_docs":false,
       "hide_register":false,
       "powered_by_elasticio":true,
-      "docs_base_url":"https://docs.elastic.io/",
+      "docs_base_url":"https://docs.example.com/",
       "default_workspace_type":"full",
       "custom_stylesheets":[
         {
@@ -464,7 +464,7 @@ Content-Type: application/json
           "custom_class":"custom_class",
           "links":[
             {
-              "url":"https://docs.elastic.io",
+              "url":"https://docs.example.com",
               "title":"Documentation",
               "icon":"description",
               "target":"_blank"
@@ -580,13 +580,13 @@ Content-Type: application/json
         "git_receiver_host":"git_receiver_host",
         "css_enabled":false,
         "code":"{{css_code}}",
-        "header_logo_url":"//cdn.elastic.io/logo-mini.png",
-        "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
-        "email_logo_url":"//cdn.elastic.io/logo-mini.png",
-        "favicon_url":"//cdn.elastic.io/logo-mini.png",
-        "terms_of_usage_url":"https://www.elastic.io/tou/",
-        "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
-        "imprint_url":"https://www.elastic.io/legal-disclosure/",
+        "header_logo_url":"//cdn.example.com/logo-mini.png",
+        "loading_logo_url":"//cdn.example.com/logo-mini.png",
+        "email_logo_url":"//cdn.example.com/logo-mini.png",
+        "favicon_url":"//cdn.example.com/logo-mini.png",
+        "terms_of_usage_url":"https://www.example.com/tou/",
+        "privacy_policy_url":"https://www.example.com/privacy-policy/",
+        "imprint_url":"https://www.example.com/legal-disclosure/",
         "mailchimp_list_id":"{{mailchimp_list_id}}",
         "mandrill_email_from":"foo@foo.bar",
         "hide_repos":false,
@@ -596,7 +596,7 @@ Content-Type: application/json
         "hide_docs":false,
         "hide_register":false,
         "powered_by_elasticio":true,
-        "docs_base_url":"https://docs.elastic.io/",
+        "docs_base_url":"https://docs.example.com/",
         "ssl_certificates":{},
        "custom_nav_menu_items":[
         {
@@ -626,7 +626,7 @@ Content-Type: application/json
           "custom_class":"custom_class",
           "links":[
             {
-              "url":"https://docs.elastic.io",
+              "url":"https://docs.example.com",
               "title":"Documentation",
               "icon":"description",
               "target":"_blank"
@@ -688,13 +688,13 @@ Content-Type: application/json
       "git_receiver_host":"git_receiver_host",
       "css_enabled":false,
       "code":"{{css_code}}",
-      "header_logo_url":"//cdn.elastic.io/logo-mini.png",
-      "loading_logo_url":"//cdn.elastic.io/logo-mini.png",
-      "email_logo_url":"//cdn.elastic.io/logo-mini.png",
-      "favicon_url":"//cdn.elastic.io/logo-mini.png",
-      "terms_of_usage_url":"https://www.elastic.io/tou/",
-      "privacy_policy_url":"https://www.elastic.io/privacy-policy/",
-      "imprint_url":"https://www.elastic.io/legal-disclosure/",
+      "header_logo_url":"//cdn.example.com/logo-mini.png",
+      "loading_logo_url":"//cdn.example.com/logo-mini.png",
+      "email_logo_url":"//cdn.example.com/logo-mini.png",
+      "favicon_url":"//cdn.example.com/logo-mini.png",
+      "terms_of_usage_url":"https://www.example.com/tou/",
+      "privacy_policy_url":"https://www.example.com/privacy-policy/",
+      "imprint_url":"https://www.example.com/legal-disclosure/",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
       "hide_repos":false,
@@ -704,7 +704,7 @@ Content-Type: application/json
       "hide_docs":false,
       "hide_register":false,
       "powered_by_elasticio":true,
-      "docs_base_url":"https://docs.elastic.io/",
+      "docs_base_url":"https://docs.example.com/",
       "ssl_certificates":{},
      "custom_nav_menu_items":[
         {
@@ -734,7 +734,7 @@ Content-Type: application/json
           "custom_class":"custom_class",
           "links":[
             {
-              "url":"https://docs.elastic.io",
+              "url":"https://docs.example.com",
               "title":"Documentation",
               "icon":"description",
               "target":"_blank"

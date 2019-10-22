@@ -9,7 +9,7 @@ There are three sharing modes:
 
 - ``team`` – no sharing. Only Contract members can use the component.
 - ``tenant`` – component could be used by the other clients in the tenant.
-- ``global`` – special mode for components from the standard set of components of Elastic.io Platform (e.g. ``Timer``, ``Webhook`` etc). Any user of the platform can use ``global`` components.
+- ``global`` – special mode for components from the standard set of components of the Platform (e.g. ``Timer``, ``Webhook`` etc). Any user of the platform can use ``global`` components.
 
 Accordingly, a set of components, available for each user is consist of: not shared components from the user's Contract, components with ``tenant`` access and ``global`` components.
 
@@ -727,7 +727,7 @@ A component may have one of the following access level:
 
 - ``team`` – no sharing. Only team members can use the component.
 - ``tenant`` – component could be used by the other clients in the tenant.
-- ``global`` – special mode for components from the standard set of components of Elastic.io Platform (e.g. ``Timer``, ``Webhook`` etc). Any user of the platform can use ``global`` components.
+- ``global`` – special mode for components from the standard set of components of the Platform (e.g. ``Timer``, ``Webhook`` etc). Any user of the platform can use ``global`` components.
 
 ### Authorization
 This request is authorized for a user with ``TenantAdmin`` role only. Contact support team to get this role.

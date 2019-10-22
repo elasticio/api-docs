@@ -1229,7 +1229,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID}/activate \
            "step_1": "{CREDENTIAL_ID}"
          },
          "variables": {
-           "TO_EMAIL": "goose@elastic.io",
+           "TO_EMAIL": "goose@example.com",
            "NAME_IN_SUBJECT": "Neochen Jubata"
          },
          "fields": {
