@@ -276,12 +276,12 @@ Content-Type: application/json
       "id":"59d22e7eebrr5b0018adc248",
       "type":"contract-member",
       "attributes":{
-        "first_name":"Alla",
-        "last_name":"Ospik",
+        "first_name":"Jane",
+        "last_name":"Doe",
         "roles":[
           "admin"
         ],
-        "email":"alla.ospik@example.com"
+        "email":"jane.doe@example.com"
       },
       "relationships":{
         "user":{

@@ -544,7 +544,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.custom_scripts\[]             | no       | Customer js-scripts.      |
 | attributes.default_workspace_type       | no       | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`        |
 
-_Note_: If the default installation's certificate is a wildcard one (e.g. `*.example.com`) and the Tenant's domains match to this certificate (e.g. `my-tenant-api.example.com`), then there is no need to provide separate certificates for these domains. To remove existing certificates set them to `null` (e.g. `"app": null`).
+_Note_: If the default installation's certificate is a wildcard one (e.g. `*.example.com`) and the Tenant's domains match to this certificate (e.g. `my-tenant-api.example.com`), then there is no need to provide separate certificates for these domains. To remove existing certificates, set them to `null` (e.g. `"app": null`).
 
 ### Returns
 
