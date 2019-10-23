@@ -276,12 +276,12 @@ Content-Type: application/json
       "id":"59d22e7eebrr5b0018adc248",
       "type":"contract-member",
       "attributes":{
-        "first_name":"Alla",
-        "last_name":"Ospik",
+        "first_name":"Jane",
+        "last_name":"Doe",
         "roles":[
           "admin"
         ],
-        "email":"alla.ospik@{{ product_name }}"
+        "email":"jane.doe@example.com"
       },
       "relationships":{
         "user":{
@@ -304,7 +304,7 @@ Content-Type: application/json
         "roles":[
           "admin"
         ],
-        "email":"henry@{{ product_name }}"
+        "email":"henry@example.com"
       },
       "relationships":{
         "user":{
@@ -473,7 +473,7 @@ Content-Type: application/json
         "roles":[
           "admin"
         ],
-        "email":"hanna.yutsenko@{{ product_name }}"
+        "email":"hanna.yutsenko@example.com"
       },
       "relationships":{
         "user":{
@@ -496,7 +496,7 @@ Content-Type: application/json
         "roles":[
           "admin"
         ],
-        "email":"margarita@{{ product_name }}"
+        "email":"margarita@example.com"
       },
       "relationships":{
         "user":{
@@ -562,7 +562,7 @@ Content-Type: application/json
             "id": "5b6d663b033b550011fef351",
             "type": "contract-invite",
             "attributes": {
-                "email": "admin@{{ product_name }}",
+                "email": "admin@example.com",
                 "roles": [
                   "admin"
                 ]
@@ -572,7 +572,7 @@ Content-Type: application/json
             "id": "5b83c0462e7785501158b654",
             "type": "contract-invite",
             "attributes": {
-                "email": "member@{{ product_name }}",
+                "email": "member@example.com",
                 "roles": [
                   "member"
                 ]
@@ -582,7 +582,7 @@ Content-Type: application/json
             "id": "5b855b333a667d5510ce4465",
             "type": "contract-invite",
             "attributes": {
-                "email": "member@{{ product_name }}",
+                "email": "member@example.com",
                 "roles": [
                   "member"
                 ]
@@ -798,7 +798,7 @@ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/invites/ \
        "data": {
            "type": "contract-invite",
            "attributes": {
-               "email": "admin@{{ product_name }}",
+               "email": "admin@example.com",
                "roles": [
                  "owner"
                ],
@@ -822,7 +822,7 @@ Content-Type: application/json
     "id":"5c20bd0376b463001053a6b5",
     "type":"contract-invite",
     "attributes":{
-      "email":"admin@{{ product_name }}",
+      "email":"admin@example.com",
       "roles":[
         "owner"
       ],
