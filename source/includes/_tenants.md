@@ -315,7 +315,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       },
       "default_workspace_type":"full",
       "docs_base_url":"https://docs.example.com/",
-     "custom_nav_menu_items":[
+      "custom_nav_menu_items":[
         {
           "title":"Catalogs",
           "icon":"catalog-icon",
@@ -544,7 +544,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.custom_scripts\[]             | no       | Customer js-scripts.      |
 | attributes.default_workspace_type       | no       | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`        |
 
-_Note_: If Tenant's domains are matches to the `*.elastic.io` (where `*` can not contain `.`) then given Tenants can use the default Certificates. To remove existed Certificates, specify them as null (e.g. `"app": null`)
+_Note_: If the default installation's certificate is a wildcard one (e.g. `*.example.com`) and the Tenant's domains match to this certificate (e.g. `my-tenant-api.example.com`), then there is no need to provide separate certificates for these domains. To remove existing certificates set them as `null` (e.g. `"app": null`).
 
 ### Returns
 
