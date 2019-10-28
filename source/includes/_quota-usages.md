@@ -246,7 +246,7 @@ This endpoint allows you to retrieve a usage history for certain `Contract`.
 | :----------   | :-------  | :--------------------------------------------------------    |
 | CONTRACT_ID   | Yes       | Contract identifier                                          |
 | FROM          | Yes       | Start Date of the period (inclusive). Format – ISO 8601      |
-| TO            | Yes       | End Date of the period (not inclusive). Format – ISO 8601    |
+| TO            | Yes       | End Date of the period (inclusive). Format – ISO 8601    |
 | GROUP_BY      | No        | Param to specify aggregation period. Format - 'day', 'month' |
 
 ### Authorization
@@ -500,7 +500,7 @@ This endpoint allows you to retrieve a usage history for certain `Workspace`.
 | :----------   | :-------  | :--------------------------------------------------------    |
 | WORKSPACE_ID  | Yes       | Workspace identifier                                         |
 | FROM          | Yes       | Start Date of the period (inclusive). Format – ISO 8601      |
-| TO            | Yes       | End Date of the period (not inclusive). Format – ISO 8601    |
+| TO            | Yes       | End Date of the period (inclusive). Format – ISO 8601    |
 | GROUP_BY      | No        | Param to specify aggregation period. Format - 'day', 'month' |
 
 ### Authorization
@@ -767,7 +767,7 @@ This endpoint allows you to retrieve a usage history for certain `Flow`.
 | :----------   | :-------  | :--------------------------------------------------------    |
 | FLOW_ID       | Yes       | Flow identifier                                              |
 | FROM          | Yes       | Start Date of the period (inclusive). Format – ISO 8601      |
-| TO            | Yes       | End Date of the period (not inclusive). Format – ISO 8601    |
+| TO            | Yes       | End Date of the period (inclusive). Format – ISO 8601    |
 | GROUP_BY      | No        | Param to specify aggregation period. Format - 'day', 'month' |
 
 ### Authorization
