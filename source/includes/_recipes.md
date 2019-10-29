@@ -16,6 +16,9 @@ is available to other users for their Flows. There are four sharing modes:
 
 Accordingly, a set of recipes available for each user consists of: non-shared recipes from the user's Workspace,
 recipes with `contract`, `tenant` and `global` access. When you create a recipe, it has default visibility `workspace`.
+
+*Note:* deleting recipes with `contract`, `tenant` and `global` visibility is forbidden.
+*Note:* downgrading recipes visibility is forbidden.
  
 ## Create a recipe
 
