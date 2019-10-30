@@ -1203,10 +1203,15 @@ This resource allows you to update attribute visibility of the given recipe.
 ### Authorization
 
 This request is authorized depend on specified visibility level for a user that has next permission:
+
 - to `tenant` if user has permission `tenant.recipe.edit_visibilty_tenant`
+
 - to `global` if user has permission `global.recipe.edit_visibilty_global`
+
 - to `contract` if user has permission `workspaces.recipe.edit`
+
 - to `workspace` if user has permission `workspaces.recipe.edit`
+
 
 ### Returns
 
