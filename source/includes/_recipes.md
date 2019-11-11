@@ -298,20 +298,19 @@ This resource allows you to create a new recipe.
 
 ### Body Parameters
 
-| Parameter                                        | Required | Description                                                                                              |
-| :----------------------------------------------- | :------- | :------------------------------------------------------------------------------------------------------- |
-| type                                             | yes      | A value must be `recipe`                                                                                 |
-| attributes.activation_config.variables           | no       | List of variables used by steps in a flow                                                                |
-| attributes.activation_config.credentials         | no       | List of credentials used by steps in a flow                                                              |
-| attributes.marketplace_content.name              | yes      | Recipe name                                                                                              |
-| attributes.marketplace_content.description       | yes      | Recipe description                                                                                       |
-| attributes.marketplace_content.short_description | yes      | Recipe short description                                                                                 |
-| attributes.marketplace_content.help_text         | no       | Recipe help text                                             
-                                           
-| attributes.flow_template.cron                    | no       | Cron expression                                                                                          |
-| attributes.flow_template.graph                   | yes      | Recipe graph representing component connections                                                          |
-| relationships.workspace.data.id                  | yes      | An Id of the Workspace                                                                                   |
-| relationships.workspace.data.type                | yes      | A value must be `workspace`                                                                              |
+| Parameter                                        | Required | Description  |
+| :----------------------------------------------- | :------- | :----------- |
+| type                                             | yes      | A value must be `recipe`|
+| attributes.activation_config.variables           | no       | List of variables used by steps in a flow |
+| attributes.activation_config.credentials         | no       | List of credentials used by steps in a flow |
+| attributes.marketplace_content.name              | yes      | Recipe name|
+| attributes.marketplace_content.description       | yes      | Recipe description |
+| attributes.marketplace_content.short_description | yes      | Recipe short description  |
+| attributes.marketplace_content.help_text         | no       | Recipe help text  |
+| attributes.flow_template.cron                    | no       | Cron expression  |
+| attributes.flow_template.graph                   | yes      | Recipe graph representing component connections  |
+| relationships.workspace.data.id                  | yes      | An Id of the Workspace  |
+| relationships.workspace.data.type                | yes      | A value must be `workspace` |
 
 ### Authorization
 
