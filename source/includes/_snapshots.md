@@ -114,7 +114,7 @@ This resource allows you to retrieve snapshot for one step in flow
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID}`
+`GET {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}`
 
 #### Authorization
 
@@ -175,7 +175,7 @@ This resource allows you to edit snapshot for step in flow.
 
 ### HTTP Request
 
-`PATCH {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID}`
+`PATCH {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}`
 
 #### Authorization
 
@@ -239,7 +239,7 @@ This resource allows you to create snapshot for step in flow.
 
 ### HTTP Request
 
-`POST {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/`
+`POST {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/`
 
 #### Authorization
 
@@ -253,8 +253,8 @@ FLOW_ID | The ID of the Flow
 ### Payload Parameters
 Parameter        | Required  | Description
 ---------        | --------- | -----------
-id          | yes       | ID of the Step from the specified Flow (the same as in URL)
-attributes.snapshot | yes       | The body of the snapsot. The value may be anything except `undefined`
+id          | yes       | ID of the Step from the specified Flow
+attributes.snapshot | yes       | The body of the snapshot. The value may be anything except `undefined`
 
 
 ##### Notices
@@ -267,7 +267,7 @@ attributes.snapshot | yes       | The body of the snapsot. The value may be anyt
 
 
 ```shell
-curl {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID} \
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/{STEP_ID} \
     -X DELETE
     -u {EMAIL}:{APIKEY} \
     -H 'Accept: application/json'
@@ -286,7 +286,7 @@ This resource allows you to remove a step snapshot in a Flow.
 
 ### HTTP Request
 
-`DELETE {{ api_base_url }}/v2/flows{FLOW_ID}/snapshots/{STEP_ID}`
+`DELETE {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/{STEP_ID}`
 
 #### Authorization
 
