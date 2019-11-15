@@ -253,8 +253,8 @@ FLOW_ID | The ID of the Flow
 ### Payload Parameters
 Parameter        | Required  | Description
 ---------        | --------- | -----------
-id          | yes       | ID of the Step from the specified Flow (the same as in URL)
-attributes.snapshot | yes       | The body of the snapsot. The value may be anything except `undefined`
+id          | yes       | ID of the Step from the specified Flow
+attributes.snapshot | yes       | The body of the snapshot. The value may be anything except `undefined`
 
 
 ##### Notices
