@@ -16,6 +16,7 @@ includes:
   - flow-drafts
   - flow-versions
   - flows
+  - logs
   - quota-usages
   - recipes
   - resources
