@@ -5,7 +5,7 @@
  </aside>
 
 
-## Retrieve all Workspase logs
+## Retrieve all Workspaсe logs
 
 > Example Request:
 
