@@ -1,14 +1,6 @@
-# Quota Usages (Experimental)
+# Quota Usages
 
- <aside class="warning">
- <b>The Quota Usages section is an experimental API</b>
- </aside>
-
-
-
-
-
-
+ 
 ## Retrieve a contract usage metrics by ID
 
 > Example Request:
