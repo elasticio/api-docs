@@ -10,7 +10,7 @@
 > Example Request:
 
 ```shell
-curl {{ api_base_url }}/v2/logs?workspace_id={WORKSPACE_ID} \
+curl {{ api_base_url }}/v2/logs?workspace_id={WORKSPACE_ID}&from=2020-01-12T14:50:42.215Z&to=2020-01-14T14:50:42.215Z \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -32,7 +32,7 @@ Content-Type: application/json
       "method":"timer",
       "apiUserName":"task-5d3848406af31c0015c2300c",
       "componentName":"Timer",
-      "timestamp":"2020-01-09T10:35:42.049Z",
+      "timestamp":"2020-01-13T10:35:42.049Z",
       "message":"Successfully downloaded and extracted slug file"
     }
   ]
@@ -50,6 +50,8 @@ This endpoint allows you to retrieve all logs from specified Workspace.
 | Parameter   | Required | Description                                             |
 | :---------- | :------- | :------------------------------------------------------ |
 | {WORKSPACE_ID} | Yes   | Workspace identifier                                 |
+| FROM   | No      | Start Date of the period. Format – ISO 8601 |
+| TO     | No      | End Date of the period. Format – ISO 8601   |
 
 
 ### Authorization
