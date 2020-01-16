@@ -10,7 +10,7 @@
 > Example Request:
 
 ```shell
-curl {{ api_base_url }}/v2/logs?workspace_id={WORKSPACE_ID}&from=2020-01-12T14:50:42.215Z&to=2020-01-14T14:50:42.215Z \
+curl {{ api_base_url }}/v2/logs?workspace_id={workspace_id}&from=2020-01-12T14:50:42.215Z&to=2020-01-14T14:50:42.215Z \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -43,18 +43,18 @@ This endpoint allows you to retrieve all logs from specified Workspace.
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/logs?workspace_id={WORKSPACE_ID}`
+`GET {{ api_base_url }}/v2/logs?workspace_id={workspace_id}`
 
 ### URL Parameters
 
 | Parameter   | Required | Description                                             |
 | :---------- | :------- | :------------------------------------------------------ |
-| {WORKSPACE_ID} | Yes   | Workspace identifier                                 |
-| FROM   | No      | Start Date of the period. Format – ISO 8601 |
-| TO     | No      | End Date of the period. Format – ISO 8601   |
-| SEARCH | No      | String to search in logs | 
-| OFFSET | No      | Number of items to skip from the beginning |
-| LIMIT  | No      | Number of items to return |   
+| workspace_id | Yes   | Workspace identifier                                 |
+| from   | No      | Start Date of the period. Format – ISO 8601 |
+| to     | No      | End Date of the period. Format – ISO 8601   |
+| search | No      | String to search in logs | 
+| offset | No      | Number of items to skip from the beginning (defaults to 0) |
+| limit  | No      | Number of items to return (defaults to 100) |   
 
 
 ### Authorization
