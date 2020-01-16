@@ -52,6 +52,9 @@ This endpoint allows you to retrieve all logs from specified Workspace.
 | {WORKSPACE_ID} | Yes   | Workspace identifier                                 |
 | FROM   | No      | Start Date of the period. Format – ISO 8601 |
 | TO     | No      | End Date of the period. Format – ISO 8601   |
+| SEARCH | No      | String to search in logs | 
+| OFFSET | No      | Number of items to skip from the beginning |
+| LIMIT  | No      | Number of items to return |   
 
 
 ### Authorization
