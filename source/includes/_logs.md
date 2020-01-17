@@ -52,7 +52,7 @@ This endpoint allows you to retrieve all logs from specified Workspace.
 | workspace_id  | Yes      | Workspace identifier                                                               |
 | from          | No       | Start Date of the period. Format – ISO 8601. Example: `2020-01-12T14:50:42.215Z`   |
 | to            | No       | End Date of the period. Format – ISO 8601. Example: `2020-01-14T15:00:45.000Z`     |
-| search        | No       | String to search in logs                                                           |
+| search        | No       | String to search in logs (searching string is wrapped by <em> tag)                 |
 | offset        | No       | Number of items to skip from the beginning (defaults to 0)                         |
 | limit         | No       | Number of items to return (defaults to 100)                                        |
 
