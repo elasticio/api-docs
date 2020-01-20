@@ -944,6 +944,7 @@ INVITE_ID           | The ID of the Contract invitation
 ### Payload Parameters
 Parameter        | Required  | Description
 ---------        | --------- | -----------
+id             | yes       | Invitation ID. Should be the same as specified in the `INVITE_ID` URL parameter.
 type             | yes       | A value should be "contract-invite".
 attributes.roles[]  | no       | To get all available roles, please execute the "Get the Contract's roles" endpoint. **Note:** The very first member of a contract must have `owner` role.
 attributes.workspace_id | no | The id of the corresponding Workspace.
