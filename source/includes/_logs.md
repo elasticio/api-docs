@@ -50,6 +50,7 @@ This endpoint allows you to retrieve all logs from specified Workspace.
 | Parameter     | Required | Description                                                                        |
 | :------------ | :------- | :--------------------------------------------------------------------------------- |
 | workspace_id  | Yes      | Workspace identifier                                                               |
+| flow_ids[]    | No       | Flow identifier                                                               |
 | from          | No       | Start Date of the period. Format – ISO 8601. Example: `2020-01-12T14:50:42.215Z`   |
 | to            | No       | End Date of the period. Format – ISO 8601. Example: `2020-01-14T15:00:45.000Z`     |
 | search        | No       | String to search in logs (searching string is wrapped by <em> tag)                 |
