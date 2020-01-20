@@ -174,7 +174,7 @@ curl {{ api_base_url }}/v2/agents/vpn \
     -H 'Content-Type: application/json' -d '
     {
         "data": {
-            "type": "vpn_agent",
+            "type": "vpn-agent",
             "attributes": {
                 "name":"name of the agent",
                 "port_mapping":[{
@@ -205,7 +205,7 @@ Content-Type: application/json
    "data":{
       {
          "id":"{VPN_AGENT_ID}",
-         "type":"vpn_agent",
+         "type":"vpn-agent",
          "links":{
             "self":"/v2/agents/vpn/{VPN_AGENT_ID}"
          },
@@ -246,7 +246,7 @@ This resource allows you to create a new recipe.
 
 | Parameter                                        | Required | Description  |
 | :----------------------------------------------- | :------- | :----------- |
-| type                                             | yes      | A value must be `vpn_agent`|
+| type                                             | yes      | A value must be `vpn-agent`|
 | attributes.name                                  | yes      | Vpn Agent name  |
 | attributes.port_mapping.0.destination_ip         | yes      | Ip traffic will be transferred to |
 | attributes.port_mapping.0.destination_port       | yes      | Port traffic will be transferred to |
@@ -284,7 +284,7 @@ Content-Type: application/json
    "data":[
       {
          "id":"{VPN_AGENT_ID}",
-         "type":"vpn_agent",
+         "type":"vpn-agent",
          "links":{
             "self":"/v2/agents/vpn/{VPN_AGENT_ID}"
          },
@@ -356,7 +356,7 @@ Content-Type: application/json
    "data":{
       {
          "id":"{VPN_AGENT_ID}",
-         "type":"vpn_agent",
+         "type":"vpn-agent",
          "links":{
             "self":"/v2/agents/vpn/{VPN_AGENT_ID}"
          },
@@ -422,7 +422,7 @@ curl {{ api_base_url }}/v2/agents/vpn/{VPN_AGENT_ID} \
     {
         "data": {
             "id":"{VPN_AGENT_ID}"
-            "type": "vpn_agent",
+            "type": "vpn-agent",
             "attributes": {
                 "name":"name of the agent",
                 "port_mapping":[{
@@ -453,7 +453,7 @@ Content-Type: application/json
    "data":{
       {
          "id":"{VPN_AGENT_ID}",
-         "type":"vpn_agent",
+         "type":"vpn-agent",
          "links":{
             "self":"/v2/agents/vpn/{VPN_AGENT_ID}"
          },
@@ -500,7 +500,7 @@ This resource allows you to update the given vpn agent.
 
 | Parameter                                        | Required | Description  |
 | :----------------------------------------------- | :------- | :----------- |
-| type                                             | yes      | A value must be `vpn_agent`|
+| type                                             | yes      | A value must be `vpn-agent`|
 | attributes.name                                  | no       | Vpn Agent name  |
 | attributes.port_mapping                          | no       | Traffic transfer parameters |
 | attributes.port_mapping.0.destination_ip         | yes      | Ip traffic will be transferred to |
