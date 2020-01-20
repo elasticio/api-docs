@@ -871,7 +871,7 @@ Returns an contract-invite object if the request was successful.
 Returns `409` if Contract has no members and `attributes.roles` doesn't contain `owner` role.
 
 
-## Update an invitation to the Contract
+## Update an invitation to the Contract's scope
 
 > Example Request:
 
