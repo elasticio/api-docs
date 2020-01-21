@@ -3,7 +3,7 @@
 ## What is a Contract unit?
 
 A Contract is a fundamental entity (scope) that reflects an agreement between a customer and the platform's provider. The Contract scope can have an unlimited number of members, workspaces, and development teams. It also serves as a singular entity for the billing department against the consumed resources by all the integration flows.
-Every member of the Contract's scope has a specific access level or role within the current Contract. To get all available roles, please execute the "Get the Contract's roles" endpoint. The same user can have different roles in different Contracts within the Platform. 
+Every member of the Contract's scope has a specific access level or role within the current Contract. To get all available roles, please execute the "Get the Contract's roles" endpoint. The same user can have different roles in different Contracts within the Platform.
 Every Contract must have at least one Owner. The Owner’s Role has a predefined/default permissions’ set. It means this role cannot be deleted and the permissions’ set cannot be changed.
 
 *Please note that the Tenant Admin creates a Contract along with the Contract’s Owner. Once it’s done the Contract’s Owner will be able to invite other Users as well as assigning the necessary roles for them. (Tenant is a higher scope in the Platform's hierarchy. It includes all the Contracts that belong to the white-label client).*
@@ -344,8 +344,8 @@ CONTRACT_ID | The ID of the Contract
 
 
 ### URL Query Parameters
-Parameter   | Required | Description              
------------ | -------- | ------------------------ 
+Parameter   | Required | Description
+----------- | -------- | ------------------------
 include     | no       | You may add a parameter, such as the 'include' for more detailed information regarding the Workspace's entities. Possible values are `members` and/or `invites`.
 
 
@@ -866,12 +866,94 @@ attributes.workspace_roles[]  | no | To get all available roles, please execute 
 
 ### Returns
 
-Returns would invite the object if the call succeeded.
+Returns an contract-invite object if the request was successful.
 
 Returns `409` if Contract has no members and `attributes.roles` doesn't contain `owner` role.
 
 
+## Update an invitation to the Contract's scope
 
+> Example Request:
+
+```shell
+curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/invites/{INVITE_ID} \
+    -X PATCH \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Content-Type: application/json' -d '
+   {
+       "data": {
+           "id": "5c20bd0376b463001053a6b5",
+           "type": "contract-invite",
+           "attributes": {
+               "roles": [
+                 "owner"
+               ],
+               "workspace_id":"{WORKSPACE_ID}",
+               "workspace_roles":[
+                 "integrator"
+               ]
+           }
+       }
+    }'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id":"5c20bd0376b463001053a6b5",
+    "type":"contract-invite",
+    "attributes":{
+      "email":"admin@example.com",
+      "roles":[
+        "owner"
+      ],
+      "workspace_id":"{WORKSPACE_ID}",
+      "workspace_roles":[
+        "integrator"
+      ]
+    }
+  },
+  "meta":{}
+}
+```
+
+This endpoint allows to modify an existing Contract invitation.
+
+
+### HTTP Request
+
+`PATCH {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/invites/{INVITE_ID}`
+
+
+#### Authorization
+This request is authorized for a Contract's scope members with the permission `contracts.membership.edit` or the `TenantAdmin` role. To provide the `workspase_id` as an additional parameter user has to have permission `workspaces.workspace.edit` and belong to the provided Workspace.
+
+
+### URL Parameters
+Parameter           | Description
+------------------- | -----------
+CONTRACT_ID         | The ID of the Contract
+INVITE_ID           | The ID of the Contract invitation
+
+
+### Payload Parameters
+Parameter        | Required  | Description
+---------        | --------- | -----------
+id             | yes       | Invitation ID. Should be the same as specified in the `INVITE_ID` URL parameter.
+type             | yes       | A value should be "contract-invite".
+attributes.roles[]  | no       | To get all available roles, please execute the "Get the Contract's roles" endpoint. **Note:** The very first member of a contract must have `owner` role.
+attributes.workspace_id | no | The id of the corresponding Workspace.
+attributes.workspace_roles[]  | no | To get all available roles, please execute the "Get the Contract's roles" endpoint.
+
+
+### Returns
+
+Returns an contract-invite object if the request was successful.
 
 
 
@@ -925,8 +1007,8 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows adding a user to a certain Contract as a member. 
-No invitation email message will be sent. The user becomes a member immediately. 
+This endpoint allows adding a user to a certain Contract as a member.
+No invitation email message will be sent. The user becomes a member immediately.
 
 
 ### HTTP Request
@@ -1003,7 +1085,7 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows updating membership of a given user. Only `roles` attribute can be updated. 
+This endpoint allows updating membership of a given user. Only `roles` attribute can be updated.
 
 
 ### HTTP Request
@@ -1073,7 +1155,7 @@ USER_ID          | The ID of the user that should leave the contract's scope
 
 ### Returns
 
-Responds with `204 No content` message if the call succeeded (with empty body). 
+Responds with `204 No content` message if the call succeeded (with empty body).
 
 ### FAQ on Removing Contract Owner
 
