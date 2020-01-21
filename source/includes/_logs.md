@@ -24,14 +24,15 @@ Content-Type: application/json
   "total":1,
   "hits":[
     {
-      "flowId":"5d3848406af31c0015c2300c",
-      "userId":"5bbf202b37f655001383e923",
-      "componentId":"55bb6a58fa35a40c00000009",
-      "stepId":"step_1",
-      "execId":"31768cc6d3c64efbaf1a703392c468c1",
+      "id":"4eae4f60-3c53-11ea-877e-42010a1c0003",
+      "flow_id":"5d3848406af31c0015c2300c",
+      "user_id":"5bbf202b37f655001383e923",
+      "component_id":"55bb6a58fa35a40c00000009",
+      "step_id":"step_1",
+      "exec_id":"31768cc6d3c64efbaf1a703392c468c1",
       "method":"timer",
-      "apiUserName":"task-5d3848406af31c0015c2300c",
-      "componentName":"Timer",
+      "api_username":"task-5d3848406af31c0015c2300c",
+      "component_name":"Timer",
       "timestamp":"2020-01-13T10:35:42.049Z",
       "message":"Successfully downloaded and extracted slug file"
     }
@@ -50,7 +51,7 @@ This endpoint allows you to retrieve all logs from specified Workspace.
 | Parameter     | Required | Description                                                                        |
 | :------------ | :------- | :--------------------------------------------------------------------------------- |
 | workspace_id  | Yes      | Workspace identifier                                                               |
-| flow_ids[]    | No       | Flow identifier                                                               |
+| flow_ids[]    | No       | Flow identifier                                                                    |
 | from          | No       | Start Date of the period. Format – ISO 8601. Example: `2020-01-12T14:50:42.215Z`   |
 | to            | No       | End Date of the period. Format – ISO 8601. Example: `2020-01-14T15:00:45.000Z`     |
 | search        | No       | String to search in logs (searching string is wrapped by <em> tag)                 |
