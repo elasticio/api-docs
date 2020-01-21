@@ -25,9 +25,11 @@ Content-Type: application/json
   "hits":[
     {
       "id":"4eae4f60-3c53-11ea-877e-42010a1c0003",
+      "workspace_id": "5cf649c3449c1e001200c1ba"
       "flow_id":"5d3848406af31c0015c2300c",
       "user_id":"5bbf202b37f655001383e923",
       "component_id":"55bb6a58fa35a40c00000009",
+      "container_id": "a6dd831f-2e1f-4a4b-818d-9cc5c156d766",
       "step_id":"step_1",
       "exec_id":"31768cc6d3c64efbaf1a703392c468c1",
       "method":"timer",
