@@ -43,7 +43,7 @@ This endpoint allows you to retrieve all logs from specified Workspace.
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/logs?workspace_id={workspace_id}`
+`GET {{ api_base_url }}/v2/logs?workspace_id={WORKSPACE_ID}`
 
 ### URL Query Parameters
 
