@@ -160,11 +160,11 @@ This resource allows you to retrieve Flows.
 |workspace_id|yes|An Id of the Workspace|
 | page[size]        | no | Amount of items per page. Default is `50`. |
 | page[number]      | no | Number of page you want to display. Default is `1`. |
-| filter[has_draft] | no | Filter flows only with or without a draft. May be `true` or `false`. |
+| filter[has_draft] | no | Filter flows only with or without a draft. Allowed values: `true`, `false`. |
 | filter[status]    | no | Filter by `status`. Allowed values: `active`, `inactive`. |
 | filter[type]      | no | Filter by flow `type`. Allowed values: `ordinary`, `long_running`. |
 | filter[user]      | no | Filter by `user`. Must be `id` of `User` who created the flow. `User` could be found in relationships of the flow. |
-| sort              | no | Sort flows list by certain field. May be `created_at`, `updated_at` or `name`. Prefix field name with `-` for reversed (desc) order e.g. `sort=-updated_at`. Default sort is by `id`. |
+| sort              | no | Sort flows list by certain field. Allowed values: `created_at`, `updated_at`, `name`. Prefix field name with `-` for reversed (desc) order e.g. `sort=-updated_at`. Default sort is by `id`. |
 | search            | no | Search flows by a word or a phrase contained in a `description` OR in a `name`. Behavior is similar to operator `LIKE` in SQL. Case insensitive. Leading/following spaces are trimmed. |
 
 ### Returns
@@ -296,7 +296,7 @@ user or to one of his Workspace, an error is returned.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- | :--- |
-| FLOW_ID | Yes | Flow identifier |
+| FLOW_ID | Yes | Flow ID |
 
 
 ### Returns
@@ -727,7 +727,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to update the given flow. A new version of the flow will be created. The new version becomes the latest version of the flow.
+This resource allows you to update the given Flow. A new version of the flow will be created. The new version becomes the latest version of the flow.
 
 ### HTTP Request
 
