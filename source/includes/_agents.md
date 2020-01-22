@@ -145,11 +145,11 @@ We will contact you within 2-3 working days.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| type | yes | The value must be ``agent`` |
+| type | yes | Allowed value: ``agent`` |
 | attributes.title | yes | Agent title |
 | attributes.description | yes | Agent description |
 | relationships.workspace.data.id | yes | Workspace ID  |
-| relationships.workspace.data.type | yes | The value must be ``workspace``  |
+| relationships.workspace.data.type | yes | Allowed value: ``workspace``  |
 
 ### Returns
 
@@ -246,13 +246,13 @@ This resource allows you to create a new recipe.
 
 | Parameter                                        | Required | Description  |
 | :----------------------------------------------- | :------- | :----------- |
-| type                                             | yes      | The value must be `vpn-agent`|
+| type                                             | yes      | Allowed value: `vpn-agent`|
 | attributes.name                                  | yes      | VPN Agent name  |
 | attributes.port_mapping.0.destination_ip         | yes      | Destination IP for traffic |
 | attributes.port_mapping.0.destination_port       | yes      | Destination Port for traffic |
 | attributes.port_mapping.0.protocol               | yes      | Traffic transfer protocol |
 | relationships.workspace.data.id                  | yes      | Workspace ID |
-| relationships.workspace.data.type                | yes      | The value must be `workspace`  |
+| relationships.workspace.data.type                | yes      | Allowed value: `workspace`  |
 
 ### Authorization
 
@@ -500,14 +500,14 @@ This resource allows you to update the given vpn agent.
 
 | Parameter                                        | Required | Description  |
 | :----------------------------------------------- | :------- | :----------- |
-| type                                             | yes      | The value must be `vpn-agent`|
+| type                                             | yes      | Allowed value: `vpn-agent`|
 | attributes.name                                  | no       | VPN Agent name  |
 | attributes.port_mapping                          | no       | Traffic transfer parameters |
 | attributes.port_mapping.0.destination_ip         | yes      | Destination IP for traffic |
 | attributes.port_mapping.0.destination_port       | yes      | Destination Port for traffic |
 | attributes.port_mapping.0.protocol               | yes      | Traffic transfer protocol |
 | relationships.workspace.data.id                  | yes      | Workspace ID |
-| relationships.workspace.data.type                | yes      | The value must be ``workspace``  |
+| relationships.workspace.data.type                | yes      | Allowed value: ``workspace``  |
 
 *Note:* `attributes.port_mapping` is not required, but if present all inner parameters are required.
 
@@ -560,7 +560,7 @@ Returns one VPN agent belonging to the given Workspace.
 
 
 
-## Retrieve a vpn agent config by vpn agent ID
+## Retrieve a VPN agent config by VPN agent ID
 
 > Example Request:
 
