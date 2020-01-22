@@ -614,6 +614,7 @@ attributes.roles[]  | yes       | To get all available roles, please execute the
 
 ### Returns
 Returns member object if the call succeeded
+Returns `409 Conflict` if the user is already a member of the workspace
 
 
 
