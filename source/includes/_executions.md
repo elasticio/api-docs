@@ -140,6 +140,8 @@ This request is authorized for the users with the `workspaces.credential.edit` p
 | relationships.workspace.data.type | Yes | Value must be `workspace` |
 | relationships.agent.data.id | No | ID of the agent |
 | relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
+| relationships.vpn_agent.data.id | No | ID of the vpn_agent |
+| relationships.vpn_agent.data.type | No | In case, vpn_agent specified, this must be `vpn-agent` |
 
 
 
@@ -238,6 +240,8 @@ This request is authorized for the users with the `workspaces.flow.edit` permiss
 | relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
 | relationships.agent.data.id | No | ID of the agent |
 | relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
+| relationships.vpn_agent.data.id | No | ID of the vpn_agent |
+| relationships.vpn_agent.data.type | No | In case, vpn_agent specified, this must be `vpn-agent` |
 
 ## Retrieve component's select model
 
@@ -335,6 +339,8 @@ This request is authorized for the users with the `workspaces.flow.edit` permiss
 | relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
 | relationships.agent.data.id | No | ID of the agent |
 | relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
+| relationships.vpn_agent.data.id | No | ID of the vpn_agent |
+| relationships.vpn_agent.data.type | No | In case, vpn_agent specified, this must be `vpn-agent` |
 
 ## Poll a result of an execution
 

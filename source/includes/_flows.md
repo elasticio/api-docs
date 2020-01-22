@@ -76,7 +76,8 @@ Content-Type: application/json
               "component_id": "593809a16b1d1f00196b74cd",
               "command":"{{ repo_name }}/email:send",
               "name":"",
-              "description":""
+              "description":"",
+              "vpn_agent_id":"5e1f03b6a67bc8242a9f2985"
             }
           ],
           "edges":[
@@ -221,7 +222,8 @@ Content-Type: application/json
             "component_id": "593809a16b1d1f00196b74cd",
             "command":"{{ repo_name }}/email:send",
             "name":"",
-            "description":""
+            "description":"",
+            "vpn_agent_id":"5e1f03b6a67bc8242a9f2985"
           }
         ],
         "edges":[
@@ -330,6 +332,7 @@ The flow with given ID
 
             },
             "id":"step_1",
+            "vpn_agent_id":"{VPN_AGENT_ID}"
             "selected_data_samples":[
               "{DATA_SAMPLE_ID}"
             ]
@@ -453,6 +456,7 @@ Content-Type: application/json
             "component_id":"{COMPONENT_ID}",
             "command":"elasticio/simple-trigger-component:timer@latest",
             "name":"",
+            "vpn_agent_id":"{VPN_AGENT_ID}"
             "description":"",
             "selected_data_samples":[
               "{DATA_SAMPLE_ID}"
@@ -588,7 +592,7 @@ This resource allows you to create a new flow.
 | attributes.name | yes | Flow name |
 | attributes.type | yes | Flow type. May be any of: ``ordinary``, ``long_running`` |
 | attributes.graph | yes | Flow graph representing component connections |
-|attributes.default_mapper_type|yes |The mapper type. A value must be ``jsonata`` (The *handlebars* is now deprecated)
+| attributes.default_mapper_type|yes |The mapper type. A value must be ``jsonata`` (The *handlebars* is now deprecated)
 | relationships.workspace.data.id | yes | An Id of the Workspace |
 | relationships.workspace.data.type | yes | A value must be ``workspace``  |
 
@@ -664,7 +668,8 @@ Content-Type: application/json
             "component_id": "593809a16b1d1f00196b74cd",
             "command":"{{ repo_name }}/email:send",
             "name":"",
-            "description":""
+            "description":"",
+            "vpn_agent_id":"5e1f03b6a67bc8242a9f2985"
           }
         ],
         "edges":[

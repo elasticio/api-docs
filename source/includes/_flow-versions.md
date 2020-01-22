@@ -35,7 +35,8 @@ Content-Type: application/json
               "description":"",
               "fields":{
                 "code":"//Your NodeJS code"
-              }
+              },
+              "vpn_agent_id":"5e1f03b6a67bc8242a9f2985"
             },
             {
               "id":"step_2",
@@ -158,7 +159,8 @@ Content-Type: application/json
             "description":"",
             "fields":{
               "code":"//Your NodeJS code"
-            }
+            },
+            "vpn_agent_id":"5e1f03b6a67bc8242a9f2985"
           },
           {
             "id":"step_2",

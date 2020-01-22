@@ -42,7 +42,8 @@ Content-Type: application/json
             "agent_id":"5a09deda2d5f49665afb739a",
             "fields":{
               "interval":"minute"
-            }
+            },
+            "vpn_agent_id":"5e1f03b6a67bc8242a9f2985"
           },
           {
             "id":"step_2",
@@ -153,7 +154,8 @@ Returns a flow draft
                 "command": "{{ repo_name }}/timer:timer",
                 "fields": {
                   "interval": "minute"
-                }
+                },
+                "vpn_agent_id":"{VPN_AGENT_ID}"
               },
               {
                 "id": "step_2",
@@ -208,7 +210,8 @@ Content-Type: application/json
             "agent_id":"5a09deda2d5f49665afb739a",
             "fields":{
               "interval":"minute"
-            }
+            },
+            "vpn_agent_id":"{VPN_AGENT_ID}"
           },
           {
             "id":"step_2",
