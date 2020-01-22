@@ -145,16 +145,16 @@ This resource allows you to retrieve all credentials belonging to user's Workspa
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-|workspace_id|yes|An Id of the Workspace|
-| filter[component] | No | Only credentials belong to the given component id
+|workspace_id|yes|Workspace ID|
+| filter[component] | No | Filter Credentials by Component ID|
 
 
 ### Returns
 
-Returns a list of credentials if the call succeeded.
+Returns a list of credentials on success.
 
 
-## Retrieve a credential by ID
+## Retrieve a Credential by ID
 
 
 > Example Request:
@@ -241,11 +241,11 @@ This resource allows you to retrieve a credential by its identifier.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- | :--- |
-| CREDENTIAL_ID | Yes | Credential identifier |
+| CREDENTIAL_ID | Yes | Credential ID |
 
 ### Returns
 
-Returns a credential object if the call succeeded.
+Returns a credential object on success.
 
 ## Create a credential
 
@@ -368,7 +368,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to create a credential.
+This resource allows you to create a Credential.
 
 ### HTTP Request
 
@@ -382,28 +382,28 @@ This resource allows you to create a credential.
 | type | yes | A value must be ``credential`` |
 | attributes.name | no | Credential name. An automatic name will be generated if the parameter is omitted |
 | relationships.component.data.id | yes | The component id this credential is for |
-| relationships.component.data.type | yes | A value must be ``component`` |
+| relationships.component.data.type | yes | Allowed value: ``component`` |
 | relationships.workspace.data.id | yes | The Workspace id this credential is for |
-| relationships.workspace.data.type | yes | A value must be ``workspace`` |
+| relationships.workspace.data.type | yes | Allowed value: ``workspace`` |
 | relationships.agent | no | The agent relation object |
-| relationships.agent.data.id | no | The agent id this credential is for |
-| relationships.agent.data.type | no | A value must be ``agent`` |
-| relationships.vpn_agent | no | The vpn_agent relation object |
-| relationships.vpn_agent.data.id | no | The vpn_agent id this credential is for |
-| relationships.vpn_agent.data.type | no | A value must be ``vpn-agent`` |
+| relationships.agent.data.id | no | The agent ID this Credential is for |
+| relationships.agent.data.type | no | Allowed value: ``agent`` |
+| relationships.vpn_agent | no | The VPN agent relation object |
+| relationships.vpn_agent.data.id | no | The VPN agent ID this credential is for |
+| relationships.vpn_agent.data.type | no | Allowed value: ``vpn-agent`` |
 | attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.) |
 
 
 ### Authorization
-This request is authorized to only a user with `workspaces.credential.edit` permission
+This request is authorized to users with `workspaces.credential.edit` permission.
 
 ### Returns
 
-Returns credential object if the call succeeded.
+Returns credential object on success.
 
 
 
-## Update a credential
+## Update a Credential
 
 
 > Example Request:
@@ -532,16 +532,16 @@ This resource allows you to update a credential.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| id | yes | A value must be the same as URL parameter ``CREDENTIAL_ID`` |
-| type | yes | A value must be ``credential`` |
-| attributes.name | no | Credential name. Will remain untouched if value omitted. |
-| attributes.keys | no | An object which represents component's configuration. Will remain untouched if value omitted. Please note, that ``keys`` object is overwritten entirely. |
-| relationships.agent | no | The agent relation object. Will remain untouched if omitted. |
-| relationships.agent.data.id | no | The agent id this credential is for. |
-| relationships.agent.data.type | no | A value must be ``agent`` |
-| relationships.vpn_agent | no | The vpn_agent relation object. Will remain untouched if omitted. |
-| relationships.vpn_agent.data.id | no | The vpn_agent id this credential is for. |
-| relationships.vpn_agent.data.type | no | A value must be ``vpn-agent`` |
+| id | yes | The value must be the same as URL parameter ``CREDENTIAL_ID`` |
+| type | yes | Allowed value: ``credential`` |
+| attributes.name | no | Credential name. Will remain untouched if no value entered. |
+| attributes.keys | no | An object which represents component's configuration. Will remain untouched if no value entered. Please note, that ``keys`` object is overwritten entirely. |
+| relationships.agent | no | The agent relation object. Will remain untouched if no value entered. |
+| relationships.agent.data.id | no | The agent ID this credential is for. |
+| relationships.agent.data.type | no | Allowed value: ``agent`` |
+| relationships.vpn_agent | no | The VPN agent relation object. Will remain untouched if no value entered. |
+| relationships.vpn_agent.data.id | no | The VPN agent ID this credential is for. |
+| relationships.vpn_agent.data.type | no | Allowed value: ``vpn-agent`` |
 
 ### Authorization
 This request is authorized to only a user with `workspaces.credential.edit` permission
@@ -551,7 +551,7 @@ This request is authorized to only a user with `workspaces.credential.edit` perm
 
 Returns a modified credential object if the call succeeded.
 
-## Delete a credential
+## Delete a Credential
 > Example Request:
 
 
