@@ -57,13 +57,13 @@ curl -X POST {{ api_base_url }}/v2/recipes \
               {
                 "name": "Step name",
                 "description": "Step description",
-                "command": "elasticio/petstore:getPetsByStatusWithGenerators@latest",
+                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
                 "id": "step_1"
               },
               {
                 "name": "Step name",
                 "description": "Step description",
-                "command": "elasticio/email:send@latest",
+                "command": "{{ repo_name }}/email:send@latest",
                 "fields": {
                   "dontThrowErrorFlg": true
                 },
@@ -136,7 +136,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
               {
                 "name": "Step name",
                 "description": "Step description",
-                "command": "elasticio/petstore:getPetsByStatusWithGenerators@latest",
+                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
                 "fields": {
                   "status": "pending"
                 },
@@ -145,7 +145,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
               {
                 "name": "Step name",
                 "description": "Step description",
-                "command": "elasticio/email:send@latest",
+                "command": "{{ repo_name }}/email:send@latest",
                 "fields": {
                   "dontThrowErrorFlg": true
                 },
@@ -238,13 +238,13 @@ Content-Type: application/json
             {
               "name": "Step name",
               "description": "Step description",
-              "command": "elasticio/petstore:getPetsByStatusWithGenerators@latest",
+              "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
               "id": "step_1"
             },
             {
               "name": "Step name",
               "description": "Step description",
-              "command": "elasticio/email:send@latest",
+              "command": "{{ repo_name }}/email:send@latest",
               "fields": {
                 "dontThrowErrorFlg": true
               },
@@ -397,13 +397,13 @@ Content-Type: application/json
             {
               "name": "Step name",
               "description": "Step description",
-              "command": "elasticio/petstore:getPetsByStatusWithGenerators@1eb65b1721c45e746c25d64e3ab85888f18f31c5",
+              "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@1eb65b1721c45e746c25d64e3ab85888f18f31c5",
               "id": "step_1"
             },
             {
               "name": "Step name",
               "description": "Step description",
-              "command": "elasticio/email:send@3746623b98821a291fb1e132f1278978c5f98f9b",
+              "command": "{{ repo_name }}/email:send@3746623b98821a291fb1e132f1278978c5f98f9b",
               "fields": {
                 "dontThrowErrorFlg": true
               },
@@ -532,11 +532,11 @@ Content-Type: application/json
           ],
           "nodes": [
             {
-              "command": "elasticio/petstore:getPetsByStatusWithGenerators@latest",
+              "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
               "id": "step_1"
             },
             {
-              "command": "elasticio/email:send@latest",
+              "command": "{{ repo_name }}/email:send@latest",
               "fields": {
                 "dontThrowErrorFlg": true
               },
@@ -668,14 +668,14 @@ Content-Type: application/json
             ],
             "nodes": [
               {
-                "command": "elasticio/petstore:getPetsByStatusWithGenerators@7edfbaba2e7457b7d4413dcbfd9e4fa7991c0a1a",
+                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@7edfbaba2e7457b7d4413dcbfd9e4fa7991c0a1a",
                 "fields": {
                   "status": "pending"
                 },
                 "id": "step_1"
               },
               {
-                "command": "elasticio/email:send@b9f4e1483c964e0c2fe6f7600ffe81b6aca8ef33",
+                "command": "{{ repo_name }}/email:send@b9f4e1483c964e0c2fe6f7600ffe81b6aca8ef33",
                 "fields": {
                   "dontThrowErrorFlg": true
                 },
@@ -766,14 +766,14 @@ Content-Type: application/json
             ],
             "nodes": [
               {
-                "command": "elasticio/petstore:getPetsByStatusWithGenerators@7edfbaba2e7457b7d4413dcbfd9e4fa7991c0a1a",
+                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@7edfbaba2e7457b7d4413dcbfd9e4fa7991c0a1a",
                 "fields": {
                   "status": "pending"
                 },
                 "id": "step_1"
               },
               {
-                "command": "elasticio/email:send@b9f4e1483c964e0c2fe6f7600ffe81b6aca8ef33",
+                "command": "{{ repo_name }}/email:send@b9f4e1483c964e0c2fe6f7600ffe81b6aca8ef33",
                 "fields": {
                   "dontThrowErrorFlg": true
                 },
@@ -878,13 +878,13 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
                {
                  "name": "New name",
                  "description": "New description",
-                 "command": "elasticio/petstore:getPetsByStatusWithGenerators@latest",
+                 "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
                  "id": "step_1"
                },
                {
                  "name": "New name",
                  "description": "New description",
-                 "command": "elasticio/email:send@latest",
+                 "command": "{{ repo_name }}/email:send@latest",
                  "fields": {
                    "dontThrowErrorFlg": true
                  },
@@ -969,13 +969,13 @@ Content-Type: application/json
             {
               "name": "New name",
               "description": "New description",
-              "command": "elasticio/petstore:getPetsByStatusWithGenerators@latest",
+              "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
               "id": "step_1"
             },
             {
               "name": "New name",
               "description": "New description",
-              "command": "elasticio/email:send@latest",
+              "command": "{{ repo_name }}/email:send@latest",
               "fields": {
                 "dontThrowErrorFlg": true
               },
@@ -1129,13 +1129,13 @@ Content-Type: application/json
             {
               "name": "New name",
               "description": "New description",
-              "command": "elasticio/petstore:getPetsByStatusWithGenerators@latest",
+              "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
               "id": "step_1"
             },
             {
               "name": "New name",
               "description": "New description",
-              "command": "elasticio/email:send@latest",
+              "command": "{{ repo_name }}/email:send@latest",
               "fields": {
                 "dontThrowErrorFlg": true
               },
