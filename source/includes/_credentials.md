@@ -385,10 +385,10 @@ This resource allows you to create a Credential.
 | relationships.component.data.type | yes | Allowed value: ``component`` |
 | relationships.workspace.data.id | yes | The Workspace id this credential is for |
 | relationships.workspace.data.type | yes | Allowed value: ``workspace`` |
-| relationships.agent | no | The agent relation object |
+| relationships.agent | no | The agent relation object. Mutually exclusive with `relationships.vpn_agent`, so you can use only one of them at a time. |
 | relationships.agent.data.id | no | The agent ID this Credential is for |
 | relationships.agent.data.type | no | Allowed value: ``agent`` |
-| relationships.vpn_agent | no | The VPN agent relation object |
+| relationships.vpn_agent | no | The VPN agent relation object. Mutually exclusive with `relationships.agent`, so you can use only one of them at a time. |
 | relationships.vpn_agent.data.id | no | The VPN agent ID this credential is for |
 | relationships.vpn_agent.data.type | no | Allowed value: ``vpn-agent`` |
 | attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.) |
