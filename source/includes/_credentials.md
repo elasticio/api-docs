@@ -536,10 +536,10 @@ This resource allows you to update a credential.
 | type | yes | Allowed value: ``credential`` |
 | attributes.name | no | Credential name. Will remain untouched if no value entered. |
 | attributes.keys | no | An object which represents component's configuration. Will remain untouched if no value entered. Please note, that ``keys`` object is overwritten entirely. |
-| relationships.agent | no | The agent relation object. Will remain untouched if no value entered. |
+| relationships.agent | no | The agent relation object. Mutually exclusive with `relationships.vpn_agent`, so you can use only one of them at a time. |
 | relationships.agent.data.id | no | The agent ID this credential is for. |
 | relationships.agent.data.type | no | Allowed value: ``agent`` |
-| relationships.vpn_agent | no | The VPN agent relation object. Will remain untouched if no value entered. |
+| relationships.vpn_agent | no | The VPN agent relation object. Mutually exclusive with `relationships.agent`, so you can use only one of them at a time. |
 | relationships.vpn_agent.data.id | no | The VPN agent ID this credential is for. |
 | relationships.vpn_agent.data.type | no | Allowed value: ``vpn-agent`` |
 
