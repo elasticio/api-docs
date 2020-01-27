@@ -156,7 +156,7 @@ We will contact you within 2-3 working days.
 Returns the created agent object.
 
 
-#VPN Agents (Experimental)
+# VPN Agents (Experimental)
 
  <aside class="warning">
  <b>The VPN Agents section is an experimental API</b>
@@ -236,7 +236,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to create a new recipe.
+This resource allows you to create a new VPN agent.
 
 ### HTTP Request
 
@@ -248,9 +248,9 @@ This resource allows you to create a new recipe.
 | :----------------------------------------------- | :------- | :----------- |
 | type                                             | yes      | Allowed value: `vpn-agent`|
 | attributes.name                                  | yes      | VPN Agent name  |
-| attributes.port_mapping.0.destination_ip         | yes      | Destination IP for traffic |
-| attributes.port_mapping.0.destination_port       | yes      | Destination Port for traffic |
-| attributes.port_mapping.0.protocol               | yes      | Traffic transfer protocol |
+| attributes.port_mapping[].destination_ip         | yes      | Destination IP for traffic |
+| attributes.port_mapping[].destination_port       | yes      | Destination Port for traffic |
+| attributes.port_mapping[].protocol               | yes      | Traffic transfer protocol |
 | relationships.workspace.data.id                  | yes      | Workspace ID |
 | relationships.workspace.data.type                | yes      | Allowed value: `workspace`  |
 
@@ -488,7 +488,7 @@ This resource allows you to update the given vpn agent.
 
 ### HTTP Request
 
-`PATCH {{ api_base_url }}/v2/recipes/{RECIPE_ID}`
+`PATCH {{ api_base_url }}/v2/agents/vpn/{VPN_AGENT_ID}`
 
 ### URL Parameters
 
@@ -503,9 +503,9 @@ This resource allows you to update the given vpn agent.
 | type                                             | yes      | Allowed value: `vpn-agent`|
 | attributes.name                                  | no       | VPN Agent name  |
 | attributes.port_mapping                          | no       | Traffic transfer parameters |
-| attributes.port_mapping.0.destination_ip         | yes      | Destination IP for traffic |
-| attributes.port_mapping.0.destination_port       | yes      | Destination Port for traffic |
-| attributes.port_mapping.0.protocol               | yes      | Traffic transfer protocol |
+| attributes.port_mapping[].destination_ip         | yes      | Destination IP for traffic |
+| attributes.port_mapping[].destination_port       | yes      | Destination Port for traffic |
+| attributes.port_mapping[].protocol               | yes      | Traffic transfer protocol |
 | relationships.workspace.data.id                  | yes      | Workspace ID |
 | relationships.workspace.data.type                | yes      | Allowed value: ``workspace``  |
 
@@ -548,15 +548,15 @@ This resource allows you to delete a vpn agent.
 | Parameter         | Required  | Description            |
 | :---              | :---      | :---                   |
 | workspace_id      | yes       | The ID of the Workspace |
-| vpn_agent_id      | yes       | The ID of the Workspace |
+| vpn_agent_id      | yes       | VPN agent ID |
 
 ### Authorization
 
-This request is authorized to users with `workspaces.vpn_agent.get` permission.
+This request is authorized to users with `workspaces.vpn_agent.delete` permission.
 
 ### Returns
 
-Returns one VPN agent belonging to the given Workspace.
+Returns code `204` if the call was succeded.
 
 
 
