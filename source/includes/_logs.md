@@ -62,6 +62,7 @@ This endpoint allows you to retrieve all logs from specified Workspace.
 | limit         | No       | Number of items to return (defaults to 100)                                        |
 | levels[]      | No       | The logs level (1 - None, 10 - trace, 20 - debug, 30 - info, 40 - warn, 50 - error, 60 - fatal)|
 
+* Log level `None` means default log level when it’s not passed.
 
 ### Authorization
 
