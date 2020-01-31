@@ -10,7 +10,7 @@
 > Example Request:
 
 ```shell
-curl {{ api_base_url }}/v2/logs?workspace_id={WORKSPACE_ID}&from=2020-01-01T00:00:00.000Z&to=2021-12-31T23:59:59.999Z \
+curl {{ api_base_url }}/v2/logs?workspace_id={WORKSPACE_ID}&from=2020-01-01T00:00:00.000Z&to=2021-12-31T23:59:59.999Z&levels[]=30 \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -25,7 +25,7 @@ Content-Type: application/json
   "hits":[
     {
       "id":"4eae4f60-3c53-11ea-877e-42010a1c0003",
-      "workspace_id": "5cf649c3449c1e001200c1ba"
+      "workspace_id":"5cf649c3449c1e001200c1ba",
       "flow_id":"5d3848406af31c0015c2300c",
       "user_id":"5bbf202b37f655001383e923",
       "component_id":"55bb6a58fa35a40c00000009",
@@ -36,6 +36,7 @@ Content-Type: application/json
       "api_username":"task-5d3848406af31c0015c2300c",
       "component_name":"Timer",
       "timestamp":"2020-01-13T10:35:42.049Z",
+      "level": 30,
       "message":"Successfully downloaded and extracted slug file"
     }
   ]
@@ -59,6 +60,7 @@ This endpoint allows you to retrieve all logs from specified Workspace.
 | search        | No       | String to search in logs (searching string is wrapped by <em> tag)                 |
 | offset        | No       | Number of items to skip from the beginning (defaults to 0)                         |
 | limit         | No       | Number of items to return (defaults to 100)                                        |
+| levels[]      | No       | The logs level (1 - None, 10 - trace, 20 - debug, 30 - info, 40 - warn, 50 - error, 60 - fatal)|
 
 
 ### Authorization
