@@ -1,6 +1,6 @@
 # Flow versions
 
-## Retrieve all flow versions
+## Retrieve all Flow versions
 
 > Example Request:
 
@@ -35,7 +35,8 @@ Content-Type: application/json
               "description":"",
               "fields":{
                 "code":"//Your NodeJS code"
-              }
+              },
+              "vpn_agent_id":"5e1f03b6a67bc8242a9f2985"
             },
             {
               "id":"step_2",
@@ -115,16 +116,16 @@ It also exposes a relationship to the author of the change.
 
 | Parameter      | Required | Description                        | Default |
 | :------------- | :------- | :----------------------------------| :------ |
-| FLOW_ID        | Yes      | Flow identifier                    |         |
+| FLOW_ID        | Yes      | Flow ID                    |         |
 | page\[size\]   | No       | Amount of items per page           | 50      |
 | page\[number\] | No       | Number of page you want to display | 1       |
 
 
 ### Returns
 
-The list of versions for the specified flow.
+The list of versions for the specified Flow.
 
-## Retrieve flow version by hash
+## Retrieve Flow version by hash
 
 > Example Request:
 
@@ -158,7 +159,8 @@ Content-Type: application/json
             "description":"",
             "fields":{
               "code":"//Your NodeJS code"
-            }
+            },
+            "vpn_agent_id":"5e1f03b6a67bc8242a9f2985"
           },
           {
             "id":"step_2",
@@ -229,7 +231,7 @@ This resource allows to you retrieve specific version of the flow by its version
 
 | Parameter    | Required | Description     |
 | :----------- | :------- | :-------------- |
-| FLOW_ID      | Yes      | Flow identifier |
+| FLOW_ID      | Yes      | Flow ID |
 | VERSION_HASH | Yes      | Version hash    |
 
 ### Returns

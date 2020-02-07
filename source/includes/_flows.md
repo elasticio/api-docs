@@ -76,7 +76,8 @@ Content-Type: application/json
               "component_id": "593809a16b1d1f00196b74cd",
               "command":"{{ repo_name }}/email:send",
               "name":"",
-              "description":""
+              "description":"",
+              "vpn_agent_id":"5e1f03b6a67bc8242a9f2985"
             }
           ],
           "edges":[
@@ -146,7 +147,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve flows.
+This resource allows you to retrieve Flows.
 
 ### HTTP Request
 
@@ -159,11 +160,11 @@ This resource allows you to retrieve flows.
 |workspace_id|yes|An Id of the Workspace|
 | page[size]        | no | Amount of items per page. Default is `50`. |
 | page[number]      | no | Number of page you want to display. Default is `1`. |
-| filter[has_draft] | no | Filter flows only with or without a draft. May be `true` or `false`. |
-| filter[status]    | no | Filter by `status`. May be any of: `active`, `inactive`. |
-| filter[type]      | no | Filter by flow `type`. May be any of: `ordinary`, `long_running`. |
+| filter[has_draft] | no | Filter flows only with or without a draft. Allowed values: `true`, `false`. |
+| filter[status]    | no | Filter by `status`. Allowed values: `active`, `inactive`. |
+| filter[type]      | no | Filter by flow `type`. Allowed values: `ordinary`, `long_running`. |
 | filter[user]      | no | Filter by `user`. Must be `id` of `User` who created the flow. `User` could be found in relationships of the flow. |
-| sort              | no | Sort flows list by certain field. May be `created_at`, `updated_at` or `name`. Prefix field name with `-` for reversed (desc) order e.g. `sort=-updated_at`. Default sort is by `id`. |
+| sort              | no | Sort flows list by certain field. Allowed values: `created_at`, `updated_at`, `name`. Prefix field name with `-` for reversed (desc) order e.g. `sort=-updated_at`. Default sort is by `id`. |
 | search            | no | Search flows by a word or a phrase contained in a `description` OR in a `name`. Behavior is similar to operator `LIKE` in SQL. Case insensitive. Leading/following spaces are trimmed. |
 
 ### Returns
@@ -221,7 +222,8 @@ Content-Type: application/json
             "component_id": "593809a16b1d1f00196b74cd",
             "command":"{{ repo_name }}/email:send",
             "name":"",
-            "description":""
+            "description":"",
+            "vpn_agent_id":"5e1f03b6a67bc8242a9f2985"
           }
         ],
         "edges":[
@@ -294,7 +296,7 @@ user or to one of his Workspace, an error is returned.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- | :--- |
-| FLOW_ID | Yes | Flow identifier |
+| FLOW_ID | Yes | Flow ID |
 
 
 ### Returns
@@ -325,11 +327,12 @@ The flow with given ID
           {
             "name":"",
             "description":"",
-            "command":"elasticio/simple-trigger-component:timer@latest",
+            "command":"{{ repo_name }}/simple-trigger-component:timer@latest",
             "fields":{
 
             },
             "id":"step_1",
+            "vpn_agent_id":"{VPN_AGENT_ID}"
             "selected_data_samples":[
               "{DATA_SAMPLE_ID}"
             ]
@@ -453,6 +456,7 @@ Content-Type: application/json
             "component_id":"{COMPONENT_ID}",
             "command":"elasticio/simple-trigger-component:timer@latest",
             "name":"",
+            "vpn_agent_id":"{VPN_AGENT_ID}"
             "description":"",
             "selected_data_samples":[
               "{DATA_SAMPLE_ID}"
@@ -586,11 +590,11 @@ This resource allows you to create a new flow.
 | :--- | :--- | :--- |
 | type | yes | A value must be ``flow`` |
 | attributes.name | yes | Flow name |
-| attributes.type | yes | Flow type. May be any of: ``ordinary``, ``long_running`` |
+| attributes.type | yes | Flow type. Allowed values: ``ordinary``, ``long_running`` |
 | attributes.graph | yes | Flow graph representing component connections |
-|attributes.default_mapper_type|yes |The mapper type. A value must be ``jsonata`` (The *handlebars* is now deprecated)
-| relationships.workspace.data.id | yes | An Id of the Workspace |
-| relationships.workspace.data.type | yes | A value must be ``workspace``  |
+| attributes.default_mapper_type|yes |The mapper type. Allowed value: ``jsonata`` (The *handlebars* is now deprecated)
+| relationships.workspace.data.id | yes | Workspace ID |
+| relationships.workspace.data.type | yes | Allowed value: ``workspace``  |
 
 ### Authorization
 
@@ -598,7 +602,7 @@ This request is authorized for a user with the `workspaces.flow.edit` permission
 
 ### Returns
 
-Returns the created flow
+Returns the created Flow.
 
 
 
@@ -664,7 +668,8 @@ Content-Type: application/json
             "component_id": "593809a16b1d1f00196b74cd",
             "command":"{{ repo_name }}/email:send",
             "name":"",
-            "description":""
+            "description":"",
+            "vpn_agent_id":"5e1f03b6a67bc8242a9f2985"
           }
         ],
         "edges":[
@@ -722,7 +727,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to update the given flow. A new version of the flow will be created. The new version becomes the latest version of the flow.
+This resource allows you to update the given Flow. A new version of the flow will be created. The new version becomes the latest version of the flow.
 
 ### HTTP Request
 
@@ -740,12 +745,12 @@ This resource allows you to update the given flow. A new version of the flow wil
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| type | yes | A value must be ``flow`` |
+| type | yes | Allowed value: ``flow`` |
 | id | yes | ID of the flow you want to update
 | attributes.name | no | Flow name |
-| attributes.type | no | Flow type. May be any of: ``ordinary``, ``long_running`` |
+| attributes.type | no | Flow type. Allowed values: ``ordinary``, ``long_running`` |
 | attributes.graph | no | Flow graph representing component connections |
-| attributes.cron | no | Cron expression representing flow timing |
+| attributes.cron | no | CRON expression representing flow timing |
 
 
 ### Authorization
@@ -755,9 +760,9 @@ This request is authorized for a user with the `workspaces.flow.edit` permission
 
 ### Returns
 
-Returns the updated flow
+Returns the updated Flow.
 
-## Start a flow
+## Start a Flow
 
 > Example request
 
@@ -790,7 +795,7 @@ This endpoint starts a flow with given ID.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- | :--- |
-| FLOW_ID | Yes | Flow identifier |
+| FLOW_ID | Yes | Flow ID |
 
 ### Authorization
 
@@ -798,7 +803,7 @@ This request is authorized for a user with the `workspaces.flow.toggleStatus` pe
 
 ### Returns
 
-Empty response
+Empty response.
 
 
 ## Stop a flow
@@ -824,7 +829,7 @@ HTTP/1.1 202 Accepted
 }
 ```
 
-This endpoint stops a flow with given ID.
+This endpoint stops a Flow with given ID.
 
 ### HTTP Request
 
@@ -855,7 +860,7 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID} \
 ```
 
 
-This resource allows you to delete a flow.
+This resource allows you to delete a Flow.
 
 ### HTTP Request
 

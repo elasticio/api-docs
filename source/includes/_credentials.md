@@ -115,7 +115,16 @@ Content-Type: application/json
             "links":{
               "self":"/v2/agents/59a410d76b670400182f190e"
             }
-          }
+          },
+           "vpn_agent":{
+             "data":{
+               "id":"59d341e9037f7200184a4000",
+               "type":"vpn-agent"
+             },
+             "links":{
+               "self":"/v2/agents/vpn/59d341e9037f7200184a4000"
+             }
+           }
         }
       }
     }
@@ -136,16 +145,16 @@ This resource allows you to retrieve all credentials belonging to user's Workspa
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-|workspace_id|yes|An Id of the Workspace|
-| filter[component] | No | Only credentials belong to the given component id
+|workspace_id|yes|Workspace ID|
+| filter[component] | No | Filter Credentials by Component ID|
 
 
 ### Returns
 
-Returns a list of credentials if the call succeeded.
+Returns a list of credentials on success.
 
 
-## Retrieve a credential by ID
+## Retrieve a Credential by ID
 
 
 > Example Request:
@@ -206,6 +215,15 @@ Content-Type: application/json
         "links":{  
           "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
+      },
+      "vpn_agent":{
+        "data":{
+          "id":"59d341e9037f7200184a4000",
+          "type":"vpn-agent"
+        },
+        "links":{
+          "self":"/v2/agents/vpn/59d341e9037f7200184a4000"
+        }
       }
     }
   },
@@ -223,11 +241,11 @@ This resource allows you to retrieve a credential by its identifier.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- | :--- |
-| CREDENTIAL_ID | Yes | Credential identifier |
+| CREDENTIAL_ID | Yes | Credential ID |
 
 ### Returns
 
-Returns a credential object if the call succeeded.
+Returns a credential object on success.
 
 ## Create a credential
 
@@ -264,6 +282,12 @@ curl {{ api_base_url }}/v2/credentials/ \
              "id":"59d341e9037f7200184a408b",
              "type":"workspace"
            }
+         },
+         "vpn_agent":{
+           "data":{
+             "id":"59d341e9037f7200184a4000",
+             "type":"vpn-agent"
+           },
          }
        }
      }
@@ -328,6 +352,15 @@ Content-Type: application/json
         "links":{  
           "self":"/v2/agents/5a09deda2d5f49665afb739a"
         }
+      },
+      "vpn_agent":{
+        "data":{
+          "id":"59d341e9037f7200184a4000",
+          "type":"vpn-agent"
+        },
+        "links":{
+          "self":"/v2/agents/vpn/59d341e9037f7200184a4000"
+        }
       }
     }
   },
@@ -335,7 +368,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to create a credential.
+This resource allows you to create a Credential.
 
 ### HTTP Request
 
@@ -349,25 +382,28 @@ This resource allows you to create a credential.
 | type | yes | A value must be ``credential`` |
 | attributes.name | no | Credential name. An automatic name will be generated if the parameter is omitted |
 | relationships.component.data.id | yes | The component id this credential is for |
-| relationships.component.data.type | yes | A value must be ``component`` |
+| relationships.component.data.type | yes | Allowed value: ``component`` |
 | relationships.workspace.data.id | yes | The Workspace id this credential is for |
-| relationships.workspace.data.type | yes | A value must be ``workspace`` |
-| relationships.agent | no | The agent relation object |
-| relationships.agent.data.id | no | The agent id this credential is for |
-| relationships.agent.data.type | no | A value must be ``agent`` |
+| relationships.workspace.data.type | yes | Allowed value: ``workspace`` |
+| relationships.agent | no | The agent relation object. Mutually exclusive with `relationships.vpn_agent`, so you can use only one of them at a time. |
+| relationships.agent.data.id | no | The agent ID this Credential is for |
+| relationships.agent.data.type | no | Allowed value: ``agent`` |
+| relationships.vpn_agent | no | The VPN agent relation object. Mutually exclusive with `relationships.agent`, so you can use only one of them at a time. |
+| relationships.vpn_agent.data.id | no | The VPN agent ID this credential is for |
+| relationships.vpn_agent.data.type | no | Allowed value: ``vpn-agent`` |
 | attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.) |
 
 
 ### Authorization
-This request is authorized to only a user with `workspaces.credential.edit` permission
+This request is authorized to users with `workspaces.credential.edit` permission.
 
 ### Returns
 
-Returns credential object if the call succeeded.
+Returns credential object on success.
 
 
 
-## Update a credential
+## Update a Credential
 
 
 > Example Request:
@@ -375,29 +411,35 @@ Returns credential object if the call succeeded.
 
 ```shell
 curl {{ api_base_url }}/v2/credentials/{CREDENTIAL_ID}/ \
-   -u {EMAIL}:{APIKEY} \
-   -X PATCH \
-   -H 'Accept: application/json' \
-   -H 'Content-Type: application/json' -d '
-    {
-        "data": {
-            "id": "585430d3f02852a8a9fac45e",
-            "type": "credential",
+    -u {EMAIL}:{APIKEY} \
+    -X PATCH \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
+        {
+            "data": {
+                "id": "585430d3f02852a8a9fac45e",
+                "type": "credential",
             "attributes": {
                 "keys": {
                     "key1": "updated value"  
                 }
-            },                     
+            },                  
             "relationships": {
-               "agent": {
-                   "data": {
-                       "id": "59a410d76b670400182f190e",
-                           "type": "agent"
-                       }
-                   }
-               }
-           }
-        }'
+                "agent": {
+                    "data": {
+                        "id": "59a410d76b670400182f190e",
+                        "type": "agent"
+                    }
+                },
+                "vpn_agent": {
+                    "data": {
+                        "id": "59a410d76b670400182f1aaa",
+                        "type": "vpn-agent"
+                    }
+                },
+            }
+        }
+    }'
 ```
 
 
@@ -459,6 +501,15 @@ Content-Type: application/json
         "links":{  
           "self":"/v2/agents/5a09deda2d5f49665afb739a"
         }
+      },
+      "vpn_agent":{  
+        "data":{  
+          "id":"59a410d76b670400182f1aaa",
+          "type":"vpn-agent"
+        },
+        "links":{  
+          "self":"/v2/agents/vpns/59a410d76b670400182f1aaa"
+        }
       }
     }
   },
@@ -481,13 +532,16 @@ This resource allows you to update a credential.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| id | yes | A value must be the same as URL parameter ``CREDENTIAL_ID`` |
-| type | yes | A value must be ``credential`` |
-| attributes.name | no | Credential name. Will remain untouched if value omitted. |
-| attributes.keys | no | An object which represents component's configuration. Will remain untouched if value omitted. Please note, that ``keys`` object is overwritten entirely. |
-| relationships.agent | no | The agent relation object. Will remain untouched if omitted. |
-| relationships.agent.data.id | no | The agent id this credential is for. |
-| relationships.agent.data.type | no | A value must be ``agent`` |
+| id | yes | The value must be the same as URL parameter ``CREDENTIAL_ID`` |
+| type | yes | Allowed value: ``credential`` |
+| attributes.name | no | Credential name. Will remain untouched if no value entered. |
+| attributes.keys | no | An object which represents component's configuration. Will remain untouched if no value entered. Please note, that ``keys`` object is overwritten entirely. |
+| relationships.agent | no | The agent relation object. Mutually exclusive with `relationships.vpn_agent`, so you can use only one of them at a time. |
+| relationships.agent.data.id | no | The agent ID this credential is for. |
+| relationships.agent.data.type | no | Allowed value: ``agent`` |
+| relationships.vpn_agent | no | The VPN agent relation object. Mutually exclusive with `relationships.agent`, so you can use only one of them at a time. |
+| relationships.vpn_agent.data.id | no | The VPN agent ID this credential is for. |
+| relationships.vpn_agent.data.type | no | Allowed value: ``vpn-agent`` |
 
 ### Authorization
 This request is authorized to only a user with `workspaces.credential.edit` permission
@@ -497,7 +551,7 @@ This request is authorized to only a user with `workspaces.credential.edit` perm
 
 Returns a modified credential object if the call succeeded.
 
-## Delete a credential
+## Delete a Credential
 > Example Request:
 
 
