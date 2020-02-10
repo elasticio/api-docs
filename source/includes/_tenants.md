@@ -2164,7 +2164,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.issuer                             | yes      | OIDC Provider issuer                 |
 | attributes.client_id                          | yes      | OIDC Provider client ID              |
 | attributes.client_secret                      | yes      | OIDC Provider client secret          |
-| attributes.config.create_new_user_if_not_found | false    | A value should be true or false      |
+| attributes.config.create_new_user_if_not_found | no       | A value should be true or false      |
 
 
 ### URL Parameters
@@ -2278,7 +2278,7 @@ Content-Type: application/json
         }
       }
     }
-  }
+  },
   "meta":{}
 }
 ```
@@ -2373,20 +2373,20 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 
 ### URL Parameters
 
-| Parameter        | Description                 |
-| ---------------- | --------------------------- |
-| TENANT_ID        | The ID of the Tenant        |
-| OIDC_PROVIDER_ID | The ID of the OIDC Provider |
+| Parameter        | Required | Description                 |
+| ---------------- | -------- | --------------------------- |
+| TENANT_ID        | yes      | The ID of the Tenant        |
+| OIDC_PROVIDER_ID | yes      | The ID of the OIDC Provider |
 
 ### Payload Parameters
 
 | Parameter                                     | Required | Description                      |
 | --------------------------------------------- | -------- | -------------------------------- |
 | type                                          | yes      | A value should be "oidc-provider"    |
-| attributes.issuer                             | false      | OIDC Provider issuer                 |
-| attributes.client_id                          | false      | OIDC Provider client ID              |
-| attributes.client_secret                      | false      | OIDC Provider client secret          |
-| attributes.config.create_new_user_if_not_found | false    | A value should be true or false      |
+| attributes.issuer                             | no       | OIDC Provider issuer                 |
+| attributes.client_id                          | no       | OIDC Provider client ID              |
+| attributes.client_secret                      | no       | OIDC Provider client secret          |
+| attributes.config.create_new_user_if_not_found | no       | A value should be true or false      |
 
 ### Returns
 
