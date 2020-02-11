@@ -441,13 +441,21 @@ curl {{ api_base_url }}/v2/users/{USER_ID}/oidc-connections \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
     {
-      "data":{
-         "type":"oidc-connection",
-         "attributes":{
-           "iss":"http://example.com",
-           "sub":"user-identification"
-         }
-      }
+        "data":{
+            "type":"oidc-connection",
+            "attributes":{
+                "iss":"http://example.com",
+                "sub":"user-identification"
+            }
+        },
+        "relationships":{
+            "tenant":{
+                "data":{
+                    "type":"tenant",
+                    "id":"{TENANT_ID}"
+                }
+            }
+        }
     }'
 ```
 
