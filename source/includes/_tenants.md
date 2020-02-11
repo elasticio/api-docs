@@ -2107,6 +2107,7 @@ Responds with the `204 No content` message if the call succeeded (with empty bod
        "attributes":{
          "issuer": "{ISSUER}",
          "client_id":"{CLIENT_ID}",
+         "response_type": "code",
          "client_secret":"{CLIENT_SECRET}"
        }
      }
@@ -2165,6 +2166,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.issuer                             | yes      | OIDC Provider issuer                 |
 | attributes.client_id                          | yes      | OIDC Provider client ID              |
 | attributes.client_secret                      | yes      | OIDC Provider client secret          |
+| attributes.response_type                      | no       | A value should be "code"             |
 | attributes.config.create_new_user_if_not_found | no       | A value should be true or false      |
 
 
@@ -2390,6 +2392,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.issuer                             | no       | OIDC Provider issuer                 |
 | attributes.client_id                          | no       | OIDC Provider client ID              |
 | attributes.client_secret                      | no       | OIDC Provider client secret          |
+| attributes.response_type                      | no       | A value should be "code"             |
 | attributes.config.create_new_user_if_not_found | no       | A value should be true or false      |
 
 ### Returns
