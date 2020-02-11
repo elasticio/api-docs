@@ -2103,11 +2103,11 @@ Responds with the `204 No content` message if the call succeeded (with empty bod
    -H 'Content-Type: application/json' -d '
    {  
      "data":{  
-       "type":"oidc-provider,
+       "type":"oidc-provider",
        "attributes":{
-         "issuer": "{ISSUER}"
+         "issuer": "{ISSUER}",
          "client_id":"{CLIENT_ID}",
-         "client_secret":"{CLIENT_SECRET}",
+         "client_secret":"{CLIENT_SECRET}"
        }
      }
    }'
@@ -2126,6 +2126,7 @@ Content-Type: application/json
         "client_id": "c7e56633-5e88-4c97-8da9-f823432423",
         "client_secret": "c7e56633-5e88-4c97-8da9-f823432423",
         "issuer": "https://issuer.com",
+        "response_type": "code",
         "config": {
             "create_new_user_if_not_found": true
         }
@@ -2200,6 +2201,7 @@ Content-Type: application/json
           "client_id": "c7e56633-5e88-4c97-8da9-f823432423",
           "client_secret": "c7e56633-5e88-4c97-8da9-f823432423",
           "issuer": "https://issuer.com",
+          "response_type": "code",
           "config": {
               "create_new_user_if_not_found": true
           }
@@ -2263,6 +2265,7 @@ Content-Type: application/json
         "client_id": "c7e56633-5e88-4c97-8da9-f823432423",
         "client_secret": "c7e56633-5e88-4c97-8da9-f823432423",
         "issuer": "https://issuer.com",
+        "response_type": "code",
         "config": {
             "create_new_user_if_not_found": true
         }
@@ -2341,6 +2344,7 @@ Content-Type: application/json
         "client_id": "c7e56633-5e88-4c97-8da9-f823432423",
         "client_secret": "c7e56633-5e88-4c97-8da9-f823432423",
         "issuer": "https://issuer.com",
+        "response_type": "code",
         "config": {
             "create_new_user_if_not_found": true
         }
