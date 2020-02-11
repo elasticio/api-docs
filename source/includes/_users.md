@@ -1,6 +1,6 @@
 # Users
 
-## Retrieve your user
+## Retrieve Your User
 
 > Example Request:
 
@@ -53,7 +53,7 @@ Returns a user object if the call succeeded.
 
 
 
-## Retrieve a user by ID
+## Retrieve a User by ID
 
 > Example Request:
 
@@ -107,7 +107,7 @@ This resource allows you to retrieve a user by ID.
 
 #### Returns
 
-Returns a user object if the call succeeded.
+Returns a user object on successful call.
 
 
 
@@ -117,7 +117,7 @@ Returns a user object if the call succeeded.
 
 
 
-## Retrieve all users
+## Retrieve All Users
 
 
 > Example Request (with paging):
@@ -263,12 +263,12 @@ This endpoint returns a list of users.
 
 ### Authorization
 
-This request is authorized for the users with the `tenants.user.list_all` permission.
+This request is authorized for users with the `tenants.user.list_all` permission.
 
 
 #### Returns
 
-Returns a list of user objects if the call succeeded.
+Returns a list of user objects on successful call.
 
 
 
@@ -280,7 +280,7 @@ Returns a list of user objects if the call succeeded.
 
 
 
-## Create a user
+## Create a User
 
 > Example Request:
 
@@ -348,7 +348,7 @@ This resource allows you to create a user.
 
 ### Authorization
 
-This request is authorized for the users with the `tenants.user.create` permission.
+This request is authorized for users with the `tenants.user.create` permission.
 
 ### Returns
 
@@ -391,9 +391,9 @@ This resource allows you to delete a user.
 
 ### Not deleted immediately
 
-These data objects are deleted automatically (e.g. due to expiration), hence won't be deleted right after User deletion:
+These data objects are deleted automatically (e.g. due to expiration), so they won't be deleted right after User deletion:
 
-* Flows activity records (which used in order to show runlog)
+* Flows activity records (used in order to show runlog)
 * Logs of flow execution and repo build
 * Invitations to the Team, Contract and Workspace
 * Notifications
@@ -401,15 +401,15 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 
 ### Data associated with Contract and Workspace
 
-* If this User is a member of any Contract which has one more Owner beside him/her then User's Teams and Repos will be transferred to the next Owner. 
-* If this User is a member of any Workspace which has one more Owner beside him/her then User's Flows and Credentials will be transferred to the next Owner. 
+* If this User is a member of any Contract, which has one more Owner beside them then User's Teams and Repos will be transferred to the next Owner. 
+* If this User is a member of any Workspace, which has one more Owner beside them then User's Flows and Credentials will be transferred to the next Owner. 
 * If this User is the last Owner of any Workspace then given Workspace will be deleted with all data. 
-* If this User is the only member of Contract(s) then he/she will be deleted along with Contract and all the unique data connected with this User.
+* If this User is the only member of Contract(s) then they will be deleted along with Contract and all the unique data connected with this User.
 
 
 
 ### Authorization
-This request is authorized for the users with the `tenants.user.delete` permission.
+This request is authorized for users with the `tenants.user.delete` permission.
 
    
    
@@ -519,7 +519,7 @@ A user can have multiple Open Id Connections.
 
 ### Authorization
 
-This request is authorized for the users with the `tenants.oidc.create` permission.
+This request is authorized for users with the `tenants.oidc.create` permission.
 
 ### Returns
 
@@ -560,4 +560,4 @@ This resource allows you to create an Open Id Connection for a user.
 
 ### Authorization
 
-This request is authorized for the users with the `tenants.oidc.delete` permission.
+This request is authorized for users with the `tenants.oidc.delete` permission.
