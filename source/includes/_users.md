@@ -425,3 +425,139 @@ This request is authorized for the users with the `tenants.user.delete` permissi
 | :--- | :--- | :--- |
 | USER_ID | yes | User identifier |
 
+
+
+
+
+
+## Create an oidc-connection
+
+> Example Request:
+
+```bash
+curl {{ api_base_url }}/v2/users/{USER_ID}/oidc-connections \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+    {
+      "data":{
+         "type":"oidc-connection",
+         "attributes":{
+           "iss":"http://example.com",
+           "sub":"user-identification"
+         }
+      }
+    }'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "data":{
+    "id":"{OIDC_CONNECTION_ID}",
+    "type":"user",
+    "links":{
+      "self":"/v2/users/{USER_ID}/oidc-connections/{OIDC_CONNECTION_ID}"
+    },
+    "attributes":{
+       "iss":"http://example.com",
+       "sub":"user-identification"
+    },
+    "relationships":{
+        "user":{
+            "data":{
+                "type":"user",
+                "id":"{USER_ID}"
+            },
+            "links":{
+                "self":"/v2/users/{USER_ID}"
+            }
+        }
+    }
+  },
+  "meta":{}
+}
+```
+
+This resource allows you to create an Open Id Connection for a user.
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/users/{USER_ID}/oidc-connections`
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``oidc-connection`` |
+| attributes.iss | no | User's Open Id Connection issuer. Must be an URL |
+| attributes.sub | no | User's Open Id Connection subject. User identification for User's Open Id Connection.|
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| USER_ID | yes | User identifier |
+
+### Data associated with User
+
+A user can have multiple Open Id Connections.
+
+### Authorization
+
+This request is authorized for the users with the `tenants.oidc.create` permission.
+
+### Returns
+
+New oidc-connection objects will be provided with an ``id`` field - this value cannot be created or edited by clients.
+
+
+
+## Create an oidc-connection
+
+> Example Request:
+
+```bash
+curl {{ api_base_url }}/v2/users/{USER_ID}/oidc-connections/{OIDC_CONNECTION_ID} \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY}
+```
+
+
+> Example Response:
+
+
+```http
+HTTP/1.1 204 No Content
+```
+
+This resource allows you to create an Open Id Connection for a user.
+
+### HTTP Request
+
+`DELETE {{ api_base_url }}/v2/users/{USER_ID}/oidc-connections/{OIDC_CONNECTION_ID}`
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``oidc-connection`` |
+| attributes.iss | no | User's Open Id Connection issuer. Must be an URL |
+| attributes.sub | no | User's Open Id Connection subject. User identification for User's Open Id Connection.|
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| USER_ID | yes | User identifier |
+| OIDC_CONNECTION_ID | yes | User's Open Id Connection identifier |
+
+### Authorization
+
+This request is authorized for the users with the `tenants.oidc.delete` permission.
