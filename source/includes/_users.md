@@ -496,8 +496,8 @@ This resource allows you to create an Open Id Connection for a user.
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
 | type | yes | A value must be ``oidc-connection`` |
-| attributes.iss | no | User's Open Id Connection issuer. Must be an URL |
-| attributes.sub | no | User's Open Id Connection subject. User identification for User's Open Id Connection.|
+| attributes.iss | yes | User's Open Id Connection issuer. Must be an URL |
+| attributes.sub | yes | User's Open Id Connection subject. User identification for User's Open Id Connection.|
 
 ### URL Parameters
 
@@ -519,7 +519,7 @@ New oidc-connection objects will be provided with an ``id`` field - this value c
 
 
 
-## Create an oidc-connection
+## Delete an oidc-connection
 
 > Example Request:
 
@@ -542,14 +542,6 @@ This resource allows you to create an Open Id Connection for a user.
 ### HTTP Request
 
 `DELETE {{ api_base_url }}/v2/users/{USER_ID}/oidc-connections/{OIDC_CONNECTION_ID}`
-
-### Body Parameters
-
-| Parameter | Required | Description |
-| :--- | :--- | :--- |
-| type | yes | A value must be ``oidc-connection`` |
-| attributes.iss | no | User's Open Id Connection issuer. Must be an URL |
-| attributes.sub | no | User's Open Id Connection subject. User identification for User's Open Id Connection.|
 
 ### URL Parameters
 
