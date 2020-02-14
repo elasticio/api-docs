@@ -380,7 +380,7 @@ curl {{ api_base_url }}/v2/users/{USER_ID} \
 HTTP/1.1 204 No Content
 ```
 
-This resource allows you to delete a user. 
+This resource allows you to delete a user.
 
 ### When a User is deleted the following data will be deleted as well:
 
@@ -401,9 +401,9 @@ These data objects are deleted automatically (e.g. due to expiration), so they w
 
 ### Data associated with Contract and Workspace
 
-* If this User is a member of any Contract, which has one more Owner beside them then User's Teams and Repos will be transferred to the next Owner. 
-* If this User is a member of any Workspace, which has one more Owner beside them then User's Flows and Credentials will be transferred to the next Owner. 
-* If this User is the last Owner of any Workspace then given Workspace will be deleted with all data. 
+* If this User is a member of any Contract, which has one more Owner beside them then User's Teams and Repos will be transferred to the next Owner.
+* If this User is a member of any Workspace, which has one more Owner beside them then User's Flows and Credentials will be transferred to the next Owner.
+* If this User is the last Owner of any Workspace then given Workspace will be deleted with all data.
 * If this User is the only member of Contract(s) then they will be deleted along with Contract and all the unique data connected with this User.
 
 
@@ -411,8 +411,8 @@ These data objects are deleted automatically (e.g. due to expiration), so they w
 ### Authorization
 This request is authorized for users with the `tenants.user.delete` permission.
 
-   
-   
+
+
 
 ### HTTP Request
 
@@ -430,19 +430,19 @@ This request is authorized for users with the `tenants.user.delete` permission.
 
 
 
-## Create an oidc-connection
+## Create an openid-identity
 
 > Example Request:
 
 ```bash
-curl {{ api_base_url }}/v2/users/{USER_ID}/oidc-connections \
+curl {{ api_base_url }}/v2/users/{USER_ID}/openid/identities \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
     {
         "data":{
-            "type":"oidc-connection",
+            "type":"openid-identity",
             "attributes":{
                 "iss":"http://example.com",
                 "sub":"user-identification"
@@ -468,10 +468,10 @@ Content-Type: application/json
 
 {
   "data":{
-    "id":"{OIDC_CONNECTION_ID}",
+    "id":"{OPENID_IDENTITY_ID}",
     "type":"user",
     "links":{
-      "self":"/v2/users/{USER_ID}/oidc-connections/{OIDC_CONNECTION_ID}"
+      "self":"/v2/users/{USER_ID}/openid/identities/{OPENID_IDENTITY_ID}"
     },
     "attributes":{
        "iss":"http://example.com",
@@ -493,19 +493,19 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to create an Open Id Connection for a user.
+This resource allows you to create an OpenID Identity for a user.
 
 ### HTTP Request
 
-`POST {{ api_base_url }}/v2/users/{USER_ID}/oidc-connections`
+`POST {{ api_base_url }}/v2/users/{USER_ID}/openid/identities`
 
 ### Body Parameters
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| type | yes | A value must be ``oidc-connection`` |
-| attributes.iss | yes | User's Open Id Connection issuer. Must be an URL |
-| attributes.sub | yes | User's Open Id Connection subject. User identification for User's Open Id Connection.|
+| type | yes | A value must be ``openid-identity`` |
+| attributes.iss | yes | User's OpenID Identity issuer. Must be an URL. |
+| attributes.sub | yes | User's OpenID Identity subject. |
 
 ### URL Parameters
 
@@ -515,7 +515,7 @@ This resource allows you to create an Open Id Connection for a user.
 
 ### Data associated with User
 
-A user can have multiple Open Id Connections.
+A user can have multiple OpenID Identities.
 
 ### Authorization
 
@@ -523,16 +523,16 @@ This request is authorized for users with the `tenants.oidc.create` permission.
 
 ### Returns
 
-New oidc-connection objects will be provided with an ``id`` field - this value cannot be created or edited by clients.
+New openid-identity objects will be provided with an ``id`` field - this value cannot be created or edited by clients.
 
 
 
-## Delete an oidc-connection
+## Delete an openid-identity
 
 > Example Request:
 
 ```bash
-curl {{ api_base_url }}/v2/users/{USER_ID}/oidc-connections/{OIDC_CONNECTION_ID} \
+curl {{ api_base_url }}/v2/users/{USER_ID}/openid/identities/{OPENID_IDENTITY_ID} \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -545,18 +545,18 @@ curl {{ api_base_url }}/v2/users/{USER_ID}/oidc-connections/{OIDC_CONNECTION_ID}
 HTTP/1.1 204 No Content
 ```
 
-This resource allows you to create an Open Id Connection for a user.
+This resource allows you to create an OpenID Identity for a user.
 
 ### HTTP Request
 
-`DELETE {{ api_base_url }}/v2/users/{USER_ID}/oidc-connections/{OIDC_CONNECTION_ID}`
+`DELETE {{ api_base_url }}/v2/users/{USER_ID}/openid/identities/{OPENID_IDENTITY_ID}`
 
 ### URL Parameters
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
 | USER_ID | yes | User identifier |
-| OIDC_CONNECTION_ID | yes | User's Open Id Connection identifier |
+| OPENID_IDENTITY_ID | yes | User's OpenID Identity ID |
 
 ### Authorization
 
