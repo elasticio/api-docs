@@ -2097,7 +2097,7 @@ Responds with the `204 No content` message if the call succeeded (with empty bod
 > Example Request:
 
 ```shell
- curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/oidc-providers \
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
@@ -2152,7 +2152,7 @@ This resource allows you to create a new **OIDC Provider**.
 
 ### HTTP Request
 
-`POST {{ api_base_url }}/v2/tenants/{TENANT_ID}/oidc-providers`
+`POST {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers`
 
 #### Authorization
 
@@ -2185,7 +2185,7 @@ Returns **OIDC Provider** object if the call succeeded
 > Example Request:
 
 ```shell
- curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/oidc-providers \
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -2229,7 +2229,7 @@ This resource allows you to retrieve **OIDC Providers** for the **Tenant** with 
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/oidc-providers`
+`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers`
 
 ### URL Parameters
 
@@ -2250,7 +2250,7 @@ Returns **OIDC Provider** objects if the call succeeded
 > Example Request:
 
 ```shell
- curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/oidc-providers/{OIDC_PROVIDER_ID} \
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OIDC_PROVIDER_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -2292,7 +2292,7 @@ This resource allows you to retrieve a **OIDC Provider** with the given ID for t
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/oidc-providers/{OIDC_PROVIDER_ID}`
+`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OIDC_PROVIDER_ID}`
 
 ### URL Parameters
 
@@ -2314,7 +2314,7 @@ Returns **OIDC Provider** object if the call succeeded
 > Example Request:
 
 ```shell
- curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/oidc-providers/{OIDC_PROVIDER_ID} \
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OIDC_PROVIDER_ID} \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
@@ -2371,7 +2371,7 @@ This resource allows you to update an **OIDC Provider** with the given ID for th
 
 ### HTTP Request
 
-`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/oidc-providers/{OIDC_PROVIDER_ID}`
+`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OIDC_PROVIDER_ID}`
 
 #### Authorization
 
