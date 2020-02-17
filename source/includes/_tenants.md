@@ -2092,7 +2092,7 @@ This request is authorized for the users with the `tenants.oauth_clients.delete`
 
 Responds with the `204 No content` message if the call succeeded (with empty body).
 
-## Create an OIDC Provider
+## Create an OpenID Provider
 
 > Example Request:
 
@@ -2103,7 +2103,7 @@ Responds with the `204 No content` message if the call succeeded (with empty bod
    -H 'Content-Type: application/json' -d '
    {  
      "data":{  
-       "type":"oidc-provider",
+       "type":"openid-provider",
        "attributes":{
          "issuer": "{ISSUER}",
          "client_id":"{CLIENT_ID}",
@@ -2122,7 +2122,7 @@ Content-Type: application/json
 {  
   "data":{
     "id": "5c80e6b9bb0d200011333d92",
-    "type": "oidc-provider",
+    "type": "openid-provider",
     "attributes": {
         "client_id": "c7e56633-5e88-4c97-8da9-f823432423",
         "client_secret": "c7e56633-5e88-4c97-8da9-f823432423",
@@ -2148,7 +2148,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to create a new **OIDC Provider**.
+This resource allows you to create a new **OpenID Provider**.
 
 ### HTTP Request
 
@@ -2162,10 +2162,10 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 
 | Parameter                                     | Required | Description                          |
 | --------------------------------------------- | -------- | ------------------------------------ |
-| type                                          | yes      | A value should be "oidc-provider"    |
-| attributes.issuer                             | yes      | OIDC Provider issuer                 |
-| attributes.client_id                          | yes      | OIDC Provider client ID              |
-| attributes.client_secret                      | yes      | OIDC Provider client secret          |
+| type                                          | yes      | A value should be "openid-provider"    |
+| attributes.issuer                             | yes      | OpenID Provider issuer                 |
+| attributes.client_id                          | yes      | OpenID Provider client ID              |
+| attributes.client_secret                      | yes      | OpenID Provider client secret          |
 | attributes.response_type                      | no       | A value should be "code"             |
 | attributes.config.create_new_user_if_not_found | no       | A value should be true or false      |
 
@@ -2178,9 +2178,9 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 
 ### Returns
 
-Returns **OIDC Provider** object if the call succeeded
+Returns **OpenID Provider** object if the call succeeded
 
-## Retrieve an OIDC Providers
+## Retrieve an OpenID Providers
 
 > Example Request:
 
@@ -2198,7 +2198,7 @@ Content-Type: application/json
   "data":[
     {
       "id": "5c80e6b9bb0d200011333d92",
-      "type": "oidc-provider",
+      "type": "openid-provider",
       "attributes": {
           "client_id": "c7e56633-5e88-4c97-8da9-f823432423",
           "client_secret": "c7e56633-5e88-4c97-8da9-f823432423",
@@ -2225,7 +2225,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve **OIDC Providers** for the **Tenant** with the given ID.
+This resource allows you to retrieve **OpenID Providers** for the **Tenant** with the given ID.
 
 ### HTTP Request
 
@@ -2243,14 +2243,14 @@ This request is authorized for the users with the `tenants.tenant.get` permissio
 
 ### Returns
 
-Returns **OIDC Provider** objects if the call succeeded
+Returns **OpenID Provider** objects if the call succeeded
 
-## Retrieve an OIDC Provider by ID
+## Retrieve an OpenID Provider by ID
 
 > Example Request:
 
 ```shell
- curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OIDC_PROVIDER_ID} \
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OPEN_ID_PROVIDER_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -2262,7 +2262,7 @@ Content-Type: application/json
 {
   "data":{
     "id": "5c80e6b9bb0d200011333d92",
-    "type": "oidc-provider",
+    "type": "openid-provider",
     "attributes": {
         "client_id": "c7e56633-5e88-4c97-8da9-f823432423",
         "client_secret": "c7e56633-5e88-4c97-8da9-f823432423",
@@ -2288,18 +2288,18 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve a **OIDC Provider** with the given ID for the **Tenant** with the given ID.
+This resource allows you to retrieve a **OpenID Provider** with the given ID for the **Tenant** with the given ID.
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OIDC_PROVIDER_ID}`
+`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OPEN_ID_PROVIDER_ID}`
 
 ### URL Parameters
 
 | Parameter        | Required | Description                 |
 | ---------------- | -------- | --------------------------- |
 | TENANT_ID        | yes      | The ID of the Tenant        |
-| OIDC_PROVIDER_ID | yes      | The ID of the OIDC Provider |
+| OPEN_ID_PROVIDER_ID | yes      | The ID of the OpenID Provider |
 
 #### Authorization
 
@@ -2307,20 +2307,20 @@ This request is authorized for the users with the `tenants.tenant.get` permissio
 
 ### Returns
 
-Returns **OIDC Provider** object if the call succeeded
+Returns **OpenID Provider** object if the call succeeded
 
-## Update an OIDC Provider
+## Update an OpenID Provider
 
 > Example Request:
 
 ```shell
- curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OIDC_PROVIDER_ID} \
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OPEN_ID_PROVIDER_ID} \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
    {  
      "data":{  
-       "type":"oidc-provider,
+       "type":"openid-provider,
        "attributes":{
          "issuer": "{ISSUER}"
          "client_id":"{CLIENT_ID}",
@@ -2341,7 +2341,7 @@ Content-Type: application/json
 {
   "data":{
     "id": "5c80e6b9bb0d200011333d92",
-    "type": "oidc-provider",
+    "type": "openid-provider",
     "attributes": {
         "client_id": "c7e56633-5e88-4c97-8da9-f823432423",
         "client_secret": "c7e56633-5e88-4c97-8da9-f823432423",
@@ -2367,11 +2367,11 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to update an **OIDC Provider** with the given ID for the **Tenant** with the given ID.
+This resource allows you to update an **OpenID Provider** with the given ID for the **Tenant** with the given ID.
 
 ### HTTP Request
 
-`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OIDC_PROVIDER_ID}`
+`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OPEN_ID_PROVIDER_ID}`
 
 #### Authorization
 
@@ -2382,16 +2382,16 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | Parameter        | Required | Description                 |
 | ---------------- | -------- | --------------------------- |
 | TENANT_ID        | yes      | The ID of the Tenant        |
-| OIDC_PROVIDER_ID | yes      | The ID of the OIDC Provider |
+| OPEN_ID_PROVIDER_ID | yes      | The ID of the OpenID Provider |
 
 ### Payload Parameters
 
 | Parameter                                     | Required | Description                      |
 | --------------------------------------------- | -------- | -------------------------------- |
-| type                                          | yes      | A value should be "oidc-provider"    |
-| attributes.issuer                             | no       | OIDC Provider issuer                 |
-| attributes.client_id                          | no       | OIDC Provider client ID              |
-| attributes.client_secret                      | no       | OIDC Provider client secret          |
+| type                                          | yes      | A value should be "openid-provider"    |
+| attributes.issuer                             | no       | OpenID Provider issuer                 |
+| attributes.client_id                          | no       | OpenID Provider client ID              |
+| attributes.client_secret                      | no       | OpenID Provider client secret          |
 | attributes.response_type                      | no       | A value should be "code"             |
 | attributes.config.create_new_user_if_not_found | no       | A value should be true or false      |
 
