@@ -447,14 +447,6 @@ curl {{ api_base_url }}/v2/users/{USER_ID}/openid/identities \
                 "iss":"http://example.com",
                 "sub":"user-identification"
             }
-        },
-        "relationships":{
-            "tenant":{
-                "data":{
-                    "type":"tenant",
-                    "id":"{TENANT_ID}"
-                }
-            }
         }
     }'
 ```
