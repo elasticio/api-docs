@@ -2129,7 +2129,7 @@ Content-Type: application/json
         "issuer": "https://issuer.com",
         "response_type": "code",
         "config": {
-            "create_new_user_if_not_found": true
+            "auto_create_users": true
         }
     },
     "relationships": {
@@ -2167,7 +2167,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.client_id                          | yes      | OpenID Provider client ID              |
 | attributes.client_secret                      | yes      | OpenID Provider client secret          |
 | attributes.response_type                      | no       | A value should be "code"             |
-| attributes.config.create_new_user_if_not_found | no       | A value should be true or false      |
+| attributes.config.auto_create_users            | no       | A value should be true or false      |
 
 
 ### URL Parameters
@@ -2205,7 +2205,7 @@ Content-Type: application/json
           "issuer": "https://issuer.com",
           "response_type": "code",
           "config": {
-              "create_new_user_if_not_found": true
+              "auto_create_users": true
           }
       },
       "relationships": {
@@ -2269,7 +2269,7 @@ Content-Type: application/json
         "issuer": "https://issuer.com",
         "response_type": "code",
         "config": {
-            "create_new_user_if_not_found": true
+            "auto_create_users": true
         }
     },
     "relationships": {
@@ -2326,7 +2326,7 @@ Returns **OpenID Provider** object if the call succeeded
          "client_id":"{CLIENT_ID}",
          "client_secret":"{CLIENT_SECRET}",
          "config": {
-           "create_new_user_if_not_found": true
+           "auto_create_users": true
          }
        }
      }
@@ -2348,7 +2348,7 @@ Content-Type: application/json
         "issuer": "https://issuer.com",
         "response_type": "code",
         "config": {
-            "create_new_user_if_not_found": true
+            "auto_create_users": true
         }
     },
     "relationships": {
@@ -2393,7 +2393,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.client_id                          | no       | OpenID Provider client ID              |
 | attributes.client_secret                      | no       | OpenID Provider client secret          |
 | attributes.response_type                      | no       | A value should be "code"             |
-| attributes.config.create_new_user_if_not_found | no       | A value should be true or false      |
+| attributes.config.auto_create_users | no       | A value should be true or false      |
 
 ### Returns
 
