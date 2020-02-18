@@ -251,6 +251,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.name                         | yes      | Name of the Tenant    |                                               
 | attributes.app_domain                   | yes      | Name of the Tenant domain   |  
 | attributes.code                         | yes      | Tenant CSS-style     |  
+| attributes.mandrill_email_from          | yes      | An email of the letters sender   |
 | attributes.api_domain                   | no       | Name of the Tenant API domain   |
 | attributes.webhooks_domain              | no       | Name of the Tenant webhooks domain     |
 | attributes.git_receiver_host            | no       | Name of the Tenant git receiver host |
@@ -263,7 +264,6 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.imprint_url                  | no       | The URL which redirects to the imprint page   |
 | attributes.mailchimp_api_key            | no       | The MailChimp API key   |
 | attributes.mailchimp_list_id            | no       | The MailChimp list id |
-| attributes.mandrill_email_from          | no       | An email of the letters sender   |
 | attributes.mandrill_api_key             | no       | The mandrill API key |
 | attributes.hide_register                | no       | A value should be true or false |
 | attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation      |
