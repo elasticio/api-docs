@@ -259,6 +259,9 @@ This endpoint returns a list of users.
 | :--- | :--- | :--- | :--- |
 | page\[size\] | No | Amount of items per page | 50 |
 | page\[number\] | No | Number of page you want to display| 1 |
+| iss | No | Users must have OpenId identity equal to this value. Can't be used with "email" parameter |  |
+| sub | No | Users must have OpenId subject equal to this value. Can't be used with "email" parameter |  |
+| email | No | Users must have email equal to this value |  |
 
 
 ### Authorization
