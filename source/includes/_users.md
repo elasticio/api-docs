@@ -1,6 +1,6 @@
 # Users
 
-## Retrieve your user
+## Retrieve Your User
 
 > Example Request:
 
@@ -53,7 +53,7 @@ Returns a user object if the call succeeded.
 
 
 
-## Retrieve a user by ID
+## Retrieve a User by ID
 
 > Example Request:
 
@@ -107,7 +107,7 @@ This resource allows you to retrieve a user by ID.
 
 #### Returns
 
-Returns a user object if the call succeeded.
+Returns a user object on successful call.
 
 
 
@@ -117,7 +117,7 @@ Returns a user object if the call succeeded.
 
 
 
-## Retrieve all users
+## Retrieve All Users
 
 
 > Example Request (with paging):
@@ -259,16 +259,19 @@ This endpoint returns a list of users.
 | :--- | :--- | :--- | :--- |
 | page\[size\] | No | Amount of items per page | 50 |
 | page\[number\] | No | Number of page you want to display| 1 |
+| iss | No | Users must have OpenId identity equal to this value. Can't be used with "email" parameter |  |
+| sub | No | Users must have OpenId subject equal to this value. Can't be used with "email" parameter |  |
+| email | No | Users must have email equal to this value |  |
 
 
 ### Authorization
 
-This request is authorized for the users with the `tenants.user.list_all` permission.
+This request is authorized for users with the `tenants.user.list_all` permission.
 
 
 #### Returns
 
-Returns a list of user objects if the call succeeded.
+Returns a list of user objects on successful call.
 
 
 
@@ -280,7 +283,7 @@ Returns a list of user objects if the call succeeded.
 
 
 
-## Create a user
+## Create a User
 
 > Example Request:
 
@@ -348,7 +351,7 @@ This resource allows you to create a user.
 
 ### Authorization
 
-This request is authorized for the users with the `tenants.user.create` permission.
+This request is authorized for users with the `tenants.user.create` permission.
 
 ### Returns
 
@@ -380,7 +383,7 @@ curl {{ api_base_url }}/v2/users/{USER_ID} \
 HTTP/1.1 204 No Content
 ```
 
-This resource allows you to delete a user. 
+This resource allows you to delete a user.
 
 ### When a User is deleted the following data will be deleted as well:
 
@@ -391,9 +394,9 @@ This resource allows you to delete a user.
 
 ### Not deleted immediately
 
-These data objects are deleted automatically (e.g. due to expiration), hence won't be deleted right after User deletion:
+These data objects are deleted automatically (e.g. due to expiration), so they won't be deleted right after User deletion:
 
-* Flows activity records (which used in order to show runlog)
+* Flows activity records (used in order to show runlog)
 * Logs of flow execution and repo build
 * Invitations to the Team, Contract and Workspace
 * Notifications
@@ -401,18 +404,18 @@ These data objects are deleted automatically (e.g. due to expiration), hence won
 
 ### Data associated with Contract and Workspace
 
-* If this User is a member of any Contract which has one more Owner beside him/her then User's Teams and Repos will be transferred to the next Owner. 
-* If this User is a member of any Workspace which has one more Owner beside him/her then User's Flows and Credentials will be transferred to the next Owner. 
-* If this User is the last Owner of any Workspace then given Workspace will be deleted with all data. 
-* If this User is the only member of Contract(s) then he/she will be deleted along with Contract and all the unique data connected with this User.
+* If this User is a member of any Contract, which has one more Owner beside them then User's Teams and Repos will be transferred to the next Owner.
+* If this User is a member of any Workspace, which has one more Owner beside them then User's Flows and Credentials will be transferred to the next Owner.
+* If this User is the last Owner of any Workspace then given Workspace will be deleted with all data.
+* If this User is the only member of Contract(s) then they will be deleted along with Contract and all the unique data connected with this User.
 
 
 
 ### Authorization
-This request is authorized for the users with the `tenants.user.delete` permission.
+This request is authorized for users with the `tenants.user.delete` permission.
 
-   
-   
+
+
 
 ### HTTP Request
 
@@ -425,3 +428,131 @@ This request is authorized for the users with the `tenants.user.delete` permissi
 | :--- | :--- | :--- |
 | USER_ID | yes | User identifier |
 
+
+
+
+
+
+## Create an openid-identity
+
+> Example Request:
+
+```bash
+curl {{ api_base_url }}/v2/users/{USER_ID}/openid/identities \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+    {
+        "data":{
+            "type":"openid-identity",
+            "attributes":{
+                "iss":"http://example.com",
+                "sub":"user-identification"
+            }
+        }
+    }'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "data":{
+    "id":"{OPENID_IDENTITY_ID}",
+    "type":"user",
+    "links":{
+      "self":"/v2/users/{USER_ID}/openid/identities/{OPENID_IDENTITY_ID}"
+    },
+    "attributes":{
+       "iss":"http://example.com",
+       "sub":"user-identification"
+    },
+    "relationships":{
+        "user":{
+            "data":{
+                "type":"user",
+                "id":"{USER_ID}"
+            },
+            "links":{
+                "self":"/v2/users/{USER_ID}"
+            }
+        }
+    }
+  },
+  "meta":{}
+}
+```
+
+This resource allows you to create an OpenID Identity for a user.
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/users/{USER_ID}/openid/identities`
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| type | yes | A value must be ``openid-identity`` |
+| attributes.iss | yes | User's OpenID Identity issuer. Must be an URL. |
+| attributes.sub | yes | User's OpenID Identity subject. |
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| USER_ID | yes | User identifier |
+
+### Data associated with User
+
+A user can have multiple OpenID Identities.
+
+### Authorization
+
+This request is authorized for users with the `tenants.oidc.create` permission.
+
+### Returns
+
+New openid-identity objects will be provided with an ``id`` field - this value cannot be created or edited by clients.
+
+
+
+## Delete an openid-identity
+
+> Example Request:
+
+```bash
+curl {{ api_base_url }}/v2/users/{USER_ID}/openid/identities/{OPENID_IDENTITY_ID} \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY}
+```
+
+
+> Example Response:
+
+
+```http
+HTTP/1.1 204 No Content
+```
+
+This resource allows you to create an OpenID Identity for a user.
+
+### HTTP Request
+
+`DELETE {{ api_base_url }}/v2/users/{USER_ID}/openid/identities/{OPENID_IDENTITY_ID}`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| USER_ID | yes | User identifier |
+| OPENID_IDENTITY_ID | yes | User's OpenID Identity ID |
+
+### Authorization
+
+This request is authorized for users with the `tenants.oidc.delete` permission.
