@@ -2091,3 +2091,310 @@ This request is authorized for the users with the `tenants.oauth_clients.delete`
 ### Returns
 
 Responds with the `204 No content` message if the call succeeded (with empty body).
+
+## Create an OpenID Provider
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Content-Type: application/json' -d '
+   {  
+     "data":{  
+       "type":"openid-provider",
+       "attributes":{
+         "issuer": "{ISSUER}",
+         "client_id":"{CLIENT_ID}",
+         "response_type": "code",
+         "client_secret":"{CLIENT_SECRET}"
+       }
+     }
+   }'
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+{  
+  "data":{
+    "id": "5c80e6b9bb0d200011333d92",
+    "type": "openid-provider",
+    "attributes": {
+        "client_id": "c7e56633-5e88-4c97-8da9-f823432423",
+        "client_secret": "c7e56633-5e88-4c97-8da9-f823432423",
+        "issuer": "https://issuer.com",
+        "response_type": "code",
+        "config": {
+            "auto_create_users": true
+        }
+    },
+    "relationships": {
+      "tenant": {
+        "data": {
+            "id": "5c80e6b9bb0d200011333d93",
+            "type": "tenant"
+        },
+        "links": {
+            "self": "/v2/tenants/5c80e6b9bb0d200011333d93"
+        }
+      }
+    }
+  },
+  "meta":{}
+}
+```
+
+This resource allows you to create a new **OpenID Provider**.
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers`
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.tenant.edit` permission.
+
+### Payload Parameters
+
+| Parameter                                     | Required | Description                          |
+| --------------------------------------------- | -------- | ------------------------------------ |
+| type                                          | yes      | A value should be "openid-provider"    |
+| attributes.issuer                             | yes      | OpenID Provider issuer                 |
+| attributes.client_id                          | yes      | OpenID Provider client ID              |
+| attributes.client_secret                      | yes      | OpenID Provider client secret          |
+| attributes.response_type                      | no       | A value should be "code"             |
+| attributes.config.auto_create_users            | no       | A value should be true or false      |
+
+
+### URL Parameters
+
+| Parameter | Description          |
+| --------- | -------------------- |
+| TENANT_ID | The ID of the Tenant |
+
+### Returns
+
+Returns **OpenID Provider** object if the call succeeded
+
+## Retrieve an OpenID Providers
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers \
+   -u {EMAIL}:{APIKEY}
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":[
+    {
+      "id": "5c80e6b9bb0d200011333d92",
+      "type": "openid-provider",
+      "attributes": {
+          "client_id": "c7e56633-5e88-4c97-8da9-f823432423",
+          "client_secret": "c7e56633-5e88-4c97-8da9-f823432423",
+          "issuer": "https://issuer.com",
+          "response_type": "code",
+          "config": {
+              "auto_create_users": true
+          }
+      },
+      "relationships": {
+        "tenant": {
+          "data": {
+              "id": "5c80e6b9bb0d200011333d93",
+              "type": "tenant"
+          },
+          "links": {
+              "self": "/v2/tenants/5c80e6b9bb0d200011333d93"
+          }
+        }
+      }
+    }
+  ],
+  "meta":{}
+}
+```
+
+This resource allows you to retrieve **OpenID Providers** for the **Tenant** with the given ID.
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers`
+
+### URL Parameters
+
+| Parameter         | Required | Description            |
+| ----------------- | -------- | ---------------------- |
+| TENANT_ID         | yes      | The ID of the Tenant   |
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.tenant.get` permission.
+
+### Returns
+
+Returns **OpenID Provider** objects if the call succeeded
+
+## Retrieve an OpenID Provider by ID
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OPEN_ID_PROVIDER_ID} \
+   -u {EMAIL}:{APIKEY}
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id": "5c80e6b9bb0d200011333d92",
+    "type": "openid-provider",
+    "attributes": {
+        "client_id": "c7e56633-5e88-4c97-8da9-f823432423",
+        "client_secret": "c7e56633-5e88-4c97-8da9-f823432423",
+        "issuer": "https://issuer.com",
+        "response_type": "code",
+        "config": {
+            "auto_create_users": true
+        }
+    },
+    "relationships": {
+      "tenant": {
+        "data": {
+            "id": "5c80e6b9bb0d200011333d93",
+            "type": "tenant"
+        },
+        "links": {
+            "self": "/v2/tenants/5c80e6b9bb0d200011333d93"
+        }
+      }
+    }
+  },
+  "meta":{}
+}
+```
+
+This resource allows you to retrieve a **OpenID Provider** with the given ID for the **Tenant** with the given ID.
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OPEN_ID_PROVIDER_ID}`
+
+### URL Parameters
+
+| Parameter        | Required | Description                 |
+| ---------------- | -------- | --------------------------- |
+| TENANT_ID        | yes      | The ID of the Tenant        |
+| OPEN_ID_PROVIDER_ID | yes      | The ID of the OpenID Provider |
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.tenant.get` permission.
+
+### Returns
+
+Returns **OpenID Provider** object if the call succeeded
+
+## Update an OpenID Provider
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OPEN_ID_PROVIDER_ID} \
+   -X PATCH \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Content-Type: application/json' -d '
+   {  
+     "data":{  
+       "type":"openid-provider,
+       "attributes":{
+         "issuer": "{ISSUER}"
+         "client_id":"{CLIENT_ID}",
+         "client_secret":"{CLIENT_SECRET}",
+         "config": {
+           "auto_create_users": true
+         }
+       }
+     }
+   }'
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id": "5c80e6b9bb0d200011333d92",
+    "type": "openid-provider",
+    "attributes": {
+        "client_id": "c7e56633-5e88-4c97-8da9-f823432423",
+        "client_secret": "c7e56633-5e88-4c97-8da9-f823432423",
+        "issuer": "https://issuer.com",
+        "response_type": "code",
+        "config": {
+            "auto_create_users": true
+        }
+    },
+    "relationships": {
+      "tenant": {
+        "data": {
+            "id": "5c80e6b9bb0d200011333d93",
+            "type": "tenant"
+        },
+        "links": {
+            "self": "/v2/tenants/5c80e6b9bb0d200011333d93"
+        }
+      }
+    }
+  },
+  "meta":{}
+}
+```
+
+This resource allows you to update an **OpenID Provider** with the given ID for the **Tenant** with the given ID.
+
+### HTTP Request
+
+`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OPEN_ID_PROVIDER_ID}`
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.tenant.edit` permission.
+
+### URL Parameters
+
+| Parameter        | Required | Description                 |
+| ---------------- | -------- | --------------------------- |
+| TENANT_ID        | yes      | The ID of the Tenant        |
+| OPEN_ID_PROVIDER_ID | yes      | The ID of the OpenID Provider |
+
+### Payload Parameters
+
+| Parameter                                     | Required | Description                      |
+| --------------------------------------------- | -------- | -------------------------------- |
+| type                                          | yes      | A value should be "openid-provider"    |
+| attributes.issuer                             | no       | OpenID Provider issuer                 |
+| attributes.client_id                          | no       | OpenID Provider client ID              |
+| attributes.client_secret                      | no       | OpenID Provider client secret          |
+| attributes.response_type                      | no       | A value should be "code"             |
+| attributes.config.auto_create_users | no       | A value should be true or false      |
+
+### Returns
+
+Returns **Oauth-client** object if the call succeeded
