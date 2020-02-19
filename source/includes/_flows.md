@@ -410,6 +410,16 @@ The flow with given ID
             "target":"step_4"
           }
         ]
+      },
+      "nodes_config": {
+        "step_1": {
+          "passthrough": {
+            "disabled": true
+          }
+        },
+        "step_2": {
+          "prefetch": 3
+        }
       }
     },
     "relationships":{
@@ -529,6 +539,16 @@ Content-Type: application/json
           }
         ]
       },
+      "nodes_config": {
+        "step_1": {
+          "passthrough": {
+            "disabled": true
+          }
+        },
+        "step_2": {
+          "prefetch": 3
+        }
+      },
       "last_modified":"2019-06-27T14:28:17.940Z",
       "name":"My flow",
       "status":"inactive",
@@ -583,14 +603,16 @@ This resource allows you to create a new flow.
 ### Body Parameters
 
 | Parameter | Required | Description |
-| :--- | :--- | :--- |
-| type | yes | A value must be ``flow`` |
-| attributes.name | yes | Flow name |
-| attributes.type | yes | Flow type. May be any of: ``ordinary``, ``long_running`` |
-| attributes.graph | yes | Flow graph representing component connections |
-|attributes.default_mapper_type|yes |The mapper type. A value must be ``jsonata`` (The *handlebars* is now deprecated)
-| relationships.workspace.data.id | yes | An Id of the Workspace |
-| relationships.workspace.data.type | yes | A value must be ``workspace``  |
+| :---                                       | :---  | :---                       
+| type                                                    | yes   | A value must be ``flow`` 
+| attributes.name                                         | yes   | Flow name 
+| attributes.type                                         | yes   | Flow type. May be any of: ``ordinary``, ``long_running`` 
+| attributes.graph                                        | yes   | Flow graph representing component connections 
+| attributes.default_mapper_type                          | yes   | The mapper type. A value must be ``jsonata`` (The *handlebars* is now deprecated)
+| attributes.nodes_config.{STEP_ID}.prefetch              | no    | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
+| attributes.nodes_config.{STEP_ID}.passthrough.disabled  | no    | This parameter toggles passthrough for a step. May be any of: ``true``, ``false`` 
+| relationships.workspace.data.id                         | yes   | An Id of the Workspace 
+| relationships.workspace.data.type                       | yes   | A value must be ``workspace``  
 
 ### Authorization
 
@@ -617,7 +639,17 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID} \
             "type": "flow",
             "id": "{FLOW_ID}",
             "attributes": {
-              "name": "this is a test task"
+              "name": "this is a test task",
+              "nodes_config": {
+                "step_1": {
+                  "passthrough": {
+                    "disabled": true
+                  }
+                },
+                "step_2": {
+                  "prefetch": 3
+                }
+              }
             }
           }
     }'
@@ -680,6 +712,16 @@ Content-Type: application/json
             }
           }
         ]
+      },
+      "nodes_config": {
+        "step_1": {
+          "passthrough": {
+            "disabled": true
+          }
+        },
+        "step_2": {
+          "prefetch": 3
+        }
       }
     },
     "relationships":{
@@ -739,13 +781,15 @@ This resource allows you to update the given flow. A new version of the flow wil
 ### Body Parameters
 
 | Parameter | Required | Description |
-| :--- | :--- | :--- |
-| type | yes | A value must be ``flow`` |
-| id | yes | ID of the flow you want to update
-| attributes.name | no | Flow name |
-| attributes.type | no | Flow type. May be any of: ``ordinary``, ``long_running`` |
-| attributes.graph | no | Flow graph representing component connections |
-| attributes.cron | no | Cron expression representing flow timing |
+| :---                                                    | :--- | :--- |
+| type                                                    | yes | A value must be ``flow`` |
+| id                                                      | yes | ID of the flow you want to update
+| attributes.name                                         | no  | Flow name |
+| attributes.type                                         | no  | Flow type. May be any of: ``ordinary``, ``long_running`` |
+| attributes.graph                                        | no  | Flow graph representing component connections |
+| attributes.cron                                         | no  | Cron expression representing flow timing |
+| attributes.nodes_config.{STEP_ID}.prefetch              | no  | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
+| attributes.nodes_config.{STEP_ID}.passthrough.disabled  | no  | This parameter toggles passthrough for a step. May be any of: ``true``, ``false`` 
 
 
 ### Authorization
