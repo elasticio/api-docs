@@ -1,6 +1,6 @@
 # Stats
 
-## Retrieve the amount of messages in input queues of all steps in the flow
+## Retrieve the Amount of Messages in Input Queues of All Steps in the Flow
 
 > Example Request:
 
@@ -45,13 +45,13 @@ This endpoint allows you to retrieve the amount of messages in input queues of a
 
 | Parameter | Required | Description        
 | :---      | :---     | :---               
-| FLOW_ID   | Yes      | Flow identifier  
+| FLOW_ID   | Yes      | Flow ID  
   
 ### Authorization
 
-This request is authorized for a member of workspace.
+This request is authorized for any member of the given Workspace.
 
 ### Returns
 
-Amount of messages in input queues of all steps in the flow
+Amount of messages in input queues of all steps in the Flow.
 
