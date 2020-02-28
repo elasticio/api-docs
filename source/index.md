@@ -23,6 +23,7 @@ includes:
   - executions
   - snapshots
   - sshkeys
+  - stats
   - teams
   - tenants
   - users
