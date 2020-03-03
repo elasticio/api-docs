@@ -16,7 +16,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
- "data": [{
+ "data": {
     "id": "{FLOW_ID}",
     "type": "flow-queue-stats",
     "attributes": {
@@ -31,7 +31,7 @@ Content-Type: application/json
         }
       ]
     }
-  }]
+  }
 }
 ```
 
