@@ -137,7 +137,7 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/{STEP_ID} \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-    {
+   {
      "data":{
        "type":"snapshot",
        "id":"{STEP_ID}",
@@ -202,15 +202,15 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/snapshots/ \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-    {
-     "data":{
-       "type":"snapshot",
-       "id":"{STEP_ID}",
-       "attributes":{
-         "snapshot":"{BODY OF SNAPSHOT}"
-       }
-     }
-   }'
+{
+  "data":{
+    "type":"snapshot",
+    "id":"{STEP_ID}",
+    "attributes":{
+      "snapshot":"{BODY OF SNAPSHOT}"
+    }
+  }
+}'
 ```
 
 
@@ -233,6 +233,7 @@ Content-Type: application/json
     }
   },
   "meta":{}
+}  
 ```
 
 This resource allows you to create snapshot for step in flow.
