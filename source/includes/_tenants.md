@@ -4,6 +4,36 @@
 
 **Tenant** is a specific system's environment virtual installation (a system's clone, in other words) that allows customizing all the necessary parameters by sending a particular request to the API. Check the request examples below.
 
+## Emails can be suppressed
+
+- **agent-request** Agent has request
+- **contract-deleted** Contract has deleted
+- **contract-invite-empty-contract**  
+- **contract-invite-new-user** New user has invited to contract
+- **contract-suspended** Contract has suspended
+- **contract-unsuspended** Contract has suspended
+- **organization-invite-empty-org**  
+- **organization-invite-new-user** New user has invited to organization
+- **password-recovery** 
+- **repo-new-version** New version of repository has created
+- **repo-new-version-in-workspace-flows** 
+- **task-error-notification** 
+- **task-operational-error** 
+- **team-from-contract-invite** Has invited to contract's team
+- **team-invite-existing-user** Has invited to contract's team for user that already exists
+- **team-removed-member** Has removed team member
+- **user-removed-from-contract** Has removed user from contract
+- **wiper-exhaustion-quota-notification** 
+- **wiper-flow-suspended** 
+- **wiper-flow-suspended-due-to-queue-overflow** 
+- **wiper-suspended-flow-stopped** Has stopped suspended flow
+- **wiper-suspended-queue-purged** Has purged unhandled data 
+- **workspace-invite-empty-workspace** User has invited to workspace without other users
+- **workspace-invite-new-user** Unregistered user has invited
+- **workspace-removed** Workspace has removed
+- **workspace-removed-member** Workspace member has removed
+ 
+
 ## Create a Tenant
 
 > Example Request:
@@ -65,6 +95,10 @@
       "settings":{
         "member_api_key":false
       },
+      "suppress_emails":[
+        "repo-new-version",
+        "repo-new-version-in-workspace-flows"
+      ],
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -176,6 +210,10 @@ Content-Type: application/json
           "src":"http://path-to-2.js"
         }
       ],
+      "suppress_emails":[
+        "repo-new-version",
+        "repo-new-version-in-workspace-flows"
+      ],
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -278,6 +316,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.docs_base_url                | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
 | attributes.component_docs_base_url      | no       | Base url for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"documentation": "/salesforce"`, on a frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
 | attributes.css_enabled                  | no       | A value should be true or false   |
+| attributes.suppress_emails                  | no       | A list of values represent emails will not be sent. By default are "repo-new-version" and "repo-new-version-in-workspace-flows" |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.custom_nav_menu_items        | no       | The custome menu |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
@@ -319,6 +358,10 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       },
       "default_workspace_type":"full",
       "docs_base_url":"https://docs.example.com/",
+      "suppress_emails":[
+        "repo-new-version",
+        "repo-new-version-in-workspace-flows"
+      ],
       "component_docs_base_url":"https://docs.example.com/components/",
       "custom_nav_menu_items":[
         {
@@ -442,6 +485,10 @@ Content-Type: application/json
         "api":"{{cert_id}}",
         "webhooks":"{{cert_id}}"
       },
+      "suppress_emails":[
+        "repo-new-version",
+        "repo-new-version-in-workspace-flows"
+      ],
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -533,6 +580,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.powered_by_elasticio         | no       | Allowed values: `true`, `false`  |
 | attributes.css_enabled                  | no       | Allowed values: `true`, `false` |
 | attributes.settings.member_api_key      | no       | Allowed values: `true`, `false` |
+| attributes.suppress_emails                  | no       | A list of values represent emails will not be sent. By default are "repo-new-version" and "repo-new-version-in-workspace-flows" |
 | attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_nav_menu_items` instead |
 | attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
 | attributes.component_docs_base_url      | no       | Base URL for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"documentation": "/salesforce"`, on frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
@@ -606,47 +654,51 @@ Content-Type: application/json
         "docs_base_url":"https://docs.example.com/",
         "component_docs_base_url":"https://docs.example.com/components/",
         "ssl_certificates":{},
-       "custom_nav_menu_items":[
-        {
-          "title":"Catalogs",
-          "icon":"catalog-icon",
-          "custom_class":"custom_class",
-          "links":[
-            {
-              "url":"https://flow-catalog.example.com",
-              "title":"Flow catalog",
-              "icon":"flow-catalog-icon",
-              "custom_class":"custom_class",
-              "target":"modal"
-            },
-            {
-              "url":"https://components-catalog.example.com?workspaceId={workspaceId}&contractId={contractId}",
-              "title":"Components catalog",
-              "icon":"components-catalog-icon",
-              "custom_class":"custom_class",
-              "target":"modal"
-            }
-          ]
-        },
-        {
-          "title":"Quick Help",
-          "icon":"help",
-          "custom_class":"custom_class",
-          "links":[
-            {
-              "url":"https://docs.example.com",
-              "title":"Documentation",
-              "icon":"description",
-              "target":"_blank"
-            },
-            {
-              "title":"Help Center",
-              "icon":"forum",
-              "custom_class":"intercom-launcher"
-            }
-          ]
-        }
-      ],
+        "suppress_emails":[
+          "repo-new-version",
+          "repo-new-version-in-workspace-flows"
+        ],
+        "custom_nav_menu_items":[
+          {
+            "title":"Catalogs",
+            "icon":"catalog-icon",
+            "custom_class":"custom_class",
+            "links":[
+              {
+                "url":"https://flow-catalog.example.com",
+                "title":"Flow catalog",
+                "icon":"flow-catalog-icon",
+                "custom_class":"custom_class",
+                "target":"modal"
+              },
+              {
+                "url":"https://components-catalog.example.com?workspaceId={workspaceId}&contractId={contractId}",
+                "title":"Components catalog",
+                "icon":"components-catalog-icon",
+                "custom_class":"custom_class",
+                "target":"modal"
+              }
+            ]
+          },
+          {
+            "title":"Quick Help",
+            "icon":"help",
+            "custom_class":"custom_class",
+            "links":[
+              {
+                "url":"https://docs.example.com",
+                "title":"Documentation",
+                "icon":"description",
+                "target":"_blank"
+              },
+              {
+                "title":"Help Center",
+                "icon":"forum",
+                "custom_class":"intercom-launcher"
+              }
+            ]
+          }
+        ],
         "meta":{},
         "links":{
           "self":"/v2/tenants"
@@ -715,6 +767,10 @@ Content-Type: application/json
       "docs_base_url":"https://docs.example.com/",
       "component_docs_base_url":"https://docs.example.com/components/",
       "ssl_certificates":{},
+      "suppress_emails":[
+        "repo-new-version",
+        "repo-new-version-in-workspace-flows"
+      ],
      "custom_nav_menu_items":[
         {
           "title":"Catalogs",
