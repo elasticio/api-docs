@@ -525,17 +525,17 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.mandrill_api_key             | no       | The mandrill API key|
 | attributes.hide_register                | no       | A value should be true or false     |
 | attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation  |
-| attributes.hide_repos                   | no       | A value should be true or false       |
-| attributes.hide_teams                   | no       | A value should be true or false      |
-| attributes.hide_ssh_keys                | no       | A value should be true or false    |
-| attributes.hide_api_key                 | no       | A value should be true or false  |
-| attributes.hide_docs                    | no       | A value should be true or false  |
-| attributes.powered_by_elasticio         | no       | A value should be true or false  |
-| attributes.css_enabled                  | no       | A value should be true or false |
-| attributes.settings.member_api_key      | no       | A value should be true or false |
+| attributes.hide_repos                   | no       | Allowed values: `true`, `false`       |
+| attributes.hide_teams                   | no       | Allowed values: `true`, `false`      |
+| attributes.hide_ssh_keys                | no       | Allowed values: `true`, `false`    |
+| attributes.hide_api_key                 | no       | Allowed values: `true`, `false`  |
+| attributes.hide_docs                    | no       | Allowed values: `true`, `false`  |
+| attributes.powered_by_elasticio         | no       | Allowed values: `true`, `false`  |
+| attributes.css_enabled                  | no       | Allowed values: `true`, `false` |
+| attributes.settings.member_api_key      | no       | Allowed values: `true`, `false` |
 | attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_nav_menu_items` instead |
 | attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
-| attributes.component_docs_base_url      | no       | Base url for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"documentation": "/salesforce"`, on a frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
+| attributes.component_docs_base_url      | no       | Base URL for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"documentation": "/salesforce"`, on frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
 | attributes.custom_nav_menu_items\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)   |
 | attributes.custom_nav_menu_items\[].custom_class | no       | The class added to <a> tag   |
