@@ -1585,7 +1585,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/members/{USER_ID}/ \
     -H 'Content-Type: application/json' -d '
     {
        "data": {
-           "type": "tenant-member"
+           "type": "tenant-member",
            "attributes": {
                "roles": [
                  "tenant-admin"
