@@ -44,6 +44,7 @@
       "powered_by_elasticio":true,
       "css_enabled":false,
       "docs_base_url":"https://docs.example.com/",
+      "component_docs_base_url":"https://docs.example.com/components/",
       "default_workspace_type":"limited",
       "custom_stylesheets":[
         {
@@ -124,14 +125,14 @@
 ```http
 HTTP/1.1 201 Created
 Content-Type: application/json
-{  
-  "data":{  
+{
+  "data":{
     "id":"5c6e91b9d5b4b60012a796fe",
     "type":"tenant",
-    "links":{  
+    "links":{
       "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
     },
-    "attributes":{  
+    "attributes":{
       "name":"My New Tenant",
       "app_domain":"{{app_domain}}",
       "api_domain":"{{api_domain}}",
@@ -156,21 +157,22 @@ Content-Type: application/json
       "hide_register":false,
       "powered_by_elasticio":true,
       "docs_base_url":"https://docs.example.com/",
+      "component_docs_base_url":"https://docs.example.com/components/",
       "default_workspace_type":"limited",
       "ssl_certificates":{},
-      "custom_stylesheets":[  
-        {  
+      "custom_stylesheets":[
+        {
           "href":"http://path-to-1.css"
         },
-        {  
+        {
           "href":"http://path-to-2.css"
         }
       ],
-      "custom_scripts":[  
-        {  
+      "custom_scripts":[
+        {
           "src":"http://path-to-1.js"
         },
-        {  
+        {
           "src":"http://path-to-2.js"
         }
       ],
@@ -215,10 +217,10 @@ Content-Type: application/json
           ]
         }
       ],
-      "html_meta":{  
+      "html_meta":{
         "description":"Lorem ipsum",
         "author":"Acme Corporation",
-        "keywords":[  
+        "keywords":[
           "foo",
           "bar",
           "baz"
@@ -227,7 +229,7 @@ Content-Type: application/json
     }
   },
   "meta":{},
-  "links":{  
+  "links":{
     "self":"/v2/tenants/5c6e91b9d5b4b60012a796fe"
   }
 }
@@ -247,10 +249,10 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 
 | Parameter                               | Required | Description
 | --------------------------------------- | -------- | ------------------------------------------------------ |
-| type                                    | yes      | A value should be "tenant"   |  
-| attributes.name                         | yes      | Name of the Tenant    |                                               
-| attributes.app_domain                   | yes      | Name of the Tenant domain   |  
-| attributes.code                         | yes      | Tenant CSS-style     |  
+| type                                    | yes      | A value should be "tenant"   |
+| attributes.name                         | yes      | Name of the Tenant    |
+| attributes.app_domain                   | yes      | Name of the Tenant domain   |
+| attributes.code                         | yes      | Tenant CSS-style     |
 | attributes.mandrill_email_from          | yes      | An email of the letters sender   |
 | attributes.api_domain                   | no       | Name of the Tenant API domain   |
 | attributes.webhooks_domain              | no       | Name of the Tenant webhooks domain     |
@@ -273,7 +275,8 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.hide_api_key                 | no       | A value should be true or false    |
 | attributes.hide_docs                    | no       | A value should be true or false   |
 | attributes.powered_by_elasticio         | no       | A value should be true or false   |
-| attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
+| attributes.docs_base_url                | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
+| attributes.component_docs_base_url      | no       | Base url for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"documentation": "/salesforce"`, on a frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
 | attributes.css_enabled                  | no       | A value should be true or false   |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.custom_nav_menu_items        | no       | The custome menu |
@@ -316,6 +319,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       },
       "default_workspace_type":"full",
       "docs_base_url":"https://docs.example.com/",
+      "component_docs_base_url":"https://docs.example.com/components/",
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -415,6 +419,7 @@ Content-Type: application/json
       "hide_register":false,
       "powered_by_elasticio":true,
       "docs_base_url":"https://docs.example.com/",
+      "component_docs_base_url":"https://docs.example.com/components/",
       "default_workspace_type":"full",
       "custom_stylesheets":[
         {
@@ -505,7 +510,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 
 ### Payload Parameters
 
-| Parameter                               | Required | Description  |                                                       
+| Parameter                               | Required | Description  |
 | --------------------------------------- | -------- | ------------------------------------------------------ |
 | attributes.header_logo_url              | no       | The URL of image which will be displayed in the navigation panel (logo size 40x40 pixels, logo format - .png or .svg)|
 | attributes.loading_logo_url             | no       | The URL of image which will be displayed during the page loading |
@@ -520,16 +525,17 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.mandrill_api_key             | no       | The mandrill API key|
 | attributes.hide_register                | no       | A value should be true or false     |
 | attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation  |
-| attributes.hide_repos                   | no       | A value should be true or false       |
-| attributes.hide_teams                   | no       | A value should be true or false      |
-| attributes.hide_ssh_keys                | no       | A value should be true or false    |
-| attributes.hide_api_key                 | no       | A value should be true or false  |
-| attributes.hide_docs                    | no       | A value should be true or false  |
-| attributes.powered_by_elasticio         | no       | A value should be true or false  |
-| attributes.css_enabled                  | no       | A value should be true or false |
-| attributes.settings.member_api_key      | no       | A value should be true or false |
+| attributes.hide_repos                   | no       | Allowed values: `true`, `false`       |
+| attributes.hide_teams                   | no       | Allowed values: `true`, `false`      |
+| attributes.hide_ssh_keys                | no       | Allowed values: `true`, `false`    |
+| attributes.hide_api_key                 | no       | Allowed values: `true`, `false`  |
+| attributes.hide_docs                    | no       | Allowed values: `true`, `false`  |
+| attributes.powered_by_elasticio         | no       | Allowed values: `true`, `false`  |
+| attributes.css_enabled                  | no       | Allowed values: `true`, `false` |
+| attributes.settings.member_api_key      | no       | Allowed values: `true`, `false` |
 | attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_nav_menu_items` instead |
 | attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
+| attributes.component_docs_base_url      | no       | Base URL for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"documentation": "/salesforce"`, on frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
 | attributes.custom_nav_menu_items\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)   |
 | attributes.custom_nav_menu_items\[].custom_class | no       | The class added to <a> tag   |
@@ -598,6 +604,7 @@ Content-Type: application/json
         "hide_register":false,
         "powered_by_elasticio":true,
         "docs_base_url":"https://docs.example.com/",
+        "component_docs_base_url":"https://docs.example.com/components/",
         "ssl_certificates":{},
        "custom_nav_menu_items":[
         {
@@ -706,6 +713,7 @@ Content-Type: application/json
       "hide_register":false,
       "powered_by_elasticio":true,
       "docs_base_url":"https://docs.example.com/",
+      "component_docs_base_url":"https://docs.example.com/components/",
       "ssl_certificates":{},
      "custom_nav_menu_items":[
         {
@@ -1755,16 +1763,16 @@ Returns the member's object if the call succeeded
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-   {  
-     "data":{  
+   {
+     "data":{
        "type":"oauth-client",
-       "attributes":{  
+       "attributes":{
          "client_id":"{CLIENT_ID}",
          "client_secret":"{CLIENT_SECRET}"
        },
-       "relationships":{  
-         "component":{  
-           "data":{  
+       "relationships":{
+         "component":{
+           "data":{
              "id":"{COMPONENT_ID}",
              "type":"component"
            }
@@ -1779,21 +1787,21 @@ Returns the member's object if the call succeeded
 ```http
 HTTP/1.1 201 Created
 Content-Type: application/json
-{  
-  "data":{  
+{
+  "data":{
     "id":"5c80e6b9bb0d200011993332",
     "type":"oauth-client",
-    "attributes":{  
+    "attributes":{
       "client_id":"560e5a2323d480a00000002",
       "client_secret":"c7e56633-5e88-4c97-8da9-3243423412"
     },
-    "relationships":{  
-      "component":{  
-        "data":{  
+    "relationships":{
+      "component":{
+        "data":{
           "id":"5a0c4f03718f9700132d88ef",
           "type":"component"
         },
-        "links":{  
+        "links":{
           "self":"/v2/components/5a0c4f03718f9732197d88ef"
         }
       }
@@ -1977,16 +1985,16 @@ Returns **Oauth-client** object if the call succeeded
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-   {  
-     "data":{  
+   {
+     "data":{
        "type":"oauth-client",
-       "attributes":{  
+       "attributes":{
          "client_id":"{CLIENT_ID}",
          "client_secret":"{CLIENT_SECRET}"
        },
-       "relationships":{  
-         "component":{  
-           "data":{  
+       "relationships":{
+         "component":{
+           "data":{
              "id":"{COMPONENT_ID}",
              "type":"component"
            }
@@ -2102,8 +2110,8 @@ Responds with the `204 No content` message if the call succeeded (with empty bod
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-   {  
-     "data":{  
+   {
+     "data":{
        "type":"openid-provider",
        "attributes":{
          "issuer": "{ISSUER}",
@@ -2120,7 +2128,7 @@ Responds with the `204 No content` message if the call succeeded (with empty bod
 ```http
 HTTP/1.1 201 Created
 Content-Type: application/json
-{  
+{
   "data":{
     "id": "5c80e6b9bb0d200011333d92",
     "type": "openid-provider",
@@ -2319,8 +2327,8 @@ Returns **OpenID Provider** object if the call succeeded
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-   {  
-     "data":{  
+   {
+     "data":{
        "type":"openid-provider,
        "attributes":{
          "issuer": "{ISSUER}"
