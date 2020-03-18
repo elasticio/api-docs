@@ -94,10 +94,34 @@
       "settings":{
         "member_api_key":false
       },
-      "suppress_emails":[
-        "repo-new-version",
-        "repo-new-version-in-workspace-flows"
-      ],
+      "email_templates":{
+        "agent-request": true,
+        "contract-deleted": true,
+        "contract-invite-empty-contract": true,
+        "contract-invite-new-user": true,
+        "contract-suspended": true,
+        "contract-unsuspended": true,
+        "organization-invite-empty-org": true,
+        "organization-invite-new-user": true,
+        "password-recovery": true,
+        "repo-new-version": false,
+        "repo-new-version-in-workspace-flows": false,
+        "task-error-notification": true,
+        "task-operational-error": true,
+        "team-from-contract-invite": true,
+        "team-invite-existing-user": true,
+        "team-removed-member": true,
+        "user-removed-from-contract": true,
+        "wiper-exhaustion-quota-notification": true,
+        "wiper-flow-suspended": true,
+        "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-suspended-flow-stopped": true,
+        "wiper-suspended-queue-purged": true,
+        "workspace-invite-empty-workspace": true,
+        "workspace-invite-new-user": true,
+        "workspace-removed": true,
+        "workspace-removed-member": true
+      },
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -208,10 +232,34 @@ Content-Type: application/json
           "src":"http://path-to-2.js"
         }
       ],
-      "suppress_emails":[
-        "repo-new-version",
-        "repo-new-version-in-workspace-flows"
-      ],
+      "email_templates":{
+        "agent-request": true,
+        "contract-deleted": true,
+        "contract-invite-empty-contract": true,
+        "contract-invite-new-user": true,
+        "contract-suspended": true,
+        "contract-unsuspended": true,
+        "organization-invite-empty-org": true,
+        "organization-invite-new-user": true,
+        "password-recovery": true,
+        "repo-new-version": false,
+        "repo-new-version-in-workspace-flows": false,
+        "task-error-notification": true,
+        "task-operational-error": true,
+        "team-from-contract-invite": true,
+        "team-invite-existing-user": true,
+        "team-removed-member": true,
+        "user-removed-from-contract": true,
+        "wiper-exhaustion-quota-notification": true,
+        "wiper-flow-suspended": true,
+        "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-suspended-flow-stopped": true,
+        "wiper-suspended-queue-purged": true,
+        "workspace-invite-empty-workspace": true,
+        "workspace-invite-new-user": true,
+        "workspace-removed": true,
+        "workspace-removed-member": true
+      },
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -313,7 +361,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.powered_by_elasticio         | no       | A value should be true or false   |
 | attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
 | attributes.css_enabled                  | no       | A value should be true or false   |
-| attributes.suppress_emails                  | no       | A list of values represent emails will not be sent. By default are "repo-new-version" and "repo-new-version-in-workspace-flows" |
+| attributes.email_templates                  | no       | A hashMap of represent emails will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.custom_nav_menu_items        | no       | The custome menu |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
@@ -355,10 +403,34 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       },
       "default_workspace_type":"full",
       "docs_base_url":"https://docs.example.com/",
-      "suppress_emails":[
-        "repo-new-version",
-        "repo-new-version-in-workspace-flows"
-      ],
+      "email_templates":{
+        "agent-request": true,
+        "contract-deleted": true,
+        "contract-invite-empty-contract": true,
+        "contract-invite-new-user": true,
+        "contract-suspended": true,
+        "contract-unsuspended": true,
+        "organization-invite-empty-org": true,
+        "organization-invite-new-user": true,
+        "password-recovery": true,
+        "repo-new-version": false,
+        "repo-new-version-in-workspace-flows": false,
+        "task-error-notification": true,
+        "task-operational-error": true,
+        "team-from-contract-invite": true,
+        "team-invite-existing-user": true,
+        "team-removed-member": true,
+        "user-removed-from-contract": true,
+        "wiper-exhaustion-quota-notification": true,
+        "wiper-flow-suspended": true,
+        "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-suspended-flow-stopped": true,
+        "wiper-suspended-queue-purged": true,
+        "workspace-invite-empty-workspace": true,
+        "workspace-invite-new-user": true,
+        "workspace-removed": true,
+        "workspace-removed-member": true
+      },
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -480,10 +552,34 @@ Content-Type: application/json
         "api":"{{cert_id}}",
         "webhooks":"{{cert_id}}"
       },
-      "suppress_emails":[
-        "repo-new-version",
-        "repo-new-version-in-workspace-flows"
-      ],
+      "email_templates":{
+        "agent-request": true,
+        "contract-deleted": true,
+        "contract-invite-empty-contract": true,
+        "contract-invite-new-user": true,
+        "contract-suspended": true,
+        "contract-unsuspended": true,
+        "organization-invite-empty-org": true,
+        "organization-invite-new-user": true,
+        "password-recovery": true,
+        "repo-new-version": false,
+        "repo-new-version-in-workspace-flows": false,
+        "task-error-notification": true,
+        "task-operational-error": true,
+        "team-from-contract-invite": true,
+        "team-invite-existing-user": true,
+        "team-removed-member": true,
+        "user-removed-from-contract": true,
+        "wiper-exhaustion-quota-notification": true,
+        "wiper-flow-suspended": true,
+        "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-suspended-flow-stopped": true,
+        "wiper-suspended-queue-purged": true,
+        "workspace-invite-empty-workspace": true,
+        "workspace-invite-new-user": true,
+        "workspace-removed": true,
+        "workspace-removed-member": true
+      },
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -574,7 +670,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.hide_docs                    | no       | A value should be true or false  |
 | attributes.powered_by_elasticio         | no       | A value should be true or false  |
 | attributes.css_enabled                  | no       | A value should be true or false |
-| attributes.suppress_emails                  | no       | A list of values represent emails will not be sent. By default are "repo-new-version" and "repo-new-version-in-workspace-flows" |
+| attributes.email_templates              | no       | A hashMap of represent emails will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_nav_menu_items` instead |
 | attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
@@ -647,10 +743,34 @@ Content-Type: application/json
         "powered_by_elasticio":true,
         "docs_base_url":"https://docs.example.com/",
         "ssl_certificates":{},
-        "suppress_emails":[
-          "repo-new-version",
-          "repo-new-version-in-workspace-flows"
-        ],
+      "email_templates":{
+        "agent-request": true,
+        "contract-deleted": true,
+        "contract-invite-empty-contract": true,
+        "contract-invite-new-user": true,
+        "contract-suspended": true,
+        "contract-unsuspended": true,
+        "organization-invite-empty-org": true,
+        "organization-invite-new-user": true,
+        "password-recovery": true,
+        "repo-new-version": false,
+        "repo-new-version-in-workspace-flows": false,
+        "task-error-notification": true,
+        "task-operational-error": true,
+        "team-from-contract-invite": true,
+        "team-invite-existing-user": true,
+        "team-removed-member": true,
+        "user-removed-from-contract": true,
+        "wiper-exhaustion-quota-notification": true,
+        "wiper-flow-suspended": true,
+        "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-suspended-flow-stopped": true,
+        "wiper-suspended-queue-purged": true,
+        "workspace-invite-empty-workspace": true,
+        "workspace-invite-new-user": true,
+        "workspace-removed": true,
+        "workspace-removed-member": true
+      },
         "custom_nav_menu_items":[
           {
             "title":"Catalogs",
@@ -759,10 +879,34 @@ Content-Type: application/json
       "powered_by_elasticio":true,
       "docs_base_url":"https://docs.example.com/",
       "ssl_certificates":{},
-      "suppress_emails":[
-        "repo-new-version",
-        "repo-new-version-in-workspace-flows"
-      ],
+      "email_templates":{
+        "agent-request": true,
+        "contract-deleted": true,
+        "contract-invite-empty-contract": true,
+        "contract-invite-new-user": true,
+        "contract-suspended": true,
+        "contract-unsuspended": true,
+        "organization-invite-empty-org": true,
+        "organization-invite-new-user": true,
+        "password-recovery": true,
+        "repo-new-version": false,
+        "repo-new-version-in-workspace-flows": false,
+        "task-error-notification": true,
+        "task-operational-error": true,
+        "team-from-contract-invite": true,
+        "team-invite-existing-user": true,
+        "team-removed-member": true,
+        "user-removed-from-contract": true,
+        "wiper-exhaustion-quota-notification": true,
+        "wiper-flow-suspended": true,
+        "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-suspended-flow-stopped": true,
+        "wiper-suspended-queue-purged": true,
+        "workspace-invite-empty-workspace": true,
+        "workspace-invite-new-user": true,
+        "workspace-removed": true,
+        "workspace-removed-member": true
+      },
      "custom_nav_menu_items":[
         {
           "title":"Catalogs",
