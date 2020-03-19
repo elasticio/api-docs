@@ -2,26 +2,26 @@
 
 ## What is a Tenant?
 
-**Tenant** is a specific system's environment virtual installation (a system's clone, in other words) that allows customizing all the necessary parameters by sending a particular request to the API. Check the request examples below.
+**Tenant** is a specific system's environment virtual installation (a system's clone, basically) that allows customizing all the necessary parameters by sending a particular request to the API. Check the request examples below.
 
-## Emails can be suppressed
+## Emails that can be suppressed
 
 - **agent-request** Agent has been requested
 - **contract-deleted** Contract has been deleted
-- **contract-invite-empty-contract**  
-- **contract-invite-new-user** New user has been invited to contract
+- **contract-invite-empty-contract** New user has been invited to an empty Contract 
+- **contract-invite-new-user** New user has been invited to the Contract
 - **contract-suspended** Contract has been suspended
 - **contract-unsuspended** Contract has been unsuspended
-- **password-recovery** 
-- **repo-new-version** New version of repository has been created
-- **repo-new-version-in-workspace-flows** 
-- **task-error-notification** 
-- **task-operational-error** 
+- **password-recovery** Password recovery has been requested
+- **repo-new-version** New Component version in your repository has been pushed
+- **repo-new-version-in-workspace-flows** New Component version has been pushed, Component used in your Flows
+- **task-error-notification** A Component has reported an error
+- **task-operational-error** A container has failed
 - **team-from-contract-invite** Has invited to contract's team
 - **team-removed-member** Team member has been removed
 - **user-removed-from-contract** Has removed user from contract
-- **wiper-exhaustion-quota-notification** 
-- **wiper-flow-suspended-due-to-queue-overflow** 
+- **wiper-exhaustion-quota-notification** Quota usage has come to the limit
+- **wiper-flow-suspended-due-to-queue-overflow** Flow has been suspended due to queue overflow
 - **wiper-suspended-queue-purged** Unhandled data has been purged 
 - **workspace-invite-empty-workspace** User has been invited to an empty Workspace
 - **workspace-invite-new-user** Unregistered user has been invited to the Workspace
