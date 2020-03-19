@@ -6,27 +6,27 @@
 
 ## Emails can be suppressed
 
-- **agent-request** Agent has request
-- **contract-deleted** Contract has deleted
+- **agent-request** Agent has been requested
+- **contract-deleted** Contract has been deleted
 - **contract-invite-empty-contract**  
-- **contract-invite-new-user** New user has invited to contract
-- **contract-suspended** Contract has suspended
-- **contract-unsuspended** Contract has suspended
+- **contract-invite-new-user** New user has been invited to contract
+- **contract-suspended** Contract has been suspended
+- **contract-unsuspended** Contract has been unsuspended
 - **password-recovery** 
-- **repo-new-version** New version of repository has created
+- **repo-new-version** New version of repository has been created
 - **repo-new-version-in-workspace-flows** 
 - **task-error-notification** 
 - **task-operational-error** 
 - **team-from-contract-invite** Has invited to contract's team
-- **team-removed-member** Has removed team member
+- **team-removed-member** Team member has been removed
 - **user-removed-from-contract** Has removed user from contract
 - **wiper-exhaustion-quota-notification** 
 - **wiper-flow-suspended-due-to-queue-overflow** 
-- **wiper-suspended-queue-purged** Has purged unhandled data 
-- **workspace-invite-empty-workspace** User has invited to workspace without other users
-- **workspace-invite-new-user** Unregistered user has invited
-- **workspace-removed** Workspace has removed
-- **workspace-removed-member** Workspace member has removed
+- **wiper-suspended-queue-purged** Unhandled data has been purged 
+- **workspace-invite-empty-workspace** User has been invited to an empty Workspace
+- **workspace-invite-new-user** Unregistered user has been invited to the Workspace
+- **workspace-removed** Workspace has been removed
+- **workspace-removed-member** Member has been removed from the Workspace
  
 
 ## Create a Tenant
