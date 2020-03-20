@@ -321,7 +321,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.powered_by_elasticio         | no       | A value should be true or false   |
 | attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
 | attributes.css_enabled                  | no       | A value should be true or false   |
-| attributes.email_templates                  | no       | A hashMap of represent emails will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
+| attributes.email_templates                  | no       | A hashMap of represent [emails](#emails-that-can-be-suppressed) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.custom_nav_menu_items        | no       | The custome menu |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
