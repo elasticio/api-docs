@@ -626,7 +626,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.powered_by_elasticio         | no       | Allowed values: `true`, `false`  |
 | attributes.css_enabled                  | no       | Allowed values: `true`, `false` |
 | attributes.settings.member_api_key      | no       | Allowed values: `true`, `false` |
-| attributes.email_templates              | no       | A hashMap of represent emails will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
+| attributes.email_templates              | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_nav_menu_items` instead |
 | attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
 | attributes.component_docs_base_url      | no       | Base URL for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"documentation": "/salesforce"`, on frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
