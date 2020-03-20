@@ -324,7 +324,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.docs_base_url                | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
 | attributes.component_docs_base_url      | no       | Base url for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"documentation": "/salesforce"`, on a frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
 | attributes.css_enabled                  | no       | A value should be true or false   |
-| attributes.email_templates                  | no       | A hashMap of represent [emails](#emails-that-can-be-suppressed) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
+| attributes.email_templates                  | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.custom_nav_menu_items        | no       | The custome menu |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
@@ -2549,7 +2549,8 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 Returns **Oauth-client** object if the call succeeded
 
 
-## Emails that can be suppressed
+## List of emails sent by the Platform
+The Platform sends various emails when triggered. Here is the list of templates that you can customize:
 
 - **agent-request** Agent has been requested
 - **contract-deleted** Contract has been deleted
