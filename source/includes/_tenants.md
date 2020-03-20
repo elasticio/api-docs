@@ -625,6 +625,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.hide_docs                    | no       | Allowed values: `true`, `false`  |
 | attributes.powered_by_elasticio         | no       | Allowed values: `true`, `false`  |
 | attributes.css_enabled                  | no       | Allowed values: `true`, `false` |
+| attributes.email_templates              | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.settings.member_api_key      | no       | Allowed values: `true`, `false` |
 | attributes.email_templates              | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_nav_menu_items` instead |
