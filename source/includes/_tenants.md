@@ -2,7 +2,7 @@
 
 ## What is a Tenant?
 
-**Tenant** is a specific system's environment virtual installation (a system's clone, in other words) that allows customizing all the necessary parameters by sending a particular request to the API. Check the request examples below.
+**Tenant** is a specific system's environment virtual installation (a system's clone, basically) that allows customizing all the necessary parameters by sending a particular request to the API.
 
 ## Create a Tenant
 
@@ -64,6 +64,29 @@
       ],
       "settings":{
         "member_api_key":false
+      },
+      "email_templates":{
+        "agent-request": true,
+        "contract-deleted": true,
+        "contract-invite-empty-contract": true,
+        "contract-invite-new-user": true,
+        "contract-suspended": true,
+        "contract-unsuspended": true,
+        "password-recovery": true,
+        "repo-new-version": false,
+        "repo-new-version-in-workspace-flows": false,
+        "task-error-notification": true,
+        "task-operational-error": true,
+        "team-from-contract-invite": true,
+        "team-removed-member": true,
+        "user-removed-from-contract": true,
+        "wiper-exhaustion-quota-notification": true,
+        "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-suspended-queue-purged": true,
+        "workspace-invite-empty-workspace": true,
+        "workspace-invite-new-user": true,
+        "workspace-removed": true,
+        "workspace-removed-member": true
       },
       "custom_nav_menu_items":[
         {
@@ -176,6 +199,29 @@ Content-Type: application/json
           "src":"http://path-to-2.js"
         }
       ],
+      "email_templates":{
+        "agent-request": true,
+        "contract-deleted": true,
+        "contract-invite-empty-contract": true,
+        "contract-invite-new-user": true,
+        "contract-suspended": true,
+        "contract-unsuspended": true,
+        "password-recovery": true,
+        "repo-new-version": false,
+        "repo-new-version-in-workspace-flows": false,
+        "task-error-notification": true,
+        "task-operational-error": true,
+        "team-from-contract-invite": true,
+        "team-removed-member": true,
+        "user-removed-from-contract": true,
+        "wiper-exhaustion-quota-notification": true,
+        "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-suspended-queue-purged": true,
+        "workspace-invite-empty-workspace": true,
+        "workspace-invite-new-user": true,
+        "workspace-removed": true,
+        "workspace-removed-member": true
+      },
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -278,6 +324,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.docs_base_url                | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
 | attributes.component_docs_base_url      | no       | Base url for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"documentation": "/salesforce"`, on a frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
 | attributes.css_enabled                  | no       | A value should be true or false   |
+| attributes.email_templates                  | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.custom_nav_menu_items        | no       | The custome menu |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
@@ -320,6 +367,29 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       "default_workspace_type":"full",
       "docs_base_url":"https://docs.example.com/",
       "component_docs_base_url":"https://docs.example.com/components/",
+      "email_templates":{
+        "agent-request": true,
+        "contract-deleted": true,
+        "contract-invite-empty-contract": true,
+        "contract-invite-new-user": true,
+        "contract-suspended": true,
+        "contract-unsuspended": true,
+        "password-recovery": true,
+        "repo-new-version": false,
+        "repo-new-version-in-workspace-flows": false,
+        "task-error-notification": true,
+        "task-operational-error": true,
+        "team-from-contract-invite": true,
+        "team-removed-member": true,
+        "user-removed-from-contract": true,
+        "wiper-exhaustion-quota-notification": true,
+        "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-suspended-queue-purged": true,
+        "workspace-invite-empty-workspace": true,
+        "workspace-invite-new-user": true,
+        "workspace-removed": true,
+        "workspace-removed-member": true
+      },
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -442,6 +512,29 @@ Content-Type: application/json
         "api":"{{cert_id}}",
         "webhooks":"{{cert_id}}"
       },
+      "email_templates":{
+        "agent-request": true,
+        "contract-deleted": true,
+        "contract-invite-empty-contract": true,
+        "contract-invite-new-user": true,
+        "contract-suspended": true,
+        "contract-unsuspended": true,
+        "password-recovery": true,
+        "repo-new-version": false,
+        "repo-new-version-in-workspace-flows": false,
+        "task-error-notification": true,
+        "task-operational-error": true,
+        "team-from-contract-invite": true,
+        "team-removed-member": true,
+        "user-removed-from-contract": true,
+        "wiper-exhaustion-quota-notification": true,
+        "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-suspended-queue-purged": true,
+        "workspace-invite-empty-workspace": true,
+        "workspace-invite-new-user": true,
+        "workspace-removed": true,
+        "workspace-removed-member": true
+      },
       "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -532,7 +625,9 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.hide_docs                    | no       | Allowed values: `true`, `false`  |
 | attributes.powered_by_elasticio         | no       | Allowed values: `true`, `false`  |
 | attributes.css_enabled                  | no       | Allowed values: `true`, `false` |
+| attributes.email_templates              | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.settings.member_api_key      | no       | Allowed values: `true`, `false` |
+| attributes.email_templates              | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_nav_menu_items` instead |
 | attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
 | attributes.component_docs_base_url      | no       | Base URL for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"documentation": "/salesforce"`, on frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
@@ -606,47 +701,70 @@ Content-Type: application/json
         "docs_base_url":"https://docs.example.com/",
         "component_docs_base_url":"https://docs.example.com/components/",
         "ssl_certificates":{},
-       "custom_nav_menu_items":[
-        {
-          "title":"Catalogs",
-          "icon":"catalog-icon",
-          "custom_class":"custom_class",
-          "links":[
-            {
-              "url":"https://flow-catalog.example.com",
-              "title":"Flow catalog",
-              "icon":"flow-catalog-icon",
-              "custom_class":"custom_class",
-              "target":"modal"
-            },
-            {
-              "url":"https://components-catalog.example.com?workspaceId={workspaceId}&contractId={contractId}",
-              "title":"Components catalog",
-              "icon":"components-catalog-icon",
-              "custom_class":"custom_class",
-              "target":"modal"
-            }
-          ]
-        },
-        {
-          "title":"Quick Help",
-          "icon":"help",
-          "custom_class":"custom_class",
-          "links":[
-            {
-              "url":"https://docs.example.com",
-              "title":"Documentation",
-              "icon":"description",
-              "target":"_blank"
-            },
-            {
-              "title":"Help Center",
-              "icon":"forum",
-              "custom_class":"intercom-launcher"
-            }
-          ]
-        }
-      ],
+      "email_templates":{
+        "agent-request": true,
+        "contract-deleted": true,
+        "contract-invite-empty-contract": true,
+        "contract-invite-new-user": true,
+        "contract-suspended": true,
+        "contract-unsuspended": true,
+        "password-recovery": true,
+        "repo-new-version": false,
+        "repo-new-version-in-workspace-flows": false,
+        "task-error-notification": true,
+        "task-operational-error": true,
+        "team-from-contract-invite": true,
+        "team-removed-member": true,
+        "user-removed-from-contract": true,
+        "wiper-exhaustion-quota-notification": true,
+        "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-suspended-queue-purged": true,
+        "workspace-invite-empty-workspace": true,
+        "workspace-invite-new-user": true,
+        "workspace-removed": true,
+        "workspace-removed-member": true
+      },
+        "custom_nav_menu_items":[
+          {
+            "title":"Catalogs",
+            "icon":"catalog-icon",
+            "custom_class":"custom_class",
+            "links":[
+              {
+                "url":"https://flow-catalog.example.com",
+                "title":"Flow catalog",
+                "icon":"flow-catalog-icon",
+                "custom_class":"custom_class",
+                "target":"modal"
+              },
+              {
+                "url":"https://components-catalog.example.com?workspaceId={workspaceId}&contractId={contractId}",
+                "title":"Components catalog",
+                "icon":"components-catalog-icon",
+                "custom_class":"custom_class",
+                "target":"modal"
+              }
+            ]
+          },
+          {
+            "title":"Quick Help",
+            "icon":"help",
+            "custom_class":"custom_class",
+            "links":[
+              {
+                "url":"https://docs.example.com",
+                "title":"Documentation",
+                "icon":"description",
+                "target":"_blank"
+              },
+              {
+                "title":"Help Center",
+                "icon":"forum",
+                "custom_class":"intercom-launcher"
+              }
+            ]
+          }
+        ],
         "meta":{},
         "links":{
           "self":"/v2/tenants"
@@ -715,6 +833,29 @@ Content-Type: application/json
       "docs_base_url":"https://docs.example.com/",
       "component_docs_base_url":"https://docs.example.com/components/",
       "ssl_certificates":{},
+      "email_templates":{
+        "agent-request": true,
+        "contract-deleted": true,
+        "contract-invite-empty-contract": true,
+        "contract-invite-new-user": true,
+        "contract-suspended": true,
+        "contract-unsuspended": true,
+        "password-recovery": true,
+        "repo-new-version": false,
+        "repo-new-version-in-workspace-flows": false,
+        "task-error-notification": true,
+        "task-operational-error": true,
+        "team-from-contract-invite": true,
+        "team-removed-member": true,
+        "user-removed-from-contract": true,
+        "wiper-exhaustion-quota-notification": true,
+        "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-suspended-queue-purged": true,
+        "workspace-invite-empty-workspace": true,
+        "workspace-invite-new-user": true,
+        "workspace-removed": true,
+        "workspace-removed-member": true
+      },
      "custom_nav_menu_items":[
         {
           "title":"Catalogs",
@@ -2407,3 +2548,29 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 ### Returns
 
 Returns **Oauth-client** object if the call succeeded
+
+
+## List of emails sent by the Platform
+The Platform sends various emails when triggered. Here is the list of templates that you can customize:
+
+- **agent-request** Agent has been requested
+- **contract-deleted** Contract has been deleted
+- **contract-invite-empty-contract** New user has been invited to an empty Contract 
+- **contract-invite-new-user** New user has been invited to the Contract
+- **contract-suspended** Contract has been suspended
+- **contract-unsuspended** Contract has been unsuspended
+- **password-recovery** Password recovery has been requested
+- **repo-new-version** New Component version has been pushed in your Developer Team
+- **repo-new-version-in-workspace-flows** New Component version has been pushed, Component used in your Flows
+- **task-error-notification** A Component has reported an error
+- **task-operational-error** A container has failed
+- **team-from-contract-invite** Has invited to contract's team
+- **team-removed-member** Team member has been removed
+- **user-removed-from-contract** Has removed user from contract
+- **wiper-exhaustion-quota-notification** Quota usage has come to the limit
+- **wiper-flow-suspended-due-to-queue-overflow** Flow has been suspended due to queue overflow
+- **wiper-suspended-queue-purged** Unhandled data has been purged 
+- **workspace-invite-empty-workspace** User has been invited to an empty Workspace
+- **workspace-invite-new-user** Unregistered user has been invited to the Workspace
+- **workspace-removed** Workspace has been removed
+- **workspace-removed-member** Member has been removed from the Workspace
