@@ -322,7 +322,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.hide_docs                    | no       | A value should be true or false   |
 | attributes.powered_by_elasticio         | no       | A value should be true or false   |
 | attributes.docs_base_url                | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
-| attributes.component_docs_base_url      | no       | Base url for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"help": {"link": "salesforce"}`, on a frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component. If this property is set, make sure component_docs_base_url + 'getting-started/credential.html' page exists  |
+| attributes.component_docs_base_url      | no       | Base url for relative paths to component docs. E.g. if this url is `https://docs.example.com/` and `component.json` contains the following field `"help": {"link": "salesforce"}`, we will use `https://docs.example.com/salesforce` as a link to documentation of this component on the frontend. If this property is set, make sure `component_docs_base_url` and 'getting-started/credential.html' page exists.  |
 | attributes.css_enabled                  | no       | A value should be true or false   |
 | attributes.email_templates                  | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
