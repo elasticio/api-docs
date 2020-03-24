@@ -322,7 +322,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.hide_docs                    | no       | A value should be true or false   |
 | attributes.powered_by_elasticio         | no       | A value should be true or false   |
 | attributes.docs_base_url                | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
-| attributes.component_docs_base_url      | no       | Base url for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"documentation": "/salesforce"`, on a frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
+| attributes.component_docs_base_url      | no       | Base url for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"help": {"link": "salesforce"}`, on a frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
 | attributes.css_enabled                  | no       | A value should be true or false   |
 | attributes.email_templates                  | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.settings.member_api_key      | no       | A value should be true or false |
@@ -630,7 +630,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.email_templates              | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_nav_menu_items` instead |
 | attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
-| attributes.component_docs_base_url      | no       | Base URL for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"documentation": "/salesforce"`, on frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
+| attributes.component_docs_base_url      | no       | Base URL for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"help": {"link": "salesforce"}`, on frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component  |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
 | attributes.custom_nav_menu_items\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)   |
 | attributes.custom_nav_menu_items\[].custom_class | no       | The class added to <a> tag   |
@@ -2555,7 +2555,7 @@ The Platform sends various emails when triggered. Here is the list of templates 
 
 - **agent-request** Agent has been requested
 - **contract-deleted** Contract has been deleted
-- **contract-invite-empty-contract** New user has been invited to an empty Contract 
+- **contract-invite-empty-contract** New user has been invited to an empty Contract
 - **contract-invite-new-user** New user has been invited to the Contract
 - **contract-suspended** Contract has been suspended
 - **contract-unsuspended** Contract has been unsuspended
@@ -2569,7 +2569,7 @@ The Platform sends various emails when triggered. Here is the list of templates 
 - **user-removed-from-contract** Has removed user from contract
 - **wiper-exhaustion-quota-notification** Quota usage has come to the limit
 - **wiper-flow-suspended-due-to-queue-overflow** Flow has been suspended due to queue overflow
-- **wiper-suspended-queue-purged** Unhandled data has been purged 
+- **wiper-suspended-queue-purged** Unhandled data has been purged
 - **workspace-invite-empty-workspace** User has been invited to an empty Workspace
 - **workspace-invite-new-user** Unregistered user has been invited to the Workspace
 - **workspace-removed** Workspace has been removed
