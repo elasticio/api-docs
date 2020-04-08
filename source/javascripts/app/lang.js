@@ -33,7 +33,7 @@ under the License.
     global.toc.calculateHeights();
 
     // scroll to the new location of the position
-    let hash = window.location.hash;
+    var hash = window.location.hash;
     if (hash) {
       hash = '#' + hash.replace(/[^\w-]+/g, '');
       if ($(hash).get(0)) {
