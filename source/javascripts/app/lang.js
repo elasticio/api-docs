@@ -33,8 +33,12 @@ under the License.
     global.toc.calculateHeights();
 
     // scroll to the new location of the position
-    if ($(window.location.hash).get(0)) {
-      $(window.location.hash).get(0).scrollIntoView(true);
+    let hash = window.location.hash;
+    if (hash) {
+      hash = '#' + hash.replace(/[^\w-]+/g, '');
+      if ($(hash).get(0)) {
+        $(hash).get(0).scrollIntoView(true);
+      }
     }
   }
 
