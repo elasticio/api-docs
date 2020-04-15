@@ -23,11 +23,18 @@ Content-Type: application/json
       "stats": [
         {
           "step_id": "step_1",
-          "total": 10
+          "total": 10,
+          "ready": 8,
+          "unacked": 2,
+          "rebounds": 10,
+
         },
         {
           "step_id": "step_2",
-          "total": 20
+          "total": 20,
+          "ready": 20,
+          "unacked": 0,
+          "rebounds": 0,
         }
       ]
     }
