@@ -444,7 +444,7 @@ relationships.contract.data.type | yes | A value must be "contract"
 
 ### Returns
 
-Returns Workspace object if the call succeeded
+Returns Workspace object on successful call.
 
 
 ## Update a Workspace
@@ -531,7 +531,7 @@ Parameter       | Required | Description
 --------------- | -------- | -----------
 type            | yes      | Allowed value: "workspace"
 attributes.name | yes      | Name of the Workspace
-attributes.type | no       | Type of the Workspace. The value must be `full` or `limited`
+attributes.type | no       | Type of the Workspace. Allowed values: `full` or `limited`.
 
 
 ### Returns
@@ -606,8 +606,8 @@ This request is authorized for a User with `workspaces.workspace.edit` permissio
 ### Payload Parameters
 Parameter        | Required  | Description
 ---------        | --------- | -----------
-id               | yes       | id of an already registered user, who will be added as a member of the Workspace
-type             | yes       | A value should be "member".
+id               | yes       | ID of an already registered user, who will be added as a member of the Workspace
+type             | yes       | Allowed value: "member".
 attributes.roles[]  | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint.
 
 
@@ -690,7 +690,7 @@ USER_ID          | The ID of the User to be updated
 ### Payload Parameters
 Parameter        | Required  | Description
 ---------        | --------- | -----------
-type             | yes       | A value should be "member".
+type             | yes       | Allowed value: "member".
 id               | yes       | ID of an already registered User, must match URL param {USER_ID}
 attributes.roles[]  | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint.
 
@@ -739,7 +739,7 @@ This request is authorized for Workspace members with permission `workspaces.wor
 ### URL Parameters
 Parameter        | Description
 ---------------- | -----------
-WORKSPACE_ID  | The ID of the Workspace
+WORKSPACE_ID  | Workspace ID
 USER_ID          | The ID of the user, which should leave the Workspace
 
 
@@ -931,14 +931,14 @@ This request is authorized for the workspace's scope members with the `workspace
 ### Body Parameters
 Parameter       | Required | Description
 --------------- | -------- | -----------
-data.type            | yes      | A value should be "topic"
+data.type            | yes      | Allowed value: "topic"
 data.attributes.name | yes      | Name of the Topic
 data.attributes.schema  | yes | A JSON schema
 
 ### URL Parameters
 Parameter       | Description
 --------------- | -----------
-WORKSPACE_ID | The ID of the Workspace
+WORKSPACE_ID | Workspace ID
 
 ### Returns
 
@@ -1035,8 +1035,8 @@ This request is authorized for the workspace's scope members with the `workspace
 ### URL Parameters
 Parameter       | Description
 --------------- | -----------
-WORKSPACE_ID | The ID of the Workspace
-TOPIC_ID | The ID of the Topic
+WORKSPACE_ID | Workspace ID
+TOPIC_ID | Topic ID
 
 ### Returns
 
@@ -1133,7 +1133,7 @@ This request is authorized for the workspace's scope members with the `workspace
 ### URL Parameters
 Parameter       | Description
 --------------- | -----------
-WORKSPACE_ID | The ID of the Workspace
+WORKSPACE_ID | Workspace ID
 
 ### Returns
 
@@ -1271,8 +1271,8 @@ This request is authorized for the workspace's scope members with the `workspace
 ### Body Parameters
 Parameter       | Required | Description
 --------------- | -------- | -----------
-data.type            | yes      | A value should be "topic"
-data.id            | yes      |The ID of the Topic
+data.type            | yes      | Allowed value: "topic"
+data.id            | yes      |Topic ID
 data.attributes.name | no      | Name of the Topic
 data.attributes.schema  | no | A JSON schema
 
@@ -1322,8 +1322,8 @@ This request is authorized for the workspace's scope members with the `workspace
 ### URL Parameters
 Parameter       | Description
 --------------- | -----------
-WORKSPACE_ID | The ID of the Workspace
-TOPIC_ID | The ID of the Topic
+WORKSPACE_ID | Workspace ID
+TOPIC_ID | Topic ID
 
 ### Returns
 
