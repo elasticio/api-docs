@@ -11,6 +11,7 @@ ARG product_name="elastic.io"
 ARG logo_url="https://app.elastic.io/img/logo.svg"
 ARG repo_name="elasticio"
 ARG docs_url="http://docs.elastic.io/docs"
+ARG favicon_url="https://app.elastic.io/favicon.ico"
 
 RUN apt-get update && \
     apt-get install -y ruby rubygems ruby-dev build-essential && \
@@ -30,6 +31,7 @@ RUN for f in `grep -rl "{{ product_name }}" *` ; do sed -i "s%{{ product_name }}
 RUN for f in `grep -rl "{{ logo_url }}" *` ; do sed -i "s%{{ logo_url }}%$logo_url%g" $f ; done
 RUN for f in `grep -rl "{{ repo_name }}" *` ; do sed -i "s%{{ repo_name }}%$repo_name%g" $f ; done
 RUN for f in `grep -rl "{{ docs_url }}" *` ; do sed -i "s%{{ docs_url }}%$docs_url%g" $f ; done
+RUN for f in `grep -rl "{{ favicon_url }}" *` ; do sed -i "s%{{ favicon_url }}%$favicon_url%g" $f ; done
 
 RUN bundle exec middleman build
 RUN rm -rf ./source && \

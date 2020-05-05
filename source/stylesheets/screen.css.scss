@@ -94,7 +94,7 @@ html, body {
     display: block;
   }
 
-  &>img[src="images/logo.png"] {
+  &>img {
     visibility: hidden !important;
     padding-bottom: 10px !important;
   }
@@ -111,7 +111,7 @@ html, body {
 
   &>.search {
     position: relative;
-
+    padding-top: 82px;
     background: #0f1113;
 
     input {
@@ -128,7 +128,7 @@ html, body {
 
     &:before {
       position: absolute;
-      top: 17px;
+      top: 100px;
       left: $nav-padding;
       color: $nav-text;
       @extend %icon-search;
