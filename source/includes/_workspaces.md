@@ -1118,7 +1118,7 @@ Content-Type: application/json
 }
 ```
 
-This endpoint allows retrieve one Topic only by ID.
+This endpoint allows to retrieve all Topics.
 
 
 ### HTTP Request
