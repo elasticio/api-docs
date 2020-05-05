@@ -1,9 +1,9 @@
 # Workspaces
 
-## What is a Workspace unit?
+## Workspace Unit
 
-A Workspace is a space where every user can work on an integration project independently or in collaboration with other users. Each Workspace can have more than one member. All members of a Workspace have their roles. To get all available roles, please execute the "Get the Contract's roles" endpoint.
-There is one predefined role - Workspace Owner. This role gives the holder all the rights within the Workspace unit, it cannot be deleted and the permissions’ set cannot be changed.
+A Workspace is a space where every user can work on an integration project independently or in collaboration with other users. Each Workspace can have more than one member. All members of a Workspace have certain roles that define user permissions. To get all available roles, please execute the "Get the Contract's roles" endpoint.
+There is one predefined role - Workspace Owner. This role gives the holder all the rights within the Workspace unit, it cannot be deleted and the permissions set cannot be changed.
 Each role is limited to the given Workspace only. The same user in the platform can have different roles in different Workspaces.
 
 ## Get Workspace by ID
@@ -262,7 +262,7 @@ This endpoint returns a list of Workspaces which belong to the given User.
 
 | Parameter         | Required  | Description |
 | :---              | :---      | :---        |
-|contract_id|no|An Id of the Contract|
+|contract_id|no|Contract ID|
 
 #### Authorization
 
@@ -332,7 +332,7 @@ Content-Type: application/json
 
 ```
 
-This endpoints returns a list of all members of certain Workspace.
+This endpoint returns a list of all members of certain Workspace.
 
 
 ### HTTP Request
@@ -347,8 +347,7 @@ User has to be a member of the Workspace.
 ### URL Parameters
 Parameter       | Description
 --------------- | -----------
-WORKSPACE_ID | The ID of the Workspace
-
+WORKSPACE_ID | Workspace ID
 
 
 ## Create a Workspace
@@ -438,7 +437,7 @@ This request is authorized for the contract's scope members with the `contracts.
 
 Parameter       | Required | Description
 --------------- | -------- | -----------
-type            | yes      | A value should be "workspace"
+type            | yes      | Allowed value: "workspace"
 attributes.name | yes      | Name of the Workspace
 relationships.contract.data.id | yes | An Id of the contract
 relationships.contract.data.type | yes | A value must be "contract"
@@ -530,7 +529,7 @@ To update the type of Workspace this request is authorized for users with the `w
 
 Parameter       | Required | Description
 --------------- | -------- | -----------
-type            | yes      | A value should be "workspace"
+type            | yes      | Allowed value: "workspace"
 attributes.name | yes      | Name of the Workspace
 attributes.type | no       | Type of the Workspace. The value must be `full` or `limited`
 
@@ -692,7 +691,7 @@ USER_ID          | The ID of the User to be updated
 Parameter        | Required  | Description
 ---------        | --------- | -----------
 type             | yes       | A value should be "member".
-id               | yes       | id of an already registered User, must match URL param {USER_ID}
+id               | yes       | ID of an already registered User, must match URL param {USER_ID}
 attributes.roles[]  | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint.
 
 
