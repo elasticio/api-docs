@@ -1,9 +1,9 @@
 # Workspaces
 
-## What is a Workspace unit?
+## Workspace Unit
 
-A Workspace is a space where every user can work on an integration project independently or in collaboration with other users. Each Workspace can have more than one member. All members of a Workspace have their roles. To get all available roles, please execute the "Get the Contract's roles" endpoint.
-There is one predefined role - Workspace Owner. This role gives the holder all the rights within the Workspace unit, it cannot be deleted and the permissions’ set cannot be changed.
+A Workspace is a space where every user can work on an integration project independently or in collaboration with other users. Each Workspace can have more than one member. All members of a Workspace have certain roles that define user permissions. To get all available roles, please execute the "Get the Contract's roles" endpoint.
+There is one predefined role - Workspace Owner. This role gives the holder all the rights within the Workspace unit, it cannot be deleted and the permissions set cannot be changed.
 Each role is limited to the given Workspace only. The same user in the platform can have different roles in different Workspaces.
 
 ## Get Workspace by ID
@@ -262,7 +262,7 @@ This endpoint returns a list of Workspaces which belong to the given User.
 
 | Parameter         | Required  | Description |
 | :---              | :---      | :---        |
-|contract_id|no|An Id of the Contract|
+|contract_id|no|Contract ID|
 
 #### Authorization
 
@@ -332,7 +332,7 @@ Content-Type: application/json
 
 ```
 
-This endpoints returns a list of all members of certain Workspace.
+This endpoint returns a list of all members of certain Workspace.
 
 
 ### HTTP Request
@@ -347,8 +347,7 @@ User has to be a member of the Workspace.
 ### URL Parameters
 Parameter       | Description
 --------------- | -----------
-WORKSPACE_ID | The ID of the Workspace
-
+WORKSPACE_ID | Workspace ID
 
 
 ## Create a Workspace
@@ -438,14 +437,14 @@ This request is authorized for the contract's scope members with the `contracts.
 
 Parameter       | Required | Description
 --------------- | -------- | -----------
-type            | yes      | A value should be "workspace"
+type            | yes      | Allowed value: "workspace"
 attributes.name | yes      | Name of the Workspace
 relationships.contract.data.id | yes | An Id of the contract
 relationships.contract.data.type | yes | A value must be "contract"
 
 ### Returns
 
-Returns Workspace object if the call succeeded
+Returns Workspace object on successful call.
 
 
 ## Update a Workspace
@@ -530,9 +529,9 @@ To update the type of Workspace this request is authorized for users with the `w
 
 Parameter       | Required | Description
 --------------- | -------- | -----------
-type            | yes      | A value should be "workspace"
+type            | yes      | Allowed value: "workspace"
 attributes.name | yes      | Name of the Workspace
-attributes.type | no       | Type of the Workspace. The value must be `full` or `limited`
+attributes.type | no       | Type of the Workspace. Allowed values: `full` or `limited`.
 
 
 ### Returns
@@ -607,8 +606,8 @@ This request is authorized for a User with `workspaces.workspace.edit` permissio
 ### Payload Parameters
 Parameter        | Required  | Description
 ---------        | --------- | -----------
-id               | yes       | id of an already registered user, who will be added as a member of the Workspace
-type             | yes       | A value should be "member".
+id               | yes       | ID of an already registered user, who will be added as a member of the Workspace
+type             | yes       | Allowed value: "member".
 attributes.roles[]  | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint.
 
 
@@ -691,8 +690,8 @@ USER_ID          | The ID of the User to be updated
 ### Payload Parameters
 Parameter        | Required  | Description
 ---------        | --------- | -----------
-type             | yes       | A value should be "member".
-id               | yes       | id of an already registered User, must match URL param {USER_ID}
+type             | yes       | Allowed value: "member".
+id               | yes       | ID of an already registered User, must match URL param {USER_ID}
 attributes.roles[]  | yes       | To get all available roles, please execute the "Get the Contract's roles" endpoint.
 
 
@@ -740,7 +739,7 @@ This request is authorized for Workspace members with permission `workspaces.wor
 ### URL Parameters
 Parameter        | Description
 ---------------- | -----------
-WORKSPACE_ID  | The ID of the Workspace
+WORKSPACE_ID  | Workspace ID
 USER_ID          | The ID of the user, which should leave the Workspace
 
 
@@ -804,4 +803,528 @@ Parameter        | Description
 
 
 ### Returns
+Responds with `204 No content` if the call succeeded (with empty body).
+
+
+## What is a Topic unit?
+
+The Topic is a JSON schema to be used to communicate publisher and many subscribers.
+
+## Create a Topic
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/topics \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+   {
+  "data":{
+    "type":"topic",
+    "attributes":{
+      "name":"Person",
+      "schema":{
+        "$id":"https://example.com/person.schema.json",
+        "$schema":"http://json-schema.org/draft-07/schema#",
+        "title":"Person",
+        "type":"object",
+        "properties":{
+          "firstName":{
+            "type":"string",
+            "description":"The person's first name."
+          },
+          "lastName":{
+            "type":"string",
+            "description":"The person's last name."
+          },
+          "age":{
+            "description":"Age in years which must be equal to or greater than zero.",
+            "type":"integer",
+            "minimum":0
+          }
+        }
+      }
+    }
+  }
+}'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+{
+  "data":{
+    "id":"5eb15952155c920013046788",
+    "type":"topic",
+    "links":{
+      "self":"/v2/topics/5eb15952155c920013046788"
+    },
+    "attributes":{
+      "name":"Person",
+      "schema":{
+        "$id":"https://example.com/person.schema.json",
+        "$schema":"http://json-schema.org/draft-07/schema#",
+        "title":"Person",
+        "type":"object",
+        "properties":{
+          "firstName":{
+            "type":"string",
+            "description":"The person's first name."
+          },
+          "lastName":{
+            "type":"string",
+            "description":"The person's last name."
+          },
+          "age":{
+            "description":"Age in years which must be equal to or greater than zero.",
+            "type":"integer",
+            "minimum":0
+          }
+        }
+      }
+    },
+    "relationships":{
+      "workspace":{
+        "data":{
+          "id":"5bbf1f5337f655001383e921",
+          "type":"workspace"
+        },
+        "links":{
+          "self":"/v2/workspaces/5bbf1f5337f655001383e921"
+        }
+      },
+      "user":{
+        "data":{
+          "id":"5bbf202b37f655001383e923",
+          "type":"user"
+        },
+        "links":{
+          "self":"/v2/users/5bbf202b37f655001383e923"
+        }
+      }
+    }
+  },
+  "meta":{},
+  "links":{
+    "self":"/v2/workspace/5bbf1f5337f655001383e921/topic/5eb15952155c920013046788"
+  }
+}
+```
+
+This endpoint allows creating a Topic only by the User that is a member of the Workspace's scope.
+
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/topics`
+
+
+#### Authorization
+
+This request is authorized for the workspace's scope members with the `workspaces.topic.create` permission.
+
+### Body Parameters
+Parameter       | Required | Description
+--------------- | -------- | -----------
+data.type            | yes      | Allowed value: "topic"
+data.attributes.name | yes      | Name of the Topic
+data.attributes.schema  | yes | A JSON schema
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+WORKSPACE_ID | Workspace ID
+
+### Returns
+
+Returns Topic object if the call succeeded.
+
+
+## Retrieve Topic by ID
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/topics/{TOPIC_ID} \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id":"5eb15952155c920013046788",
+    "type":"topic",
+    "links":{
+      "self":"/v2/topics/5eb15952155c920013046788"
+    },
+    "attributes":{
+      "name":"Person",
+      "schema":{
+        "$id":"https://example.com/person.schema.json",
+        "$schema":"http://json-schema.org/draft-07/schema#",
+        "title":"Person",
+        "type":"object",
+        "properties":{
+          "firstName":{
+            "type":"string",
+            "description":"The person's first name."
+          },
+          "lastName":{
+            "type":"string",
+            "description":"The person's last name."
+          },
+          "age":{
+            "description":"Age in years which must be equal to or greater than zero.",
+            "type":"integer",
+            "minimum":0
+          }
+        }
+      }
+    },
+    "relationships":{
+      "workspace":{
+        "data":{
+          "id":"5bbf1f5337f655001383e921",
+          "type":"workspace"
+        },
+        "links":{
+          "self":"/v2/workspaces/5bbf1f5337f655001383e921"
+        }
+      },
+      "user":{
+        "data":{
+          "id":"5bbf202b37f655001383e923",
+          "type":"user"
+        },
+        "links":{
+          "self":"/v2/users/5bbf202b37f655001383e923"
+        }
+      }
+    }
+  },
+  "meta":{},
+  "links":{
+    "self":"/v2/workspace/5bbf1f5337f655001383e921/topic/5eb15952155c920013046788"
+  }
+}
+```
+
+This endpoint allows retrieve one Topic by ID.
+
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/topics/{TOPIC_ID}`
+
+
+#### Authorization
+
+This request is authorized for the workspace's scope members with the `workspaces.topic.get` permission.
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+WORKSPACE_ID | Workspace ID
+TOPIC_ID | Topic ID
+
+### Returns
+
+Returns Topic object if the call succeeded
+
+
+
+## Retrieve all Topics
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/topics \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":[
+    {
+      "id":"5eb15952155c920013046788",
+      "type":"topic",
+      "links":{
+        "self":"/v2/topics/5eb15952155c920013046788"
+      },
+      "attributes":{
+        "name":"Person",
+        "schema":{
+          "$id":"https://example.com/person.schema.json",
+          "$schema":"http://json-schema.org/draft-07/schema#",
+          "title":"Person",
+          "type":"object",
+          "properties":{
+            "firstName":{
+              "type":"string",
+              "description":"The person's first name."
+            },
+            "lastName":{
+              "type":"string",
+              "description":"The person's last name."
+            },
+            "age":{
+              "description":"Age in years which must be equal to or greater than zero.",
+              "type":"integer",
+              "minimum":0
+            }
+          }
+        }
+      },
+      "relationships":{
+        "workspace":{
+          "data":{
+            "id":"5bbf1f5337f655001383e921",
+            "type":"workspace"
+          },
+          "links":{
+            "self":"/v2/workspaces/5bbf1f5337f655001383e921"
+          }
+        },
+        "user":{
+          "data":{
+            "id":"5bbf202b37f655001383e923",
+            "type":"user"
+          },
+          "links":{
+            "self":"/v2/users/5bbf202b37f655001383e923"
+          }
+        }
+      }
+    }
+  ],
+  "meta":{}
+}
+```
+
+This endpoint allows to retrieve all Topics.
+
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/topics`
+
+
+#### Authorization
+
+This request is authorized for the workspace's scope members with the `workspaces.topic.get` permission.
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+WORKSPACE_ID | Workspace ID
+
+### Returns
+
+Returns an array of Topics if the call succeeded.
+
+
+
+## Update a Topic
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/topics/{TOPIC_ID} \
+   -X PATCH \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json' -d '
+   {
+  "data":{
+    "id": "{TOPIC_ID}"
+    "type":"topic",
+    "attributes":{
+      "name":"Person",
+      "schema":{
+        "$id":"https://example.com/person.schema.json",
+        "$schema":"http://json-schema.org/draft-07/schema#",
+        "title":"Person",
+        "type":"object",
+        "properties":{
+          "firstName":{
+            "type":"string",
+            "description":"The person's first name."
+          },
+          "lastName":{
+            "type":"string",
+            "description":"The person's last name."
+          },
+          "middleName":{
+            "type":"string",
+            "description":"The person's middle name."
+          },
+          "age":{
+            "description":"Age in years which must be equal to or greater than zero.",
+            "type":"integer",
+            "minimum":0
+          }
+        }
+      }
+    }
+  }
+}'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id":"5eb15952155c920013046788",
+    "type":"topic",
+    "links":{
+      "self":"/v2/topics/5eb15952155c920013046788"
+    },
+    "attributes":{
+      "name":"Person",
+      "schema":{
+        "$id":"https://example.com/person.schema.json",
+        "$schema":"http://json-schema.org/draft-07/schema#",
+        "title":"Person",
+        "type":"object",
+        "properties":{
+          "firstName":{
+            "type":"string",
+            "description":"The person's first name."
+          },
+          "lastName":{
+            "type":"string",
+            "description":"The person's last name."
+          },
+          "middleName":{
+            "type":"string",
+            "description":"The person's middle name."
+          },
+          "age":{
+            "description":"Age in years which must be equal to or greater than zero.",
+            "type":"integer",
+            "minimum":0
+          }
+        }
+      }
+    },
+    "relationships":{
+      "workspace":{
+        "data":{
+          "id":"5bbf1f5337f655001383e921",
+          "type":"workspace"
+        },
+        "links":{
+          "self":"/v2/workspaces/5bbf1f5337f655001383e921"
+        }
+      },
+      "user":{
+        "data":{
+          "id":"5bbf202b37f655001383e923",
+          "type":"user"
+        },
+        "links":{
+          "self":"/v2/users/5bbf202b37f655001383e923"
+        }
+      }
+    }
+  },
+  "meta":{},
+  "links":{
+    "self":"/v2/workspace/5bbf1f5337f655001383e921/topic/5eb15952155c920013046788"
+  }
+}
+```
+
+This endpoint allows updating a Topic only by the User that is a member of the Workspace's scope.
+
+
+### HTTP Request
+
+`PATCH {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/topics/{TOPIC_ID}`
+
+
+#### Authorization
+
+This request is authorized for the workspace's scope members with the `workspaces.topic.edit` permission.
+
+### Body Parameters
+Parameter       | Required | Description
+--------------- | -------- | -----------
+data.type            | yes      | Allowed value: "topic"
+data.id            | yes      |Topic ID
+data.attributes.name | no      | Name of the Topic
+data.attributes.schema  | no | A JSON schema
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+WORKSPACE_ID | The ID of the Workspace
+TOPIC_ID | The ID of the Topic
+
+### Returns
+
+Returns Topic object if the call succeeded
+
+
+
+
+## Delete a Topic
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/topics/{TOPIC_ID} \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY} \
+ ```
+
+
+> Example Response:
+
+
+```http
+HTTP/1.1 204 No Content
+```
+
+This endpoint allows deleting a Topic.
+
+
+### HTTP Request
+
+`DELETE {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/topics/{TOPIC_ID}`
+
+
+#### Authorization
+
+This request is authorized for the workspace's scope members with the `workspaces.topic.delete` permission.
+
+### URL Parameters
+Parameter       | Description
+--------------- | -----------
+WORKSPACE_ID | Workspace ID
+TOPIC_ID | Topic ID
+
+### Returns
+
 Responds with `204 No content` if the call succeeded (with empty body).
