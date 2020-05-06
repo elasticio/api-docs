@@ -8,23 +8,19 @@ toc_footers:
   - {{ toc_footer }}
 
 includes:
-  - agents
   - components
-  - contracts
   - credentials
   - datasamples
   - flow-drafts
   - flow-versions
   - flows
   - logs
-  - quota-usages
   - recipes
   - resources
   - executions
   - snapshots
   - sshkeys
   - teams
-  - tenants
   - users
   - workspaces
 
