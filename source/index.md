@@ -17,6 +17,7 @@ includes:
   - flow-versions
   - flows
   - logs
+  - Pub/Sub Topics
   - quota-usages
   - recipes
   - resources
@@ -25,7 +26,6 @@ includes:
   - sshkeys
   - teams
   - tenants
-  - topics
   - users
   - workspaces
 
