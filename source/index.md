@@ -25,6 +25,7 @@ includes:
   - sshkeys
   - teams
   - tenants
+  - topics
   - users
   - workspaces
 
