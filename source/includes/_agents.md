@@ -68,7 +68,7 @@ This resource allows you to retrieve all the agents belonging to the given Works
 Returns all the agents belonging to the given Workspace.
 
 
-## Сreate agent
+## Create agent
 
 
 > Example Request:
