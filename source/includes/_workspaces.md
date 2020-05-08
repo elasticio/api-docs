@@ -833,15 +833,15 @@ The Topic is a JSON schema to be used to communicate publisher and many subscrib
         "properties":{
           "firstName":{
             "type":"string",
-            "description":"The person's first name."
+            "description":"The person first name."
           },
           "lastName":{
             "type":"string",
-            "description":"The person's last name."
+            "description":"The person last name."
           },
           "age":{
             "description":"Age in years which must be equal to or greater than zero.",
-            "type":"integer",
+            "type":"number",
             "minimum":0
           }
         }
@@ -874,15 +874,15 @@ Content-Type: application/json
         "properties":{
           "firstName":{
             "type":"string",
-            "description":"The person's first name."
+            "description":"The person first name."
           },
           "lastName":{
             "type":"string",
-            "description":"The person's last name."
+            "description":"The person last name."
           },
           "age":{
             "description":"Age in years which must be equal to or greater than zero.",
-            "type":"integer",
+            "type":"number",
             "minimum":0
           }
         }
@@ -978,15 +978,15 @@ Content-Type: application/json
         "properties":{
           "firstName":{
             "type":"string",
-            "description":"The person's first name."
+            "description":"The person first name."
           },
           "lastName":{
             "type":"string",
-            "description":"The person's last name."
+            "description":"The person last name."
           },
           "age":{
             "description":"Age in years which must be equal to or greater than zero.",
-            "type":"integer",
+            "type":"number",
             "minimum":0
           }
         }
@@ -1078,15 +1078,15 @@ Content-Type: application/json
           "properties":{
             "firstName":{
               "type":"string",
-              "description":"The person's first name."
+              "description":"The person first name."
             },
             "lastName":{
               "type":"string",
-              "description":"The person's last name."
+              "description":"The person last name."
             },
             "age":{
               "description":"Age in years which must be equal to or greater than zero.",
-              "type":"integer",
+              "type":"number",
               "minimum":0
             }
           }
@@ -1165,19 +1165,19 @@ Returns an array of Topics if the call succeeded.
         "properties":{
           "firstName":{
             "type":"string",
-            "description":"The person's first name."
+            "description":"The person first name."
           },
           "lastName":{
             "type":"string",
-            "description":"The person's last name."
+            "description":"The person last name."
           },
           "middleName":{
             "type":"string",
-            "description":"The person's middle name."
+            "description":"The person middle name."
           },
           "age":{
             "description":"Age in years which must be equal to or greater than zero.",
-            "type":"integer",
+            "type":"number",
             "minimum":0
           }
         }
@@ -1210,19 +1210,19 @@ Content-Type: application/json
         "properties":{
           "firstName":{
             "type":"string",
-            "description":"The person's first name."
+            "description":"The person first name."
           },
           "lastName":{
             "type":"string",
-            "description":"The person's last name."
+            "description":"The person last name."
           },
           "middleName":{
             "type":"string",
-            "description":"The person's middle name."
+            "description":"The person middle name."
           },
           "age":{
             "description":"Age in years which must be equal to or greater than zero.",
-            "type":"integer",
+            "type":"number",
             "minimum":0
           }
         }
