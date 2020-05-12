@@ -251,7 +251,7 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID}/re
 > Example Response:
 
 ```http
-HTTP/1.1 201 OK
+HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
@@ -420,7 +420,7 @@ This request is authorized for the workspace's scope members with the `workspace
 The Auth-secret with given ID
 
 
-## Patch the Auth-secret
+## Update the Auth-secret
 
 
 > Example Request:
@@ -559,7 +559,8 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID} \
 ```
 
 
-This resource allows you to delete the Auth-secret.
+This resource allows you to delete the Auth-secret. You can't delete an Auth-client, while it has one or more secrets 
+attached.
 
 ### HTTP Request
 
