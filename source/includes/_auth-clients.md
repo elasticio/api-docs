@@ -40,16 +40,10 @@ Content-Type: application/json
       "relationships": {
         "components": {
           "data": [
-            "component": {
-              "data": {
-                "id": "{COMPONENT_ID}",
-                "type": "component"
-              },
-              "links": {
-                "self": "/v2/components/{COMPONENT_ID}"
-              }
+            {
+              "id": "{COMPONENT_ID}",
+              "type": "component"
             },
-            
           ]
         },
         "tenant": {
@@ -124,12 +118,10 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients \
        },
        "components":{
          "data": [
-           "component":{
-             "data":{
-               "id":"{COMPONENT_ID}",
-               "type":"component"
-             }
-           },
+           {
+             "id":"{COMPONENT_ID}",
+             "type":"component"
+           }
          ]
        }
      }
@@ -160,14 +152,9 @@ Content-Type: application/json
     "relationships": {
       "components": {
         "data": [
-          "component": {
-            "data": {
-              "id": "{COMPONENT_ID}",
-              "type": "component"
-            },
-            "links": {
-              "self": "/v2/components/{COMPONENT_ID}"
-            }
+          {
+            "id": "{COMPONENT_ID}",
+            "type": "component"
           },
         ]
       },
@@ -260,16 +247,10 @@ Content-Type: application/json
     "relationships": {
       "components": {
         "data": [
-          "component": {
-            "data": {
-              "id": "{COMPONENT_ID}",
-              "type": "component"
-            },
-            "links": {
-              "self": "/v2/components/{COMPONENT_ID}"
-            }
+          {
+            "id": "{COMPONENT_ID}",
+            "type": "component"
           },
-          
         ]
       },
       "tenant": {
@@ -332,16 +313,14 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID} \
        "attributes":{
          "name":"Auth client"
        },
-       "components":{
+       "components": {
          "data": [
-           "component":{
-             "data":{
-               "id":"{COMPONENT_ID}",
-               "type":"component"
-             }
+           {
+             "id": "{COMPONENT_ID}",
+             "type": "component"
            },
          ]
-       }
+       },
      }
    }'
 ```
@@ -368,20 +347,14 @@ Content-Type: application/json
          }
       },
       "relationships":{
-         "components": {
-           "data": [
-             "component": {
-               "data": {
-                 "id": "{COMPONENT_ID}",
-                 "type": "component"
-               },
-               "links": {
-                 "self": "/v2/components/{COMPONENT_ID}"
-               }
-             },
-             
-           ]
-         },
+        "components": {
+          "data": [
+            {
+              "id": "{COMPONENT_ID}",
+              "type": "component"
+            },
+          ]
+        },
          "tenant":{
             "data":{
                "id":"{TENANT_ID}",
