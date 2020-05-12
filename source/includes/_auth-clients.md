@@ -319,7 +319,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID} \
              "type": "component"
            }
          ]
-       },
+       }
      }
    }'
 ```
