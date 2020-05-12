@@ -418,7 +418,8 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID} \
 ```
 
 
-This resource allows you to delete the Auth-client.
+This resource allows you to delete the Auth-client. You can't delete an Auth-client, while it has one or more secrets 
+attached.
 
 ### HTTP Request
 

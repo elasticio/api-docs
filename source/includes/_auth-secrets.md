@@ -559,8 +559,7 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID} \
 ```
 
 
-This resource allows you to delete the Auth-secret. You can't delete an Auth-client, while it has one or more secrets 
-attached.
+This resource allows you to delete the Auth-secret.
 
 ### HTTP Request
 
