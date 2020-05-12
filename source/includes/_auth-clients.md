@@ -1,5 +1,8 @@
 # Auth clients
  
+In order to use an OAuth2 based component in the platform it is required to register a client at the authorization 
+server. Upon the registration the authorization server issues the registered client a client identifier and a secret.
+These client credentials are used to create a client using the following API.
 
 ## Retrieve all auth clients
 
@@ -64,8 +67,7 @@ Content-Type: application/json
       }
     }
   ],
-  "meta": {   
-  }
+  "meta": {}
 }
 ```
 
@@ -74,6 +76,10 @@ This resource allows you to retrieve all the Auth-clients belonging to the given
 ### HTTP Request
 
 `GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients`
+
+#### Authorization
+
+This request is authorized for the tenant's scope members with the `tenants.auth_clients.get` permission.
 
 ### URL Parameters
 
@@ -135,7 +141,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients \
 > Example Response:
 
 ```http
-HTTP/1.1 201 OK
+HTTP/1.1 201 Created
 Content-Type: application/json
 
 {
@@ -179,18 +185,20 @@ Content-Type: application/json
       "self": "/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}"
     }
   },
-  "meta": {
-  }
+  "meta": {}
 }
 ```
 
-This resource allows you to create an Auth-client. If you create an Auth-client with type ``oauth2`` then ``credentials``
-object must contain only properties ``client_id``, ``client_secret`` and ``refresh_token_url``, otherwise if the type 
-is ``other`` than you can put in credentials any data that you want.
+This resource allows you to create an Auth-client.If the Auth-client with type ``oauth2`` then you can update only name
+ and linked components, otherwise if the type is ``other`` than you update any data of the Auth-secret.
 
 ### HTTP Request
 
 `POST {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients`
+
+#### Authorization
+
+This request is authorized for the tenant's scope members with the `tenants.auth_clients.create` permission.
 
 ### URL Parameters
 
@@ -210,8 +218,8 @@ is ``other`` than you can put in credentials any data that you want.
 | attributes.credentials.client_id         | yes(if ``attributes.type`` is ``oauth2``) | Auth-client client id |
 | attributes.credentials.client_secret     | yes(if ``attributes.type`` is ``oauth2``) | Auth-client client secret |
 | attributes.credentials.refresh_token_url | yes(if ``attributes.type`` is ``oauth2``) | Auth-client refresh token url |
-| relationships.components.data.component.type | yes | A value must be ``component`` |
-| relationships.components.data.component.id | yes | An Id of the Component |
+| relationships.components.data[].component.type | yes | A value must be ``component`` |
+| relationships.components.data[].component.id | yes | An Id of the Component |
 
 ### Returns
 
@@ -278,8 +286,7 @@ Content-Type: application/json
       "self": "/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}"
     }
   },
-  "meta": {
-  }
+  "meta": {}
 }
 ```
 
@@ -290,6 +297,9 @@ to the current Tenant, an error will be returned.
 
 `GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}`
 
+#### Authorization
+
+This request is authorized for the tenant's scope members with the `tenants.auth_clients.get` permission.
 
 ### URL Parameters
 
@@ -304,7 +314,7 @@ to the current Tenant, an error will be returned.
 The Auth-client with given ID
 
 
-## Patch the auth client
+## Update the auth client
 
 
 > Example Request:
@@ -320,12 +330,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID} \
        "id":"{AUTH-CLIENT_ID}",
        "type":"auth-client",
        "attributes":{
-         "name":"Auth client",
-         "credentials":{
-           "client_id": '{CLIENT_ID}',
-           "client_secret": '{CLIENT_SECRET}',
-           "refresh_token_url": 'http://example.com'
-         }
+         "name":"Auth client"
        },
        "components":{
          "data": [
@@ -346,7 +351,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID} \
 > Example Response:
 
 ```http
-HTTP/1.1 201 OK
+HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
@@ -363,14 +368,19 @@ Content-Type: application/json
          }
       },
       "relationships":{
-         "component":{
-            "data":{
-               "id":"{COMPONENT_ID}",
-               "type":"component"
-            },
-            "links":{
-               "self":"/v2/components/{COMPONENT_ID}"
-            }
+         "components": {
+           "data": [
+             "component": {
+               "data": {
+                 "id": "{COMPONENT_ID}",
+                 "type": "component"
+               },
+               "links": {
+                 "self": "/v2/components/{COMPONENT_ID}"
+               }
+             },
+             
+           ]
          },
          "tenant":{
             "data":{
@@ -398,6 +408,10 @@ is ``other`` than you can put in credentials any data that you want.
 
 `PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}`
 
+#### Authorization
+
+This request is authorized for the tenant's scope members with the `tenants.auth_clients.edit` permission.
+
 ### URL Parameters
 
 | Parameter         | Required  | Description            |
@@ -412,9 +426,9 @@ is ``other`` than you can put in credentials any data that you want.
 | :---                                     | :---     | :---                            |
 | type                                     | yes      | A value must be ``auth-client`` |
 | attributes.name                          | no       | New name of the Auth-client     |
-| attributes.credentials                   | no       | Auth-client credentials         |
-| relationships.components.data.component.type | no | A value must be ``component`` |
-| relationships.components.data.component.id | no | An Id of the Component |
+| attributes.credentials                   | no (not allowed for ``oauth2`` type) | Auth-client credentials         |
+| relationships.components.data[].component.type | no | A value must be ``component`` |
+| relationships.components.data[].component.id | no | An Id of the Component |
 
 ### Returns
 
@@ -438,6 +452,9 @@ This resource allows you to delete the Auth-client.
 
 ``DELETE {{ api_base_url }/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}``
 
+#### Authorization
+
+This request is authorized for the tenant's scope members with the `tenants.auth_clients.delete` permission.
 
 ### URL Parameters
 

@@ -78,6 +78,10 @@ This resource allows you to retrieve all the Auth-secrets belonging to the given
 
 `GET {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets`
 
+#### Authorization
+
+This request is authorized for the workspace's scope members with the `workspaces.auth_secret.get` permission.
+
 ### URL Parameters
 
 | Parameter         | Required  | Description           |
@@ -89,7 +93,6 @@ This resource allows you to retrieve all the Auth-secrets belonging to the given
 | Parameter          | Required  | Description |
 | :---               | :---      | :---        |
 | filter[user]       | no        | Filter the Auth-secrets only for specific User. Must be `id` of `User`           |
-| filter[workspace]  | no        | Filter the Auth-secrets only for specific Workspace. Must be `id` of `Workspace` |
 | filter[auth_client]| no        | Filter the Auth-secrets only for specific Auth-client. Must be `id` of `Auth-client`    |
 
 
@@ -138,7 +141,7 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets \
 > Example Response:
 
 ```http
-HTTP/1.1 201 OK
+HTTP/1.1 201 Created
 Content-Type: application/json
 
 {
@@ -200,6 +203,10 @@ object must contain only properties ``access_token``, ``refresh_token`` and ``ex
 
 `POST {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets`
 
+#### Authorization
+
+This request is authorized for the workspace's scope members with the `workspaces.auth_secret.create` permission.
+
 ### URL Parameters
 
 | Parameter         | Required  | Description           |
@@ -226,8 +233,6 @@ object must contain only properties ``access_token``, ``refresh_token`` and ``ex
 
 Returns the created Auth-secret object.
 
-
-
 ## Refresh the auth secret
 
 
@@ -235,7 +240,7 @@ Returns the created Auth-secret object.
 
 
 ```shell
-curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID} \
+curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID}/refresh \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json'
@@ -297,8 +302,7 @@ Content-Type: application/json
       }
     }
   ],
-  "meta": {
-  }
+  "meta": {}
 }
 ```
 
@@ -306,7 +310,11 @@ This resource allows you to manually refresh the Auth-secret if it supports this
 
 ### HTTP Request
 
-`POST {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID}`
+`POST {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID}/refresh`
+
+#### Authorization
+
+This request is authorized for the workspace's scope members with the `workspaces.auth_secret.refresh` permission.
 
 ### URL Parameters
 
@@ -320,7 +328,7 @@ This resource allows you to manually refresh the Auth-secret if it supports this
 Returns the Auth-secret object.
 
 
-## Retrieve the auth-client by ID
+## Retrieve the Auth-secret by ID
 
 > Example Request:
 
@@ -384,9 +392,7 @@ Content-Type: application/json
       "self": "/v2/workspace/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID}"
     }
   },
-  "meta": {
-    
-  }
+  "meta": {}
 }
 ```
 
@@ -397,6 +403,9 @@ to the current Workspace, an error will be returned.
 
 `GET {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID}`
 
+#### Authorization
+
+This request is authorized for the workspace's scope members with the `workspaces.auth_secret.get` permission.
 
 ### URL Parameters
 
@@ -411,7 +420,7 @@ to the current Workspace, an error will be returned.
 The Auth-secret with given ID
 
 
-## Patch the auth client
+## Patch the Auth-secret
 
 
 > Example Request:
@@ -451,7 +460,7 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID} \
 > Example Response:
 
 ```http
-HTTP/1.1 201 OK
+HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
@@ -501,8 +510,7 @@ Content-Type: application/json
       "self": "/v2/workspace/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID}"
     }
   },
-  "meta": {
-  }
+  "meta": {}
 }
 ```
 
@@ -512,7 +520,11 @@ is ``other`` than you can put in credentials any data that you want.
 
 ### HTTP Request
 
-`POST {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}`
+`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}`
+
+#### Authorization
+
+This request is authorized for the workspace's scope members with the `workspaces.auth_secret.edit` permission.
 
 ### URL Parameters
 
@@ -553,6 +565,9 @@ This resource allows you to delete the Auth-secret.
 
 ``DELETE {{ api_base_url }/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID}``
 
+#### Authorization
+
+This request is authorized for the workspace's scope members with the `workspaces.auth_secret.delete` permission.
 
 ### URL Parameters
 
