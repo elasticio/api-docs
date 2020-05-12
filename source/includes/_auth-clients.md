@@ -43,7 +43,7 @@ Content-Type: application/json
             {
               "id": "{COMPONENT_ID}",
               "type": "component"
-            },
+            }
           ]
         },
         "tenant": {
@@ -155,7 +155,7 @@ Content-Type: application/json
           {
             "id": "{COMPONENT_ID}",
             "type": "component"
-          },
+          }
         ]
       },
       "tenant": {
@@ -177,7 +177,7 @@ Content-Type: application/json
 ```
 
 This resource allows you to create an Auth-client.If the Auth-client with type ``oauth2`` then you can update only name
- and linked components, otherwise if the type is ``other`` than you update any data of the Auth-secret.
+ and linked components, otherwise if the type is ``other`` than you update any data of the Auth-client.
 
 ### HTTP Request
 
@@ -250,7 +250,7 @@ Content-Type: application/json
           {
             "id": "{COMPONENT_ID}",
             "type": "component"
-          },
+          }
         ]
       },
       "tenant": {
@@ -318,7 +318,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID} \
            {
              "id": "{COMPONENT_ID}",
              "type": "component"
-           },
+           }
          ]
        },
      }
@@ -352,7 +352,7 @@ Content-Type: application/json
             {
               "id": "{COMPONENT_ID}",
               "type": "component"
-            },
+            }
           ]
         },
          "tenant":{
@@ -375,7 +375,7 @@ Content-Type: application/json
 
 This resource allows you to update the Auth-client. If the Auth-client with type ``oauth2`` then you can update only
 properties ``client_id``, ``client_secret`` and ``refresh_token_url`` of ``credentials`` object, otherwise if the type 
-is ``other`` than you can put in credentials any data that you want.
+is ``other`` than you can put in credentials any data that you want and add components which can use this Auth-client.
 
 ### HTTP Request
 
