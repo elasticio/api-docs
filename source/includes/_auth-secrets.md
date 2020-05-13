@@ -1,5 +1,5 @@
 # Secrets
- 
+The secret is known only to the application and the authorization server. It must be sufficiently random to not be guessable, which means you should avoid using common UUID libraries which often take into account the timestamp or MAC address of the server generating it.
 
 ## Retrieve all auth-secrets
 
@@ -86,7 +86,7 @@ This request is authorized for the workspace's scope members with the `workspace
 
 | Parameter         | Required  | Description           |
 | :---              | :---      | :---                  |
-| WORKSPACE_ID      | yes       | An Id of the Workspace|
+| WORKSPACE_ID      | yes       | Workspace ID|
 
 ### Query Parameters
 
@@ -218,7 +218,7 @@ This request is authorized for the workspace's scope members with the `workspace
 
 | Parameter                                | Required | Description |
 | :---                                     | :---     | :---        |
-| type                                     | yes      | A value must be ``auth-secret`` |
+| type                                     | yes      | Allowed value: ``auth-secret`` |
 | attributes.name                          | yes      | Auth-secret name                |
 | attributes.state                         | yes      | Auth-secret type. May be any of: ``ready``, ``error``|
 | attributes.error                         | no       | Auth-secret error |
@@ -226,8 +226,8 @@ This request is authorized for the workspace's scope members with the `workspace
 | attributes.credentials.access_token      | yes(if ``auth-client`` is ``oauth2``) | Auth-secret access token |
 | attributes.credentials.refresh_token     | yes(if ``auth-client`` is ``oauth2``) | Auth-secret refresh token |
 | attributes.credentials.expires_in        | yes(if ``auth-client`` is ``oauth2``) | Auth-secret expires in |
-| relationships.auth_client.data.type      | yes       | A value must be ``auth-client``  |
-| relationships.auth_client.data.id        | yes       | An Id of the Auth-client |
+| relationships.auth_client.data.type      | yes       | Allowed value: ``auth-client``  |
+| relationships.auth_client.data.id        | yes       | Auth-client ID |
 
 ### Returns
 
@@ -320,7 +320,7 @@ This request is authorized for the workspace's scope members with the `workspace
 
 | Parameter         | Required  | Description            |
 | :---              | :---      | :---                   |
-| WORKSPACE_ID      | yes       | An Id of the Workspace |
+| WORKSPACE_ID      | yes       | Workspace ID |
 | AUTH-SECRET_ID    | yes       | Auth-secret identifier |
 
 ### Returns
@@ -411,7 +411,7 @@ This request is authorized for the workspace's scope members with the `workspace
 
 | Parameter      | Required | Description            |
 | :---           | :---     | :---                   |
-| WORKSPACE_ID   | Yes      | Workspace identifier   |
+| WORKSPACE_ID   | Yes      | Workspace ID   |
 | AUTH-SECRET_ID | Yes      | Auth-secret identifier |
 
 
@@ -530,18 +530,18 @@ This request is authorized for the workspace's scope members with the `workspace
 
 | Parameter         | Required  | Description             |
 | :---              | :---      | :---                    |
-| WORKSPACE_ID      | yes       | An Id of the Workspace  |
-| AUTH-SECRET_ID    | yes       | An Id of the Auth-secret|
+| WORKSPACE_ID      | yes       | Workspace ID |
+| AUTH-SECRET_ID    | yes       | Auth-secret identifier|
 
 
 ### Body Parameters
 
 | Parameter                                | Required | Description                     |
 | :---                                     | :---     | :---                            |
-| type                                     | yes      | A value must be ``auth-secret`` |
+| type                                     | yes      | Allowed value: ``auth-secret`` |
 | attributes.name                          | no       | New name of the Auth-secret     |
 | attributes.credentials                   | no       | Auth-secret credentials         |
-| relationships.auth_client.data.id        | no      | An Id of the Auth-client        |
+| relationships.auth_client.data.id        | no      | Auth-client identifier        |
 
 ### Returns
 
@@ -573,8 +573,8 @@ This request is authorized for the workspace's scope members with the `workspace
 
 | Parameter      | Required | Description    |
 | :--------      | :------- | :----------    |
-| WORKSPACE_ID   | yes      | An Id of the Workspace     |
-| AUTH-SECRET_ID | yes      | Auth-secret ID |
+| WORKSPACE_ID   | yes      | Workspace ID    |
+| AUTH-SECRET_ID | yes      | Auth-secret identifier |
 
 > Example Response:
 
