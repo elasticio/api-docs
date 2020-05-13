@@ -321,7 +321,7 @@ This request is authorized for the workspace's scope members with the `workspace
 | Parameter         | Required  | Description            |
 | :---              | :---      | :---                   |
 | WORKSPACE_ID      | yes       | Workspace ID |
-| AUTH-SECRET_ID    | yes       | Auth-secret identifier |
+| AUTH-SECRET_ID    | yes       | Auth-secret ID |
 
 ### Returns
 
@@ -412,7 +412,7 @@ This request is authorized for the workspace's scope members with the `workspace
 | Parameter      | Required | Description            |
 | :---           | :---     | :---                   |
 | WORKSPACE_ID   | Yes      | Workspace ID   |
-| AUTH-SECRET_ID | Yes      | Auth-secret identifier |
+| AUTH-SECRET_ID | Yes      | Auth-secret ID |
 
 
 ### Returns
@@ -531,7 +531,7 @@ This request is authorized for the workspace's scope members with the `workspace
 | Parameter         | Required  | Description             |
 | :---              | :---      | :---                    |
 | WORKSPACE_ID      | yes       | Workspace ID |
-| AUTH-SECRET_ID    | yes       | Auth-secret identifier|
+| AUTH-SECRET_ID    | yes       | Auth-secret ID|
 
 
 ### Body Parameters
@@ -541,7 +541,7 @@ This request is authorized for the workspace's scope members with the `workspace
 | type                                     | yes      | Allowed value: ``auth-secret`` |
 | attributes.name                          | no       | New name of the Auth-secret     |
 | attributes.credentials                   | no       | Auth-secret credentials         |
-| relationships.auth_client.data.id        | no      | Auth-client identifier        |
+| relationships.auth_client.data.id        | no      | Auth-client ID        |
 
 ### Returns
 
@@ -574,7 +574,7 @@ This request is authorized for the workspace's scope members with the `workspace
 | Parameter      | Required | Description    |
 | :--------      | :------- | :----------    |
 | WORKSPACE_ID   | yes      | Workspace ID    |
-| AUTH-SECRET_ID | yes      | Auth-secret identifier |
+| AUTH-SECRET_ID | yes      | Auth-secret ID |
 
 > Example Response:
 
