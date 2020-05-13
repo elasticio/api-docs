@@ -1,10 +1,10 @@
-# Auth clients
+# Auth Clients
  
-In order to use an OAuth2 based component in the platform it is required to register a client at the authorization 
-server. Upon the registration the authorization server issues the registered client a client identifier and a secret.
+In order to use an OAuth2 based Component in the platform it is required to register a client at the authorization 
+server. Upon registration the authorization server issues the registered client an identifier (client identifier) and a secret.
 These client credentials are used to create a client using the following API.
 
-## Retrieve all auth clients
+## Retrieve All Auth Clients
 
 
 > Example Request:
@@ -79,7 +79,7 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 
 | Parameter         | Required  | Description          |
 | :---              | :---      | :---                 |
-| TENANT_ID         | yes       | An Id of the Tenant  |
+| TENANT_ID         | yes       | Tenant ID  |
 
 ### Query Parameters
 
@@ -93,7 +93,7 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 Returns all the Auth-clients belonging to the given Tenant.
 
 
-## Create the auth client
+## Create Auth Client
 
 
 > Example Request:
@@ -190,29 +190,29 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 
 | Parameter         | Required  | Description          |
 | :---              | :---      | :---                 |
-| TENANT_ID         | yes       | An Id of the Tenant  |
+| TENANT_ID         | yes       | Tenant ID  |
 
 
 ### Body Parameters
 
 | Parameter                                | Required | Description |
 | :---                                     | :---     | :---        |
-| type                                     | yes      | A value must be ``auth-client`` |
+| type                                     | yes      | Allowed value: ``auth-client`` |
 | attributes.name                          | yes      | Auth-client name                |
 | attributes.type                          | yes      | Auth-client type. May be any of: ``oauth2``, ``other``|
 | attributes.credentials                   | yes      | Auth-client credentials |
 | attributes.credentials.client_id         | yes(if ``attributes.type`` is ``oauth2``) | Auth-client client id |
 | attributes.credentials.client_secret     | yes(if ``attributes.type`` is ``oauth2``) | Auth-client client secret |
 | attributes.credentials.refresh_token_url | yes(if ``attributes.type`` is ``oauth2``) | Auth-client refresh token url |
-| relationships.components.data[].component.type | yes | A value must be ``component`` |
-| relationships.components.data[].component.id | yes | An Id of the Component |
+| relationships.components.data[].component.type | yes | Allowed value: ``component`` |
+| relationships.components.data[].component.id | yes | Component ID |
 
 ### Returns
 
 Returns the created Auth-client object.
 
 
-## Retrieve the auth-client by ID
+## Retrieve the Auth-client by ID
 
 > Example Request:
 
@@ -373,7 +373,7 @@ Content-Type: application/json
 ```
 
 This resource allows you to update the Auth-client. If the Auth-client with type ``oauth2`` then you can update only 
-name and linked components, otherwise if the type is ``other`` than you can put in credentials any data that you want
+name and linked components, otherwise if the type is ``other``, then you can put in credentials any data that you want
 and add components which can use this Auth-client.
 
 ### HTTP Request
@@ -388,26 +388,26 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 
 | Parameter         | Required  | Description            |
 | :---              | :---      | :---                   |
-| TENANT_ID         | yes       | An Id of the Tenant     |
-| AUTH-CLIENT_ID    | yes       | An Id of the Auth-client |
+| TENANT_ID         | yes       | Tenant ID    |
+| AUTH-CLIENT_ID    | yes       | Auth-client ID |
 
 
 ### Body Parameters
 
 | Parameter                                | Required | Description                     |
 | :---                                     | :---     | :---                            |
-| type                                     | yes      | A value must be ``auth-client`` |
+| type                                     | yes      | Allowed value: ``auth-client`` |
 | attributes.name                          | no       | New name of the Auth-client     |
 | attributes.credentials                   | no (not allowed for ``oauth2`` type) | Auth-client credentials         |
-| relationships.components.data[].component.type | no | A value must be ``component`` |
-| relationships.components.data[].component.id | no | An Id of the Component |
+| relationships.components.data[].component.type | no | Allowed value: ``component`` |
+| relationships.components.data[].component.id | no | Component ID |
 
 ### Returns
 
 Returns the updated auth-client object.
 
 
-## Delete the auth-client
+## Delete Auth-client
 
 > Example Request:
 
@@ -433,7 +433,7 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 
 | Parameter      | Required | Description         |
 | :--------      | :------- | :----------         |
-| TENANT_ID      | yes      | An Id of the Tenant |
+| TENANT_ID      | yes      | Tenant ID |
 | AUTH-CLIENT_ID | yes      | Auth-client ID      |
 
 > Example Response:
