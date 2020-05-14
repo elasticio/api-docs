@@ -17,7 +17,7 @@ includes:
   - flow-versions
   - flows
   - logs
-  - Pub/Sub Topics
+  - PubSub-topics
   - quota-usages
   - recipes
   - resources
