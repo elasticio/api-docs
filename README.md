@@ -41,6 +41,7 @@ In case the api-docs have to be "re-branded" for a special customer, there are a
 - logo_url: URL to refer the customers logo (default: https://app.elastic.io/img/logo.svg)
 - repo_name: Name of github repository name (default: elasticio)
 - docs_url: Link to the main documentation (default: http://docs.elastic.io/docs)
+- favicon_url: Link to the favicon (default: https://app.elastic.io/favicon.ico)
 
 So a complete build for a customer overwriting everything may be e.g.:
 ```
@@ -50,6 +51,7 @@ docker build -t apidocs:telekom \
         --build-arg "product_name=Customer API Name" \
         --build-arg "logo_url=https://customer.logo.url/svg-image.svg" \
         --build-arg "repo_name=customer-repo" \
+        --build-arg "favicon_url=https://favicon.url/favicon.ico"
         .
 ```
 
