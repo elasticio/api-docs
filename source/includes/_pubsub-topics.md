@@ -19,7 +19,6 @@ The Topic is a JSON schema to be used to communicate publisher and many subscrib
       "name":"Person",
       "schema":{
         "$id":"https://example.com/person.schema.json",
-        "$schema":"http://json-schema.org/draft-07/schema#",
         "title":"Person",
         "type":"object",
         "properties":{
@@ -60,7 +59,6 @@ Content-Type: application/json
       "name":"Person",
       "schema":{
         "$id":"https://example.com/person.schema.json",
-        "$schema":"http://json-schema.org/draft-07/schema#",
         "title":"Person",
         "type":"object",
         "properties":{
@@ -164,7 +162,6 @@ Content-Type: application/json
       "name":"Person",
       "schema":{
         "$id":"https://example.com/person.schema.json",
-        "$schema":"http://json-schema.org/draft-07/schema#",
         "title":"Person",
         "type":"object",
         "properties":{
@@ -264,7 +261,6 @@ Content-Type: application/json
         "name":"Person",
         "schema":{
           "$id":"https://example.com/person.schema.json",
-          "$schema":"http://json-schema.org/draft-07/schema#",
           "title":"Person",
           "type":"object",
           "properties":{
@@ -351,7 +347,6 @@ Returns an array of Topics if the call succeeded.
       "name":"Person",
       "schema":{
         "$id":"https://example.com/person.schema.json",
-        "$schema":"http://json-schema.org/draft-07/schema#",
         "title":"Person",
         "type":"object",
         "properties":{
@@ -396,7 +391,6 @@ Content-Type: application/json
       "name":"Person",
       "schema":{
         "$id":"https://example.com/person.schema.json",
-        "$schema":"http://json-schema.org/draft-07/schema#",
         "title":"Person",
         "type":"object",
         "properties":{
