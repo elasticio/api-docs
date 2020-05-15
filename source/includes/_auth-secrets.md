@@ -1,7 +1,12 @@
 # Secrets
-The secret is known only to the application and the authorization server. It must be sufficiently random to not be guessable, which means you should avoid using common UUID libraries which often take into account the timestamp or MAC address of the server generating it.
+The Secret is used to expose the information that the platform needs to collect from the integrator in order to be able to connect to their instance/account. The information collected typically includes:
 
-## Retrieve all auth-secrets
+- URL to the integrator’s instance
+- Username or other account ID
+- Password or other API keys/tokens required to authenticate
+
+
+## Retrieve All Auth Secrets
 
 
 > Example Request:
@@ -72,7 +77,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve all the Auth-secrets belonging to the given Workspace.
+This resource allows you to retrieve all the Auth Secrets belonging to the given Workspace.
 
 ### HTTP Request
 
@@ -80,7 +85,7 @@ This resource allows you to retrieve all the Auth-secrets belonging to the given
 
 #### Authorization
 
-This request is authorized for the workspace's scope members with the `workspaces.auth_secret.get` permission.
+This request is authorized for the Workspace's scope members with the `workspaces.auth_secret.get` permission.
 
 ### URL Parameters
 
@@ -92,16 +97,16 @@ This request is authorized for the workspace's scope members with the `workspace
 
 | Parameter          | Required  | Description |
 | :---               | :---      | :---        |
-| filter[user]       | no        | Filter the Auth-secrets only for specific User. Must be `id` of `User`           |
-| filter[auth_client]| no        | Filter the Auth-secrets only for specific Auth-client. Must be `id` of `Auth-client`    |
+| filter[user]       | no        | Filter the Auth Secrets only for specific User. Must be `id` of `User`           |
+| filter[auth_client]| no        | Filter the Auth Secrets only for specific Auth-client. Must be `id` of `Auth-client`    |
 
 
 ### Returns
 
-Returns all the Auth-secrets belonging to the given Workspace.
+Returns all the Auth Secrets belonging to the given Workspace.
 
 
-## Create the auth secret
+## Create Auth Secret
 
 
 > Example Request:
@@ -195,9 +200,9 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to create an Auth-secret. If related Auth-client has type ``oauth2`` then ``credentials`` 
+This resource allows you to create an Auth Secret. If related Auth Client has type ``oauth2`` then ``credentials`` 
 object must contain only properties ``access_token``, ``refresh_token`` and ``expires_in``, otherwise if the type is 
-``other`` than you can put in credentials any data that you want.
+``other``, then you can put in credentials any data that you want.
 
 ### HTTP Request
 
@@ -205,13 +210,13 @@ object must contain only properties ``access_token``, ``refresh_token`` and ``ex
 
 #### Authorization
 
-This request is authorized for the workspace's scope members with the `workspaces.auth_secret.create` permission.
+This request is authorized for the Workspace's scope members with the `workspaces.auth_secret.create` permission.
 
 ### URL Parameters
 
 | Parameter         | Required  | Description           |
 | :---              | :---      | :---                  |
-| WORKSPACE_ID      | yes       | An Id of the Workspace|
+| WORKSPACE_ID      | yes       | Workspace ID|
 
 
 ### Body Parameters
@@ -219,21 +224,21 @@ This request is authorized for the workspace's scope members with the `workspace
 | Parameter                                | Required | Description |
 | :---                                     | :---     | :---        |
 | type                                     | yes      | Allowed value: ``auth-secret`` |
-| attributes.name                          | yes      | Auth-secret name                |
-| attributes.state                         | yes      | Auth-secret type. May be any of: ``ready``, ``error``|
-| attributes.error                         | no       | Auth-secret error |
-| attributes.credentials                   | yes      | Auth-secret credentials |
-| attributes.credentials.access_token      | yes(if ``auth-client`` is ``oauth2``) | Auth-secret access token |
-| attributes.credentials.refresh_token     | yes(if ``auth-client`` is ``oauth2``) | Auth-secret refresh token |
-| attributes.credentials.expires_in        | yes(if ``auth-client`` is ``oauth2``) | Auth-secret expires in |
+| attributes.name                          | yes      | Auth Secret name                |
+| attributes.state                         | yes      | Auth Secret type. May be any of: ``ready``, ``error``|
+| attributes.error                         | no       | Auth Secret error |
+| attributes.credentials                   | yes      | Auth Secret credentials |
+| attributes.credentials.access_token      | yes(if ``auth-client`` is ``oauth2``) | Auth Secret access token |
+| attributes.credentials.refresh_token     | yes(if ``auth-client`` is ``oauth2``) | Auth Secret refresh token |
+| attributes.credentials.expires_in        | yes(if ``auth-client`` is ``oauth2``) | Auth Secret expires in |
 | relationships.auth_client.data.type      | yes       | Allowed value: ``auth-client``  |
-| relationships.auth_client.data.id        | yes       | Auth-client ID |
+| relationships.auth_client.data.id        | yes       | Auth Client ID |
 
 ### Returns
 
-Returns the created Auth-secret object.
+Returns the created Auth Secret object.
 
-## Refresh the auth secret
+## Refresh the Auth Secret
 
 
 > Example Request:
@@ -306,7 +311,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to manually refresh the Auth-secret if it supports this operation.
+This resource allows you to manually refresh the Auth Secret if it supports this operation.
 
 ### HTTP Request
 
@@ -314,21 +319,21 @@ This resource allows you to manually refresh the Auth-secret if it supports this
 
 #### Authorization
 
-This request is authorized for the workspace's scope members with the `workspaces.auth_secret.refresh` permission.
+This request is authorized for the Workspace's scope members with the `workspaces.auth_secret.refresh` permission.
 
 ### URL Parameters
 
 | Parameter         | Required  | Description            |
 | :---              | :---      | :---                   |
 | WORKSPACE_ID      | yes       | Workspace ID |
-| AUTH-SECRET_ID    | yes       | Auth-secret ID |
+| AUTH-SECRET_ID    | yes       | Auth Secret ID |
 
 ### Returns
 
-Returns the Auth-secret object.
+Returns the Auth Secret object.
 
 
-## Retrieve the Auth-secret by ID
+## Retrieve Auth Secret by ID
 
 > Example Request:
 
@@ -412,15 +417,15 @@ This request is authorized for the workspace's scope members with the `workspace
 | Parameter      | Required | Description            |
 | :---           | :---     | :---                   |
 | WORKSPACE_ID   | Yes      | Workspace ID   |
-| AUTH-SECRET_ID | Yes      | Auth-secret ID |
+| AUTH-SECRET_ID | Yes      | Auth Secret ID |
 
 
 ### Returns
 
-The Auth-secret with given ID
+Auth Secret with the given ID
 
 
-## Update the Auth-secret
+## Update the Auth Secret
 
 
 > Example Request:
@@ -514,9 +519,9 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to update the Auth secret. If related Auth-client has type ``oauth2`` then ``credentials``
+This resource allows you to update the Auth Secret. If related Auth-client has type ``oauth2`` then ``credentials``
 object must contain only properties ``access_token``, ``refresh_token``, ``expires_in``, otherwise if the type 
-is ``other`` than you can put in credentials any data that you want.
+is ``other``, then you can put in credentials any data that you want.
 
 ### HTTP Request
 
@@ -524,14 +529,14 @@ is ``other`` than you can put in credentials any data that you want.
 
 #### Authorization
 
-This request is authorized for the workspace's scope members with the `workspaces.auth_secret.edit` permission.
+This request is authorized for the Workspace's scope members with the `workspaces.auth_secret.edit` permission.
 
 ### URL Parameters
 
 | Parameter         | Required  | Description             |
 | :---              | :---      | :---                    |
 | WORKSPACE_ID      | yes       | Workspace ID |
-| AUTH-SECRET_ID    | yes       | Auth-secret ID|
+| AUTH-SECRET_ID    | yes       | Auth Secret ID|
 
 
 ### Body Parameters
@@ -539,16 +544,16 @@ This request is authorized for the workspace's scope members with the `workspace
 | Parameter                                | Required | Description                     |
 | :---                                     | :---     | :---                            |
 | type                                     | yes      | Allowed value: ``auth-secret`` |
-| attributes.name                          | no       | New name of the Auth-secret     |
-| attributes.credentials                   | no       | Auth-secret credentials         |
-| relationships.auth_client.data.id        | no      | Auth-client ID        |
+| attributes.name                          | no       | New name of the Auth Secret     |
+| attributes.credentials                   | no       | Auth Secret credentials         |
+| relationships.auth_client.data.id        | no      | Auth Client ID        |
 
 ### Returns
 
 Returns the updated Auth-secret object.
 
 
-## Delete tha auth-secret
+## Delete Auth Secret
 
 > Example Request:
 
@@ -559,7 +564,7 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID} \
 ```
 
 
-This resource allows you to delete the Auth-secret.
+This resource allows you to delete the Auth Secret.
 
 ### HTTP Request
 
@@ -567,14 +572,14 @@ This resource allows you to delete the Auth-secret.
 
 #### Authorization
 
-This request is authorized for the workspace's scope members with the `workspaces.auth_secret.delete` permission.
+This request is authorized for the Workspace's scope members with the `workspaces.auth_secret.delete` permission.
 
 ### URL Parameters
 
 | Parameter      | Required | Description    |
 | :--------      | :------- | :----------    |
 | WORKSPACE_ID   | yes      | Workspace ID    |
-| AUTH-SECRET_ID | yes      | Auth-secret ID |
+| AUTH-SECRET_ID | yes      | Auth Secret ID |
 
 > Example Response:
 
