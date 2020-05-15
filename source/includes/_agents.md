@@ -1,7 +1,7 @@
 # Agents
  
 
-## Retrieve all agents
+## Retrieve All Agents
 
 
 > Example Request:
@@ -68,7 +68,7 @@ This resource allows you to retrieve all the agents belonging to the given Works
 Returns all the agents belonging to the given Workspace.
 
 
-## Сreate agent
+## Create Agent
 
 
 > Example Request:
@@ -145,11 +145,11 @@ We will contact you within 2-3 working days.
 
 | Parameter | Required | Description |
 | :--- | :--- | :--- |
-| type | yes | A value must be ``agent`` |
+| type | yes | Allowed value: ``agent`` |
 | attributes.title | yes | Agent title |
 | attributes.description | yes | Agent description |
-| relationships.workspace.data.id | yes | An Id of the Workspace |
-| relationships.workspace.data.type | yes | A value must be ``workspace``  |
+| relationships.workspace.data.id | yes | Workspace ID |
+| relationships.workspace.data.type | yes | Allowed value: ``workspace``  |
 
 ### Returns
 

@@ -9,6 +9,8 @@ toc_footers:
 
 includes:
   - agents
+  - auth-clients
+  - auth-secrets
   - components
   - contracts
   - credentials
