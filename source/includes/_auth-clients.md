@@ -1,7 +1,7 @@
 # Auth Clients
  
 In order to use an OAuth2 based Component in the platform it is required to register a client at the authorization 
-server. Upon registration the authorization server issues the registered client an identifier (client identifier) and a secret.
+server. Upon registration the authorization server issues the registered client an identifier (client ID) and a secret.
 These client credentials are used to create a client using the following API.
 
 ## Retrieve All Auth Clients
@@ -85,7 +85,7 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 
 | Parameter         | Required  | Description |
 | :---              | :---      | :---        |
-| filter[component] | no        | Filter the Auth-clients only for specific component. Must be `id` of `Component` |
+| filter[component] | no        | Filter the Auth Clients only for specific component. Must be `id` of `Component` |
 
 
 ### Returns
@@ -198,21 +198,21 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 | Parameter                                | Required | Description |
 | :---                                     | :---     | :---        |
 | type                                     | yes      | Allowed value: ``auth-client`` |
-| attributes.name                          | yes      | Auth-client name                |
-| attributes.type                          | yes      | Auth-client type. May be any of: ``oauth2``, ``other``|
-| attributes.credentials                   | yes      | Auth-client credentials |
-| attributes.credentials.client_id         | yes(if ``attributes.type`` is ``oauth2``) | Auth-client client id |
-| attributes.credentials.client_secret     | yes(if ``attributes.type`` is ``oauth2``) | Auth-client client secret |
-| attributes.credentials.refresh_token_url | yes(if ``attributes.type`` is ``oauth2``) | Auth-client refresh token url |
+| attributes.name                          | yes      | Auth Client name                |
+| attributes.type                          | yes      | Auth Client type. May be any of: ``oauth2``, ``other``|
+| attributes.credentials                   | yes      | Auth Client credentials |
+| attributes.credentials.client_id         | yes(if ``attributes.type`` is ``oauth2``) | Auth Client client ID |
+| attributes.credentials.client_secret     | yes(if ``attributes.type`` is ``oauth2``) | Auth Client client secret |
+| attributes.credentials.refresh_token_url | yes(if ``attributes.type`` is ``oauth2``) | Auth Client refresh token URL |
 | relationships.components.data[].component.type | yes | Allowed value: ``component`` |
 | relationships.components.data[].component.id | yes | Component ID |
 
 ### Returns
 
-Returns the created Auth-client object.
+Returns the created Auth Client object.
 
 
-## Retrieve the Auth-client by ID
+## Retrieve the Auth Client by ID
 
 > Example Request:
 
@@ -270,7 +270,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve the Auth-client by its identifier. If the Auth-client with given ID does not belong
+This resource allows you to retrieve an Auth Client by its ID. If the Auth Client with given ID does not belong
 to the current Tenant, an error will be returned.
 
 ### HTTP Request
@@ -285,16 +285,16 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 
 | Parameter      | Required | Description            |
 | :---           | :---     | :---                   |
-| TENANT_ID      | Yes      | Tenant identifier      |
-| AUTH-CLIENT_ID | Yes      | Auth-client identifier |
+| TENANT_ID      | Yes      | Tenant ID      |
+| AUTH-CLIENT_ID | Yes      | Auth Client ID |
 
 
 ### Returns
 
-The Auth-client with given ID
+The Auth Client with given ID
 
 
-## Update the auth client
+## Update the Auth Client
 
 
 > Example Request:
@@ -372,9 +372,9 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to update the Auth-client. If the Auth-client with type ``oauth2`` then you can update only 
+This resource allows you to update the Auth Client. If the Auth Client with type ``oauth2`` then you can update only 
 name and linked components, otherwise if the type is ``other``, then you can put in credentials any data that you want
-and add components which can use this Auth-client.
+and add components which can use this Auth Client.
 
 ### HTTP Request
 
@@ -389,7 +389,7 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 | Parameter         | Required  | Description            |
 | :---              | :---      | :---                   |
 | TENANT_ID         | yes       | Tenant ID    |
-| AUTH-CLIENT_ID    | yes       | Auth-client ID |
+| AUTH-CLIENT_ID    | yes       | Auth Client ID |
 
 
 ### Body Parameters
@@ -397,17 +397,17 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 | Parameter                                | Required | Description                     |
 | :---                                     | :---     | :---                            |
 | type                                     | yes      | Allowed value: ``auth-client`` |
-| attributes.name                          | no       | New name of the Auth-client     |
-| attributes.credentials                   | no (not allowed for ``oauth2`` type) | Auth-client credentials         |
+| attributes.name                          | no       | New name of the Auth Client     |
+| attributes.credentials                   | no (not allowed for ``oauth2`` type) | Auth Client credentials         |
 | relationships.components.data[].component.type | no | Allowed value: ``component`` |
 | relationships.components.data[].component.id | no | Component ID |
 
 ### Returns
 
-Returns the updated auth-client object.
+Returns the updated Auth Client object.
 
 
-## Delete Auth-client
+## Delete Auth Client
 
 > Example Request:
 
@@ -418,7 +418,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID} \
 ```
 
 
-This resource allows you to delete an Auth-client. You can't delete an Auth-client, while it has one or more secrets 
+This resource allows you to delete an Auth Client. You can't delete an Auth Client, while it has one or more secrets 
 attached.
 
 ### HTTP Request
@@ -427,14 +427,14 @@ attached.
 
 #### Authorization
 
-This request is authorized for the tenant's scope members with the `tenants.auth_clients.delete` permission.
+This request is authorized for the Tenant's scope members with the `tenants.auth_clients.delete` permission.
 
 ### URL Parameters
 
 | Parameter      | Required | Description         |
 | :--------      | :------- | :----------         |
 | TENANT_ID      | yes      | Tenant ID |
-| AUTH-CLIENT_ID | yes      | Auth-client ID      |
+| AUTH-CLIENT_ID | yes      | Auth Client ID      |
 
 > Example Response:
 
