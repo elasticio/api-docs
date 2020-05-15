@@ -1,4 +1,9 @@
-# Auth Clients
+# Auth Clients (Experimental)
+
+ <aside class="warning">
+ <b>The Auth Clients section is an experimental API</b>
+ </aside>
+
  
 In order to use an OAuth2 based Component in the platform it is required to register a client at the authorization 
 server. Upon registration the authorization server issues the registered client an identifier (client ID) and a secret.
