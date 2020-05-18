@@ -37,9 +37,9 @@ Content-Type: application/json
         "type": "oauth2",
         "name": "Auth client",
         "credentials": {
-          "client_id": '{CLIENT_ID}',
-          "client_secret": '{CLIENT_SECRET}',
-          "refresh_token_url": 'http://example.com'
+          "client_id": "{CLIENT_ID}",
+          "client_secret": "{CLIENT_SECRET}",
+          "refresh_token_url": "http://example.com"
         }
       },
       "relationships": {
@@ -116,9 +116,9 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients \
          "type":"oauth2",
          "name":"Auth client",
          "credentials":{
-           "client_id": '{CLIENT_ID}',
-           "client_secret": '{CLIENT_SECRET}',
-           "refresh_token_url": 'http://example.com'
+           "client_id": "{CLIENT_ID}",
+           "client_secret": "{CLIENT_SECRET}",
+           "refresh_token_url": "http://example.com"
          }
        },
        "components":{
@@ -149,9 +149,9 @@ Content-Type: application/json
       "type": "oauth2",
       "name": "Auth client",
       "credentials": {
-        "client_id": '{CLIENT_ID}',
-        "client_secret": '{CLIENT_SECRET}',
-        "refresh_token_url": 'http://example.com'
+        "client_id": "{CLIENT_ID}",
+        "client_secret": "{CLIENT_SECRET}",
+        "refresh_token_url": "http://example.com"
       }
     },
     "relationships": {
@@ -206,9 +206,9 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 | attributes.name                          | yes      | Auth Client name                |
 | attributes.type                          | yes      | Auth Client type. May be any of: ``oauth2``, ``other``|
 | attributes.credentials                   | yes      | Auth Client credentials |
-| attributes.credentials.client_id         | yes(if ``attributes.type`` is ``oauth2``) | Auth Client client ID |
-| attributes.credentials.client_secret     | yes(if ``attributes.type`` is ``oauth2``) | Auth Client client secret |
-| attributes.credentials.refresh_token_url | yes(if ``attributes.type`` is ``oauth2``) | Auth Client refresh token URL |
+| attributes.credentials.client_id         | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client ID |
+| attributes.credentials.client_secret     | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client secret |
+| attributes.credentials.refresh_token_url | yes (if ``attributes.type`` is ``oauth2``) | Auth Client refresh token URL |
 | relationships.components.data[].component.type | yes | Allowed value: ``component`` |
 | relationships.components.data[].component.id | yes | Component ID |
 
@@ -243,9 +243,9 @@ Content-Type: application/json
       "type": "oauth2",
       "name": "Auth client",
       "credentials": {
-        "client_id": '{CLIENT_ID}',
-        "client_secret": '{CLIENT_SECRET}',
-        "refresh_token_url": 'http://example.com'
+        "client_id": "{CLIENT_ID}",
+        "client_secret": "{CLIENT_SECRET}",
+        "refresh_token_url": "http://example.com"
       }
     },
     "relationships": {
@@ -290,8 +290,8 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 
 | Parameter      | Required | Description            |
 | :---           | :---     | :---                   |
-| TENANT_ID      | Yes      | Tenant ID      |
-| AUTH-CLIENT_ID | Yes      | Auth Client ID |
+| TENANT_ID      | yes      | Tenant ID      |
+| AUTH-CLIENT_ID | yes      | Auth Client ID |
 
 
 ### Returns
@@ -345,9 +345,9 @@ Content-Type: application/json
          "type":"oauth2",
          "name":"Auth client",
          "credentials":{
-           "client_id": '{CLIENT_ID}',
-           "client_secret": '{CLIENT_SECRET}',
-           "refresh_token_url": 'http://example.com'
+           "client_id": "{CLIENT_ID}",
+           "client_secret": "{CLIENT_SECRET}",
+           "refresh_token_url": "http://example.com"
          }
       },
       "relationships":{
