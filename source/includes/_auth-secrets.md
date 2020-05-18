@@ -1,4 +1,4 @@
-# Auth Secrets
+# Auth Secrets (Experimental)
 
  <aside class="warning">
  <b>The Auth Secrets section is an experimental API</b>
@@ -39,9 +39,9 @@ Content-Type: application/json
             "name":"Auth secret",
             "state":"ready",
             "credentials":{
-              "access_token": '{ACCESS_TOKEN}',
-              "refresh_token": '{REFRESH_TOKEN}',
-              "expires_in": '1000000'
+              "access_token": "{ACCESS_TOKEN}",
+              "refresh_token": "{REFRESH_TOKEN}",
+              "expires_in": "{EXPIRES_IN}"
             }
          },
          "relationships":{
@@ -130,9 +130,9 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets \
           "state":"error",
           "error":"Something went technical wrong",
           "credentials":{
-            "access_token": '{ACCESS_TOKEN}',
-            "refresh_token": '{REFRESH_TOKEN}',
-            "expires_in": '1000000'
+            "access_token": "{ACCESS_TOKEN}",
+            "refresh_token": "{REFRESH_TOKEN}",
+            "expires_in": "{EXPIRES_IN}"
           }
        },
        "relationships":{
@@ -163,9 +163,9 @@ Content-Type: application/json
         "state":"error",
         "error":"Something went technical wrong",
         "credentials":{
-          "access_token": '{ACCESS_TOKEN}',
-          "refresh_token": '{REFRESH_TOKEN}',
-          "expires_in": '1000000'
+          "access_token": "{ACCESS_TOKEN}",
+          "refresh_token": "{REFRESH_TOKEN}",
+          "expires_in": "{EXPIRES_IN}"
         }
      },
      "relationships":{
@@ -233,9 +233,9 @@ This request is authorized for the Workspace's scope members with the `workspace
 | attributes.state                         | yes      | Auth Secret type. May be any of: ``ready``, ``error``|
 | attributes.error                         | no       | Auth Secret error |
 | attributes.credentials                   | yes      | Auth Secret credentials |
-| attributes.credentials.access_token      | yes(if ``auth-client`` is ``oauth2``) | Auth Secret access token |
-| attributes.credentials.refresh_token     | yes(if ``auth-client`` is ``oauth2``) | Auth Secret refresh token |
-| attributes.credentials.expires_in        | yes(if ``auth-client`` is ``oauth2``) | Auth Secret expires in |
+| attributes.credentials.access_token      | yes (if ``auth-client`` is ``oauth2``) | Auth Secret access token |
+| attributes.credentials.refresh_token     | yes (if ``auth-client`` is ``oauth2``) | Auth Secret refresh token |
+| attributes.credentials.expires_in        | yes (if ``auth-client`` is ``oauth2``) | Auth Secret expires in |
 | relationships.auth_client.data.type      | yes       | Allowed value: ``auth-client``  |
 | relationships.auth_client.data.id        | yes       | Auth Client ID |
 
@@ -273,9 +273,9 @@ Content-Type: application/json
         "name": "Auth secret",
         "state": "ready",
         "credentials": {
-          "access_token": '{ACCESS_TOKEN}',
-          "refresh_token": '{REFRESH_TOKEN}',
-          "expires_in": '1000000'
+          "access_token": "{ACCESS_TOKEN}",
+          "refresh_token": "{REFRESH_TOKEN}",
+          "expires_in": "{EXPIRES_IN}"
         }
       },
       "relationships": {
@@ -364,9 +364,9 @@ Content-Type: application/json
       "state": "error",
       "error": "Something went technical wrong",
       "credentials": {
-        "access_token": '{ACCESS_TOKEN}',
-        "refresh_token": '{REFRESH_TOKEN}',
-        "expires_in": '1000000'
+        "access_token": "{ACCESS_TOKEN}",
+        "refresh_token": "{REFRESH_TOKEN}",
+        "expires_in": "{EXPIRES_IN}"
       }
     },
     "relationships": {
@@ -421,8 +421,8 @@ This request is authorized for the workspace's scope members with the `workspace
 
 | Parameter      | Required | Description            |
 | :---           | :---     | :---                   |
-| WORKSPACE_ID   | Yes      | Workspace ID   |
-| AUTH-SECRET_ID | Yes      | Auth Secret ID |
+| WORKSPACE_ID   | yes      | Workspace ID   |
+| AUTH-SECRET_ID | yes      | Auth Secret ID |
 
 
 ### Returns
@@ -450,9 +450,9 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID} \
           "state": "error",
           "error": "Something went technical wrong",
           "credentials": {
-            "access_token": '{ACCESS_TOKEN}',
-            "refresh_token": '{REFRESH_TOKEN}',
-            "expires_in": '1000000'
+            "access_token": "{ACCESS_TOKEN}",
+            "refresh_token": "{REFRESH_TOKEN}",
+            "expires_in": "{EXPIRES_IN}"
           }
         },
         "auth-client": {
@@ -482,9 +482,9 @@ Content-Type: application/json
       "state": "error",
       "error": "Something went technical wrong",
       "credentials": {
-        "access_token": '{ACCESS_TOKEN}',
-        "refresh_token": '{REFRESH_TOKEN}',
-        "expires_in": '1000000'
+        "access_token": "{ACCESS_TOKEN}",
+        "refresh_token": "{REFRESH_TOKEN}",
+        "expires_in": "{EXPIRES_IN}"
       }
     },
     "relationships": {
