@@ -5,7 +5,7 @@
 > Example Request:
 
 ```shell
-curl {{ api_base_url }}/v2/stats/queues/${FLOW_ID} \
+curl {{ api_base_url }}/v2/stats/queues/{FLOW_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -45,7 +45,7 @@ This endpoint allows you to retrieve the amount of messages in input queues of a
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/stats/queues/${FLOW_ID}`
+`GET {{ api_base_url }}/v2/stats/queues/{FLOW_ID}`
 
 ### URL Parameters
 
