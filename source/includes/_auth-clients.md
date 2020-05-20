@@ -110,27 +110,29 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
     {
-     "data":{
-       "type":"auth-client",
-       "attributes":{
-         "type":"oauth2",
-         "name":"Auth client",
-         "credentials":{
-           "client_id": "{CLIENT_ID}",
-           "client_secret": "{CLIENT_SECRET}",
-           "refresh_token_url": "http://example.com"
-         }
-       },
-       "components":{
-         "data": [
-           {
-             "id":"{COMPONENT_ID}",
-             "type":"component"
-           }
-         ]
-       }
-     }
-   }'
+    "data":{
+      "type":"auth-client",
+      "attributes":{
+        "type":"oauth2",
+        "name":"Auth client",
+        "credentials":{
+          "client_id":"{CLIENT_ID}",
+          "client_secret":"{CLIENT_SECRET}",
+          "refresh_token_url":"http://example.com"
+        }
+      },
+      "relationships":{
+        "components":{
+          "data":[
+            {
+              "id":"{COMPONENT_ID}",
+              "type":"component"
+            }
+          ]
+        }
+      }
+    }
+  }'
 ```
 
 
@@ -310,23 +312,25 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID} \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
-    {
-     "data":{
-       "id":"{AUTH-CLIENT_ID}",
-       "type":"auth-client",
-       "attributes":{
-         "name":"Auth client"
-       },
-       "components": {
-         "data": [
-           {
-             "id": "{COMPONENT_ID}",
-             "type": "component"
-           }
-         ]
-       }
-     }
-   }'
+   {
+    "data":{
+      "id":"{AUTH-CLIENT_ID}",
+      "type":"auth-client",
+      "attributes":{
+        "name":"Auth client"
+      },
+      "relationships":{
+        "components":{
+          "data":[
+            {
+              "id":"{COMPONENT_ID}",
+              "type":"component"
+            }
+          ]
+        }
+      }
+    }
+  }'
 ```
 
 
