@@ -10,6 +10,8 @@ The Secret is used to expose the information that the platform needs to collect 
 - Username or other account ID
 - Password or other API keys/tokens required to authenticate
 
+Check [Create a flow](#create-a-flow) section on how to use a secret in your flow.
+
 
 ## Retrieve All Auth Secrets
 
@@ -205,8 +207,8 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to create an Auth Secret. If related Auth Client has type ``oauth2`` then ``credentials`` 
-object must contain only properties ``access_token``, ``refresh_token`` and ``expires_in``, otherwise if the type is 
+This resource allows you to create an Auth Secret. If related Auth Client has type ``oauth2`` then ``credentials``
+object must contain only properties ``access_token``, ``refresh_token`` and ``expires_in``, otherwise if the type is
 ``other``, then you can put in credentials any data that you want.
 
 ### HTTP Request
@@ -525,7 +527,7 @@ Content-Type: application/json
 ```
 
 This resource allows you to update the Auth Secret. If related Auth-client has type ``oauth2`` then ``credentials``
-object must contain only properties ``access_token``, ``refresh_token``, ``expires_in``, otherwise if the type 
+object must contain only properties ``access_token``, ``refresh_token``, ``expires_in``, otherwise if the type
 is ``other``, then you can put in credentials any data that you want.
 
 ### HTTP Request
