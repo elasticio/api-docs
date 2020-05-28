@@ -312,7 +312,7 @@ The flow with given ID
   -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json' \
    -H 'Content-Type: application/json' -d '
-   {  
+   {
     "data":{
     "attributes":{
       "default_mapper_type":"jsonata",
@@ -603,16 +603,17 @@ This resource allows you to create a new flow.
 ### Body Parameters
 
 | Parameter | Required | Description |
-| :---                                       | :---  | :---                       
-| type                                                    | yes   | A value must be ``flow`` 
-| attributes.name                                         | yes   | Flow name 
-| attributes.type                                         | yes   | Flow type. May be any of: ``ordinary``, ``long_running`` 
-| attributes.graph                                        | yes   | Flow graph representing component connections 
+| :---                                       | :---  | :---
+| type                                                    | yes   | A value must be ``flow``
+| attributes.name                                         | yes   | Flow name
+| attributes.type                                         | yes   | Flow type. May be any of: ``ordinary``, ``long_running``
+| attributes.graph                                        | yes   | Flow graph representing component connections
+| attributes.graph.nodes[].secret_id                      | no    | [Auth Secret ID](#auth-secrets-(experimental)) to use for this step. It will be passed to a component action/trigger as a part of config
 | attributes.default_mapper_type                          | yes   | The mapper type. A value must be ``jsonata`` (The *handlebars* is now deprecated)
 | attributes.nodes_config.{STEP_ID}.prefetch              | no    | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
-| attributes.nodes_config.{STEP_ID}.passthrough.disabled  | no    | This parameter toggles passthrough for a step. May be any of: ``true``, ``false`` 
-| relationships.workspace.data.id                         | yes   | An Id of the Workspace 
-| relationships.workspace.data.type                       | yes   | A value must be ``workspace``  
+| attributes.nodes_config.{STEP_ID}.passthrough.disabled  | no    | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
+| relationships.workspace.data.id                         | yes   | An Id of the Workspace
+| relationships.workspace.data.type                       | yes   | A value must be ``workspace``
 
 ### Authorization
 
@@ -787,9 +788,10 @@ This resource allows you to update the given flow. A new version of the flow wil
 | attributes.name                                         | no  | Flow name |
 | attributes.type                                         | no  | Flow type. May be any of: ``ordinary``, ``long_running`` |
 | attributes.graph                                        | no  | Flow graph representing component connections |
+| attributes.graph.nodes[].secret_id                      | no  | [Auth Secret ID](#auth-secrets-(experimental)) to use for this step. It will be passed to a component action/trigger as a part of config
 | attributes.cron                                         | no  | Cron expression representing flow timing |
 | attributes.nodes_config.{STEP_ID}.prefetch              | no  | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
-| attributes.nodes_config.{STEP_ID}.passthrough.disabled  | no  | This parameter toggles passthrough for a step. May be any of: ``true``, ``false`` 
+| attributes.nodes_config.{STEP_ID}.passthrough.disabled  | no  | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
 
 
 ### Authorization
