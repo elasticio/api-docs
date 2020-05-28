@@ -608,7 +608,7 @@ This resource allows you to create a new flow.
 | attributes.name                                         | yes   | Flow name
 | attributes.type                                         | yes   | Flow type. May be any of: ``ordinary``, ``long_running``
 | attributes.graph                                        | yes   | Flow graph representing component connections
-| attributes.graph.nodes[].secret_id                      | no    | [Auth Secret ID](#auth-secrets-(experimental)) to use for this node. It will be passed to a component action/trigger as a part of config
+| attributes.graph.nodes[].secret_id                      | no    | [Auth Secret ID](#auth-secrets-(experimental)) to use for this step. It will be passed to a component action/trigger as a part of config
 | attributes.default_mapper_type                          | yes   | The mapper type. A value must be ``jsonata`` (The *handlebars* is now deprecated)
 | attributes.nodes_config.{STEP_ID}.prefetch              | no    | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
 | attributes.nodes_config.{STEP_ID}.passthrough.disabled  | no    | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
@@ -788,7 +788,7 @@ This resource allows you to update the given flow. A new version of the flow wil
 | attributes.name                                         | no  | Flow name |
 | attributes.type                                         | no  | Flow type. May be any of: ``ordinary``, ``long_running`` |
 | attributes.graph                                        | no  | Flow graph representing component connections |
-| attributes.graph.nodes[].secret_id                      | no  | [Auth Secret ID](#auth-secrets-(experimental)) to use for this node. It will be passed to a component action/trigger as a part of config
+| attributes.graph.nodes[].secret_id                      | no  | [Auth Secret ID](#auth-secrets-(experimental)) to use for this step. It will be passed to a component action/trigger as a part of config
 | attributes.cron                                         | no  | Cron expression representing flow timing |
 | attributes.nodes_config.{STEP_ID}.prefetch              | no  | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
 | attributes.nodes_config.{STEP_ID}.passthrough.disabled  | no  | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
