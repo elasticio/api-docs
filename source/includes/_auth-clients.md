@@ -39,7 +39,8 @@ Content-Type: application/json
         "credentials": {
           "client_id": "{CLIENT_ID}",
           "client_secret": "{CLIENT_SECRET}",
-          "refresh_token_url": "http://example.com"
+          "refresh_token_url": "http://example.com",
+          "token_expires_in": 18000
         }
       },
       "relationships": {
@@ -118,7 +119,8 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients \
         "credentials":{
           "client_id":"{CLIENT_ID}",
           "client_secret":"{CLIENT_SECRET}",
-          "refresh_token_url":"http://example.com"
+          "refresh_token_url":"http://example.com",
+          "token_expires_in": 18000
         }
       },
       "relationships":{
@@ -153,7 +155,8 @@ Content-Type: application/json
       "credentials": {
         "client_id": "{CLIENT_ID}",
         "client_secret": "{CLIENT_SECRET}",
-        "refresh_token_url": "http://example.com"
+        "refresh_token_url": "http://example.com",
+        "token_expires_in": 18000
       }
     },
     "relationships": {
@@ -211,6 +214,7 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 | attributes.credentials.client_id         | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client ID |
 | attributes.credentials.client_secret     | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client secret |
 | attributes.credentials.refresh_token_url | yes (if ``attributes.type`` is ``oauth2``) | Auth Client refresh token URL |
+| attributes.credentials.token_expires_in  | no  | The value that will be set as `expires_in` in Auth Secret linked to the Auth Client after Auth Secret refresh. |
 | relationships.components.data[].component.type | yes | Allowed value: ``component`` |
 | relationships.components.data[].component.id | yes | Component ID |
 
@@ -247,7 +251,8 @@ Content-Type: application/json
       "credentials": {
         "client_id": "{CLIENT_ID}",
         "client_secret": "{CLIENT_SECRET}",
-        "refresh_token_url": "http://example.com"
+        "refresh_token_url": "http://example.com",
+        "token_expires_in": 18000
       }
     },
     "relationships": {
@@ -351,7 +356,8 @@ Content-Type: application/json
          "credentials":{
            "client_id": "{CLIENT_ID}",
            "client_secret": "{CLIENT_SECRET}",
-           "refresh_token_url": "http://example.com"
+           "refresh_token_url": "http://example.com",
+           "token_expires_in": 18000
          }
       },
       "relationships":{
@@ -407,7 +413,7 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 | :---                                     | :---     | :---                            |
 | type                                     | yes      | Allowed value: ``auth-client`` |
 | attributes.name                          | no       | New name of the Auth Client     |
-| attributes.credentials                   | no (not allowed for ``oauth2`` type) | Auth Client credentials         |
+| attributes.credentials.token_expires_in  | no       | The value that will be set as `expires_in` in Auth Secret linked to the Auth Client after Auth Secret refresh.|
 | relationships.components.data[].component.type | no | Allowed value: ``component`` |
 | relationships.components.data[].component.id | no | Component ID |
 
