@@ -322,7 +322,10 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID} \
       "id":"{AUTH-CLIENT_ID}",
       "type":"auth-client",
       "attributes":{
-        "name":"Auth client"
+        "name":"Auth client",
+        "credentials":{
+          "token_expires_in": 18000
+        }
       },
       "relationships":{
         "components":{
@@ -387,8 +390,8 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to update the Auth Client. If the Auth Client with type ``oauth2`` then you can update only 
-name and linked components, otherwise if the type is ``other``, then you can put in credentials any data that you want
+This resource allows you to update the Auth Client. If the Auth Client with type ``oauth2`` then you can update 
+name, `token_expires_in` and linked components, otherwise if the type is ``other``, then you can put in credentials any data that you want
 and add components which can use this Auth Client.
 
 ### HTTP Request
