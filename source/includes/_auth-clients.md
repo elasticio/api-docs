@@ -40,7 +40,9 @@ Content-Type: application/json
           "client_id": "{CLIENT_ID}",
           "client_secret": "{CLIENT_SECRET}",
           "refresh_token_url": "http://example.com",
-          "token_expires_in": 18000
+          "token_expires_in": 18000,
+          "token_uri": "{TOKEN_URI}",
+          "auth_uri": "{AUTH_URI}"
         }
       },
       "relationships": {
@@ -120,7 +122,9 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients \
           "client_id":"{CLIENT_ID}",
           "client_secret":"{CLIENT_SECRET}",
           "refresh_token_url":"http://example.com",
-          "token_expires_in": 18000
+          "token_expires_in": 18000,
+          "token_uri": "{TOKEN_URI}",
+          "auth_uri": "{AUTH_URI}"
         }
       },
       "relationships":{
@@ -156,7 +160,9 @@ Content-Type: application/json
         "client_id": "{CLIENT_ID}",
         "client_secret": "{CLIENT_SECRET}",
         "refresh_token_url": "http://example.com",
-        "token_expires_in": 18000
+        "token_expires_in": 18000,
+        "token_uri": "{TOKEN_URI}",
+        "auth_uri": "{AUTH_URI}"
       }
     },
     "relationships": {
@@ -215,6 +221,8 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 | attributes.credentials.client_secret     | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client secret |
 | attributes.credentials.refresh_token_url | yes (if ``attributes.type`` is ``oauth2``) | Auth Client refresh token URL |
 | attributes.credentials.token_expires_in  | no  | The value that will be set as `expires_in` in Auth Secret linked to the Auth Client after Auth Secret refresh. |
+| attributes.credentials.token_uri  | yes (if ``attributes.type`` is ``oauth2``)  | Auth Client token URI |
+| attributes.credentials.auth_uri  |  yes (if ``attributes.type`` is ``oauth2``)  | Auth Client auth URI|
 | relationships.components.data[].component.type | yes | Allowed value: ``component`` |
 | relationships.components.data[].component.id | yes | Component ID |
 
@@ -252,7 +260,9 @@ Content-Type: application/json
         "client_id": "{CLIENT_ID}",
         "client_secret": "{CLIENT_SECRET}",
         "refresh_token_url": "http://example.com",
-        "token_expires_in": 18000
+        "token_expires_in": 18000,
+        "token_uri": "{TOKEN_URI}",
+        "auth_uri": "{AUTH_URI}"
       }
     },
     "relationships": {
@@ -360,7 +370,9 @@ Content-Type: application/json
            "client_id": "{CLIENT_ID}",
            "client_secret": "{CLIENT_SECRET}",
            "refresh_token_url": "http://example.com",
-           "token_expires_in": 18000
+           "token_expires_in": 18000,
+           "token_uri": "{TOKEN_URI}",
+           "auth_uri": "{AUTH_URI}"
          }
       },
       "relationships":{
