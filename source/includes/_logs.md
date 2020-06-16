@@ -1,9 +1,4 @@
-# Logs (Experimental)
-
- <aside class="warning">
- <b>The Logs section is an experimental API</b>
- </aside>
-
+# Logs 
 
 ## Retrieve all Workspace logs
 
