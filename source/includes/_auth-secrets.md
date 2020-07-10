@@ -134,7 +134,8 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets \
           "credentials":{
             "access_token": "{ACCESS_TOKEN}",
             "refresh_token": "{REFRESH_TOKEN}",
-            "expires_in": "{EXPIRES_IN}"
+            "expires_in": "{EXPIRES_IN}",
+            "additional_params": "{ADDITIONAL_PARAMS}"
           }
        },
        "relationships":{
@@ -167,7 +168,8 @@ Content-Type: application/json
         "credentials":{
           "access_token": "{ACCESS_TOKEN}",
           "refresh_token": "{REFRESH_TOKEN}",
-          "expires_in": "{EXPIRES_IN}"
+          "expires_in": "{EXPIRES_IN}",
+          "additional_params": "{ADDITIONAL_PARAMS}"
         }
      },
      "relationships":{
@@ -238,6 +240,7 @@ This request is authorized for the Workspace's scope members with the `workspace
 | attributes.credentials.access_token      | yes (if ``auth-client`` is ``oauth2``) | Auth Secret access token |
 | attributes.credentials.refresh_token     | yes (if ``auth-client`` is ``oauth2``) | Auth Secret refresh token |
 | attributes.credentials.expires_in        | yes (if ``auth-client`` is ``oauth2``) | Auth Secret expires in |
+| attributes.credentials.additional_params | no (if ``auth-client`` is ``oauth2``) | Auth Secret additional parameters |
 | relationships.auth_client.data.type      | yes       | Allowed value: ``auth-client``  |
 | relationships.auth_client.data.id        | yes       | Auth Client ID |
 
