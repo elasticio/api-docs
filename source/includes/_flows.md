@@ -919,3 +919,96 @@ This resource allows you to delete a flow.
 ```shell
 HTTP/1.1 204 No Content
 ```
+
+
+## Copy Flow
+
+Endpoint provides possibility to copy flow. Flow can be copied in two modes:
+
+* as new flow
+* into existing flow
+
+Modes are mutually exclusive (see example requests)
+
+In both cases flow is copied into draft of new/existing flow. So to make flow to work draft should be published manually. That is done to avoid disruptions of already running flow (flow is not stopped or changed in any other way except draft), and because most likely flow copy will require additional configuration.
+
+Flow can be copied in any workspace and contract, of course if user has enough privileges to read original flow and has enough privileges to edit flow in destination workspace.
+
+Platform forbids to copy flow if flow components can not be used in destination context (e.g. component visibility is restricted to team, and you are copying flow in another contract)
+
+Please notice also next fact: credentials, secrets and agents are removed from flow copy. Reasons:
+- in most cases when copying flow, you need to edit this parameters (otherwise what is the sense of copying)
+- all this entities are scoped to workspace so might be invisible in destination context
+
+> Copy into existing flow example request:
+
+```shell
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
+    -X DELETE \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
+    {
+        "data": {
+            "type": "flow-copy",
+            "attributes": {
+                dest_flow_id: "{DESTINATION_FLOW_ID}"
+            }
+        }
+    }'
+```
+
+> Copy into new flow example request:
+
+```shell
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
+    -X DELETE \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
+    {
+        "data": {
+            "type": "flow-copy",
+            "relationships": {
+                "dest_workspace": {
+                    "data": {
+                        "id": "{DESTINATION_WORKSPACE_ID}",
+                        "type": "workspace"
+                    } 
+                } 
+            }
+        }
+    }'
+```
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/flows/{FLOW_ID}/copy`
+
+### URL parameters
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| FLOW_ID | yes | source flow identifier |
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :---                                                    | :--- | :--- |
+| DESTINATION_FLOW_ID | yes | destination flow identifier |
+| DESTINATION_WORKSPACE_ID | yes | destination workspace identifier |
+
+### Authorization
+- User should belong to workspace containing source workspace.
+- User should have `workspaces.flow.edit` permission in destination workspace.
+
+### Returns
+
+Returns created flow as usual (jsonapi, for example look into `Create a flow` endpoint).
+
+Please notice once again: flow is copied as draft. So in response you may get empty flow (in `copy into new flow` mode) or old flow (in `copy into exsising flow` mode), as changes are done in draft, and draft is not included in response
+
+
+
+
+
+
