@@ -983,6 +983,75 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
     }'
 ```
 
+> Example Response:
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "data":{
+    "id":"{FLOW_ID}",
+    "type":"flow",
+    "links":{
+      "self":"/v2/flows/{FLOW_ID}"
+    },
+    "attributes":{
+      "api_version":"2.0",
+      "created_at":"2019-06-27T14:28:17.918Z",
+      "current_status":"inactive",
+      "default_mapper_type":"jsonata",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "graph":{
+        "nodes":[],
+        "edges":[]
+      },
+      "nodes_config": {},
+      "last_modified":"2019-06-27T14:28:17.940Z",
+      "name":"My flow",
+      "status":"inactive",
+      "type":"ordinary",
+      "updated_at":"2019-06-27T14:28:17.940Z"
+    },
+    "relationships":{
+      "user":{
+        "data":{
+          "id":"{USER_ID}",
+          "type":"user"
+        },
+        "links":{
+          "self":"/v2/users/{USER_ID}"
+        }
+      },
+      "workspace":{
+        "data":{
+          "id":"{WORKSPACE_ID}",
+          "type":"workspace"
+        },
+        "links":{
+          "self":"/v2/workspaces/{WORKSPACE_ID}"
+        }
+      },
+      "versions":{
+        "links":{
+          "related":"/v2/flows/{FLOW_ID}/versions"
+        }
+      },
+      "draft": {
+         "data": {
+           "id": "{DRAFT_ID}",
+           "type": "flow-draft"
+       },
+        "links":{
+          "self":"/v2/flows/{FLOW_ID}/versions/{FLOW_VERSION_ID}",
+          "related":"/v2/flows/{FLOW_ID}/versions/{FLOW_VERSION_ID}"
+        }
+      }
+    }
+  },
+  "meta":{}
+```
+
 ### HTTP Request
 
 `POST {{ api_base_url }}/v2/flows/{FLOW_ID}/copy`
