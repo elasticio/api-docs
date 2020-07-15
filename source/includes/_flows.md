@@ -926,7 +926,7 @@ HTTP/1.1 204 No Content
 Endpoint provides possibility to copy flow. Flow can be copied in two modes:
 
 * as new flow
-* into existing flow
+* as a draft of existing flow
 
 Modes are mutually exclusive (see example requests)
 
@@ -936,9 +936,11 @@ Flow can be copied in any workspace and contract, of course if user has enough p
 
 Platform forbids to copy flow if flow components can not be used in destination context (e.g. component visibility is restricted to team, and you are copying flow in another contract)
 
-Please notice also next fact: credentials, secrets and agents are removed from flow copy. Reasons:
+Please notice also next fact: credentials, secrets, topics and agents are removed from flow copy. Reasons:
 - in most cases when copying flow, you need to edit this parameters (otherwise what is the sense of copying)
 - all this entities are scoped to workspace so might be invisible in destination context
+
+*Note*: the copy flow with pub-sub topic is not supported yet
 
 > Copy into existing flow example request:
 
@@ -994,11 +996,11 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
 
 | Parameter | Required | Description |
 | :---                                                    | :--- | :--- |
-| DESTINATION_FLOW_ID | yes | destination flow identifier |
-| DESTINATION_WORKSPACE_ID | yes | destination workspace identifier |
+| DESTINATION_FLOW_ID | yes | destination flow identifier (DESTINATION_WORKSPACE_ID should not be specified) |
+| DESTINATION_WORKSPACE_ID | yes | destination workspace identifier (DESTINATION_FLOW_ID should not be specified) |
 
 ### Authorization
-- User should belong to workspace containing source workspace.
+- User should belong to workspace containing source flow.
 - User should have `workspaces.flow.edit` permission in destination workspace.
 
 ### Returns
