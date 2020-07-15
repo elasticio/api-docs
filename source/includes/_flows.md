@@ -921,7 +921,7 @@ HTTP/1.1 204 No Content
 ```
 
 
-## Copy Flow
+## Copy Flow (Experimental)
 
 Endpoint provides possibility to copy flow. Flow can be copied in two modes:
 
