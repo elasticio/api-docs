@@ -919,3 +919,167 @@ This resource allows you to delete a flow.
 ```shell
 HTTP/1.1 204 No Content
 ```
+
+
+## Copy Flow
+
+Endpoint provides possibility to copy flow. Flow can be copied in two modes:
+
+* as new flow
+* as a draft of existing flow
+
+Modes are mutually exclusive (see example requests)
+
+In both cases flow is copied into draft of new/existing flow. So to make flow to work draft should be published manually. That is done to avoid disruptions of already running flow (flow is not stopped or changed in any other way except draft), and because most likely flow copy will require additional configuration.
+
+Flow can be copied in any workspace and contract, of course if user has enough privileges to read original flow and has enough privileges to edit flow in destination workspace.
+
+Platform forbids to copy flow if flow components can not be used in destination context (e.g. component visibility is restricted to team, and you are copying flow in another contract)
+
+Please notice also next fact: credentials, secrets, topics and agents are removed from flow copy. Reasons:
+- in most cases when copying flow, you need to edit this parameters (otherwise what is the sense of copying)
+- all this entities are scoped to workspace so might be invisible in destination context
+
+*Note*: the copy flow with pub-sub topic is not supported yet
+
+> Copy into existing flow example request:
+
+```shell
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
+    -X DELETE \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
+    {
+        "data": {
+            "type": "flow-copy",
+            "attributes": {
+                dest_flow_id: "{DESTINATION_FLOW_ID}"
+            }
+        }
+    }'
+```
+
+> Copy into new flow example request:
+
+```shell
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
+    -X DELETE \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
+    {
+        "data": {
+            "type": "flow-copy",
+            "relationships": {
+                "dest_workspace": {
+                    "data": {
+                        "id": "{DESTINATION_WORKSPACE_ID}",
+                        "type": "workspace"
+                    } 
+                } 
+            }
+        }
+    }'
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "data":{
+    "id":"{FLOW_ID}",
+    "type":"flow",
+    "links":{
+      "self":"/v2/flows/{FLOW_ID}"
+    },
+    "attributes":{
+      "api_version":"2.0",
+      "created_at":"2019-06-27T14:28:17.918Z",
+      "current_status":"inactive",
+      "default_mapper_type":"jsonata",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "graph":{
+        "nodes":[],
+        "edges":[]
+      },
+      "nodes_config": {},
+      "last_modified":"2019-06-27T14:28:17.940Z",
+      "name":"My flow",
+      "status":"inactive",
+      "type":"ordinary",
+      "updated_at":"2019-06-27T14:28:17.940Z"
+    },
+    "relationships":{
+      "user":{
+        "data":{
+          "id":"{USER_ID}",
+          "type":"user"
+        },
+        "links":{
+          "self":"/v2/users/{USER_ID}"
+        }
+      },
+      "workspace":{
+        "data":{
+          "id":"{WORKSPACE_ID}",
+          "type":"workspace"
+        },
+        "links":{
+          "self":"/v2/workspaces/{WORKSPACE_ID}"
+        }
+      },
+      "versions":{
+        "links":{
+          "related":"/v2/flows/{FLOW_ID}/versions"
+        }
+      },
+      "draft": {
+         "data": {
+           "id": "{DRAFT_ID}",
+           "type": "flow-draft"
+       },
+        "links":{
+          "self":"/v2/flows/{FLOW_ID}/versions/{FLOW_VERSION_ID}",
+          "related":"/v2/flows/{FLOW_ID}/versions/{FLOW_VERSION_ID}"
+        }
+      }
+    }
+  },
+  "meta":{}
+```
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/flows/{FLOW_ID}/copy`
+
+### URL parameters
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| FLOW_ID | yes | source flow identifier |
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :---                                                    | :--- | :--- |
+| DESTINATION_FLOW_ID | yes | destination flow identifier (DESTINATION_WORKSPACE_ID should not be specified) |
+| DESTINATION_WORKSPACE_ID | yes | destination workspace identifier (DESTINATION_FLOW_ID should not be specified) |
+
+### Authorization
+- User should belong to workspace containing source flow.
+- User should have `workspaces.flow.edit` permission in destination workspace.
+
+### Returns
+
+Returns created flow as usual (jsonapi, for example look into `Create a flow` endpoint).
+
+Please notice once again: flow is copied as draft. So in response you may get empty flow (in `copy into new flow` mode) or old flow (in `copy into exsising flow` mode), as changes are done in draft, and draft is not included in response
+
+
+
+
+
+
