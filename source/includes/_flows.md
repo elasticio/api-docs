@@ -1067,6 +1067,7 @@ Content-Type: application/json
 | :---                                                    | :--- | :--- |
 | dest_flow_id | yes | destination flow identifier (DESTINATION_WORKSPACE_ID should not be specified) |
 | dest_workspace.data.id | yes | destination workspace identifier (DESTINATION_FLOW_ID should not be specified) |
+| topic_id | yes | Required only if flow contains Pub-Sub components.
 
 ### Authorization
 - User should belong to workspace containing source flow.
