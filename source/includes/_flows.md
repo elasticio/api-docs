@@ -1065,8 +1065,8 @@ Content-Type: application/json
 
 | Parameter | Required | Description |
 | :---                                                    | :--- | :--- |
-| DESTINATION_FLOW_ID | yes | destination flow identifier (DESTINATION_WORKSPACE_ID should not be specified) |
-| DESTINATION_WORKSPACE_ID | yes | destination workspace identifier (DESTINATION_FLOW_ID should not be specified) |
+| dest_flow_id | yes | destination flow identifier (DESTINATION_WORKSPACE_ID should not be specified) |
+| dest_workspace.data.id | yes | destination workspace identifier (DESTINATION_FLOW_ID should not be specified) |
 
 ### Authorization
 - User should belong to workspace containing source flow.
