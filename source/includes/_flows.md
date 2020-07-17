@@ -940,7 +940,6 @@ Please notice also next fact: credentials, secrets, topics and agents are remove
 - in most cases when copying flow, you need to edit this parameters (otherwise what is the sense of copying)
 - all this entities are scoped to workspace so might be invisible in destination context
 
-*Note*: the copy flow with pub-sub topic is not supported yet
 
 > Copy into existing flow example request:
 
@@ -971,6 +970,32 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
     {
         "data": {
             "type": "flow-copy",
+            "relationships": {
+                "dest_workspace": {
+                    "data": {
+                        "id": "{DESTINATION_WORKSPACE_ID}",
+                        "type": "workspace"
+                    } 
+                } 
+            }
+        }
+    }'
+```
+
+> Copy into new flow with topic_id example request:
+
+```shell
+curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
+    -X DELETE \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' -d '
+    {
+        "data": {
+            "type": "flow-copy",
+            "attributes": {
+                "topic_id": "{TOPIC_ID}"
+            },
             "relationships": {
                 "dest_workspace": {
                     "data": {
@@ -1052,6 +1077,8 @@ Content-Type: application/json
   "meta":{}
 ```
 
+
+
 ### HTTP Request
 
 `POST {{ api_base_url }}/v2/flows/{FLOW_ID}/copy`
@@ -1065,8 +1092,11 @@ Content-Type: application/json
 
 | Parameter | Required | Description |
 | :---                                                    | :--- | :--- |
-| dest_flow_id | yes | destination flow identifier (DESTINATION_WORKSPACE_ID should not be specified) |
-| dest_workspace.data.id | yes | destination workspace identifier (DESTINATION_FLOW_ID should not be specified) |
+| data.type| yes | The value must be `flow-copy` |
+| data.attributes.dest_flow_id | yes | Destination flow identifier (`dest_workspace` should not be specified) |
+| data.relationships.dest_workspace.data.id | yes | Destination workspace identifier (`dest_flow_id` should not be specified) |
+| data.relationships.dest_workspace.data.type | yes | The value must be `workspace` |
+| data.attributes.topic_id | no | Required only if flow contains Pub-Sub components. Only one topic reference allowed |
 
 ### Authorization
 - User should belong to workspace containing source flow.
@@ -1074,7 +1104,7 @@ Content-Type: application/json
 
 ### Returns
 
-Returns created flow as usual (jsonapi, for example look into `Create a flow` endpoint).
+Returns created flow-draft or the draft for existing flow. If destination flow has the existing draft it will be overwritten.
 
 Please notice once again: flow is copied as draft. So in response you may get empty flow (in `copy into new flow` mode) or old flow (in `copy into exsising flow` mode), as changes are done in draft, and draft is not included in response
 
