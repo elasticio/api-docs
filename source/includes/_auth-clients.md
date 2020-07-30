@@ -464,7 +464,7 @@ attached.
 
 ### HTTP Request
 
-``DELETE {{ api_base_url }/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}``
+``DELETE {{ api_base_url }/v2/auth-clients/{AUTH-CLIENT_ID}``
 
 #### Authorization
 
