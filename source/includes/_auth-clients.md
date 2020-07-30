@@ -8,6 +8,8 @@
 In order to use an OAuth2 based Component in the platform it is required to register a client at the authorization 
 server. Upon registration the authorization server issues the registered client an identifier (client ID) and a secret.
 These client credentials are used to create a client using the following API.
+Auth clients can be created on any level: tenant, contract or workspace which incapsulate each other (in order), i.e 
+if client is created in tenant it is available in every contract of this tenant and in every workspace.
 
 ## Retrieve All Auth Clients
 
@@ -16,7 +18,7 @@ These client credentials are used to create a client using the following API.
 
 
 ```shell
-curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients \
+curl {{ api_base_url }}/v2/auth-clients \
    -u {EMAIL}:{APIKEY} \
    -H 'Accept: application/json'
 ```
@@ -54,18 +56,18 @@ Content-Type: application/json
             }
           ]
         },
-        "tenant": {
+        "workspace": {
           "data": {
-            "id": "{TENANT_ID}",
+            "id": "{WORKSPACE_ID}",
             "type": "tenant"
           },
           "links": {
-            "self": "/v2/tenants/{TENANT_ID}"
+            "self": "/v2/workspace/{WORKSPACE_ID}"
           }
         }
       },
       "links": {
-        "self": "/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}"
+        "self": "/v2/auth-clients/{AUTH-CLIENT_ID}"
       }
     }
   ],
@@ -73,32 +75,29 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve all the Auth-clients belonging to the given Tenant.
+This resource allows you to retrieve Auth-clients.
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients`
+`GET {{ api_base_url }}/v2/auth-clients`
 
 #### Authorization
 
-This request is authorized for the tenant's scope members with the `tenants.auth_clients.get` permission.
-
-### URL Parameters
-
-| Parameter         | Required  | Description          |
-| :---              | :---      | :---                 |
-| TENANT_ID         | yes       | Tenant ID  |
+This request is authorized for the tenant's scope members with the `tenants.auth_clients.get` permission, for the contract's scope members with the `contracts.auth_clients.get`, for the workspace's scope members with the `workspaces.auth_clients.get`.
 
 ### Query Parameters
 
-| Parameter         | Required  | Description |
-| :---              | :---      | :---        |
-| filter[component] | no        | Filter the Auth Clients only for specific component. Must be `id` of `Component` |
+| Parameter         | Required  | Description                                                                                          |
+| :---              | :---      | :---                                                                                                 |
+| filter[component] | no        | Filter the Auth Clients only for specific component. Must be `id` of `Component`                     |
+| workspace_id      | no        | Show auth-clients available in the given workpspace (including contract's and tenant's auth-clients) |
+| contract_id       | no        | Show auth-clients available in the given contract (including tenant's auth-clients)                  |
+| tenant_id         | no        | Show auth-clients available in the given tenant                                                      |
 
 
 ### Returns
 
-Returns all the Auth-clients belonging to the given Tenant.
+Returns list of the Auth-clients. If no scope parameter is set (`workspace_id` or `contract_id` or `tenant_id`) then user's tenant Auth-clients returned.
 
 
 ## Create Auth Client
@@ -108,7 +107,7 @@ Returns all the Auth-clients belonging to the given Tenant.
 
 
 ```shell
-curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients \
+curl {{ api_base_url }}/v2/auth-clients \
    -X POST \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
@@ -126,13 +125,28 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients \
           "token_uri": "{TOKEN_URI}",
           "auth_uri": "{AUTH_URI}"
         }
-      },
+      },## Query Parameters
+
+| Parameter         | Required  | Description                                                                                          |
+| :---              | :---      | :---                                                                                                 |
+| filter[component] | no        | Filter the Auth Clients only for specific component. Must be `id` of `Component`                     |
+| workspace_id      | no        | Show auth-clients available in the given workpspace (including contract's and tenant's auth-clients) |
+| contract_id       | no        | Show auth-clients available in the given contract (including tenant's auth-clients)                  |
+| tenant_id         | no        | Show auth-clients available in the given tenant                                                      |
       "relationships":{
         "components":{
           "data":[
             {
               "id":"{COMPONENT_ID}",
               "type":"component"
+            }
+          ]
+        },
+        "workspace":{
+          "data":[
+            {
+              "id":"{WORKSPACE_ID}",
+              "type":"workspace"
             }
           ]
         }
@@ -174,39 +188,33 @@ Content-Type: application/json
           }
         ]
       },
-      "tenant": {
+      "workspace": {
         "data": {
-          "id": "{TENANT_ID}",
-          "type": "tenant"
+          "id": "{WORKSPACE_ID}",
+          "type": "workspace"
         },
         "links": {
-          "self": "/v2/tenants/{TENANT_ID}"
+          "self": "/v2/workspaces/{TENANT_ID}"
         }
       }
     },
     "links": {
-      "self": "/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}"
+      "self": "/v2/auth-clients/{AUTH-CLIENT_ID}"
     }
   },
   "meta": {}
 }
 ```
 
-This resource allows you to create an Auth-client.
+This resource allows you to create an Auth-client. Scope where client is created is controlled by corresponding relationship: `workspace`, `contract` or `tenant`.
 
 ### HTTP Request
 
-`POST {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients`
+`POST {{ api_base_url }}/v2/auth-clients`
 
 #### Authorization
 
-This request is authorized for the tenant's scope members with the `tenants.auth_clients.create` permission.
-
-### URL Parameters
-
-| Parameter         | Required  | Description          |
-| :---              | :---      | :---                 |
-| TENANT_ID         | yes       | Tenant ID  |
+This request is authorized for the tenant's scope members with the `tenants.auth_clients.create` permission, for the contract's scope members with the `contracts.auth_clients.create`, for the workspace's scope members with the `workspaces.auth_clients.create`.
 
 
 ### Body Parameters
@@ -225,6 +233,12 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 | attributes.credentials.auth_uri  |  yes (if ``attributes.type`` is ``oauth2``)  | Auth Client auth URI|
 | relationships.components.data[].component.type | yes | Allowed value: ``component`` |
 | relationships.components.data[].component.id | yes | Component ID |
+| relationships.tenant.data.type | no | Allowed value: ``tenant`` |
+| relationships.tenant.data.id | no | Tenant ID |
+| relationships.contract.data.type | no | Allowed value: ``contract`` |
+| relationships.contract.data.id | no | Contract ID |
+| relationships.workspace.data.type | no | Allowed value: ``workspace`` |
+| relationships.workspace.data.id | no | Workspace ID |
 
 ### Returns
 
@@ -237,7 +251,7 @@ Returns the created Auth Client object.
 
 
 ```shell
-curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID} \
+curl {{ api_base_url }}/v2/auth-clients/{AUTH-CLIENT_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -274,10 +288,10 @@ Content-Type: application/json
           }
         ]
       },
-      "tenant": {
+      "workspace": {
         "data": {
-          "id": "{TENANT_ID}",
-          "type": "tenant"
+          "id": "{WORKSPACE_ID}",
+          "type": "workspace"
         },
         "links": {
           "self": "/v2/tenants/{TENANT_ID}"
@@ -285,31 +299,36 @@ Content-Type: application/json
       }
     },
     "links": {
-      "self": "/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}"
+      "self": "/v2/auth-clients/{AUTH-CLIENT_ID}"
     }
   },
   "meta": {}
 }
 ```
 
-This resource allows you to retrieve an Auth Client by its ID. If the Auth Client with given ID does not belong
-to the current Tenant, an error will be returned.
+This resource allows you to retrieve an Auth Client by its ID. Tenant's auth-clients are availa
 
 ### HTTP Request
 
-`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}`
+`GET {{ api_base_url }}/v2/auth-clients/{AUTH-CLIENT_ID}`
 
 #### Authorization
 
-This request is authorized for the tenant's scope members with the `tenants.auth_clients.get` permission.
+This request is authorized for the tenant's scope members with the `tenants.auth_clients.get` permission, for the contract's scope members with the `contracts.auth_clients.get`, for the workspace's scope members with the `workspaces.auth_clients.get`.
 
 ### URL Parameters
 
 | Parameter      | Required | Description            |
 | :---           | :---     | :---                   |
-| TENANT_ID      | yes      | Tenant ID      |
-| AUTH-CLIENT_ID | yes      | Auth Client ID |
+| AUTH-CLIENT_ID | yes      | Auth Client ID         |
 
+### Query Parameters
+
+| Parameter         | Required  | Description                                                                                          |
+| :---              | :---      | :---                                                                                                 |
+| workspace_id      | no        | Show auth-client available in the given workspace |
+| contract_id       | no        | Show auth-client available in the given contract (including tenant's auth-clients)                  |
+| tenant_id       | no        | Show auth-client available in the given tenant                  |
 
 ### Returns
 
@@ -323,7 +342,7 @@ The Auth Client with given ID
 
 
 ```shell
-curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID} \
+curl {{ api_base_url }}/v2/auth-clients/{AUTH-CLIENT_ID} \
    -X PATCH \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
@@ -408,7 +427,7 @@ and add components which can use this Auth Client.
 
 ### HTTP Request
 
-`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}`
+`PATCH {{ api_base_url }}/v2/auth-clients/{AUTH-CLIENT_ID}`
 
 #### Authorization
 
@@ -418,7 +437,6 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 
 | Parameter         | Required  | Description            |
 | :---              | :---      | :---                   |
-| TENANT_ID         | yes       | Tenant ID    |
 | AUTH-CLIENT_ID    | yes       | Auth Client ID |
 
 
@@ -442,7 +460,7 @@ Returns the updated Auth Client object.
 > Example Request:
 
 ```shell
-curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID} \
+curl {{ api_base_url }}/v2/auth-clients/{AUTH-CLIENT_ID} \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -463,7 +481,6 @@ This request is authorized for the Tenant's scope members with the `tenants.auth
 
 | Parameter      | Required | Description         |
 | :--------      | :------- | :----------         |
-| TENANT_ID      | yes      | Tenant ID |
 | AUTH-CLIENT_ID | yes      | Auth Client ID      |
 
 > Example Response:
