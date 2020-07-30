@@ -474,7 +474,6 @@ This request is authorized for the Tenant's scope members with the `tenants.auth
 
 | Parameter      | Required | Description         |
 | :--------      | :------- | :----------         |
-| TENANT_ID      | yes      | Tenant ID |
 | AUTH-CLIENT_ID | yes      | Auth Client ID      |
 
 > Example Response:
