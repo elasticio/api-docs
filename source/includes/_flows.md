@@ -325,7 +325,7 @@ The flow with given ID
           {
             "name":"",
             "description":"",
-            "command":"elasticio/simple-trigger-component:timer@latest",
+            "command":"components/simple-trigger-component:timer@latest",
             "fields":{
 
             },
@@ -337,7 +337,7 @@ The flow with given ID
           {
             "name":"My component",
             "description":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-            "command":"elasticio/code:execute@latest",
+            "command":"components/code:execute@latest",
             "fields":{
               "code":"{{Put your custom Node.js code here}}"
             },
@@ -461,7 +461,7 @@ Content-Type: application/json
           {
             "id":"step_1",
             "component_id":"{COMPONENT_ID}",
-            "command":"elasticio/simple-trigger-component:timer@latest",
+            "command":"components/simple-trigger-component:timer@latest",
             "name":"",
             "description":"",
             "selected_data_samples":[
@@ -471,7 +471,7 @@ Content-Type: application/json
           {
             "id":"step_2",
             "component_id":"{COMPONENT_ID}",
-            "command":"elasticio/code:execute@latest",
+            "command":"components/code:execute@latest",
             "name":"My component",
             "description":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
             "agent_id":"{AGENT_ID}",
@@ -975,8 +975,8 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
                     "data": {
                         "id": "{DESTINATION_WORKSPACE_ID}",
                         "type": "workspace"
-                    } 
-                } 
+                    }
+                }
             }
         }
     }'
@@ -1001,8 +1001,8 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
                     "data": {
                         "id": "{DESTINATION_WORKSPACE_ID}",
                         "type": "workspace"
-                    } 
-                } 
+                    }
+                }
             }
         }
     }'
@@ -1107,9 +1107,3 @@ Content-Type: application/json
 Returns created flow-draft or the draft for existing flow. If destination flow has the existing draft it will be overwritten.
 
 Please notice once again: flow is copied as draft. So in response you may get empty flow (in `copy into new flow` mode) or old flow (in `copy into exsising flow` mode), as changes are done in draft, and draft is not included in response
-
-
-
-
-
-

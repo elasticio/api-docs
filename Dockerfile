@@ -10,7 +10,7 @@ ARG api_base_url="https://api.elastic.io"
 ARG product_name="elastic.io"
 ARG logo_url="https://app.elastic.io/img/logo.svg"
 ARG repo_name="elasticio"
-ARG docs_url="http://docs.elastic.io/docs"
+ARG docs_url="http://docs.elastic.io/"
 ARG favicon_url="https://app.elastic.io/favicon.ico"
 
 RUN apt-get update && \

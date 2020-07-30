@@ -63,14 +63,14 @@ HTTP header is the URL to get the results of the execution. Please see how to [p
 
 ```shell
  curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/verify-credential \
- -u {EMAIL}:{APIKEY} \ 
+ -u {EMAIL}:{APIKEY} \
  -X POST -H 'Content-Type: application/json' -d '
  {
   "data":{
     "type":"verify-credential",
     "attributes":{
       "fields":{
-        "apiKey":"elasticio"
+        "apiKey":"api_secret"
       }
     },
     "relationships":{
@@ -245,7 +245,7 @@ This request is authorized for the users with the `workspaces.flow.edit` permiss
 
 ```shell
  curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_HASH}/select-model\
- -u {EMAIL}:{APIKEY} \ 
+ -u {EMAIL}:{APIKEY} \
  -X POST -H 'Content-Type: application/json' -d '
  {
   "data":{
