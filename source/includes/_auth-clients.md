@@ -299,7 +299,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve an Auth Client by its ID. Tenant's auth-clients are availa
+This resource allows you to retrieve an Auth Client by its ID.
 
 ### HTTP Request
 
