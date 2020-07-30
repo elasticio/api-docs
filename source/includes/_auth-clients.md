@@ -125,14 +125,7 @@ curl {{ api_base_url }}/v2/auth-clients \
           "token_uri": "{TOKEN_URI}",
           "auth_uri": "{AUTH_URI}"
         }
-      },## Query Parameters
-
-| Parameter         | Required  | Description                                                                                          |
-| :---              | :---      | :---                                                                                                 |
-| filter[component] | no        | Filter the Auth Clients only for specific component. Must be `id` of `Component`                     |
-| workspace_id      | no        | Show auth-clients available in the given workpspace (including contract's and tenant's auth-clients) |
-| contract_id       | no        | Show auth-clients available in the given contract (including tenant's auth-clients)                  |
-| tenant_id         | no        | Show auth-clients available in the given tenant                                                      |
+      },
       "relationships":{
         "components":{
           "data":[
@@ -481,6 +474,7 @@ This request is authorized for the Tenant's scope members with the `tenants.auth
 
 | Parameter      | Required | Description         |
 | :--------      | :------- | :----------         |
+| TENANT_ID      | yes      | Tenant ID |
 | AUTH-CLIENT_ID | yes      | Auth Client ID      |
 
 > Example Response:
