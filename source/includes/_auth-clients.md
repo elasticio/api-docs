@@ -424,7 +424,7 @@ and add components which can use this Auth Client.
 
 #### Authorization
 
-This request is authorized for the tenant's scope members with the `tenants.auth_clients.edit` permission.
+This request is authorized for members with appropriate permission.
 
 ### URL Parameters
 
@@ -468,13 +468,12 @@ attached.
 
 #### Authorization
 
-This request is authorized for the Tenant's scope members with the `tenants.auth_clients.delete` permission.
+This request is authorized for members with appropriate permission.
 
 ### URL Parameters
 
 | Parameter      | Required | Description         |
 | :--------      | :------- | :----------         |
-| TENANT_ID      | yes      | Tenant ID |
 | AUTH-CLIENT_ID | yes      | Auth Client ID      |
 
 > Example Response:
