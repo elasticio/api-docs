@@ -228,12 +228,14 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 | attributes.credentials.auth_uri  |  yes (if ``attributes.type`` is ``oauth2``)  | Auth Client auth URI|
 | relationships.components.data[].component.type | yes | Allowed value: ``component`` |
 | relationships.components.data[].component.id | yes | Component ID |
-| relationships.tenant.data.type | no | Allowed value: ``tenant`` |
-| relationships.tenant.data.id | no | Tenant ID |
-| relationships.contract.data.type | no | Allowed value: ``contract`` |
-| relationships.contract.data.id | no | Contract ID |
-| relationships.workspace.data.type | no | Allowed value: ``workspace`` |
-| relationships.workspace.data.id | no | Workspace ID |
+| relationships.tenant.data.type | yes<sup>*</sup> | Allowed value: ``tenant`` |
+| relationships.tenant.data.id | yes<sup>*</sup> | Tenant ID |
+| relationships.contract.data.type | yes<sup>*</sup> | Allowed value: ``contract`` |
+| relationships.contract.data.id | yes<sup>*</sup> | Contract ID |
+| relationships.workspace.data.type | yes<sup>*</sup> | Allowed value: ``workspace`` |
+| relationships.workspace.data.id | yes<sup>*</sup> | Workspace ID |
+
+<sup>*</sup> - one of `tenant`, `contract` or `workspace` relation is required.
 
 ### Returns
 
