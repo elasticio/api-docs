@@ -59,7 +59,7 @@ Content-Type: application/json
         "workspace": {
           "data": {
             "id": "{WORKSPACE_ID}",
-            "type": "tenant"
+            "type": "workspace"
           },
           "links": {
             "self": "/v2/workspace/{WORKSPACE_ID}"
@@ -85,7 +85,7 @@ This resource allows you to retrieve Auth-clients.
 
 This request is authorized with one of the `tenants.auth_clients.get`, `contracts.auth_clients.get` or `workspaces.auth_clients.get`. Each permission allows to list Auth Clients in particular scope inclusively: `tenants.auth_clients.get` allows to list tenant's clients, `contracts.auth_clients.get` allows to list tenant's and all tenant's contracts clients, `workspaces.auth_clients.get` allows to list all tenant's, contracts' and workspaces' clients.
 
-`auth_clients.get` permissions are also used to authorze access to Auth Client's `credentials` field: one can see Auth Client's `credential` only if client's scope and permission's scope match, i.e. `credentials` of tenant's Auth Client are visible for users only with `tenants.auth_clients.get` permissions, though tenant Auth Client itself is visible for users with `workspaces.auth_clients.get`.
+`auth_clients.get` permissions are also used to authorize access to Auth Client's `credentials` field: one can see Auth Client's `credential` only if client's scope and permission's scope match, i.e. `credentials` of tenant's Auth Client are visible for users only with `tenants.auth_clients.get` permissions, though tenant Auth Client itself is visible for users with `workspaces.auth_clients.get`.
 
 ### Query Parameters
 
@@ -189,7 +189,7 @@ Content-Type: application/json
           "type": "workspace"
         },
         "links": {
-          "self": "/v2/workspaces/{TENANT_ID}"
+          "self": "/v2/workspaces/{WORKSPACE_ID}"
         }
       }
     },
@@ -311,9 +311,9 @@ This resource allows you to retrieve an Auth Client by its ID.
 
 This request is authorized with one of the `tenants.auth_clients.get`, `contracts.auth_clients.get` or `workspaces.auth_clients.get`. Each permission allows to get Auth Client in particular scope inclusively: `tenants.auth_clients.get` allows to get tenant's client, `contracts.auth_clients.get` allows to get tenant's and all tenant's contracts clients, `workspaces.auth_clients.get` allows to get tenant's, contracts' and workspaces' clients.
 
-`auth_clients.get` permissions are also used to authorze access to Auth Client's `credentials` field: one can see Auth Client's `credential` only if client's scope and permission's scope match, i.e. `credentials` of tenant's Auth Client are visible for users only with `tenants.auth_clients.get` permissions, though tenant Auth Client itself is visible for users with `workspaces.auth_clients.get`.
+`auth_clients.get` permissions are also used to authorize access to Auth Client's `credentials` field: one can see Auth Client's `credential` only if client's scope and permission's scope match, i.e. `credentials` of tenant's Auth Client are visible for users only with `tenants.auth_clients.get` permissions, though tenant Auth Client itself is visible for users with `workspaces.auth_clients.get`.
 
-To specify scope of request one of `workspace_id`, `contract_id` or `tenant_id` query parameters is used. For exmaple, tenant auth client can be retreived by id if user has `workspaces.auth_clients.get` permission in one of the tenant's workspaces, so to specify those workspace `workspace_id` query parmater is used, without scope parameter specified permission can't be checked and such request will be rejected.
+To specify scope of request one of `workspace_id`, `contract_id` or `tenant_id` query parameters is used. For example, tenant auth client can be retreived by id if user has `workspaces.auth_clients.get` permission in one of the tenant's workspaces, so to specify those workspace `workspace_id` query parameter is used, without scope parameter specified permission can't be checked and such request will be rejected.
 
 ### URL Parameters
 
@@ -413,7 +413,7 @@ Content-Type: application/json
          }
       },
      "links":{
-       "self":"/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}"
+       "self":"/v2/auth-clients/{AUTH-CLIENT_ID}"
      }
    },
    "meta":{}
