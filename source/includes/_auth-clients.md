@@ -9,7 +9,7 @@ In order to use an OAuth2 based Component in the platform it is required to regi
 server. Upon registration the authorization server issues the registered client an identifier (client ID) and a secret.
 These client credentials are used to create a client using the following API.
 Auth clients can be created on any level: tenant, contract or workspace which incapsulate each other (in order), i.e 
-if client is created in tenant it is available in every contract of this tenant and in every workspace.
+client created on tenant level is available to use for creating secrets in any workspace of the tenant.
 
 ## Retrieve All Auth Clients
 
@@ -59,7 +59,7 @@ Content-Type: application/json
         "workspace": {
           "data": {
             "id": "{WORKSPACE_ID}",
-            "type": "tenant"
+            "type": "workspace"
           },
           "links": {
             "self": "/v2/workspace/{WORKSPACE_ID}"
@@ -83,22 +83,24 @@ This resource allows you to retrieve Auth-clients.
 
 #### Authorization
 
-This request is authorized for the tenant's scope members with the `tenants.auth_clients.get` permission, for the contract's scope members with the `contracts.auth_clients.get`, for the workspace's scope members with the `workspaces.auth_clients.get`.
+This request is authorized with one of the `tenants.auth_clients.get`, `contracts.auth_clients.get` or `workspaces.auth_clients.get`. Each permission allows to list Auth Clients in particular scope inclusively: `tenants.auth_clients.get` allows to list tenant's clients, `contracts.auth_clients.get` allows to list tenant's and all tenant's contracts clients, `workspaces.auth_clients.get` allows to list all tenant's, contracts' and workspaces' clients.
+
+`auth_clients.get` permissions are also used to authorize access to Auth Client's `credentials` field: one can see Auth Client's `credential` only if client's scope and permission's scope match, i.e. `credentials` of tenant's Auth Client are visible for users only with `tenants.auth_clients.get` permissions, though tenant Auth Client itself is visible for users with `workspaces.auth_clients.get`.
 
 ### Query Parameters
 
-| Parameter         | Required  | Description                                                                                          |
-| :---              | :---      | :---                                                                                                 |
-| filter[component] | no        | Filter the Auth Clients only for specific component. Must be `id` of `Component`                     |
-| workspace_id      | no        | Show auth-clients available in the given workpspace (including contract's and tenant's auth-clients) |
-| contract_id       | no        | Show auth-clients available in the given contract (including tenant's auth-clients)                  |
-| tenant_id         | no        | Show auth-clients available in the given tenant                                                      |
+| Parameter         | Required              | Description                                                                                          |
+| :---              | :---                  | :---                                                                                                 |
+| filter[component] | no                    | Filter the Auth Clients only for specific component. Must be `id` of `Component`                     |
+| workspace_id      | yes<sup>*</sup>       | Show Auth Clients available in the given workpspace (including contract's and tenant's auth-clients).|
+| contract_id       | yes<sup>*</sup>       | Show Auth Clients available in the given contract (including tenant's auth-clients).                 |
+| tenant_id         | yes<sup>*</sup>       | Show Auth Clients available in the given tenant.                                                     |
 
+<sup>*</sup> - only one of `workspace_id`, `contract_id`, `tenant_id` can be specified at time.
 
 ### Returns
 
-Returns list of the Auth-clients. If no scope parameter is set (`workspace_id` or `contract_id` or `tenant_id`) then user's tenant Auth-clients returned.
-
+Returns list of the Auth-clients.
 
 ## Create Auth Client
 
@@ -187,7 +189,7 @@ Content-Type: application/json
           "type": "workspace"
         },
         "links": {
-          "self": "/v2/workspaces/{TENANT_ID}"
+          "self": "/v2/workspaces/{WORKSPACE_ID}"
         }
       }
     },
@@ -226,12 +228,14 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 | attributes.credentials.auth_uri  |  yes (if ``attributes.type`` is ``oauth2``)  | Auth Client auth URI|
 | relationships.components.data[].component.type | yes | Allowed value: ``component`` |
 | relationships.components.data[].component.id | yes | Component ID |
-| relationships.tenant.data.type | no | Allowed value: ``tenant`` |
-| relationships.tenant.data.id | no | Tenant ID |
-| relationships.contract.data.type | no | Allowed value: ``contract`` |
-| relationships.contract.data.id | no | Contract ID |
-| relationships.workspace.data.type | no | Allowed value: ``workspace`` |
-| relationships.workspace.data.id | no | Workspace ID |
+| relationships.tenant.data.type | yes<sup>*</sup> | Allowed value: ``tenant`` |
+| relationships.tenant.data.id | yes<sup>*</sup> | Tenant ID |
+| relationships.contract.data.type | yes<sup>*</sup> | Allowed value: ``contract`` |
+| relationships.contract.data.id | yes<sup>*</sup> | Contract ID |
+| relationships.workspace.data.type | yes<sup>*</sup> | Allowed value: ``workspace`` |
+| relationships.workspace.data.id | yes<sup>*</sup> | Workspace ID |
+
+<sup>*</sup> - one of `tenant`, `contract` or `workspace` relation is required.
 
 ### Returns
 
@@ -244,7 +248,7 @@ Returns the created Auth Client object.
 
 
 ```shell
-curl {{ api_base_url }}/v2/auth-clients/{AUTH-CLIENT_ID} \
+curl {{ api_base_url }}/v2/auth-clients/{AUTH-CLIENT_ID}?workspace_id={WORKSPACE_ID} \
    -u {EMAIL}:{APIKEY}
 ```
 
@@ -287,7 +291,7 @@ Content-Type: application/json
           "type": "workspace"
         },
         "links": {
-          "self": "/v2/tenants/{TENANT_ID}"
+          "self": "/v2/workspaces/{WORKSPACE_ID}"
         }
       }
     },
@@ -307,7 +311,11 @@ This resource allows you to retrieve an Auth Client by its ID.
 
 #### Authorization
 
-This request is authorized for the tenant's scope members with the `tenants.auth_clients.get` permission, for the contract's scope members with the `contracts.auth_clients.get`, for the workspace's scope members with the `workspaces.auth_clients.get`.
+This request is authorized with one of the `tenants.auth_clients.get`, `contracts.auth_clients.get` or `workspaces.auth_clients.get`. Each permission allows to get Auth Client in particular scope inclusively: `tenants.auth_clients.get` allows to get tenant's client, `contracts.auth_clients.get` allows to get tenant's and all tenant's contracts clients, `workspaces.auth_clients.get` allows to get tenant's, contracts' and workspaces' clients.
+
+`auth_clients.get` permissions are also used to authorize access to Auth Client's `credentials` field: one can see Auth Client's `credential` only if client's scope and permission's scope match, i.e. `credentials` of tenant's Auth Client are visible for users only with `tenants.auth_clients.get` permissions, though tenant Auth Client itself is visible for users with `workspaces.auth_clients.get`.
+
+To specify scope of request one of `workspace_id`, `contract_id` or `tenant_id` query parameters is used. For example, tenant auth client can be retreived by id if user has `workspaces.auth_clients.get` permission in one of the tenant's workspaces, so to specify those workspace `workspace_id` query parameter is used, without scope parameter specified permission can't be checked and such request will be rejected.
 
 ### URL Parameters
 
@@ -319,9 +327,9 @@ This request is authorized for the tenant's scope members with the `tenants.auth
 
 | Parameter         | Required  | Description                                                                                          |
 | :---              | :---      | :---                                                                                                 |
-| workspace_id      | no        | Show auth-client available in the given workspace |
-| contract_id       | no        | Show auth-client available in the given contract (including tenant's auth-clients)                  |
-| tenant_id       | no        | Show auth-client available in the given tenant                  |
+| workspace_id      | no        | Show auth-client available in the given workspace (including tenant's and contract's auth-clients). |
+| contract_id       | no        | Show auth-client available in the given contract (including tenant's auth-clients).                  |
+| tenant_id         | no        | Show auth-client available in the given tenant.                  |
 
 ### Returns
 
@@ -407,7 +415,7 @@ Content-Type: application/json
          }
       },
      "links":{
-       "self":"/v2/tenants/{TENANT_ID}/auth-clients/{AUTH-CLIENT_ID}"
+       "self":"/v2/auth-clients/{AUTH-CLIENT_ID}"
      }
    },
    "meta":{}
