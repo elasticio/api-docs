@@ -945,7 +945,7 @@ Please notice also next fact: credentials, secrets, topics and agents are remove
 
 ```shell
 curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
-    -X DELETE \
+    -X POST \
     -u {EMAIL}:{APIKEY} \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' -d '
@@ -963,7 +963,7 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
 
 ```shell
 curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
-    -X DELETE \
+    -X POST \
     -u {EMAIL}:{APIKEY} \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' -d '
@@ -986,7 +986,7 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
 
 ```shell
 curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
-    -X DELETE \
+    -X POST \
     -u {EMAIL}:{APIKEY} \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' -d '
