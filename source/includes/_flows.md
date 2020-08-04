@@ -936,9 +936,11 @@ Flow can be copied in any workspace and contract, of course if user has enough p
 
 Platform forbids to copy flow if flow components can not be used in destination context (e.g. component visibility is restricted to team, and you are copying flow in another contract)
 
-Please notice also next fact: credentials, secrets, topics and agents are removed from flow copy. Reasons:
-- in most cases when copying flow, you need to edit this parameters (otherwise what is the sense of copying)
-- all this entities are scoped to workspace so might be invisible in destination context
+Please note the following facts about credentials, secrets, topics and agents used in flow:
+
+ - All these entities are not copied along with the flow if they are not accessible in the destination context.
+ - Naturally, if the flow is copied into the same workspace, these entities will be accessible to the flow draft.
+ - Topic can be replaced during copy. Read details about `data.attributes.topic_id` parameter.
 
 
 > Copy into existing flow example request:
@@ -953,7 +955,9 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
         "data": {
             "type": "flow-copy",
             "attributes": {
-                dest_flow_id: "{DESTINATION_FLOW_ID}"
+                "dest_flow_id": "{DESTINATION_FLOW_ID}",
+                "name": "{DRAFT_NAME}",
+                "topic_id": "{TOPIC_ID}"
             }
         }
     }'
@@ -970,30 +974,8 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
     {
         "data": {
             "type": "flow-copy",
-            "relationships": {
-                "dest_workspace": {
-                    "data": {
-                        "id": "{DESTINATION_WORKSPACE_ID}",
-                        "type": "workspace"
-                    }
-                }
-            }
-        }
-    }'
-```
-
-> Copy into new flow with topic_id example request:
-
-```shell
-curl {{ api_base_url }}/v2/flows/{FLOW_ID}/copy \
-    -X POST \
-    -u {EMAIL}:{APIKEY} \
-    -H 'Accept: application/json' \
-    -H 'Content-Type: application/json' -d '
-    {
-        "data": {
-            "type": "flow-copy",
             "attributes": {
+                "name": "{DRAFT_NAME}",
                 "topic_id": "{TOPIC_ID}"
             },
             "relationships": {
@@ -1097,6 +1079,15 @@ Content-Type: application/json
 | data.relationships.dest_workspace.data.id | yes | Destination workspace identifier (`dest_flow_id` should not be specified) |
 | data.relationships.dest_workspace.data.type | yes | The value must be `workspace` |
 | data.attributes.topic_id | no | Required only if flow contains Pub-Sub components. Only one topic reference allowed |
+| data.attributes.name | no | Makes possible to customize name of the draft (and flow when new flow is created) |
+
+**Notices**
+
+ 1. The topic (`data.attributes.topic_id`) must be accessible to the flow in the destination workspace, otherwise it will not be copied. 
+ 2. It's forbidden to use the `data.attributes.topic_id` parameter if flow does not contain at least one step with Pub/Sub component.
+ 3. It's forbidden to use the `data.attributes.topic_id` parameter if your flow uses more than one Pub/Sub topic in different steps. You can copy the flow if your flow has several Pub/Sub steps that uses only one topic.
+ 4. In case when the `data.attributes.topic_id` parameter is absent from your call, topics ID will be removed from a copy if it's not accessible and left intact if the topic is available in destination context.
+
 
 ### Authorization
 - User should belong to workspace containing source flow.
@@ -1107,3 +1098,5 @@ Content-Type: application/json
 Returns created flow-draft or the draft for existing flow. If destination flow has the existing draft it will be overwritten.
 
 Please notice once again: flow is copied as draft. So in response you may get empty flow (in `copy into new flow` mode) or old flow (in `copy into exsising flow` mode), as changes are done in draft, and draft is not included in response
+
+
