@@ -1067,6 +1067,7 @@ This resource allows you to update the given recipe.
 
 | Parameter                                        | Required | Description                                                        |
 | :----------------------------------------------- | :------- | :----------------------------------------------------------------- |
+| id                                               | yes      | Recipe Id must be same as url parameter                            |
 | type                                             | yes      | A value must be `recipe`                                           |
 | attributes.declarations.credentials[]            | no       | List of credentials used by steps in a flow                        |
 | attributes.declarations.variables[]              | no       | List of variables used by steps in a flow                          |
