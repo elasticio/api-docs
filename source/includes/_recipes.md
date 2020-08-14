@@ -1351,6 +1351,7 @@ Create a flow from a recipe. If the recipe contains a component, which requires 
 | Parameter                         | Required | Description                                                                     |
 | :-------------------------------- | :------- | :------------------------------------------------------------------------------ |
 | type                              | yes      | A value must be `recipe-activation-config`                                      |
+| attributes.credentials            | yes      | Specify values for credentials used by steps in a flow                          |
 | attributes.variables              | yes      | Specify values for variables which were defined in Recipe for mapping           |
 | relationships.workspace.data.id   | yes      | An Id of the Workspace                                                          |
 | relationships.workspace.data.type | yes      | A value must be `workspace`                                                     |
