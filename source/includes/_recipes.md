@@ -406,9 +406,9 @@ This resource allows you to create a new recipe.
 | Parameter                                        | Required | Description  |
 | :----------------------------------------------- | :------- | :----------- |
 | type                                             | yes      | A value must be `recipe`|
-| attributes.declarations.variables                | no       | List of variables used by steps in a flow |
-| attributes.declarations.credentials              | no       | List of credentials used by steps in a flow |
-| attributes.info.name                             | yes      | Recipe name|
+| attributes.declarations.variables[]              | no       | List of variables used by steps in a flow |
+| attributes.declarations.credentials[]            | no       | List of credentials used by steps in a flow |
+| attributes.info.title                            | yes      | Recipe title|
 | attributes.info.description                      | yes      | Recipe description |
 | attributes.info.short_description                | yes      | Recipe short description  |
 | attributes.flow_templates[].title                | yes       | Flow template title  |
@@ -1184,9 +1184,9 @@ This resource allows you to update the given recipe.
 | Parameter                                        | Required | Description                                                        |
 | :----------------------------------------------- | :------- | :----------------------------------------------------------------- |
 | type                                             | yes      | A value must be `recipe`                                           |
-| attributes.declarations.credentials              | no       | List of credentials used by steps in a flow                        |
-| attributes.declarations.variables                | no       | List of variables used by steps in a flow                          |
-| attributes.info.name                             | no       | Recipe name                                                        |
+| attributes.declarations.credentials[]            | no       | List of credentials used by steps in a flow                        |
+| attributes.declarations.variables[]              | no       | List of variables used by steps in a flow                          |
+| attributes.info.title                            | no       | Recipe title                                                       |
 | attributes.info.description                      | no       | Recipe description                                                 |
 | attributes.info.short_description                | no       | Recipe short description                                           |
 | attributes.flow_templates[].cron                 | no       | Cron expression                                                    |
