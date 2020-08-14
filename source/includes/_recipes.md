@@ -1320,18 +1320,16 @@ HTTP/1.1 201 Created
 {
   "data": {
     "relationships": {
-      "flow": {
-        "data": {
-          "type": "flow",
-          "id": "{FLOW_ID}"
-        },
-        "links": {
-          "self": "/v2/flows/{FLOW_ID}"
+      "flows": [
+        {
+          "data": {
+            "type": "flow",
+            "id": "{FLOW_ID}"
+          }
         }
-      }
+      ]
     }
-  },
-  "meta": {}
+  }
 }
 ```
 
