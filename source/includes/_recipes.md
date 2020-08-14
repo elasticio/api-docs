@@ -1075,7 +1075,7 @@ This resource allows you to update the given recipe.
 | attributes.info.short_description                | no       | Recipe short description                                           |
 | attributes.flow_templates[].cron                 | no       | Cron expression                                                    |
 | attributes.flow_templates[].graph                | yes      | Recipe graph representing component connections                    |
-| relationships.workspace.data.id                  | yes      | MUST be the same as the {RECIPE_ID}                                |
+| relationships.workspace.data.id                  | yes      | An Id of the Workspace                                             |
 | relationships.workspace.data.type                | yes      | A value must be `workspace`                                        |
 
 ### Authorization
