@@ -46,7 +46,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
           ],
           "credentials": [
             {
-              "stepId": "petstore",
+              "id": "petstore",
               "help": {
                 "description": "Credentials to access your Petstore"
               }
@@ -162,7 +162,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
           ],
           "credentials": [
             {
-              "stepId": "petstore",
+              "id": "petstore",
               "help": {
                 "description": "Credentials to access your Petstore"
               }
@@ -264,7 +264,7 @@ Content-Type: application/json
   "data": {
     "id": "{RECIPE_ID}",
     "type": "recipe",
-    "visibility": "workspace"
+    "visibility": "workspace",
     "links": {
       "self": "/v2/recipes/{RECIPE_ID}"
     },
@@ -282,7 +282,7 @@ Content-Type: application/json
         ],
         "credentials": [
           {
-            "stepId": "petstore",
+            "id": "petstore",
             "help": {
               "description": "Credentials to access your Petstore"
             }
@@ -461,7 +461,7 @@ Content-Type: application/json
   "data": {
     "id": "{RECIPE_ID}",
     "type": "recipe",
-    "visibility": "workspace"
+    "visibility": "workspace",
     "links": {
       "self": "/v2/recipes/{RECIPE_ID}"
     },
@@ -479,7 +479,7 @@ Content-Type: application/json
         ],
         "credentials": [
           {
-            "stepId": "petstore",
+            "id": "petstore",
             "help": {
               "description": "Credentials to access your Petstore"
             }
@@ -631,7 +631,7 @@ Content-Type: application/json
   "data": {
     "id": "{RECIPE_ID}",
     "type": "recipe",
-    "visibility": "workspace"
+    "visibility": "workspace",
     "links": {
       "self": "/v2/recipes/{RECIPE_ID}"
     },
@@ -649,7 +649,7 @@ Content-Type: application/json
         ],
         "credentials": [
           {
-            "stepId": "petstore",
+            "id": "petstore",
             "help": {
               "description": "Credentials to access your Petstore"
             }
@@ -801,7 +801,7 @@ Content-Type: application/json
     {
       "id": "{RECIPE_ID}",
       "type": "recipe",
-      "visibility": "workspace"
+      "visibility": "workspace",
       "links": {
         "self": "/v2/recipes/{RECIPE_ID}"
       },
@@ -819,7 +819,7 @@ Content-Type: application/json
           ],
           "credentials": [
             {
-              "stepId": "petstore",
+              "id": "petstore",
               "help": {
                 "description": "Credentials to access your Petstore"
               }
@@ -1037,7 +1037,7 @@ Content-Type: application/json
   "data": {
     "id": "{RECIPE_ID}",
     "type": "recipe",
-    "visibility": "workspace"
+    "visibility": "workspace",
     "links": {
       "self": "/v2/recipes/{RECIPE_ID}"
     },
@@ -1055,7 +1055,7 @@ Content-Type: application/json
         ],
         "credentials": [
           {
-            "stepId": "petstore",
+            "id": "petstore",
             "help": {
               "description": "Credentials to access your Petstore"
             }
@@ -1229,7 +1229,7 @@ Content-Type: application/json
   "data": {
     "id": "{RECIPE_ID}",
     "type": "recipe",
-    "visibility": "contract"
+    "visibility": "contract",
     "links": {
       "self": "/v2/recipes/{RECIPE_ID}"
     },
@@ -1247,7 +1247,7 @@ Content-Type: application/json
         ],
         "credentials": [
           {
-            "stepId": "petstore",
+            "id": "petstore",
             "help": {
               "description": "Credentials to access your Petstore"
             }
