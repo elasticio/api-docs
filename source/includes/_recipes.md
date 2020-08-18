@@ -22,7 +22,7 @@ recipes with `contract`, `tenant` and `global` access. When you create a recipe,
  
 ## Create a recipe
 
-> Example Request (without required trigger/action fields):
+> Example Request:
 
 ```shell
 curl -X POST {{ api_base_url }}/v2/recipes \
@@ -33,61 +33,97 @@ curl -X POST {{ api_base_url }}/v2/recipes \
     "data": {
       "type": "recipe",
       "attributes": {
-        "activation_config": {
-          "variables": [{
-            "title": "Email to fill a \"CC\" field",
-            "key": "cc"
-          }],
-          "credentials": [{
-            "description": "Credentials to access your Petstore",
-            "stepId": "step_1"
-          }]
+        "declarations": {
+          "variables": [
+            {
+              "id": "email",
+              "title": "Email address",
+              "help": {
+                "description": "Email to fill a \"CC\" field",
+                "link": "http://test.com/recipes/12345"
+              }
+            }
+          ],
+          "credentials": [
+            {
+              "id": "petstore",
+              "help": {
+                "description": "Credentials to access your Petstore"
+              }
+            }
+          ]
         },
-        "marketplace_content": {
+        "info": {
           "title": "My Recipe",
           "description": "# Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**.",
-          "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "help_text": "No setup required",
-          "tags": []
+          "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         },
-        "flow_template": {
-          "cron": "*/3 * * * *",
-          "graph": {
-            "nodes": [
-              {
-                "name": "Step name",
-                "description": "Step description",
-                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
-                "id": "step_1"
-              },
-              {
-                "name": "Step name",
-                "description": "Step description",
-                "command": "{{ repo_name }}/email:send@latest",
-                "fields": {
-                  "dontThrowErrorFlg": true
-                },
-                "id": "step_2"
-              }
-            ],
-            "edges": [
-              {
-                "config": {
-                  "mapper_type": "jsonata",
-                  "mapper": {
-                    "to": "pets[0].name",
-                    "cc": "$getFlowVariables().cc",
-                    "subject": "pets[0].id",
-                    "textBody": "pets[0].status"
+        "flow_templates": [
+          {
+            "cron": "*/3 * * * *",
+            "title": "My first flow template",
+            "graph": {
+              "nodes": [
+                {
+                  "id": "step_1",
+                  "name": "Step name",
+                  "credentials_id": "petstore",
+                  "description": "Step description",
+                  "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@bfa02ebf35383d98e2099b0a791a755a",
+                  "dynamic_metadata": {
+                    "field": "value"
                   },
-                  "condition": null
+                  "data_sample": {
+                    "foo": "bar"
+                  }
                 },
-                "source": "step_1",
-                "target": "step_2"
-              }
-            ]
+                {
+                  "id": "step_2",
+                  "name": "Step name",
+                  "description": "Step description",
+                  "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                  "fields": {
+                    "dontThrowErrorFlg": true
+                  },
+                  "dynamic_select_model": {
+                    "field": "value"
+                  },
+                  "data_sample": {
+                    "foo": "bar"
+                  }
+                },
+                {
+                  "id": "error_all",
+                  "name": "Error handler",
+                  "error": true,
+                  "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                  "data_sample": {
+                    "foo": "bar"
+                  }
+                }
+              ],
+              "edges": [
+                {
+                  "config": {
+                    "mapper_type": "jsonata",
+                    "mapper": {
+                      "to": "pets[0].name",
+                      "cc": "$getFlowVariables().email",
+                      "subject": "pets[0].id",
+                      "textBody": "pets[0].status"
+                    },
+                    "condition": null
+                  },
+                  "source": "step_1",
+                  "target": "step_2"
+                },
+                {
+                  "target": "error_all"
+                }
+              ]
+            }
           }
-        }
+        ]
       },
       "relationships": {
         "workspace": {
@@ -98,89 +134,8 @@ curl -X POST {{ api_base_url }}/v2/recipes \
         }
       }
     }
-  }'
-```
-
-> Example Request (with required trigger/action fields):
-
-```shell
-curl -X POST {{ api_base_url }}/v2/recipes \
-  -u {EMAIL}:{APIKEY} \
-  -H 'Accept: application/json' \
-  -H 'Content-Type: application/json' -d '
-  {
-    "data": {
-      "type": "recipe",
-      "attributes": {
-        "activation_config": {
-          "variables": [{
-            "title": "Email to fill a \"CC\" field",
-            "key": "cc"
-          }],
-          "credentials": [{
-            "description": "Credentials to access your Petstore",
-            "stepId": "step_1"
-          }]
-        },
-        "marketplace_content": {
-          "title": "My Recipe",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "help_text": "No setup required",
-          "tags": []
-        },
-        "flow_template": {
-          "cron": "*/3 * * * *",
-          "graph": {
-            "nodes": [
-              {
-                "name": "Step name",
-                "description": "Step description",
-                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
-                "fields": {
-                  "status": "pending"
-                },
-                "id": "step_1"
-              },
-              {
-                "name": "Step name",
-                "description": "Step description",
-                "command": "{{ repo_name }}/email:send@latest",
-                "fields": {
-                  "dontThrowErrorFlg": true
-                },
-                "id": "step_2"
-              }
-            ],
-            "edges": [
-              {
-                "config": {
-                  "mapper_type": "jsonata",
-                  "mapper": {
-                    "to": "pets[0].name",
-                    "cc": "$getFlowVariables().cc",
-                    "subject": "pets[0].id",
-                    "textBody": "pets[0].status"
-                  },
-                  "condition": null
-                },
-                "source": "step_1",
-                "target": "step_2"
-              }
-            ]
-          }
-        }
-      },
-      "relationships": {
-        "workspace": {
-          "data": {
-            "type": "workspace",
-            "id": "{WORKSPACE_ID}"
-          }
-        }
-      }
-    }
-  }'
+  }
+'
 ```
 
 > Example Response:
@@ -193,68 +148,102 @@ Content-Type: application/json
   "data": {
     "id": "{RECIPE_ID}",
     "type": "recipe",
+    "visibility": "workspace",
     "links": {
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
-      "visibility": "workspace",
-      "activation_config": {
-        "variables": [{
-          "title": "Email to fill a \"CC\" field",
-          "key": "cc"
-        }],
-        "credentials": [{
-          "description": "Credentials to access your Petstore",
-          "stepId": "step_1"
-        }]
+      "declarations": {
+        "variables": [
+          {
+            "id": "email",
+            "title": "Email address",
+            "help": {
+              "description": "Email to fill a \"CC\" field",
+              "link": "http://test.com/recipes/12345"
+            }
+          }
+        ],
+        "credentials": [
+          {
+            "id": "petstore",
+            "help": {
+              "description": "Credentials to access your Petstore"
+            }
+          }
+        ]
       },
-      "marketplace_content": {
+      "info": {
         "title": "My Recipe",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "help_text": "No setup required",
-        "tags": []
+        "description": "# Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**.",
+        "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
-      "flow_template": {
-        "cron": "*/3 * * * *",
-        "graph": {
-          "edges": [
-            {
-              "config": {
-                "condition": null,
-                "mapper": {
-                  "textBody": "pets[0].status",
-                  "subject": "pets[0].id",
-                  "to": "pets[0].name",
-                  "cc": "$getFlowVariables().cc"
+      "flow_templates": [
+        {
+          "cron": "*/3 * * * *",
+          "title": "My first flow template",
+          "graph": {
+            "nodes": [
+              {
+                "id": "step_1",
+                "name": "Step name",
+                "credentials_id": "petstore",
+                "description": "Step description",
+                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@bfa02ebf35383d98e2099b0a791a755a",
+                "dynamic_metadata": {
+                  "field": "value"
                 },
-                "mapper_type": "jsonata"
+                "data_sample": {
+                  "foo": "bar"
+                }
               },
-              "source": "step_1",
-              "target": "step_2"
-            }
-          ],
-          "nodes": [
-            {
-              "name": "Step name",
-              "description": "Step description",
-              "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
-              "id": "step_1"
-            },
-            {
-              "name": "Step name",
-              "description": "Step description",
-              "command": "{{ repo_name }}/email:send@latest",
-              "fields": {
-                "dontThrowErrorFlg": true
+              {
+                "id": "step_2",
+                "name": "Step name",
+                "description": "Step description",
+                "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                "fields": {
+                  "dontThrowErrorFlg": true
+                },
+                "dynamic_select_model": {
+                  "field": "value"
+                },
+                "data_sample": {
+                  "foo": "bar"
+                }
               },
-              "id": "step_2"
-            }
-          ]
+              {
+                "id": "error_all",
+                "name": "Error handler",
+                "error": true,
+                "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                "data_sample": {
+                  "foo": "bar"
+                }
+              }
+            ],
+            "edges": [
+              {
+                "config": {
+                  "mapper_type": "jsonata",
+                  "mapper": {
+                    "to": "pets[0].name",
+                    "cc": "$getFlowVariables().email",
+                    "subject": "pets[0].id",
+                    "textBody": "pets[0].status"
+                  },
+                  "condition": null
+                },
+                "source": "step_1",
+                "target": "step_2"
+              },
+              {
+                "target": "error_all"
+              }
+            ]
+          }
         }
-      },
-      "created_at": "2019-09-30T11:22:19.822Z",
-      "updated_at": "2019-09-30T11:22:19.822Z"
+      ]
     },
     "relationships": {
       "user": {
@@ -285,9 +274,9 @@ Content-Type: application/json
         }
       }
     }
-  },
-  "meta": {}
+  }
 }
+
 ```
 
 This resource allows you to create a new recipe.
@@ -301,14 +290,14 @@ This resource allows you to create a new recipe.
 | Parameter                                        | Required | Description  |
 | :----------------------------------------------- | :------- | :----------- |
 | type                                             | yes      | A value must be `recipe`|
-| attributes.activation_config.variables           | no       | List of variables used by steps in a flow |
-| attributes.activation_config.credentials         | no       | List of credentials used by steps in a flow |
-| attributes.marketplace_content.name              | yes      | Recipe name|
-| attributes.marketplace_content.description       | yes      | Recipe description |
-| attributes.marketplace_content.short_description | yes      | Recipe short description  |
-| attributes.marketplace_content.help_text         | no       | Recipe help text  |
-| attributes.flow_template.cron                    | no       | Cron expression  |
-| attributes.flow_template.graph                   | yes      | Recipe graph representing component connections  |
+| attributes.declarations.variables[]              | no       | List of variables used by steps in a flow |
+| attributes.declarations.credentials[]            | no       | List of credentials used by steps in a flow |
+| attributes.info.title                            | yes      | Recipe title|
+| attributes.info.description                      | yes      | Recipe description |
+| attributes.info.short_description                | yes      | Recipe short description  |
+| attributes.flow_templates[].title                | yes       | Flow template title  |
+| attributes.flow_templates[].cron                 | no       | Cron expression  |
+| attributes.flow_templates[].graph                | yes      | Recipe graph representing component connections  |
 | relationships.workspace.data.id                  | yes      | An Id of the Workspace  |
 | relationships.workspace.data.type                | yes      | A value must be `workspace` |
 
@@ -356,64 +345,102 @@ Content-Type: application/json
   "data": {
     "id": "{RECIPE_ID}",
     "type": "recipe",
+    "visibility": "workspace",
     "links": {
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
-      "visibility": "workspace",
-      "activation_config": {
-        "credentials": [{
-          "description": "",
-          "stepId": "step_1"
-        }]
+      "declarations": {
+        "variables": [
+          {
+            "id": "email",
+            "title": "Email address",
+            "help": {
+              "description": "Email to fill a \"CC\" field",
+              "link": "http://test.com/recipes/12345"
+            }
+          }
+        ],
+        "credentials": [
+          {
+            "id": "petstore",
+            "help": {
+              "description": "Credentials to access your Petstore"
+            }
+          }
+        ]
       },
-      "marketplace_content": {
-        "title": "Recipe based on the flow 'My flow'",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "help_text": "Recipe based on the flow 'My flow'",
-        "tags": []
+      "info": {
+        "title": "My Recipe",
+        "description": "# Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**.",
+        "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
-      "flow_template": {
-        "cron": "*/3 * * * *",
-        "graph": {
-          "edges": [
-            {
-              "config": {
-                "condition": null,
-                "mapper": {
-                  "textBody": "pets[0].status",
-                  "subject": "pets[0].id",
-                  "to": "pets[0].name",
-                  "cc": "cc"
+      "flow_templates": [
+        {
+          "cron": "*/3 * * * *",
+          "title": "My first flow template",
+          "graph": {
+            "nodes": [
+              {
+                "id": "step_1",
+                "name": "Step name",
+                "credentials_id": "petstore",
+                "description": "Step description",
+                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@bfa02ebf35383d98e2099b0a791a755a",
+                "dynamic_metadata": {
+                  "field": "value"
                 },
-                "mapper_type": "jsonata"
+                "data_sample": {
+                  "foo": "bar"
+                }
               },
-              "source": "step_1",
-              "target": "step_2"
-            }
-          ],
-          "nodes": [
-            {
-              "name": "Step name",
-              "description": "Step description",
-              "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@1eb65b1721c45e746c25d64e3ab85888f18f31c5",
-              "id": "step_1"
-            },
-            {
-              "name": "Step name",
-              "description": "Step description",
-              "command": "{{ repo_name }}/email:send@3746623b98821a291fb1e132f1278978c5f98f9b",
-              "fields": {
-                "dontThrowErrorFlg": true
+              {
+                "id": "step_2",
+                "name": "Step name",
+                "description": "Step description",
+                "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                "fields": {
+                  "dontThrowErrorFlg": true
+                },
+                "dynamic_select_model": {
+                  "field": "value"
+                },
+                "data_sample": {
+                  "foo": "bar"
+                }
               },
-              "id": "step_2"
-            }
-          ]
+              {
+                "id": "error_all",
+                "name": "Error handler",
+                "error": true,
+                "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                "data_sample": {
+                  "foo": "bar"
+                }
+              }
+            ],
+            "edges": [
+              {
+                "config": {
+                  "mapper_type": "jsonata",
+                  "mapper": {
+                    "to": "pets[0].name",
+                    "cc": "$getFlowVariables().email",
+                    "subject": "pets[0].id",
+                    "textBody": "pets[0].status"
+                  },
+                  "condition": null
+                },
+                "source": "step_1",
+                "target": "step_2"
+              },
+              {
+                "target": "error_all"
+              }
+            ]
+          }
         }
-      },
-      "created_at": "2019-09-30T11:22:19.822Z",
-      "updated_at": "2019-09-30T11:22:19.822Z"
+      ]
     },
     "relationships": {
       "user": {
@@ -444,9 +471,7 @@ Content-Type: application/json
         }
       }
     }
-  },
-  "meta": {}
-}
+  }
 ```
 
 This resource allows you to export an existing flow as a new recipe.
@@ -490,63 +515,102 @@ Content-Type: application/json
   "data": {
     "id": "{RECIPE_ID}",
     "type": "recipe",
+    "visibility": "workspace",
     "links": {
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
-      "visibility": "workspace",
-      "activation_config": {
-        "variables": [{
-          "title": "Email to fill a \"CC\" field",
-          "key": "cc"
-        }],
-        "credentials": [{
-          "description": "Credentials to access your Petstore",
-          "stepId": "step_1"
-        }]
+      "declarations": {
+        "variables": [
+          {
+            "id": "email",
+            "title": "Email address",
+            "help": {
+              "description": "Email to fill a \"CC\" field",
+              "link": "http://test.com/recipes/12345"
+            }
+          }
+        ],
+        "credentials": [
+          {
+            "id": "petstore",
+            "help": {
+              "description": "Credentials to access your Petstore"
+            }
+          }
+        ]
       },
-      "marketplace_content": {
+      "info": {
         "title": "My Recipe",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "help_text": "No setup required",
-        "tags": []
+        "description": "# Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**.",
+        "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
-      "flow_template": {
-        "graph": {
-          "edges": [
-            {
-              "config": {
-                "mapper_type": "jsonata",
-                "mapper": {
-                  "to": "pets[0].name",
-                  "subject": "pets[0].id",
-                  "textBody": "pets[0].status",
-                  "cc": "$getFlowVariables().cc"
+      "flow_templates": [
+        {
+          "cron": "*/3 * * * *",
+          "title": "My first flow template",
+          "graph": {
+            "nodes": [
+              {
+                "id": "step_1",
+                "name": "Step name",
+                "credentials_id": "petstore",
+                "description": "Step description",
+                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@bfa02ebf35383d98e2099b0a791a755a",
+                "dynamic_metadata": {
+                  "field": "value"
                 },
-                "condition": null
+                "data_sample": {
+                  "foo": "bar"
+                }
               },
-              "source": "step_1",
-              "target": "step_2"
-            }
-          ],
-          "nodes": [
-            {
-              "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
-              "id": "step_1"
-            },
-            {
-              "command": "{{ repo_name }}/email:send@latest",
-              "fields": {
-                "dontThrowErrorFlg": true
+              {
+                "id": "step_2",
+                "name": "Step name",
+                "description": "Step description",
+                "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                "fields": {
+                  "dontThrowErrorFlg": true
+                },
+                "dynamic_select_model": {
+                  "field": "value"
+                },
+                "data_sample": {
+                  "foo": "bar"
+                }
               },
-              "id": "step_2"
-            }
-          ]
+              {
+                "id": "error_all",
+                "name": "Error handler",
+                "error": true,
+                "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                "data_sample": {
+                  "foo": "bar"
+                }
+              }
+            ],
+            "edges": [
+              {
+                "config": {
+                  "mapper_type": "jsonata",
+                  "mapper": {
+                    "to": "pets[0].name",
+                    "cc": "$getFlowVariables().email",
+                    "subject": "pets[0].id",
+                    "textBody": "pets[0].status"
+                  },
+                  "condition": null
+                },
+                "source": "step_1",
+                "target": "step_2"
+              },
+              {
+                "target": "error_all"
+              }
+            ]
+          }
         }
-      },
-      "created_at": "2019-09-29T11:22:19.822Z",
-      "updated_at": "2019-09-30T11:22:19.822Z"
+      ]
     },
     "relationships": {
       "user": {
@@ -577,8 +641,7 @@ Content-Type: application/json
         }
       }
     }
-  },
-  "meta": {}
+  }
 }
 ```
 
@@ -622,168 +685,102 @@ Content-Type: application/json
     {
       "id": "{RECIPE_ID}",
       "type": "recipe",
+      "visibility": "workspace",
       "links": {
         "self": "/v2/recipes/{RECIPE_ID}"
       },
       "attributes": {
-        "visibility": "workspace",
-        "activation_config": {
+        "declarations": {
           "variables": [
             {
-              "title": "Email to fill a \"CC\" field",
-              "key": "cc"
+              "id": "email",
+              "title": "Email address",
+              "help": {
+                "description": "Email to fill a \"CC\" field",
+                "link": "http://test.com/recipes/12345"
+              }
             }
           ],
           "credentials": [
             {
-              "description": "Credentials to access your Petstore",
-              "stepId": "step_1"
+              "id": "petstore",
+              "help": {
+                "description": "Credentials to access your Petstore"
+              }
             }
           ]
         },
-        "marketplace_content": {
-          "title": "My first recipe",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "help_text": "No setup required",
-          "tags": []
+        "info": {
+          "title": "My Recipe",
+          "description": "# Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**.",
+          "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         },
-        "flow_template": {
-          "graph": {
-            "edges": [
-              {
-                "config": {
-                  "mapper_type": "jsonata",
-                  "mapper": {
-                    "to": "pets[0].name",
-                    "cc": "$getFlowVariables()..cc",
-                    "subject": "pets[0].id",
-                    "textBody": "pets[0].status"
+        "flow_templates": [
+          {
+            "cron": "*/3 * * * *",
+            "title": "My first flow template",
+            "graph": {
+              "nodes": [
+                {
+                  "id": "step_1",
+                  "name": "Step name",
+                  "credentials_id": "petstore",
+                  "description": "Step description",
+                  "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@bfa02ebf35383d98e2099b0a791a755a",
+                  "dynamic_metadata": {
+                    "field": "value"
                   },
-                  "condition": null
+                  "data_sample": {
+                    "foo": "bar"
+                  }
                 },
-                "source": "step_1",
-                "target": "step_2"
-              }
-            ],
-            "nodes": [
-              {
-                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@7edfbaba2e7457b7d4413dcbfd9e4fa7991c0a1a",
-                "fields": {
-                  "status": "pending"
-                },
-                "id": "step_1"
-              },
-              {
-                "command": "{{ repo_name }}/email:send@b9f4e1483c964e0c2fe6f7600ffe81b6aca8ef33",
-                "fields": {
-                  "dontThrowErrorFlg": true
-                },
-                "id": "step_2"
-              }
-            ]
-          }
-        },
-        "created_at": "2019-09-29T11:22:19.822Z",
-        "updated_at": "2019-09-29T11:22:19.822Z"
-      },
-      "relationships": {
-        "user": {
-          "data": {
-            "id": "{USER_ID}",
-            "type": "user"
-          },
-          "links": {
-            "self": "/v2/users/{USER_ID}"
-          }
-        },
-        "workspace": {
-          "data": {
-            "id": "{WORKSPACE_ID}",
-            "type": "workspace"
-          },
-          "links": {
-            "self": "/v2/workspaces/{WORKSPACE_ID}"
-          }
-        },
-        "contract": {
-          "data": {
-            "id": "{CONTRACT_ID}",
-            "type": "contract"
-          },
-          "links": {
-            "self": "/v2/contracts/{CONTRACT_ID}"
-          }
-        }
-      }
-    },
-    {
-      "id": "{RECIPE_ID}",
-      "type": "recipe",
-      "links": {
-        "self": "/v2/recipes/{RECIPE_ID}"
-      },
-      "attributes": {
-        "visibility": "workspace",
-        "activation_config": {
-          "variables": [
-            {
-              "title": "Email to fill a \"CC\" field",
-              "key": "cc"
-            }
-          ],
-          "credentials": [
-            {
-              "description": "Credentials to access your Petstore",
-              "stepId": "step_1"
-            }
-          ]
-        },
-        "marketplace_content": {
-          "title": "My second recipe",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "help_text": "No setup required",
-          "tags": []
-        },
-        "flow_template": {
-          "graph": {
-            "edges": [
-              {
-                "config": {
-                  "mapper_type": "jsonata",
-                  "mapper": {
-                    "to": "pets[0].name",
-                    "cc": "$getFlowVariables().cc",
-                    "subject": "pets[0].id",
-                    "textBody": "pets[0].status"
+                {
+                  "id": "step_2",
+                  "name": "Step name",
+                  "description": "Step description",
+                  "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                  "fields": {
+                    "dontThrowErrorFlg": true
                   },
-                  "condition": null
+                  "dynamic_select_model": {
+                    "field": "value"
+                  },
+                  "data_sample": {
+                    "foo": "bar"
+                  }
                 },
-                "source": "step_1",
-                "target": "step_2"
-              }
-            ],
-            "nodes": [
-              {
-                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@7edfbaba2e7457b7d4413dcbfd9e4fa7991c0a1a",
-                "fields": {
-                  "status": "pending"
+                {
+                  "id": "error_all",
+                  "name": "Error handler",
+                  "error": true,
+                  "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                  "data_sample": {
+                    "foo": "bar"
+                  }
+                }
+              ],
+              "edges": [
+                {
+                  "config": {
+                    "mapper_type": "jsonata",
+                    "mapper": {
+                      "to": "pets[0].name",
+                      "cc": "$getFlowVariables().email",
+                      "subject": "pets[0].id",
+                      "textBody": "pets[0].status"
+                    },
+                    "condition": null
+                  },
+                  "source": "step_1",
+                  "target": "step_2"
                 },
-                "id": "step_1"
-              },
-              {
-                "command": "{{ repo_name }}/email:send@b9f4e1483c964e0c2fe6f7600ffe81b6aca8ef33",
-                "fields": {
-                  "dontThrowErrorFlg": true
-                },
-                "id": "step_2"
-              }
-            ]
+                {
+                  "target": "error_all"
+                }
+              ]
+            }
           }
-        },
-        "created_at": "2019-09-30T11:22:19.822Z",
-        "updated_at": "2019-09-30T11:22:19.822Z"
+        ]
       },
       "relationships": {
         "user": {
@@ -818,9 +815,9 @@ Content-Type: application/json
   ],
   "meta": {
     "page": 1,
-    "per_page": 2,
+    "per_page": 1,
     "total": 16,
-    "total_pages": 8
+    "total_pages": 16
   }
 }
 ```
@@ -924,68 +921,102 @@ Content-Type: application/json
   "data": {
     "id": "{RECIPE_ID}",
     "type": "recipe",
+    "visibility": "workspace",
     "links": {
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
-      "visibility": "workspace",
-      "activation_config": {
-        "variables": [{
-          "title": "Email to fill a \"CC\" field",
-          "key": "emailCc"
-        }],
-        "credentials": [{
-          "description": "Credentials to access your Petstore",
-          "stepId": "step_1"
-        }]
+      "declarations": {
+        "variables": [
+          {
+            "id": "email",
+            "title": "Email address",
+            "help": {
+              "description": "Email to fill a \"CC\" field",
+              "link": "http://test.com/recipes/12345"
+            }
+          }
+        ],
+        "credentials": [
+          {
+            "id": "petstore",
+            "help": {
+              "description": "Credentials to access your Petstore"
+            }
+          }
+        ]
       },
-      "marketplace_content": {
-        "title": "My first recipe 2nd iteration NEW",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "help_text": "No setup required",
-        "tags": []
+      "info": {
+        "title": "My Recipe",
+        "description": "# Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**.",
+        "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
-      "flow_template": {
-        "cron": "*/3 * * * *",
-        "graph": {
-          "edges": [
-            {
-              "config": {
-                "condition": null,
-                "mapper": {
-                  "textBody": "pets[0].status",
-                  "subject": "pets[0].id",
-                  "to": "pets[0].name",
-                  "cc": "$getFlowVariables().emailCc"
+      "flow_templates": [
+        {
+          "cron": "*/3 * * * *",
+          "title": "My first flow template",
+          "graph": {
+            "nodes": [
+              {
+                "id": "step_1",
+                "name": "Step name",
+                "credentials_id": "petstore",
+                "description": "Step description",
+                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@bfa02ebf35383d98e2099b0a791a755a",
+                "dynamic_metadata": {
+                  "field": "value"
                 },
-                "mapper_type": "jsonata"
+                "data_sample": {
+                  "foo": "bar"
+                }
               },
-              "source": "step_1",
-              "target": "step_2"
-            }
-          ],
-          "nodes": [
-            {
-              "name": "New name",
-              "description": "New description",
-              "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
-              "id": "step_1"
-            },
-            {
-              "name": "New name",
-              "description": "New description",
-              "command": "{{ repo_name }}/email:send@latest",
-              "fields": {
-                "dontThrowErrorFlg": true
+              {
+                "id": "step_2",
+                "name": "Step name",
+                "description": "Step description",
+                "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                "fields": {
+                  "dontThrowErrorFlg": true
+                },
+                "dynamic_select_model": {
+                  "field": "value"
+                },
+                "data_sample": {
+                  "foo": "bar"
+                }
               },
-              "id": "step_2"
-            }
-          ]
+              {
+                "id": "error_all",
+                "name": "Error handler",
+                "error": true,
+                "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                "data_sample": {
+                  "foo": "bar"
+                }
+              }
+            ],
+            "edges": [
+              {
+                "config": {
+                  "mapper_type": "jsonata",
+                  "mapper": {
+                    "to": "pets[0].name",
+                    "cc": "$getFlowVariables().email",
+                    "subject": "pets[0].id",
+                    "textBody": "pets[0].status"
+                  },
+                  "condition": null
+                },
+                "source": "step_1",
+                "target": "step_2"
+              },
+              {
+                "target": "error_all"
+              }
+            ]
+          }
         }
-      },
-      "created_at": "2019-09-30T11:22:19.822Z",
-      "updated_at": "2019-09-30T11:22:19.822Z"
+      ]
     },
     "relationships": {
       "user": {
@@ -1016,8 +1047,7 @@ Content-Type: application/json
         }
       }
     }
-  },
-  "meta": {}
+  }
 }
 ```
 
@@ -1037,16 +1067,16 @@ This resource allows you to update the given recipe.
 
 | Parameter                                        | Required | Description                                                        |
 | :----------------------------------------------- | :------- | :----------------------------------------------------------------- |
+| id                                               | yes      | Recipe Id must be same as url parameter                            |
 | type                                             | yes      | A value must be `recipe`                                           |
-| attributes.activation_config.credentials         | no       | List of credentials used by steps in a flow                        |
-| attributes.activation_config.variables           | no       | List of variables used by steps in a flow                          |
-| attributes.marketplace_content.name              | no       | Recipe name                                                        |
-| attributes.marketplace_content.description       | no       | Recipe description                                                 |
-| attributes.marketplace_content.short_description | no       | Recipe short description                                           |
-| attributes.marketplace_content.help_text         | no       | Recipe help text                                                   |
-| attributes.flow_template.cron                    | no       | Cron expression                                                    |
-| attributes.flow_template.graph                   | yes      | Recipe graph representing component connections                    |
-| relationships.workspace.data.id                  | yes      | MUST be the same as the {RECIPE_ID}                                |
+| attributes.declarations.credentials[]            | no       | List of credentials used by steps in a flow                        |
+| attributes.declarations.variables[]              | no       | List of variables used by steps in a flow                          |
+| attributes.info.title                            | no       | Recipe title                                                       |
+| attributes.info.description                      | no       | Recipe description                                                 |
+| attributes.info.short_description                | no       | Recipe short description                                           |
+| attributes.flow_templates[].cron                 | no       | Cron expression                                                    |
+| attributes.flow_templates[].graph                | yes      | Recipe graph representing component connections                    |
+| relationships.workspace.data.id                  | yes      | An Id of the Workspace                                             |
 | relationships.workspace.data.type                | yes      | A value must be `workspace`                                        |
 
 ### Authorization
@@ -1084,68 +1114,102 @@ Content-Type: application/json
   "data": {
     "id": "{RECIPE_ID}",
     "type": "recipe",
+    "visibility": "contract",
     "links": {
       "self": "/v2/recipes/{RECIPE_ID}"
     },
     "attributes": {
-      "visibility": "contract",
-      "activation_config": {
-        "variables": [{
-          "title": "Email to fill a \"CC\" field",
-          "key": "emailCc"
-        }],
-        "credentials": [{
-          "description": "Credentials to access your Petstore",
-          "stepId": "step_1"
-        }]
+      "declarations": {
+        "variables": [
+          {
+            "id": "email",
+            "title": "Email address",
+            "help": {
+              "description": "Email to fill a \"CC\" field",
+              "link": "http://test.com/recipes/12345"
+            }
+          }
+        ],
+        "credentials": [
+          {
+            "id": "petstore",
+            "help": {
+              "description": "Credentials to access your Petstore"
+            }
+          }
+        ]
       },
-      "marketplace_content": {
-        "title": "My first recipe 2nd iteration NEW",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "help_text": "No setup required",
-        "tags": []
+      "info": {
+        "title": "My Recipe",
+        "description": "# Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**.",
+        "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
-      "flow_template": {
-        "cron": "*/3 * * * *",
-        "graph": {
-          "edges": [
-            {
-              "config": {
-                "condition": null,
-                "mapper": {
-                  "textBody": "pets[0].status",
-                  "subject": "pets[0].id",
-                  "to": "pets[0].name",
-                  "cc": "$getFlowVariables().emailCc"
+      "flow_templates": [
+        {
+          "cron": "*/3 * * * *",
+          "title": "My first flow template",
+          "graph": {
+            "nodes": [
+              {
+                "id": "step_1",
+                "name": "Step name",
+                "credentials_id": "petstore",
+                "description": "Step description",
+                "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@bfa02ebf35383d98e2099b0a791a755a",
+                "dynamic_metadata": {
+                  "field": "value"
                 },
-                "mapper_type": "jsonata"
+                "data_sample": {
+                  "foo": "bar"
+                }
               },
-              "source": "step_1",
-              "target": "step_2"
-            }
-          ],
-          "nodes": [
-            {
-              "name": "New name",
-              "description": "New description",
-              "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
-              "id": "step_1"
-            },
-            {
-              "name": "New name",
-              "description": "New description",
-              "command": "{{ repo_name }}/email:send@latest",
-              "fields": {
-                "dontThrowErrorFlg": true
+              {
+                "id": "step_2",
+                "name": "Step name",
+                "description": "Step description",
+                "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                "fields": {
+                  "dontThrowErrorFlg": true
+                },
+                "dynamic_select_model": {
+                  "field": "value"
+                },
+                "data_sample": {
+                  "foo": "bar"
+                }
               },
-              "id": "step_2"
-            }
-          ]
+              {
+                "id": "error_all",
+                "name": "Error handler",
+                "error": true,
+                "command": "{{ repo_name }}/email:send@bfa02ebf35383d98e2099b0a791a755a",
+                "data_sample": {
+                  "foo": "bar"
+                }
+              }
+            ],
+            "edges": [
+              {
+                "config": {
+                  "mapper_type": "jsonata",
+                  "mapper": {
+                    "to": "pets[0].name",
+                    "cc": "$getFlowVariables().email",
+                    "subject": "pets[0].id",
+                    "textBody": "pets[0].status"
+                  },
+                  "condition": null
+                },
+                "source": "step_1",
+                "target": "step_2"
+              },
+              {
+                "target": "error_all"
+              }
+            ]
+          }
         }
-      },
-      "created_at": "2019-09-30T11:22:19.822Z",
-      "updated_at": "2019-09-30T11:22:19.822Z"
+      ]
     },
     "relationships": {
       "user": {
@@ -1176,8 +1240,7 @@ Content-Type: application/json
         }
       }
     }
-  },
-  "meta": {}
+  }
 }
 ```
 
@@ -1230,22 +1293,12 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID}/activate \
      "data": {
        "type": "recipe-activation-config",
        "attributes": {
-         "name": "Flow, created from Recipe",
-         "description": "Recipe description",
          "credentials": {
            "step_1": "{CREDENTIAL_ID}"
          },
          "variables": {
            "TO_EMAIL": "goose@example.com",
            "NAME_IN_SUBJECT": "Neochen Jubata"
-         },
-         "fields": {
-           "step_1": {
-             "code": "console.log(message)"
-           },
-           "step_3":  {
-             "email": "email@example.com"
-           }
          }
        },
        "relationships": {
@@ -1267,18 +1320,16 @@ HTTP/1.1 201 Created
 {
   "data": {
     "relationships": {
-      "flow": {
-        "data": {
-          "type": "flow",
-          "id": "{FLOW_ID}"
-        },
-        "links": {
-          "self": "/v2/flows/{FLOW_ID}"
+      "flows": [
+        {
+          "data": {
+            "type": "flow",
+            "id": "{FLOW_ID}"
+          }
         }
-      }
+      ]
     }
-  },
-  "meta": {}
+  }
 }
 ```
 
@@ -1300,10 +1351,8 @@ Create a flow from a recipe. If the recipe contains a component, which requires 
 | Parameter                         | Required | Description                                                                     |
 | :-------------------------------- | :------- | :------------------------------------------------------------------------------ |
 | type                              | yes      | A value must be `recipe-activation-config`                                      |
-| attributes.name                   | no       | Flow name                                                                       |
-| attributes.credentials            | no       | Specify component credentials if needed                                         |
+| attributes.credentials            | yes      | Specify values for credentials used by steps in a flow                          |
 | attributes.variables              | yes      | Specify values for variables which were defined in Recipe for mapping           |
-| attributes.fields                 | no       | Specify fields for Recipe steps                                                 |
 | relationships.workspace.data.id   | yes      | An Id of the Workspace                                                          |
 | relationships.workspace.data.type | yes      | A value must be `workspace`                                                     |
 
@@ -1340,13 +1389,5 @@ This resource allows you to delete a recipe.
 > Example Response:
 
 ```http
-HTTP/1.1 200 Ok
-{
-  "data": null,
-  "meta": {
-    "unlinked_flows": [
-
-    ]
-  }
-}
+HTTP/1.1 204 Ok
 ```
