@@ -821,7 +821,104 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID}/start \
 ```http
 HTTP/1.1 202 Accepted
 {
-  "data":{},
+  "data":{
+    "type":"flow",
+    "id":"585918da586224001b96de89",
+    "links":{
+      "self":"/v2/flows/585918da586224001b96de89"
+    },
+    "attributes":{
+      "name":"this is a test task",
+      "status":"active",
+      "type":"ordinary",
+      "created_at":"2018-03-27T15:39:02.825Z",
+      "current_status":"inactive",
+      "default_mapper_type":"jsonata",
+      "description":null,
+      "updated_at":"2018-03-27T15:50:00.123Z",
+      "last_start_time":"2018-03-27T15:50:00.123Z",
+      "due_execution":"2018-03-27T15:53:00.123Z",
+      "graph":{
+        "nodes":[
+          {
+            "id":"step_1",
+            "component_id": "55ba18e35d04040500000004",
+            "command":"{{ repo_name }}/timer:timer",
+            "name":"",
+            "description":"",
+            "fields":{
+              "interval":"minute"
+            }
+          },
+          {
+            "id":"step_2",
+            "component_id": "593809a16b1d1f00196b74cd",
+            "command":"{{ repo_name }}/email:send",
+            "name":"",
+            "description":""
+          }
+        ],
+        "edges":[
+          {
+            "source":"step_1",
+            "target":"step_2",
+            "config":{
+              "mapper":{
+                "to":"info@acme.org",
+                "subject":"Test",
+                "textBody":"FireTime"
+              }
+            }
+          }
+        ]
+      },
+      "nodes_config": {
+        "step_1": {
+          "passthrough": {
+            "disabled": true
+          }
+        },
+        "step_2": {
+          "prefetch": 3
+        }
+      }
+    },
+    "relationships":{
+      "user":{
+        "data":{
+          "type":"user",
+          "id":"560e5a27734d480a00000002"
+        },
+        "links":{
+          "self":"/v2/users/560e5a27734d480a00000002"
+        }
+      },
+      "workspace":{
+        "data":{
+          "type":"workspace",
+          "id":"573dd76962436c349f000003"
+        },
+        "links":{
+          "self":"/v2/workspaces/573dd76962436c349f000003"
+        }
+      },
+      "versions":{
+        "links":{
+          "related":"/v2/flows/585918da586224001b96de89/versions"
+        }
+      },
+      "latest_version":{
+        "data":{
+          "id":"787513ee82625ef46bc10372cb6485a535b54c5f",
+          "type":"flow-version"
+        },
+        "links":{
+          "self":"/v2/flows/585918da586224001b96de89/versions/787513ee82625ef46bc10372cb6485a535b54c5f",
+          "related":"/v2/flows/585918da586224001b96de89/versions/787513ee82625ef46bc10372cb6485a535b54c5f"
+        }
+      }
+    }
+  },
   "meta":{}
 }
 ```
@@ -844,7 +941,7 @@ This request is authorized for a user with the `workspaces.flow.toggleStatus` pe
 
 ### Returns
 
-Empty response
+Returns the flow
 
 
 ## Stop a flow
@@ -1083,7 +1180,7 @@ Content-Type: application/json
 
 **Notices**
 
- 1. The topic (`data.attributes.topic_id`) must be accessible to the flow in the destination workspace, otherwise it will not be copied. 
+ 1. The topic (`data.attributes.topic_id`) must be accessible to the flow in the destination workspace, otherwise it will not be copied.
  2. It's forbidden to use the `data.attributes.topic_id` parameter if flow does not contain at least one step with Pub/Sub component.
  3. It's forbidden to use the `data.attributes.topic_id` parameter if your flow uses more than one Pub/Sub topic in different steps. You can copy the flow if your flow has several Pub/Sub steps that uses only one topic.
  4. In case when the `data.attributes.topic_id` parameter is absent from your call, topics ID will be removed from a copy if it's not accessible and left intact if the topic is available in destination context.
