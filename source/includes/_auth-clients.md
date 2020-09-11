@@ -354,6 +354,7 @@ curl {{ api_base_url }}/v2/auth-clients/{AUTH-CLIENT_ID} \
       "attributes":{
         "name":"Auth client",
         "credentials":{
+          "client_secret": "{CLIENT_SECRET}",
           "token_expires_in": 18000
         }
       },
@@ -442,12 +443,12 @@ This request is authorized for members with appropriate permission.
 
 
 ### Body Parameters
-
 | Parameter                                | Required | Description                     |
 | :---                                     | :---     | :---                            |
 | type                                     | yes      | Allowed value: ``auth-client`` |
 | attributes.name                          | no       | New name of the Auth Client     |
-| attributes.credentials.token_expires_in  | no       | The value that will be set as `expires_in` in Auth Secret linked to the Auth Client after Auth Secret refresh.|
+| attributes.credentials.client_secret     | no       | Auth Client client secret     |
+| attributes.credentials.token_expires_in  | no       | The value that will be set as `expires_in` in Auth Secret linked to the Auth Client after Auth Secret refresh|
 | relationships.components.data[].component.type | no | Allowed value: ``component`` |
 | relationships.components.data[].component.id | no | Component ID |
 

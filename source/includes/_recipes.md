@@ -18,7 +18,6 @@ Accordingly, a set of recipes available for each user consists of: non-shared re
 recipes with `contract`, `tenant` and `global` access. When you create a recipe, it has default visibility `workspace`.
 
 *Note:* deleting recipes with `contract`, `tenant` and `global` visibility is forbidden.
-*Note:* downgrading recipes visibility is forbidden.
  
 ## Create a recipe
 
@@ -1244,7 +1243,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to update attribute visibility of the given recipe.
+This resource allows you to update attribute visibility of the given recipe. You can upgrade or downgrade recipe visibility. 
 
 ### HTTP Request
 

@@ -459,12 +459,6 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets/{AUTH-SECRET_ID} \
             "refresh_token": "{REFRESH_TOKEN}",
             "expires_in": "{EXPIRES_IN}"
           }
-        },
-        "auth-client": {
-          "data": {
-            "id": "{AUTH-CLIENT_ID}",
-            "type": "auth-client"
-          }
         }
       }
     }'
@@ -553,10 +547,9 @@ This request is authorized for the Workspace's scope members with the `workspace
 
 | Parameter                                | Required | Description                     |
 | :---                                     | :---     | :---                            |
-| type                                     | yes      | Allowed value: ``auth-secret`` |
+| type                                     | yes      | Allowed value: ``auth-secret``  |
 | attributes.name                          | no       | New name of the Auth Secret     |
 | attributes.credentials                   | no       | Auth Secret credentials         |
-| relationships.auth_client.data.id        | no      | Auth Client ID        |
 
 ### Returns
 
