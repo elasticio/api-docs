@@ -1242,7 +1242,7 @@ Content-Type: application/json
   }
 }
 ```
-s
+
 This resource allows you to update attribute visibility of the given recipe. You can upgrade or downgrade recipe visibility. 
 
 ### HTTP Request
