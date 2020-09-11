@@ -54,6 +54,7 @@ curl -X POST {{ api_base_url }}/v2/recipes \
         },
         "info": {
           "title": "My Recipe",
+          "author":"John Doe",
           "description": "# Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**.",
           "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         },
@@ -174,6 +175,7 @@ Content-Type: application/json
       },
       "info": {
         "title": "My Recipe",
+        "author":"John Doe",
         "description": "# Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**.",
         "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
@@ -292,9 +294,10 @@ This resource allows you to create a new recipe.
 | attributes.declarations.variables[]              | no       | List of variables used by steps in a flow |
 | attributes.declarations.credentials[]            | no       | List of credentials used by steps in a flow |
 | attributes.info.title                            | yes      | Recipe title|
+| attributes.info.author                           | no       | Recipe author name which replaces recipe creator|
 | attributes.info.description                      | yes      | Recipe description |
 | attributes.info.short_description                | yes      | Recipe short description  |
-| attributes.flow_templates[].title                | yes       | Flow template title  |
+| attributes.flow_templates[].title                | yes      | Flow template title  |
 | attributes.flow_templates[].cron                 | no       | Cron expression  |
 | attributes.flow_templates[].graph                | yes      | Recipe graph representing component connections  |
 | relationships.workspace.data.id                  | yes      | An Id of the Workspace  |
@@ -862,6 +865,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
          },
          "marketplace_content": {
            "title": "My Recipe",
+           "author":"John Doe",
            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
            "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
            "help_text": "No setup required",
@@ -947,6 +951,7 @@ Content-Type: application/json
       },
       "info": {
         "title": "My Recipe",
+        "author":"John Doe",
         "description": "# Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**.",
         "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
@@ -1071,6 +1076,7 @@ This resource allows you to update the given recipe.
 | attributes.declarations.credentials[]            | no       | List of credentials used by steps in a flow                        |
 | attributes.declarations.variables[]              | no       | List of variables used by steps in a flow                          |
 | attributes.info.title                            | no       | Recipe title                                                       |
+| attributes.info.author                           | no       | Recipe author name which replaces recipe creator                   |
 | attributes.info.description                      | no       | Recipe description                                                 |
 | attributes.info.short_description                | no       | Recipe short description                                           |
 | attributes.flow_templates[].cron                 | no       | Cron expression                                                    |
