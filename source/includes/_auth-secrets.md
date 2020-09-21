@@ -129,8 +129,7 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets \
        "type":"auth-secret",
        "attributes":{
           "name":"Auth secret",
-          "state":"error",
-          "error":"Something went technical wrong",
+          "state":"ready",
           "credentials":{
             "access_token": "{ACCESS_TOKEN}",
             "refresh_token": "{REFRESH_TOKEN}",
@@ -163,8 +162,7 @@ Content-Type: application/json
      "type":"auth-secret",
      "attributes":{
         "name":"Auth secret",
-        "state":"error",
-        "error":"Something went technical wrong",
+        "state":"ready",
         "credentials":{
           "access_token": "{ACCESS_TOKEN}",
           "refresh_token": "{REFRESH_TOKEN}",
