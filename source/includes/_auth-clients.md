@@ -114,40 +114,38 @@ curl {{ api_base_url }}/v2/auth-clients \
    -u {EMAIL}:{APIKEY} \
    -H 'Content-Type: application/json' -d '
     {
-    "data":{
+   "data":{
       "type":"auth-client",
       "attributes":{
-        "type":"oauth2",
-        "name":"Auth client",
-        "credentials":{
-          "client_id":"{CLIENT_ID}",
-          "client_secret":"{CLIENT_SECRET}",
-          "refresh_token_uri":"http://example.com",
-          "token_expires_in": 18000,
-          "token_uri": "{TOKEN_URI}",
-          "auth_uri": "{AUTH_URI}"
-        }
+         "type":"oauth2",
+         "name":"Auth client",
+         "credentials":{
+            "client_id":"{CLIENT_ID}",
+            "client_secret":"{CLIENT_SECRET}",
+            "refresh_token_uri":"http://example.com",
+            "token_expires_in":18000,
+            "token_uri":"{TOKEN_URI}",
+            "auth_uri":"{AUTH_URI}"
+         }
       },
       "relationships":{
-        "components":{
-          "data":[
-            {
-              "id":"{COMPONENT_ID}",
-              "type":"component"
+         "components":{
+            "data":[
+               {
+                  "id":"{COMPONENT_ID}",
+                  "type":"component"
+               }
+            ]
+         },
+         "workspace":{
+            "data":{
+               "id":"{WORKSPACE_ID}",
+               "type":"workspace"
             }
-          ]
-        },
-        "workspace":{
-          "data":[
-            {
-              "id":"{WORKSPACE_ID}",
-              "type":"workspace"
-            }
-          ]
-        }
+         }
       }
-    }
-  }'
+   }
+}'
 ```
 
 
