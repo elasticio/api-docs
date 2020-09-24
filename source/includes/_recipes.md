@@ -853,65 +853,204 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
   -H 'Accept: application/json' \
   -H 'Content-Type: application/json' -d '
    {
-     "data": {
-       "id": "{RECIPE_ID}",
-       "type": "recipe",
-       "attributes": {
-         "activation_config": {
-           "variables": [{
-             "title": "Email to fill a \"CC\" field",
-             "key": "emailCc"
-           }]
-         },
-         "info": {
-           "title": "My Recipe",
-           "author":"John Doe",
-           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-           "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-           "help_text": "No setup required",
-           "tags": []
-         },
-         "flow_template": {
-           "cron": "*/3 * * * *",
-           "graph": {
-             "nodes": [
-               {
-                 "name": "New name",
-                 "description": "New description",
-                 "command": "{{ repo_name }}/petstore:getPetsByStatusWithGenerators@latest",
-                 "id": "step_1"
-               },
-               {
-                 "name": "New name",
-                 "description": "New description",
-                 "command": "{{ repo_name }}/email:send@latest",
-                 "fields": {
-                   "dontThrowErrorFlg": true
-                 },
-                 "id": "step_2"
-               }
-             ],
-             "edges": [
-               {
-                 "config": {
-                   "mapper_type": "jsonata",
-                   "mapper": {
-                     "to": "pets[0].name",
-                     "cc": "$getFlowVariables().emailCc",
-                     "subject": "pets[0].id",
-                     "textBody": "pets[0].status"
-                   },
-                   "condition": null
-                 },
-                 "source": "step_1",
-                 "target": "step_2"
-               }
-             ]
-           }
-         }
-       }
-     }
-   }'
+    "data": {
+        "id": "{RECIPE_ID}",
+        "type": "recipe",
+        "attributes": {
+            "info": {
+                "title": "My simple recipe",
+                "author": "AUTHOR OF RECIPE",
+                "short_description": "Recipe of integration flow",
+                "description": "# Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**."
+            },
+            "declarations": {
+                "variables": [
+                    {
+                        "id": "petStatus",
+                        "title": "Status of the pet to create",
+                        "help": {
+                            "description": "Every pet in our store needs a status. Please enter your favourite status.",
+                            "link": "http://some.helplink.com"
+                        }
+                    }
+                ],
+                "credentials": [
+                    {
+                        "id": "petstore",
+                        "help": {
+                            "description": "We need your credentials from your Petstore to export the pets"
+                        }
+                    }
+                ]
+            },
+            "flow_templates": [
+                {
+                    "title": "Create a cuddly pet",
+                    "graph": {
+                        "nodes": [
+                            {
+                                "name": "step 1",
+                                "description": "step description",
+                                "command": "elasticio/petstore:getPetsByStatusWithGenerators@bfa02ebf35383d98e2099b0a791a755a",
+                                "fields": {
+                                    "status": "petStatus"
+                                },
+                                "error": false,
+                                "id": "step_1",
+                                "credentials_id": "petstore",
+                                "data_sample": {
+                                    "pets": [
+                                        {
+                                            "id": 10,
+                                            "status": "pending",
+                                            "name": "Dolly",
+                                            "category": {
+                                                "id": 2,
+                                                "name": "cats"
+                                            }
+                                        },
+                                        {
+                                            "id": 11,
+                                            "status": "pending",
+                                            "name": "Gorilla",
+                                            "category": {
+                                                "id": 1,
+                                                "name": "dogs"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "dynamic_select_model": {
+                                    "getStatusModel": {
+                                        "sold": "Sold",
+                                        "pending": "Pending",
+                                        "available": "Available"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "step 2",
+                                "description": "ololool",
+                                "command": "elasticio/petstore:getPetsByStatusWithGenerators@bfa02ebf35383d98e2099b0a791a755a",
+                                "fields": {},
+                                "error": false,
+                                "id": "step_2",
+                                "credentials_id": "petstore",
+                                "data_sample": {
+                                    "newDynamicField": 10,
+                                    "status": "pending",
+                                    "name": "Dolly"
+                                },
+                                "dynamic_metadata": "{\"in\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"required\":true,\"title\":\"Name\"},\"status\":{\"type\":\"string\",\"required\":true,\"title\":\"Status\"},\"newDynamicField\":{\"type\":\"string\",\"required\":true,\"title\":\"New dynamic field\"}}},\"out\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"required\":true,\"title\":\"Name\"},\"status\":{\"type\":\"string\",\"required\":true,\"title\":\"Status\"},\"newDynamicField\":{\"type\":\"string\",\"required\":true,\"title\":\"New dynamic field\"}}}}"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "config": {
+                                    "mapper_type": "jsonata",
+                                    "mapper": "{\n  \"name\": pets[0].name,\n  \"status\": pets[0].status,\n  \"newDynamicField\": pets[0].id\n}",
+                                    "condition": null
+                                },
+                                "source": "step_1",
+                                "target": "step_2"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "title": "Flow with error handler",
+                    "graph": {
+                        "nodes": [
+                            {
+                                "name": "Get Pets",
+                                "description": "by status",
+                                "command": "elasticio/petstore:getPetsByStatusWithGenerators@bfa02ebf35383d98e2099b0a791a755a",
+                                "fields": {
+                                    "status": "available"
+                                },
+                                "error": false,
+                                "id": "step_1",
+                                "credentials_id": "petstore",
+                                "data_sample": {
+                                    "pets": [
+                                        {
+                                            "id": 1,
+                                            "status": "available",
+                                            "name": "Brownie",
+                                            "category": {
+                                                "id": 1,
+                                                "name": "dogs"
+                                            }
+                                        },
+                                        {
+                                            "id": 2,
+                                            "status": "available",
+                                            "name": "Doggie",
+                                            "category": {
+                                                "id": 1,
+                                                "name": "dogs"
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "name": "Create pet",
+                                "description": "with promise",
+                                "command": "elasticio/petstore:getPetsByStatusWithGenerators@bfa02ebf35383d98e2099b0a791a755a",
+                                "fields": {},
+                                "error": false,
+                                "id": "step_2",
+                                "credentials_id": "petstore",
+                                "data_sample": {
+                                    "name": "Brownie",
+                                    "status": "available"
+                                }
+                            },
+                            {
+                                "name": "Error Handler",
+                                "description": "catch error",
+                                "command": "elasticio/petstore:getPetsByStatusWithGenerators@bfa02ebf35383d98e2099b0a791a755a",
+                                "fields": {},
+                                "error": true,
+                                "id": "error_all",
+                                "credentials_id": "petstore",
+                                "data_sample": {
+                                    "name": "{\"name\":\"Error name\",\"message\":\"Error message\",\"stack\":\"Error stack trace\"}",
+                                    "status": "sold"
+                                }
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "config": {
+                                    "mapper_type": "jsonata",
+                                    "mapper": "{\n  \"name\": pets[0].name,\n  \"status\": pets[0].status\n}",
+                                    "condition": null
+                                },
+                                "source": "step_1",
+                                "target": "step_2"
+                            },
+                            {
+                                "config": {
+                                    "mapper_type": "jsonata",
+                                    "mapper": {
+                                        "status": "\"sold\"",
+                                        "name": "ErrorMessage"
+                                    },
+                                    "condition": null,
+                                    "error": true
+                                },
+                                "source": null,
+                                "target": "error_all"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}'
 ```
 
 > Example response
