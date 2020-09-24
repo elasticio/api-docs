@@ -863,7 +863,7 @@ curl {{ api_base_url }}/v2/recipes/{RECIPE_ID} \
              "key": "emailCc"
            }]
          },
-         "marketplace_content": {
+         "info": {
            "title": "My Recipe",
            "author":"John Doe",
            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
