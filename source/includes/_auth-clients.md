@@ -89,12 +89,12 @@ This request is authorized with one of the `global.auth_clients.get`, `tenants.a
 
 ### Query Parameters
 
-| Parameter         | Required              | Description                                                                                          |
-| :---              | :---                  | :---                                                                                                 |
-| filter[component] | no                    | Filter the Auth Clients only for specific component. Must be `id` of `Component`                     |
-| workspace_id      | no<sup>*</sup>       | Show Auth Clients available in the given workpspace (including contract's and tenant's auth-clients).|
-| contract_id       | no<sup>*</sup>       | Show Auth Clients available in the given contract (including tenant's auth-clients).                 |
-| tenant_id         | no<sup>*</sup>       | Show Auth Clients available in the given tenant.                                                     |
+| Parameter         | Required              | Description                                                                                                 |
+| :---              | :---                  | :---                                                                                                        |
+| filter[component] | no                    | Filter the Auth Clients only for specific component. Must be `id` of `Component`                            |
+| workspace_id      | no<sup>*</sup>       | Show Auth Clients available in the given workpspace (including contract's, tenant's and global auth-clients).|
+| contract_id       | no<sup>*</sup>       | Show Auth Clients available in the given contract (including tenant's and global auth-clients).              |
+| tenant_id         | no<sup>*</sup>       | Show Auth Clients available in the given tenant and global scope.                                            |
 
 <sup>*</sup> - only one of `workspace_id`, `contract_id`, `tenant_id` can be specified at time.
 
