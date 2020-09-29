@@ -96,7 +96,7 @@ This request is authorized with one of the `global.auth_clients.get`, `tenants.a
 | contract_id       | no<sup>*</sup>       | Show Auth Clients available in the given contract (including tenant's and global auth-clients).              |
 | tenant_id         | no<sup>*</sup>       | Show Auth Clients available in the given tenant and global scope.                                            |
 
-<sup>*</sup> - only one of `workspace_id`, `contract_id`, `tenant_id` can be specified at time.
+<sup>*</sup> - only one of `workspace_id`, `contract_id`, `tenant_id` can be specified at time. If none these of parameters is specified only global clients will be returned.
 
 ### Returns
 
