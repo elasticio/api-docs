@@ -311,7 +311,7 @@ This request is authorized with one of the `global.auth_clients.get`, `tenants.a
 
 `auth_clients.get` permissions are also used to authorize access to Auth Client's `credentials` field: one can see Auth Client's `credential` only if client's scope and permission's scope match, i.e. `credentials` of tenant's Auth Client are visible for users only with `tenants.auth_clients.get` permissions, though tenant Auth Client itself is visible for users with `workspaces.auth_clients.get`.
 
-To specify scope of request one of `workspace_id`, `contract_id` or `tenant_id` query parameters is used. For example, tenant auth client can be retreived by id if user has `workspaces.auth_clients.get` permission in one of the tenant's workspaces, so to specify those workspace `workspace_id` query parameter is used, without scope parameter you can get only global client otherwise permission can't be checked and such request will be rejected.
+To specify scope of request one of `workspace_id`, `contract_id` or `tenant_id` query parameters is used. For example, tenant auth client can be retreived by id if user has `workspaces.auth_clients.get` permission in one of the tenant's workspaces, so to specify those workspace `workspace_id` query parameter is used, without scope parameter you can get only global client. In case if the user tries to get not a global client and doesn't specify the query parameter - such request  will be rejected, as permission can't be checked.
 
 ### URL Parameters
 
@@ -325,7 +325,7 @@ To specify scope of request one of `workspace_id`, `contract_id` or `tenant_id` 
 | :---              | :---      | :---                                                                                                 |
 | workspace_id      | no        | Show auth-client available in the given workspace (including global, tenant's and contract's auth-clients). |
 | contract_id       | no        | Show auth-client available in the given contract (including global and tenant's auth-clients).                  |
-| tenant_id         | no        | Show auth-client available in the given tenant or in global scope.                  |
+| tenant_id         | no        | Show auth-client available in the given tenant and global scopes.                  |
 
 ### Returns
 
