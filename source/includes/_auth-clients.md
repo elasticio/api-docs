@@ -83,20 +83,20 @@ This resource allows you to retrieve Auth-clients.
 
 #### Authorization
 
-This request is authorized with one of the `tenants.auth_clients.get`, `contracts.auth_clients.get` or `workspaces.auth_clients.get`. Each permission allows to list Auth Clients in particular scope inclusively: `tenants.auth_clients.get` allows to list tenant's clients, `contracts.auth_clients.get` allows to list tenant's and all tenant's contracts clients, `workspaces.auth_clients.get` allows to list all tenant's, contracts' and workspaces' clients.
+This request is authorized with one of the `global.auth_clients.get`, `tenants.auth_clients.get`, `contracts.auth_clients.get` or `workspaces.auth_clients.get`. Each permission allows to list Auth Clients in particular scope inclusively: `global.auth_clients.get` allows to list global clients, `tenants.auth_clients.get` allows to list global and tenant's clients, `contracts.auth_clients.get` allows to list global, tenant's and all tenant's contracts clients, `workspaces.auth_clients.get` allows to list all global, tenant's, contracts' and workspaces' clients.
 
 `auth_clients.get` permissions are also used to authorize access to Auth Client's `credentials` field: one can see Auth Client's `credential` only if client's scope and permission's scope match, i.e. `credentials` of tenant's Auth Client are visible for users only with `tenants.auth_clients.get` permissions, though tenant Auth Client itself is visible for users with `workspaces.auth_clients.get`.
 
 ### Query Parameters
 
-| Parameter         | Required              | Description                                                                                          |
-| :---              | :---                  | :---                                                                                                 |
-| filter[component] | no                    | Filter the Auth Clients only for specific component. Must be `id` of `Component`                     |
-| workspace_id      | yes<sup>*</sup>       | Show Auth Clients available in the given workpspace (including contract's and tenant's auth-clients).|
-| contract_id       | yes<sup>*</sup>       | Show Auth Clients available in the given contract (including tenant's auth-clients).                 |
-| tenant_id         | yes<sup>*</sup>       | Show Auth Clients available in the given tenant.                                                     |
+| Parameter         | Required              | Description                                                                                                 |
+| :---              | :---                  | :---                                                                                                        |
+| filter[component] | no                    | Filter the Auth Clients only for specific component. Must be `id` of `Component`                            |
+| workspace_id      | no<sup>*</sup>       | Show Auth Clients available in the given workpspace (including contract's, tenant's and global auth-clients).|
+| contract_id       | no<sup>*</sup>       | Show Auth Clients available in the given contract (including tenant's and global auth-clients).              |
+| tenant_id         | no<sup>*</sup>       | Show Auth Clients available in the given tenant and global scope.                                            |
 
-<sup>*</sup> - only one of `workspace_id`, `contract_id`, `tenant_id` can be specified at time.
+<sup>*</sup> - only one of `workspace_id`, `contract_id`, `tenant_id` can be specified at time. If none these of parameters is specified only global clients will be returned.
 
 ### Returns
 
@@ -199,7 +199,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to create an Auth-client. Scope where client is created is controlled by corresponding relationship: `workspace`, `contract` or `tenant`.
+This resource allows you to create an Auth-client. Scope where client is created is controlled by corresponding relationship: `workspace`, `contract` or `tenant`. No relationship means that auth-client will be created in the global scope.
 
 ### HTTP Request
 
@@ -207,33 +207,31 @@ This resource allows you to create an Auth-client. Scope where client is created
 
 #### Authorization
 
-This request is authorized for the tenant's scope members with the `tenants.auth_clients.create` permission, for the contract's scope members with the `contracts.auth_clients.create`, for the workspace's scope members with the `workspaces.auth_clients.create`.
+This request is authorized for the global scope with the `global.auth_clients.create` permission, for the tenant's scope members with the `tenants.auth_clients.create` permission, for the contract's scope members with the `contracts.auth_clients.create`, for the workspace's scope members with the `workspaces.auth_clients.create`.
 
 
 ### Body Parameters
 
-| Parameter                                | Required | Description |
-| :---                                     | :---     | :---        |
-| type                                     | yes      | Allowed value: ``auth-client`` |
-| attributes.name                          | yes      | Auth Client name                |
-| attributes.type                          | yes      | Auth Client type. May be any of: ``oauth2``and other types (noauth, basic,api_key)|
-| attributes.credentials                   | yes (if ``attributes.type`` is ``oauth2``)      | Auth Client credentials |
-| attributes.credentials.client_id         | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client ID |
-| attributes.credentials.client_secret     | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client secret |
-| attributes.credentials.refresh_token_uri | yes (if ``attributes.type`` is ``oauth2``) | Auth Client refresh token URI |
-| attributes.credentials.token_expires_in  | no  | The value that will be set as `expires_in` in Auth Secret linked to the Auth Client after Auth Secret refresh. |
-| attributes.credentials.token_uri  | yes (if ``attributes.type`` is ``oauth2``)  | Auth Client token URI |
-| attributes.credentials.auth_uri  |  yes (if ``attributes.type`` is ``oauth2``)  | Auth Client auth URI|
-| relationships.components.data[].component.type | yes | Allowed value: ``component`` |
-| relationships.components.data[].component.id | yes | Component ID |
-| relationships.tenant.data.type | yes<sup>*</sup> | Allowed value: ``tenant`` |
-| relationships.tenant.data.id | yes<sup>*</sup> | Tenant ID |
-| relationships.contract.data.type | yes<sup>*</sup> | Allowed value: ``contract`` |
-| relationships.contract.data.id | yes<sup>*</sup> | Contract ID |
-| relationships.workspace.data.type | yes<sup>*</sup> | Allowed value: ``workspace`` |
-| relationships.workspace.data.id | yes<sup>*</sup> | Workspace ID |
-
-<sup>*</sup> - one of `tenant`, `contract` or `workspace` relation is required.
+| Parameter                                      | Required                                   | Description |
+| :---                                           | :---                                       | :---        |
+| type                                           | yes                                        | Allowed value: ``auth-client`` |
+| attributes.name                                | yes                                        | Auth Client name                |
+| attributes.type                                | yes                                        | Auth Client type. May be any of: ``oauth2``and other types (noauth, basic,api_key)|
+| attributes.credentials                         | yes (if ``attributes.type`` is ``oauth2``) | Auth Client credentials |
+| attributes.credentials.client_id               | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client ID |
+| attributes.credentials.client_secret           | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client secret |
+| attributes.credentials.refresh_token_uri       | yes (if ``attributes.type`` is ``oauth2``) | Auth Client refresh token URI |
+| attributes.credentials.token_expires_in        | no                                         | The value that will be set as `expires_in` in Auth Secret linked to the Auth Client after Auth Secret refresh. |
+| attributes.credentials.token_uri               | yes (if ``attributes.type`` is ``oauth2``) | Auth Client token URI |
+| attributes.credentials.auth_uri                | yes (if ``attributes.type`` is ``oauth2``) | Auth Client auth URI|
+| relationships.components.data[].component.type | yes                                        | Allowed value: ``component`` |
+| relationships.components.data[].component.id   | yes                                        | Component ID |
+| relationships.tenant.data.type                 | no                                         | Allowed value: ``tenant`` |
+| relationships.tenant.data.id                   | no                                         | Tenant ID |
+| relationships.contract.data.type               | no                                         | Allowed value: ``contract`` |
+| relationships.contract.data.id                 | no                                         | Contract ID |
+| relationships.workspace.data.type              | no                                         | Allowed value: ``workspace`` |
+| relationships.workspace.data.id                | no                                         | Workspace ID |
 
 ### Returns
 
@@ -309,11 +307,11 @@ This resource allows you to retrieve an Auth Client by its ID.
 
 #### Authorization
 
-This request is authorized with one of the `tenants.auth_clients.get`, `contracts.auth_clients.get` or `workspaces.auth_clients.get`. Each permission allows to get Auth Client in particular scope inclusively: `tenants.auth_clients.get` allows to get tenant's client, `contracts.auth_clients.get` allows to get tenant's and all tenant's contracts clients, `workspaces.auth_clients.get` allows to get tenant's, contracts' and workspaces' clients.
+This request is authorized with one of the `global.auth_clients.get`, `tenants.auth_clients.get`, `contracts.auth_clients.get` or `workspaces.auth_clients.get`. Each permission allows to get Auth Client in particular scope inclusively: `global.auth_clients.get` allows to get global client, `tenants.auth_clients.get` allows to get global and tenant's client, `contracts.auth_clients.get` allows to get global, tenant's and all tenant's contracts clients, `workspaces.auth_clients.get` allows to get global, tenant's, contracts' and workspaces' clients.
 
 `auth_clients.get` permissions are also used to authorize access to Auth Client's `credentials` field: one can see Auth Client's `credential` only if client's scope and permission's scope match, i.e. `credentials` of tenant's Auth Client are visible for users only with `tenants.auth_clients.get` permissions, though tenant Auth Client itself is visible for users with `workspaces.auth_clients.get`.
 
-To specify scope of request one of `workspace_id`, `contract_id` or `tenant_id` query parameters is used. For example, tenant auth client can be retreived by id if user has `workspaces.auth_clients.get` permission in one of the tenant's workspaces, so to specify those workspace `workspace_id` query parameter is used, without scope parameter specified permission can't be checked and such request will be rejected.
+To specify scope of request one of `workspace_id`, `contract_id` or `tenant_id` query parameters is used. For example, tenant auth client can be retreived by id if user has `workspaces.auth_clients.get` permission in one of the tenant's workspaces, so to specify those workspace `workspace_id` query parameter is used, without scope parameter you can get only global client. In case if the user tries to get not a global client and doesn't specify the query parameter - such request  will be rejected, as permission can't be checked.
 
 ### URL Parameters
 
@@ -325,9 +323,9 @@ To specify scope of request one of `workspace_id`, `contract_id` or `tenant_id` 
 
 | Parameter         | Required  | Description                                                                                          |
 | :---              | :---      | :---                                                                                                 |
-| workspace_id      | no        | Show auth-client available in the given workspace (including tenant's and contract's auth-clients). |
-| contract_id       | no        | Show auth-client available in the given contract (including tenant's auth-clients).                  |
-| tenant_id         | no        | Show auth-client available in the given tenant.                  |
+| workspace_id      | no        | Show auth-client available in the given workspace (including global, tenant's and contract's auth-clients). |
+| contract_id       | no        | Show auth-client available in the given contract (including global and tenant's auth-clients).                  |
+| tenant_id         | no        | Show auth-client available in the given tenant and global scopes.                  |
 
 ### Returns
 
