@@ -217,7 +217,7 @@ This request is authorized for the global scope with the `global.auth_clients.cr
 | type                                           | yes                                        | Allowed value: ``auth-client`` |
 | attributes.name                                | yes                                        | Auth Client name                |
 | attributes.type                                | yes                                        | Auth Client type. May be any of: ``oauth2``and other types (noauth, basic,api_key)|
-| attributes.credentials                         | yes (if ``attributes.type`` is ``oauth2``) | Auth Client credentials |
+| attributes.credentials                         | yes                                        | Auth Client credentials (can be an empty object if Auth Client type is not `oauth2`)|
 | attributes.credentials.client_id               | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client ID |
 | attributes.credentials.client_secret           | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client secret |
 | attributes.credentials.refresh_token_uri       | yes (if ``attributes.type`` is ``oauth2``) | Auth Client refresh token URI |
