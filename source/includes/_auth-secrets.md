@@ -208,7 +208,7 @@ Content-Type: application/json
 ```
 
 This resource allows you to create an Auth Secret. If related Auth Client has type ``oauth2`` then ``credentials``
-object must contain only properties ``access_token``, ``refresh_token`` and ``expires_in``, otherwise if the type is
+object must contain only properties ``access_token``, ``refresh_token``, otherwise if the type is
 ``other``, then you can put in credentials any data that you want.
 
 ### HTTP Request
@@ -237,7 +237,7 @@ This request is authorized for the Workspace's scope members with the `workspace
 | attributes.credentials                   | yes      | Auth Secret credentials |
 | attributes.credentials.access_token      | yes (if ``auth-client`` is ``oauth2``) | Auth Secret access token |
 | attributes.credentials.refresh_token     | yes (if ``auth-client`` is ``oauth2``) | Auth Secret refresh token |
-| attributes.credentials.expires_in        | yes (if ``auth-client`` is ``oauth2``) | Auth Secret expires in |
+| attributes.credentials.expires_in        | no        | Auth Secret expires in. If not specified and ``auth-client`` is ``oauth2`` then the value will be taken from ``token_expires_in`` of linked ``auth-client``|
 | attributes.credentials.additional_params | no (if ``auth-client`` is ``oauth2``) | Auth Secret additional parameters |
 | relationships.auth_client.data.type      | yes       | Allowed value: ``auth-client``  |
 | relationships.auth_client.data.id        | yes       | Auth Client ID |
@@ -522,7 +522,7 @@ Content-Type: application/json
 ```
 
 This resource allows you to update the Auth Secret. If related Auth-client has type ``oauth2`` then ``credentials``
-object must contain only properties ``access_token``, ``refresh_token``, ``expires_in``, otherwise if the type
+object must contain only properties ``access_token``, ``refresh_token``, otherwise if the type
 is ``other``, then you can put in credentials any data that you want.
 
 ### HTTP Request

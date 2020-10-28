@@ -221,7 +221,7 @@ This request is authorized for the global scope with the `global.auth_clients.cr
 | attributes.credentials.client_id               | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client ID |
 | attributes.credentials.client_secret           | yes (if ``attributes.type`` is ``oauth2``) | Auth Client client secret |
 | attributes.credentials.refresh_token_uri       | yes (if ``attributes.type`` is ``oauth2``) | Auth Client refresh token URI |
-| attributes.credentials.token_expires_in        | no                                         | The value that will be set as `expires_in` in Auth Secret linked to the Auth Client after Auth Secret refresh. |
+| attributes.credentials.token_expires_in        | no (default: 3600)                         | The value that will be set as `expires_in` in Auth Secret linked to the Auth Client after Auth Secret refresh if Auth Secret does not contain it. |
 | attributes.credentials.token_uri               | yes (if ``attributes.type`` is ``oauth2``) | Auth Client token URI |
 | attributes.credentials.auth_uri                | yes (if ``attributes.type`` is ``oauth2``) | Auth Client auth URI|
 | relationships.components.data[].component.type | yes                                        | Allowed value: ``component`` |
@@ -444,7 +444,7 @@ This request is authorized for members with appropriate permission.
 | type                                     | yes      | Allowed value: ``auth-client`` |
 | attributes.name                          | no       | New name of the Auth Client     |
 | attributes.credentials.client_secret     | no       | Auth Client client secret     |
-| attributes.credentials.token_expires_in  | no       | The value that will be set as `expires_in` in Auth Secret linked to the Auth Client after Auth Secret refresh|
+| attributes.credentials.token_expires_in  | no       | The value that will be set as `expires_in` in Auth Secret linked to the Auth Client after Auth Secret refresh if Auth Secret does not contain it. |
 | relationships.components.data[].component.type | no | Allowed value: ``component`` |
 | relationships.components.data[].component.id | no | Component ID |
 
