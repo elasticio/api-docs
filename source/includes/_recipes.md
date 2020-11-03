@@ -326,7 +326,7 @@ curl -X POST {{ api_base_url }}/v2/flows/{FLOW_ID}/export-to-recipe \
     "data": {
       "type": "flow-export-to-recipe-config",
       "relationships": {
-        "workspace": {
+        "dest_workspace": {
           "data": {
             "type": "workspace",
             "id": "{WORKSPACE_ID}"
@@ -492,7 +492,7 @@ This resource allows you to export an existing flow as a new recipe.
 
 ### Authorization
 
-This request is authorized to only a user with `workspaces.recipe.edit` permission
+This request is authorized to only a user with `workspaces.recipe.edit` and `workspaces.flow.exportToRecipe` permissions
 
 ### Returns
 
