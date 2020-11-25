@@ -418,7 +418,8 @@ The flow with given ID
           }
         },
         "step_2": {
-          "prefetch": 3
+          "prefetch": 3,
+          "log_lelev": "info"
         }
       }
     },
@@ -546,7 +547,8 @@ Content-Type: application/json
           }
         },
         "step_2": {
-          "prefetch": 3
+          "prefetch": 3,
+          "log_lelev": "info"
         }
       },
       "last_modified":"2019-06-27T14:28:17.940Z",
@@ -612,6 +614,7 @@ This resource allows you to create a new flow.
 | attributes.default_mapper_type                          | yes   | The mapper type. A value must be ``jsonata`` (The *handlebars* is now deprecated)
 | attributes.nodes_config.{STEP_ID}.prefetch              | no    | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
 | attributes.nodes_config.{STEP_ID}.passthrough.disabled  | no    | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
+| attributes.nodes_config.{STEP_ID}.log_level             | no    | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``critical``, default: ``info``
 | relationships.workspace.data.id                         | yes   | An Id of the Workspace
 | relationships.workspace.data.type                       | yes   | A value must be ``workspace``
 
@@ -648,7 +651,8 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID} \
                   }
                 },
                 "step_2": {
-                  "prefetch": 3
+                  "prefetch": 3,
+                  "log_level": "info"
                 }
               }
             }
@@ -721,7 +725,8 @@ Content-Type: application/json
           }
         },
         "step_2": {
-          "prefetch": 3
+          "prefetch": 3,
+          "log_level": "info"
         }
       }
     },
@@ -792,6 +797,7 @@ This resource allows you to update the given flow. A new version of the flow wil
 | attributes.cron                                         | no  | Cron expression representing flow timing |
 | attributes.nodes_config.{STEP_ID}.prefetch              | no  | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
 | attributes.nodes_config.{STEP_ID}.passthrough.disabled  | no  | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
+| attributes.nodes_config.{STEP_ID}.log_level             | no    | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``critical``, default: ``info``
 
 
 ### Authorization
@@ -879,7 +885,8 @@ HTTP/1.1 202 Accepted
           }
         },
         "step_2": {
-          "prefetch": 3
+          "prefetch": 3,
+          "log_level": "info"
         }
       }
     },
