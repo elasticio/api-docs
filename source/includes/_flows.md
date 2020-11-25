@@ -548,7 +548,7 @@ Content-Type: application/json
         },
         "step_2": {
           "prefetch": 3,
-          "log_lelev": "info"
+          "log_level": "info"
         }
       },
       "last_modified":"2019-06-27T14:28:17.940Z",
