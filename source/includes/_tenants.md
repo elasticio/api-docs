@@ -344,7 +344,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.html_meta.description        | no       | Customer meta description in html pages    |
 | attributes.html_meta.author             | no       | Customer meta author in html pages  |
 | attributes.html_meta.keywords           | no       | Customer meta keywords in html pages     |
-| attributes.feature_flags.keywords       | old_mapper_enabled | Enable ability to use deprecated mapper UI. Default: "false" |
+| attributes.feature_flags.old_mapper_enabled       | no | Enable ability to use deprecated mapper UI. Default: "false" |
 
 ###
 
@@ -652,7 +652,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.custom_stylesheets\[]         | no       | Customer css stylesheets. |
 | attributes.custom_scripts\[]             | no       | Customer js-scripts.      |
 | attributes.default_workspace_type       | no       | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`        |
-| attributes.feature_flags.keywords       | old_mapper_enabled | Enable ability to use deprecated mapper UI. Default: "false" |
+| attributes.feature_flags.old_mapper_enabled       | no | Enable ability to use deprecated mapper UI. Default: "false" |
 
 _Note_: If the default installation's certificate is a wildcard one (e.g. `*.example.com`) and the Tenant's domains match to this certificate (e.g. `my-tenant-api.example.com`), then there is no need to provide separate certificates for these domains. To remove existing certificates, set them to `null` (e.g. `"app": null`).
 
