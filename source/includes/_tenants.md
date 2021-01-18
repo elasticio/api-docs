@@ -82,6 +82,7 @@
         "user-removed-from-contract": true,
         "wiper-exhaustion-quota-notification": true,
         "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-stop-limited-flow": true,
         "wiper-suspended-queue-purged": true,
         "workspace-invite-empty-workspace": true,
         "workspace-invite-new-user": true,
@@ -219,6 +220,7 @@ Content-Type: application/json
         "user-removed-from-contract": true,
         "wiper-exhaustion-quota-notification": true,
         "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-stop-limited-flow": true,
         "wiper-suspended-queue-purged": true,
         "workspace-invite-empty-workspace": true,
         "workspace-invite-new-user": true,
@@ -388,6 +390,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
         "user-removed-from-contract": true,
         "wiper-exhaustion-quota-notification": true,
         "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-stop-limited-flow": true,
         "wiper-suspended-queue-purged": true,
         "workspace-invite-empty-workspace": true,
         "workspace-invite-new-user": true,
@@ -536,6 +539,7 @@ Content-Type: application/json
         "user-removed-from-contract": true,
         "wiper-exhaustion-quota-notification": true,
         "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-stop-limited-flow": true,
         "wiper-suspended-queue-purged": true,
         "workspace-invite-empty-workspace": true,
         "workspace-invite-new-user": true,
@@ -726,6 +730,7 @@ Content-Type: application/json
         "user-removed-from-contract": true,
         "wiper-exhaustion-quota-notification": true,
         "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-stop-limited-flow": true,
         "wiper-suspended-queue-purged": true,
         "workspace-invite-empty-workspace": true,
         "workspace-invite-new-user": true,
@@ -858,6 +863,7 @@ Content-Type: application/json
         "user-removed-from-contract": true,
         "wiper-exhaustion-quota-notification": true,
         "wiper-flow-suspended-due-to-queue-overflow": true,
+        "wiper-stop-limited-flow": true,
         "wiper-suspended-queue-purged": true,
         "workspace-invite-empty-workspace": true,
         "workspace-invite-new-user": true,
@@ -2601,6 +2607,7 @@ The Platform sends various emails when triggered. Here is the list of templates 
 - **user-removed-from-contract** Has removed user from contract
 - **wiper-exhaustion-quota-notification** Quota usage has come to the limit
 - **wiper-flow-suspended-due-to-queue-overflow** Flow has been suspended due to queue overflow
+- **wiper-stop-limited-flow** Flow has been stopped due to limitations of limited workspace
 - **wiper-suspended-queue-purged** Unhandled data has been purged
 - **workspace-invite-empty-workspace** User has been invited to an empty Workspace
 - **workspace-invite-new-user** Unregistered user has been invited to the Workspace
