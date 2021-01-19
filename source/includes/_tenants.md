@@ -1138,6 +1138,7 @@ Content-Type: application/json
     "type":"permissions",
     "attributes":{
       "permissions":[
+        "global.stats.workspaces",
         "contracts.contract.edit",
         "contracts.devTeam.edit",
         "contracts.membership.edit",
