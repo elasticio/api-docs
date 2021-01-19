@@ -141,7 +141,7 @@ This endpoint allows you to retrieve an information in form of the list of works
 
 | Parameter   | Required                                         | Description |
 | :---        | :---                                             | :---        |
-| contract_id | yes, for contract user<br />no, for tenant admin | Contract ID |
+| contract_id | yes, for contract owner<br />prohibited, for tenant admin | Contract ID |
 
 ### Authorization
 
