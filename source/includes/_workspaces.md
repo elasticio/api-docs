@@ -679,7 +679,7 @@ This endpoint allows updating a membership of a given User. Only `roles` attribu
 `PATCH {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/`
 
 #### Authorization
-This request is authorized for Workspace members with permission `workspaces.workspace.edit`.
+This request is authorized for a User with `workspaces.workspace.edit` or `tenant.workspace.edit_membership` permissions only.
 
 ### URL Parameters
 Parameter        | Description
@@ -734,7 +734,7 @@ Ownership of those user's associated data will be transferred to the User perfor
 `DELETE {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/{USER_ID}/`
 
 #### Authorization
-This request is authorized for Workspace members with permission `workspaces.workspace.edit`.
+This request is authorized for a User with `workspaces.workspace.edit` or `tenant.workspace.edit_membership` permissions only.
 
 ### URL Parameters
 Parameter        | Description
