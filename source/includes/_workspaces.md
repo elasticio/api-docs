@@ -601,7 +601,7 @@ A notification email will be sent. The User becomes a member immediately.
 
 
 #### Authorization
-This request is authorized for a User with `workspaces.workspace.edit` permission only.
+This request is authorized for a User with `workspaces.workspace.edit` or `tenant.workspace.edit_membership` permissions only.
 
 ### Payload Parameters
 Parameter        | Required  | Description
