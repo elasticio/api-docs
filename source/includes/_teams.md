@@ -72,6 +72,9 @@ This resource allows retrieving all teams where the current user remains a membe
 
 `GET {{ api_base_url }}/v2/teams/`
 
+#### Authorization
+This request is authorized for a User of a current contract or with `contract.devTeams.get` permission only.
+
 ### Query Parameters
 
 | Parameter         | Required  | Description |
@@ -163,6 +166,8 @@ This resource allows retrieving the team by ID where the current user remains a 
 
 `GET {{ api_base_url }}/v2/teams/{TEAM_ID}`
 
+#### Authorization
+This request is authorized for a User of a current contract or with `contract.devTeams.get` permission only.
 
 ### Returns
 
