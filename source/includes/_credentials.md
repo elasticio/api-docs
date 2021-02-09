@@ -164,46 +164,46 @@ curl {{ api_base_url }}/v2/credentials/{CREDENTIAL_ID}/ \
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{  
-  "data":{  
+{
+  "data":{
     "id":"59f9f2ba112f28001921f274",
     "type":"credential",
-    "links":{  
+    "links":{
       "self":"/v2/credentials/59f9f2ba112f28001921f274"
     },
-    "attributes":{  
+    "attributes":{
       "name":"SFTP account",
-      "keys":{  
+      "keys":{
         "host":"sftp.company.org",
         "username":"lord",
         "password":"teststetr"
       }
     },
-    "relationships":{  
-      "user":{  
-        "data":{  
+    "relationships":{
+      "user":{
+        "data":{
           "id":"59f747c33f1d3c001901a44e",
           "type":"user"
         },
-        "links":{  
+        "links":{
           "self":"/v2/users/59f747c33f1d3c001901a44e"
         }
       },
-      "component":{  
-        "data":{  
+      "component":{
+        "data":{
           "id":"56793fb4d8057406000000f7",
           "type":"component"
         },
-        "links":{  
+        "links":{
           "self":"/v2/components/56793fb4d8057406000000f7"
         }
       },
-      "workspace":{  
-        "data":{  
+      "workspace":{
+        "data":{
           "id":"59d341e9037f7200184a408b",
           "type":"workspace"
         },
-        "links":{  
+        "links":{
           "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       }
@@ -213,7 +213,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to retrieve a credential by its identifier. 
+This resource allows you to retrieve a credential by its identifier.
 
 ### HTTP Request
 
@@ -277,55 +277,55 @@ curl {{ api_base_url }}/v2/credentials/ \
 HTTP/1.1 201 Created
 Content-Type: application/json
 
-{  
-  "data":{  
+{
+  "data":{
     "id":"5abe11edbec1cf00078b81d1",
     "type":"credential",
-    "links":{  
+    "links":{
       "self":"/v2/credentials/5abe11edbec1cf00078b81d1"
     },
-    "attributes":{  
+    "attributes":{
       "name":"credname",
-      "keys":{  
+      "keys":{
         "host":"hostname",
         "username":"username",
         "password":"pass"
       }
     },
-    "relationships":{  
-      "user":{  
-        "data":{  
+    "relationships":{
+      "user":{
+        "data":{
           "id":"59d3562c68ed850019bde27f",
           "type":"user"
         },
-        "links":{  
+        "links":{
           "self":"/v2/users/59d3562c68ed850019bde27f"
         }
       },
-      "component":{  
-        "data":{  
+      "component":{
+        "data":{
           "id":"56793fb4d8057406000000f7",
           "type":"component"
         },
-        "links":{  
+        "links":{
           "self":"/v2/components/56793fb4d8057406000000f7"
         }
       },
-      "workspace":{  
-        "data":{  
+      "workspace":{
+        "data":{
           "id":"59d341e9037f7200184a408b",
           "type":"workspace"
         },
-        "links":{  
+        "links":{
           "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       },
-      "agent":{  
-        "data":{  
+      "agent":{
+        "data":{
           "id":"5a09deda2d5f49665afb739a",
           "type":"agent"
         },
-        "links":{  
+        "links":{
           "self":"/v2/agents/5a09deda2d5f49665afb739a"
         }
       }
@@ -348,6 +348,7 @@ This resource allows you to create a credential.
 | :--- | :--- | :--- |
 | type | yes | A value must be ``credential`` |
 | attributes.name | no | Credential name. An automatic name will be generated if the parameter is omitted |
+| attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.). Read more below |
 | relationships.component.data.id | yes | The component id this credential is for |
 | relationships.component.data.type | yes | A value must be ``component`` |
 | relationships.workspace.data.id | yes | The Workspace id this credential is for |
@@ -355,8 +356,63 @@ This resource allows you to create a credential.
 | relationships.agent | no | The agent relation object |
 | relationships.agent.data.id | no | The agent id this credential is for |
 | relationships.agent.data.type | no | A value must be ``agent`` |
-| attributes.keys | no | An object which represents component's configuration (OAuth keys, etc.) |
 
+
+### attributes.keys structure
+
+API `attributes.keys` structure depends on [credentials.fields](https://docs.elastic.io/references/component-json-technical-reference-credentials.html#credentials-object-structure)
+property of component's `component.json`. The keys from `credentials.fields` directly translate into keys of
+`attributes.keys`.
+
+Definition from `credentials.fields`:
+```
+{
+  "apiKey": {
+    "required": true,
+    "viewClass": "TextFieldView"
+  }
+}
+```
+
+Expected `attributes.keys`:
+```
+{
+  "apiKey": "api_key_value"
+}
+```
+
+The value structure of a key in `attributes.keys` depends on
+[viewClass](https://docs.elastic.io/references/view-classes). The structure of most frequently used view classes:
+
+- `TextFieldView` - string. Example: `"password"`
+- `CheckBoxView` - boolean. Example: `true`
+- `SelectView` - list item from model. Example: `"chicken"`
+- `WebhookAuthView` - object with structure:
+  ```
+  {
+    "type": "BASIC", // one of "BASIC", "API_KEY", "HMAC", "NO_AUTH"
+    // depending on "type" above, one of (nothing if NO_AUTH):
+    "basic": {
+      "username": "",
+      "password": ""
+    },
+    "apiKey": {
+      "headerName": "",
+      "headerValue": ""
+    },
+    "hmacSecret": ""
+  }
+  ```
+  **Note.** This view must be the only view in a `credentials.fields` list and its key must be `auth`, so
+  `attributes.keys` will look like:
+  ```
+  {
+    "auth": {
+      "type": "HMAC",
+      "hmacSecret": "ece0695743f219e26ca4b738439c8ed7b51c549d"
+    }
+  }
+  ```
 
 ### Authorization
 This request is authorized to only a user with `workspaces.credential.edit` permission
@@ -385,9 +441,9 @@ curl {{ api_base_url }}/v2/credentials/{CREDENTIAL_ID}/ \
             "type": "credential",
             "attributes": {
                 "keys": {
-                    "key1": "updated value"  
+                    "key1": "updated value"
                 }
-            },                     
+            },
             "relationships": {
                "agent": {
                    "data": {
@@ -408,55 +464,55 @@ curl {{ api_base_url }}/v2/credentials/{CREDENTIAL_ID}/ \
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{  
-  "data":{  
+{
+  "data":{
     "id":"5aaff19dbd6d6400079b4624",
     "type":"credential",
-    "links":{  
+    "links":{
       "self":"/v2/credentials/5aaff19dbd6d6400079b4624"
     },
-    "attributes":{  
+    "attributes":{
       "name":"luzho4ek777",
-      "keys":{  
+      "keys":{
         "host":"sftp.company.org",
         "username":"asssssa",
         "password":"qweqweqw"
       }
     },
-    "relationships":{  
-      "user":{  
-        "data":{  
+    "relationships":{
+      "user":{
+        "data":{
           "id":"59d3562c68ed850019bde27f",
           "type":"user"
         },
-        "links":{  
+        "links":{
           "self":"/v2/users/59d3562c68ed850019bde27f"
         }
       },
-      "component":{  
-        "data":{  
+      "component":{
+        "data":{
           "id":"56793fb4d8057406000000f7",
           "type":"component"
         },
-        "links":{  
+        "links":{
           "self":"/v2/components/56793fb4d8057406000000f7"
         }
       },
-      "workspace":{  
-        "data":{  
+      "workspace":{
+        "data":{
           "id":"59d341e9037f7200184a408b",
           "type":"workspace"
         },
-        "links":{  
+        "links":{
           "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       },
-      "agent":{  
-        "data":{  
+      "agent":{
+        "data":{
           "id":"5a09deda2d5f49665afb739a",
           "type":"agent"
         },
-        "links":{  
+        "links":{
           "self":"/v2/agents/5a09deda2d5f49665afb739a"
         }
       }
