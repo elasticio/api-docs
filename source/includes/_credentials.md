@@ -365,21 +365,12 @@ property of component's `component.json`. The keys from `credentials.fields` dir
 `attributes.keys`.
 
 Definition from `credentials.fields`:
-```
-{
-  "apiKey": {
-    "required": true,
-    "viewClass": "TextFieldView"
-  }
-}
-```
+
+![Definition from credentials fields](https://user-images.githubusercontent.com/28867440/107536968-0fa5f680-6bcb-11eb-9ce8-848b12f57fe1.png)
 
 Expected `attributes.keys`:
-```
-{
-  "apiKey": "api_key_value"
-}
-```
+
+![Expected attributes keys](https://user-images.githubusercontent.com/28867440/107536970-103e8d00-6bcb-11eb-8625-26e2bde135ae.png)
 
 The value structure of a key in `attributes.keys` depends on
 [viewClass](https://docs.elastic.io/references/view-classes). The structure of most frequently used view classes:
@@ -389,33 +380,13 @@ The value structure of a key in `attributes.keys` depends on
 - `SelectView` - list item from model. Example: `"chicken"`
 - `WebhookAuthView` - object with structure:
 
-  ```
-  {
-    "type": "BASIC", // one of "BASIC", "API_KEY", "HMAC", "NO_AUTH"
-    // depending on "type" above, one of (nothing if NO_AUTH):
-    "basic": {
-      "username": "",
-      "password": ""
-    },
-    "apiKey": {
-      "headerName": "",
-      "headerValue": ""
-    },
-    "hmacSecret": ""
-  }
-  ```
+ ![object with structure](https://user-images.githubusercontent.com/28867440/107536973-10d72380-6bcb-11eb-999c-33bb71c7939a.png)
   
   **Note.** This view must be the only view in a `credentials.fields` list and its key must be `auth`, so
   `attributes.keys` will look like:
   
-  ```
-  {
-    "auth": {
-      "type": "HMAC",
-      "hmacSecret": "ece0695743f219e26ca4b738439c8ed7b51c549d"
-    }
-  }
-  ```
+  ![will look like](https://user-images.githubusercontent.com/28867440/107537499-9c50b480-6bcb-11eb-86f7-9b0477db78ea.png)
+
 
 ### Authorization
 This request is authorized to only a user with `workspaces.credential.edit` permission
