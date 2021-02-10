@@ -131,7 +131,7 @@ This endpoints returns a Workspace object for certain Workspace ID.
 
 #### Authorization
 
-User has to be a member of the Workspace.
+User has to be a member of the Workspace or have permision `workspaces.workspace.listAll`.
 
 
 ### URL Parameters
