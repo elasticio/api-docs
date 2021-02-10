@@ -388,6 +388,7 @@ The value structure of a key in `attributes.keys` depends on
 - `CheckBoxView` - boolean. Example: `true`
 - `SelectView` - list item from model. Example: `"chicken"`
 - `WebhookAuthView` - object with structure:
+
   ```
   {
     "type": "BASIC", // one of "BASIC", "API_KEY", "HMAC", "NO_AUTH"
@@ -403,8 +404,10 @@ The value structure of a key in `attributes.keys` depends on
     "hmacSecret": ""
   }
   ```
+  
   **Note.** This view must be the only view in a `credentials.fields` list and its key must be `auth`, so
   `attributes.keys` will look like:
+  
   ```
   {
     "auth": {
