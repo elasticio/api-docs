@@ -385,14 +385,8 @@ The value structure of a key in `attributes.keys` depends on
   **Note.** This view must be the only view in a `credentials.fields` list and its key must be `auth`, so
   `attributes.keys` will look like:
   
-  ```
-  {
-    "auth": {
-      "type": "HMAC",
-      "hmacSecret": "ece0695743f219e26ca4b738439c8ed7b51c549d"
-    }
-  }
-  ```
+  ![will look like](https://user-images.githubusercontent.com/28867440/107537499-9c50b480-6bcb-11eb-86f7-9b0477db78ea.png)
+
 
 ### Authorization
 This request is authorized to only a user with `workspaces.credential.edit` permission
