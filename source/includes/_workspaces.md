@@ -260,9 +260,11 @@ This endpoint returns a list of Workspaces which belong to the given User.
 
 ### Query Parameters
 
-| Parameter         | Required  | Description |
-| :---              | :---      | :---        |
-|contract_id|no|Contract ID|
+| Parameter         | Required  | Description                                         |
+| :---              | :---      | :---                                                |
+| contract_id       | no        |Contract ID                                          |
+| page[size]        | no        | Amount of items per page. Default is `20`.          |
+| page[number]      | no        | Number of page you want to display. Default is `1`. |
 
 #### Authorization
 

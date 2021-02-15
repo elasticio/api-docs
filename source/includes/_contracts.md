@@ -441,6 +441,13 @@ This endpoint returns all the Contract's objects for a specific user.
 
 `GET {{ api_base_url }}/v2/contracts/`
 
+### Query Parameters
+
+| Parameter         | Required  | Description                                         |
+| :---              | :---      | :---                                                |
+| page[size]        | no        | Amount of items per page. Default is `20`.          |
+| page[number]      | no        | Number of page you want to display. Default is `1`. |
+
 #### Authorization
 
 A client has to be a member of the Contract's scope.
