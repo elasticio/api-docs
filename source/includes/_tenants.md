@@ -21,6 +21,7 @@
       "app_domain":"{{app_domain}}",
       "api_domain":"{{api_domain}}",
       "webhooks_domain":"{{webhooks_domain}}",
+      "api_docs_url":"{{api_docs_url}}",
       "git_receiver_host":"git_receiver_host",
       "code":"{{css_code}}",
       "header_logo_url":"//cdn.example.com/logo-mini.png",
@@ -164,6 +165,7 @@ Content-Type: application/json
       "app_domain":"{{app_domain}}",
       "api_domain":"{{api_domain}}",
       "webhooks_domain":"{{webhooks_domain}}",
+      "api_docs_url":"{{api_docs_url}}",
       "git_receiver_host":"git_receiver_host",
       "css_enabled":false,
       "code":"{{css_code}}",
@@ -307,6 +309,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.mandrill_email_from          | yes      | An email of the letters sender   |
 | attributes.api_domain                   | no       | Name of the Tenant API domain   |
 | attributes.webhooks_domain              | no       | Name of the Tenant webhooks domain     |
+| attributes.api_docs_url                 | no       | The URL to your custom API documentation     |
 | attributes.git_receiver_host            | no       | Name of the Tenant git receiver host |
 | attributes.header_logo_url              | no       | The URL of image which will be displayed in the navigation panel (logo size 40x40 pixels, logo format - .png or .svg)|
 | attributes.loading_logo_url             | no       | The URL of image which will be displayed during the page loading  |
@@ -479,6 +482,7 @@ Content-Type: application/json
       "app_domain":"{{app_domain}}",
       "api_domain":"{{api_domain}}",
       "webhooks_domain":"{{webhooks_domain}}",
+      "api_docs_url":"{{api_docs_url}}",
       "git_receiver_host":"git_receiver_host",
       "css_enabled":false,
       "code":"{{css_code}}",
@@ -616,6 +620,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 
 | Parameter                               | Required | Description  |
 | --------------------------------------- | -------- | ------------------------------------------------------ |
+| attributes.api_docs_url                 | no       | The URL to your custom API documentation |
 | attributes.header_logo_url              | no       | The URL of image which will be displayed in the navigation panel (logo size 40x40 pixels, logo format - .png or .svg)|
 | attributes.loading_logo_url             | no       | The URL of image which will be displayed during the page loading |
 | attributes.email_logo_url               | no       | The URL of image which will be displayed in the emails|
@@ -691,6 +696,7 @@ Content-Type: application/json
         "app_domain":"{{app_domain}}",
         "api_domain":"{{api_domain}}",
         "webhooks_domain":"{{webhooks_domain}}",
+        "api_docs_url":"{{api_docs_url}}",
         "git_receiver_host":"git_receiver_host",
         "css_enabled":false,
         "code":"{{css_code}}",
@@ -824,6 +830,7 @@ Content-Type: application/json
       "app_domain":"{{app_domain}}",
       "api_domain":"{{api_domain}}",
       "webhooks_domain":"{{webhooks_domain}}",
+      "api_docs_url":"{{api_docs_url}}",
       "git_receiver_host":"git_receiver_host",
       "css_enabled":false,
       "code":"{{css_code}}",
