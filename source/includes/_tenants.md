@@ -2612,7 +2612,7 @@ Returns **Oauth-client** object if the call succeeded
          "login_endpoint": "https://www.example.com/login",
          "logout_endpoint": "https://www.example.com/logout",
          "assert_endpoint": "https://www.example.com/assert",
-         "idp_certificates": [{IDENTITY_PROVIDER_CERTIFICATE}],
+         "idp_certificates": ["{IDENTITY_PROVIDER_CERTIFICATE}"],
          "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
          "private_key": "{PRIVATE_KEY}",
          "certificate": "{CERTIFICATE}",
@@ -2641,7 +2641,7 @@ Content-Type: application/json
         "login_endpoint": "https://www.example.com/login",
         "logout_endpoint": "https://www.example.com/logout",
         "assert_endpoint": "https://www.example.com/assert",
-        "idp_certificates": [{IDENTITY_PROVIDER_CERTIFICATE}],
+        "idp_certificates": ["{IDENTITY_PROVIDER_CERTIFICATE}"],
         "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
         "private_key": "{PRIVATE_KEY}",
         "certificate": "{CERTIFICATE}",
@@ -2691,9 +2691,9 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.private_key                 | yes (if ``allow_unencrypted_assertion`` is ``false``) | Private key for the service provider.                                     |
 | attributes.certificate                 | yes (if ``allow_unencrypted_assertion`` is ``false``) | Certificate for the service provider                                      |
 | attributes.force_auth                  | no                                                    | Forces re-authentication of users even if the user has a SSO session with the Identity Provider. A value should be `true` or `false`. Default is `false` |
-| attributes.allow_unencrypted_assertion | no                                                    | Allows unencrypted assertions. A value should be `true` or `false`. Default is `false`     |
+| attributes.allow_unencrypted_assertion | no                                                    | Allows unencrypted assertions. A value should be `true` or `false`. Default is `true`     |
 | attributes.config.email_attribute      | no                                                    | Name of the attribute that contains a user email address.                 |
-| attributes.config.auto_create_users    | no                                                    | Creates user identity if not registered. A value should be `true` or `false`. Default is `false`                   |
+| attributes.config.auto_create_users    | no                                                    | Creates user identity if not registered. A value should be `true` or `false`. Default is `true`                   |
 
 
 ### URL Parameters
@@ -2730,7 +2730,7 @@ Content-Type: application/json
         "login_endpoint": "https://www.example.com/login",
         "logout_endpoint": "https://www.example.com/logout",
         "assert_endpoint": "https://www.example.com/assert",
-        "idp_certificates": [{IDENTITY_PROVIDER_CERTIFICATE}],
+        "idp_certificates": ["{IDENTITY_PROVIDER_CERTIFICATE}"],
         "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
         "private_key": "{PRIVATE_KEY}",
         "certificate": "{CERTIFICATE}",
@@ -2800,7 +2800,7 @@ Content-Type: application/json
       "login_endpoint": "https://www.example.com/login",
       "logout_endpoint": "https://www.example.com/logout",
       "assert_endpoint": "https://www.example.com/assert",
-      "idp_certificates": [{IDENTITY_PROVIDER_CERTIFICATE}],
+      "idp_certificates": ["{IDENTITY_PROVIDER_CERTIFICATE}"],
       "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
       "private_key": "{PRIVATE_KEY}",
       "certificate": "{CERTIFICATE}",
@@ -2865,7 +2865,7 @@ Returns **SAML 2.0 Provider** object if the call succeeded
          "login_endpoint": "https://www.example.com/login",
          "logout_endpoint": "https://www.example.com/logout",
          "assert_endpoint": "https://www.example.com/assert",
-         "idp_certificates": [{IDENTITY_PROVIDER_CERTIFICATE}],
+         "idp_certificates": ["{IDENTITY_PROVIDER_CERTIFICATE}"],
          "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
          "private_key": "{PRIVATE_KEY}",
          "certificate": "{CERTIFICATE}",
@@ -2894,7 +2894,7 @@ Content-Type: application/json
       "login_endpoint": "https://www.example.com/login",
       "logout_endpoint": "https://www.example.com/logout",
       "assert_endpoint": "https://www.example.com/assert",
-      "idp_certificates": [{IDENTITY_PROVIDER_CERTIFICATE}],
+      "idp_certificates": ["{IDENTITY_PROVIDER_CERTIFICATE}"],
       "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
       "private_key": "{PRIVATE_KEY}",
       "certificate": "{CERTIFICATE}",
@@ -2952,9 +2952,9 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.private_key                 | no        | Private key for the service provider.                                     |
 | attributes.certificate                 | no        | Certificate for the service provider                                      |
 | attributes.force_auth                  | no        | Forces re-authentication of users even if the user has a SSO session with the Identity Provider. A value should be `true` or `false`. Default is `false` |
-| attributes.allow_unencrypted_assertion | no        | Allows unencrypted assertions. A value should be `true` or `false`. Default is `false`     |
+| attributes.allow_unencrypted_assertion | no        | Allows unencrypted assertions. A value should be `true` or `false`. Default is `true`     |
 | attributes.config.email_attribute      | no        | Name of the attribute that contains a user email address.                 |
-| attributes.config.auto_create_users    | no        | Creates user identity if not registered. A value should be `true` or `false`. Default is `false`                   |
+| attributes.config.auto_create_users    | no        | Creates user identity if not registered. A value should be `true` or `false`. Default is `true`                   |
 
 
 
