@@ -2693,7 +2693,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.force_auth                  | no                                                    | Forces re-authentication of users even if the user has a SSO session with the Identity Provider. A value should be `true` or `false`. Default is `false` |
 | attributes.allow_unencrypted_assertion | no                                                    | Allows unencrypted assertions. A value should be `true` or `false`. Default is `true`     |
 | attributes.config.email_attribute      | no                                                    | Name of the attribute that contains a user email address.                 |
-| attributes.config.auto_create_users    | no                                                    | Creates user identity if not registered. A value should be `true` or `false`. Default is `true`                   |
+| attributes.config.auto_create_users    | no                                                    | Creates user if not registered. A value should be `true` or `false`. Default is `true`                   |
 
 
 ### URL Parameters
@@ -2924,7 +2924,7 @@ This resource allows you to update an **SAML 2.0 Provider** with the given ID fo
 
 ### HTTP Request
 
-`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{SAML_PROVIDER_ID}`
+`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/saml/providers/{SAML_PROVIDER_ID}`
 
 #### Authorization
 
@@ -2954,7 +2954,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.force_auth                  | no        | Forces re-authentication of users even if the user has a SSO session with the Identity Provider. A value should be `true` or `false`. Default is `false` |
 | attributes.allow_unencrypted_assertion | no        | Allows unencrypted assertions. A value should be `true` or `false`. Default is `true`     |
 | attributes.config.email_attribute      | no        | Name of the attribute that contains a user email address.                 |
-| attributes.config.auto_create_users    | no        | Creates user identity if not registered. A value should be `true` or `false`. Default is `true`                   |
+| attributes.config.auto_create_users    | no        | Creates user if not registered. A value should be `true` or `false`. Default is `true`                   |
 
 
 
