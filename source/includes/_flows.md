@@ -615,7 +615,7 @@ This resource allows you to create a new flow.
 | attributes.nodes_config.{STEP_ID}.prefetch                     | no    | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
 | attributes.nodes_config.{STEP_ID}.passthrough.disabled         | no    | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
 | attributes.nodes_config.{STEP_ID}.log_level                    | no    | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``fatal``, default: ``info``
-| attributes.nodes_config.{STEP_ID}.disable_dynamic_flow_control | no    | This parameter configures disabling publisher confirms in sailor. May be any of: ``true``, ``false``
+| attributes.nodes_config.{STEP_ID}.disable_dynamic_flow_control | no    | This parameter configures disabling publisher confirms in sailor. Supports only for components with JVM sailor version above 3.3.5.  May be any of: ``true``, ``false``
 | relationships.workspace.data.id                                | yes   | An Id of the Workspace
 | relationships.workspace.data.type                              | yes   | A value must be ``workspace``
 
