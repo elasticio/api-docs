@@ -720,6 +720,7 @@ Content-Type: application/json
         "favicon_url":"//cdn.example.com/logo-mini.png",
         "terms_of_usage_url":"https://www.example.com/tou/",
         "privacy_policy_url":"https://www.example.com/privacy-policy/",
+        "imprint_url":"https://www.example.com/legal-disclosure/",
         "mailchimp_api_key":"{{mailchimp_api_key}}",
         "mailchimp_list_id":"{{mailchimp_list_id}}",
         "mandrill_email_from":"foo@foo.bar",
