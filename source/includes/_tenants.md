@@ -35,6 +35,8 @@
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
       "mandrill_api_key":"{{mandrill_api_key}}",
+      "segment_write_key":"{{segment_write_key}}",
+      "google_tag_manager_id":"{{google_tag_manager_id}}",
       "hide_register":false,
       "is_default":false,
       "hide_repos":false,
@@ -176,8 +178,12 @@ Content-Type: application/json
       "terms_of_usage_url":"https://www.example.com/tou/",
       "privacy_policy_url":"https://www.example.com/privacy-policy/",
       "imprint_url":"https://www.example.com/legal-disclosure/",
+      "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
+      "mandrill_api_key":"{{mandrill_api_key}}",
+      "segment_write_key":"{{segment_write_key}}",
+      "google_tag_manager_id":"{{google_tag_manager_id}}",
       "hide_repos":false,
       "hide_teams":false,
       "hide_ssh_keys":false,
@@ -321,6 +327,8 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.mailchimp_api_key            | no       | The MailChimp API key   |
 | attributes.mailchimp_list_id            | no       | The MailChimp list id |
 | attributes.mandrill_api_key             | no       | The mandrill API key |
+| attributes.segment_write_key            | no       | Segment write key |
+| attributes.google_tag_manager_id        | no       | Google Tag Manager container `ID` without `GTM-` prefix |
 | attributes.hide_register                | no       | A value should be true or false |
 | attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation      |
 | attributes.hide_repos                   | no       | A value should be true or false   |
@@ -493,8 +501,12 @@ Content-Type: application/json
       "terms_of_usage_url":"https://www.example.com/tou/",
       "privacy_policy_url":"https://www.example.com/privacy-policy/",
       "imprint_url":"https://www.example.com/legal-disclosure/",
+      "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
+      "mandrill_api_key":"{{mandrill_api_key}}",
+      "segment_write_key":"{{segment_write_key}}",
+      "google_tag_manager_id":"{{google_tag_manager_id}}",
       "hide_repos":false,
       "hide_teams":false,
       "hide_ssh_keys":false,
@@ -632,6 +644,8 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.mailchimp_list_id            | no       | The MailChimp list id|
 | attributes.mandrill_email_from          | no       | An email of the letters sender|
 | attributes.mandrill_api_key             | no       | The mandrill API key|
+| attributes.segment_write_key            | no       | Segment write key |
+| attributes.google_tag_manager_id        | no       | Google Tag Manager container `ID` without `GTM-` prefix |
 | attributes.hide_register                | no       | A value should be true or false     |
 | attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation  |
 | attributes.hide_repos                   | no       | Allowed values: `true`, `false`       |
@@ -707,8 +721,12 @@ Content-Type: application/json
         "terms_of_usage_url":"https://www.example.com/tou/",
         "privacy_policy_url":"https://www.example.com/privacy-policy/",
         "imprint_url":"https://www.example.com/legal-disclosure/",
+        "mailchimp_api_key":"{{mailchimp_api_key}}",
         "mailchimp_list_id":"{{mailchimp_list_id}}",
         "mandrill_email_from":"foo@foo.bar",
+        "mandrill_api_key":"{{mandrill_api_key}}",
+        "segment_write_key":"{{segment_write_key}}",
+        "google_tag_manager_id":"{{google_tag_manager_id}}",
         "hide_repos":false,
         "hide_teams":false,
         "hide_ssh_keys":false,
@@ -841,8 +859,12 @@ Content-Type: application/json
       "terms_of_usage_url":"https://www.example.com/tou/",
       "privacy_policy_url":"https://www.example.com/privacy-policy/",
       "imprint_url":"https://www.example.com/legal-disclosure/",
+      "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
+      "mandrill_api_key":"{{mandrill_api_key}}",
+      "segment_write_key":"{{segment_write_key}}",
+      "google_tag_manager_id":"{{google_tag_manager_id}}",
       "hide_repos":false,
       "hide_teams":false,
       "hide_ssh_keys":false,
