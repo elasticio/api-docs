@@ -796,6 +796,47 @@ This request is authorized to a user with `contracts.repository.edit` permission
 
 
 
+## Delete a version of the component 
+
+
+> Example Request:
+
+```shell
+curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION} \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY}
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 204 No Content
+Content-Type: application/json
+```
+
+This resource allows you to delete a component version. A version of the component may only be deleted if it not used in any flow.
+
+
+
+### HTTP Request
+
+``DELETE {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}``
+
+### URL Parameters
+
+| Parameter    | Required | Description                                                                                   |
+| :----------- | :------- | :-------------------------------------------------------------------------------------------- |
+| COMPONENT_ID | yes      | Component ID                                                                                  |
+| GIT_REVISION | yes      | Revision of the component’s build. Use ``latest`` to delete the most recent successful build. |
+
+
+### Authorization
+This request is authorized to a user with `contracts.repository.edit` permission. The component must belong to one of the user’s team.
+
+### Returns
+
+204 HTTP response code if the call succeeds, error otherwise.
 
 
 
