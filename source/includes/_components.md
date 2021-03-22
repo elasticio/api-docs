@@ -832,7 +832,7 @@ This resource allows you to delete a component version. A version of the compone
 
 
 ### Authorization
-This request is authorized to a user with `contracts.repository.edit` permission. The component must belong to one of the client’s team.
+This request is authorized to a user with `contracts.repository.edit` permission. The component must belong to one of the user’s team.
 
 ### Returns
 
