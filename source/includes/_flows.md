@@ -3,8 +3,8 @@
 ## Flow Stats Toggle
 
 By default each step of a flow generates stats about input/output messages and errors. You can see them on the
-Executions and Dashboard pages. This slightly reduces throughput. To disable input/output message stats and increase
-throughput you can set flow's `attributes.stats_enabled` flag to `false`.
+Executions and Dashboard pages. To disable input/output message stats and you can set flow's `attributes.stats_enabled`
+flag to `false`.
 
 If you want to disable stats for all **newly created** flows of a workspace/contract/tenant, set
 `attributes.flow_stats_enabled_default` property of a target workspace/contract/tenant to `false`. This property is
