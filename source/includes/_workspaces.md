@@ -141,7 +141,7 @@ WORKSPACE_ID | The ID of the Workspace
 
 
 ### URL Query Parameters
-Parameter   | Required | Description              
+Parameter   | Required | Description
 ----------- | -------- | ------------------------
 include     | no       | Include full resource objects in response for related entities, or not. Possible values: `members` and/or `invites`.
 
@@ -441,6 +441,7 @@ Parameter       | Required | Description
 --------------- | -------- | -----------
 type            | yes      | Allowed value: "workspace"
 attributes.name | yes      | Name of the Workspace
+attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle)
 relationships.contract.data.id | yes | An Id of the contract
 relationships.contract.data.type | yes | A value must be "contract"
 
@@ -533,6 +534,7 @@ Parameter       | Required | Description
 --------------- | -------- | -----------
 type            | yes      | Allowed value: "workspace"
 attributes.name | yes      | Name of the Workspace
+attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle)
 attributes.type | no       | Type of the Workspace. Allowed values: `full` or `limited`.
 
 
