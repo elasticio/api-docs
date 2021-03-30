@@ -95,7 +95,7 @@ Parameter       | Required | Description
 --------------- | -------- | -----------
 type            | yes      | A value should be "contract"
 attributes.name | yes      | Name of the Contract
-attributes.flow_stats_enabled_default | no | [Flow Stats Toggle](#flow-stats-toggle) |
+attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 attributes.available_roles[] | no      | The subset of Tenants roles the particular Contract belongs to
 
 
@@ -203,7 +203,7 @@ Parameter       | Required | Description
 --------------- | -------- | -----------
 type            | yes      | A value should be "contract"
 attributes.name | yes      | Name of the Contract
-attributes.flow_stats_enabled_default | no | [Flow Stats Toggle](#flow-stats-toggle) |
+attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 attributes.available_roles[] | no      | The subset of Tenants roles the particular Contract belongs to
 
 

@@ -366,7 +366,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.feature_flags.old_mapper_enabled       | no | Enable ability to use deprecated mapper UI. Default: "false" |
 | attributes.signin_v_2       | no | Enable new design for registration page |
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
-| attributes.flow_stats_enabled_default | no | [Flow Stats Toggle](#flow-stats-toggle) |
+| attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 
 ###
 
@@ -696,7 +696,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.signin_v_2       | no | Enable new design for registration page |
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
 | attributes.signin_v_2.google_provider_id       | no | Google OIDC Provider `id` in this tenant. Enables Google Sign In and Sign Up |
-| attributes.flow_stats_enabled_default | no | [Flow Stats Toggle](#flow-stats-toggle) |
+| attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 
 _Note_: If the default installation's certificate is a wildcard one (e.g. `*.example.com`) and the Tenant's domains match to this certificate (e.g. `my-tenant-api.example.com`), then there is no need to provide separate certificates for these domains. To remove existing certificates, set them to `null` (e.g. `"app": null`).
 
