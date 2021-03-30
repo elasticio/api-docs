@@ -299,6 +299,7 @@ This resource allows you to create/update a flow draft.
 | attributes.description  |    no    | Flow description |
 | attributes.graph |    no    | Flow graph representing component connections |
 | attributes.cron  |    no    | Cron expression |
+| attributes.flow_stats_enabled_default | no | [Flow Stats Toggle](#flow-stats-toggle) |
 
 
 ### Returns

@@ -1,5 +1,16 @@
 # Flows
 
+## Flow Stats Toggle
+
+By default each step of the flow generates stats about input/output messages and errors. You can see them on the
+Executions page. This slightly reduces throughput. To disable input/output message stats and increase throughput you can
+set flow's `attributes.stats_enabled` flag to `false`.
+
+If you want to disable stats for all **newly created** flows of a workspace/contract/tenant, set
+`attributes.flow_stats_enabled_default` property of a target workspace/contract/tenant. This property is cascade.
+E.g. if on flow creation it's not defined for workspace, we will look for contract. If it's not defined for contract, we
+will look for tenant. If it's not defined for tenant, flow will have `attributes.stats_enabled` = `true`.
+
 ## Retrieve all flows
 
 
@@ -618,6 +629,7 @@ This resource allows you to create a new flow.
 | attributes.nodes_config.{STEP_ID}.passthrough.disabled         | no    | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
 | attributes.nodes_config.{STEP_ID}.log_level                    | no    | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``fatal``, default: ``info``
 | attributes.nodes_config.{STEP_ID}.disable_dynamic_flow_control | no    | This parameter configures disabling publisher confirms in sailor. Supports only for components with JVM sailor version above 3.3.5.  May be any of: ``true``, ``false``
+| attributes.stats_enabled | no | [Flow Stats Toggle](#flow-stats-toggle)
 | relationships.workspace.data.id                                | yes   | An Id of the Workspace
 | relationships.workspace.data.type                              | yes   | A value must be ``workspace``
 
@@ -804,6 +816,7 @@ This resource allows you to update the given flow. A new version of the flow wil
 | attributes.nodes_config.{STEP_ID}.passthrough.disabled         | no  | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
 | attributes.nodes_config.{STEP_ID}.log_level                    | no    | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``fatal``, default: ``info``
 | attributes.nodes_config.{STEP_ID}.disable_dynamic_flow_control | no    | This parameter configures disabling publisher confirms in sailor. Supports only for components with JVM sailor version above 3.3.5.  May be any of: ``true``, ``false``
+| attributes.stats_enabled | no | [Flow Stats Toggle](#flow-stats-toggle)
 
 
 ### Authorization
