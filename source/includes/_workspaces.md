@@ -788,7 +788,7 @@ Content-Type: application/json
 
 ```
 
-This endpoint allows to add platform suppost User into Workspase with owner role. The attribute `support_user_id` should be definet for Contract or Tenant. If support user is not a member of corresponding Contract he/she will be added to this Contract with owner role as well.
+This endpoint allows to add platform support User into Workspase with owner role. The attribute `support_user_id` should be definet for Contract or Tenant. If support user is not a member of corresponding Contract he/she will be added to this Contract with owner role as well.
 
 
 ### HTTP Request
