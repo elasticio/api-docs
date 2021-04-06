@@ -827,7 +827,7 @@ HTTP/1.1 204 No Content
 
 ```
 
-This endpoint allows to remove platform support User from Workspace. If support user is not a member of any other Workspaes of corresponding Contract he/she will be removed from this Contract as well.
+This endpoint allows to remove platform support User from Workspace. If support user is not a member of any other Workspace of corresponding Contract he/she will be removed from this Contract as well.
 
 
 ### HTTP Request
