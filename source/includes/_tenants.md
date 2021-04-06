@@ -390,6 +390,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
         "api":"{{cert_id}}",
         "webhooks":"{{cert_id}}"
       },
+      "support_user_id":"{{user_id}}",
       "default_workspace_type":"full",
       "docs_base_url":"https://docs.example.com/",
       "component_docs_base_url":"https://docs.example.com/components/",
@@ -520,6 +521,7 @@ Content-Type: application/json
       "mandrill_api_key":"{{mandrill_api_key}}",
       "segment_write_key":"{{segment_write_key}}",
       "google_tag_manager_id":"{{google_tag_manager_id}}",
+      "support_user_id":"{{user_id}}",
       "hide_repos":false,
       "hide_teams":false,
       "hide_ssh_keys":false,
@@ -697,6 +699,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
 | attributes.signin_v_2.google_provider_id       | no | Google OIDC Provider `id` in this tenant. Enables Google Sign In and Sign Up |
 | attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
+| attributes.support_user_id             | no | An ID of user from platform support team|
 
 _Note_: If the default installation's certificate is a wildcard one (e.g. `*.example.com`) and the Tenant's domains match to this certificate (e.g. `my-tenant-api.example.com`), then there is no need to provide separate certificates for these domains. To remove existing certificates, set them to `null` (e.g. `"app": null`).
 
