@@ -121,6 +121,7 @@ Returns Contract object if the call succeeded
           "id":"{CONTRACT_ID}"
           "attributes":{
              "name":"New Contract Name",
+             "support_user_id":"{{user_id}}",
              "available_roles":[
               {
                 "scope":"contracts",
@@ -155,6 +156,7 @@ Content-Type: application/json
     },
     "attributes":{
       "name":"New Contract Name",
+      "support_user_id":"{{user_id}}",
       "available_roles":[
         {
           "role":"admin",
@@ -205,7 +207,7 @@ type            | yes      | A value should be "contract"
 attributes.name | yes      | Name of the Contract
 attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 attributes.available_roles[] | no      | The subset of Tenants roles the particular Contract belongs to
-
+attributes.support_user_id   | no      | An ID of user from platform support team
 
 ### Returns
 
