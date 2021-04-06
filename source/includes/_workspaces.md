@@ -753,7 +753,98 @@ Responds with `204 No content` if the call succeeded (with empty body).
 
 
 
+## Grant support access to the Workspace
 
+> Example Request:
+
+```shell
+curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/support \
+    -X PATCH  \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id":"59f747c33f1d3c001901a44e",
+    "type":"member",
+    "links":{
+      "self":"/v2/members/59f747c33f1d3c001901a44e"
+    },
+    "attributes":{
+      "roles": [
+        "owner"
+      ]
+    }
+  },
+  "meta":{}
+}
+
+```
+
+This endpoint allows to add platform support User into Workspase with owner role. The attribute `support_user_id` should be defined for Contract or Tenant. If support user is not a member of corresponding Contract he/she will be added to this Contract with owner role as well.
+
+
+### HTTP Request
+`PATCH {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/support`
+
+#### Authorization
+This request is authorized for a User with `workspace.workspace.edit_membership_support` permission only.
+
+### URL Parameters
+Parameter        | Description
+---------------- | -----------
+WORKSPACE_ID  | The ID of the Workspace
+
+
+### Returns
+
+Returns the support member object if call succeed.
+
+
+## Remove support user from the Workspace
+
+> Example Request:
+
+```shell
+curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/support \
+    -X DELETE  \
+    -u {EMAIL}:{APIKEY} \
+    -H 'Accept: application/json' \
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 204 No Content
+
+```
+
+This endpoint allows to remove platform support User from Workspace. If support user is not a member of any other Workspace of corresponding Contract he/she will be removed from this Contract as well.
+
+
+### HTTP Request
+`DELETE {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/members/support`
+
+#### Authorization
+This request is authorized for a User with `workspace.workspace.edit_membership_support` permission only.
+
+### URL Parameters
+Parameter        | Description
+---------------- | -----------
+WORKSPACE_ID  | The ID of the Workspace
+
+
+### Returns
+
+Returns empty body if call succeed.
 
 
 ## Delete Workspace
