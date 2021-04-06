@@ -13,7 +13,7 @@ There are three sharing modes:
 
 Accordingly, a set of components, available for each user is consist of: not shared components from the user's Contract, components with `tenant` access and `global` components.
 
-## Retrieve all components
+## Retrieve all available components
 
 
 > Example Request:
@@ -165,6 +165,167 @@ More details about the component descriptors can be found [here](#component-desc
 | :--- | :--- | :--- |
 |contract_id|yes (only for Tenant Admin)|An Id of the Contract|
 | filter[access] | No | Allowed values: ``private`` (only components from own Contract returned), ``public`` (only shared components from the other Contracts) and ``all`` (default value, returns all available components).|
+
+### Returns
+
+Returns repositories metadata object if the call succeeded.
+
+
+
+
+
+
+
+## Retrieve all components
+
+
+> Example Request:
+
+
+```shell
+curl {{ api_base_url }}/v2/components/all \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":[
+    {
+      "id":"{COMPONENT_ID}",
+      "type":"component",
+      "links":{
+        "self":"/v2/components/{COMPONENT_ID}"
+      },
+      "attributes":{
+        "name":"name",
+        "team_name":"team_name",
+        "access": "tenant"
+      },
+      "relationships":{
+        "versions":{
+          "links":{
+            "related":"/v2/components/{COMPONENT_ID}/versions"
+          }
+        },
+        "latest_version":{
+          "data":{
+            "id":"{GIT_REVISION}",
+            "type":"version"
+          },
+          "links":{
+            "self":"/v2/components/{COMPONENT_ID}/versions/latest"
+          }
+        }
+      }
+    }
+  ],
+  "meta":{},
+  "included":[
+    {
+      "id":"{GIT_REVISION}",
+      "type":"version",
+      "links":{
+        "self":"/v2/versions/{GIT_REVISION}"
+      },
+      "attributes":{
+        "date":1517392057184,
+        "version_number":69
+      },
+      "relationships":{
+        "descriptor":{
+          "data":{
+            "id":"0eff1d1a46b78ba1f468982e16d0382e8a91280d",
+            "type":"descriptor"
+          },
+          "links":{
+            "self":"/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
+          }
+        },
+        "component":{
+          "data":{
+            "id":"{COMPONENT_ID}",
+            "type":"component"
+          },
+          "links":{
+            "self":"/v2/components/{COMPONENT_ID}"
+          }
+        }
+      }
+    },
+    {
+      "id":"0eff1d1a46b78ba1f468982e16d0382e8a91280d",
+      "type":"descriptor",
+      "links":{
+        "self":"/v2/descriptors/0eff1d1a46b78ba1f468982e16d0382e8a91280d"
+      },
+      "attributes":{
+        "repo_name":"repo_name",
+        "team_name":"team_name",
+        "short_revision":"0eff1d1",
+        "is_latest":true,
+        "description":"desc",
+        "icon":"BASE64",
+        "language":"nodejs",
+        "sailor_version":"2.1.6",
+        "title":"Data mapper",
+        "service":"mapper",
+        "actions":{
+          "map":{
+            "title":"Mapper",
+            "main":"./map.js"
+          },
+          "jsonataMap":{
+            "title":"Jsonata mapper",
+            "main":"./jsonata_map.js"
+          }
+        },
+        "fields":{
+          "mapper":{
+            "viewClass":"MapperView"
+          }
+        }
+      },
+      "relationships":{
+        "version":{
+          "data":{
+            "id":"{GIT_REVISION}",
+            "type":"version"
+          },
+          "links":{
+            "self":"/v2/{COMPONENT_ID}/versions/{GIT_REVISION}"
+          }
+        }
+      }
+    }
+  ],
+  "links":{
+    "self":"/v2/components"
+  }
+}
+```
+
+This endpoint retrieves a list of all components.
+Response includes latest [descriptor](#retrieve-a-component-descriptor) for each component.
+More details about the component descriptors can be found [here](#component-descriptor-doc).
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/components/all`
+
+#### Authorization
+This request is authorized only for the User with `tenants.component.list_all` permission.
+
+### Query Parameters
+
+| Parameter      | Required | Description           |
+| :---           | :---     | :---                  |
+|contract_id     | no       | An Id of the Contract |
 
 ### Returns
 
