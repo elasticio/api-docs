@@ -963,7 +963,7 @@ This request is authorized to a user with `contracts.repository.edit` permission
 > Example Request:
 
 ```shell
-curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION} \
+curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{VERSION_ID} \
    -X DELETE \
    -u {EMAIL}:{APIKEY}
 ```
@@ -982,14 +982,14 @@ This resource allows you to delete a component version. A version of the compone
 
 ### HTTP Request
 
-``DELETE {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}``
+``DELETE {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{VERSION_ID}``
 
 ### URL Parameters
 
 | Parameter    | Required | Description                                                                                   |
 | :----------- | :------- | :-------------------------------------------------------------------------------------------- |
 | COMPONENT_ID | yes      | Component ID                                                                                  |
-| GIT_REVISION | yes      | Revision of the component’s build. Use ``latest`` to delete the most recent successful build. |
+| VERSION_ID   | yes      | Revision or version of the component’s build. Use ``latest`` to delete the most recent successful build. |
 
 
 ### Authorization
