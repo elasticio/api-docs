@@ -14,7 +14,7 @@ ARG docs_url="http://docs.elastic.io/"
 ARG favicon_url="https://app.elastic.io/favicon.ico"
 
 RUN apt-get update && \
-    apt-get install -y ruby rubygems ruby-dev build-essential && \
+    apt-get install -y ruby rubygems ruby-dev build-essential nodejs && \
     gem install bundler -v '~> 1.17.3'
 
 COPY source ./source
