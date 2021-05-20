@@ -26,5 +26,3 @@ platforms :mri_18 do
 end
 
 gem "rake", "~> 10.4.0"
-
-gem 'therubyracer', :platforms => :ruby

@@ -21,6 +21,7 @@
       "app_domain":"{{app_domain}}",
       "api_domain":"{{api_domain}}",
       "webhooks_domain":"{{webhooks_domain}}",
+      "api_docs_url":"{{api_docs_url}}",
       "git_receiver_host":"git_receiver_host",
       "code":"{{css_code}}",
       "header_logo_url":"//cdn.example.com/logo-mini.png",
@@ -34,6 +35,8 @@
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
       "mandrill_api_key":"{{mandrill_api_key}}",
+      "segment_write_key":"{{segment_write_key}}",
+      "google_tag_manager_id":"{{google_tag_manager_id}}",
       "hide_register":false,
       "is_default":false,
       "hide_repos":false,
@@ -141,6 +144,9 @@
       },
       "feature_flags":{
           "old_mapper_enabled":false
+      },
+      "signin_v_2":{
+          "logo_url": "//cdn.example.com/logo-mini.png"
       }
     }
   }
@@ -164,6 +170,7 @@ Content-Type: application/json
       "app_domain":"{{app_domain}}",
       "api_domain":"{{api_domain}}",
       "webhooks_domain":"{{webhooks_domain}}",
+      "api_docs_url":"{{api_docs_url}}",
       "git_receiver_host":"git_receiver_host",
       "css_enabled":false,
       "code":"{{css_code}}",
@@ -174,8 +181,12 @@ Content-Type: application/json
       "terms_of_usage_url":"https://www.example.com/tou/",
       "privacy_policy_url":"https://www.example.com/privacy-policy/",
       "imprint_url":"https://www.example.com/legal-disclosure/",
+      "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
+      "mandrill_api_key":"{{mandrill_api_key}}",
+      "segment_write_key":"{{segment_write_key}}",
+      "google_tag_manager_id":"{{google_tag_manager_id}}",
       "hide_repos":false,
       "hide_teams":false,
       "hide_ssh_keys":false,
@@ -279,6 +290,9 @@ Content-Type: application/json
       },
       "feature_flags":{
           "old_mapper_enabled":false
+      },
+      "signin_v_2":{
+          "logo_url": "//cdn.example.com/logo-mini.png"
       }
     }
   },
@@ -307,6 +321,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.mandrill_email_from          | yes      | An email of the letters sender   |
 | attributes.api_domain                   | no       | Name of the Tenant API domain   |
 | attributes.webhooks_domain              | no       | Name of the Tenant webhooks domain     |
+| attributes.api_docs_url                 | no       | The URL to your custom API documentation     |
 | attributes.git_receiver_host            | no       | Name of the Tenant git receiver host |
 | attributes.header_logo_url              | no       | The URL of image which will be displayed in the navigation panel (logo size 40x40 pixels, logo format - .png or .svg)|
 | attributes.loading_logo_url             | no       | The URL of image which will be displayed during the page loading  |
@@ -318,6 +333,8 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.mailchimp_api_key            | no       | The MailChimp API key   |
 | attributes.mailchimp_list_id            | no       | The MailChimp list id |
 | attributes.mandrill_api_key             | no       | The mandrill API key |
+| attributes.segment_write_key            | no       | Segment write key |
+| attributes.google_tag_manager_id        | no       | Google Tag Manager container `ID` without `GTM-` prefix |
 | attributes.hide_register                | no       | A value should be true or false |
 | attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation      |
 | attributes.hide_repos                   | no       | A value should be true or false   |
@@ -347,6 +364,9 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.html_meta.author             | no       | Customer meta author in html pages  |
 | attributes.html_meta.keywords           | no       | Customer meta keywords in html pages     |
 | attributes.feature_flags.old_mapper_enabled       | no | Enable ability to use deprecated mapper UI. Default: "false" |
+| attributes.signin_v_2       | no | Enable new design for registration page |
+| attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
+| attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 
 ###
 
@@ -370,6 +390,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
         "api":"{{cert_id}}",
         "webhooks":"{{cert_id}}"
       },
+      "support_user_id":"{{user_id}}",
       "default_workspace_type":"full",
       "docs_base_url":"https://docs.example.com/",
       "component_docs_base_url":"https://docs.example.com/components/",
@@ -456,6 +477,10 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       ],
       "feature_flags":{
           "old_mapper_enabled":false
+      },
+      "signin_v_2":{
+          "logo_url": "//cdn.example.com/logo-mini.png",
+          "google_provider_id": "{{google_provider_id}}"
       }
     }
   }
@@ -479,6 +504,7 @@ Content-Type: application/json
       "app_domain":"{{app_domain}}",
       "api_domain":"{{api_domain}}",
       "webhooks_domain":"{{webhooks_domain}}",
+      "api_docs_url":"{{api_docs_url}}",
       "git_receiver_host":"git_receiver_host",
       "css_enabled":false,
       "code":"{{css_code}}",
@@ -489,8 +515,13 @@ Content-Type: application/json
       "terms_of_usage_url":"https://www.example.com/tou/",
       "privacy_policy_url":"https://www.example.com/privacy-policy/",
       "imprint_url":"https://www.example.com/legal-disclosure/",
+      "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
+      "mandrill_api_key":"{{mandrill_api_key}}",
+      "segment_write_key":"{{segment_write_key}}",
+      "google_tag_manager_id":"{{google_tag_manager_id}}",
+      "support_user_id":"{{user_id}}",
       "hide_repos":false,
       "hide_teams":false,
       "hide_ssh_keys":false,
@@ -589,6 +620,10 @@ Content-Type: application/json
       ],
       "feature_flags":{
           "old_mapper_enabled":false
+      },
+      "signin_v_2":{
+          "logo_url": "//cdn.example.com/logo-mini.png",
+          "google_provider_id": "{{google_provider_id}}"
       }
     },
     "meta":{}
@@ -616,6 +651,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 
 | Parameter                               | Required | Description  |
 | --------------------------------------- | -------- | ------------------------------------------------------ |
+| attributes.api_docs_url                 | no       | The URL to your custom API documentation |
 | attributes.header_logo_url              | no       | The URL of image which will be displayed in the navigation panel (logo size 40x40 pixels, logo format - .png or .svg)|
 | attributes.loading_logo_url             | no       | The URL of image which will be displayed during the page loading |
 | attributes.email_logo_url               | no       | The URL of image which will be displayed in the emails|
@@ -627,6 +663,8 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.mailchimp_list_id            | no       | The MailChimp list id|
 | attributes.mandrill_email_from          | no       | An email of the letters sender|
 | attributes.mandrill_api_key             | no       | The mandrill API key|
+| attributes.segment_write_key            | no       | Segment write key |
+| attributes.google_tag_manager_id        | no       | Google Tag Manager container `ID` without `GTM-` prefix |
 | attributes.hide_register                | no       | A value should be true or false     |
 | attributes.is_default                   | no       | A value should be true or false. You can set only one default tenant per installation  |
 | attributes.hide_repos                   | no       | Allowed values: `true`, `false`       |
@@ -657,6 +695,11 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.custom_scripts\[]             | no       | Customer js-scripts.      |
 | attributes.default_workspace_type       | no       | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`        |
 | attributes.feature_flags.old_mapper_enabled       | no | Enable ability to use deprecated mapper UI. Default: "false" |
+| attributes.signin_v_2       | no | Enable new design for registration page |
+| attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
+| attributes.signin_v_2.google_provider_id       | no | Google OIDC Provider `id` in this tenant. Enables Google Sign In and Sign Up |
+| attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
+| attributes.support_user_id             | no | An ID of user from platform support team|
 
 _Note_: If the default installation's certificate is a wildcard one (e.g. `*.example.com`) and the Tenant's domains match to this certificate (e.g. `my-tenant-api.example.com`), then there is no need to provide separate certificates for these domains. To remove existing certificates, set them to `null` (e.g. `"app": null`).
 
@@ -691,6 +734,7 @@ Content-Type: application/json
         "app_domain":"{{app_domain}}",
         "api_domain":"{{api_domain}}",
         "webhooks_domain":"{{webhooks_domain}}",
+        "api_docs_url":"{{api_docs_url}}",
         "git_receiver_host":"git_receiver_host",
         "css_enabled":false,
         "code":"{{css_code}}",
@@ -701,8 +745,12 @@ Content-Type: application/json
         "terms_of_usage_url":"https://www.example.com/tou/",
         "privacy_policy_url":"https://www.example.com/privacy-policy/",
         "imprint_url":"https://www.example.com/legal-disclosure/",
+        "mailchimp_api_key":"{{mailchimp_api_key}}",
         "mailchimp_list_id":"{{mailchimp_list_id}}",
         "mandrill_email_from":"foo@foo.bar",
+        "mandrill_api_key":"{{mandrill_api_key}}",
+        "segment_write_key":"{{segment_write_key}}",
+        "google_tag_manager_id":"{{google_tag_manager_id}}",
         "hide_repos":false,
         "hide_teams":false,
         "hide_ssh_keys":false,
@@ -780,6 +828,10 @@ Content-Type: application/json
         ],
         "feature_flags":{
             "old_mapper_enabled":false
+        },
+        "signin_v_2":{
+            "logo_url": "//cdn.example.com/logo-mini.png",
+            "google_provider_id": "{{google_provider_id}}"
         }
       },
       "meta":{},
@@ -824,6 +876,7 @@ Content-Type: application/json
       "app_domain":"{{app_domain}}",
       "api_domain":"{{api_domain}}",
       "webhooks_domain":"{{webhooks_domain}}",
+      "api_docs_url":"{{api_docs_url}}",
       "git_receiver_host":"git_receiver_host",
       "css_enabled":false,
       "code":"{{css_code}}",
@@ -834,8 +887,12 @@ Content-Type: application/json
       "terms_of_usage_url":"https://www.example.com/tou/",
       "privacy_policy_url":"https://www.example.com/privacy-policy/",
       "imprint_url":"https://www.example.com/legal-disclosure/",
+      "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
+      "mandrill_api_key":"{{mandrill_api_key}}",
+      "segment_write_key":"{{segment_write_key}}",
+      "google_tag_manager_id":"{{google_tag_manager_id}}",
       "hide_repos":false,
       "hide_teams":false,
       "hide_ssh_keys":false,
@@ -913,6 +970,10 @@ Content-Type: application/json
       ],
       "feature_flags":{
         "old_mapper_enabled":false
+      },
+      "signin_v_2":{
+        "logo_url": "//cdn.example.com/logo-mini.png",
+        "google_provider_id": "{{google_provider_id}}"
       }
     }
   },
@@ -2587,6 +2648,411 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 ### Returns
 
 Returns **Oauth-client** object if the call succeeded
+
+## Create a SAML 2.0 Provider
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/saml/providers \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Content-Type: application/json' -d '
+   {
+     "data":{
+       "type":"saml-provider",
+       "attributes": {
+         "entity_id": "https://www.example.com",
+         "login_endpoint": "https://www.example.com/login",
+         "logout_endpoint": "https://www.example.com/logout",
+         "assert_endpoint": "https://www.example.com/assert",
+         "idp_certificates": ["{IDENTITY_PROVIDER_CERTIFICATE}"],
+         "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
+         "private_key": "{PRIVATE_KEY}",
+         "certificate": "{CERTIFICATE}",
+         "force_auth": false,
+         "allow_unencrypted_assertion": true,
+         "config": {
+             "email_attribute": "name_id",
+             "auto_create_users": true
+         }
+       }
+     }
+   }'
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+{
+  "data":{
+    "id": "5c80e6b9bb0d200011333d92",
+    "type": "saml-provider",
+    "attributes": {
+        "entity_id": "https://www.example.com",
+        "login_endpoint": "https://www.example.com/login",
+        "logout_endpoint": "https://www.example.com/logout",
+        "assert_endpoint": "https://www.example.com/assert",
+        "idp_certificates": ["{IDENTITY_PROVIDER_CERTIFICATE}"],
+        "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
+        "private_key": "{PRIVATE_KEY}",
+        "certificate": "{CERTIFICATE}",
+        "force_auth": false,
+        "allow_unencrypted_assertion": true,
+        "config": {
+            "email_attribute": "name_id",
+            "auto_create_users": true
+        }
+    },
+    "relationships": {
+      "tenant": {
+        "data": {
+            "id": "5c80e6b9bb0d200011333d93",
+            "type": "tenant"
+        },
+        "links": {
+            "self": "/v2/tenants/5c80e6b9bb0d200011333d93"
+        }
+      }
+    }
+  }
+}
+```
+
+This resource allows you to create a new **SAML 2.0 Provider**.
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/tenants/{TENANT_ID}/saml/providers`
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.tenant.edit` permission.
+
+### Payload Parameters
+
+| Parameter                              | Required                                              | Description                                                               |
+| -------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------  |
+| type                                   | yes                                                   | A value should be "saml-provider"                                         |
+| attributes.entity_id                   | yes                                                   | Provider entityId. A value should be a valid URI                          |
+| attributes.login_endpoint              | yes                                                   | Provider login endpoint. A value should be a valid URI                    |
+| attributes.logout_endpoint             | no                                                    | Provider logout endpoint. A value should be a valid URI                   |
+| attributes.assert_endpoint             | no                                                    | URL of service provider assert endpoint. A value should be a valid URI    |
+| attributes.idp_certificates            | yes                                                   | An array of Identity Provider certificates                                |
+| attributes.name_id_format              | no                                                    | Format for Name ID. Allowed values are `undefined`, `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified`, `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`, `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`, `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` |
+| attributes.private_key                 | yes (if ``allow_unencrypted_assertion`` is ``false``) | Private key for the service provider.                                     |
+| attributes.certificate                 | yes (if ``allow_unencrypted_assertion`` is ``false``) | Certificate for the service provider                                      |
+| attributes.force_auth                  | no                                                    | Forces re-authentication of users even if the user has a SSO session with the Identity Provider. A value should be `true` or `false`. Default is `false` |
+| attributes.allow_unencrypted_assertion | no                                                    | Allows unencrypted assertions. A value should be `true` or `false`. Default is `true`     |
+| attributes.config.email_attribute      | no                                                    | Name of the attribute that contains a user email address.                 |
+| attributes.config.auto_create_users    | no                                                    | Creates user if not registered. A value should be `true` or `false`. Default is `true`                   |
+
+
+### URL Parameters
+
+| Parameter | Description          |
+| --------- | -------------------- |
+| TENANT_ID | The ID of the Tenant |
+
+### Returns
+
+Returns **SAML 2.0 Provider** object if the call succeeded
+
+## Retrieve a SAML 2.0 Providers
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/saml/providers \
+   -u {EMAIL}:{APIKEY}
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":[
+    {
+      "id": "5c80e6b9bb0d200011333d92",
+      "type": "saml-provider",
+      "attributes": {
+        "entity_id": "https://www.example.com",
+        "login_endpoint": "https://www.example.com/login",
+        "logout_endpoint": "https://www.example.com/logout",
+        "assert_endpoint": "https://www.example.com/assert",
+        "idp_certificates": ["{IDENTITY_PROVIDER_CERTIFICATE}"],
+        "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
+        "private_key": "{PRIVATE_KEY}",
+        "certificate": "{CERTIFICATE}",
+        "force_auth": false,
+        "allow_unencrypted_assertion": true,
+        "config": {
+            "email_attribute": "name_id",
+            "auto_create_users": true
+        }
+      },
+      "relationships": {
+        "tenant": {
+          "data": {
+              "id": "5c80e6b9bb0d200011333d93",
+              "type": "tenant"
+          },
+          "links": {
+              "self": "/v2/tenants/5c80e6b9bb0d200011333d93"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+This resource allows you to retrieve **SAML 2.0 Providers** for the **Tenant** with the given ID.
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/saml/providers`
+
+### URL Parameters
+
+| Parameter         | Required | Description            |
+| ----------------- | -------- | ---------------------- |
+| TENANT_ID         | yes      | The ID of the Tenant   |
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.tenant.get` permission.
+
+### Returns
+
+Returns **SAML 2.0 Provider** objects if the call succeeded
+
+## Retrieve a SAML 2.0 Provider by ID
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/saml/providers/{SAML_PROVIDER_ID} \
+   -u {EMAIL}:{APIKEY}
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id": "5c80e6b9bb0d200011333d92",
+    "type": "saml-provider",
+    "attributes": {
+      "entity_id": "https://www.example.com",
+      "login_endpoint": "https://www.example.com/login",
+      "logout_endpoint": "https://www.example.com/logout",
+      "assert_endpoint": "https://www.example.com/assert",
+      "idp_certificates": ["{IDENTITY_PROVIDER_CERTIFICATE}"],
+      "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
+      "private_key": "{PRIVATE_KEY}",
+      "certificate": "{CERTIFICATE}",
+      "force_auth": false,
+      "allow_unencrypted_assertion": true,
+      "config": {
+          "email_attribute": "name_id",
+          "auto_create_users": true
+      }
+    },
+    "relationships": {
+      "tenant": {
+        "data": {
+            "id": "5c80e6b9bb0d200011333d93",
+            "type": "tenant"
+        },
+        "links": {
+            "self": "/v2/tenants/5c80e6b9bb0d200011333d93"
+        }
+      }
+    }
+  },
+  "meta":{}
+}
+```
+
+This resource allows you to retrieve a **SAML 2.0 Provider** with the given ID for the **Tenant** with the given ID.
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/tenants/{TENANT_ID}/saml/providers/{SAML_PROVIDER_ID}`
+
+### URL Parameters
+
+| Parameter        | Required | Description                     |
+| ---------------- | -------- | ------------------------------- |
+| TENANT_ID        | yes      | The ID of the Tenant            |
+| SAML_PROVIDER_ID | yes      | The ID of the SAML 2.0 Provider |
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.tenant.get` permission.
+
+### Returns
+
+Returns **SAML 2.0 Provider** object if the call succeeded
+
+## Update a SAML 2.0 Provider
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/saml/providers/{SAML_PROVIDER_ID} \
+   -X PATCH \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Content-Type: application/json' -d '
+   {
+     "data":{
+       "type":"saml-provider,
+       "attributes": {
+         "entity_id": "https://www.example.com",
+         "login_endpoint": "https://www.example.com/login",
+         "logout_endpoint": "https://www.example.com/logout",
+         "assert_endpoint": "https://www.example.com/assert",
+         "idp_certificates": ["{IDENTITY_PROVIDER_CERTIFICATE}"],
+         "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
+         "private_key": "{PRIVATE_KEY}",
+         "certificate": "{CERTIFICATE}",
+         "force_auth": false,
+         "allow_unencrypted_assertion": true,
+         "config": {
+             "email_attribute": "name_id",
+             "auto_create_users": true
+         }
+       }
+     }
+   }'
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id": "5c80e6b9bb0d200011333d92",
+    "type": "saml-provider",
+    "attributes": {
+      "entity_id": "https://www.example.com",
+      "login_endpoint": "https://www.example.com/login",
+      "logout_endpoint": "https://www.example.com/logout",
+      "assert_endpoint": "https://www.example.com/assert",
+      "idp_certificates": ["{IDENTITY_PROVIDER_CERTIFICATE}"],
+      "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
+      "private_key": "{PRIVATE_KEY}",
+      "certificate": "{CERTIFICATE}",
+      "force_auth": false,
+      "allow_unencrypted_assertion": true,
+      "config": {
+          "email_attribute": "name_id",
+          "auto_create_users": true
+      }
+    },
+    "relationships": {
+      "tenant": {
+        "data": {
+            "id": "5c80e6b9bb0d200011333d93",
+            "type": "tenant"
+        },
+        "links": {
+            "self": "/v2/tenants/5c80e6b9bb0d200011333d93"
+        }
+      }
+    }
+  }
+}
+```
+
+This resource allows you to update an **SAML 2.0 Provider** with the given ID for the **Tenant** with the given ID.
+
+### HTTP Request
+
+`PATCH {{ api_base_url }}/v2/tenants/{TENANT_ID}/saml/providers/{SAML_PROVIDER_ID}`
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.tenant.edit` permission.
+
+### URL Parameters
+
+| Parameter        | Required | Description                 |
+| ---------------- | -------- | --------------------------- |
+| TENANT_ID        | yes      | The ID of the Tenant        |
+| SAML_PROVIDER_ID | yes      | The ID of the SAML Provider |
+
+### Payload Parameters
+
+
+| Parameter                              | Required  | Description                                                               |
+| -------------------------------------- | --------- | ------------------------------------------------------------------------  |
+| type                                   | yes       | A value should be "saml-provider"                                         |
+| attributes.entity_id                   | no        | Provider entityId. A value should be a valid URI                          |
+| attributes.login_endpoint              | no        | Provider login endpoint. A value should be a valid URI                    |
+| attributes.logout_endpoint             | no        | Provider logout endpoint. A value should be a valid URI                   |
+| attributes.assert_endpoint             | no        | URL of service provider assert endpoint. A value should be a valid URI    |
+| attributes.idp_certificates            | no        | An array of Identity Provider certificates                                |
+| attributes.name_id_format              | no        | Format for Name ID. Allowed values are `undefined`, `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified`, `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`, `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`, `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` |
+| attributes.private_key                 | no        | Private key for the service provider.                                     |
+| attributes.certificate                 | no        | Certificate for the service provider                                      |
+| attributes.force_auth                  | no        | Forces re-authentication of users even if the user has a SSO session with the Identity Provider. A value should be `true` or `false`. Default is `false` |
+| attributes.allow_unencrypted_assertion | no        | Allows unencrypted assertions. A value should be `true` or `false`. Default is `true`     |
+| attributes.config.email_attribute      | no        | Name of the attribute that contains a user email address.                 |
+| attributes.config.auto_create_users    | no        | Creates user if not registered. A value should be `true` or `false`. Default is `true`                   |
+
+
+
+### Returns
+
+Returns **SAML 2.0** object if the call succeeded
+
+## Delete a SAML 2.0 Provider by ID
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/saml/providers/{SAML_PROVIDER_ID} \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY}
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 204 No Content
+Content-Type: application/json
+```
+
+This resource allows you to delete a **SAML 2.0 Provider** with the given ID for the **Tenant** with the given ID.
+
+### HTTP Request
+
+`DELETE {{ api_base_url }}/v2/tenants/{TENANT_ID}/saml/providers/{SAML_PROVIDER_ID}`
+
+### URL Parameters
+
+| Parameter        | Required | Description                     |
+| ---------------- | -------- | ------------------------------- |
+| TENANT_ID        | yes      | The ID of the Tenant            |
+| SAML_PROVIDER_ID | yes      | The ID of the SAML 2.0 Provider |
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.tenant.edit` permission.
+
+### Returns
+
+Returns empty body
 
 
 ## List of emails sent by the Platform

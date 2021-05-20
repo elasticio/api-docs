@@ -1,5 +1,17 @@
 # Flows
 
+## Flow Stats Toggle
+
+By default each step of a flow generates stats about input/output messages and errors. You can see them on the
+Executions and Dashboard pages. To disable input/output message stats and you can set flow's `attributes.stats_enabled`
+flag to `false`.
+
+If you want to disable stats for all **newly created** flows of a workspace/contract/tenant, set
+`attributes.flow_stats_enabled_default` property of a target workspace/contract/tenant to `false`. This property is
+cascade. E.g. if on flow creation it's not defined or `true` for workspace, we will look for contract. If it's not
+defined or `true` for contract, we will look for tenant. If it's not defined or `true` for tenant, flow will have
+`attributes.stats_enabled` = `true`. So we search upwards until see the first `false`, otherwise stats will be enabled.
+
 ## Retrieve all flows
 
 
@@ -420,6 +432,7 @@ The flow with given ID
         "step_2": {
           "prefetch": 3,
           "replicas": 2,
+          "disable_dynamic_flow_control": true,
           "log_level": "info"
         }
       }
@@ -549,6 +562,7 @@ Content-Type: application/json
         },
         "step_2": {
           "prefetch": 3,
+          "disable_dynamic_flow_control": true,
           "log_level": "info"
         }
       },
@@ -607,18 +621,20 @@ This resource allows you to create a new flow.
 
 | Parameter | Required | Description |
 | :---                                       | :---  | :---
-| type                                                    | yes   | A value must be ``flow``
-| attributes.name                                         | yes   | Flow name
-| attributes.type                                         | yes   | Flow type. May be any of: ``ordinary``, ``long_running``
-| attributes.graph                                        | yes   | Flow graph representing component connections
-| attributes.graph.nodes[].secret_id                      | no    | [Auth Secret ID](#auth-secrets-(experimental)) to use for this step. It will be passed to a component action/trigger as a part of config
-| attributes.default_mapper_type                          | yes   | The mapper type. A value must be ``jsonata`` (The *handlebars* is now deprecated)
-| attributes.nodes_config.{STEP_ID}.prefetch              | no    | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
+| type                                                           | yes   | A value must be ``flow``
+| attributes.name                                                | yes   | Flow name
+| attributes.type                                                | yes   | Flow type. May be any of: ``ordinary``, ``long_running``
+| attributes.graph                                               | yes   | Flow graph representing component connections
+| attributes.graph.nodes[].secret_id                             | no    | [Auth Secret ID](#auth-secrets-(experimental)) to use for this step. It will be passed to a component action/trigger as a part of config
+| attributes.default_mapper_type                                 | yes   | The mapper type. A value must be ``jsonata`` (The *handlebars* is now deprecated)
+| attributes.nodes_config.{STEP_ID}.prefetch                     | no    | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
 | attributes.nodes_config.{STEP_ID}.replicas              | no    | This parameter configures the maximum container replicas, that can be run simultaneously. Must be integer. Default: ```1```. Max value: ```5```
-| attributes.nodes_config.{STEP_ID}.passthrough.disabled  | no    | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
-| attributes.nodes_config.{STEP_ID}.log_level             | no    | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``fatal``, default: ``info``
-| relationships.workspace.data.id                         | yes   | An Id of the Workspace
-| relationships.workspace.data.type                       | yes   | A value must be ``workspace``
+| attributes.nodes_config.{STEP_ID}.passthrough.disabled         | no    | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
+| attributes.nodes_config.{STEP_ID}.log_level                    | no    | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``fatal``, default: ``info``
+| attributes.nodes_config.{STEP_ID}.disable_dynamic_flow_control | no    | This parameter configures disabling publisher confirms in sailor. Supports only for components with JVM sailor version above 3.3.5.  May be any of: ``true``, ``false``
+| attributes.stats_enabled | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle)
+| relationships.workspace.data.id                                | yes   | An Id of the Workspace
+| relationships.workspace.data.type                              | yes   | A value must be ``workspace``
 
 ### Authorization
 
@@ -654,6 +670,7 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID} \
                 },
                 "step_2": {
                   "prefetch": 3,
+                  "disable_dynamic_flow_control": true,
                   "replicas": 2,
                   "log_level": "info"
                 }
@@ -729,6 +746,7 @@ Content-Type: application/json
         },
         "step_2": {
           "prefetch": 3,
+          "disable_dynamic_flow_control": true,
           "log_level": "info"
         }
       }
@@ -790,18 +808,20 @@ This resource allows you to update the given flow. A new version of the flow wil
 ### Body Parameters
 
 | Parameter | Required | Description |
-| :---                                                    | :--- | :--- |
-| type                                                    | yes | A value must be ``flow`` |
-| id                                                      | yes | ID of the flow you want to update
-| attributes.name                                         | no  | Flow name |
-| attributes.type                                         | no  | Flow type. May be any of: ``ordinary``, ``long_running`` |
-| attributes.graph                                        | no  | Flow graph representing component connections |
-| attributes.graph.nodes[].secret_id                      | no  | [Auth Secret ID](#auth-secrets-(experimental)) to use for this step. It will be passed to a component action/trigger as a part of config
-| attributes.cron                                         | no  | Cron expression representing flow timing |
-| attributes.nodes_config.{STEP_ID}.prefetch              | no  | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
+| :---                                                           | :--- | :--- |
+| type                                                           | yes | A value must be ``flow`` |
+| id                                                             | yes | ID of the flow you want to update
+| attributes.name                                                | no  | Flow name |
+| attributes.type                                                | no  | Flow type. May be any of: ``ordinary``, ``long_running`` |
+| attributes.graph                                               | no  | Flow graph representing component connections |
+| attributes.graph.nodes[].secret_id                             | no  | [Auth Secret ID](#auth-secrets-(experimental)) to use for this step. It will be passed to a component action/trigger as a part of config
+| attributes.cron                                                | no  | Cron expression representing flow timing |
+| attributes.nodes_config.{STEP_ID}.prefetch                     | no  | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
 | attributes.nodes_config.{STEP_ID}.replicas              | no  | This parameter configures the maximum container replicas, that can be run simultaneously. Must be integer. Default: ```1```. Max value: ```5```
-| attributes.nodes_config.{STEP_ID}.passthrough.disabled  | no  | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
-| attributes.nodes_config.{STEP_ID}.log_level             | no  | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``fatal``, default: ``info``
+| attributes.nodes_config.{STEP_ID}.passthrough.disabled         | no  | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
+| attributes.nodes_config.{STEP_ID}.log_level                    | no    | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``fatal``, default: ``info``
+| attributes.nodes_config.{STEP_ID}.disable_dynamic_flow_control | no    | This parameter configures disabling publisher confirms in sailor. Supports only for components with JVM sailor version above 3.3.5.  May be any of: ``true``, ``false``
+| attributes.stats_enabled | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle)
 
 
 ### Authorization
@@ -890,6 +910,7 @@ HTTP/1.1 202 Accepted
         },
         "step_2": {
           "prefetch": 3,
+          "disable_dynamic_flow_control": true,
           "log_level": "info"
         }
       }
