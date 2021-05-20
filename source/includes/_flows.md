@@ -431,6 +431,7 @@ The flow with given ID
         },
         "step_2": {
           "prefetch": 3,
+          "replicas": 2,
           "disable_dynamic_flow_control": true,
           "log_level": "info"
         }
@@ -627,6 +628,7 @@ This resource allows you to create a new flow.
 | attributes.graph.nodes[].secret_id                             | no    | [Auth Secret ID](#auth-secrets-(experimental)) to use for this step. It will be passed to a component action/trigger as a part of config
 | attributes.default_mapper_type                                 | yes   | The mapper type. A value must be ``jsonata`` (The *handlebars* is now deprecated)
 | attributes.nodes_config.{STEP_ID}.prefetch                     | no    | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
+| attributes.nodes_config.{STEP_ID}.replicas              | no    | This parameter configures the maximum container replicas, that can be run simultaneously. Must be integer. Default: ```1```. Max value: ```5```
 | attributes.nodes_config.{STEP_ID}.passthrough.disabled         | no    | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
 | attributes.nodes_config.{STEP_ID}.log_level                    | no    | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``fatal``, default: ``info``
 | attributes.nodes_config.{STEP_ID}.disable_dynamic_flow_control | no    | This parameter configures disabling publisher confirms in sailor. Supports only for components with JVM sailor version above 3.3.5.  May be any of: ``true``, ``false``
@@ -669,6 +671,7 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID} \
                 "step_2": {
                   "prefetch": 3,
                   "disable_dynamic_flow_control": true,
+                  "replicas": 2,
                   "log_level": "info"
                 }
               }
@@ -814,6 +817,7 @@ This resource allows you to update the given flow. A new version of the flow wil
 | attributes.graph.nodes[].secret_id                             | no  | [Auth Secret ID](#auth-secrets-(experimental)) to use for this step. It will be passed to a component action/trigger as a part of config
 | attributes.cron                                                | no  | Cron expression representing flow timing |
 | attributes.nodes_config.{STEP_ID}.prefetch                     | no  | This parameter configures the maximum amount of messages, that the step can process simultaneously. Must be integer
+| attributes.nodes_config.{STEP_ID}.replicas              | no  | This parameter configures the maximum container replicas, that can be run simultaneously. Must be integer. Default: ```1```. Max value: ```5```
 | attributes.nodes_config.{STEP_ID}.passthrough.disabled         | no  | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
 | attributes.nodes_config.{STEP_ID}.log_level                    | no    | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``fatal``, default: ``info``
 | attributes.nodes_config.{STEP_ID}.disable_dynamic_flow_control | no    | This parameter configures disabling publisher confirms in sailor. Supports only for components with JVM sailor version above 3.3.5.  May be any of: ``true``, ``false``
