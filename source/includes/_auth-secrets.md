@@ -236,11 +236,11 @@ This request is authorized for the Workspace's scope members with the `workspace
 | attributes.error                         | no       | Auth Secret error |
 | attributes.credentials                   | yes      | Auth Secret credentials |
 | attributes.credentials.access_token      | yes (if ``auth-client`` is ``oauth2``) | Auth Secret access token |
-| attributes.credentials.refresh_token     | yes (if ``auth-client`` is ``oauth2``) | Auth Secret refresh token |
-| attributes.credentials.expires_in        | no        | Auth Secret expires in. If not specified and ``auth-client`` is ``oauth2`` then the value will be taken from ``token_expires_in`` of linked ``auth-client``|
+| attributes.credentials.refresh_token     | no       | Auth Secret refresh token |
+| attributes.credentials.expires_in        | no       | Auth Secret expires in. If not specified and ``auth-client`` is ``oauth2`` then the value will be taken from ``token_expires_in`` of linked ``auth-client``|
 | attributes.credentials.additional_params | no (if ``auth-client`` is ``oauth2``) | Auth Secret additional parameters |
-| relationships.auth_client.data.type      | yes       | Allowed value: ``auth-client``  |
-| relationships.auth_client.data.id        | yes       | Auth Client ID |
+| relationships.auth_client.data.type      | yes      | Allowed value: ``auth-client``  |
+| relationships.auth_client.data.id        | yes      | Auth Client ID |
 
 ### Returns
 
