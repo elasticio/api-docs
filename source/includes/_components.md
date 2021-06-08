@@ -1001,7 +1001,7 @@ This request is authorized to a user with `contracts.repository.edit` permission
 
 
 
-## Deprecate a version of a component
+## Deprecate a component version
 
 
 > Example Request:
