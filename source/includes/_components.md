@@ -1001,7 +1001,86 @@ This request is authorized to a user with `contracts.repository.edit` permission
 
 
 
+## Deprecate a version of the component
 
+
+> Example Request:
+
+```shell
+curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{VERSION_ID}/deprecate \
+   -X POST \
+   -u {EMAIL}:{APIKEY}
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    {
+      "id":"{GIT_REVISION}",
+      "type":"version",
+      "links":{
+        "self":"/v2/versions/{GIT_REVISION}"
+      },
+      "attributes":{
+        "date":1508754889997,
+        "version_number":1
+      },
+      "relationships":{
+        "descriptor":{
+          "data":{
+            "id":"{GIT_REVISION}",
+            "type":"descriptor"
+          },
+          "links":{
+            "self":"/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
+          }
+        },
+        "component":{
+          "data":{
+            "id":"{COMPONENT_ID}",
+            "type":"component"
+          },
+          "links":{
+            "self":"/v2/components/{COMPONENT_ID}"
+          }
+        }
+      }
+    }
+  },
+  "meta":{},
+  "links":{
+    "self":"/v2/components/{COMPONENT_ID}/versions"
+  }
+}
+```
+
+This resource allows you to deprecate a component version.
+
+
+
+### HTTP Request
+
+``POST {{ api_base_url }}/v2/components/{COMPONENT_ID}/versions/{VERSION_ID}/deprecate``
+
+### URL Parameters
+
+| Parameter    | Required | Description                                                                                   |
+| :----------- | :------- | :-------------------------------------------------------------------------------------------- |
+| COMPONENT_ID | yes      | Component ID                                                                                  |
+| VERSION_ID   | yes      | Revision or version of the component’s build. Use ``latest`` to delete the most recent successful build. |
+
+
+### Authorization
+The component must belong to one of the authorized user’s teams.
+
+### Returns
+
+200 HTTP response code if the call succeeds, error otherwise.
 
 
 
