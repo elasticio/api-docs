@@ -957,7 +957,7 @@ This request is authorized to a user with `contracts.repository.edit` permission
 
 
 
-## Delete a version of the component 
+## Delete a version of a component 
 
 
 > Example Request:
@@ -976,7 +976,7 @@ HTTP/1.1 204 No Content
 Content-Type: application/json
 ```
 
-This resource allows you to delete a component version. A version of the component may only be deleted if it not used in any flow.
+This resource allows you to delete a component version. A version of a component may only be deleted if it not used in any flow.
 
 
 
@@ -1001,7 +1001,7 @@ This request is authorized to a user with `contracts.repository.edit` permission
 
 
 
-## Deprecate a version of the component
+## Deprecate a version of a component
 
 
 > Example Request:
@@ -1028,7 +1028,8 @@ Content-Type: application/json
       },
       "attributes":{
         "date":1508754889997,
-        "version_number":1
+        "version_number":1,
+        "deprecated": true
       },
       "relationships":{
         "descriptor":{
