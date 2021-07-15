@@ -969,6 +969,43 @@ attributes.workspace_roles[]  | no | To get all available roles, please execute 
 Returns an contract-invite object if the request was successful.
 
 
+## Remove an invitation to the Contract's scope
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/invites/{INVITE_ID} \
+    -X DELETE    \
+    -u {EMAIL}:{APIKEY}
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 204 No Content
+```
+
+This endpoint allows to remove an existing Contract invitation.
+
+
+
+### HTTP Request
+`DELETE {{ api_base_url }}/v2/contracts/{CONTRACT_ID}/invites/{INVITE_ID}`
+
+#### Authorization
+This request is authorized for a Contract's scope members with the permission `contracts.membership.edit` or the `TenantAdmin` role.
+
+### URL Parameters
+Parameter           | Description
+------------------- | -----------
+CONTRACT_ID         | The ID of the Contract
+INVITE_ID           | The ID of the Contract invitation
+
+
+### Returns
+
+Responds with `204 No content` message if the call succeeded (with empty body).
 
 
 
