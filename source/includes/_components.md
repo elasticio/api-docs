@@ -203,7 +203,10 @@ Content-Type: application/json
       "attributes":{
         "name":"name",
         "team_name":"team_name",
-        "access": "tenant"
+        "access": "tenant",
+        "whitelisted_contract_ids": [
+          "{CONTRACT_ID}"
+        ]
       },
       "relationships":{
         "versions":{
