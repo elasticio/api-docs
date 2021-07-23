@@ -801,7 +801,7 @@ The component should be accessible to the client (e.g. component from the own Co
 
 ### Returns
 
-This endpoint returns a component object and includes latest [descriptor](#retrieve-a-component-descriptor) for each component.
+This endpoint returns a component object and includes latest [descriptor](#retrieve-a-component-descriptor).
 
 
 
