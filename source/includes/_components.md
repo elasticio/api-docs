@@ -318,7 +318,7 @@ More details about the component descriptors can be found [here](#component-desc
 `GET {{ api_base_url }}/v2/workspace/{WORKSPACE_ID}/components`
 
 ### Authorization
-The component should be accessible to the client (e.g. component from the own Contract or shared one).
+User has to be a member of the Workspace
 
 ### URL Parameters
 
@@ -802,7 +802,7 @@ Content-Type: application/json
 
 
 ### Authorization
-The component should be accessible to the client (e.g. component from the own Contract or whitelisted components in case tenant feature is enabled and workspace has type `full`).
+User has to be a member of the Workspace and the component should be accessible to the client (e.g. component from the own Contract or whitelisted components in case tenant feature is enabled and workspace has type `full`).
   
 
 ### Returns
