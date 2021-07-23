@@ -308,8 +308,8 @@ Content-Type: application/json
 }
 ```
 
-This endpoint retrieves a list of available components in given workspace with respect of component whitelist.
-(NOTE: Only if tenant feature flag for component whitelist is enabled and workspace has type `full` does the endpoint respect whitelist. Otherwise, all available components are returned)
+In case tenant feature flag for component whitelist is enabled and workspace has type `full` - this endpoint retrieves a list of available components in given workspace with respect of component whitelist.
+Otherwise (i.e. if either feature flag is disabled, or workspace has type `limited`) - it retrieves a list of all available components in given workspace
 Response includes latest [descriptor](#retrieve-a-component-descriptor) for each component.
 More details about the component descriptors can be found [here](#component-descriptor-doc). 
 
@@ -802,7 +802,9 @@ Content-Type: application/json
 
 
 ### Authorization
-User has to be a member of the Workspace and the component should be accessible to the client (e.g. component from the own Contract or whitelisted components in case tenant feature is enabled and workspace has type `full`).
+User has to be a member of the Workspace and the component should be accessible to the client.
+In case tenant feature flag for component whitelist is enabled and workspace has type `full` - component has to be either from the own Contract or whitelisted.
+Otherwise (i.e. if either feature flag is disabled, or workspace has type `limited`) - it has to be either from the own Contract or public.
   
 
 ### Returns
@@ -1199,6 +1201,12 @@ Content-Type: application/json
 | Parameter | Required | Description |
 | :--- | :--- | :--- | 
 | COMPONENT_ID | Yes | Component identifier |
+
+### Payload Parameters
+| Parameter                               | Required | Description
+| --------------------------------------- | -------- | ------------------------------------------------------ |
+| attributes.access                                     | no      | A value should be "tenant" for increasing access from `team` level  |
+| attributes.whitelisted_contract_ids          | no      | The ID's of Contracts where given component should be accessible   |
 
 ### Access level
 
