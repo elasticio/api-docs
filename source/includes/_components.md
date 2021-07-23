@@ -1133,7 +1133,7 @@ Returns component's metadata object if the call succeeded.
 
 ## Update component
 
-This resource allows you to do two things:
+This resource allows you to perform the next actions:
 
 1. Change component's access level from `team` to `tenant`. (Please note, that this action is irreversible i.e. API does not allow to change `access` back to `team`.)
 2. Change component's whitelisted contract ids
