@@ -174,6 +174,161 @@ Returns repositories metadata object if the call succeeded.
 
 
 
+## Retrieve all available components in workspace with respect of whitelist
+
+
+> Example Request:
+
+
+```shell
+curl {{ api_base_url }}/v2/workspace/{WORKSPACE_ID}/components \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":[
+    {
+      "id":"{COMPONENT_ID}",
+      "type":"component",
+      "links":{
+        "self":"/v2/components/{COMPONENT_ID}"
+      },
+      "attributes":{
+        "name":"name",
+        "team_name":"team_name",
+        "access": "tenant"
+      },
+      "relationships":{
+        "versions":{
+          "links":{
+            "related":"/v2/components/{COMPONENT_ID}/versions"
+          }
+        },
+        "latest_version":{
+          "data":{
+            "id":"{GIT_REVISION}",
+            "type":"version"
+          },
+          "links":{
+            "self":"/v2/components/{COMPONENT_ID}/versions/latest"
+          }
+        }
+      }
+    }
+  ],
+  "meta":{},
+  "included":[
+    {
+      "id":"{GIT_REVISION}",
+      "type":"version",
+      "links":{
+        "self":"/v2/versions/{GIT_REVISION}"
+      },
+      "attributes":{
+        "date":1517392057184,
+        "version_number":69
+      },
+      "relationships":{
+        "descriptor":{
+          "data":{
+            "id":"0eff1d1a46b78ba1f468982e16d0382e8a91280d",
+            "type":"descriptor"
+          },
+          "links":{
+            "self":"/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
+          }
+        },
+        "component":{
+          "data":{
+            "id":"{COMPONENT_ID}",
+            "type":"component"
+          },
+          "links":{
+            "self":"/v2/components/{COMPONENT_ID}"
+          }
+        }
+      }
+    },
+    {
+      "id":"0eff1d1a46b78ba1f468982e16d0382e8a91280d",
+      "type":"descriptor",
+      "links":{
+        "self":"/v2/descriptors/0eff1d1a46b78ba1f468982e16d0382e8a91280d"
+      },
+      "attributes":{
+        "repo_name":"repo_name",
+        "team_name":"team_name",
+        "short_revision":"0eff1d1",
+        "is_latest":true,
+        "description":"desc",
+        "icon":"BASE64",
+        "language":"nodejs",
+        "sailor_version":"2.1.6",
+        "title":"Data mapper",
+        "service":"mapper",
+        "actions":{
+          "map":{
+            "title":"Mapper",
+            "main":"./map.js"
+          },
+          "jsonataMap":{
+            "title":"Jsonata mapper",
+            "main":"./jsonata_map.js"
+          }
+        },
+        "fields":{
+          "mapper":{
+            "viewClass":"MapperView"
+          }
+        }
+      },
+      "relationships":{
+        "version":{
+          "data":{
+            "id":"{GIT_REVISION}",
+            "type":"version"
+          },
+          "links":{
+            "self":"/v2/{COMPONENT_ID}/versions/{GIT_REVISION}"
+          }
+        }
+      }
+    }
+  ],
+  "links":{
+    "self":"/v2/components"
+  }
+}
+```
+
+This endpoint retrieves a list of available components in given workspace with respect of component whitelist.
+(NOTE: Only if tenant feature flag for component whitelist is enabled and workspace has type `full` does the endpoint respect whitelist)
+Response includes latest [descriptor](#retrieve-a-component-descriptor) for each component.
+More details about the component descriptors can be found [here](#component-descriptor-doc). 
+
+### HTTP Request
+
+`GET {{ api_base_url }}/v2/workspace/{WORKSPACE_ID}/components`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| WORKSPACE_ID | Yes | An Id of the Workspace |
+
+### Returns
+
+Returns repositories metadata object if the call succeeded.
+
+
+
 
 
 ## Retrieve all components
@@ -498,6 +653,156 @@ This endpoint returns a component object and includes latest [descriptor](#retri
 
 
 
+## Retrieve a component by ID with respect of whitelist
+
+
+> Example Request:
+
+
+```shell
+curl {{ api_base_url }}/v2/workspace/{WORKSPACE_ID}/components/{COMPONENT_ID} \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "data":{
+    "id":"{COMPONENT_ID}",
+    "type":"component",
+    "links":{
+      "self":"/v2/components/{COMPONENT_ID}"
+    },
+    "attributes":{
+      "name":"component name",
+      "team_name":"{team_name}",
+      "access": "team"
+    },
+    "relationships":{
+      "versions":{
+        "links":{
+          "related":"/v2/components/{COMPONENT_ID}/versions"
+        }
+      },
+      "latest_version":{
+        "data":{
+          "id":"{GIT_REVISION}",
+          "type":"version"
+        },
+        "links":{
+          "self":"/v2/components/{COMPONENT_ID}/versions/latest"
+        }
+      }
+    }
+  },
+  "meta":{},
+  "included":[
+    {
+      "id":"{GIT_REVISION}",
+      "type":"version",
+      "links":{
+        "self":"/v2/versions/{GIT_REVISION}"
+      },
+      "attributes":{
+        "date":1513183339032,
+        "version_number":7
+      },
+      "relationships":{
+        "descriptor":{
+          "data":{
+            "id":"{GIT_REVISION}",
+            "type":"descriptor"
+          },
+          "links":{
+            "self":"/v2/components/{COMPONENT_ID}/versions/{GIT_REVISION}/descriptor"
+          }
+        },
+        "component":{
+          "data":{
+            "id":"{COMPONENT_ID}",
+            "type":"component"
+          },
+          "links":{
+            "self":"/v2/components/{COMPONENT_ID}"
+          }
+        }
+      }
+    },
+    {
+      "id":"{GIT_REVISION}",
+      "type":"descriptor",
+      "links":{
+        "self":"/v2/descriptors/{GIT_REVISION}"
+      },
+      "attributes":{
+        "repo_name":"repo_name",
+        "team_name":"team_name",
+        "short_revision":"df7cf1d",
+        "is_latest":true,
+        "description":"desc",
+        "icon":"BASE64",
+        "language":"nodejs",
+        "sailor_version":"2.2.1",
+        "title":"title",
+        "actions":{
+          "update":"<Actions Object>"
+        },
+        "triggers":{
+          "select":"<Triggers Object>"
+        },
+        "credentials":{
+          "fields":{
+            "apiKey":{
+              "label":"API key",
+              "required":true,
+              "viewClass":"TextFieldWithNoteView",
+              "note":"{note}"
+            }
+          }
+        }
+      },
+      "relationships":{
+        "version":{
+          "data":{
+            "id":"{GIT_REVISION}",
+            "type":"version"
+          },
+          "links":{
+            "self":"/v2/{COMPONENT_ID}/versions/{GIT_REVISION}"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+
+### HTTP Request
+
+``GET {{ api_base_url }}/v2/workspace/{WORKSPACE_ID}/components/{COMPONENT_ID}``
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| WORKSPACE_ID | Yes | An Id of the Workspace |
+| COMPONENT_ID | Yes | Component identifier |
+
+
+### Authorization
+The component should be accessible to the client (e.g. component from the own Contract or whitelisted components in case tenant feature is enabled and workspace has type `full`).
+  
+
+### Returns
+
+This endpoint returns a component object and includes latest [descriptor](#retrieve-a-component-descriptor) for each component.
+
 
 
 
@@ -818,11 +1123,12 @@ Returns component's metadata object if the call succeeded.
 
 
 
-## Update component access
+## Update component
 
-This resource allows you to changing component's access level from `team` to `tenant`.
+This resource allows you to do two things:
 
-Please note, that this action is irreversible i.e. API does not allow to change `access` back to `team`.
+1. Change component's access level from `team` to `tenant`. (Please note, that this action is irreversible i.e. API does not allow to change `access` back to `team`.)
+2. Change component's whitelisted contract ids
 
 > Example Request:
 
@@ -836,7 +1142,10 @@ curl {{ api_base_url }}/v2/components/{COMPONENT_ID} \
        "data": {
            "type": "component",
            "attributes": {
-               "access": "tenant"
+               "access": "tenant",
+               "whitelisted_contract_ids": [
+                 "{CONTRACT_ID}"
+               ]
            }
        }
    }'
@@ -859,7 +1168,10 @@ Content-Type: application/json
     "attributes":{
       "name":"name",
       "team_name":"team_name",
-      "access": "tenant"
+      "access": "tenant",
+      "whitelisted_contract_ids": [
+        "{CONTRACT_ID}"
+      ]
     },
     "relationships":{
       "versions":{

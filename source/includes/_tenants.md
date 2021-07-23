@@ -144,7 +144,8 @@
       },
       "feature_flags":{
           "old_mapper_enabled":false,
-          "enabled_totp":true
+          "enabled_totp":true,
+          "contract_component_whitelist":true
       },
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png"
@@ -291,7 +292,8 @@ Content-Type: application/json
       },
       "feature_flags":{
           "old_mapper_enabled":false,
-          "enabled_totp":true
+          "enabled_totp":true,
+          "contract_component_whitelist":true
       },
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png"
@@ -367,6 +369,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.html_meta.keywords           | no       | Customer meta keywords in html pages     |
 | attributes.feature_flags.old_mapper_enabled       | no | Enable ability to use deprecated mapper UI. Default: "false" |
 | attributes.feature_flags.enabled_totp   | no | Enable ability to use two-factor authentication. Default: "false" |
+| attributes.feature_flags.contract_component_whitelist   | no | Enable component whitelisting on contract level. Default: "false" |
 | attributes.signin_v_2       | no | Enable new design for registration page |
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
 | attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
@@ -480,7 +483,8 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       ],
       "feature_flags":{
           "old_mapper_enabled":false,
-          "enabled_totp":true
+          "enabled_totp":true,
+          "contract_component_whitelist":true
       },
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png",
@@ -624,7 +628,8 @@ Content-Type: application/json
       ],
       "feature_flags":{
           "old_mapper_enabled":false,
-          "enabled_totp":true
+          "enabled_totp":true,
+          "contract_component_whitelist":true
       },
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png",
@@ -701,6 +706,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.default_workspace_type       | no       | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`        |
 | attributes.feature_flags.old_mapper_enabled       | no | Enable ability to use deprecated mapper UI. Default: "false" |
 | attributes.feature_flags.enabled_totp   | no | Enable ability to use two-factor authentication. Default: "false" |
+| attributes.feature_flags.contract_component_whitelist   | no | Enable component whitelisting on contract level. Default: "false" |
 | attributes.signin_v_2       | no | Enable new design for registration page |
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
 | attributes.signin_v_2.google_provider_id       | no | Google OIDC Provider `id` in this tenant. Enables Google Sign In and Sign Up |
