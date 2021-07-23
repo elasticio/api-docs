@@ -304,21 +304,21 @@ Content-Type: application/json
         }
       }
     }
-  ],
-  "links":{
-    "self":"/v2/components"
-  }
+  ]
 }
 ```
 
 This endpoint retrieves a list of available components in given workspace with respect of component whitelist.
-(NOTE: Only if tenant feature flag for component whitelist is enabled and workspace has type `full` does the endpoint respect whitelist)
+(NOTE: Only if tenant feature flag for component whitelist is enabled and workspace has type `full` does the endpoint respect whitelist. Otherwise, all available components are returned)
 Response includes latest [descriptor](#retrieve-a-component-descriptor) for each component.
 More details about the component descriptors can be found [here](#component-descriptor-doc). 
 
 ### HTTP Request
 
 `GET {{ api_base_url }}/v2/workspace/{WORKSPACE_ID}/components`
+
+### Authorization
+The component should be accessible to the client (e.g. component from the own Contract or shared one).
 
 ### URL Parameters
 
@@ -684,7 +684,10 @@ Content-Type: application/json
     "attributes":{
       "name":"component name",
       "team_name":"{team_name}",
-      "access": "team"
+      "access": "team",
+      "whitelisted_contract_ids": [
+        "{CONTRACT_ID}"
+      ]
     },
     "relationships":{
       "versions":{
