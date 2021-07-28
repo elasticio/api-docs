@@ -366,6 +366,51 @@ New user objects will be provided with an ``id`` field - this value cannot be cr
 
 
 
+
+## Disable Two-factor authentication (TOTP) for a user
+
+> Example Request:
+
+```bash
+curl {{ api_base_url }}/v2/users/{USER_ID}/disable-totp \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Content-Type: application/json'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+```
+
+This resource allows you to disable Two-factor authentication (TOTP) for a user.
+(NOTE: this will remove secret and recovery codes for the user in DB)
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/users/{USER_ID}/disable-totp`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| USER_ID | yes | User identifier |
+
+
+### Authorization
+
+This request is authorized for users with the `tenants.user.disable_totp` permission.
+
+
+
+
+
+
+
+
+
 ## Delete a user
 
 > Example Request:
