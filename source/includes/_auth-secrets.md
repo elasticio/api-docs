@@ -1,10 +1,7 @@
-# Auth Secrets (Experimental)
+# Auth Secrets
 
- <aside class="warning">
- <b>The Auth Secrets section is an experimental API</b>
- </aside>
 
-The Secret is used to expose the information that the platform needs to collect from the integrator in order to be able to connect to their instance/account. The information collected typically includes:
+The Secret is used to expose the information that the platform needs to collect from the integrator to be able to connect to their instance/account. The information collected typically includes:
 
 - URL to the integrator’s instance
 - Username or other account ID

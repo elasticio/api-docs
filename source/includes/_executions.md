@@ -4,11 +4,11 @@
 
 ### What are scheduled executions?
 
-In order to set up usage of some component in a certain `node` in certain `Flow`, some available configuration options
+To set up usage of some component in a certain `node` in certain `Flow`, some available configuration options
 could not be described in advance, because they depend on the context in each case.
 
 Let's consider an example when we have a component with a module, which allows retrieving a list of goods from some
-e-commerce platform. In this case, we have few configuration parameters, which should be configured in order to use a
+e-commerce platform. In this case, we have few configuration parameters, which should be configured to use a
 component in some flow, but all available options are different for different e-commerce installations.
 
 The first such "dynamic" parameter is a category of a good. Each installation has its own set of goods categories.
@@ -16,12 +16,12 @@ The first such "dynamic" parameter is a category of a good. Each installation ha
 Goods in different categories have different attributes set, so the structure of data in messages (metadata), produced
 by the module is dependent on selected category. So metadata also should be retrieved for each case.
 
-And finally, each client uses own credential in order to connect connector with the e-commerce platform installation.
-Credential parameters have to be verified somehow before usage (at least in order to avoid confusing bugs while using
+And finally, each client uses own credential to connect connector with the e-commerce platform installation.
+Credential parameters have to be verified somehow before usage (at least to avoid confusing bugs while using
 component).
 
 
-In order to solve each of three problems above, there are so-called scheduled executions, which allow running special
+To solve each of three problems above, there are so-called scheduled executions, which allow running special
 methods of a component.These methods are:
 
 - `selectModel` allows retrieving available options for certain parameter of configuration, when component/module is used in some node in some flow

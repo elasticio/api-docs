@@ -1,14 +1,9 @@
-# Auth Clients (Experimental)
+# Auth Clients
 
- <aside class="warning">
- <b>The Auth Clients section is an experimental API</b>
- </aside>
-
- 
-In order to use an OAuth2 based Component in the platform it is required to register a client at the authorization 
+To use an OAuth2 based Component in the platform it is required to register a client at the authorization
 server. Upon registration the authorization server issues the registered client an identifier (client ID) and a secret.
 These client credentials are used to create a client using the following API.
-Auth clients can be created on any level: tenant, contract or workspace which incapsulate each other (in order), i.e 
+Auth clients can be created on any level: tenant, contract or workspace which incapsulate each other (in order), i.e
 client created on tenant level is available to use for creating secrets in any workspace of the tenant.
 
 ## Retrieve All Auth Clients
@@ -311,7 +306,7 @@ This request is authorized with one of the `global.auth_clients.get`, `tenants.a
 
 `auth_clients.get` permissions are also used to authorize access to Auth Client's `credentials` field: one can see Auth Client's `credential` only if client's scope and permission's scope match, i.e. `credentials` of tenant's Auth Client are visible for users only with `tenants.auth_clients.get` permissions, though tenant Auth Client itself is visible for users with `workspaces.auth_clients.get`.
 
-To specify scope of request one of `workspace_id`, `contract_id` or `tenant_id` query parameters is used. For example, tenant auth client can be retreived by id if user has `workspaces.auth_clients.get` permission in one of the tenant's workspaces, so to specify those workspace `workspace_id` query parameter is used, without scope parameter you can get only global client. In case if the user tries to get not a global client and doesn't specify the query parameter - such request  will be rejected, as permission can't be checked.
+To specify scope of request one of `workspace_id`, `contract_id` or `tenant_id` query parameters is used. For example, tenant auth client can be retrieved by id if user has `workspaces.auth_clients.get` permission in one of the tenant's workspaces, so to specify those workspace `workspace_id` query parameter is used, without scope parameter you can get only global client. In case if the user tries to get not a global client and doesn't specify the query parameter - such request  will be rejected, as permission can't be checked.
 
 ### URL Parameters
 
@@ -419,7 +414,7 @@ Content-Type: application/json
 }
 ```
 
-This resource allows you to update the Auth Client. If the Auth Client with type ``oauth2`` then you can update 
+This resource allows you to update the Auth Client. If the Auth Client with type ``oauth2`` then you can update
 name, `token_expires_in` and linked components, otherwise if the type is ``other``, then you can put in credentials any data that you want
 and add components which can use this Auth Client.
 
@@ -464,7 +459,7 @@ curl {{ api_base_url }}/v2/auth-clients/{AUTH-CLIENT_ID} \
 ```
 
 
-This resource allows you to delete an Auth Client. You can't delete an Auth Client, while it has one or more secrets 
+This resource allows you to delete an Auth Client. You can't delete an Auth Client, while it has one or more secrets
 attached.
 
 ### HTTP Request

@@ -89,7 +89,7 @@ This endpoint allows creating a Contract.
 
 #### Authorization
 
-This request is authorized to only a user with `TenantAdmin` role. Contact support team to get this role.
+This request is authorized to only a user with `TenantAdmin` role.
 
 ### Payload Parameters
 
@@ -198,7 +198,7 @@ This endpoint allows to change Contracts' name and to update available roles in 
 
 #### Authorization
 
-For updating Contract name this request is authorized to the users with `contracts.contract.edit` permission. For updating the set of available roles of the particular Contract this request is authorized to the user with `TenantAdmin` role. Contact support team to get this role.
+For updating Contract name this request is authorized to the users with `contracts.contract.edit` permission. For updating the set of available roles of the particular Contract this request is authorized to the user with `TenantAdmin` role.
 
 
 ### Payload Parameters
@@ -769,9 +769,7 @@ Content-Type: application/json
       }
     }
   },
-  "meta":{
-
-  }
+  "meta":{}
 }
 ```
 
@@ -1247,7 +1245,7 @@ This endpoint allows suspending the Contract. The process is asynchronous. Suspe
 
 #### Authorization
 
-A client has to have the `Service Account` record type or the `TenantAdmin` role (contact support team in getting this role).
+A client has to have the `Service Account` record type or the `TenantAdmin` role.
 
 
 
@@ -1283,7 +1281,7 @@ This endpoint allows you to unsuspend the Contract.
 
 #### Authorization
 
-A client has to have the `Service Account` record type or the `TenantAdmin` role (contact support team in getting this role).
+A client has to have the `Service Account` record type or the `TenantAdmin` role.
 
 
 ### URL Parameters
@@ -1350,4 +1348,3 @@ CONTRACT_ID      | The ID of the Contract
 ### Returns
 
 Responds with the `204 No content` message if the call succeeded (with empty body).
-
