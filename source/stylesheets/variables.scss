@@ -17,21 +17,21 @@ under the License.
 
 ////////////////////////////////////////////////////////////////////////////////
 // CUSTOMIZE SLATE
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////default-font/////////////////////////////////////////////////////
 // Use these settings to help adjust the appearance of Slate
 
 
 // BACKGROUND COLORS
 ////////////////////
 $nav-bg: #171a1c;
-$examples-bg: #202427;
+$examples-bg: #171a1c;
 $code-bg: #171a1c;
 $code-annotation-bg: #0f1113;
 $nav-subitem-bg: #202427;
 $nav-active-bg: #2467af;
 $lang-select-border: #000;
 $lang-select-bg: #0f1113;
-$lang-select-active-bg: #202427; // feel free to change this to blue or something
+$lang-select-active-bg: #171a1c; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
 $main-bg: #fff;
 $aside-notice-bg: #8fbcd4;
@@ -69,7 +69,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 ////////////////////
 %default-font {
   font-family: "PT Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 %header-font {
