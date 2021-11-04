@@ -1,0 +1,977 @@
+openapi: 3.0.3
+
+info:
+  description: |
+    # Introduction
+
+    Welcome to the {{product_name}} [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API documentation v2. It adheres to the [JSON API](http://jsonapi.org) specifications:
+
+    *   Returns JSON-encoded responses (Content-Type: `application/json`),
+    *   Uses standard HTTP [response codes](#errors)
+    *   Uses authentication - **You can not use this API without registering at {{ product_name }} platform to get the [authentication](#authentication) credentials.**
+
+    ## Authentication
+
+    We use a standard [HTTP Basic Authtentication](http://en.wikipedia.org/wiki/Basic_access_authentication) mechanism to authenticate each API call with the {{ product_name }}.
+
+    *   `{EMAIL}` - **email address** you use to login to the platform.
+    *   `{APIKEY}` - a unique **API Key** generated for you found in the profile settings page.
+
+    ## Errors
+
+    The {{ product_name }} API uses conventional HTTP response codes to inform the requester about the success or failure of an API calls. Generally: Codes in the `2xx` range mean success. Codes in the `4xx` range mean an error that failed given the information provided. Codes in the `5xx` range mean an error with the {product_name} platform:
+
+
+    | Status Code | Meaning |
+    | ---------- | ------- |
+    | 200 - OK | Everything worked as expected |
+    | 201 - Created | Requested resource created |
+    | 204 - No Content | Request succeeded, nothing more to give |
+    | 400 - Bad Request | The server cannot or will not process the request due to client error. Often missing required parameter|
+    | 401 - Unauthorized | No valid API key provided|
+    | 403 - Forbidden | The request was valid, but the server is refusing action. The user might not have the necessary permissions for a resource |
+    | 404 - Not Found | The specified resource could not be found |
+    | 405 - Method Not Allowed | You tried to access a resource with an invalid method |
+    | 406 - Not Acceptable | Your used request in non JSON format |
+    | 409 - Conflict | The resource object’s type is not among the type(s) that constitute the collection represented by the endpoint or a POST request to create a resource with a client-generated ID that already exists |
+    | 410 - Gone | The resource requested has been removed from our servers |
+    | 413 | Payload too large |
+    | 418 | I'm a teapot |
+    | 429 - Too Many Requests | Too many requests hit the API too quickly. Please slow down. |
+    | 500 - Internal Server Error | We have a problem with our server. Try again later |
+    | 503 - Service Unavailable | We're temporarily offline for maintenance. Please try again later |
+
+  version: 1.0.0
+  title: elastic.io REST API documentation v2
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: hanna@elastic.io
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+# can use sctatic
+  - url: https://api-sparrow.elastic.io
+    description: API base URL
+# or define as variable
+  - url: '{api_base_url}'
+    variables:
+      api_base_url:
+        default: https://api-sparrow.elastic.io # iPaaS server
+
+tags:
+  - name: Users
+
+          ########################
+          # Users Endpoints
+          ########################
+
+paths:
+
+  /v2/users/me:
+    get:
+      tags:
+        - Users
+      summary: Retrieve Your User
+      description: |
+        ## Retrieve Your User
+        This resource allows you to retrieve your user.
+        ### Returns
+        Returns a user object if the call succeeded.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myUserOut'
+        '401':
+          description: No authorization header was provided
+          content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/401'
+
+      security:
+          - basicAuth: []
+
+  /v2/users/:
+
+    get:
+        tags:
+           - Users
+        summary: Retrieve All Users
+        description: |
+          ## Retrieve All Users
+          This endpoint returns a list of users.
+          ### Authorization
+          This request is authorized for users with the `tenants.user.list_all` permission.
+          ### Returns
+          Returns a list of user objects on successful call.
+        parameters:
+          - in: query
+            name: page[size]
+            description: Amount of items per page. Default 50
+            required: false
+            schema:
+              type: integer
+          - in: query
+            name: page[number]
+            description: Number of page you want to display
+            required: false
+            schema:
+              type: integer
+          - in: query
+            name: iss
+            description: Users must have OpenId identity equal to this value. Can't be used with "email" parameter
+            required: false
+            schema:
+              type: string
+          - in: query
+            name: sub
+            description: Users must have OpenId subject equal to this value. Can't be used with "email" parameter
+            required: false
+            schema:
+              type: string
+          - in: query
+            name: email
+            description: Users must have email equal to this value
+            required: false
+            schema:
+              type: string
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/userOutAll'
+          '401':
+            description: No authorization header was provided
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/401'
+          '403':
+            description: You need tenants.user.list_all permission to access resource
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/403'
+
+        security:
+          - basicAuth: []
+
+    post:
+      tags:
+        - Users
+      summary: Create a User
+      description: |
+        ## Create a User
+        This resource allows you to create a user.
+        ### Body Parameters
+        | Parameter | Required | Description |
+        | :--- | :--- | :--- |
+        | type | yes | A value must be ``user`` |
+        | attributes.first_name | yes | User's first name. |
+        | attributes.last_name | yes | User's last name. |
+        | attributes.email | yes | User's email. |
+        | attributes.password | yes | User's password. Password should be at least 8 characters long and include letters, numbers and special symbols.|
+        ### Authorization
+        This request is authorized for users with the `tenants.user.create` permission.
+        ### Returns
+        New user objects will be provided with an ``id`` field - this value cannot be created or edited by clients.
+      requestBody:
+        $ref: '#/components/requestBodies/user'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userOut'
+          links:
+              Retrieve a User by ID:
+                    operationId: Retrieve a User by ID
+                    parameters:
+                      user_Id: '$response.body#/data/id'
+                    description: |
+                      The `id` value returned in the response can be used as
+                      the `user_id` parameter in `GET /users/{user_id}`.
+        '401':
+          description: No authorization header was provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Operation not allowed for this user. Only tenant admin may perform this operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+      security:
+          - basicAuth: []
+
+  '/v2/users/{user_id}':
+    get:
+      tags:
+           - Users
+      summary: Retrieve a User by ID
+      description: |
+        ## Retrieve a User by ID
+        This resource allows you to retrieve a user by ID.
+        ### Returns
+        Returns a user object on successful call.
+      parameters:
+          - in: path
+            name: user_id
+            description: User identifier
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userOut'
+        '401':
+          description: No authorization header was provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '404':
+          description: The user is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+      security:
+        - basicAuth: []
+
+    delete:
+      tags:
+        - Users
+      summary: Delete a user
+      description: |
+        ## Delete a user
+        This resource allows you to delete a user.
+        ### When a User is deleted the following data will be deleted as well:
+        * SSH keys
+        * User's object itself
+        * all Workspaces and Contracts, where the User is **the only member**
+        ### Not deleted immediately
+        These data objects are deleted automatically (e.g. due to expiration), so they won't be deleted right after User deletion:
+        * Flows activity records (used in order to show runlog)
+        * Logs of flow execution and repo build
+        * Invitations to the Team, Contract and Workspace
+        * Notifications
+        ### Data associated with Contract and Workspace
+        * If this User is a member of any Contract, which has one more Owner beside them then User's Teams and Repos will be transferred to the next Owner.
+        * If this User is a member of any Workspace, which has one more Owner beside them then User's Flows and Credentials will be transferred to the next Owner.
+        * If this User is the last Owner of any Workspace then given Workspace will be deleted with all data.
+        * If this User is the only member of Contract(s) then they will be deleted along with Contract and all the unique data connected with this User.
+        ### Authorization
+        This request is authorized for users with the `tenants.user.delete` permission.
+      parameters:
+          - in: path
+            name: user_id
+            description: User identifier
+            required: true
+            schema:
+              type: string
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: No authorization header was provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: You need tenants.user.delete permission to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: The user is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+      security:
+          - basicAuth: []
+
+  '/v2/users/{user_id}/disable-totp':
+    post:
+      tags:
+           - Users
+      summary: Disable Two-factor authentication (TOTP) for a user
+      description: |
+        ## Disable Two-factor authentication (TOTP) for a user
+        This resource allows you to disable Two-factor authentication (TOTP) for a user. (NOTE: this will remove
+        secret and recovery codes for the user in DB).
+        ### Authorization
+        This request is authorized for users with the `tenants.user.disable_totp` permission.
+      parameters:
+          - in: path
+            name: user_id
+            description: User identifier
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+        '401':
+          description: No authorization header was provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: You need tenants.user.disable_totp permission to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: The user is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+      security:
+        - basicAuth: []
+
+  '/v2/users/{user_id}/openid/identities':
+    post:
+      tags:
+           - Users
+      summary: Create an openid-identity
+      description: |
+        ## Create an openid-identity
+        This resource allows you to create an OpenID Identity for a user.
+        ### Body Parameters
+        | Parameter | Required | Description |
+        | :--- | :--- | :--- |
+        | type | yes | A value must be ``openid-identity`` |
+        | attributes.iss | yes | User's OpenID Identity issuer. Must be an URL. |
+        | attributes.sub | yes | User's OpenID Identity subject. |
+        ### Data associated with User
+        A user can have multiple OpenID Identities.
+        ### Authorization
+        This request is authorized for users with the `tenants.oidc.create` permission.
+        ### Returns
+        New openid-identity objects will be provided with an ``id`` field - this value cannot be created or edited by clients.
+      requestBody:
+        $ref: '#/components/requestBodies/openid-identity'
+      parameters:
+          - in: path
+            name: user_id
+            description: User identifier
+            required: true
+            schema:
+              type: string
+
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/openid-identityOut'
+          links:
+                Delete an openid-identity:
+                      operationId: Delete an openid-identity
+                      parameters:
+                        openid-identity_id: '$response.body#/data/id'
+                      description: >
+                        The `id` value returned in the response can be used as
+                        the `openid-identity_id` parameter in `DELETE /v2/users/{user_id}/openid/identities/{openid-identity_id}`.
+        '401':
+          description: No authorization header was provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: You need tenants.oidc.create permission to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: The user is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+      security:
+        - basicAuth: []
+
+  '/v2/users/{user_id}/openid/identities/{openid-identity_id}':
+    delete:
+      tags:
+        - Users
+      summary: Delete an openid-identity
+      description: |
+        ## Delete an openid-identity
+        This resource allows you to delete an OpenID Identity for a user.
+        ### Authorization
+        This request is authorized for users with the `tenants.oidc.delete` permission.
+
+      parameters:
+          - in: path
+            name: user_id
+            description: User identifier
+            required: true
+            schema:
+              type: string
+          - in: path
+            name: openid-identity_id
+            description: User's OpenID Identity ID
+            required: true
+            schema:
+              type: string
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: No authorization header was provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: You need tenants.oidc.delete permission to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: |
+            The user is not found
+            openid-identity is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+      security:
+        - basicAuth: []
+
+
+
+
+
+components:
+
+          ########################
+          # Users Schemas
+          ########################
+
+  schemas:
+
+    userIn:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+              - type
+              - attributes
+          properties:
+              type:
+                  type: string
+                  enum:
+                   - user
+              attributes:
+                  type: object
+                  required:
+                     - first_name
+                     - last_name
+                     - email
+                     - password
+                  properties:
+                      first_name:
+                          type: string
+                          example: John
+                      last_name:
+                          type: string
+                          example: Doe
+                      email:
+                          type: string
+                          example: test@example.com
+                      password:
+                          type: string
+                          example: P@ssw0rd
+    myUserOut:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+              - id
+              - type
+              - links
+              - attributes
+          properties:
+              id:
+                  type: string
+                  example: user_id
+              type:
+                  type: string
+                  enum:
+                    - user
+              links:
+                  type: object
+                  required:
+                     - self
+                  properties:
+                      self:
+                          type: string
+                          example: /v2/users/{{user_id}}
+              attributes:
+                  type: object
+                  required:
+                     - first_name
+                     - last_name
+                     - email
+                     - password
+                  properties:
+                      first_name:
+                          type: string
+                          example: John
+                      last_name:
+                          type: string
+                          example: Doe
+                      email:
+                          type: string
+                          example: test@example.com
+                      password:
+                          type: string
+                          example: P@ssw0rd
+    userOut:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+              - id
+              - type
+              - links
+              - attributes
+          properties:
+              id:
+                  type: string
+                  example: user_id
+              type:
+                  type: string
+                  enum:
+                    - user
+              links:
+                  type: object
+                  required:
+                     - self
+                  properties:
+                      self:
+                          type: string
+                          example: /v2/users/{{user_id}}
+              attributes:
+                  type: object
+                  required:
+                     - first_name
+                     - last_name
+                     - email
+                     - company
+                     - registered
+                     - last_login
+                  properties:
+                      first_name:
+                          type: string
+                          example: John
+                      last_name:
+                          type: string
+                          example: Doe
+                      email:
+                          type: string
+                          example: test@example.com
+                      company:
+                          type: string
+                          example: elastic.io GmbH
+                      registered:
+                          type: string
+                          example: 2017-10-02T12:18:06.274Z
+                      last_login:
+                          type: string
+                          example: 2018-03-15T16:53:57.696Z
+    userOutAll:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        meta:
+          type: object
+          required:
+              - total
+              - page
+              - per_page
+              - total_pages
+          properties:
+              total:
+                  type: integer
+                  format: int64
+                  example: 6
+              page:
+                  type: integer
+                  format: int64
+                  example: 1
+              per_page:
+                  type: integer
+                  format: int64
+                  example: 50
+              total_pages:
+                  type: integer
+                  format: int64
+                  example: 1
+        data:
+          type: array
+          items:
+            type: object
+          required:
+              - id
+              - type
+              - links
+              - attributes
+          properties:
+              id:
+                  type: string
+                  example: user_id
+              type:
+                  type: string
+                  enum:
+                    - user
+              links:
+                  type: object
+                  required:
+                     - self
+                  properties:
+                      self:
+                          type: string
+                          example: /v2/users/{{user_id}}
+              attributes:
+                  type: object
+                  required:
+                     - first_name
+                     - last_name
+                     - email
+                     - company
+                     - registered
+                     - last_login
+                  properties:
+                      first_name:
+                          type: string
+                      last_name:
+                          type: string
+                      email:
+                          type: string
+                      company:
+                          type: string
+                      registered:
+                          type: string
+                      last_login:
+                          type: string
+          example:
+            - id: user_id
+              type: user
+              links: v2/users/{{user_id}}
+              attributes:
+                first_name: John
+                last_name: Doe
+                email: test@example.com
+                company: elastic.io GmbH
+                registered: "2015-10-02T10:19:19.697Z"
+                last_login: "2020-08-18T08:27:44.478Z"
+
+          ########################
+          # OpenID Identity Schemas
+          ########################
+
+    openid-identityIn:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - openid-identity
+            attributes:
+               type: object
+               required:
+                - iss
+                - sub
+               properties:
+                iss:
+                  type: string
+                  example: http://example.com
+                sub:
+                  type: string
+                  example: user-identification
+
+    openid-identityOut:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: object
+          required:
+              - id
+              - type
+              - links
+              - attributes
+              - relationships
+          properties:
+              id:
+                  type: string
+                  example: openid-identity_id
+              type:
+                  type: string
+                  enum:
+                    - openid-identity
+              links:
+                  type: object
+                  required:
+                     - self
+                  properties:
+                      self:
+                          type: string
+                          example: /v2/users/{{user_id}}/openid/identities/{{openid-identity_id}}
+              attributes:
+                  type: object
+                  required:
+                     - iss
+                     - sub
+                  properties:
+                      iss:
+                          type: string
+                          example: http://example.com
+                      sub:
+                          type: string
+                          example: user-identification
+              relationships:
+                  type: object
+                  required:
+                     - user
+                  properties:
+                      user:
+                          type: object
+                          required:
+                            - data
+                            - links
+                          properties:
+                            data:
+                             type: object
+                             required:
+                               - id
+                               - type
+                             properties:
+                               id:
+                                 type: string
+                                 example: user_id
+                               type:
+                                 type: string
+                                 example: user
+                            links:
+                              type: object
+                              required:
+                                - self
+                              properties:
+                                self:
+                                  type: string
+                                  example: /v2/users/{{user_id}}
+        meta:
+          type: object
+          example: {}
+
+          ########################
+          # Errors Schemas
+          ########################
+
+    401:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+          required:
+            - status
+            - title
+            - detail
+          properties:
+            status:
+              type: integer
+            title:
+              type: string
+            detail:
+              type: string
+      example:
+        errors:
+          - status: 401
+            title: Error
+            detail: No authorization header was provided.
+
+    403:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+          required:
+            - detail
+            - status
+            - code
+            - title
+            - meta
+          properties:
+            detail:
+              type: string
+            status:
+              type: integer
+            code:
+              type: integer
+            title:
+              type: string
+            meta:
+              type: object
+
+      example:
+        errors:
+          - detail: You need permission to access resource
+            status: 403
+            code: 403
+            title: Unauthorized
+            meta: {}
+
+
+    404:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+          required:
+            - detail
+            - status
+            - code
+            - title
+            - source
+            - meta
+          properties:
+            detail:
+              type: string
+            status:
+              type: integer
+            code:
+              type: integer
+            title:
+              type: string
+            source:
+              type: object
+              required:
+                - parameter
+              properties:
+                parameter:
+                  type: object
+                  required:
+                  - data
+                  properties:
+                    id:
+                      type: string
+            meta:
+              type: object
+
+      example:
+        errors:
+          - detail: The resourse is not found.
+            status: 404
+            code: 404
+            title: resource not found
+            meta: {}
+            source:
+              parameter:
+                id: resource_id
+
+
+  requestBodies:
+
+          ########################
+          # Users requestBodies
+          ########################
+
+    user:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/userIn'
+      description: User object that needs to be created
+      required: true
+
+          ########################
+          # OpenID Identity requestBodies
+          ########################
+
+    openid-identity:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/openid-identityIn'
+      description: OpenID Identity object that needs to be created
+      required: true
+
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
