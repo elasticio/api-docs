@@ -25,19 +25,16 @@ info:
   title: elastic.io REST API documentation v2
   termsOfService: 'https://www.elastic.io/tou/'
   contact:
-    email: hanna@elastic.io
-  license:
-    name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    email: support@elastic.io
 servers:
 # can use sctatic
-  - url: https://api-sparrow.elastic.io
+  - url: https://api-sparrow.elastic.io/v2
     description: API base URL
 # or define as variable
   - url: '{api_base_url}'
     variables:
       api_base_url:
-        default: https://api-sparrow.elastic.io # iPaaS server
+        default: https://api-sparrow.elastic.io/v2 # iPaaS server
 
 tags:
   - name: Users
@@ -48,7 +45,7 @@ tags:
 
 paths:
 
-  /v2/users/me:
+  /users/me:
     get:
       tags:
         - Users
@@ -75,7 +72,7 @@ paths:
       security:
           - basicAuth: []
 
-  /v2/users/:
+  /users/:
 
     get:
         tags:
@@ -193,7 +190,7 @@ paths:
       security:
           - basicAuth: []
 
-  '/v2/users/{user_id}':
+  '/users/{user_id}':
     get:
       tags:
            - Users
@@ -291,7 +288,7 @@ paths:
       security:
           - basicAuth: []
 
-  '/v2/users/{user_id}/disable-totp':
+  '/users/{user_id}/disable-totp':
     post:
       tags:
            - Users
@@ -338,7 +335,7 @@ paths:
       security:
         - basicAuth: []
 
-  '/v2/users/{user_id}/openid/identities':
+  '/users/{user_id}/openid/identities':
     post:
       tags:
            - Users
@@ -404,7 +401,7 @@ paths:
       security:
         - basicAuth: []
 
-  '/v2/users/{user_id}/openid/identities/{openid-identity_id}':
+  '/users/{user_id}/openid/identities/{openid-identity_id}':
     delete:
       tags:
         - Users
