@@ -88,10 +88,11 @@ paths:
         parameters:
           - in: query
             name: page[size]
-            description: Amount of items per page. Default 50
+            description: Amount of items per page.
             required: false
             schema:
               type: integer
+              default: 50
           - in: query
             name: page[number]
             description: Number of page you want to display
