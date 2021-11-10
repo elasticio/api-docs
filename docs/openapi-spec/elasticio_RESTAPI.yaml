@@ -25,7 +25,7 @@ info:
   title: elastic.io REST API documentation v2
   termsOfService: 'https://www.elastic.io/tou/'
   contact:
-    email: support@elastic.io
+    email: support@elastic.io // should be configured 
 servers:
 # can use sctatic
   - url: https://api-sparrow.elastic.io/v2
@@ -37,7 +37,7 @@ servers:
         default: https://api-sparrow.elastic.io/v2 # iPaaS server
 
 tags:
-  - name: Users
+  - name: users
 
           ########################
           # Users Endpoints
