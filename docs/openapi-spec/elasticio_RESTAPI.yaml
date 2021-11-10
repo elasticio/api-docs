@@ -49,7 +49,7 @@ paths:
     get:
       tags:
         - Users
-      summary: Retrieve Your User
+      summary: Retrieve your user
       description: |
         ## Retrieve Your User
         This resource allows you to retrieve your user.
@@ -76,8 +76,8 @@ paths:
 
     get:
         tags:
-           - Users
-        summary: Retrieve All Users
+           - users
+        summary: Retrieve all users
         description: |
           ## Retrieve All Users
           This endpoint returns a list of users.
@@ -141,10 +141,10 @@ paths:
 
     post:
       tags:
-        - Users
-      summary: Create a User
+        - users
+      summary: Create a user
       description: |
-        ## Create a User
+        ## Create a user
         This resource allows you to create a user.
         ### Body Parameters
         | Parameter | Required | Description |
@@ -193,10 +193,10 @@ paths:
   '/users/{user_id}':
     get:
       tags:
-           - Users
-      summary: Retrieve a User by ID
+           - users
+      summary: Retrieve a user by ID
       description: |
-        ## Retrieve a User by ID
+        ## Retrieve a user by ID
         This resource allows you to retrieve a user by ID.
         ### Returns
         Returns a user object on successful call.
@@ -231,7 +231,7 @@ paths:
 
     delete:
       tags:
-        - Users
+        - users
       summary: Delete a user
       description: |
         ## Delete a user
@@ -291,8 +291,8 @@ paths:
   '/users/{user_id}/disable-totp':
     post:
       tags:
-           - Users
-      summary: Disable Two-factor authentication (TOTP) for a user
+           - users
+      summary: Disable two-factor authentication (TOTP) for a user
       description: |
         ## Disable Two-factor authentication (TOTP) for a user
         This resource allows you to disable Two-factor authentication (TOTP) for a user. (NOTE: this will remove
@@ -338,7 +338,7 @@ paths:
   '/users/{user_id}/openid/identities':
     post:
       tags:
-           - Users
+           - users
       summary: Create an openid-identity
       description: |
         ## Create an openid-identity
@@ -404,7 +404,7 @@ paths:
   '/users/{user_id}/openid/identities/{openid-identity_id}':
     delete:
       tags:
-        - Users
+        - users
       summary: Delete an openid-identity
       description: |
         ## Delete an openid-identity
