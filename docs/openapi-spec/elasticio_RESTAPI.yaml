@@ -6,9 +6,9 @@ info:
 
     Welcome to the {{product_name}} [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API documentation v2. It adheres to the [JSON API](http://jsonapi.org) specifications:
 
-    *   Returns JSON-encoded responses (Content-Type: `application/json`),
-    *   Uses standard HTTP [response codes](#errors)
-    *   Uses authentication - **You can not use this API without registering at {{ product_name }} platform to get the [authentication](#authentication) credentials.**
+    * Returns JSON-encoded responses (Content-Type: `application/json`),
+    * Uses standard HTTP [response codes](#errors)
+    * Uses authentication - **You can not use this API without registering at {{ product_name }} platform to get the [authentication](#authentication) credentials.**
 
     ## Authentication
 
