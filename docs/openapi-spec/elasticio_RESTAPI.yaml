@@ -19,31 +19,11 @@ info:
 
     ## Errors
 
-    The {{ product_name }} API uses conventional HTTP response codes to inform the requester about the success or failure of an API calls. Generally: Codes in the `2xx` range mean success. Codes in the `4xx` range mean an error that failed given the information provided. Codes in the `5xx` range mean an error with the {product_name} platform:
-
-
-    | Status Code | Meaning |
-    | ---------- | ------- |
-    | 200 - OK | Everything worked as expected |
-    | 201 - Created | Requested resource created |
-    | 204 - No Content | Request succeeded, nothing more to give |
-    | 400 - Bad Request | The server cannot or will not process the request due to client error. Often missing required parameter|
-    | 401 - Unauthorized | No valid API key provided|
-    | 403 - Forbidden | The request was valid, but the server is refusing action. The user might not have the necessary permissions for a resource |
-    | 404 - Not Found | The specified resource could not be found |
-    | 405 - Method Not Allowed | You tried to access a resource with an invalid method |
-    | 406 - Not Acceptable | Your used request in non JSON format |
-    | 409 - Conflict | The resource object’s type is not among the type(s) that constitute the collection represented by the endpoint or a POST request to create a resource with a client-generated ID that already exists |
-    | 410 - Gone | The resource requested has been removed from our servers |
-    | 413 | Payload too large |
-    | 418 | I'm a teapot |
-    | 429 - Too Many Requests | Too many requests hit the API too quickly. Please slow down. |
-    | 500 - Internal Server Error | We have a problem with our server. Try again later |
-    | 503 - Service Unavailable | We're temporarily offline for maintenance. Please try again later |
+    We adhere to REST API HTTP status codes. Read more about them here https://restfulapi.net/http-status-codes/
 
   version: 1.0.0
   title: elastic.io REST API documentation v2
-  termsOfService: 'http://swagger.io/terms/'
+  termsOfService: 'https://www.elastic.io/tou/'
   contact:
     email: hanna@elastic.io
   license:
