@@ -50,11 +50,6 @@ paths:
       tags:
         - Users
       summary: Retrieve your user
-      description: |
-        ## Retrieve Your User
-        This resource allows you to retrieve your user.
-        ### Returns
-        Returns a user object if the call succeeded.
       responses:
         '200':
           description: OK
@@ -78,13 +73,6 @@ paths:
         tags:
            - users
         summary: Retrieve all users
-        description: |
-          ## Retrieve All Users
-          This endpoint returns a list of users.
-          ### Authorization
-          This request is authorized for users with the `tenants.user.list_all` permission.
-          ### Returns
-          Returns a list of user objects on successful call.
         parameters:
           - in: query
             name: page[size]
@@ -140,8 +128,6 @@ paths:
         - users
       summary: Create a user
       description: |
-        ## Create a user
-        This resource allows you to create a user.
         ### Body Parameters
         | Parameter | Required | Description |
         | :--- | :--- | :--- |
@@ -150,10 +136,6 @@ paths:
         | attributes.last_name | yes | User's last name. |
         | attributes.email | yes | User's email. |
         | attributes.password | yes | User's password. Password should be at least 8 characters long and include letters, numbers and special symbols.|
-        ### Authorization
-        This request is authorized for users with the `tenants.user.create` permission.
-        ### Returns
-        New user objects will be provided with an ``id`` field - this value cannot be created or edited by clients.
       requestBody:
         $ref: '#/components/requestBodies/user'
       responses:
@@ -192,10 +174,6 @@ paths:
            - users
       summary: Retrieve a user by ID
       description: |
-        ## Retrieve a user by ID
-        This resource allows you to retrieve a user by ID.
-        ### Returns
-        Returns a user object on successful call.
       parameters:
           - in: path
             name: user_id
@@ -230,8 +208,6 @@ paths:
         - users
       summary: Delete a user
       description: |
-        ## Delete a user
-        This resource allows you to delete a user.
         ### When a User is deleted the following data will be deleted as well:
         * SSH keys
         * User's object itself
@@ -247,8 +223,6 @@ paths:
         * If this User is a member of any Workspace, which has one more Owner beside them then User's Flows and Credentials will be transferred to the next Owner.
         * If this User is the last Owner of any Workspace then given Workspace will be deleted with all data.
         * If this User is the only member of Contract(s) then they will be deleted along with Contract and all the unique data connected with this User.
-        ### Authorization
-        This request is authorized for users with the `tenants.user.delete` permission.
       parameters:
           - in: path
             name: user_id
@@ -289,12 +263,6 @@ paths:
       tags:
            - users
       summary: Disable two-factor authentication (TOTP) for a user
-      description: |
-        ## Disable Two-factor authentication (TOTP) for a user
-        This resource allows you to disable Two-factor authentication (TOTP) for a user. (NOTE: this will remove
-        secret and recovery codes for the user in DB).
-        ### Authorization
-        This request is authorized for users with the `tenants.user.disable_totp` permission.
       parameters:
           - in: path
             name: user_id
@@ -337,20 +305,12 @@ paths:
            - users
       summary: Create an openid-identity
       description: |
-        ## Create an openid-identity
-        This resource allows you to create an OpenID Identity for a user.
         ### Body Parameters
         | Parameter | Required | Description |
         | :--- | :--- | :--- |
         | type | yes | A value must be ``openid-identity`` |
         | attributes.iss | yes | User's OpenID Identity issuer. Must be an URL. |
         | attributes.sub | yes | User's OpenID Identity subject. |
-        ### Data associated with User
-        A user can have multiple OpenID Identities.
-        ### Authorization
-        This request is authorized for users with the `tenants.oidc.create` permission.
-        ### Returns
-        New openid-identity objects will be provided with an ``id`` field - this value cannot be created or edited by clients.
       requestBody:
         $ref: '#/components/requestBodies/openid-identity'
       parameters:
@@ -402,12 +362,6 @@ paths:
       tags:
         - users
       summary: Delete an openid-identity
-      description: |
-        ## Delete an openid-identity
-        This resource allows you to delete an OpenID Identity for a user.
-        ### Authorization
-        This request is authorized for users with the `tenants.oidc.delete` permission.
-
       parameters:
           - in: path
             name: user_id
