@@ -65,8 +65,6 @@
           "src":"http://path-to-2.js"
         }
       ],
-      "settings":{
-        "member_api_key":false
       },
       "email_templates":{
         "agent-request": true,
@@ -351,7 +349,6 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.component_docs_base_url      | no       | Base URL for relative paths to component docs. E.g. if this url is `https://docs.example.com/` and `component.json` contains the following field `"help": {"link": "salesforce"}`, we will use `https://docs.example.com/salesforce` as a link to documentation of this component on the frontend. If this property is not set, relative urls won't be displayed. If this property is set, make sure `component_docs_base_url` and 'getting-started/credential.html' page exists  |
 | attributes.css_enabled                  | no       | A value should be true or false   |
 | attributes.email_templates                  | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
-| attributes.settings.member_api_key      | no       | A value should be true or false |
 | attributes.custom_nav_menu_items        | no       | The custome menu |
 | attributes.custom_nav_menu_items\[].title        | yes      | The link text |
 | attributes.custom_nav_menu_items\[].icon         | yes      | The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)   |
@@ -684,8 +681,6 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.hide_docs                    | no       | Allowed values: `true`, `false`  |
 | attributes.powered_by_elasticio         | no       | Allowed values: `true`, `false`  |
 | attributes.css_enabled                  | no       | Allowed values: `true`, `false` |
-| attributes.email_templates              | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
-| attributes.settings.member_api_key      | no       | Allowed values: `true`, `false` |
 | attributes.email_templates              | no       | A hashMap of represent [emails](#list-of-emails-sent-by-the-platform) will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false |
 | attributes.links                        | no       | The value should be null as this attribute is not supported anymore. Please use the `custom_nav_menu_items` instead |
 | attributes.docs_base_url         | no       | This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link |
