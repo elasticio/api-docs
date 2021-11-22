@@ -7,7 +7,7 @@ gem "rouge", "1.7.2"
 gem "middleman", "~>3.3.0"
 
 # For syntax highlighting
-gem "middleman-syntax"
+gem "middleman-syntax", "2.0.0"
 
 # Plugin for middleman to generate Github pages
 gem 'middleman-gh-pages'
