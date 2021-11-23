@@ -718,10 +718,10 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.signin_v_2       | no | Enable new design for registration page |
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
 | attributes.signin_v_2.google_provider_id       | no | Google OIDC Provider `id` in this tenant. Enables Google Sign In and Sign Up |
-| attributes.login_redirect_sso_provider       | no | When set and anonymous user opens any frontend page (except /login and /register), he will be redirected to specified SAML/OpenID provider authentication page |
+| attributes.login_redirect_sso_provider       | no | When set and anonymous user opens any frontend page (except /login and /register), he will be redirected to specified SAML/OpenID provider authentication page. Set to `null` to unset |
 | attributes.login_redirect_sso_provider.id       | no | SAML/OpenID provider ID in this tenant |
 | attributes.login_redirect_sso_provider.type       | no | Type of provider: `openid` or `saml` |
-| attributes.logout_redirect_url       | no | The URL to redirect user to after logout from frontend |
+| attributes.logout_redirect_url       | no | The URL to redirect user to after logout from frontend. Set to `null` to unset |
 | attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 | attributes.support_user_id             | no | An ID of user from platform support team|
 
