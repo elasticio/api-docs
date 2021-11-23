@@ -5,7 +5,8 @@ jobs:
             - image: circleci/node:8-stretch
         steps:
             - checkout
-            - setup_remote_docker
+            - setup_remote_docker:
+                version: 20.10.7
             - run:
                 name: Building Docker Image
                 command: docker build -t elasticio/api-docs:${CIRCLE_SHA1} .

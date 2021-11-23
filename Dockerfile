@@ -15,7 +15,7 @@ ARG favicon_url="https://app.elastic.io/favicon.ico"
 
 RUN apt-get update && \
     apt-get install -y ruby rubygems ruby-dev build-essential nodejs && \
-    gem install bundler -v '~> 1.17.3'
+    gem install bundler -v '1.17.3'
 
 COPY source ./source
 COPY config.rb ./config.rb
@@ -23,7 +23,7 @@ COPY Gemfile ./Gemfile
 COPY Rakefile ./Rakefile
 COPY docs ./docs
 
-RUN bundle install
+RUN bundle _1.17.3_ install
 
 RUN for f in `grep -rl "{{ toc_footer }}" *` ; do sed -i "s%{{ toc_footer }}%$toc_footer%g" $f ; done
 RUN for f in `grep -rl "{{ api_base_url }}" *` ; do sed -i "s%{{ api_base_url }}%$api_base_url%g" $f ; done
