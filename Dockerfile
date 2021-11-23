@@ -23,7 +23,7 @@ COPY Gemfile ./Gemfile
 COPY Rakefile ./Rakefile
 COPY docs ./docs
 
-RUN bundle _1.17.3_ install
+RUN bundle install
 
 RUN for f in `grep -rl "{{ toc_footer }}" *` ; do sed -i "s%{{ toc_footer }}%$toc_footer%g" $f ; done
 RUN for f in `grep -rl "{{ api_base_url }}" *` ; do sed -i "s%{{ api_base_url }}%$api_base_url%g" $f ; done
