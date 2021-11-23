@@ -7,7 +7,6 @@ language_tabs:
 toc_footers:
   - {{ toc_footer }}
 
-
 includes:
   - agents
   - auth-clients
