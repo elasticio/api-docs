@@ -147,7 +147,8 @@
       },
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png"
-      }
+      },
+      "logout_redirect_url": "https://sso.example.com/logout"
     }
   }
 }`
@@ -295,7 +296,8 @@ Content-Type: application/json
       },
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png"
-      }
+      },
+      "logout_redirect_url": "https://sso.example.com/logout"
     }
   },
   "meta":{}
@@ -369,6 +371,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.feature_flags.contract_component_whitelist   | no | Enable component whitelisting on contract level. Default: "false" |
 | attributes.signin_v_2       | no | Enable new design for registration page |
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
+| attributes.logout_redirect_url       | no | The URL to redirect user to after logout from frontend |
 | attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 
 ###
@@ -486,7 +489,12 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png",
           "google_provider_id": "{{google_provider_id}}"
-      }
+      },
+      "login_redirect_sso_provider":{
+          "type": "openid",
+          "id": "{{provider_id}}"
+      },
+      "logout_redirect_url": "https://sso.example.com/logout"
     }
   }
 }'
@@ -631,7 +639,12 @@ Content-Type: application/json
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png",
           "google_provider_id": "{{google_provider_id}}"
-      }
+      },
+      "login_redirect_sso_provider":{
+          "type": "openid",
+          "id": "{{provider_id}}"
+      },
+      "logout_redirect_url": "https://sso.example.com/logout"
     },
     "meta":{}
   }
@@ -705,6 +718,10 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.signin_v_2       | no | Enable new design for registration page |
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
 | attributes.signin_v_2.google_provider_id       | no | Google OIDC Provider `id` in this tenant. Enables Google Sign In and Sign Up |
+| attributes.login_redirect_sso_provider       | no | When set and anonymous user opens any frontend page (except /login and /register), he will be redirected to specified SAML/OpenID provider authentication page |
+| attributes.login_redirect_sso_provider.id       | no | SAML/OpenID provider ID in this tenant |
+| attributes.login_redirect_sso_provider.type       | no | Type of provider: `openid` or `saml` |
+| attributes.logout_redirect_url       | no | The URL to redirect user to after logout from frontend |
 | attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 | attributes.support_user_id             | no | An ID of user from platform support team|
 
@@ -839,7 +856,12 @@ Content-Type: application/json
         "signin_v_2":{
             "logo_url": "//cdn.example.com/logo-mini.png",
             "google_provider_id": "{{google_provider_id}}"
-        }
+        },
+        "login_redirect_sso_provider":{
+          "type": "openid",
+          "id": "{{provider_id}}"
+        },
+        "logout_redirect_url": "https://sso.example.com/logout"
       },
       "meta":{},
     }
@@ -981,7 +1003,12 @@ Content-Type: application/json
       "signin_v_2":{
         "logo_url": "//cdn.example.com/logo-mini.png",
         "google_provider_id": "{{google_provider_id}}"
-      }
+      },
+      "login_redirect_sso_provider":{
+          "type": "openid",
+          "id": "{{provider_id}}"
+      },
+      "logout_redirect_url": "https://sso.example.com/logout"
     }
   },
   "meta":{}
@@ -2655,6 +2682,44 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 ### Returns
 
 Returns **Oauth-client** object if the call succeeded
+
+## Delete an OpenID Provider by ID
+
+> Example Request:
+
+```shell
+ curl {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OPEN_ID_PROVIDER_ID} \
+   -X DELETE \
+   -u {EMAIL}:{APIKEY}
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 204 No Content
+Content-Type: application/json
+```
+
+This resource allows you to delete an **OpenID Provider** with the given ID for the **Tenant** with the given ID.
+
+### HTTP Request
+
+`DELETE {{ api_base_url }}/v2/tenants/{TENANT_ID}/openid/providers/{OPEN_ID_PROVIDER_ID}`
+
+### URL Parameters
+
+| Parameter        | Required | Description                     |
+| ---------------- | -------- | ------------------------------- |
+| TENANT_ID        | yes      | The ID of the Tenant            |
+| OPEN_ID_PROVIDER_ID | yes      | The ID of the OpenID Provider |
+
+#### Authorization
+
+This request is authorized for the users with the `tenants.tenant.edit` permission.
+
+### Returns
+
+Returns empty body
 
 ## Create a SAML 2.0 Provider
 
