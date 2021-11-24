@@ -66,6 +66,7 @@ function footer() {
 function run_build() {
     info
     info "processing api-docs"
+    docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
     info
     info "pulling image elasticio/api-docs:${REVISION}";
     docker pull "elasticio/api-docs:${REVISION}";
