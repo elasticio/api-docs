@@ -23,16 +23,18 @@ jobs:
                 name: Pushing Branched Docker Image
                 command: docker push elasticio/api-docs:${CIRCLE_BRANCH}
     tag_release:
+        working_directory: ~/api-docs
         docker:
           - image: circleci/node:12.19.1-stretch
         steps:
-            - checkout
+            - checkout:
+                path: ~/api-docs
             - setup_remote_docker:
                 docker_layer_caching: true
                 version: 20.10.7
             - run:
-                name: Tag release image
-                command: tag_release.sh
+                name: Tag release images
+                command: ~/api-docs/.circleci/tag_release.sh
 workflows:
     version: 2
     build_and_test:
