@@ -43,8 +43,8 @@ workflows:
     tag_docker:
         jobs:
           - tag_release:
-              filters:
-                branches:
-                  ignore: /.*/
+                filters:
+                    branches:
+                        ignore: /.*/
                 tags:
-                  only: /^[0-9]{2}\.[0-9]{2}(\.[0-9]+)?$/
+                    only: /^[0-9]{2}\.[0-9]{2}(\.[0-9]+)?$/
