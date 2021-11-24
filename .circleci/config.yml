@@ -34,7 +34,7 @@ jobs:
                   version: 20.10.7
             - run:
                   name: Tag release images
-                  command: ~/elasticio/.circleci/tag_release.sh
+                  command: ~/api-docs/.circleci/tag_release.sh
 workflows:
     version: 2
     build_and_test:
