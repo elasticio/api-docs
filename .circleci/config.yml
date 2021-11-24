@@ -29,6 +29,7 @@ jobs:
             - checkout
             - setup_remote_docker:
                 docker_layer_caching: true
+                version: 20.10.7
             - run:
                 name: Tag release image
                 command: tag_release.sh
