@@ -43,7 +43,7 @@ paths:
   /users/me:
     get:
       tags:
-        - Users
+        - users
       summary: Retrieve your user
       responses:
         '200':
