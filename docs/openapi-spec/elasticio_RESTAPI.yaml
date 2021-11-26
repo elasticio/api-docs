@@ -37,16 +37,9 @@ servers:
         default: https://api-sparrow.elastic.io/v2 # iPaaS server
 security:
   - basicAuth: []
-  
 tags:
   - name: users
-
-          ########################
-          # Users Endpoints
-          ########################
-
 paths:
-
   /users/me:
     get:
       tags:
@@ -65,9 +58,7 @@ paths:
               application/json:
                 schema:
                   $ref: '#/components/schemas/401'
-
   /users/:
-
     get:
         tags:
            - users
@@ -118,7 +109,6 @@ paths:
               application/json:
                 schema:
                   $ref: '#/components/schemas/403'
-
     post:
       tags:
         - users
@@ -161,7 +151,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-
   '/users/{user_id}':
     get:
       tags:
@@ -194,7 +183,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/404'
-
     delete:
       tags:
         - users
@@ -247,7 +235,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/404'
-
   '/users/{user_id}/disable-totp':
     post:
       tags:
@@ -286,7 +273,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/404'
-
   '/users/{user_id}/openid/identities':
     post:
       tags:
@@ -308,7 +294,6 @@ paths:
             required: true
             schema:
               type: string
-
       responses:
         '201':
           description: Created
@@ -342,7 +327,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/404'
-
   '/users/{user_id}/openid/identities/{openid-identity_id}':
     delete:
       tags:
@@ -388,15 +372,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/404'
-
 components:
-
-          ########################
-          # Users Schemas
-          ########################
-
   schemas:
-
     userIn:
       type: object
       required:
@@ -624,11 +601,6 @@ components:
                 company: elastic.io GmbH
                 registered: "2015-10-02T10:19:19.697Z"
                 last_login: "2020-08-18T08:27:44.478Z"
-
-          ########################
-          # OpenID Identity Schemas
-          ########################
-
     openid-identityIn:
       type: object
       required:
@@ -656,7 +628,6 @@ components:
                 sub:
                   type: string
                   example: user-identification
-
     openid-identityOut:
       type: object
       required:
@@ -733,11 +704,6 @@ components:
         meta:
           type: object
           example: {}
-
-          ########################
-          # Errors Schemas
-          ########################
-
     401:
       type: object
       required:
@@ -763,7 +729,6 @@ components:
           - status: 401
             title: Error
             detail: No authorization header was provided.
-
     403:
       type: object
       required:
@@ -790,7 +755,6 @@ components:
               type: string
             meta:
               type: object
-
       example:
         errors:
           - detail: You need permission to access resource
@@ -798,8 +762,6 @@ components:
             code: 403
             title: Unauthorized
             meta: {}
-
-
     404:
       type: object
       required:
@@ -839,7 +801,6 @@ components:
                       type: string
             meta:
               type: object
-
       example:
         errors:
           - detail: The resourse is not found.
@@ -850,14 +811,7 @@ components:
             source:
               parameter:
                 id: resource_id
-
-
   requestBodies:
-
-          ########################
-          # Users requestBodies
-          ########################
-
     user:
       content:
         application/json:
@@ -865,11 +819,6 @@ components:
             $ref: '#/components/schemas/userIn'
       description: User object that needs to be created
       required: true
-
-          ########################
-          # OpenID Identity requestBodies
-          ########################
-
     openid-identity:
       content:
         application/json:
@@ -877,7 +826,6 @@ components:
             $ref: '#/components/schemas/openid-identityIn'
       description: OpenID Identity object that needs to be created
       required: true
-
   securitySchemes:
     basicAuth:
       type: http
