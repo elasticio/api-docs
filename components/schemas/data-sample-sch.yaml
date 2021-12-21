@@ -1,0 +1,204 @@
+dataSampleIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      $ref: '#/sampleData'
+dataSampleOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      $ref: '#/sampleData'
+    meta:
+      type: object
+      example: '{}'
+samplePatchIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+      - type
+      - attributes
+      properties:
+        type:
+          type: string
+          description: Allowed value `data-sample`.
+          enum:
+            - data-sample
+        attributes:
+          type: object
+          $ref: '#/sampleData/properties/attributes'
+sampleData:
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      readOnly: true
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      description: |
+        Allowed value: `data-sample`
+      enum:
+        - data-sample
+    links:
+      type: object
+      readOnly: true
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/data-samples/5b4f337bff4304610483ba67
+    attributes:
+      type: object
+      required:
+        - method
+        - result
+      properties:
+        method:
+          type: string
+          description: 	Component’s action or trigger name.
+          example: createOrUpdateRecord
+        result:
+          type: object
+          description: Data sample body
+          example: |
+            {"id":"32455", "name":"Ben", "account-type":"Client"}
+    relationships:
+      type: object
+      required:
+        - component
+        - component_version
+        - workspace
+      properties:
+        component:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  description: Component identifier
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  description: A value must be `component`
+                  enum:
+                    - component
+            links:
+              type: object
+              readOnly: true
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/components/5b4f337bff4304610483ba67
+        component_version:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  description: Revision of the component’s build. Use `latest` to retrieve the descriptor of the most recent successful build.
+                  example: latest
+                type:
+                  type: string
+                  description: A value must be `version`
+                  enum:
+                    - version
+            links:
+              type: object
+              readOnly: true
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/components/5b4f337bff4304610483ba67/versions/latest
+        workspace:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - workspace
+            links:
+              type: object
+              readOnly: true
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/workspaces/5b4f337bff4304610483ba67
+        user:
+          type: object
+          readOnly: true
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - user
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/users/5b4f337bff4304610483ba67

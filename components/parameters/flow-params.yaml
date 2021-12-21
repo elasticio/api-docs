@@ -1,0 +1,82 @@
+flow_id:
+  in: path
+  name: flow_id
+  description: Flow identifier
+  required: true
+  schema:
+    type: string
+step_id:
+  in: path
+  name: step_id
+  description: Step identifier
+  required: true
+  schema:
+    type: string
+search:
+  in: query
+  name: search
+  description: Search flows by a word or a phrase contained in a description OR in a name. Behavior is similar to operator LIKE in SQL. Case insensitive. Leading/following spaces are trimmed
+  schema:
+    type: string
+    example: webhook
+filter-has_draft:
+  in: query
+  name: filter[has_draft]
+  description: Filter flows only with or without a draft
+  schema:
+    type: boolean
+    example: true
+filter-status:
+  in: query
+  name: filter[status]
+  description: Filter by status
+  schema:
+    type: array
+    items:
+      type: string
+      enum:
+        - active
+        - inactive
+filter-type:
+  in: query
+  name: filter[type]
+  description: Filter by flow type
+  schema:
+    type: array
+    items:
+      type: string
+      enum:
+        - ordinary
+        - long_running
+filter-user:
+  in: query
+  name: filter[user]
+  description: Filter by user. Must be id of User who created the flow. User could be found in relationships of the flow
+  schema:
+    type: array
+    items:
+      type: string
+      example: user_id
+sort:
+  in: query
+  name: sort
+  description: |
+    Sort flows list by certain field. Prefix field name with - for reversed (desc) order e.g. sort=-updated_at. Default sort is by id
+  schema:
+    type: string
+    enum:
+      - created_at
+      - updated_at
+      - name
+      - -created_at
+      - -updated_at
+      - -name
+include:
+  in: query
+  name: include
+  description: Include information about flow-containers and descriptor
+  schema:
+    type: string
+    enum:
+      - flow-containers
+      - descriptor

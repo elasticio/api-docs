@@ -1,0 +1,109 @@
+/flows/{flow_id}/draft:
+  get:
+    tags:
+       - flow drafts
+    summary: Returns a Flow Draft based on the specified Flow Id
+    description: You need workspace memberships to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-draft-sch.yaml#/draftOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  put:
+    tags:
+      - flow drafts
+    summary: Creates/Updates Flow Draft based on the specified Flow Id
+    description: You need workspace memberships to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/flow-draft-sch.yaml#/draftIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-draft-sch.yaml#/draftOut'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/400'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - flow drafts
+    summary: Remove Flow Draft based on the specified Flow Id
+    description: You need workspace memberships to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

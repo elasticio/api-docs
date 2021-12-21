@@ -1,0 +1,1850 @@
+tenantOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - tenant
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/tenants/5b4f337bff4304610483ba67
+        attributes:
+          type: object
+          $ref: '#/tenantAttributes'
+    meta:
+      type: object
+      example: '{}'
+tenantOutAll:
+  type: object
+  required:
+    - data
+    - meta
+    - links
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        required:
+          - id
+          - type
+          - links
+          - attributes
+        properties:
+          id:
+            type: string
+            example: 5b4f337bff4304610483ba67
+          type:
+            type: string
+            enum:
+              - tenant
+          links:
+            type: object
+            required:
+              - self
+            properties:
+              self:
+                type: string
+                example: /v2/tenants/5b4f337bff4304610483ba67
+          attributes:
+            type: object
+            $ref: '#/tenantAttributes'
+    meta:
+      type: object
+      example: '{}'
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/tenants
+tenantIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        type:
+          type: string
+          enum:
+            - tenant
+        attributes:
+          type: object
+          $ref: '#/tenantAttributes'
+tenantRolesIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        type:
+          type: string
+          enum:
+            - tenant-policy
+        attributes:
+          type: object
+          required:
+            - roles
+          properties:
+            roles:
+              type: array
+              items:
+                anyOf:
+                  - $ref: '#/newWorkspaceRole'
+                  - $ref: '#/newContractRole'
+tenantRolesOut:
+  type: object
+  required:
+    - data
+    - meta
+    - links
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+        - relationships
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - tenant-policy
+        attributes:
+          type: object
+          required:
+            - roles
+          properties:
+            roles:
+              type: array
+              items:
+                anyOf:
+                  - $ref: '#/roleContractAdmin'
+                  - $ref: '#/roleContractMember'
+                  - $ref: '#/roleWorkspaceAdmin'
+                  - $ref: '#/roleWorkspaceIntegrator'
+                  - $ref: '#/roleWorkspaceGuest'
+                  - $ref: '#/roleContractOwner'
+                  - $ref: '#/roleWorkspaceOwner'
+        relationships:
+          type: object
+          required:
+            - tenant
+          properties:
+            tenant:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - tenant
+                links:
+                  type: object
+                  required:
+                    - self
+                  properties:
+                    self:
+                      type: string
+                      example: '/v2/tenants/5b4f337bff4304610483ba67"'
+    meta:
+      type: object
+      example: '{}'
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/tenants/5b4f337bff4304610483ba67/roles
+permissionsOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          type: string
+          example: null
+        type:
+          type: string
+          enum:
+            - permissions
+        attributes:
+          type: object
+          required:
+            - permissions
+          properties:
+            permissions:
+              type: array
+              items:
+                type: string
+              uniqueItems: true
+              example: ["global.stats.workspaces","global.auth_clients.get","global.auth_clients.edit","global.auth_clients.create","global.auth_clients.delete","contracts.contract.edit","contracts.membership.edit","contracts.workspace_limits.edit","contracts.workspace.create","contracts.workspace.listAll","contracts.workspace.delete","contracts.repository.edit","contracts.devTeam.edit","workspaces.workspace.edit","workspaces.workspace.edit_membership_support","workspaces.auth_secret.get","workspaces.auth_secret.get_credentials","workspaces.auth_secret.edit","workspaces.auth_secret.create","workspaces.auth_secret.delete","workspaces.auth_secret.refresh","workspaces.flow.edit","workspaces.flow.toggleStatus","workspaces.flow.toggleRealtime","workspaces.flow.exportToRecipe","workspaces.logs.read_all","workspaces.recipe.edit","workspaces.credential.edit","workspaces.vpn_agent.create","workspaces.vpn_agent.get","workspaces.vpn_agent.edit","workspaces.vpn_agent.delete","workspaces.vpn_agent.get_config","workspaces.topic.create","workspaces.topic.get","workspaces.topic.edit","workspaces.topic.delete"]
+    meta:
+      type: object
+      example: '{}'
+SSLcertificateIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - attributes
+      properties:
+        attributes:
+          type: object
+          required :
+            - publicKey
+            - privateKey
+          properties:
+            publicKey:
+              type: string
+              description: CERTIFICATE
+              example: |
+                -----BEGIN CERTIFICATE-----\nMIIDBzCCAe+gAwIBAgIJAJUJjkTXpUpsMA0GCSqGSIb3DQEBBQUAMBoxGDAWBgNV\nBAMMD3d3dy5leGFtcGxlLmNvbTAeFw0xOTAxMjExNTI2MjlaFw0yOTAxMTgxNTI2\nMjlaMBoxGDAWBgNVBAMMD3d3dy5leGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEB\nBQADggEPADCCAQoCggEBAObwTSg+ONjsjJrKamhi3z/cf22eBfu/T1xU+4Dhr1IW\nRBsthAMaGNuqMkUfQ6d+9rtEi5CXOmzjbtHRkIpkILeTNdb86KIbkaYR/wl4QsOm\nCp5pfjZ3dDfdtoK4sKrrbo063eYpr9StPFN6oUY/crXTDIGXciEx7oJWvF9yoUc0\nuLyQJ4i13fPWhzAN9vUyIvOShWCCoo8B3uOWQqwDt1oB1XQZmH9qeNELl+DlvL9a\nh6voVTd99IlNEQfPz9fNspJarIlG9VNBC1/FJZ0oRUVWpaHJKZYEUoQdE1d/cnLR\nLVtgrYjyLZX3xAzdp/SnvvSMV8fG0VN58lYW6VtXqlUCAwEAAaNQME4wHQYDVR0O\nBBYEFFHME3mE223LXxe6xEpLozU2osIlMB8GA1UdIwQYMBaAFFHME3mE223LXxe6\nxEpLozU2osIlMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADggEBANwX5Jv/\nNw9+Tme/FUey20kUMH26pVk7FAhKB8Zo2oM14+3TTSolrPrb56BuTfQyFGivzukR\noU/Su7hLE0n+z0cPrPhmaI4t81lfvmtzYJ2Nb4cG88Em1mRqccKfoEvQsrMVPVX0\n8WwIY3h+nqUoQsM5q/GcL6OG9uixB7uyWiuTpa9NVUm5RVFuiMserIIHtRdWUJPf\nbGBWipOdCDGNuCGwoPVsZDFdjaxoyZV/oClFqS5prMQA6XOOGreg+Uei/iqLj0Kh\nQ1IshPaxFYubSfRANsqgh7dKoBq8biSC0a6A0Bah7NsBv4htJsi1z5zYwFynS6Rg\ndBg94fDKiidmYLc=\n-----END CERTIFICATE-----
+            privateKey:
+              type: string
+              description: RSA PRIVATE KEY
+              example: |
+                -----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA5vBNKD442OyMmspqaGLfP9x/bZ4F+79PXFT7gOGvUhZEGy2E\nAxoY26oyRR9Dp372u0SLkJc6bONu0dGQimQgt5M11vzoohuRphH/CXhCw6YKnml+\nNnd0N922griwqutujTrd5imv1K08U3qhRj9ytdMMgZdyITHugla8X3KhRzS4vJAn\niLXd89aHMA329TIi85KFYIKijwHe45ZCrAO3WgHVdBmYf2p40QuX4OW8v1qHq+hV\nN330iU0RB8/P182yklqsiUb1U0ELX8UlnShFRValockplgRShB0TV39yctEtW2Ct\niPItlffEDN2n9Ke+9IxXx8bRU3nyVhbpW1eqVQIDAQABAoIBADboX4/361A4Pd33\nzoDvMSFf7bREZCvM+rN7SSkFf8fGn37OvZp3M/3WY4lnu5Axcbxoub4xFqUZFhow\n92rQD69WAvEQxMb2QxT3Jmo7+7PE4LV1Y5rToABAaMp/2xFoVKqjmmrE8pdgcP1w\nJLQtFbsBaPHO7kXSN2Ep+jO/b3UcMkIra4yjMO7Vk68w8ntpvXDEt4cg7P3BEbwj\nRuXK3ynmNbeDta/7iWSuZfVM2cSRQOSiyeccFIkhdfXzVpcFrtLDTz5AD/RDgFkE\nvCgxEESsXji3pkbPET23C+07zaexi6jfDHiRihQB1l7aS9pVds8yTEFOQy3KPevZ\npFS2VQECgYEA+GJdgT+/EziFcS4VTpXmUIoAGVzSne6Wl9pAU4Aoh5rounj83qA0\nuJscaoQo2qAELw6nYSM+2Pct+m6Wi0aybDdxcECx7SqQ2O6lY55rEkQBgkXjRU2C\nqMMLvPZCuyl9Q1jJa497FG1EH2Jx+gBvKTQ1iIL2BhyU1CnsRqwbyuECgYEA7gUA\nUKeuxfeBR9/Jxis+qh6eirTrIN+rp9FLoe+6pBXjMObp6D1+WGhG3acVSas7UAHW\nrjDd0dl1Byoseh7BNmDsB0Hbiu4cUvaTwvcxxfw6o7gRaa5QC8p1490Vw53aUNE5\n0bQZ1d9Ui3OzTJ3yLvWVnHF+m18n9OacyF4HofUCgYBmEHV/0OQBT+51jYwv2KTl\nX2+e/GeHgizbhVF9fmIpJtyPE3xFNuuzF/nbQydOfwZ5F7przgHbQebgy2SNIqXa\nlgXFLLBwVldi7N2FS+mPfeZo07MKHUmdc1h1c3QEWI4iiG9sBW97+1JM2zUel+MV\nuWBuEfJqnIADlp6Cg+J/wQKBgEA31Tftpff/qT/NH1F6RXP8wuXFnlLGRjgG/hL4\n7TBsP1noU1+3h6kuqUAQXmv76QrTFCr3QEHoG+0M8ecY+SREzim/GQ7I45d2s7M8\noo86WE/nz7rlru8fduM9uSuIIWkAqkrr/rR3hwYA93VKgBcvZ2hILtKYv90Rg2eE\nBycpAoGATIoN4X89L8yQuKKpRLu6T0tsNWD6GVxFItMsgoKkGHARzh+PPDLU9Xlb\nS0qsdZu2XPmJx9HIaMErM/IGp2KgBFq53FcBa1AQ32ZIe3goYVBVAD/j5TbNpYkg\n54bb8kQXXPplzzaCmEn4wbjTKcfY52YJoJmq9wjM6SRHtlmV3BM=\n-----END RSA PRIVATE KEY-----
+SSLcertificateFormDataIn:
+  type: object
+  required:
+    - cert
+  properties:
+    cert:
+      type: string
+      format: binary
+SSLcertificatePatchIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - attributes
+      properties:
+        attributes:
+          type: object
+          required:
+            - publicKey
+            - privateKey
+          properties:
+            publicKey:
+              type: string
+              description: CERTIFICATE
+              example: |
+                -----BEGIN CERTIFICATE-----\nMIIDBzCCAe+gAwIBAgIJAJUJjkTXpUpsMA0GCSqGSIb3DQEBBQUAMBoxGDAWBgNV\nBAMMD3d3dy5leGFtcGxlLmNvbTAeFw0xOTAxMjExNTI2MjlaFw0yOTAxMTgxNTI2\nMjlaMBoxGDAWBgNVBAMMD3d3dy5leGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEB\nBQADggEPADCCAQoCggEBAObwTSg+ONjsjJrKamhi3z/cf22eBfu/T1xU+4Dhr1IW\nRBsthAMaGNuqMkUfQ6d+9rtEi5CXOmzjbtHRkIpkILeTNdb86KIbkaYR/wl4QsOm\nCp5pfjZ3dDfdtoK4sKrrbo063eYpr9StPFN6oUY/crXTDIGXciEx7oJWvF9yoUc0\nuLyQJ4i13fPWhzAN9vUyIvOShWCCoo8B3uOWQqwDt1oB1XQZmH9qeNELl+DlvL9a\nh6voVTd99IlNEQfPz9fNspJarIlG9VNBC1/FJZ0oRUVWpaHJKZYEUoQdE1d/cnLR\nLVtgrYjyLZX3xAzdp/SnvvSMV8fG0VN58lYW6VtXqlUCAwEAAaNQME4wHQYDVR0O\nBBYEFFHME3mE223LXxe6xEpLozU2osIlMB8GA1UdIwQYMBaAFFHME3mE223LXxe6\nxEpLozU2osIlMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADggEBANwX5Jv/\nNw9+Tme/FUey20kUMH26pVk7FAhKB8Zo2oM14+3TTSolrPrb56BuTfQyFGivzukR\noU/Su7hLE0n+z0cPrPhmaI4t81lfvmtzYJ2Nb4cG88Em1mRqccKfoEvQsrMVPVX0\n8WwIY3h+nqUoQsM5q/GcL6OG9uixB7uyWiuTpa9NVUm5RVFuiMserIIHtRdWUJPf\nbGBWipOdCDGNuCGwoPVsZDFdjaxoyZV/oClFqS5prMQA6XOOGreg+Uei/iqLj0Kh\nQ1IshPaxFYubSfRANsqgh7dKoBq8biSC0a6A0Bah7NsBv4htJsi1z5zYwFynS6Rg\ndBg94fDKiidmYLc=\n-----END CERTIFICATE-----
+            privateKey:
+              type: string
+              description: RSA PRIVATE KEY
+              example: |
+                -----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA5vBNKD442OyMmspqaGLfP9x/bZ4F+79PXFT7gOGvUhZEGy2E\nAxoY26oyRR9Dp372u0SLkJc6bONu0dGQimQgt5M11vzoohuRphH/CXhCw6YKnml+\nNnd0N922griwqutujTrd5imv1K08U3qhRj9ytdMMgZdyITHugla8X3KhRzS4vJAn\niLXd89aHMA329TIi85KFYIKijwHe45ZCrAO3WgHVdBmYf2p40QuX4OW8v1qHq+hV\nN330iU0RB8/P182yklqsiUb1U0ELX8UlnShFRValockplgRShB0TV39yctEtW2Ct\niPItlffEDN2n9Ke+9IxXx8bRU3nyVhbpW1eqVQIDAQABAoIBADboX4/361A4Pd33\nzoDvMSFf7bREZCvM+rN7SSkFf8fGn37OvZp3M/3WY4lnu5Axcbxoub4xFqUZFhow\n92rQD69WAvEQxMb2QxT3Jmo7+7PE4LV1Y5rToABAaMp/2xFoVKqjmmrE8pdgcP1w\nJLQtFbsBaPHO7kXSN2Ep+jO/b3UcMkIra4yjMO7Vk68w8ntpvXDEt4cg7P3BEbwj\nRuXK3ynmNbeDta/7iWSuZfVM2cSRQOSiyeccFIkhdfXzVpcFrtLDTz5AD/RDgFkE\nvCgxEESsXji3pkbPET23C+07zaexi6jfDHiRihQB1l7aS9pVds8yTEFOQy3KPevZ\npFS2VQECgYEA+GJdgT+/EziFcS4VTpXmUIoAGVzSne6Wl9pAU4Aoh5rounj83qA0\nuJscaoQo2qAELw6nYSM+2Pct+m6Wi0aybDdxcECx7SqQ2O6lY55rEkQBgkXjRU2C\nqMMLvPZCuyl9Q1jJa497FG1EH2Jx+gBvKTQ1iIL2BhyU1CnsRqwbyuECgYEA7gUA\nUKeuxfeBR9/Jxis+qh6eirTrIN+rp9FLoe+6pBXjMObp6D1+WGhG3acVSas7UAHW\nrjDd0dl1Byoseh7BNmDsB0Hbiu4cUvaTwvcxxfw6o7gRaa5QC8p1490Vw53aUNE5\n0bQZ1d9Ui3OzTJ3yLvWVnHF+m18n9OacyF4HofUCgYBmEHV/0OQBT+51jYwv2KTl\nX2+e/GeHgizbhVF9fmIpJtyPE3xFNuuzF/nbQydOfwZ5F7przgHbQebgy2SNIqXa\nlgXFLLBwVldi7N2FS+mPfeZo07MKHUmdc1h1c3QEWI4iiG9sBW97+1JM2zUel+MV\nuWBuEfJqnIADlp6Cg+J/wQKBgEA31Tftpff/qT/NH1F6RXP8wuXFnlLGRjgG/hL4\n7TBsP1noU1+3h6kuqUAQXmv76QrTFCr3QEHoG+0M8ecY+SREzim/GQ7I45d2s7M8\noo86WE/nz7rlru8fduM9uSuIIWkAqkrr/rR3hwYA93VKgBcvZ2hILtKYv90Rg2eE\nBycpAoGATIoN4X89L8yQuKKpRLu6T0tsNWD6GVxFItMsgoKkGHARzh+PPDLU9Xlb\nS0qsdZu2XPmJx9HIaMErM/IGp2KgBFq53FcBa1AQ32ZIe3goYVBVAD/j5TbNpYkg\n54bb8kQXXPplzzaCmEn4wbjTKcfY52YJoJmq9wjM6SRHtlmV3BM=\n-----END RSA PRIVATE KEY-----
+SSLcertificateOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+        - relationships
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - certificate
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/tenants/5b4f337bff4304610483ba67/certificates/5b4f337bff4304610483ba67
+        attributes:
+          type: object
+          required:
+            - publicKey
+            - privateKey
+            - salt
+            - iv
+            - owner
+            - tenant
+            - algorithm
+            - key_length
+          properties:
+            publicKey:
+              type: string
+              example: |
+                -----BEGIN CERTIFICATE-----\nMIIDBzCCAe+gAwIBAgIJAJUJjkTXpUpsMA0GCSqGSIb3DQEBBQUAMBoxGDAWBgNV\nBAMMD3d3dy5leGFtcGxlLmNvbTAeFw0xOTAxMjExNTI2MjlaFw0yOTAxMTgxNTI2\nMjlaMBoxGDAWBgNVBAMMD3d3dy5leGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEB\nBQADggEPADCCAQoCggEBAObwTSg+ONjsjJrKamhi3z/cf22eBfu/T1xU+4Dhr1IW\nRBsthAMaGNuqMkUfQ6d+9rtEi5CXOmzjbtHRkIpkILeTNdb86KIbkaYR/wl4QsOm\nCp5pfjZ3dDfdtoK4sKrrbo063eYpr9StPFN6oUY/crXTDIGXciEx7oJWvF9yoUc0\nuLyQJ4i13fPWhzAN9vUyIvOShWCCoo8B3uOWQqwDt1oB1XQZmH9qeNELl+DlvL9a\nh6voVTd99IlNEQfPz9fNspJarIlG9VNBC1/FJZ0oRUVWpaHJKZYEUoQdE1d/cnLR\nLVtgrYjyLZX3xAzdp/SnvvSMV8fG0VN58lYW6VtXqlUCAwEAAaNQME4wHQYDVR0O\nBBYEFFHME3mE223LXxe6xEpLozU2osIlMB8GA1UdIwQYMBaAFFHME3mE223LXxe6\nxEpLozU2osIlMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADggEBANwX5Jv/\nNw9+Tme/FUey20kUMH26pVk7FAhKB8Zo2oM14+3TTSolrPrb56BuTfQyFGivzukR\noU/Su7hLE0n+z0cPrPhmaI4t81lfvmtzYJ2Nb4cG88Em1mRqccKfoEvQsrMVPVX0\n8WwIY3h+nqUoQsM5q/GcL6OG9uixB7uyWiuTpa9NVUm5RVFuiMserIIHtRdWUJPf\nbGBWipOdCDGNuCGwoPVsZDFdjaxoyZV/oClFqS5prMQA6XOOGreg+Uei/iqLj0Kh\nQ1IshPaxFYubSfRANsqgh7dKoBq8biSC0a6A0Bah7NsBv4htJsi1z5zYwFynS6Rg\ndBg94fDKiidmYLc=\n-----END CERTIFICATE-----
+            privateKey:
+              type: string
+              example: |
+                -----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA5vBNKD442OyMmspqaGLfP9x/bZ4F+79PXFT7gOGvUhZEGy2E\nAxoY26oyRR9Dp372u0SLkJc6bONu0dGQimQgt5M11vzoohuRphH/CXhCw6YKnml+\nNnd0N922griwqutujTrd5imv1K08U3qhRj9ytdMMgZdyITHugla8X3KhRzS4vJAn\niLXd89aHMA329TIi85KFYIKijwHe45ZCrAO3WgHVdBmYf2p40QuX4OW8v1qHq+hV\nN330iU0RB8/P182yklqsiUb1U0ELX8UlnShFRValockplgRShB0TV39yctEtW2Ct\niPItlffEDN2n9Ke+9IxXx8bRU3nyVhbpW1eqVQIDAQABAoIBADboX4/361A4Pd33\nzoDvMSFf7bREZCvM+rN7SSkFf8fGn37OvZp3M/3WY4lnu5Axcbxoub4xFqUZFhow\n92rQD69WAvEQxMb2QxT3Jmo7+7PE4LV1Y5rToABAaMp/2xFoVKqjmmrE8pdgcP1w\nJLQtFbsBaPHO7kXSN2Ep+jO/b3UcMkIra4yjMO7Vk68w8ntpvXDEt4cg7P3BEbwj\nRuXK3ynmNbeDta/7iWSuZfVM2cSRQOSiyeccFIkhdfXzVpcFrtLDTz5AD/RDgFkE\nvCgxEESsXji3pkbPET23C+07zaexi6jfDHiRihQB1l7aS9pVds8yTEFOQy3KPevZ\npFS2VQECgYEA+GJdgT+/EziFcS4VTpXmUIoAGVzSne6Wl9pAU4Aoh5rounj83qA0\nuJscaoQo2qAELw6nYSM+2Pct+m6Wi0aybDdxcECx7SqQ2O6lY55rEkQBgkXjRU2C\nqMMLvPZCuyl9Q1jJa497FG1EH2Jx+gBvKTQ1iIL2BhyU1CnsRqwbyuECgYEA7gUA\nUKeuxfeBR9/Jxis+qh6eirTrIN+rp9FLoe+6pBXjMObp6D1+WGhG3acVSas7UAHW\nrjDd0dl1Byoseh7BNmDsB0Hbiu4cUvaTwvcxxfw6o7gRaa5QC8p1490Vw53aUNE5\n0bQZ1d9Ui3OzTJ3yLvWVnHF+m18n9OacyF4HofUCgYBmEHV/0OQBT+51jYwv2KTl\nX2+e/GeHgizbhVF9fmIpJtyPE3xFNuuzF/nbQydOfwZ5F7przgHbQebgy2SNIqXa\nlgXFLLBwVldi7N2FS+mPfeZo07MKHUmdc1h1c3QEWI4iiG9sBW97+1JM2zUel+MV\nuWBuEfJqnIADlp6Cg+J/wQKBgEA31Tftpff/qT/NH1F6RXP8wuXFnlLGRjgG/hL4\n7TBsP1noU1+3h6kuqUAQXmv76QrTFCr3QEHoG+0M8ecY+SREzim/GQ7I45d2s7M8\noo86WE/nz7rlru8fduM9uSuIIWkAqkrr/rR3hwYA93VKgBcvZ2hILtKYv90Rg2eE\nBycpAoGATIoN4X89L8yQuKKpRLu6T0tsNWD6GVxFItMsgoKkGHARzh+PPDLU9Xlb\nS0qsdZu2XPmJx9HIaMErM/IGp2KgBFq53FcBa1AQ32ZIe3goYVBVAD/j5TbNpYkg\n54bb8kQXXPplzzaCmEn4wbjTKcfY52YJoJmq9wjM6SRHtlmV3BM=\n-----END RSA PRIVATE KEY-----
+            salt:
+              type: string
+              example: 3b07d847ba7580ea
+            iv:
+              type: string
+              example: 2df1049e2e6395eb
+            owner:
+              type: string
+              example: 5b4f337bff4304610483ba67
+            tenant:
+              type: string
+              example: 5b4f337bff4304610483ba67
+            algorithm:
+              type: string
+              example: aes-256-cbc
+            key_length:
+              type: iteger
+              example: 32
+        relationships:
+          type: object
+          required:
+            - user
+            - tenant
+          properties:
+            user:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - user
+                links:
+                  type: object
+                  required:
+                    - self
+                  properties:
+                    self:
+                      type: string
+                      example: /v2/users/5b4f337bff4304610483ba67
+            tenant:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - tenant
+                links:
+                  type: object
+                  required:
+                    - self
+                  properties:
+                    self:
+                      type: string
+                      example: /v2/tenant/5b4f337bff4304610483ba67
+    meta:
+      type: object
+      required:
+        - version
+        - subject
+        - issuer
+        - serial
+        - notBefore
+        - notAfter
+        - subjectHash
+        - signatureAlgorithm
+        - fingerPrint
+        - publicKey
+        - altNames
+        - extensions
+      properties:
+        version:
+          type: number
+          example: 2
+        subject:
+          type: object
+          required:
+            - commonName
+          properties:
+            commonName:
+              type: string
+              example: www.example.com
+        issuer:
+          type: object
+          required:
+            - commonName
+          properties:
+            commonName:
+              type: string
+              example: www.example.com
+        serial:
+          type: string
+          example: 95098E44D7A54A6C
+        notBefore:
+          type: string
+          example: '2019-01-21T15:26:29.000Z'
+        notAfter:
+          type: string
+          example: '2029-01-18T15:26:29.000Z'
+        subjectHash:
+          type: string
+          example: c2b12038
+        signatureAlgorithm:
+          type: string
+          example: sha1WithRSAEncryption
+        fingerPrint:
+          type: string
+          example: DC:F9:D7:FA:A3:ED:71:1D:7A:B1:68:D1:A9:6F:66:99:62:72:F3:6D
+        publicKey:
+          type: object
+          required:
+            - algorithm
+          properties:
+            algorithm:
+              type: string
+              example: sha1WithRSAEncryption
+        altNames:
+          type: array
+          items:
+            type: string
+          example: '[]'
+        extensions:
+          type: object
+          required:
+            - subjectKeyIdentifier
+            - authorityKeyIdentifier
+            - basicConstraints
+          properties:
+            subjectKeyIdentifier:
+              type: string
+              example: 51:CC:13:79:84:DB:6D:CB:5F:17:BA:C4:4A:4B:A3:35:36:A2:C2:25
+            authorityKeyIdentifier:
+              type: string
+              example: keyid:51:CC:13:79:84:DB:6D:CB:5F:17:BA:C4:4A:4B:A3:35:36:A2:C2:25
+            basicConstraints:
+              type: string
+              example: CA:TRUE
+GrantTenantAdminIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        type:
+          type: string
+          enum:
+            - tenant-member
+        attributes:
+          type: object
+          required:
+            - roles
+          properties:
+            roles:
+              type: array
+              items:
+                type: string
+                enum:
+                - tenant-admin
+GrantTenantAdminOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+        - relationships
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - tenant-member
+        attributes:
+          type: object
+          required:
+            - roles
+          properties:
+            roles:
+              type: array
+              items:
+                type: string
+                enum:
+                - tenant-admin
+        relationships:
+          type: object
+          required:
+            - user
+            - tenant
+          properties:
+            user:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - user
+                links:
+                  type: object
+                  required:
+                    - self
+                  properties:
+                    self:
+                      type: string
+                      example: /v2/users/5b4f337bff4304610483ba67
+            tenant:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - tenant
+                links:
+                  type: object
+                  required:
+                    - self
+                  properties:
+                    self:
+                      type: string
+                      example: /v2/tenant/5b4f337bff4304610483ba67
+    meta:
+      type: object
+      example: '{}'
+RemoveTenantAdminIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        type:
+          type: string
+          enum:
+            - tenant-member
+        attributes:
+          type: object
+          required:
+            - roles
+          properties:
+            roles:
+              type: array
+              items:
+                enum:
+                - []
+RemoveTenantAdminOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+        - relationships
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - tenant-member
+        attributes:
+          type: object
+          required:
+            - roles
+          properties:
+            roles:
+              type: array
+              items:
+                enum:
+                - []
+        relationships:
+          type: object
+          required:
+            - user
+            - tenant
+          properties:
+            user:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - user
+                links:
+                  type: object
+                  required:
+                    - self
+                  properties:
+                    self:
+                      type: string
+                      example: /v2/users/5b4f337bff4304610483ba67
+            tenant:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - tenant
+                links:
+                  type: object
+                  required:
+                    - self
+                  properties:
+                    self:
+                      type: string
+                      example: /v2/tenant/5b4f337bff4304610483ba67
+    meta:
+      type: object
+      example: '{}'
+TenantOauth-clientOutAll:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        $ref: '#/TenantOauth-clientData'
+    meta:
+      type: object
+      example: '{}'
+TenantOauth-clientOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      $ref: '#/TenantOauth-clientData'
+    meta:
+      type: object
+      example: '{}'
+TenantOauth-clientIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+        - relationships
+      properties:
+        type:
+          type: string
+          enum:
+            - oauth-client
+        attributes:
+          type: object
+          required:
+            - client_id
+            - client_secret
+          properties:
+            client_id:
+              type: string
+              description: Oauth-client ID
+              example: 4MVG1y6x0765HlefbXXkBfrJ4txm0m5Sb6NZlVBFmNfzNQWy7raJ0_nKanW4SgaOj7EJMII_HLPs4mbB0JxE4
+            client_secret:
+              type: string
+              description: Oauth-client secret
+              example: '9706536923706843944'
+        relationships:
+          type: object
+          required:
+            - component
+          properties:
+            component:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      description: Component ID
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - component
+OpenIDOutAll:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        $ref: '#/OpenIDData'
+    meta:
+      type: object
+      example: '{}'
+OpenIDIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      $ref: '#/OpenIDData'
+OpenIDOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      $ref: '#/OpenIDData'
+    meta:
+      type: object
+      example: '{}'
+SAMLOutAll:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        $ref: '#/SAMLData'
+SAMLIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      $ref: '#/SAMLData'
+SAMLOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      $ref: '#/SAMLData'
+# refs
+tenantAttributes:
+  required:
+    - name
+    - app_domain
+    - code
+    - mandrill_email_from
+  properties:
+    name:
+      type: string
+      example: My New Tenant
+    app_domain:
+      type: string
+      example: app.example.com
+    api_domain:
+      type: string
+      example: api.example.com
+    webhooks_domain:
+      type: string
+      example: in.example.com
+    api_docs_url:
+      type: string
+      description: The URL to your custom API documentation
+      example: api.example.com/docs/v2/'
+    git_receiver_host:
+      type: string
+      example: git.example.com
+    code:
+      type: string
+      example: mail_style
+    header_logo_url:
+      type: string
+      description: |
+        The URL of image which will be displayed in the navigation panel (logo size 40x40 pixels, logo format - .png or .svg)
+      example: //cdn.example.com/logo-header.png
+    loading_logo_url:
+      type: string
+      description: The URL of image which will be displayed during the page loading
+      example: //cdn.example.com/logo-loading.png
+    email_logo_url:
+      type: string
+      description: The URL of image which will be displayed in the emails
+      example: //cdn.example.com/logo-email.png
+    favicon_url:
+      type: string
+      description: The URL of image which will be displayed as favicon
+      example: //cdn.example.com/logo-favicon.png
+    terms_of_usage_url:
+      type: string
+      description: The URL which redirects to the terms of usage page
+      example: https://www.example.com/tou/
+    privacy_policy_url:
+      type: string
+      description: The URL which redirects to the privacy policy page
+      example: https://www.example.com/privacy-policy/
+    imprint_url:
+      type: string
+      description: The URL which redirects to the imprint page
+      example: https://www.example.com/legal-disclosure/
+    mailchimp_api_key:
+      type: string
+      description: The MailChimp API key
+      example: abc123abc123abc123abc123abc123-us1
+    mailchimp_list_id:
+      type: string
+      description: The MailChimp list id
+      example: 7bab35f1af
+    mandrill_email_from:
+      type: string
+      description: An email of the letters sender
+      example: foo@foo.bar
+    mandrill_api_key:
+      type: string
+      description: The mandrill API key
+      example: lEJsMG0Kpj8b00mEIp1de
+    segment_write_key:
+      type: string
+      description: Segment write key
+      example: Qtg2Y2i61KpjOSCYFUc9VLJH5UegUZDP
+    google_tag_manager_id:
+      type: string
+      description: |
+        Google Tag Manager container `ID` without `GTM-` prefix
+      example: 5b4f337bff4304610483ba67
+    hide_register:
+      type: boolean
+      example: true
+    is_default:
+      type: boolean
+      example: true
+      description: You can set only one default tenant per installation
+    hide_repos:
+      type: boolean
+      example: false
+    hide_teams:
+      type: boolean
+      example: false
+    hide_ssh_keys:
+      type: boolean
+      example: false
+    hide_api_key:
+      type: boolean
+      example: false
+    hide_docs:
+      type: boolean
+      example: false
+    powered_by_elasticio:
+      type: boolean
+      example: true
+    css_enabled:
+      type: boolean
+      example: true
+    docs_base_url:
+      type: string
+      example: https://docs.example.com/
+      description: This link will applied to the Quick Help =>> Documentation menu and to the repository page docs link
+    component_docs_base_url:
+      type: string
+      example: https://docs.example.com/components/
+      description: |
+        Base URL for relative paths to component docs. E.g. if this url is `https://docs.example.com/components/` and `component.json` contains the following field `"help": {"link": "salesforce"}`, on frontend we will use `https://docs.example.com/components/salesforce` as a link to documentation of this component. If this property is not set, relative urls won't be displayed. If this property is set, make sure component_docs_base_url + 'getting-started/credential.html' page exists
+    ssl_certificates:
+      type: object
+      properties:
+        app:
+          type: string
+          description: An ID of SSL-certificate for a web-UI domain
+          example: 5b4f337bff4304610483ba67
+        api:
+          type: string
+          description: An ID of SSL-certificate for API domain
+          example: 5b4f337bff4304610483ba67
+        webhooks:
+          type: string
+          description: An ID of SSL-certificate for the webhooks domain
+          example: 5b4f337bff4304610483ba67
+    email_templates:
+      type: object
+      description: |
+         hashMap of represent emails will be sent. By default "repo-new-version" and "repo-new-version-in-workspace-flows" are set to false
+      required:
+        - agent-request
+        - contract-deleted
+        - contract-invite-empty-contract
+        - contract-invite-new-user
+        - contract-suspended
+        - contract-unsuspended
+        - password-recovery
+        - repo-new-version
+        - repo-new-version-in-workspace-flows
+        - task-error-notification
+        - task-operational-error
+        - team-from-contract-invite
+        - team-removed-member
+        - user-removed-from-contract
+        - wiper-exhaustion-quota-notification
+        - wiper-flow-suspended-due-to-queue-overflow
+        - wiper-stop-limited-flow
+        - wiper-suspended-queue-purged
+        - workspace-invite-empty-workspace
+        - workspace-invite-new-user
+        - workspace-removed
+        - workspace-removed-member
+      properties:
+        agent-request:
+          type: boolean
+          description: Agent has been requested
+          example: true
+        contract-deleted:
+          type: boolean
+          description: Contract has been deleted
+          example: true
+        contract-invite-empty-contract:
+          type: boolean
+          description: New user has been invited to an empty Contract
+          example: true
+        contract-invite-new-user:
+          type: boolean
+          description: New user has been invited to the Contract
+          example: true
+        contract-suspended:
+          type: boolean
+          description: Contract has been suspended
+          example: true
+        contract-unsuspended:
+          type: boolean
+          description: Contract has been unsuspended
+          example: true
+        password-recovery:
+          type: boolean
+          description: Password recovery has been requested
+          example: true
+        repo-new-version:
+          type: boolean
+          description: New Component version has been pushed in your Developer Team
+          example: false
+        repo-new-version-in-workspace-flows:
+          type: boolean
+          description: New Component version has been pushed, Component used in your Flows
+          example: false
+        task-error-notification:
+          type: boolean
+          description: A Component has reported an error
+          example: true
+        task-operational-error:
+          type: boolean
+          description: A container has failed
+          example: true
+        team-from-contract-invite:
+          type: boolean
+          description: Has invited to contract's team
+          example: true
+        team-removed-member:
+          type: boolean
+          description: Team member has been removed
+          example: true
+        user-removed-from-contract:
+          type: boolean
+          description: Has removed user from contract
+          example: true
+        wiper-exhaustion-quota-notification:
+          type: boolean
+          description: Quota usage has come to the limit
+          example: true
+        wiper-flow-suspended-due-to-queue-overflow:
+          type: boolean
+          description: Flow has been suspended due to queue overflow
+          example: true
+        wiper-stop-limited-flow:
+          type: boolean
+          description: Flow has been stopped due to limitations of limited workspace
+          example: true
+        wiper-suspended-queue-purged:
+          type: boolean
+          description: Unhandled data has been purged
+          example: true
+        workspace-invite-empty-workspace:
+          type: boolean
+          description: User has been invited to an empty Workspace
+          example: true
+        workspace-invite-new-user:
+          type: boolean
+          description: Unregistered user has been invited to the Workspace
+          example: true
+        workspace-removed:
+          type: boolean
+          description: Workspace has been removed
+          example: true
+        workspace-removed-member:
+          type: boolean
+          description: Member has been removed from the Workspace
+          example: true
+    custom_nav_menu_items:
+      type: array
+      items:
+        anyOf:
+          - $ref: '#/quickHelp'
+          - $ref: '#/helpCenter'
+    custom_stylesheets:
+      type: array
+      items:
+        type: object
+        required:
+          - href
+        properties:
+          href:
+            type: string
+            description: Customer css stylesheets
+            example: http://path-to.css
+    custom_scripts:
+      type: array
+      items:
+        type: object
+        required:
+          - src
+        properties:
+          href:
+            type: string
+            description: Customer js-scripts
+            example: http://path-to-2.js
+    feature_flags:
+      type: object
+      properties:
+        old_mapper_enabled:
+          type: boolean
+          description: |
+            Enable ability to use deprecated mapper UI. Default: "false"
+          example: false
+        contract_component_whitelist:
+          type: boolean
+          description: |
+            Enable component whitelisting on contract level. Default: "false"
+          example: true
+        enabled_totp:
+          type: string
+          description:  |
+            Enable ability to use two-factor authentication. Default: "false"
+          example: true
+    signin_v_2:
+      type: object
+      description: Enable new design for registration page
+      required:
+        - logo_url
+        - google_provider_id
+      properties:
+        logo_url:
+          type: string
+          description: |
+            The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used
+          example: //cdn.example.com/logo.png
+        google_provider_id:
+          type: string
+          description: |
+            Google OIDC Provider `id` in this tenant. Enables Google Sign In and Sign Up
+          example: 5b4f337bff4304610483ba67
+    login_redirect_sso_provider:
+      type: object
+      description: |
+         When set and anonymous user opens any frontend page (except /login and /register), he will be redirected to specified SAML/OpenID provider authentication page. Set to `null` to unset
+      required:
+        - type
+        - id
+      properties:
+        type:
+          type: string
+          description: |
+            Type of provider: `openid` or `saml`
+          example: openid
+          enum:
+            - openid
+            - saml
+        id:
+          type: string
+          description: SAML/OpenID provider ID in this tenant
+          example: 5b4f337bff4304610483ba67
+    logout_redirect_url:
+      type: string
+      description: |
+        The URL to redirect user to after logout from frontend. Set to `null` to unset
+      example: https://sso.example.com/logout
+    flow_stats_enabled_default:
+      type: boolean
+      description: |
+        *Flow Stats Toggle*
+
+        By default each step of a flow generates stats about input/output messages and errors. You can see them on the
+        Executions and Dashboard pages. To disable input/output message stats you can set flow's `attributes.stats_enabled`
+        flag to `false`.
+
+        If you want to disable stats for all **newly created** flows of a workspace/contract/tenant, set
+        `attributes.flow_stats_enabled_default` property of a target workspace/contract/tenant to `false`. This property is
+        cascade. E.g. if on flow creation it's not defined or `true` for workspace, we will look for contract. If it's not
+        defined or `true` for contract, we will look for tenant. If it's not defined or `true` for tenant, flow will have
+        `attributes.stats_enabled` = `true`. So we search upwards until see the first `false`, otherwise stats will be enabled.
+      example: true
+    support_user_id:
+      type: string
+      description: An ID of user from platform support team
+      example: 5b4f337bff4304610483ba67
+    default_workspace_type:
+      type: string
+      description: |
+        Default Workspace type for Workspaces created in the Tenant. The value can be `full` or `limited`. If not specified, the attribute will be set to `full`or `limited` depending on Tenant settings
+      enum:
+        - full
+        - limited
+      example: full
+    html_meta:
+      type: object
+      properties:
+        keywords:
+          type: array
+          description: Customer meta keywords in html pages
+          items:
+            type: string
+            example: iPaaS
+        description:
+          type: string
+          description: Customer meta description in html pages
+          example: Some description
+        author:
+          type: string
+          description: Customer meta author in html pages
+          example: John Doe
+quickHelp:
+  type: object
+  required:
+    - title
+    - icon
+    - links
+  properties:
+    title:
+      type: string
+      description: The link text
+      example: Quick Help
+    icon:
+      type: string
+      description: |
+        The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)
+      example: help
+    custom_class:
+      type: string
+      description: The class added to <a> tag
+      example: custom_class
+    links:
+      type: array
+      items:
+        type: object
+        required:
+          - url
+          - title
+          - icon
+        properties:
+          url:
+            type: string
+            description: The URL which redirects to the needed page
+            example: https://docs.example.com
+          title:
+            type: string
+            description: The link text
+            example: Documentation
+          icon:
+            type: string
+            description: |
+              The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)
+            example: description
+          target:
+            type: string
+            description: |
+              A value can be `modal` or `_blank`. In case of "target"="modal" link will be opened in the modal window. In case of "target":"_blank", link will be opened in the new tab. The value by default is `_blank`
+            example: _blank
+helpCenter:
+  type: object
+  required:
+    - title
+    - icon
+    - custom_class
+  properties:
+    title:
+      type: string
+      description: The link text
+      example: Help Center
+    icon:
+      type: string
+      description: |
+        The icon name from [material-icons](https://material.io/tools/icons/?style=baseline)
+      example: forum
+    custom_class:
+      type: string
+      description: The class added to <a> tag
+      example: intercom-launcher
+roleContractAdmin:
+  type: object
+  required:
+    - i18n
+    - role
+    - permissions
+    - scope
+  properties:
+    i18n:
+      type: object
+      properties:
+        en:
+          type: string
+          example: Admin
+    role:
+      type: string
+      example: admin
+    permissions:
+      type: array
+      items:
+        type: string
+      uniqueItems: true
+      example: ["contracts.workspace.create","contracts.workspace.listAll","contracts.workspace.delete","contracts.repository.edit","contracts.devTeam.edit","global.auth_clients.create","global.auth_clients.get","global.auth_clients.edit","global.auth_clients.delete"]
+    scope:
+      type: string
+      example: contracts
+roleContractMember:
+  type: object
+  required:
+    - i18n
+    - role
+    - permissions
+    - scope
+  properties:
+    i18n:
+      type: object
+      properties:
+        en:
+          type: string
+          example: Member
+    role:
+      type: string
+      example: member
+    permissions:
+      type: array
+      items:
+        type: string
+      uniqueItems: true
+      example: ["contracts.workspace.create"]
+    scope:
+      type: string
+      example: contracts
+roleWorkspaceAdmin:
+  type: object
+  required:
+    - i18n
+    - role
+    - permissions
+    - scope
+  properties:
+    i18n:
+      type: object
+      properties:
+        en:
+          type: string
+          example: Admin
+    role:
+      type: string
+      example: admin
+    permissions:
+      type: array
+      items:
+        type: string
+      uniqueItems: true
+      example: ["global.auth_clients.get","global.auth_clients.edit","global.auth_clients.create","global.auth_clients.delete","workspaces.workspace.edit","workspaces.workspace.edit_membership_support","workspaces.auth_secret.get","workspaces.auth_secret.get_credentials","workspaces.auth_secret.edit","workspaces.auth_secret.create","workspaces.auth_secret.delete","workspaces.auth_secret.refresh","workspaces.flow.edit","workspaces.flow.toggleStatus","workspaces.flow.toggleRealtime","workspaces.flow.exportToRecipe","workspaces.logs.read_all","workspaces.recipe.edit","workspaces.credential.edit","workspaces.vpn_agent.create","workspaces.vpn_agent.get","workspaces.vpn_agent.edit","workspaces.vpn_agent.delete","workspaces.vpn_agent.get_config","workspaces.topic.create","workspaces.topic.get","workspaces.topic.edit","workspaces.topic.delete"]
+    scope:
+      type: string
+      example: workspaces
+roleWorkspaceIntegrator:
+  type: object
+  required:
+    - i18n
+    - role
+    - permissions
+    - scope
+  properties:
+    i18n:
+      type: object
+      properties:
+        en:
+          type: string
+          example: Integrator
+    role:
+      type: string
+      example: integrator
+    permissions:
+      type: array
+      items:
+        type: string
+      uniqueItems: true
+      example: ["workspaces.recipe.edit","workspaces.flow.edit","workspaces.flow.toggleStatus","workspaces.flow.toggleRealtime","workspaces.flow.exportToRecipe","workspaces.credential.edit","workspaces.vpn_agent.create","workspaces.vpn_agent.get","workspaces.vpn_agent.edit","workspaces.vpn_agent.delete","workspaces.vpn_agent.get_config","workspaces.logs.read_all","global.auth_clients.create","global.auth_clients.get","global.auth_clients.edit","global.auth_clients.delete","workspaces.auth_secret.get","workspaces.auth_secret.get_credentials","workspaces.auth_secret.edit","workspaces.auth_secret.create","workspaces.auth_secret.delete","workspaces.auth_secret.refresh","workspaces.topic.create","workspaces.topic.get","workspaces.topic.edit","workspaces.topic.delete"]
+    scope:
+      type: string
+      example: workspaces
+roleWorkspaceGuest:
+  type: object
+  required:
+    - i18n
+    - role
+    - permissions
+    - scope
+  properties:
+    i18n:
+      type: object
+      properties:
+        en:
+          type: string
+          example: Guest
+    role:
+      type: string
+      example: guest
+    permissions:
+      type: array
+      items:
+        type: string
+      uniqueItems: true
+      example: ["global.auth_clients.get","workspaces.auth_secret.get","workspaces.logs.read_all","workspaces.vpn_agent.get","workspaces.topic.get"]
+    scope:
+      type: string
+      example: workspaces
+roleContractOwner:
+  type: object
+  required:
+    - i18n
+    - role
+    - permissions
+    - scope
+  properties:
+    i18n:
+      type: object
+      properties:
+        en:
+          type: string
+          example: Owner
+    role:
+      type: string
+      example: owner
+    permissions:
+      type: array
+      items:
+        type: string
+      uniqueItems: true
+      example: ["contracts.contract.edit","contracts.membership.edit","contracts.workspace_limits.edit","contracts.workspace.create","contracts.workspace.listAll","contracts.workspace.delete","global.stats.workspaces","global.auth_clients.create","global.auth_clients.get","global.auth_clients.edit","global.auth_clients.delete"]
+    scope:
+      type: string
+      example: contracts
+roleWorkspaceOwner:
+  type: object
+  required:
+    - i18n
+    - role
+    - permissions
+    - scope
+  properties:
+    i18n:
+      type: object
+      properties:
+        en:
+          type: string
+          example: Admin
+    role:
+      type: string
+      example: admin
+    permissions:
+      type: array
+      items:
+        type: string
+      uniqueItems: true
+      example: ["global.auth_clients.get","global.auth_clients.edit","global.auth_clients.create","global.auth_clients.delete","workspaces.workspace.edit","workspaces.workspace.edit_membership_support","workspaces.auth_secret.get","workspaces.auth_secret.get_credentials","workspaces.auth_secret.edit","workspaces.auth_secret.create","workspaces.auth_secret.delete","workspaces.auth_secret.refresh","workspaces.flow.edit","workspaces.flow.toggleStatus","workspaces.flow.toggleRealtime","workspaces.logs.read_all","workspaces.credential.edit","workspaces.vpn_agent.create","workspaces.vpn_agent.get","workspaces.vpn_agent.edit","workspaces.vpn_agent.delete","workspaces.vpn_agent.get_config","workspaces.topic.create","workspaces.topic.get","workspaces.topic.edit","workspaces.topic.delete"]
+    scope:
+      type: string
+      example: workspaces
+newWorkspaceRole:
+  type: object
+  required:
+    - permissions
+  properties:
+    i18n:
+      type: object
+      properties:
+        en:
+          type: string
+          description: |
+            The name of a role in different languages. The value is only required for “en” key. For other languages value is optional
+          example: new_role
+    role:
+      type: string
+      description: Name of a role
+      example: name_of_new_role
+    permissions:
+      type: array
+      description: |
+        An array of permissions. It can be empty. To get the list of available permissions execute [Get the list of available permissions](../openapi.yaml#/~1permissions) endpoint
+      items:
+        type: string
+      uniqueItems: true
+      example: ["workspaces.logs.read_all","workspaces.vpn_agent.get","workspaces.topic.get"]
+    scope:
+      type: string
+      description: |
+        The group of objects, which is affected by this role. Value can be "contracts" or "workspaces"
+      example: workspaces
+      enum:
+        - contracts
+        - workspaces
+newContractRole:
+  type: object
+  required:
+    - permissions
+  properties:
+    i18n:
+      type: object
+      properties:
+        en:
+          type: string
+          description: |
+            The name of a role in different languages. The value is only required for "en" key. For other languages value is optional
+          example: new_role
+    role:
+      type: string
+      description: Name of a role
+      example: name_of_new_role
+    permissions:
+      type: array
+      description: |
+        An array of permissions. It can be empty. To get the list of available permissions execute [Get the list of available permissions](../openapi.yaml#/~1permissions) endpoint
+      items:
+        type: string
+      uniqueItems: true
+      example: ["contracts.workspace.create","contracts.devTeam.edit"]
+    scope:
+      type: string
+      description: |
+        The group of objects, which is affected by this role. Value can be "contracts" or "workspaces"
+      example: contracts
+      enum:
+        - contracts
+        - workspaces
+TenantOauth-clientData:
+  required:
+    - id
+    - type
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      enum:
+        - oauth-client
+    attributes:
+      type: object
+      required:
+        - client_id
+        - client_secret
+      properties:
+        client_id:
+          type: string
+          example: 4MVG1y6x0765HlefbXXkBfrJ4txm0m5Sb6NZlVBFmNfzNQWy7raJ0_nKanW4SgaOj7EJMII_HLPs4mbB0JxE4
+        client_secret:
+          type: string
+          example: '9706536923706843944'
+    relationships:
+      type: object
+      required:
+        - component
+        - links
+      properties:
+        component:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - component
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/components/5b4f337bff4304610483ba67
+OpenIDData:
+  required:
+    - id
+    - type
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      readOnly: true
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      enum:
+        - openid-provider
+    attributes:
+      type: object
+      required:
+        - client_id
+        - client_secret
+        - issuer
+        - response_type
+        - config
+      properties:
+        client_id:
+          type: string
+          description: OpenID Provider client ID
+          example: 4MVG1y6x0765HlefbXXkBfrJ4txm0m5Sb6NZlVBFmNfzNQWy7raJ0_nKanW4SgaOj7EJMII_HLPs4mbB0JxE4
+        client_secret:
+          type: string
+          description: OpenID Provider client secret
+          example: '9706536923706843944'
+        issuer:
+          type: string
+          description: OpenID Provider issuer
+          example: https://issuer.com
+        response_type:
+          type: string
+          enum:
+            - code
+        config:
+          type: object
+          required:
+            - auto_create_users
+          properties:
+            auto_create_users:
+              type: boolean
+              example: true
+    relationships:
+      type: object
+      readOnly: true
+      required:
+        - tenant
+        - links
+      properties:
+        tenant:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - tenant
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/tenants/5b4f337bff4304610483ba67
+SAMLData:
+  type: object
+  required:
+    - id
+    - type
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      readOnly: true
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      enum:
+        - saml-provider
+    attributes:
+      type: object
+      required:
+        - entity_id
+        - login_endpoint
+        - logout_endpoint
+        - assert_endpoint
+        - idp_certificates
+        - name_id_format
+        - private_key
+        - certificate
+        - force_auth
+        - allow_unencrypted_assertion
+        - config
+      properties:
+        entity_id:
+          type: string
+          description: Provider entityId. A value should be a valid URI
+          example: 5b4f337bff4304610483ba67
+        login_endpoint:
+          type: string
+          description: Provider login endpoint. A value should be a valid URI
+          example: https://example.com
+        logout_endpoint:
+          type: string
+          description: Provider logout endpoint. A value should be a valid URI
+          example: https://example.com
+        assert_endpoint:
+          type: string
+          description: URL of service provider assert endpoint. A value should be a valid URI
+          example: https://example.com
+        idp_certificates:
+          type: array
+          description: An array of Identity Provider certificates
+          items:
+            type: string
+            example: identity_provider_certificate
+        name_id_format:
+          type: string
+          description: Format for Name ID
+          enum:
+            - urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+            - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+            - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+            - urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+            - undefined
+        private_key:
+          type: string
+          description: Private key for the service provider
+          example: private_key
+        certificate:
+          type: string
+          description: Certificate for the service provider
+          example: certificate
+        force_auth:
+          type: boolean
+          description: Forces re-authentication of users even if the user has a SSO session with the Identity Provider
+          default: false
+        allow_unencrypted_assertion:
+          type: boolean
+          description: Allows unencrypted assertions
+          default: true
+        config:
+          type: object
+          required:
+            - email_attribute
+            - auto_create_users
+          properties:
+            email_attribute:
+              type: string
+              description: Name of the attribute that contains a user email address
+              example: name_id
+            auto_create_users:
+              type: boolean
+              description: Creates user if not registered
+              default: true
+    relationships:
+      type: object
+      readOnly: true
+      required:
+        - tenant
+        - links
+      properties:
+        tenant:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - tenant
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/tenants/5b4f337bff4304610483ba67

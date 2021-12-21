@@ -1,0 +1,6 @@
+contract_id:
+  in: query
+  name: contract_id
+  description: Contract identifier. This parameter is required for Contract Owner and prohibited for Tenant Admin.
+  schema:
+    type: string

@@ -1,0 +1,7 @@
+key_id:
+  in: path
+  name: key_id
+  description: SSH key identifier
+  required: true
+  schema:
+    type: string

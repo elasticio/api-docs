@@ -1,0 +1,405 @@
+/flows:
+  get:
+    tags:
+       - flows
+    summary: Lists all Flows with the specified Workspace Id
+    description: You need workspace memberships to access this resource
+    parameters:
+      - $ref: '../components/parameters/system-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/system-params.yaml#/page-size'
+      - $ref: '../components/parameters/system-params.yaml#/page-number'
+      - $ref: '../components/parameters/flow-params.yaml#/filter-has_draft'
+      - $ref: '../components/parameters/flow-params.yaml#/filter-status'
+      - $ref: '../components/parameters/flow-params.yaml#/filter-type'
+      - $ref: '../components/parameters/flow-params.yaml#/filter-user'
+      - $ref: '../components/parameters/flow-params.yaml#/include'
+      - $ref: '../components/parameters/flow-params.yaml#/sort'
+      - $ref: '../components/parameters/flow-params.yaml#/search'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-sch.yaml#/flowOutAll'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+  post:
+    tags:
+       - flows
+    summary: Creates a Flow
+    description: You need `workspaces.flow.edit` permission to access this resource
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/flow-sch.yaml#/flowIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-sch.yaml#/flowOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+/flows/{flow_id}:
+  get:
+    tags:
+      - flows
+    summary: Returns the Flow based on the specified Flow Id
+    description: You need workspace memberships to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-sch.yaml#/flowOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - flows
+    summary: Update the Flow based on the specified Flow Id
+    description: You need `workspaces.flow.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/flow-sch.yaml#/flowPatchIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-sch.yaml#/flowOut'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/400'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/409'
+  delete:
+    tags:
+      - flows
+    summary: Remove the Flow based on the specified Flow Id
+    description: |
+      You need `workspaces.flow.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/flows/{flow_id}/start:
+  post:
+    tags:
+       - flows
+    summary: Start a Flow based on the specified Flow Id
+    description: You need `workspaces.flow.toggleStatus` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+    responses:
+      '202':
+        description: Accepted
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-sch.yaml#/flowOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/409'
+/flows/{flow_id}/run-now:
+  post:
+    tags:
+       - flows
+    summary: Run an active Flow based on the specified Flow Id
+    description: You need `workspaces.flow.toggleStatus` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+    responses:
+      '202':
+        description: Accepted
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-sch.yaml#/toggleStatusOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/409'
+/flows/{flow_id}/suspend:
+  post:
+    tags:
+       - flows
+    summary: Suspend an active Flow based on the specified Flow Id
+    description: You need `workspaces.flow.toggleStatus` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+    responses:
+      '202':
+        description: Accepted
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-sch.yaml#/toggleStatusOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/409'
+/flows/{flow_id}/stop:
+  post:
+    tags:
+       - flows
+    summary: Stop an active Flow based on the specified Flow Id
+    description: You need `workspaces.flow.toggleStatus` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+    responses:
+      '202':
+        description: Accepted
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-sch.yaml#/toggleStatusOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/409'
+/flows/start-debug:
+  post:
+    tags:
+       - flows
+    summary: Creates a Debug Flow
+    description: You need `workspaces.flow.toggleStatus` permission to access this resource
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/flow-sch.yaml#/debugIn'
+    responses:
+      '202':
+        description: Accepted
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-sch.yaml#/debugOut'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/400'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+/flows/{flow_id}/copy:
+  post:
+    tags:
+       - flows
+    summary: Copy a Flow based on the specified Flow Id
+    description: |
+      You need `workspaces.flow.edit` permission and belong to workspace containing source flow to access this resource
+      Flow can be copied in two modes:
+      * as new flow
+      * as a draft of existing flow
+
+      Modes are mutually exclusive (see example requests)
+
+      In both cases flow is copied into draft of new/existing flow. So to make flow to work draft should be published manually. That is done to avoid disruptions of already running flow (flow is not stopped or changed in any other way except draft), and because most likely flow copy will require additional configuration.
+      Flow can be copied in any workspace and contract, of course if user has enough privileges to read original flow and has enough privileges to edit flow in destination workspace.
+      Platform forbids to copy flow if flow components can not be used in destination context (e.g. component visibility is restricted to team, and you are copying flow in another contract)
+
+      **Notices:**
+       1. The topic (`data.attributes.topic_id`) must be accessible to the flow in the destination workspace, otherwise it will not be copied.
+       2. It's forbidden to use the `data.attributes.topic_id` parameter if flow does not contain at least one step with Pub/Sub component.
+       3. It's forbidden to use the `data.attributes.topic_id` parameter if your flow uses more than one Pub/Sub topic in different steps. You can copy the flow if your flow has several Pub/Sub steps that uses only one topic.
+       4. In case when the `data.attributes.topic_id` parameter is absent from your call, topics ID will be removed from a copy if it's not accessible and left intact if the topic is available in destination context.
+
+      Please note the following facts about credentials, secrets, topics and agents used in flow:
+       - All these entities are not copied along with the flow if they are not accessible in the destination context.
+       - Naturally, if the flow is copied into the same workspace, these entities will be accessible to the flow draft.
+       - Topic can be replaced during copy. Read details about `data.attributes.topic_id` parameter.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            anyOf:
+              - $ref: '../components/schemas/flow-sch.yaml#/copyIntoExistingFlow'
+              - $ref: '../components/schemas/flow-sch.yaml#/copyIntoNewFlow'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-sch.yaml#/flowOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'

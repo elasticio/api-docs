@@ -1,0 +1,16 @@
+levels:
+  name: levels[]
+  in: query
+  description: The logs level (1 - None, 10 - trace, 20 - debug, 30 - info, 40 - warn, 50 - error, 60 - fatal). Log level None means default log level when it’s not passed.
+  schema:
+    type: array
+    items:
+      type: integer
+      example: 30
+search:
+  in: query
+  name: search
+  description: String to search in logs (searching string is wrapped by tag)
+  schema:
+    type: string
+    example: error

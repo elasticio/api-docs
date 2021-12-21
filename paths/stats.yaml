@@ -1,0 +1,66 @@
+/stats/queues/{flow_id}:
+  get:
+    tags:
+      - stats
+    summary: Returns the amount of messages in input queues of all steps in the defined flow.
+    description: This request is authorized for any member of the given workspace.
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/stats-sch.yaml#/queueStatsOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/stats/workspaces:
+  get:
+    tags:
+      - stats
+    summary: Lists of workspaces with flows in them and flow components.
+    description: A user has to be a member of the Contract’s scope with the `global.stats.workspaces` permission or belong to the Tenant Admin users group
+    parameters:
+      - $ref: '../components/parameters/stats-params.yaml#/contract_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/stats-sch.yaml#/workspacesStatsListOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

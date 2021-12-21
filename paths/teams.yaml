@@ -1,0 +1,194 @@
+/teams/{team_id}:
+  get:
+    tags:
+      - teams
+    summary: Returns the team based on the specified teamId where the current user is a member.
+    description: You need `contract.devTeams.get` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/team-params.yaml#/team_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/team-sch.yaml#/teamOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - teams
+    summary: Remove the specified team.
+    description: |
+        This resource allows you to delete a team. You cannot remove team which contains the repos, you should delete all repos first. You need `contracts.devTeam.edit` permission to access this resource.
+    parameters:
+      - $ref: '../components/parameters/team-params.yaml#/team_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/teams:
+  get:
+    tags:
+       - teams
+    summary: Lists all teams
+    description: You need `contract.devTeams.get` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/contract_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/team-sch.yaml#/teamsListOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+  post:
+    tags:
+      - teams
+    summary: Creates a team
+    description: You need `contracts.devTeam.edit` permission to access this resource
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/team-sch.yaml#/teamIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/team-sch.yaml#/teamOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+/teams/{team_id}/relationships/members:
+  post:
+    tags:
+      - teams
+    summary: Adds a new member to a defined team.
+    description: You need `contracts.devTeam.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/team-params.yaml#/team_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/team-sch.yaml#/memberIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/team-sch.yaml#/teamOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - teams
+    summary: Remove the specified member from the team.
+    description: You need `contracts.devTeam.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/team-params.yaml#/team_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

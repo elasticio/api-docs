@@ -1,0 +1,194 @@
+/agents/vpn:
+  get:
+    tags:
+       - vpn agents
+    summary: Lists all vpn agents for the specified workspace
+    description: You have to be a member of specified workspace
+    parameters:
+      - $ref: '../components/parameters/credential-params.yaml#/workspace_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/vpn-agent-sch.yaml#/agentsListOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+  post:
+    tags:
+      - vpn agents
+    summary: Creates a vpn agent
+    description: You have to be a member of specified workspace
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/vpn-agent-sch.yaml#/agentIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/vpn-agent-sch.yaml#/agentOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+/agents/vpn/{vpn-agent_id}:
+  get:
+    tags:
+      - vpn agents
+    summary: Returns the specified vpn agent.
+    description: You have to be a member of workspace
+    parameters:
+      - $ref: '../components/parameters/vpn-agent-params.yaml#/vpn-agent_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/vpn-agent-sch.yaml#/agentOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - vpn agents
+    summary: Update the specified vpn agent
+    description: You have to be a member of workspace
+    parameters:
+      - $ref: '../components/parameters/vpn-agent-params.yaml#/vpn-agent_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/vpn-agent-sch.yaml#/agentEditIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/vpn-agent-sch.yaml#/agentOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - vpn agents
+    summary: Remove the specified vpn agent.
+    description: You have to be a member of workspace
+    parameters:
+      - $ref: '../components/parameters/vpn-agent-params.yaml#/vpn-agent_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/agents/vpn/{vpn-agent_id}/config:
+  get:
+    tags:
+      - vpn agents
+    summary: Returns the config of the specified vpn agent.
+    description: You have to be a member of workspace
+    parameters:
+      - $ref: '../components/parameters/vpn-agent-params.yaml#/vpn-agent_id'
+      - $ref: '../components/parameters/credential-params.yaml#/workspace_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          text/plain:
+            schema:
+              $ref: '../components/schemas/vpn-agent-sch.yaml#/configOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

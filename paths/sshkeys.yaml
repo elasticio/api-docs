@@ -1,0 +1,75 @@
+/sshkeys:
+  get:
+    tags:
+      - sshkeys
+    summary: Lists all SSH keys of the current user
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/sshkey-sch.yaml#/keysListOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+  post:
+    tags:
+      - sshkeys
+    summary: Creates a new SSH key
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/sshkey-sch.yaml#/sshKeyIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/sshkey-sch.yaml#/sshKeyOut'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/400'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+/sshkeys/{key_id}:
+  delete:
+    tags:
+      - sshkeys
+    summary: Remove the specified SSH key
+    description: |
+        This resource allows you to delete only your own key.
+    parameters:
+      - $ref: '../components/parameters/sshkey-params.yaml#/key_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

@@ -1,0 +1,31 @@
+auth-client_id:
+  in: path
+  name: auth-client_id
+  description: Auth client identifier
+  required: true
+  schema:
+    type: string
+filter[component]:
+  in: query
+  name: filter[component]
+  description: Filter the auth clients only for specific component. Must be identifier of component
+  schema:
+    type: string
+workspace_id:
+  in: query
+  name: workspace_id
+  description: Show auth clients available in the given workpspace (including contract’s, tenant’s and global auth-clients).  Only one of `workspace_id`, `contract_id`, `tenant_id` can be specified at time. If none these of parameters is specified only global clients will be returned.
+  schema:
+    type: string
+contract_id:
+  in: query
+  name: contract_id
+  description: 	Show Auth Clients available in the given contract (including tenant’s and global auth-clients).
+  schema:
+    type: string
+tenant_id:
+  in: query
+  name: tenant_id
+  description: Show Auth Clients available in the given tenant and global scope.
+  schema:
+    type: string

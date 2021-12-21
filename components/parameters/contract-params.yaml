@@ -1,0 +1,21 @@
+contract_id:
+  in: path
+  name: contract_id
+  description: Contract identifier
+  required: true
+  schema:
+    type: string
+invite_id:
+  in: path
+  name: invite_id
+  description: Invitation identifier
+  required: true
+  schema:
+    type: string
+user_id:
+  in: path
+  name: user_id
+  description: User identifier
+  required: true
+  schema:
+    type: string

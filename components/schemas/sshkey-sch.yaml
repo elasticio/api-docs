@@ -1,0 +1,202 @@
+sshKeyIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        type:
+          description: 	A value must be `sshkey`
+          type: string
+          enum:
+            - sshkey
+        attributes:
+          type: object
+          required:
+            - key
+          properties:
+            key:
+              description: A valid RSA or DSA SSH public key.
+              type: string
+              example: ssh-rsa AAAAB3NzaC1yc2EAFFFDAQABAAABAQDf0QiuqfcAMXK58vbHcS6DjPLk9052gtui/ApRF8GhzzEUtPdeqLEsf1MIJx61dd0E6UdmW4AIbwDcTOMWz0f+9Ue7AypkPwn+kt9y6JOdW+GC+f+2wJzR3ySgq8XGrgsHmANlegZIlzyFGqm4YbGdxqTtBENrJZGQpayGMcI72662HNyCLPml+lWr6cYaK7r0WLEmoZefzuLgO3VMVIaGK9B+5unQ0R2UMozwJJutYTCJAlnTIvO3BceHcrNnEAjYuvx1khdNd3+4Mrs/Q1LTzavqVy/Ot9ZpK3xah4bnFHbcunVzlCeiY5HLTfrcSgmsa9xhgj+viMJj
+            title:
+              description: Title of the key
+              type: string
+              example: My SSH key
+sshKeyOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+        - relationships
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - sshkey
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/sshkeys/5b4f337bff4304610483ba67
+        attributes:
+          type: object
+          required:
+            - key
+            - title
+            - fingerprint
+          properties:
+            key:
+              type: string
+              example: ssh-rsa AAAAB3NzaC1yc2EAFFFDAQABAAABAQDf0QiuqfcAMXK58vbHcS6DjPLk9052gtui/ApRF8GhzzEUtPdeqLEsf1MIJx61dd0E6UdmW4AIbwDcTOMWz0f+9Ue7AypkPwn+kt9y6JOdW+GC+f+2wJzR3ySgq8XGrgsHmANlegZIlzyFGqm4YbGdxqTtBENrJZGQpayGMcI72662HNyCLPml+lWr6cYaK7r0WLEmoZefzuLgO3VMVIaGK9B+5unQ0R2UMozwJJutYTCJAlnTIvO3BceHcrNnEAjYuvx1khdNd3+4Mrs/Q1LTzavqVy/Ot9ZpK3xah4bnFHbcunVzlCeiY5HLTfrcSgmsa9xhgj+viMJj
+            title:
+              type: string
+              example: my ssh key
+            fingerprint:
+              type: string
+              example: "fd:d4:98:92:ed:d7:3a:0c:a2:42:ff:55:57:15:88:fa"
+        relationships:
+          type: object
+          required:
+            - user
+          properties:
+            user:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - user
+                links:
+                  type: object
+                  required:
+                    - self
+                  properties:
+                    self:
+                      type: string
+                      example: /v2/users/5b4f337bff4304610483ba67
+    meta:
+      type: object
+      example: '{}'
+keysListOut:
+  type: object
+  required:
+    - data
+    - meta
+    - links
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        required:
+          - id
+          - type
+          - links
+          - attributes
+          - relationships
+        properties:
+          id:
+            type: string
+            example: 5b4f337bff4304610483ba67
+          type:
+            type: string
+            enum:
+              - sshkey
+          links:
+            type: object
+            required:
+              - self
+            properties:
+              self:
+                type: string
+                example: /v2/sshkeys/5b4f337bff4304610483ba67
+          attributes:
+            type: object
+            required:
+              - key
+              - title
+              - fingerprint
+            properties:
+              key:
+                type: string
+                example: ssh-rsa AAAAB3NzaC1yc2EAFFFDAQABAAABAQDf0QiuqfcAMXK58vbHcS6DjPLk9052gtui/ApRF8GhzzEUtPdeqLEsf1MIJx61dd0E6UdmW4AIbwDcTOMWz0f+9Ue7AypkPwn+kt9y6JOdW+GC+f+2wJzR3ySgq8XGrgsHmANlegZIlzyFGqm4YbGdxqTtBENrJZGQpayGMcI72662HNyCLPml+lWr6cYaK7r0WLEmoZefzuLgO3VMVIaGK9B+5unQ0R2UMozwJJutYTCJAlnTIvO3BceHcrNnEAjYuvx1khdNd3+4Mrs/Q1LTzavqVy/Ot9ZpK3xah4bnFHbcunVzlCeiY5HLTfrcSgmsa9xhgj+viMJj
+              title:
+                type: string
+                example: my ssh key
+              fingerprint:
+                type: string
+                example: "fd:d4:98:92:ed:d7:3a:0c:a2:42:ff:55:57:15:88:fa"
+          relationships:
+            type: object
+            required:
+              - user
+            properties:
+              user:
+                type: object
+                required:
+                  - data
+                  - links
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - type
+                    properties:
+                      id:
+                        type: string
+                        example: 5b4f337bff4304610483ba67
+                      type:
+                        type: string
+                        enum:
+                          - user
+                  links:
+                    type: object
+                    required:
+                      - self
+                    properties:
+                      self:
+                        type: string
+                        example: /v2/users/5b4f337bff4304610483ba67
+    meta:
+      type: object
+      example: '{}'
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/sshkeys

@@ -1,0 +1,7 @@
+datasample_id:
+  in: path
+  name: datasample_id
+  description: Data-sample identifier
+  required: true
+  schema:
+    type: string

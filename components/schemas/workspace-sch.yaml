@@ -1,0 +1,556 @@
+workspaceIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+        - relationships
+      properties:
+        type:
+          type: string
+          description: A value must be ``workspace``
+          enum:
+            - workspace
+        attributes:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+              description: Name of the Workspace.
+              example: My workspace
+            flow_stats_enabled_default:
+              type: boolean
+              description: Property, which controls the disabling/enabling stats for flows in a workspace.
+              default: true
+        relationships:
+          type: object
+          required:
+            - contract
+          properties:
+            contract:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      description: 	An Id of the contract
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      description: A value must be “contract”
+                      enum:
+                        - contract
+workspacePatchIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        type:
+          type: string
+          description: A value must be "workspace"
+          enum:
+            - workspace
+        attributes:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+              description: Name of the Workspace.
+              example: My workspace
+            flow_stats_enabled_default:
+              type: boolean
+              description: Property, which controls the disabling or enabling stats for flows in a Workspace.
+              example: true
+            type:
+              type: string
+              description: Type of the Workspace.
+              enum:
+                - full
+                - limited
+workspaceOut:
+  type: object
+  required:
+    - data
+    - meta
+    - included
+    - links
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+        - relationships
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - workspace
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/workspaces/5b4f337bff4304610483ba67
+        attributes:
+          type: object
+          required:
+            - name
+            - type
+            - flow_stats_enabled_default
+          properties:
+            name:
+              type: string
+              example: Workspace Name
+            type:
+              type: string
+              enum:
+                - full
+                - limited
+            flow_stats_enabled_default:
+              type: boolean
+              example: true
+        relationships:
+          type: object
+          required:
+            - contract
+            - members
+          properties:
+            contract:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - contract
+                links:
+                  type: object
+                  required:
+                    - self
+                  properties:
+                    self:
+                      type: string
+                      example: /v2/contracts/5b4f337bff4304610483ba67
+            members:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - id
+                      - type
+                    properties:
+                      id:
+                        type: string
+                        example: 5b4f337bff4304610483ba67
+                      type:
+                        type: string
+                        enum:
+                          - member
+                links:
+                  type: object
+                  required:
+                    - self
+                  properties:
+                    self:
+                      type: string
+                      example: /v2/workspaces/5b4f337bff4304610483ba67/members
+    meta:
+      type: object
+      example: '{}'
+    included:
+      type: array
+      items:
+        type: object
+        required:
+          - id
+          - type
+          - links
+          - attributes
+        properties:
+          id:
+            type: string
+            example: 5b4f337bff4304610483ba67
+          type:
+            type: string
+            enum:
+              - member
+          links:
+            type: object
+            required:
+              - self
+            properties:
+              self:
+                type: string
+                example: /v2/members/5b4f337bff4304610483ba67
+          attributes:
+            type: object
+            required:
+              - first_name
+              - last_name
+              - roles
+              - email
+            properties:
+              first_name:
+                type: string
+                example: John
+              last_name:
+                type: string
+                example: Smith
+              roles:
+                type: array
+                items:
+                  type: string
+                  example: integrator
+              email:
+                type: string
+                example: test@example.com
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/workspaces/5b4f337bff4304610483ba67
+
+workspacesOutAll:
+  type: object
+  required:
+    - data
+    - meta
+    - links
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        required:
+          - id
+          - type
+          - links
+          - attributes
+          - relationships
+        properties:
+          id:
+            type: string
+            example: 5b4f337bff4304610483ba67
+          type:
+            type: string
+            enum:
+              - workspace
+          links:
+            type: object
+            required:
+              - self
+            properties:
+              self:
+                type: string
+                example: /v2/workspaces/5b4f337bff4304610483ba67
+          attributes:
+            type: object
+            required:
+              - name
+              - type
+              - flow_stats_enabled_default
+            properties:
+              name:
+                type: string
+                example: Workspace Name
+              type:
+                type: string
+                enum:
+                  - full
+                  - limited
+              flow_stats_enabled_default:
+                type: boolean
+                example: true
+          relationships:
+            type: object
+            required:
+              - contract
+              - members
+            properties:
+              contract:
+                type: object
+                required:
+                  - data
+                  - links
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - type
+                    properties:
+                      id:
+                        type: string
+                        example: 5b4f337bff4304610483ba67
+                      type:
+                        type: string
+                        enum:
+                          - contract
+                  links:
+                    type: object
+                    required:
+                      - self
+                    properties:
+                      self:
+                        type: string
+                        example: /v2/contracts/5b4f337bff4304610483ba67
+              members:
+                type: object
+                required:
+                  - data
+                  - links
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - type
+                      properties:
+                        id:
+                          type: string
+                          example: 5b4f337bff4304610483ba67
+                        type:
+                          type: string
+                          enum:
+                            - member
+                  links:
+                    type: object
+                    required:
+                      - self
+                    properties:
+                      self:
+                        type: string
+                        example: /v2/workspaces/5b4f337bff4304610483ba67/members
+    meta:
+      type: object
+      required:
+        - total
+        - page
+        - per_page
+        - total_pages
+      properties:
+        total:
+          type: integer
+          format: int64
+          example: 6
+        page:
+          type: integer
+          format: int64
+          example: 1
+        per_page:
+          type: integer
+          format: int64
+          example: 50
+        total_pages:
+          type: integer
+          format: int64
+          example: 1
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/workspaces
+membersListOut:
+  type: object
+  required:
+    - data
+    - meta
+    - links
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        required:
+          - id
+          - type
+          - links
+          - attributes
+        properties:
+          id:
+            type: string
+            example: 5b4f337bff4304610483ba67
+          type:
+            type: string
+            enum:
+              - member
+          links:
+            type: object
+            required:
+              - self
+            properties:
+              self:
+                type: string
+                example: /v2/members/5b4f337bff4304610483ba67
+          attributes:
+            type: object
+            required:
+              - first_name
+              - last_name
+              - roles
+              - email
+            properties:
+              first_name:
+                type: string
+                example: John
+              last_name:
+                type: string
+                example: Smith
+              roles:
+                type: array
+                items:
+                  type: string
+                  example: integrator
+              email:
+                type: string
+                example: test@example.com
+    meta:
+      type: object
+      example: '{}'
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/workspaces/5b4f337bff4304610483ba67/members
+memberIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          type: string
+          description: ID of an already registered user, who will be added as a member of the Workspace
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          description: Allowed value “member”.
+          enum:
+            - member
+        attributes:
+          type: object
+          required:
+            - roles
+          properties:
+            roles:
+              type: array
+              items:
+                type: string
+                example: integrator
+memberOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - member
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/members/5b4f337bff4304610483ba67
+        attributes:
+          type: object
+          required:
+            - first_name
+            - last_name
+            - roles
+            - email
+          properties:
+            first_name:
+              type: string
+              example: John
+            last_name:
+              type: string
+              example: Smith
+            roles:
+              type: array
+              items:
+                type: string
+                example: owner
+            email:
+              type: string
+              example: test@example.com
+    meta:
+      type: object
+      example: '{}'

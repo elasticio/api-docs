@@ -1,0 +1,179 @@
+303:
+  type: object
+  description: The execution is finished and the result is ready. Resource to get the result is found in the Location header.
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      example: '{}'
+    meta:
+      type: object
+      example: '{}'
+400:
+  type: object
+  required:
+    - errors
+  properties:
+    errors:
+      type: array
+      items:
+        type: object
+        required:
+          - status
+          - title
+          - detail
+        properties:
+          status:
+            type: integer
+            example: 400
+          title:
+            type: string
+            example: Bad argument error
+          detail:
+            type: string
+            example: The request cannot be fulfilled due to bad syntax.
+401:
+  type: object
+  required:
+    - errors
+  properties:
+    errors:
+      type: array
+      items:
+        type: object
+        required:
+          - status
+          - title
+          - detail
+        properties:
+          status:
+            type: integer
+            example: 401
+          title:
+            type: string
+            example: Error
+          detail:
+            type: string
+            example: No authorization header was provided.
+403:
+  type: object
+  required:
+    - errors
+  properties:
+    errors:
+      type: array
+      items:
+        type: object
+        required:
+          - detail
+          - status
+          - code
+          - title
+          - meta
+        properties:
+          status:
+            type: integer
+            example: 403
+          title:
+            type: string
+            example: Unauthorized
+          detail:
+            type: string
+            example: You need a permission to access this resource.
+          code:
+            type: integer
+            example: 403
+          meta:
+            type: object
+            example: '{}'
+404:
+  type: object
+  required:
+    - errors
+  properties:
+    errors:
+      type: array
+      items:
+        type: object
+        required:
+          - detail
+          - status
+          - code
+          - title
+          - meta
+          - source
+        properties:
+          status:
+            type: integer
+            example: 404
+          title:
+            type: string
+            example: Resource not found
+          detail:
+            type: string
+            example: The resource is not found.
+          code:
+            type: integer
+            example: 404
+          meta:
+            type: object
+            example: '{}'
+          source:
+            type: object
+            required:
+              - parameter
+            properties:
+              parameter:
+                type: object
+                required:
+                  - id
+                properties:
+                  id:
+                    type: string
+                    example: resource_id
+409:
+  type: object
+  required:
+    - errors
+  properties:
+    errors:
+      type: array
+      items:
+        type: object
+        required:
+          - detail
+          - status
+          - code
+          - title
+          - meta
+        properties:
+          status:
+            type: integer
+            example: 409
+          title:
+            type: string
+            example: Conflict
+          detail:
+            type: string
+            example: Indicates that the request could not be processed because of conflict in the request
+          code:
+            type: integer
+            example: 409
+          meta:
+            type: object
+            example: '{}'
+          source:
+            type: object
+            required:
+              - parameter
+            properties:
+              parameter:
+                type: object
+                required:
+                  - id
+                properties:
+                  id:
+                    type: string
+                    example: 5b4f337bff4304610483ba67

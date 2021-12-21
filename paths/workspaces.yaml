@@ -1,0 +1,380 @@
+/workspaces/{workspace_id}:
+  get:
+    tags:
+      - workspaces
+    summary: Returns the workspace based on the specified workspaceId.
+    description: User has to be a member of the Workspace or have permision `workspaces.workspace.listAll`
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/workspace-params.yaml#/include'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/workspace-sch.yaml#/workspaceOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - workspaces
+    summary: Update the workspace with the specified id.
+    description: You have to be a member of the Contract’s scope and need `workspaces.workspace.edit` permission to access this resource. To update the type of Workspace you need `workspaces.workspace.edit_type` permission.
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/workspace-sch.yaml#/workspacePatchIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/workspace-sch.yaml#/workspaceOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - workspaces
+    summary: Remove the workspace with the specified id.
+    description: |
+          This request can be performed by either the Contract’s user (the current Workspace assigned to) with the `contracts.workspace.delete` permission or just the Workspace’s user with the `workspaces.workspace.edit` permission.
+          ### This endpoint will delete the Workspace along with the following items that were inside the Workspace:
+          * Credentials
+          * Agents
+          * DataSamples
+          * InviteTokens
+          * Lookups
+          * Flow’s DynamicMetadata
+          * Flow’s DynamicSelectModel
+          * Flow’s ExecStat
+          * Flow’s ExecutionResult
+          * Flow’s MarathonEvent
+          * Flow’s RequestBin
+          * Flow’s TaskHooksData
+          * Flow’s TaskStats
+          * Flow’s TaskStatError
+          * Flow’s TaskVersion
+          ### Note, that the deletion process is asynchronous. Actual deletion of all data will be performed after API response, because it will take some time to terminate all containers of Workspace’s flows.
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/workspaces:
+  get:
+    tags:
+      - workspaces
+    summary: Lists all User's Workspaces
+    description: User has to be a member of the Workspaces
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/contract_id'
+      - $ref: '../components/parameters/system-params.yaml#/page-size'
+      - $ref: '../components/parameters/system-params.yaml#/page-number'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/workspace-sch.yaml#/workspacesOutAll'
+      '401':
+        description: Unauthorized
+        content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/errors-sch.yaml#/401'
+  post:
+    tags:
+      - workspaces
+    summary: Creates a workspace
+    description: You have to be a member of the Contract’s scope and need `contracts.workspace.create` permission to access this resource
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/workspace-sch.yaml#/workspaceIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/workspace-sch.yaml#/workspaceOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+'/workspaces/{workspace_id}/members':
+  get:
+    tags:
+      - workspaces
+    summary: Lists all members of specified workspace.
+    description: User has to be a member of the Workspace
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/workspace-sch.yaml#/membersListOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  post:
+    tags:
+      - workspaces
+    summary: Adds a user to a specified workspace as a member.
+    description: You can add user only from the contract, which current workspace belongs to. A notification email will be sent. The user becomes a member immediately. You need `workspaces.workspace.edit` or `tenant.workspace.edit_membership` permissions to access this resource
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/workspace-sch.yaml#/memberIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/workspace-sch.yaml#/memberOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/409'
+'/workspaces/{workspace_id}/members/{user_id}':
+  patch:
+    tags:
+      - workspaces
+    summary: Update the list of roles of specified member.
+    description: Only `roles` attribute can be updated. You need `workspaces.workspace.edit` or `tenant.workspace.edit_membership` permissions to access this resource
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/user-params.yaml#/user_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/workspace-sch.yaml#/memberIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/workspace-sch.yaml#/memberOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - workspaces
+    summary: Removes specified member from workspace
+    description: |
+          You need `workspaces.workspace.edit` or `tenant.workspace.edit_membership` permissions to access resource
+          ### Ownership of those user’s associated data will be transferred to any Owner of the Workspace:
+          * Flows
+          * Credentials
+          * DataSamples
+          ### You can't delete the last Owner of Workspace
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/user-params.yaml#/user_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+'/workspaces/{workspace_id}/members/support':
+  patch:
+    tags:
+      - workspaces
+    summary: Adds support User into Workspace.
+    description: |
+          The attribute `support_user_id` should be defined for Contract or Tenant. If support user is not a member of corresponding Contract he/she will be added to this contract with owner role as well. You need `workspace.workspace.edit_membership_support` permission to access resource.
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/workspace-sch.yaml#/memberOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - workspaces
+    summary: Remove support User from Workspace.
+    description: |
+         If support user is not a member of any other workspace of corresponding contract he/she will be removed from this contract as well. You need `workspace.workspace.edit_membership_support` permission to access resource.
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

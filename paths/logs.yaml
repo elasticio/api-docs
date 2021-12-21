@@ -1,0 +1,34 @@
+/logs:
+  get:
+    tags:
+       - logs
+    summary: Lists all logs with the specified Workspace Id
+    description: You need `workspaces.logs.read_all` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/system-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/system-params.yaml#/flow_ids'
+      - $ref: '../components/parameters/system-params.yaml#/from'
+      - $ref: '../components/parameters/system-params.yaml#/to'
+      - $ref: '../components/parameters/log-params.yaml#/search'
+      - $ref: '../components/parameters/system-params.yaml#/offset'
+      - $ref: '../components/parameters/system-params.yaml#/limit'
+      - $ref: '../components/parameters/log-params.yaml#/levels'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/log-sch.yaml#/logsOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'

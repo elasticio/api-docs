@@ -1,0 +1,178 @@
+/workspaces/{workspace_id}/topics:
+  get:
+    tags:
+       - topics
+    summary: Lists all topics of the specified workspace
+    description: You need `workspaces.topic.get` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/topic-sch.yaml#/topicsListOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  post:
+    tags:
+      - topics
+    summary: Creates a topic
+    description: You need `workspaces.topic.create` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/topic-sch.yaml#/topicIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/topic-sch.yaml#/topicOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/workspaces/{workspace_id}/topics/{topic_id}:
+  get:
+    tags:
+      - topics
+    summary: Returns the specified topic from the defined workspace.
+    description: You need `workspaces.topic.get` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/topic-params.yaml#/topic_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/topic-sch.yaml#/topicOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - topics
+    summary: Update the specified topic
+    description: You need `workspaces.topic.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/topic-params.yaml#/topic_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/topic-sch.yaml#/topicEditIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/topic-sch.yaml#/topicOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - topics
+    summary: Remove the specified topic.
+    description: |
+      You need `workspaces.topic.delete` permission to access this resource.
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/topic-params.yaml#/topic_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

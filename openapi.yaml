@@ -1,0 +1,265 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: elastic.io REST API documentation v2
+  termsOfService: 'https://www.elastic.io/tou/'
+  contact:
+    email: support@elastic.io
+  x-logo:
+    url: 'https:////cdn.elastic.io/logo-mini.png'
+  description: |
+    # Introduction
+    Welcome to the [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API documentation v2. It adheres to the [JSON API](http://jsonapi.org) specifications:
+    * Returns JSON-encoded responses (Content-Type: `application/json`),
+    * Uses standard HTTP [response codes](#errors)
+    * Uses authentication - **You can not use this API without registering at {{ product_name }} platform to get the [authentication](#authentication) credentials.**
+    # Authentication
+    We use a standard [HTTP Basic Authtentication](http://en.wikipedia.org/wiki/Basic_access_authentication) mechanism to authenticate each API call with the {{ product_name }}.
+    *   `{EMAIL}` - **email address** you use to login to the platform.
+    *   `{APIKEY}` - a unique **API Key** generated for you found in the profile settings page.
+    # Errors
+    We adhere to REST API HTTP status codes. Read more about them here https://restfulapi.net/http-status-codes/
+servers:
+# can use sctatic
+  - url: https://api-sparrow.elastic.io/v2
+    description: API base URL
+# or define as variable
+  - url: '{api_base_url}'
+    variables:
+      api_base_url:
+        default: https://api-sparrow.elastic.io/v2 # iPaaS server
+security:
+  - basicAuth: []
+tags:
+  - name: vpn agents
+  - name: auth clients
+    description: |
+      To use an OAuth2 based Component in the platform it is required to register a client at the authorization server. Upon registration the authorization server issues the registered client an identifier (client ID) and a secret. These client credentials are used to create a client using the following API. Auth clients can be created on any level: tenant, contract or workspace which incapsulate each other (in order), i.e client created on tenant level is available to use for creating secrets in any workspace of the tenant.
+  - name: auth secrets
+  - name: contracts
+    description: |
+      A Contract is a fundamental entity (scope) that reflects an agreement between a customer and the platform’s provider. The Contract scope can have an unlimited number of members, workspaces, and development teams. It also serves as a singular entity for the billing department against the consumed resources by all the integration flows. Every member of the Contract’s scope has a specific access level or role within the current Contract. The same user can have different roles in different Contracts within the Platform. Every Contract must have at least one Owner. The Owner’s Role has a predefined/default permissions’ set. It means this role cannot be deleted and the permissions’ set cannot be changed.
+  - name: components
+  - name: credentials
+  - name: data samples
+  - name: topics
+    description: |
+      The Topic is a JSON schema to be used to communicate publisher and many subscribers.
+  - name: quota usages
+  - name: scheduled executions
+  - name: snapshots
+    description: |
+      This group of API endpoints allows you to work with snapshots feature of the Platform. The feature enables taking snapshots for all steps in a Flow. Also, it allows you to get/create/edit/remove snapshots individually for steps.
+      **Data model** every step in Flow can have associated persistent data. Step identifier is used as identifier of snapshot. Data may be anything serializable in JSON, except undefined.
+      **Notice** snapshot is flow's runtime data. So it's forbidden to edit snapshots while flow is running.
+  - name: sshkeys
+  - name: flows
+  - name: flow versions
+  - name: flow drafts
+  - name: logs
+  - name: recipes
+  - name: resources
+  - name: stats
+  - name: teams
+  - name: permissions
+  - name: tenants
+    description: |
+      Tenant is a specific system's environment virtual installation (a system's clone, basically) that allows customizing all the necessary parameters by sending a particular request to the API.
+  - name: users
+  - name: workspaces
+    description:
+      A Workspace is a space where every user can work on an integration project independently or in collaboration with other users. Each Workspace can have more than one member. All members of a Workspace have certain roles that define user permissions. To get all available roles, please execute the “Get the Contract’s roles” endpoint. There is one predefined role - Workspace Owner. This role gives the holder all the rights within the Workspace unit, it cannot be deleted and the permissions set cannot be changed. Each role is limited to the given Workspace only. The same user in the platform can have different roles in different Workspaces.
+paths:
+  '/agents/vpn':
+    $ref: paths/vpn-agents.yaml#/~1agents~1vpn
+  '/agents/vpn/{vpn-agent_id}':
+    $ref: paths/vpn-agents.yaml#/~1agents~1vpn~1{vpn-agent_id}
+  '/agents/vpn/{vpn-agent_id}/config':
+    $ref: paths/vpn-agents.yaml#/~1agents~1vpn~1{vpn-agent_id}~1config
+  '/auth-clients':
+    $ref: paths/auth-clients.yaml#/~1auth-clients
+  '/auth-clients/{auth-client_id}':
+    $ref: paths/auth-clients.yaml#/~1auth-clients~1{auth-client_id}
+  '/workspaces/{workspace_id}/secrets':
+    $ref: paths/secrets.yaml#/~1workspaces~1{workspace_id}~1secrets
+  '/workspaces/{workspace_id}/secrets/{secret_id}':
+    $ref: paths/secrets.yaml#/~1workspaces~1{workspace_id}~1secrets~1{secret_id}
+  '/workspaces/{workspace_id}/secrets/{secret_id}/refresh':
+    $ref: paths/secrets.yaml#/~1workspaces~1{workspace_id}~1secrets~1{secret_id}~1refresh
+  '/contracts':
+    $ref: paths/contracts.yaml#/~1contracts
+  '/contracts/{contract_id}':
+    $ref: paths/contracts.yaml#/~1contracts~1{contract_id}
+  '/contracts/{contract_id}/members':
+    $ref: paths/contracts.yaml#/~1contracts~1{contract_id}~1members
+  '/contracts/{contract_id}/members/{user_id}':
+    $ref: paths/contracts.yaml#/~1contracts~1{contract_id}~1members~1{user_id}
+  '/contracts/{contract_id}/invites':
+    $ref: paths/contracts.yaml#/~1contracts~1{contract_id}~1invites
+  '/contracts/{contract_id}/invites/{invite_id}':
+    $ref: paths/contracts.yaml#/~1contracts~1{contract_id}~1invites~1{invite_id}
+  '/contracts/{contract_id}/roles':
+    $ref: paths/contracts.yaml#/~1contracts~1{contract_id}~1roles
+  '/contracts/{contract_id}/suspend':
+    $ref: paths/contracts.yaml#/~1contracts~1{contract_id}~1suspend
+  '/contracts/{contract_id}/unsuspend':
+    $ref: paths/contracts.yaml#/~1contracts~1{contract_id}~1unsuspend
+  '/components':
+    $ref: paths/components.yaml#/~1components
+  '/components/all':
+    $ref: paths/components.yaml#/~1components~1all
+  '/components/{component_id}':
+    $ref: paths/components.yaml#/~1components~1{component_id}
+  '/components/{component_id}/env':
+    $ref: paths/components.yaml#/~1components~1{component_id}~1env
+  '/components/{component_id}/versions':
+    $ref: paths/components.yaml#/~1components~1{component_id}~1versions
+  '/components/{component_id}/versions/{version_id}':
+    $ref: paths/components.yaml#/~1components~1{component_id}~1versions~1{version_id}
+  '/components/{component_id}/versions/{git_revision}/descriptor':
+    $ref: paths/components.yaml#/~1components~1{component_id}~1versions~1{git_revision}~1descriptor
+  '/workspace/{workspace_id}/components':
+    $ref: paths/components.yaml#/~1workspace~1{workspace_id}~1components
+  '/workspace/{workspace_id}/components/{component_id}':
+    $ref: paths/components.yaml#/~1workspace~1{workspace_id}~1components~1{component_id}
+  '/credentials':
+    $ref: paths/credentials.yaml#/~1credentials
+  '/credentials/{credential_id}':
+    $ref: paths/credentials.yaml#/~1credentials~1{credential_id}
+  '/data-samples':
+    $ref: paths/data-samples.yaml#/~1data-samples
+  '/data-samples/{datasample_id}':
+    $ref: paths/data-samples.yaml#/~1data-samples~1{datasample_id}
+  '/workspaces/{workspace_id}/topics':
+    $ref: paths/topics.yaml#/~1workspaces~1{workspace_id}~1topics
+  '/workspaces/{workspace_id}/topics/{topic_id}':
+    $ref: paths/topics.yaml#/~1workspaces~1{workspace_id}~1topics~1{topic_id}
+  '/quota-usages/contracts/{contract_id}':
+    $ref: paths/quota-usages.yaml#/~1quota-usages~1contracts~1{contract_id}
+  '/quota-usages/contracts/{contract_id}/history':
+    $ref: paths/quota-usages.yaml#/~1quota-usages~1contracts~1{contract_id}~1history
+  '/quota-usages/workspaces/{workspace_id}':
+    $ref: paths/quota-usages.yaml#/~1quota-usages~1workspaces~1{workspace_id}
+  '/quota-usages/workspaces/{workspace_id}/history':
+    $ref: paths/quota-usages.yaml#/~1quota-usages~1workspaces~1{workspace_id}~1history
+  '/quota-usages/workspaces/{workspace_id}/flows':
+    $ref: paths/quota-usages.yaml#/~1quota-usages~1workspaces~1{workspace_id}~1flows
+  '/quota-usages/flows/{flow_id}/history':
+    $ref: paths/quota-usages.yaml#/~1quota-usages~1flows~1{flow_id}~1history
+  '/components/{component_id}/versions/{git_revision}/verify-credential':
+    $ref: paths/executions.yaml#/~1components~1{component_id}~1versions~1{git_revision}~1verify-credential
+  '/components/{component_id}/versions/{git_revision}/dynamic-metadata':
+    $ref: paths/executions.yaml#/~1components~1{component_id}~1versions~1{git_revision}~1dynamic-metadata
+  '/components/{component_id}/versions/{git_revision}/select-model':
+    $ref: paths/executions.yaml#/~1components~1{component_id}~1versions~1{git_revision}~1select-model
+  '/exec/poll/{execution_id}':
+    $ref: paths/executions.yaml#/~1exec~1poll~1{execution_id}
+  '/exec/result/{execution_id}':
+    $ref: paths/executions.yaml#/~1exec~1result~1{execution_id}
+  '/flows/{flow_id}/snapshots':
+    $ref: paths/snapshots.yaml#/~1flows~1{flow_id}~1snapshots
+  '/flows/{flow_id}/snapshots/{step_id}':
+    $ref: paths/snapshots.yaml#/~1flows~1{flow_id}~1snapshots~1{step_id}
+  '/flows/{flow_id}/versions':
+    $ref: paths/flow-versions.yaml#/~1flows~1{flow_id}~1versions
+  '/flows/{flow_id}/versions/{version_hash}':
+    $ref: paths/flow-versions.yaml#/~1flows~1{flow_id}~1versions~1{version_hash}
+  '/flows/{flow_id}/draft':
+    $ref: paths/flow-drafts.yaml#/~1flows~1{flow_id}~1draft
+  '/sshkeys':
+    $ref: paths/sshkeys.yaml#/~1sshkeys
+  '/sshkeys/{key_id}':
+    $ref: paths/sshkeys.yaml#/~1sshkeys~1{key_id}
+  '/flows':
+    $ref: paths/flows.yaml#/~1flows
+  '/flows/start-debug':
+    $ref: paths/flows.yaml#/~1flows~1start-debug
+  '/flows/{flow_id}':
+    $ref: paths/flows.yaml#/~1flows~1{flow_id}
+  '/flows/{flow_id}/start':
+    $ref: paths/flows.yaml#/~1flows~1{flow_id}~1start
+  '/flows/{flow_id}/run-now':
+    $ref: paths/flows.yaml#/~1flows~1{flow_id}~1run-now
+  '/flows/{flow_id}/suspend':
+    $ref: paths/flows.yaml#/~1flows~1{flow_id}~1suspend
+  '/flows/{flow_id}/stop':
+    $ref: paths/flows.yaml#/~1flows~1{flow_id}~1stop
+  '/flows/{flow_id}/copy':
+    $ref: paths/flows.yaml#/~1flows~1{flow_id}~1copy
+  '/logs':
+    $ref: paths/logs.yaml#/~1logs
+  '/recipes':
+    $ref: paths/recipes.yaml#/~1recipes
+  '/recipes/{recipe_id}':
+    $ref: paths/recipes.yaml#/~1recipes~1{recipe_id}
+  '/recipes/{recipe_id}/activate':
+    $ref: paths/recipes.yaml#/~1recipes~1{recipe_id}~1activate
+  '/recipes/{recipe_id}/visibility':
+    $ref: paths/recipes.yaml#/~1recipes~1{recipe_id}~1visibility
+  '/flows/{flow_id}/export-to-recipe':
+    $ref: paths/recipes.yaml#/~1flows~1{flow_id}~1export-to-recipe
+  '/resources/storage/signed-url':
+    $ref: paths/resources.yaml#/~1resources~1storage~1signed-url
+  '/stats/queues/{flow_id}':
+    $ref: paths/stats.yaml#/~1stats~1queues~1{flow_id}
+  '/stats/workspaces':
+    $ref: paths/stats.yaml#/~1stats~1workspaces
+  '/teams':
+    $ref: paths/teams.yaml#/~1teams
+  '/teams/{team_id}':
+    $ref: paths/teams.yaml#/~1teams~1{team_id}
+  '/teams/{team_id}/relationships/members':
+    $ref: paths/teams.yaml#/~1teams~1{team_id}~1relationships~1members
+  '/permissions':
+    $ref: paths/tenants.yaml#/~1permissions
+  '/tenants':
+    $ref: paths/tenants.yaml#/~1tenants
+  '/tenants/{tenant_id}':
+    $ref: paths/tenants.yaml#/~1tenants~1{tenant_id}
+  '/tenants/{tenant_id}/roles':
+    $ref: paths/tenants.yaml#/~1tenants~1{tenant_id}~1roles
+  '/tenants/{tenant_id}/certificates':
+    $ref: paths/tenants.yaml#/~1tenants~1{tenant_id}~1certificates
+  '/tenants/{tenant_id}/certificates/{certificate_id}':
+    $ref: paths/tenants.yaml#/~1tenants~1{tenant_id}~1certificates~1{certificate_id}
+  '/tenants/{tenant_id}/members/{user_id}':
+    $ref: paths/tenants.yaml#/~1tenants~1{tenant_id}~1members~1{user_id}
+  '/tenants/{tenant_id}/oauth-clients':
+    $ref: paths/tenants.yaml#/~1tenants~1{tenant_id}~1oauth-clients
+  '/tenants/{tenant_id}/oauth-clients/{oauth-client_id}':
+    $ref: paths/tenants.yaml#/~1tenants~1{tenant_id}~1oauth-clients~1{oauth-client_id}
+  '/tenants/{tenant_id}/openid/providers':
+    $ref: paths/tenants.yaml#/~1tenants~1{tenant_id}~1openid~1providers
+  '/tenants/{tenant_id}/openid/providers/{open_id_provider_id}':
+    $ref: paths/tenants.yaml#/~1tenants~1{tenant_id}~1openid~1providers~1{open_id_provider_id}
+  '/tenants/{tenant_id}/saml/providers':
+    $ref: paths/tenants.yaml#/~1tenants~1{tenant_id}~1saml~1providers
+  '/tenants/{tenant_id}/saml/providers/{saml_provider_id}':
+    $ref: paths/tenants.yaml#/~1tenants~1{tenant_id}~1saml~1providers~1{saml_provider_id}
+  '/users':
+    $ref: paths/users.yaml#/~1users
+  '/users/me':
+    $ref: paths/users.yaml#/~1users~1me
+  '/users/{user_id}':
+    $ref: paths/users.yaml#/~1users~1{user_id}
+  '/users/{user_id}/disable-totp':
+    $ref: paths/users.yaml#/~1users~1{user_id}~1disable-totp
+  '/users/{user_id}/openid/identities':
+    $ref: paths/users.yaml#/~1users~1{user_id}~1openid~1identities
+  '/users/{user_id}/openid/identities/{openid-identity_id}':
+    $ref: paths/users.yaml#/~1users~1{user_id}~1openid~1identities~1{openid-identity_id}
+  '/workspaces':
+    $ref: paths/workspaces.yaml#/~1workspaces
+  '/workspaces/{workspace_id}':
+    $ref: paths/workspaces.yaml#/~1workspaces~1{workspace_id}
+  '/workspaces/{workspace_id}/members':
+    $ref: paths/workspaces.yaml#/~1workspaces~1{workspace_id}~1members
+  '/workspaces/{workspace_id}/members/{user_id}':
+    $ref: paths/workspaces.yaml#/~1workspaces~1{workspace_id}~1members~1{user_id}
+  '/workspaces/{workspace_id}/members/support':
+    $ref: paths/workspaces.yaml#/~1workspaces~1{workspace_id}~1members~1support
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

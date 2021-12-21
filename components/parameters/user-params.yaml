@@ -1,0 +1,32 @@
+iss:
+  in: query
+  name: iss
+  description: Users must have OpenId identity equal to this value. Can't be used with "email" parameter
+  schema:
+    type: string
+sub:
+  in: query
+  name: sub
+  description: Users must have OpenId subject equal to this value. Can't be used with "email" parameter
+  schema:
+    type: string
+email:
+  in: query
+  name: email
+  description: Users must have email equal to this value
+  schema:
+    type: string
+user_id:
+  in: path
+  name: user_id
+  description: User identifier
+  required: true
+  schema:
+    type: string
+openid-identity_id:
+  in: path
+  name: openid-identity_id
+  description: User's OpenID Identity ID
+  required: true
+  schema:
+    type: string

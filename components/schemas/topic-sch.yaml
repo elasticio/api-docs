@@ -1,0 +1,161 @@
+topicIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      $ref: '#/topicData'
+topicsListOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        $ref: '#/topicData'
+    meta:
+      type: object
+      example: '{}'
+topicOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      $ref: '#/topicData'
+    meta:
+      type: object
+      example: '{}'
+topicEditIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+      - id
+      - type
+      - attributes
+      properties:
+        id:
+          type: string
+          description: Topic identifier. It has to match the identifier specified in the path.
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          description: Allowed value `topic`.
+          enum:
+            - topic
+        attributes:
+          type: object
+          $ref: '#/topicData/properties/attributes'
+topicData:
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      readOnly: true
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      description: |
+        Allowed value: `topic`
+      enum:
+        - topic
+    links:
+      type: object
+      readOnly: true
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/topics/5b4f337bff4304610483ba67
+    attributes:
+      type: object
+      required:
+        - name
+        - schema
+      properties:
+        name:
+          type: string
+          description: Name of the topic
+          example: Topic name
+        schema:
+          type: object
+          description: JSON schema describing the objects to be exchanged
+          example: |
+            {"$id":"https://example.com/person.schema.json", "title":"Person", "type":"object", "properties":{"firstName":{"type":"string", "description":"The person first name."}}}
+    relationships:
+      type: object
+      readOnly: true
+      required:
+        - workspace
+        - user
+      properties:
+        workspace:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - workspace
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/workspaces/5b4f337bff4304610483ba67
+        user:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - user
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/users/5b4f337bff4304610483ba67

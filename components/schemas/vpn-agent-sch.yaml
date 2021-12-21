@@ -1,0 +1,304 @@
+agentIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      $ref: '#/agentData'
+agentsListOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        $ref: '#/agentData'
+    meta:
+      type: object
+      example: '{}'
+agentOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      $ref: '#/agentData'
+    meta:
+      type: object
+      example: '{}'
+agentEditIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+      - id
+      - type
+      - attributes
+      - relationships
+      properties:
+        id:
+          type: string
+          description: VPN agent identifier. It has to match the identifier specified in the path.
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - vpn-agent
+        attributes:
+          type: object
+          $ref: '#/agentData/properties/attributes'
+        relationships:
+          type: object
+          $ref: '#/agentData/properties/relationships'
+agentData:
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      readOnly: true
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      enum:
+        - vpn-agent
+    links:
+      type: object
+      readOnly: true
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/agents/vpn/5b4f337bff4304610483ba67
+    attributes:
+      type: object
+      required:
+        - name
+        - status
+        - port_mapping
+        - client_ip
+        - last_seen
+      properties:
+        name:
+          type: string
+          description: VPN Agent name
+          example: My Agent
+        status:
+          type: string
+          readOnly: true
+          example: online
+        port_mapping:
+          type: array
+          items:
+            type: object
+            required:
+              - port
+              - protocol
+              - destination_port
+              - destination_ip
+            properties:
+              port:
+                type: integer
+                readOnly: true
+                example: 1052
+              protocol:
+                type: string
+                description: Traffic transfer protocol
+                enum:
+                  - tcp
+                  - udp
+              destination_port:
+                type: integer
+                description: Destination Port for traffic
+                example: 3306
+              destination_ip:
+                type: string
+                description: Destination IP for traffic
+                example: 133.164.183.134
+        client_ip:
+          type: string
+          readOnly: true
+          example: null
+        last_seen:
+          type: string
+          readOnly: true
+          example: null
+    relationships:
+      type: object
+      required:
+        - workspace
+      properties:
+        workspace:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - workspace
+            links:
+              type: object
+              readOnly: true
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/workspaces/5b4f337bff4304610483ba67
+configOut:
+  type: string
+  example: |
+    client
+    dev tun
+    proto tcp
+    remote agent-sparrow.elastic.io
+    rport 443
+    nobind
+    persist-key
+    persist-tun
+    verb 5
+    mssfix 1420
+    tun-mtu 1460
+    pull
+    compress lz4-v2
+    cipher AES-256-GCM
+    auth-nocache
+    resolv-retry 5
+    script-security 2
+    # TLS Authentication
+    remote-cert-tls server
+    tls-client
+    <key>
+    -----BEGIN PRIVATE KEY-----
+      MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC5If0j3ocQrWPJ
+      tOXjITNOcu9tQNp8kZBtkeLEgaXFbZH7DtSZiQcIcnbmFTFGRY9clkyRZwXU3RBR
+      PEWDszeM7CKGwwEDAa5nNTTINt3o6X2Kt1nSBMcByJUQGzCHpkwTyZmv7VZcJ9k7
+      fKbLB/XcIs7WbWdKhp2UtQWF5pSPcomND8YTpxrD0K/nl3jARwhvj4CykSCOQHuE
+      9J9RfrvW0o0lp2+LSu/Qqbdv+Jo4FAZ29SQNT/qXldSwNZ2dX5VUtHYXrbhAH2C6
+      l4mtwP7CBy/RDotRe256wl1ncLiDBvmgyxys4Opg6xA1FO3rYwfM6gJKS0bLJ9n2
+      BfoOqNtHAgMBAAECggEAHXAXJX378h3wESHPsDcWRnImOjQmycoHsjSRX3fSGTuc
+      C9TG34cXdDNnTpyuEiN7cViA4loEZl2ke5Ze41s7CRB/SPh3D7hTuBuQwglfbeq6
+      yLTw9mFGF7WCZmY8aEV8MWVMJ9pQciTv+PKQPxaL9K4gP55z3zjak8vZDfqlQs3J
+      C+IqxrJCFzF8tOG02JR8OXcfB6gVr3zAzmmCcWY/L35qsdxFrD8RhQqDMtRFhUTk
+      QGlFC5pGt5QBjoyXxw5K9p4dmcGKWx0HGPLfmAiKkPDY3RuPeR/BvQAS9Bry1pvU
+      aiETuXN4QGqFk14+NudtSQF8czo5oEoFMXnorCxYAQKBgQDyCyyKJWIURShsexq9
+      E/8APhE7SFbLaNmUfDJuqAGy+IlhhHLyYlmN2sZoWCNWgTFT6kB+dM6o9atzCJH1
+      uGmRiWxp0UwurGHw7PAO4vmN7XdHffPjpKwyS9NMV5WrV/sxr087JKTr0y2l7STA
+      v4+SRxaNCCs1thBAVEjJZ1ZUAQKBgQDDzr+r1MtIWDKYgrWJLun/vnF10KPI+/ko
+      8K0kCZjtT9awczf9HD+t9t6o/taO0sHwQF3xaKrs6paCtOz6BsMECruf5NOq0rec
+      BbbLnaX98upQfBHFwFVqsTxA4xlmmTUGwk43f9pHaygnV4q64zfnZiqU5/PHOZsK
+      LhSwkMuPRwKBgBv57Kj/DyoWoEiBpiKKqCPICMfYYafbM6L1BANESgX8sixiWcLo
+      WT+LNPmkjlkWT7RKVDAJokVnN+zw5aYILbOTtcM5XNvcMundCRY/Z+betrW9ui3q
+      v7iEiSS+zt7iKXehsr+8SY+0dgdCtMfOnHKk4tdkRVJM++3jkBIvbowBAoGAGMJo
+      7DJxLgmxBCXrDJi5EBSlxi8GtuBdxjaAvkDUbJWe4RsApmnPB5Fi4F2xBchSq62H
+      84G3s1OKiqaUHJ2ERVuSFArcVQpmGz2BuseJeM4hoOG/YZELe/1DUDUnPhj7Yopp
+      k408LbG4FxlzumQG6qS5l7Co27VGDIh9J0J36vsCgYAnisFIqqB5oYmpzTLXVWxi
+      V4q9FuT008UE9ekVUBqbl/EWWJbBXceegLVvl10MOTR1WWz+gf1g5RPp5T11WWo6
+      Q/5DEqLd5krt1Ed1gJXi4mbxvK//lMWc+jlLu1Agg3YdUfSo5POxyNerP84SEgxw
+      iTEHriLEo/TMi57th/e8Vw==
+      -----END PRIVATE KEY-----
+        </key>
+        <ca>
+        -----BEGIN CERTIFICATE-----
+        MIIDyzCCArOgAwIBAgIUbVRVVIWBjwtuhX5PmRQ5aI12peowDQYJKoZIhvcNAQEL
+        BQAwdTELMAkGA1UEBhMCREUxEzARBgNVBAoMCmVsYXN0aWMuaW8xJDAiBgNVBAMM
+        G2NhLmFnZW50LXNwYXJyb3cuZWxhc3RpYy5pbzEcMBoGA1UECAwTTm9yZHJoZWlu
+        LVdlc3RmYWxlbjENMAsGA1UEBwwEQm9ubjAeFw0yMDAxMjkxMjQyNTVaFw0zMDAx
+        MjYxMjQyNTVaMHUxCzAJBgNVBAYTAkRFMRMwEQYDVQQKDAplbGFzdGljLmlvMSQw
+        IgYDVQQDDBtjYS5hZ2VudC1zcGFycm93LmVsYXN0aWMuaW8xHDAaBgNVBAgME05v
+        cmRyaGVpbi1XZXN0ZmFsZW4xDTALBgNVBAcMBEJvbm4wggEiMA0GCSqGSIb3DQEB
+        AQUAA4IBDwAwggEKAoIBAQDJ4E2zIG5qXqm6AcmEpsMhhsSxAoBLROPGQdMYIf6v
+        nXvL+EY1rwJcbjIzut3+2p4N0Dyp58k3i3CD+vZBQn2k785dwcPW+6RjIlFW7mOP
+        9oZqrQNSUCl3uuDcsLgtieOWDY04jGVXA4SDnNnLg0lkkDC6hTKky9tGK6uwNPWe
+        J1i7hPgRni0Qc8o07U089nMW+1GHq5nG1KYpWK1ZCdjiOnNeWnbEcungnaLKzGdq
+        aW8Rirs+15bQVHZ5y/6/owmP24mfuv7Jpcbyw4Ky5Loeq48E4jl/V0Wsdb0d1KT1
+        fPavYZoa0NQWSK6QcJSCeG90vLja4N2w/Okx0WDI8Kf7AgMBAAGjUzBRMB0GA1Ud
+        DgQWBBR22VGIRITPzvnUp9YTW7cZNfMq5jAfBgNVHSMEGDAWgBR22VGIRITPzvnU
+        p9YTW7cZNfMq5jAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQBb
+        HCdVjMeTuqcIBIHmqQsqmtKRhe5IawdWxLHbyZdj6P94A9WhO4x+3Tb03BOJ/np8
+        /DDJgnbNw9aeLa//VC79uzspNZHsNwx/6l8sdvkRJRvUTymDqxTIKh9/yaFxTa0w
+        OAh3rr21zyo6FWlHTV+bDGJzL81gvJvRBWJhnFiLTaIh38YKEG8bBg6/8qxPc9c/
+        GNMhKodPhssvMrYiwjJdQpRT/1SRcouy8rr3c712uFts+1H3nXMzsyz0w5zuJIdV
+        4WoSkf/qnkseUSEAQkAvWcFKGO6XMFEMj3k5RWV1vbW1z3zC3KlnQfK4Og3W9ce7
+        ZkMLpZNfkWxRiiE2RihO
+        -----END CERTIFICATE-----
+
+        </ca>
+        <cert>
+        -----BEGIN CERTIFICATE-----
+        MIIEPDCCAySgAwIBAgIVALchd8xNcBgml6CkIJuHgnwjdbHmMA0GCSqGSIb3DQEB
+        CwUAMHUxCzAJBgNVBAYTAkRFMRMwEQYDVQQKDAplbGFzdGljLmlvMSQwIgYDVQQD
+        DBtjYS5hZ2VudC1zcGFycm93LmVsYXN0aWMuaW8xHDAaBgNVBAgME05vcmRyaGVp
+        bi1XZXN0ZmFsZW4xDTALBgNVBAcMBEJvbm4wHhcNMjExMjE1MTgzNDU4WhcNMjMx
+        MjE1MTgzNDU4WjByMQswCQYDVQQGEwJERTEcMBoGA1UECAwTTm9yZHJoZWluLVdl
+        c3RmYWxlbjETMBEGA1UECgwKZWxhc3RpYy5pbzENMAsGA1UEBwwEQm9ubjEhMB8G
+        A1UEAwwYNjFiYTM1NTIwNzIzNWUwMDEyODIzNTI4MIIBIjANBgkqhkiG9w0BAQEF
+        AAOCAQ8AMIIBCgKCAQEAuSH9I96HEK1jybTl4yEzTnLvbUDafJGQbZHixIGlxW2R
+        +w7UmYkHCHJ25hUxRkWPXJZMkWcF1N0QUTxFg7M3jOwihsMBAwGuZzU0yDbd6Ol9
+        irdZ0gTHAciVEBswh6ZME8mZr+1WXCfZO3ymywf13CLO1m1nSoadlLUFheaUj3KJ
+        jQ/GE6caw9Cv55d4wEcIb4+AspEgjkB7hPSfUX671tKNJadvi0rv0Km3b/iaOBQG
+        dvUkDU/6l5XUsDWdnV+VVLR2F624QB9gupeJrcD+wgcv0Q6LUXtuesJdZ3C4gwb5
+        oMscrODqYOsQNRTt62MHzOoCSktGyyfZ9gX6DqjbRwIDAQABo4HFMIHCMAkGA1Ud
+        EwQCMAAwEQYJYIZIAYb4QgEBBAQDAgWgMDMGCWCGSAGG+EIBDQQmFiRPcGVuU1NM
+        IEdlbmVyYXRlZCBDbGllbnQgQ2VydGlmaWNhdGUwHQYDVR0OBBYEFJFydPK6xYab
+        8TPNX3S1UEpmO744MB8GA1UdIwQYMBaAFHbZUYhEhM/O+dSn1hNbtxk18yrmMA4G
+        A1UdDwEB/wQEAwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwDQYJ
+        KoZIhvcNAQELBQADggEBAEYDQOuetzbU3PhiejDbTSJlgk8FMLXmNC7vnKbn5rpA
+        NEligG79L27kB61+F0z4Qgrt9GJclFxRIHuRlwJXcsUSRvCeMRE3OXrMbFmdyAbk
+        c2kSxyo8QflbbvFlnzA9ezdW+JhNl38fL+3As23r3xNZeqnFE94bTRBeFO/UCz9a
+        k6GseGApk46KQ1KlnWGm/LrGZsQMIUW2oLebRvUHhCvA/IGzAWiwgLwivOMNic33
+        zxkBm2PLFEEDOuSjTyq22hutIpv3HxXueAjrIDsXuayb0IGDPCS2SE1DvXN+Bib2
+        iKWBlXyBbfia/nogPkRVpf7zK8OXGMEPV2XQn/56+xE=
+        -----END CERTIFICATE-----
+
+        </cert>
+        key-direction 1
+        <tls-auth>
+        #
+        # 2048 bit OpenVPN static key
+        #
+        -----BEGIN OpenVPN Static key V1-----
+        e2da664496705180c6657a083355b9be
+        0e8e2072fbfc457e2f61fae6037b7b30
+        c3be3fea4fd26b8be3fbc58520f8ba4a
+        2e14ac6473f3dc5f1fbee543af61745d
+        3772221cd1ae3f2833c1ab27ef90f507
+        5d74024e081643232807c0a570372a04
+        190d25969af555d89f78ca4ea652460e
+        2373a947475958a86010266b499deaa9
+        7cef234f76ee016fd971cd550b2bd67a
+        c7be36787e5efacd7b5c3b58ead8ee85
+        14ed53454ce03af2585706126e674ff1
+        03827a6d622d73d33352a951f07724b6
+        8140c0914ee6d478d9c4bd16c0bae3e5
+        116d2fc028f7aa57007eb3e829cf5f43
+        b27804a6d8c86ac84e94b9d1c1240c2c
+        a2e3ac436eb78e1b8f02b788faf7de9d
+        -----END OpenVPN Static key V1-----
+
+        </tls-auth>

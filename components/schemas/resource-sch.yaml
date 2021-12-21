@@ -1,0 +1,16 @@
+resourceOut:
+  type: object
+  required:
+    - put_url
+    - get_url
+    - expires
+  properties:
+    put_url:
+      type: string
+      example: https://steward_host/files/1ksksiao
+    get_url:
+      type: string
+      example: https://steward_host/files/34rwer34
+    expires:
+      type: integer
+      example: 18000

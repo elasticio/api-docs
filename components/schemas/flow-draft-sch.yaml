@@ -1,0 +1,111 @@
+draftOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      $ref: '#/draftData'
+    meta:
+      type: object
+      example: '{}'
+draftIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        type:
+          $ref: '#/draftData/properties/type'
+        attributes:
+          $ref: '#/draftData/properties/attributes'
+draftData:
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      enum:
+        - flow-draft
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: '/v2/flows/5b4f337bff4304610483ba67/draft'
+    attributes:
+      type: object
+      required:
+        - name
+        - description
+        - graph
+        - created_at
+        - updated_at
+        - nodes_config
+      properties:
+        name:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/name'
+        description:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/description'
+        graph:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/graph'
+        created_at:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/created_at'
+        updated_at:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/updated_at'
+        nodes_config:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/nodes_config'
+        stats_enabled:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/stats_enabled'
+    relationships:
+      type: object
+      required:
+        - user
+        - flow
+      properties:
+        user:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/relationships/properties/user'
+        flow:
+          type: object
+          readOnly: true
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  description: Flow ID
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - flow
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/flows/5b4f337bff4304610483ba67

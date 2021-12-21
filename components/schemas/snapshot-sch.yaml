@@ -1,0 +1,115 @@
+snapshotIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - id
+        - attributes
+      properties:
+        type:
+          type: string
+          required: true
+          description: A value must be `snapshot`
+          enum:
+            - snapshot
+        id:
+          type: string
+          required: true
+          description: Step identifier
+          example: 5b4f337bff4304610483ba67
+        attributes:
+          type: object
+          required:
+            - snapshot
+          properties:
+            snapshot:
+              description: The body of the snapshot. The value may be anything except `undefined`.
+              type: object
+              required: true
+              example: '{"skipNumber": 10,"tableName": "public_qa_persons"}'
+snapshotsListOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        required:
+          - id
+          - type
+          - links
+          - attributes
+        properties:
+          id:
+            type: string
+            example: step_1
+          type:
+            type: string
+            enum:
+              - snapshot
+          links:
+            type: object
+            required:
+              - self
+            properties:
+              self:
+                type: string
+                example: /v2/flows/5b4f337bff4304610483ba67/snapshots/step_1
+          attributes:
+            type: object
+            required:
+              - snapshot
+            properties:
+              snapshot:
+                type: object
+                example: '{"skipNumber": 15,"tableName": "public_qa_persons"}'
+    meta:
+      type: object
+      example: '{}'
+snapshotOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+      properties:
+        id:
+          type: string
+          example: step_1
+        type:
+          type: string
+          enum:
+            - snapshot
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/flows/5b4f337bff4304610483ba67/snapshots/step_1
+        attributes:
+          type: object
+          required:
+            - snapshot
+          properties:
+            snapshot:
+              type: object
+              example: '{"skipNumber": 15,"tableName": "public_qa_persons"}'
+    meta:
+      type: object
+      example: '{}'

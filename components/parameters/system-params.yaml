@@ -1,0 +1,70 @@
+page-size:
+  name: page[size]
+  in: query
+  description: Amount of items per page
+  schema:
+    type: integer
+    default: 50
+page-number:
+  in: query
+  name: page[number]
+  description: Number of page you want to display
+  schema:
+    type: integer
+    default: 1
+filter[component]:
+  in: query
+  name: filter[component]
+  description: Filter by Component Id
+  schema:
+    type: array
+    items:
+      type: string
+      example: component_id
+workspace_id:
+  in: query
+  name: workspace_id
+  required: true
+  description: An Id of the Workspace
+  schema:
+    type: string
+    example: workspace_id
+flow_ids:
+  in: query
+  name: flow_ids[]
+  description: An Id of the FLow
+  schema:
+    type: array
+    items:
+      type: string
+      example: flow_id
+from:
+  in: query
+  name: from
+  description: Start Date of the period. Format – ISO 8601
+  schema:
+    type: string
+    format: date-time
+    example: '2020-01-12T14:50:42.215Z'
+to:
+  in: query
+  name: to
+  description: End Date of the period. Format – ISO 8601
+  schema:
+    type: string
+    format: date-time
+    example: '2020-01-14T15:00:45.000Z'
+offset:
+  name: offset
+  in: query
+  description: Number of items to skip from the beginning
+  schema:
+    type: integer
+    default: 0
+limit:
+  name: limit
+  in: query
+  description: Number of items to return
+  schema:
+    type: integer
+    default: 100

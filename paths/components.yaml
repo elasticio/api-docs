@@ -1,0 +1,475 @@
+/components:
+  get:
+    tags:
+       - components
+    summary: Lists all available Components with the specified Contract Id
+    description: You need Contract memberships to access this resource
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+      - $ref: '../components/parameters/component-params.yaml#/filter-access'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/component-sch.yaml#/componentsOutAll'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+  post:
+    tags:
+      - components
+    summary: Creates a component repository
+    description: You need `contracts.repository.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/component-sch.yaml#/componentRepoIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/component-sch.yaml#/componentRepoOut'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/400'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+/workspace/{workspace_id}/components:
+  get:
+    tags:
+       - components
+    summary: Lists all available Components with the specified Workspace Id
+    description: |
+      You need Workspace memberships to access this resource
+
+      In case Tenant feature flag for component whitelist is enabled and Workspace has type `full` - this endpoint lists all available Components in given workspace with respect of component whitelist.
+
+      Otherwise (i.e. if either feature flag is disabled, or workspace has type `limited`) - it lists all available omponents in given Workspace.
+
+      Response includes latest Descriptor for each Component.
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/component-sch.yaml#/componentsOutAll'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/workspace/{workspace_id}/components/{component_id}:
+  get:
+    tags:
+       - components
+    summary: Returns the Component based on the specified Component Id and Workspace Id with respect of whitelist
+    description: |
+      You need Contract memberships to access this resource
+
+      The component should be accessible to the client (e.g. component from the own Contract or shared one).
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/component-params.yaml#/component_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/component-sch.yaml#/componentsOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/components/all:
+  get:
+    tags:
+       - components
+    summary: Lists all available Components
+    description: You need `tenants.component.list_all` permission to access this resource
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/component-sch.yaml#/componentsOutAll'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/components/{component_id}:
+  get:
+    tags:
+       - components
+    summary: Returns the Component based on the specified Component Id
+    description: The component should be accessible to the client (e.g. component from the own Contract or shared one).
+    parameters:
+      - $ref: '../components/parameters/component-params.yaml#/component_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/component-sch.yaml#/componentsOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - components
+    summary: Update the Component based on the specified Component Id
+    description: |
+      You need `tenants.component.edit_access` permission to access this resource
+
+      This resource allows you to perform the next actions:
+      1. Change component's access level from `team` to `tenant`. (Please note, that this action is irreversible i.e. API does not allow to change `access` back to `team`.)
+      2. Change component's whitelisted contract ids
+
+      A component may have one of the following access level:
+      - ``team`` – no sharing. Only team members can use the component.
+      - ``tenant`` – component could be used by the other clients in the tenant.
+      - ``global`` – special mode for components from the standard set of components of the Platform (e.g. ``Timer``, ``Webhook`` etc). Any user of the platform can use ``global`` components.
+
+      You can edit whitelisted contracts only for components with `tenant` or `global` access
+    parameters:
+      - $ref: '../components/parameters/component-params.yaml#/component_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/component-sch.yaml#/componentsPatchIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/component-sch.yaml#/componentRepoOut'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/400'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/409'
+  delete:
+    tags:
+      - components
+    summary: Remove the Component based on the specified Component Id
+    description: |
+      You need `contracts.repository.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/component-params.yaml#/component_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/components/{component_id}/versions:
+  get:
+    tags:
+       - components
+    summary: Lists the Component versions based on the specified Component Id
+    description: The component should be accessible to the client (e.g. component from the own Contract or shared one).
+    parameters:
+      - $ref: '../components/parameters/component-params.yaml#/component_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/component-sch.yaml#/versionsOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/components/{component_id}/versions/{version_id}:
+  delete:
+    tags:
+      - components
+    summary: Remove the Component version based on the specified Component Id and Version Id
+    description: |
+      You need `contracts.repository.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/component-params.yaml#/component_id'
+      - $ref: '../components/parameters/component-params.yaml#/version_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/components/{component_id}/versions/{git_revision}/descriptor:
+  get:
+    tags:
+       - components
+    summary: Returns the Component descriptor based on the specified Component Id and revision of the component’s build
+    description: The component should be accessible to the client (e.g. component from the own Contract or shared one).
+    parameters:
+      - $ref: '../components/parameters/component-params.yaml#/component_id'
+      - $ref: '../components/parameters/component-params.yaml#/git_revision'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/component-sch.yaml#/descriptorOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/components/{component_id}/env:
+  get:
+    tags:
+       - components
+    summary: Returns the Component environment variables based on the specified Component Id
+    description: The component should be accessible to the client (e.g. component from the own Contract or shared one).
+    parameters:
+      - $ref: '../components/parameters/component-params.yaml#/component_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/component-sch.yaml#/envvarsData'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  put:
+    tags:
+       - components
+    summary: Updates the Component environment variables based on the specified Component Id
+    description: The component should be accessible to the client (e.g. component from the own Contract or shared one).
+    parameters:
+      - $ref: '../components/parameters/component-params.yaml#/component_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/component-sch.yaml#/envvarsData'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/component-sch.yaml#/envvarsData'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

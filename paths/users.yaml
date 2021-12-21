@@ -1,0 +1,262 @@
+/users/{user_id}:
+  get:
+    tags:
+      - users
+    summary: Returns a User based on the specified User ID
+    description: You need `tenants.user.get` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/user-params.yaml#/user_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/user-sch.yaml#/userOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - users
+    summary: Delete a User based on the specified User ID
+    description: |
+          You need `tenants.user.delete` permission to access resource
+          ### When a User is deleted the following data will be deleted as well:
+          * SSH keys
+          * User's object itself
+          * all Workspaces and Contracts, where the User is **the only member**
+          ### Not deleted immediately
+
+          These data objects are deleted automatically (e.g. due to expiration), so they won't be deleted right after User deletion:
+          * Flows activity records (used in order to show runlog)
+          * Logs of flow execution and repo build
+          * Invitations to the Team, Contract and Workspace
+          * Notifications
+          ### Data associated with Contract and Workspace
+          * If this User is a member of any Contract, which has one more Owner beside them then User's Teams and Repos will be transferred to the next Owner.
+          * If this User is a member of any Workspace, which has one more Owner beside them then User's Flows and Credentials will be transferred to the next Owner.
+          * If this User is the last Owner of any Workspace then given Workspace will be deleted with all data.
+          * If this User is the only member of Contract(s) then they will be deleted along with Contract and all the unique data connected with this User.
+    parameters:
+      - $ref: '../components/parameters/user-params.yaml#/user_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/users/me:
+  get:
+    tags:
+      - users
+    summary: Returns your User
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/user-sch.yaml#/myUserOut'
+      '401':
+        description: Unauthorized
+        content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/errors-sch.yaml#/401'
+/users:
+  get:
+    tags:
+       - users
+    summary: Lists all Users
+    description: You need `tenants.user.list_all` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/system-params.yaml#/page-size'
+      - $ref: '../components/parameters/system-params.yaml#/page-number'
+      - $ref: '../components/parameters/user-params.yaml#/iss'
+      - $ref: '../components/parameters/user-params.yaml#/sub'
+      - $ref: '../components/parameters/user-params.yaml#/email'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/user-sch.yaml#/userOutAll'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+  post:
+    tags:
+      - users
+    summary: Create a User
+    description: You need `tenants.user.create` permission to access this resource
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/user-sch.yaml#/userIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/user-sch.yaml#/userOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+'/users/{user_id}/disable-totp':
+  post:
+    tags:
+      - users
+    summary: Disable two-factor authentication (TOTP) for a User based on the specified User Id
+    description: You need `tenants.user.disable_totp` permission to access resource
+    parameters:
+      - $ref: '../components/parameters/user-params.yaml#/user_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: OK
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+'/users/{user_id}/openid/identities':
+  post:
+    tags:
+      - users
+    summary: Create an openid-identity based on the specified User Id
+    description: You need `tenants.oidc.create` permission to access resource
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/user-sch.yaml#/openid-identityIn'
+    parameters:
+      - $ref: '../components/parameters/user-params.yaml#/user_id'
+    responses:
+      '201':
+        description: Created
+        content:
+          text/plain:
+            schema:
+              $ref: '../components/schemas/user-sch.yaml#/openid-identityOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+'/users/{user_id}/openid/identities/{openid-identity_id}':
+  delete:
+    tags:
+      - users
+    summary: Delete an openid-identity with the specified User Id and openid-identity Id
+    description: You need `tenants.oidc.delete` permission to access resource
+    parameters:
+      - $ref: '../components/parameters/user-params.yaml#/user_id'
+      - $ref: '../components/parameters/user-params.yaml#/openid-identity_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

@@ -1,0 +1,313 @@
+teamIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - attributes
+        - relationships
+      properties:
+        attributes:
+          type: object
+          properties:
+            name:
+              description: A team name.
+              type: string
+              example: My team
+        relationships:
+          type: object
+          required:
+            - contract
+          properties:
+            contract:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      description: An Id of the contract
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      description: A value must be contract
+                      type: string
+                      enum:
+                        - contract
+teamsListOut:
+  type: object
+  required:
+    - data
+    - meta
+    - links
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        required:
+          - id
+          - type
+          - links
+          - attributes
+          - relationships
+        properties:
+          id:
+            type: string
+            example: 5b4f337bff4304610483ba67
+          type:
+            type: string
+            enum:
+              - team
+          links:
+            type: object
+            required:
+              - self
+            properties:
+              self:
+                type: string
+                example: /v2/teams/5b4f337bff4304610483ba67
+          attributes:
+            type: object
+            required:
+              - name
+            properties:
+              name:
+                type: string
+                example: Team name
+          relationships:
+            type: object
+            required:
+              - contract
+              - users
+              - components
+            properties:
+              contract:
+                type: object
+                required:
+                  - data
+                  - links
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - type
+                    properties:
+                      id:
+                        type: string
+                        example: 5b4f337bff4304610483ba67
+                      type:
+                        type: string
+                        enum:
+                          - contract
+                  links:
+                    type: object
+                    required:
+                      - self
+                    properties:
+                      self:
+                        type: string
+                        example: /v2/contracts/5b4f337bff4304610483ba67
+              users:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - type
+                      properties:
+                        id:
+                          type: string
+                          example: 5b4f337bff4304610483ba67
+                        type:
+                          type: string
+                          enum:
+                            - user
+              components:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - type
+                      properties:
+                        id:
+                          type: string
+                          example: 5b4f337bff4304610483ba67
+                        type:
+                          type: string
+                          enum:
+                            - component
+    meta:
+      type: object
+      example: '{}'
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/teams
+teamOut:
+  type: object
+  required:
+    - data
+    - meta
+    - links
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+        - relationships
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - team
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/teams/5b4f337bff4304610483ba67
+        attributes:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+              example: Team name
+        relationships:
+          type: object
+          required:
+            - contract
+            - users
+            - components
+          properties:
+            contract:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - contract
+                links:
+                  type: object
+                  required:
+                    - self
+                  properties:
+                    self:
+                      type: string
+                      example: /v2/contracts/5b4f337bff4304610483ba67
+            users:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - id
+                      - type
+                    properties:
+                      id:
+                        type: string
+                        example: 5b4f337bff4304610483ba67
+                      type:
+                        type: string
+                        enum:
+                          - user
+            components:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - id
+                      - type
+                    properties:
+                      id:
+                        type: string
+                        example: 5b4f337bff4304610483ba67
+                      type:
+                        type: string
+                        enum:
+                          - component
+    meta:
+      type: object
+      example: '{}'
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/teams/5b4f337bff4304610483ba67
+memberIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - id
+      properties:
+        type:
+          description: A value must be user
+          type: strimg
+          enum:
+            - user
+        id:
+          description: 	Id of an already registered user, who will be added as a member of the team
+          type: string
+          example: 5b4f337bff4304610483ba67

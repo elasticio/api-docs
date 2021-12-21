@@ -1,0 +1,82 @@
+usageOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - memory
+        - cpu
+      properties:
+        memory:
+          type: integer
+          example: 23039948
+        cpu:
+          type: integer
+          example: 68423815
+historyUsageOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        required:
+          - id
+          - memory
+          - cpu
+        properties:
+          id:
+            type: string
+            example: '2019-09-01'
+          memory:
+            type: integer
+            example: 23039948
+          cpu:
+            type: integer
+            example: 68423815
+usageWsOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - memory
+        - cpu
+        - flows
+      properties:
+        memory:
+          type: integer
+          example: 23039948
+        cpu:
+          type: integer
+          example: 68423815
+        flows:
+          type: integer
+          example: 15
+usageFlowsOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - memory
+        - cpu
+        - id
+      properties:
+        memory:
+          type: integer
+          example: 23039948
+        cpu:
+          type: integer
+          example: 68423815
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67

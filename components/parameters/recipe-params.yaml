@@ -1,0 +1,7 @@
+recipe_id:
+  in: path
+  name: recipe_id
+  description: Recipe identifier
+  required: true
+  schema:
+    type: string

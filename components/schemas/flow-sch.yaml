@@ -1,0 +1,913 @@
+flowIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      $ref: '#/flowData'
+flowOutAll:
+  type: object
+  required:
+    - data
+    - meta
+    - links
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        $ref: '#/flowData'
+    meta:
+      type: object
+      required:
+        - page
+        - per_page
+        - total
+        - total_pages
+      properties:
+        page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 50
+        total:
+          type: integer
+          example: 21
+        total_pages:
+          type: integer
+          example: 1
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/flows
+    included:
+      type: array
+      items:
+        anyOf:
+          - $ref: '#/flow-container'
+          - $ref: '#/descriptor'
+flowOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      $ref: '#/flowData'
+    meta:
+      type: object
+      example: '{}'
+flowPatchIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          type: string
+          description: Flow Id must be same as url parameter
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - flow
+        attributes:
+          type: object
+          $ref: '#/flowData/properties/attributes'
+toggleStatusOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      example: '{}'
+    meta:
+      type: object
+      example: '{}'
+debugIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+        - meta
+        - relationships
+      properties:
+        type:
+          type: string
+          enum:
+            - flow
+        attributes:
+          type: object
+          required:
+            - name
+            - type
+            - graph
+          properties:
+            name:
+              type: string
+              example: 'Debug core/code:execute@2b213e3d90cae3c4721430c623d85a2413cd405e'
+            type:
+              type: string
+              enum:
+                - debug
+            graph:
+              type: object
+              required:
+                - nodes
+                - edges
+              properties:
+                nodes:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - id
+                      - fields
+                      - command
+                      - error
+                    properties:
+                      id:
+                        type: string
+                        example: step_2
+                      fields:
+                        type: object
+                        example: '{"result" : "Hello world!"}'
+                      command:
+                        type: string
+                        example: 'core/code:execute@2b213e3d90cae3c4721430c623d85a2413cd405e'
+                      vpn_agent_id:
+                        type: string
+                        example: '61b9ed068a96b4001138ffc5'
+                      error:
+                        type: boolean
+                        example: false
+                edges:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - config
+                      - source
+                      - target
+                    properties:
+                      config:
+                        type: object
+                        required:
+                          - mapper
+                          - condition
+                        properties:
+                          mapper:
+                            type: object
+                            example: '{}'
+                          condition:
+                            type: string
+                            nullable: true
+                      source:
+                        type: string
+                        example: step_1
+                      target:
+                        type: string
+                        example: step_2
+        meta:
+          type: object
+          required:
+            - sampleData
+          properties:
+            sampleData:
+              required:
+                - body
+                - passthrough
+              properties:
+                body:
+                  type: object
+                  example: '{}'
+                passthrough:
+                  type: object
+                  example: '{"step_1":{"body":{}}}'
+        relationships:
+          $ref: '#/flowData/properties/relationships/properties/workspace'
+debugOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+        - relationships
+      properties:
+        id:
+          $ref: '#/flowData/properties/id'
+        type:
+          $ref: '#/flowData/properties/type'
+        links:
+          $ref: '#/flowData/properties/links'
+        attributes:
+          type: object
+          required:
+            - api_version
+            - created_at
+            - current_status
+            - default_mapper_type
+            - description
+            - nodes_config
+            - last_modified
+            - name
+            - status
+            - type
+            - updated_at
+            - stats_enabled
+            - timeout
+          properties:
+            api_version:
+              $ref: '#/flowData/properties/attributes/properties/api_version'
+            created_at:
+              $ref: '#/flowData/properties/attributes/properties/created_at'
+            current_status:
+              $ref: '#/flowData/properties/attributes/properties/current_status'
+            default_mapper_type:
+              $ref: '#/flowData/properties/attributes/properties/default_mapper_type'
+            description:
+              $ref: '#/flowData/properties/attributes/properties/description'
+            nodes_config:
+              type: object
+              example: '{}'
+            last_modified:
+              $ref: '#/flowData/properties/attributes/properties/last_modified'
+            name:
+              type: string
+              example: 'Debug core/code:execute@2b213e3d90cae3c4721430c623d85a2413cd405e'
+            status:
+              $ref: '#/flowData/properties/attributes/properties/status'
+            type:
+              type: string
+              enum:
+                - debug
+            updated_at:
+              $ref: '#/flowData/properties/attributes/properties/updated_at'
+            stats_enabled:
+              $ref: '#/flowData/properties/attributes/properties/stats_enabled'
+            timeout:
+              type: integer
+              exapmle: 120
+        relationships:
+          type: object
+          required:
+            - queue
+          properties:
+            queue:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: '5b4f337bff4304610483ba67.5b4f337bff4304610483ba67.debug'
+                    type:
+                      type: string
+                      enum:
+                        - queue-name
+copyIntoExistingFlow:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        type:
+          type: string
+          enum:
+            - flow-copy
+        attributes:
+          type: object
+          required:
+            - dest_flow_id
+          properties:
+            dest_flow_id:
+              type: string
+              description: Destination flow identifier
+              example: 5b4f337bff4304610483ba67
+            name:
+              type: string
+              description: Makes possible to customize name of the draft (and flow when new flow is created)
+              example: My new Flow
+            topic_id:
+              type: string
+              description: Required only if flow contains Pub-Sub components. Only one topic reference allowed
+              example: 5b4f337bff4304610483ba67
+copyIntoNewFlow:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+        - relationships
+      properties:
+        type:
+          type: string
+          enum:
+            - flow-copy
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Makes possible to customize name of the draft (and flow when new flow is created)
+              example: My new Flow
+            topic_id:
+              type: string
+              description: Required only if flow contains Pub-Sub components. Only one topic reference allowed
+              example: 5b4f337bff4304610483ba67
+        relationships:
+          type: object
+          required:
+            - dest_workspace
+          properties:
+            dest_workspace:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      description: Destination workspace identifier
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - workspace
+flowData:
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      readOnly: true
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      enum:
+        - flow
+    links:
+      type: object
+      readOnly: true
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/flows/5b4f337bff4304610483ba67
+    attributes:
+      type: object
+      required:
+        - name
+        - type
+        - graph
+        - default_mapper_type
+        - cron
+        - api_version
+        - created_at
+        - last_modified
+        - current_status
+        - status
+      properties:
+        default_mapper_type:
+          type: strig
+          enum:
+            - jsonata
+        type:
+          type: string
+          description: |
+            You need `workspaces.flow.toggleRealtime` permission to set `long_running` value
+          enum:
+            - ordinary
+            - long_running
+        nodes_config:
+          type: object
+          properties:
+            step_id:
+              type: object
+              description: |
+                The Id of flow step. Format: step_1, step_2, step_n
+              properties:
+                log_level:
+                  type: string
+                  description: Log level of component running in this step
+                  enum:
+                    - trace
+                    - debug
+                    - info
+                    - warn
+                    - error
+                    - fatal
+                  default: info
+                replicas:
+                  type: integer
+                  description: This parameter configures the maximum container replicas, that can be run simultaneously
+                  default: 1
+                  maximum: 5
+                passthrough:
+                  type: object
+                  required:
+                    - disabled
+                  properties:
+                    disabled:
+                      type: boolean
+                      description: This parameter toggles passthrough for a step
+                prefetch:
+                  type: integer
+                  description: This parameter configures the maximum amount of messages, that the step can process simultaneously
+                  default: 1
+                disable_dynamic_flow_control:
+                  type: boolean
+                  description: |
+                    This parameter configures disabling publisher confirms in sailor. Supports only for components with sailor-jvm version above 3.3.5 and sailor-nodejs version above 2.6.10
+                  default: false
+          example: '{"step_1":{"log_level":"warn","replicas":2,"passthrough":{"disabled":true},"prefetch":4,"disable_dynamic_flow_control":false}}'
+        created_at:
+          type: string
+          readOnly: true
+          format: date-time
+          example: '2020-01-12T14:50:42.215Z'
+        last_modified:
+          type: string
+          readOnly: true
+          format: date-time
+          example: '2021-12-13T14:24:53.825Z'
+        name:
+          type: string
+          description: Name of your Flow
+          example: PetStore to Email Flow
+        description:
+          type: string
+          description: Flow description
+          example: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          nullable: true
+        cron:
+          type: string
+          example: '*/3 * * * *'
+          nullable: true
+        graph:
+          type: object
+          description: Flow graph representing component connections
+          required:
+            - nodes
+            - edges
+          properties:
+            nodes:
+              type: array
+              items:
+                anyOf:
+                  - type: object
+                    required:
+                      - command
+                      - id
+                      - component_id
+                      - selected_data_samples
+                    properties:
+                      name:
+                        type: string
+                        example: petStore
+                      description:
+                        type: string
+                        example: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      command:
+                        type: string
+                        example: core/petStore:getPetsByStatus@51ff8236dd1d461f67111b145f69441bafdeb710
+                      fields:
+                        type: object
+                        example: '{"status":["pending"]}'
+                      error:
+                        type: boolean
+                        default: false
+                      id:
+                        type: string
+                        example: step_1
+                      credentials_id:
+                        type: string
+                        example: 609e6f5164b6470011d26387
+                      selected_data_samples:
+                        type: array
+                        items:
+                          type: string
+                          example: 5b4f337bff4304610483ba67
+                  - type: object
+                    required:
+                      - command
+                      - id
+                      - component_id
+                      - selected_data_samples
+                    properties:
+                      name:
+                        type: string
+                        example: Email
+                      description:
+                        type: string
+                        example: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      command:
+                        type: string
+                        example: core/email:send@70f0caf7d79ab972e4d36c602286d7d9650bb356
+                      error:
+                        type: boolean
+                        description: Set to true if component used as error handler
+                        default: false
+                      id:
+                        type: string
+                        example: step_2
+                      selected_data_samples:
+                        type: array
+                        items:
+                          type: string
+                          example: 5b4f337bff4304610483ba67
+            edges:
+              type: array
+              items:
+                type: object
+                required:
+                  - target
+                  - id
+                  - config
+                  - source
+                properties:
+                  id:
+                    type: string
+                    readOnly: true
+                    example: 'mapper:step_1:step_2'
+                  target:
+                    type: string
+                    example: step_2
+                  source:
+                    type: string
+                    example: step_1
+                  config:
+                    type: object
+                    required:
+                      - mapper
+                      - condition
+                    properties:
+                      mapper_type:
+                        type: string
+                        example: jsonata
+                      mapper:
+                        type: object
+                        example: '{"to":"\"foo@example.com\"","subject":"\"Pets list\"","textBody":"name & category.name"}'
+                      condition:
+                        type: string
+                        nullable: true
+                        description: condition for Content Based Router component
+                        example: null
+        api_version:
+          type: string
+          readOnly: true
+          example: '2.0'
+        current_status:
+          type: string
+          readOnly: true
+          enum:
+            - inactive
+        status:
+          type: string
+          readOnly: true
+          enum:
+            - inactive
+        stats_enabled:
+          type: boolean
+          example: true
+          default: true
+          description: |
+            *Flow Stats Toggle*
+
+            By default each step of a flow generates stats about input/output messages and errors. You can see them on the
+            Executions and Dashboard pages. To disable input/output message stats you can set flow's `attributes.stats_enabled`
+            flag to `false`.
+        updated_at:
+          type: string
+          readOnly: true
+          format: date-time
+          example: '2021-12-13T14:24:53.825Z'
+    relationships:
+      type: object
+      required:
+        - user
+        - workspace
+        - versions
+        - latest_version
+      properties:
+        user:
+          type: object
+          readOnly: true
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  description: User ID
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - user
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/users/5b4f337bff4304610483ba67
+        workspace:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  description: Workspace ID
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - workspace
+            links:
+              type: object
+              readOnly: true
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/workspaces/5b4f337bff4304610483ba67
+        versions:
+          type: object
+          readOnly: true
+          required:
+            - links
+          properties:
+            links:
+              required:
+                - related
+              properties:
+                related:
+                  type: string
+                  example: /v2/flows/5b4f337bff4304610483ba67/versions
+        latest_version:
+          type: object
+          readOnly: true
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  description: Flow-version ID
+                  example: e4b690fb0a65c37789e7be0bf523414e0f98a8e6
+                type:
+                  type: string
+                  enum:
+                    - flow-version
+            links:
+              type: object
+              required:
+                - self
+                - related
+              properties:
+                self:
+                  type: string
+                  example: /v2/flows/5b4f337bff4304610483ba67/versions/e4b690fb0a65c37789e7be0bf523414e0f98a8e6
+                related:
+                  type: string
+                  example: /v2/flows/5b4f337bff4304610483ba67/versions/e4b690fb0a65c37789e7be0bf523414e0f98a8e6
+flow-container:
+  type: object
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      enum:
+        - flow-container
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: '/v2/flows/5b4f337bff4304610483ba67/flow-containers/5b4f337bff4304610483ba67_mapper:step_1:step_2'
+    attributes:
+      type: object
+      required:
+        - step_id
+      properties:
+        step_id:
+          type: string
+          example: 'mapper:step_1:step_2'
+    relationships:
+      type: object
+      required:
+        - flow
+      properties:
+        flow:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  description: Flow ID
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - flow
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/flows/5b4f337bff4304610483ba67
+descriptor:
+  type: object
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      example: 81ff4c02f436caa96fecdfcbe1acd63b7c187cad
+    type:
+      type: string
+      enum:
+        - descriptor
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: '/v2/descriptors/81ff4c02f436caa96fecdfcbe1acd63b7c187cad'
+    attributes:
+      type: object
+      required:
+        - repo_name
+        - team_name
+        - short_revision
+        - is_latest
+        - description
+        - icon
+        - language
+        - sailor_version
+        - title
+      properties:
+        repo_name:
+          type: string
+          example: simple-trigger-component
+        team_name:
+          type: string
+          example: core
+        short_revision:
+          type: string
+          example: 81ff4c0
+        is_latest:
+          type: boolean
+          example: true
+        description:
+          type: string
+          example: A component used to trigger integration flows without requesting data from any services.
+        icon:
+          type: string
+          description: Component icon as base64 string
+          example: 'iVBORw0KGgoAAAANSUhEUgAAADQAAAA8CAYAAAApK5mGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjYzQUQ2ODYxMUExMTFFOTk1NkY4RDc3MjQ0OTdBMTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjYzQUQ2ODcxMUExMTFFOTk1NkY4RDc3MjQ0OTdBMTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGNjNBRDY4NDExQTExMUU5OTU2RjhENzcyNDQ5N0ExNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGNjNBRDY4NTExQTExMUU5OTU2RjhENzcyNDQ5N0ExNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnvRw2oAAAQJSURBVHja3FpNTBNBFB4WaCkSIUr5KQoEI4oHDcYD8YQ3uZho8KARjQcjYryAiQe9mMhN4sFglBNRAgeDHOGkNREtYESQWgElUIzyU5BiKy0g+l47jdBuu9ntzHbXl3y0dHbmzTcz7293kw7XtxDOcgDQ5Jmdxu/XAJ95KhM4jp0FuAsYBBynsNPfsvRECMesA4wDGgCGTW0G+hu2XeKhn/WAlYC3gGZAdozrsK2FXlupRUJFgGeAF4ByGf3KaZ+ngEItEMoA3AE4ACfjGKca8ImOlZEIQkmAc4AxwE2AicHimuhYOOYZqkMVQhWA14AngHwOTgXHbKc6KngSQkWPlSqKY+Fa5SycIPMo1Cg9CnEc7QtyjrYUITT0jyyMlZHzGZFyPoKEO0VXXEy0IyVS4UEQCXjNPAIehwA+IBbAQ4RSN6UkdZxzPFaSLJZiCTRpfM87aVQrCU6BP93k/xAsU7pTeI2eZsklgsn473yYtzpJ94iDi14uhARTGrGcPhHzmqn2Di6kuBh/esnumO2//X7inXTqp2I15phjtv8cHSPrHq9+CJkKYqdenokv+rmngPZj2Lkjavua200W+9/ph5CU/SyPjnL13YLa9uOy9XEllKKm/fjm5oh/Zp4Y88xk+75SYsq3kG1FhSQ1MzPg+ey3G7VHKJb9JBuNpOxGQ4BAuGz4fNrbofQ9sW/ciBEJyY+hIe3ZkDHXrKgfHjfXqzfaI2QqsCjqt9DXxyzQMiWUZslT1I/V7jAlJGU/0WRp+APTNEjgbT+rC4vEPWwPZAhiMmu1ajMOrbmXie/bTOC737VA/HPz5NfENNlYCbrjjNrzoruDcUmThDz28QCiFXsYgyKcQf+APrLtCO9XvCviN6/TSbwTk/okZDRni3i2Xv3UQxE7FObOcXd43VPgTgjtJ8lg2FpCOBzc9Alq2w+67/mXvfolFG4/LptNXwVeLPvhvTvcCYXbD6sSIWGEsDLlUSIkjlBONpcSIYFHLp9LiSBFqIoE3xFgLhurq4FPzLZV2B18DluFyWkP4DkJvil1izB8RvS1rVONTVkiweev97FaCR05XMomwF7AQ1xcon3BObbQOTdRDhE25AJcARwBWDVMxkrneJnOWdIp4OO9Y4BTgCkNEcFnMNV0boNKvFwXoIzalieBRDx0DvsBnfG67RUA3qMtJcH3e/6oSAR1dVDdjXQuzOLQdwDeGDgKsKlAxkZ1naW6uQXWkKIaOYpkLtxFpQsnxHEU2uQcBZlHu1Xp0RYYGmtXHONg34MsnA+rXM5JXXxUdxpFhjaFBybvc7NOTkMBrzY84IkE8Ks8AjiPbBtTkkfhKQmVdcA92vaA/q+b8gGTxuvUNnooDgHqaRsX+SvAAEcsMLDm5qd5AAAAAElFTkSuQmCC'
+        language:
+          type: string
+          example: nodejs
+        sailor_version:
+          type: string
+          example: '2.6.25'
+        title:
+          type: string
+          example: Simple trigger
+        triggers:
+          type: object
+          example: '{"timer":{"title":"Simple trigger","main":".\/lib\/trigger.js","type":"polling","metadata":{"out":{"type":"object","properties":{"fireTime":{"type":"string","format":"date-time","required":true},"lastPoll":{"type":"string","format":"date-time","required":true}}}}}}'
+    relationships:
+      type: object
+      required:
+        - version
+      properties:
+        version:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  example: 81ff4c02f436caa96fecdfcbe1acd63b7c187cad
+                type:
+                  type: string
+                  enum:
+                    - version
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: '/v2/5b4f337bff4304610483ba67/versions/81ff4c02f436caa96fecdfcbe1acd63b7c187cad'

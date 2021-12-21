@@ -1,0 +1,69 @@
+/flows/{flow_id}/versions:
+  get:
+    tags:
+      - flow versions
+    summary: Lists all Flow versions based on the specified Flow Id
+    description: You need workspace memberships to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+      - $ref: '../components/parameters/system-params.yaml#/page-size'
+      - $ref: '../components/parameters/system-params.yaml#/page-number'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-version-sch.yaml#/versionOutAll'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/flows/{flow_id}/versions/{version_hash}:
+  get:
+    tags:
+      - flow versions
+    summary: Returns Flow version based on the specified Flow Id and version hash
+    description: You need workspace memberships to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+      - $ref: '../components/parameters/flow-version-params.yaml#/version_hash'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/flow-version-sch.yaml#/versionOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

@@ -1,0 +1,327 @@
+clientIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      $ref: '#/clientData'
+clientsListOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        $ref: '#/clientData'
+    meta:
+      type: object
+      example: '{}'
+clientOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      $ref: '#/clientData'
+    meta:
+      type: object
+      example: '{}'
+clientEditIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+      - id
+      - type
+      - attributes
+      - relationships
+      properties:
+        id:
+          type: string
+          description: Auth client identifier. It has to match the identifier specified in the path.
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          description: Allowed value `auth-client`.
+          enum:
+            - auth-client
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Auth client name
+              example: Auth client name
+            credentials:
+              type: object
+              oneOf:
+                - type: object
+                  properties:
+                    client_secret:
+                      type: string
+                      description: Client secret of auth client
+                      example: wryIpa3vltT4GttJOQSKo3eo
+                    token_expires_in:
+                      type: integer
+                      description: The value that will be set as `expires_in` in auth secret linked to the auth client after auth secret refresh, if auth secret does not contain it.
+                      default: 3600
+                - type: object
+                  $ref: '#/credentialOtherObject'
+        relationships:
+          type: object
+          $ref: '#/relationComponentObject'
+clientData:
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      readOnly: true
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      description: |
+        Allowed value: `auth-client`
+      enum:
+        - auth-client
+    links:
+      type: object
+      readOnly: true
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/auth-clients/5b4f337bff4304610483ba67
+    attributes:
+      type: object
+      required:
+        - name
+        - type
+        - credentials
+      properties:
+        name:
+          type: string
+          description: Name of the auth client
+          example: Auth client name
+        type:
+          type: string
+          description: |
+            Auth client type. May be any of: `oauth2` and other types (`noauth`, `basic`, `api_key`)
+          enum:
+            - oauth2
+            - basic
+            - api_key
+            - noauth
+        credentials:
+          type: object
+          oneOf:
+            - type: object
+              $ref: '#/credentialOauth2Object'
+            - type: object
+              $ref: '#/credentialOtherObject'
+    relationships:
+      type: object
+      oneOf:
+        - type: object
+          $ref: '#/relationComponentWorkspaceObject'
+        - type: object
+          $ref: '#/relationComponentObject'
+        - type: object
+          $ref: '#/relationComponentContractObject'
+        - type: object
+          $ref: '#/relationComponentTenantObject'
+credentialOauth2Object:
+  type: object
+  description: Only for type of auth client `oauth2`
+  required:
+    - client_id
+    - client_secret
+    - refresh_token_uri
+    - token_uri
+    - auth_uri
+  properties:
+    client_id:
+      type: string
+      description: Client identifier of auth client
+      example: 327193566714-99k85u8op9i10upjf8raus0aqjmtj.apps.googleusercontent.com
+    client_secret:
+      type: string
+      description: Client secret of auth client
+      example: wryIpa3vltT4GttJOQSKo3eo
+    refresh_token_uri:
+      type: string
+      description: Auth client refresh token URI
+      example: https://www.googleapis.com/oauth2/v4/token
+    token_expires_in:
+      type: integer
+      description: The value that will be set as `expires_in` in auth secret linked to the auth client after auth secret refresh, if auth secret does not contain it.
+      default: 3600
+    token_uri:
+      type: string
+      description: Auth client token URI
+      example: https://www.googleapis.com/oauth2/v4/token
+    auth_uri:
+      type: string
+      description: Auth client auth URI
+      example: https://www.googleapis.com/oauth2/v2/auth
+credentialOtherObject:
+  type: object
+  example: '{ "login":"somelogin", "key":"somekey"}'
+relationComponentWorkspaceObject:
+  type: object
+  required:
+    - components
+    - workspace
+  properties:
+    components:
+      type: object
+      $ref: '#/relationComponentObject/properties/components'
+    workspace:
+      type: object
+      required:
+        - data
+        - links
+      properties:
+        data:
+          type: object
+          required:
+            - id
+            - type
+          properties:
+            id:
+              type: string
+              description: Workspace identifier
+              example: 5b4f337bff4304610483ba67
+            type:
+              type: string
+              description: Allowed value is `workspace`
+              enum:
+                - workspace
+        links:
+          type: object
+          readOnly: true
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/workspaces/5b4f337bff4304610483ba67
+relationComponentObject:
+  type: object
+  required:
+    - components
+  properties:
+    components:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+              - id
+              - type
+            properties:
+              id:
+                type: string
+                description: Component identifier
+                example: 5b4f337bff4304610483ba67
+              type:
+                type: string
+                description: Allowed value is `component`
+                enum:
+                  - component
+relationComponentTenantObject:
+  type: object
+  required:
+    - components
+    - tenant
+  properties:
+    components:
+      type: object
+      $ref: '#/relationComponentObject/properties/components'
+    tenant:
+      type: object
+      required:
+        - data
+        - links
+      properties:
+        data:
+          type: object
+          required:
+            - id
+            - type
+          properties:
+            id:
+              type: string
+              description: Tenant identifier
+              example: 5b4f337bff4304610483ba67
+            type:
+              type: string
+              description: Allowed value is `tenant`
+              enum:
+                - tenant
+        links:
+          type: object
+          readOnly: true
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/tenants/5b4f337bff4304610483ba67
+relationComponentContractObject:
+  type: object
+  required:
+    - components
+    - contract
+  properties:
+    components:
+      type: object
+      $ref: '#/relationComponentObject/properties/components'
+    contract:
+      type: object
+      required:
+        - data
+        - links
+      properties:
+        data:
+          type: object
+          required:
+            - id
+            - type
+          properties:
+            id:
+              type: string
+              description: Contract identifier
+              example: 5b4f337bff4304610483ba67
+            type:
+              type: string
+              description: Allowed value is `contract`
+              enum:
+                - contract
+        links:
+          type: object
+          readOnly: true
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/contracts/5b4f337bff4304610483ba67

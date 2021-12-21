@@ -1,0 +1,7 @@
+version_hash:
+  in: path
+  name: version_hash
+  description: Version hash
+  required: true
+  schema:
+    type: string

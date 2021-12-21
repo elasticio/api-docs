@@ -1,0 +1,1015 @@
+/tenants:
+  get:
+    tags:
+       - tenants
+    summary: Lists all Tenants
+    description: You need `tenants.tenant.get` permission to access this resource
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/tenantOutAll'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+  post:
+    tags:
+      - tenants
+    summary: Creates a Tenant
+    description: You need `tenants.tenant.create` permission to access this resource
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tenant-sch.yaml#/tenantIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/tenantOut'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/400'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+/tenants/{tenant_id}:
+  get:
+    tags:
+      - tenants
+    summary: Returns the Tenant based on the specified Tenant Id
+    description: You need `tenants.tenant.get` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/tenantOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - tenants
+    summary: Update the Tenant based on the specified Tenant Id
+    description: You need `tenants.tenant.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tenant-sch.yaml#/tenantIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/tenantOut'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/400'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - tenants
+    summary: Remove the Tenant based on the specified Tenant Id
+    description: |
+      _A Tenant will be deleted only if it does not contain any contracts_
+      You need `tenants.tenant.delete` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/tenants/{tenant_id}/roles:
+  get:
+    tags:
+      - tenants
+    summary: Lists Tenant’s roles based on the specified Tenant Id
+    description: You need `tenants.tenant.list_roles` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/tenantRolesOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - tenants
+    summary: Update Tenant’s roles based on the specified Tenant Id
+    description: You need `tenants.tenant.edit_roles` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tenant-sch.yaml#/tenantRolesIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/tenantRolesOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/tenants/{tenant_id}/certificates:
+  post:
+    tags:
+      - tenants
+    summary: Creates an SSL certificate
+    description: You need `tenants.certificate.create` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tenant-sch.yaml#/SSLcertificateIn'
+        multipart/form-data:
+          schema:
+            $ref: '../components/schemas/tenant-sch.yaml#/SSLcertificateFormDataIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/SSLcertificateOut'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/400'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/tenants/{tenant_id}/certificates/{certificate_id}:
+  get:
+    tags:
+      - tenants
+    summary: Returns the SSL certificate based on the specified Tenant Id and SSL certificate Id
+    description: You need `tenants.certificate.get_encrypted` and/or `tenants.certificate.get_info` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/tenant-params.yaml#/certificate_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/SSLcertificateOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - tenants
+    summary: Update a SSL certificate with the specified Tenant Id and SSL certificate Id
+    description: You need `tenants.certificate.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/tenant-params.yaml#/certificate_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tenant-sch.yaml#/SSLcertificatePatchIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/SSLcertificateOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - tenants
+    summary: Remove an SSL certificate with the specified Tenant Id and SSL certificate Id
+    description: You need `tenants.certificate.delete` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/tenant-params.yaml#/certificate_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/tenants/{tenant_id}/members/{user_id}:
+  patch:
+    tags:
+      - tenants
+    summary: Grant/Remove Tenant Admin’s permissions to/from the User with the specified Tenant Id and User Id
+    description: |
+      You need `tenants.membership.edit` permission to access this resource
+
+      `data.attributes.roles` should be the `tenant-admin` for Grant Tenant Admin’s permissions to the User
+
+      `data.attributes.roles` should be an empty array for Remove Tenant Admin’s permissions from the User
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/user-params.yaml#/user_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            anyOf:
+              - $ref: '../components/schemas/tenant-sch.yaml#/GrantTenantAdminIn'
+              - $ref: '../components/schemas/tenant-sch.yaml#/RemoveTenantAdminIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '../components/schemas/tenant-sch.yaml#/GrantTenantAdminOut'
+                - $ref: '../components/schemas/tenant-sch.yaml#/RemoveTenantAdminOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/tenants/{tenant_id}/oauth-clients:
+  get:
+    tags:
+      - tenants
+    summary: Lists an Oauth-clients with specified Tenant Id
+    description: You need `tenants.oauth_clients.get` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/system-params.yaml#/filter[component]'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/TenantOauth-clientOutAll'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  post:
+    tags:
+      - tenants
+    summary: Create an Oauth-client with specified Tenant Id
+    description: You need `tenants.oauth_clients.create` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tenant-sch.yaml#/TenantOauth-clientIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/TenantOauth-clientOut'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/400'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/tenants/{tenant_id}/oauth-clients/{oauth-client_id}:
+  get:
+    tags:
+      - tenants
+    summary: Returns an Oauth-client based on the specified Tenant Id and Oauth-client Id
+    description: You need `tenants.oauth_clients.get` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/tenant-params.yaml#/oauth-client_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/TenantOauth-clientOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - tenants
+    summary: Update an Oauth-client with specified Tenant Id and Oauth-client Id
+    description: You need `tenants.oauth_clients.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/tenant-params.yaml#/oauth-client_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tenant-sch.yaml#/TenantOauth-clientIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/TenantOauth-clientOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - tenants
+    summary: Remove an Oauth-client with specified Tenant Id and Oauth-client Id
+    description: You need `tenants.oauth_clients.delete` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/tenant-params.yaml#/oauth-client_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/tenants/{tenant_id}/openid/providers:
+  get:
+    tags:
+      - tenants
+    summary: List an OpenID Providers based on the specified Tenant Id
+    description: You need `tenants.tenant.get` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/OpenIDOutAll'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  post:
+    tags:
+      - tenants
+    summary: Create an OpenID Provider with specified Tenant Id
+    description: You need `tenants.tenant.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tenant-sch.yaml#/OpenIDIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/OpenIDOut'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/400'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/tenants/{tenant_id}/openid/providers/{open_id_provider_id}:
+  get:
+    tags:
+      - tenants
+    summary: Returns an OpenID Provider based on specified Tenant Id and OpenID Provider Id
+    description: You need `tenants.tenant.get` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/tenant-params.yaml#/open_id_provider_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/OpenIDOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - tenants
+    summary: Update an OpenID Provider based on specified Tenant Id and OpenID Provider Id
+    description: You need `tenants.tenant.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/tenant-params.yaml#/open_id_provider_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tenant-sch.yaml#/OpenIDIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/OpenIDOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - tenants
+    summary: Remove an OpenID Provider based on specified Tenant Id and OpenID Provider Id
+    description: You need `tenants.tenant.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/tenant-params.yaml#/open_id_provider_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/tenants/{tenant_id}/saml/providers:
+  get:
+    tags:
+      - tenants
+    summary: Lists the SAML 2.0 Providers based on specified Tenant Id
+    description: You need `tenants.tenant.get` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/SAMLOutAll'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  post:
+    tags:
+      - tenants
+    summary: Creates a SAML 2.0 Provider with specified Tenant Id
+    description: You need `tenants.tenant.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tenant-sch.yaml#/SAMLIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/SAMLOut'
+      '400':
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/400'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/tenants/{tenant_id}/saml/providers/{saml_provider_id}:
+  get:
+    tags:
+      - tenants
+    summary: Returns a SAML 2.0 Provider based on the specified SAML 2.0. Id and Tenant Id
+    description: You need `tenants.tenant.get` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/tenant-params.yaml#/saml_provider_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/SAMLOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - tenants
+    summary: Update a SAML 2.0 Provider based on the specified SAML 2.0. Id and Tenant Id
+    description: You need `tenants.tenant.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/tenant-params.yaml#/saml_provider_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tenant-sch.yaml#/SAMLIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/SAMLOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - tenants
+    summary: Remove a SAML 2.0 Provider based on the specified SAML 2.0. Id and Tenant Id
+    description: You need `tenants.tenant.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/tenant-params.yaml#/tenant_id'
+      - $ref: '../components/parameters/tenant-params.yaml#/saml_provider_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/permissions:
+  get:
+    tags:
+      - permissions
+    summary: Get the list of available permissions
+    description: This endpoint is available to all the platforms' users
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tenant-sch.yaml#/permissionsOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'

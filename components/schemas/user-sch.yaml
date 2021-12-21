@@ -1,0 +1,289 @@
+userIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        type:
+          type: string
+          description: A value must be ``user``
+          enum:
+            - user
+        attributes:
+          type: object
+          required:
+            - first_name
+            - last_name
+            - email
+            - password
+          properties:
+            first_name:
+              type: string
+              description: User's first name.
+              example: John
+            last_name:
+              type: string
+              description: User's last name.
+              example: Doe
+            email:
+              type: string
+              description: User's email.
+              example: test@example.com
+            password:
+              type: string
+              description: User's password. Password should be at least 8 characters long and include letters, numbers and special symbols.
+              example: P@ssw0rd
+userOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      $ref: '#/userData'
+myUserOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - user
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/users/5b4f337bff4304610483ba67
+        attributes:
+          type: object
+          required:
+            - first_name
+            - last_name
+            - email
+            - password
+          properties:
+            first_name:
+              type: string
+              example: John
+            last_name:
+              type: string
+              example: Doe
+            email:
+              type: string
+              example: test@example.com
+            password:
+              type: string
+              example: P@ssw0rd
+userOutAll:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        $ref: '#/userData'
+    meta:
+      type: object
+      required:
+        - total
+        - page
+        - per_page
+        - total_pages
+      properties:
+        total:
+          type: integer
+          format: int64
+          example: 6
+        page:
+          type: integer
+          format: int64
+          example: 1
+        per_page:
+          type: integer
+          format: int64
+          example: 50
+        total_pages:
+          type: integer
+          format: int64
+          example: 1
+openid-identityIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        type:
+          type: string
+          description: |
+            A value must be ``openid-identity``
+          enum:
+            - openid-identity
+        attributes:
+          type: object
+          required:
+            - iss
+            - sub
+          properties:
+            iss:
+              type: string
+              description: User's OpenID Identity issuer. Must be an URL.
+              example: http://example.com
+            sub:
+              type: string
+              description: User's OpenID Identity subject.
+              example: user-identification
+openid-identityOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+        - relationships
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - openid-identity
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/users/5b4f337bff4304610483ba67/openid/identities/5b4f337bff4304610483ba67
+        attributes:
+          type: object
+          required:
+            - iss
+            - sub
+          properties:
+            iss:
+              type: string
+              example: http://example.com
+            sub:
+              type: string
+              example: user-identification
+        relationships:
+          type: object
+          required:
+            - user
+          properties:
+            user:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - user
+                    links:
+                      type: object
+                      required:
+                        - self
+                      properties:
+                        self:
+                          type: string
+                          example: /v2/users/5b4f337bff4304610483ba67
+    meta:
+      type: object
+      example: '{}'
+userData:
+  required:
+    - id
+    - type
+    - links
+    - attributes
+  properties:
+    id:
+      type: string
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      enum:
+        - user
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/users/5b4f337bff4304610483ba67}
+    attributes:
+      type: object
+      required:
+        - first_name
+        - last_name
+        - email
+        - company
+        - registered
+        - last_login
+      properties:
+        first_name:
+          type: string
+          example: John
+        last_name:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: test@example.com
+        company:
+          type: string
+          example: elastic.io GmbH
+        registered:
+          type: string
+          example: '2017-10-02T12:18:06.274Z'
+        last_login:
+          type: string
+          example: '2018-03-15T16:53:57.696Z'

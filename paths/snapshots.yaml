@@ -1,0 +1,175 @@
+/flows/{flow_id}/snapshots:
+  get:
+    tags:
+      - snapshots
+    summary: Lists all snapshots for all steps in specified flow.
+    description: You have to be a member of the workspace’s scope, where the specified flow is located
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/snapshot-sch.yaml#/snapshotsListOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  post:
+    tags:
+      - snapshots
+    summary: Creates step snapshot in the specified flow.
+    description: |
+      You need `workspaces.flow.edit` permission to access this resource
+      **Notice** It’s forbidden to create snapshot for step, that does not exist in flow and create snapshot for step, if snapshot already exists.
+    parameters:
+      $ref: '../components/schemas/snapshot-sch.yaml#/snapshotIn'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/snapshot-sch.yaml#/snapshotIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/snapshot-sch.yaml#/snapshotOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+/flows/{flow_id}/snapshots/{step_id}:
+  get:
+    tags:
+      - snapshots
+    summary: Returns snapshot for the specified step in the defined flow.
+    description: You have to be a member of the workspace’s scope, where the specified flow is located
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+      - $ref: '../components/parameters/flow-params.yaml#/step_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/snapshot-sch.yaml#/snapshotOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - snapshots
+    summary: Update the specified snapshot for the defined step in a flow
+    description: |
+      You have to be a member of the workspace’s scope, where the specified flow is located and have `workspaces.flow.edit` permission.
+      **Notice** It’s forbidden to edit snapshot for step, that does not exist in flow and edit snapshot for step, if snapshot already exists.
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+      - $ref: '../components/parameters/flow-params.yaml#/step_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/snapshot-sch.yaml#/snapshotIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/snapshot-sch.yaml#/snapshotOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - snapshots
+    summary: Remove the step snapshot for the specified flow.
+    description: You need `workspaces.flow.edit` permission to access this resource
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+      - $ref: '../components/parameters/flow-params.yaml#/step_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

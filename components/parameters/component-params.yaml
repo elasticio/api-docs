@@ -1,0 +1,36 @@
+filter-access:
+  in: query
+  name: filter[access]
+  description: |
+    Filter by Component access. If `private` only Components from own Contract returned, if `public` - only shared Components from the other Contracts and if `all` (default value) - returns all available Components.
+  schema:
+    type: array
+    items:
+      type: string
+      enum:
+        - private
+        - public
+      default: all
+component_id:
+  in: path
+  name: component_id
+  description: Component identifier
+  required: true
+  schema:
+    type: string
+version_id:
+  in: path
+  name: version_id
+  description: |
+    Revision or version of the component’s build. Use `latest` to delete the most recent successful build
+  required: true
+  schema:
+    type: string
+git_revision:
+  in: path
+  name: git_revision
+  description: |
+    Revision or version of the component’s build. Use `latest` to delete the most recent successful build
+  required: true
+  schema:
+    type: string

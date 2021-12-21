@@ -1,0 +1,135 @@
+queueStatsOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - flow-queue-stats
+        attributes:
+          type: object
+          required:
+            - stats
+          properties:
+            stats:
+              type: array
+              items:
+                type: object
+                required:
+                  - step_id
+                  - total
+                  - ready
+                  - unacked
+                  - rebounds
+                properties:
+                  step_id:
+                    type: string
+                    example: step_1
+                  total:
+                    type: integer
+                    example: 9
+                  ready:
+                    type: integer
+                    example: 5
+                  unacked:
+                    type: integer
+                    example: 1
+                  rebounds:
+                    type: integer
+                    example: 0
+workspacesStatsListOut:
+  type: object
+  reqiired:
+    - data
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        required:
+          - id
+          - type
+          - attributes
+        properties:
+          id:
+            type: string
+            example: 5b4f337bff4304610483ba67
+          type:
+            type: string
+            enum:
+              - workspace-stats
+          attributes:
+            type: object
+            required:
+              - name
+              - type
+              - flows
+            properties:
+              name:
+                type: string
+                example: Workspace name
+              type:
+                type: string
+                enum:
+                  - full
+                  - limited
+              flows:
+                type: array
+                items:
+                  type: object
+                  requied:
+                    - id
+                    - name
+                    - status
+                    - type
+                    - created_at
+                    - updated_at
+                    - components
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    name:
+                      type: string
+                      example: Flow name
+                    status:
+                      type: string
+                      example: active
+                    type:
+                      type: string
+                      example: ordinary
+                    created_at:
+                      type: string
+                      example: '2020-03-04T11:25:45.238Z'
+                    updated_at:
+                      type: string
+                      example: '2020-03-04T11:25:45.238Z'
+                    components:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - name
+                          - component_id
+                          - version
+                        properties:
+                          name:
+                            type: string
+                            example: code
+                          component_id:
+                            type: string
+                            example: 5b4f337bff4304610483ba67
+                          version:
+                            type: string
+                            example: 6765e8b85f200f5a1065b880272135cb45c6a2e4

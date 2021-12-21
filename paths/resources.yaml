@@ -1,0 +1,19 @@
+/resources/storage/signed-url:
+  post:
+    tags:
+      - resources
+    summary: Creates a new signed url in Storage
+    description: This request is authorized for any platform User
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/resource-sch.yaml#/resourceOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'

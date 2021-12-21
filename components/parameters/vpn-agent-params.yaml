@@ -1,0 +1,7 @@
+vpn-agent_id:
+  in: path
+  name: vpn-agent_id
+  description: VPN agent identifier
+  required: true
+  schema:
+    type: string

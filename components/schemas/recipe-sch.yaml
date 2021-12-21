@@ -1,0 +1,556 @@
+recipeOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      $ref: '#/recipeData'
+recipeIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      $ref: '#/recipeData'
+recipePatchIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          type: string
+          description: Recipe Id must be same as url parameter
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - recipe
+        attributes:
+          type: object
+          $ref: '#/recipeData/properties/attributes'
+        relationships:
+          type: object
+          $ref: '#/recipeData/properties/relationships'
+recipeOutAll:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        $ref: '#/recipeData'
+    meta:
+      type: object
+      required:
+        - page
+        - per_page
+        - total
+        - total_pages
+      properties:
+        page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 12
+        total:
+          type: integer
+          example: 746
+        total_pages:
+          type: integer
+          example: 63
+recipeActivateIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+        - relationships
+      properties:
+        type:
+          type: string
+          enum:
+            - recipe-activation-config
+        attributes:
+          type: object
+          required:
+            - credentials
+            - variables
+          properties:
+            credentials:
+              type: object
+              description: Specify values for Credentials used by steps in a Flow
+              example: '{"step_1": "5b4f337bff4304610483ba67"}'
+            variables:
+              type: object
+              description: Specify values for variables which were defined in Recipe for mapping
+              example: '{"TO_EMAIL": "goose@example.com", "NAME_IN_SUBJECT": "Neochen Jubata"}'
+        relationships:
+          type: object
+          required:
+            - workspace
+          properties:
+            workspace:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      description: Workspace ID
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - workspace
+recipeActivateOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - relationships
+      properties:
+        relationships:
+          type: object
+          required:
+            - flows
+          properties:
+            flow:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - type
+                      - id
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - flow
+                      id:
+                        type: string
+                        example: 5b4f337bff4304610483ba67
+recipeVisibilityIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - visibility
+      properties:
+        visibility:
+          type: string
+          description: |
+            Recipe sharing mode. Value must be one of `workspace`, `contract`, `tenant` or `global`
+          enum:
+            - workspace
+            - contract
+            - tenant
+            - global
+exportToRecipeIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - relationships
+      properties:
+        type:
+          type: string
+          enum:
+            - flow-export-to-recipe-config
+        relationships:
+          type: object
+          required:
+            - dest_workspace
+          properties:
+            dest_workspace:
+              type: object
+              description: Workspace object where Recipe will be created
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                        - workspace
+                    id:
+                      type: string
+                      description: An Id of the Workspace
+                      example: 5b4f337bff4304610483ba67
+recipeData:
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      readOnly: true
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      enum:
+        - recipe
+    links:
+      type: object
+      readOnly: true
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/recipes/5b4f337bff4304610483ba67
+    attributes:
+      type: object
+      required:
+        - visibility
+        - info
+        - flow_templates
+        - created_at
+        - updated_at
+      properties:
+        declarations:
+          type: object
+          properties:
+            variables:
+              type: array
+              description: List of variables used by steps in a flow
+              items:
+                type: object
+                required:
+                  - id
+                  - title
+                properties:
+                  id:
+                    type: string
+                    example: petStatus
+                  title:
+                    type: string
+                    example: Status of the pet to get
+                  help:
+                    type: object
+                    required:
+                      - description
+                    properties:
+                      description:
+                        type: string
+                        example: Every pet in our store has a status. Please enter your favourite status.
+                      link:
+                        type: string
+                        example: http://test.com/recipes/12345
+            credentials:
+              type: array
+              description: List of credentials used by steps in a flow
+              items:
+                type: object
+                required:
+                  - id
+                properties:
+                  id:
+                    type: string
+                    example: petstore
+                  help:
+                    type: object
+                    required:
+                      - description
+                    properties:
+                      description:
+                        type: string
+                        example: Credentials to access your Petstore
+        visibility:
+          type: string
+          readOnly: true
+          enum:
+            - workspace
+            - contract
+            - tenant
+            - global
+        info:
+          type: object
+          required:
+            - title
+            - description
+            - short_description
+          properties:
+            title:
+              type: strig
+              description: Recipe title
+              example: My simple recipe
+            author:
+              type: string
+              example: John Doe
+            description:
+              type: string
+              description: Recipe description. Markdown is supported
+              example: |
+                # Scelerisque eleifend donec pretium vulputate sapien. \n\n ## Tincidunt id aliquet risus feugiat. \n\nA condimentum vitae sapien pellentesque habitant morbi tristique senectus et. **Nec feugiat in fermentum posuere urna**.
+            short_description:
+              type: string
+              description: Recipe short description
+              example: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        flow_templates:
+          type: array
+          items:
+            type: object
+            required:
+              - title
+              - graph
+            properties:
+              title:
+                type: string
+                description: Flow template title
+                example: My first flow template
+              cron:
+                type: string
+                description: Cron expression to schedule executions for polling flows
+                example: '*/9 * * * *'
+              graph:
+                type: object
+                description: Recipe graph representing component connections
+                required:
+                  - nodes
+                  - edges
+                properties:
+                  nodes:
+                    type: array
+                    items:
+                      anyOf:
+                        - type: object
+                          required:
+                            - name
+                            - description
+                            - command
+                            - id
+                            - data_sample
+                          properties:
+                            name:
+                              type: string
+                              example: step_1
+                            description:
+                              type: string
+                              example: Retrieve pets with status pending
+                            command:
+                              type: string
+                              example: core/petStore:getPetsByStatusWithDynamicSelectModel@c0a749a85eb62b322704055cfca29649ffad64ed
+                            fields:
+                              type: object
+                              example: '{"status": "pending"}'
+                            error:
+                              type: boolean
+                              default: false
+                            id:
+                              type: string
+                              example: step_1
+                            dynamic_select_model:
+                              type: object
+                              properties:
+                                getStatusModel:
+                                  type: object
+                                  example: '{"sold":"Sold","pending":"Pending","available":"Available"}'
+                            data_sample:
+                              type: object
+                              example: '{"pets":[{"id":10,"status":"pending","name":"Dolly","category":{"id":2,"name":"cats"}},{"id":11,"status":"pending","name":"Gorilla","category":{"id":1,"name":"dogs"}}]}'
+                            credentials_id:
+                              type: string
+                              description: The value from data.attributes.declarations.credentials[].id
+                              example: petstore
+                        - type: object
+                          required:
+                            - name
+                            - description
+                            - command
+                            - id
+                            - data_sample
+                          properties:
+                            name:
+                              type: string
+                              example: step_2
+                            description:
+                              type: string
+                              example: Create new pet
+                            command:
+                              type: string
+                              example: core/petStore:createPetWithPromiseUsingDynamicMetadata@c0a749a85eb62b322704055cfca29649ffad64ed
+                            error:
+                              type: boolean
+                              description: Set to true if component used as error handler
+                              default: false
+                            id:
+                              type: string
+                              example: step_2
+                            dynamic_metadata:
+                              type: string
+                              example: '{"in":{"type":"object","properties":{"name":{"type":"string","required":true,"title":"Name"},"status":{"type":"string","required":true,"title":"Status"},"newDynamicField":{"type":"string","required":true,"title":"New dynamic field"}}},"out":{"type":"object","properties":{"name":{"type":"string","required":true,"title":"Name"},"status":{"type":"string","required":true,"title":"Status"},"newDynamicField":{"type":"string","required":true,"title":"New dynamic field"}}}}'
+                            data_sample:
+                              type: object
+                              example: '{"newDynamicField":10,"status":"pending","name":"Dolly"}'
+                            credentials_id:
+                              type: string
+                              description: The value from data.attributes.declarations.credentials[].id
+                              example: petstore
+                  edges:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - target
+                      properties:
+                        config:
+                          type: object
+                          properties:
+                            mapper_type:
+                              type: string
+                              example: jsonata
+                            mapper:
+                              type: string
+                              example: '{"name": pets[0].name,"status": pets[0].status,"newDynamicField": pets[0].id}'
+                            condition:
+                              type: string
+                              nullable: true
+                              description: condition for Content Based Router component
+                              example: '$getPassthrough().step_1.body.status="pending"'
+        created_at:
+          readOnly: true
+          type: string
+          example: '2021-12-10T10:29:15.008Z'
+        updated_at:
+          readOnly: true
+          type: string
+          example: '2021-12-10T14:40:03.389Z'
+    relationships:
+      type: object
+      required:
+        - user
+        - workspace
+        - contract
+      properties:
+        user:
+          type: object
+          readOnly: true
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  description: User ID
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - user
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/users/5b4f337bff4304610483ba67
+        workspace:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  description: Workspace ID
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - workspace
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/workspaces/5b4f337bff4304610483ba67
+        contract:
+          type: object
+          readOnly: true
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  description: Contract ID
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - contract
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/contracts/5b4f337bff4304610483ba67

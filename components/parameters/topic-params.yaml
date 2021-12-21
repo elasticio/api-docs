@@ -1,0 +1,7 @@
+topic_id:
+  in: path
+  name: topic_id
+  description: Topic identifier
+  required: true
+  schema:
+    type: string

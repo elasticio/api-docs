@@ -1,0 +1,513 @@
+contractIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      $ref: '#/contractData'
+contractsListOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        $ref: '#/contractData'
+    meta:
+      type: object
+      required:
+        - page
+        - per_page
+        - total
+        - total_pages
+      properties:
+        page:
+          type: integer
+          example: 2
+        per_page:
+          type: integer
+          example: 20
+        total:
+          type: integer
+          example: 7
+        total_pages:
+          type: integer
+          example: 2
+contractOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      $ref: '#/contractData'
+    meta:
+      type: object
+      example: '{}'
+contractEditIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+      - id
+      - type
+      - attributes
+      properties:
+        id:
+          type: string
+          description: Contract identifier. It has to match the identifier specified in the path.
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          description: Allowed value `contract`.
+          enum:
+            - contract
+        attributes:
+          type: object
+          $ref: '#/contractData/properties/attributes'
+contractByIdOut:
+  type: object
+  required:
+    - data
+    - meta
+    - included
+  properties:
+    data:
+      type: object
+      $ref: '#/contractData'
+    meta:
+      type: object
+      example: '{}'
+    included:
+      $ref: '#/includedData'
+contractData:
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      readOnly: true
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      description: |
+        Allowed value: `contract`
+      enum:
+        - contract
+    links:
+      type: object
+      readOnly: true
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/contracts/5b4f337bff4304610483ba67
+    attributes:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Name of the contract
+          example: Contract name
+        available_roles:
+          type: array
+          items:
+            type: object
+            required:
+              - scope
+              - role
+            properties:
+              scope:
+                type: string
+                description: The role's scope
+                enum:
+                  - contracts
+                  - workspaces
+              role:
+                type: string
+                description: The role's name
+                example: admin
+        status:
+          type: string
+          readOnly: true
+          example: active
+        flow_stats_enabled_default:
+          type: boolean
+          desription: To disable input/output message stats set this flow’s `attributes.stats_enabled` flag to `false`
+          default: true
+        support_user_id:
+          type: string
+          description: An identifier of user from platform support team
+          example: 5b4f337bff4304610483ba67
+    relationships:
+      type: object
+      readOnly: true
+      required:
+        - members
+        - workspaces
+        - invites
+      properties:
+        members:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: array
+              items:
+                type: object
+                required:
+                  - id
+                  - type
+                properties:
+                  id:
+                    type: string
+                    example: 5b4f337bff4304610483ba67
+                  type:
+                    type: string
+                    enum:
+                      - contract-member
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/contracts/5b4f337bff4304610483ba67/members
+        workspaces:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: array
+              items:
+                type: object
+                required:
+                  - id
+                  - type
+                properties:
+                  id:
+                    type: string
+                    example: 5b4f337bff4304610483ba67
+                  type:
+                    type: string
+                    enum:
+                      - workspace
+        invites:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: array
+              items:
+                type: object
+                required:
+                  - id
+                  - type
+                properties:
+                  id:
+                    type: string
+                    example: 5b4f337bff4304610483ba67
+                  type:
+                    type: string
+                    enum:
+                      - contract-invite
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: /v2/contracts/5b4f337bff4304610483ba67/invites
+includedData:
+  type: array
+  items:
+    anyOf:
+      - type: object
+        $ref: '#/memberOut/properties/data'
+      - type: object
+        $ref: '#/inviteOut/properties/data'
+memberOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      required:
+        - id
+        - type
+        - attributes
+        - relationships
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - contract-member
+        attributes:
+          type: object
+          required:
+            - first_name
+            - last_name
+            - roles
+            - email
+          properties:
+            first_name:
+              type: string
+              example: John
+            last_name:
+              type: string
+              example: Doe
+            roles:
+              type: array
+              items:
+                type: string
+                example: admin
+            email:
+              type: string
+              example: john.doe@gmail.com
+        relationships:
+          type: object
+          required:
+            - user
+          properties:
+            user:
+              type: object
+              required:
+                - data
+                - links
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      type: string
+                      enum:
+                        - user
+                links:
+                  type: object
+                  required:
+                    - self
+                  properties:
+                    self:
+                      type: string
+                      example: /v2/users/5b4f337bff4304610483ba67
+inviteOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - contract-invite
+        attributes:
+          type: object
+          required:
+            - email
+            - roles
+            - contract_id
+            - workspace_roles
+          properties:
+            email:
+              type: string
+              example: john.doe@gmail.com
+            roles:
+              type: array
+              items:
+                type: string
+                example: member
+              contract_id:
+                type: string
+                example: 5b4f337bff4304610483ba67
+              workspace_roles:
+                type: array
+                items:
+                  type: string
+                  example: integrator
+membersListOut:
+  type: array
+  items:
+    type: object
+    $ref: '#/memberOut'
+invitesListOut:
+  type: array
+  items:
+    type: object
+    $ref: '#/inviteOut'
+contractRolesOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+        - relationships
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - contract-policy
+        attributes:
+          type: object
+          $ref: 'tenant-sch.yaml#/tenantRolesOut/properties/data/properties/attributes'
+        relationships:
+          type: object
+          $ref: 'tenant-sch.yaml#/tenantRolesOut/properties/data/properties/relationships'
+    meta:
+      type: object
+      example: '{}'
+inviteData:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        type:
+          type: string
+          description: 	A value should be `contract-invite`.
+          enum:
+            - contract-invite
+        attributes:
+          type: object
+          required:
+            - email
+            - roles
+          properties:
+            email:
+              type: string
+              description: Email of the invited person
+              example: john.doe@gmail.com
+            roles:
+              type: array
+              description: Set of roles of the invited person in the specified contract. The very first member of a contract must have `owner` role.
+              items:
+                type: string
+                example: admin
+            workspace_id:
+              type: string
+              description: Workspace identifier
+              example: 5b4f337bff4304610483ba67
+            workspace_roles:
+              type: array
+              description: Set of roles of the invited person in the specified workspace
+              items:
+                type: string
+                example: integrator
+inviteIn:
+  type: object
+  $ref: '#/inviteData'
+inviteObjectOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      $ref: '#/inviteData/properties/data'
+    meta:
+      type: object
+      example: '{}'
+memberIn:
+  type: object
+  required:
+    - id
+    - type
+    - attributes
+  properties:
+    id:
+      type: string
+      description: The identifier of an already registered user
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      description: A value should be `contract-member`
+      enum:
+        - contract-member
+    attributes:
+      type: object
+      required:
+        - roles
+      properties:
+        roles:
+          type: array
+          description: Set of roles of the specified user in this contract
+          items:
+            type: string
+            example: member
+memberObjectOut:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - attributes
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - contract-member
+        attributes:
+          type: object
+          $ref: '#/memberOut/properties/data/properties/attributes'

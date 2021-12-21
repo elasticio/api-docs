@@ -1,0 +1,183 @@
+/quota-usages/contracts/{contract_id}:
+  get:
+    tags:
+      - quota usages
+    summary: Returns usage metrics (CPU and Memory) of the specified contract. Returns Memory (in MiB) and CPU (in milli CPU) usage.
+    description: |
+      Memory usage is reported as a sum of RAM usage for each second during the specified period for each step. CPU usage is reported as an amount of consumed CPU for each step. Only a corresponding contract member can be authorized to access this resource.
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/from'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/to'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/quota-usage-sch.yaml#/usageOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/quota-usages/contracts/{contract_id}/history:
+  get:
+    tags:
+      - quota usages
+    summary: Returns usage history (CPU and Memory) of the specified contract within defined period. Returns Memory (in MiB) and CPU (in milli CPU) usage.
+    description: |
+      Memory usage is reported as a sum of RAM usage for a day. CPU usage is reported as an amount of consumed CPU for a day. Only a corresponding contract member can be authorized to access this resource.
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/from'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/to'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/group_by'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/quota-usage-sch.yaml#/historyUsageOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/quota-usages/workspaces/{workspace_id}:
+  get:
+    tags:
+      - quota usages
+    summary: Returns usage metrics (CPU and Memory) of the specified workspace. Returns Memory (in MiB) and CPU (in milli CPU) usage.
+    description: |
+      Memory usage is reported as a sum of RAM usage for each second during the specified period for each step. CPU usage is reported as an amount of consumed CPU for each step. Only a corresponding contract member can be authorized to access this resource.
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/from'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/to'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/quota-usage-sch.yaml#/usageWsOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/quota-usages/workspaces/{workspace_id}/history:
+  get:
+    tags:
+      - quota usages
+    summary: Returns usage history (CPU and Memory) of the specified workspace within defined period. Returns Memory (in MiB) and CPU (in milli CPU) usage.
+    description: |
+      You have to be workspace member and have `contracts.workspace.listAll` permission to access this resource. Memory usage is reported as a sum of RAM usage for a day. CPU usage is reported as an amount of consumed CPU for a day.
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/from'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/to'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/group_by'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/quota-usage-sch.yaml#/historyUsageOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/quota-usages/workspaces/{workspace_id}/flows:
+  get:
+    tags:
+      - quota usages
+    summary: Returns usage metrics (CPU and Memory) for each flow that was active in the specified period in a certain workspace. Returns Memory (in MiB) and CPU (in milli CPU) usage.
+    description: |
+      Memory usage is reported as a sum of RAM usage for each second during the specified period for each step. CPU usage is reported as an amount of consumed CPU for each step. Only a corresponding contract member can be authorized to access this resource.
+    parameters:
+      - $ref: '../components/parameters/workspace-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/from'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/to'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/quota-usage-sch.yaml#/usageFlowsOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/quota-usages/flows/{flow_id}/history:
+  get:
+    tags:
+      - quota usages
+    summary: Returns usage history (CPU and Memory) of the specified workspace within defined period. Returns Memory (in MiB) and CPU (in milli CPU) usage.
+    description: |
+      You have to be workspace member to access this resource. Memory usage is reported as a sum of RAM usage for a day. CPU usage is reported as an amount of consumed CPU for a day.
+    parameters:
+      - $ref: '../components/parameters/flow-params.yaml#/flow_id'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/from'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/to'
+      - $ref: '../components/parameters/quota-usage-params.yaml#/group_by'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/quota-usage-sch.yaml#/historyUsageOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

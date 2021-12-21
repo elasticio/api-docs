@@ -1,0 +1,173 @@
+/auth-clients:
+  get:
+    tags:
+       - auth clients
+    summary: Lists all auth clients
+    description: |
+      You need one of the `global.auth_clients.get`, `tenants.auth_clients.get`, `contracts.auth_clients.get` or `workspaces.auth_clients.get` permission to access this resource. Each permission allows to list auth clients in particular scope inclusively: `global.auth_clients.get` allows to list global clients, `tenants.auth_clients.get` allows to list global and tenant’s clients, `contracts.auth_clients.get` allows to list global, tenant’s and all tenant’s contracts clients, `workspaces.auth_clients.get` allows to list all global, tenant’s, contracts’ and workspaces’ clients.
+      ### Notice: `auth_clients.get` permissions are also used to authorize access to auth client’s credentials field: one can see auth client’s credential only if client’s scope and permission’s scope match, i.e. credentials of tenant’s auth client are visible for users only with `tenants.auth_clients.get` permissions, though tenant auth client itself is visible for users with `workspaces.auth_clients.get` permission.
+    parameters:
+      - $ref: '../components/parameters/auth-client-params.yaml#/filter[component]'
+      - $ref: '../components/parameters/auth-client-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/auth-client-params.yaml#/contract_id'
+      - $ref: '../components/parameters/auth-client-params.yaml#/tenant_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/auth-client-sch.yaml#/clientsListOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+  post:
+    tags:
+      - auth clients
+    summary: Creates an auth client
+    description: |
+      You need one of the `global.auth_clients.get`, `tenants.auth_clients.get`, `contracts.auth_clients.get` or `workspaces.auth_clients.get` permission to access this resource. Scope where client is created is controlled by corresponding permission and relationship: `workspace`, `contract` or `tenant`. No relationship means that auth-client will be created in the global scope.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/auth-client-sch.yaml#/clientIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/auth-client-sch.yaml#/clientOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+/auth-clients/{auth-client_id}:
+  get:
+    tags:
+      - auth clients
+    summary: Returns the specified auth client.
+    description: |
+      You need one of the `global.auth_clients.get`, `tenants.auth_clients.get`, `contracts.auth_clients.get` or `workspaces.auth_clients.get` permission to access this resource. Each permission allows to get auth client in particular scope inclusively: `global.auth_clients.get` allows to get global client, `tenants.auth_clients.get` allows to get global and tenant’s clients, `contracts.auth_clients.get` allows to get global, tenant’s and all tenant’s contracts clients, `workspaces.auth_clients.get` allows to get global, tenant’s, contracts’ and workspaces’ clients. `auth_clients.get` permissions are also used to authorize access to auth client’s credentials field: one can see auth client’s credential only if client’s scope and permission’s scope match, i.e. credentials of tenant’s auth client are visible for users only with `tenants.auth_clients.get` permissions, though tenant auth client itself is visible for users with `workspaces.auth_clients.get`.
+      To specify scope of request one of `workspace_id`, `contract_id` or `tenant_id` query parameters is used. For example, tenant auth client can be retrieved by id if user has `workspaces.auth_clients.get` permission in one of the tenant’s workspaces, so to specify those workspace `workspace_id` query parameter is used, without scope parameter you can get only global client. In case if the user tries to get not a global client and doesn’t specify the query parameter - such request will be rejected, as permission can’t be checked.
+    parameters:
+      - $ref: '../components/parameters/auth-client-params.yaml#/auth-client_id'
+      - $ref: '../components/parameters/auth-client-params.yaml#/workspace_id'
+      - $ref: '../components/parameters/auth-client-params.yaml#/contract_id'
+      - $ref: '../components/parameters/auth-client-params.yaml#/tenant_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/auth-client-sch.yaml#/clientOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - auth clients
+    summary: Update the specified auth client
+    description: |
+      You have to be a member with appropriate permission to access this resource. This resource allows you to update the auth client. If the auth client with type `oauth2` then you can update `name`, `client_secret`, `token_expires_in` and linked components, otherwise if the type is other, then you can put in credentials any data that you want and add components which can use this auth client.
+    parameters:
+      - $ref: '../components/parameters/auth-client-params.yaml#/auth-client_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/auth-client-sch.yaml#/clientEditIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/auth-client-sch.yaml#/clientOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - auth clients
+    summary: Remove the specified auth client.
+    description: |
+      You have to be a member with appropriate permission to access this resource.
+    parameters:
+      - $ref: '../components/parameters/auth-client-params.yaml#/auth-client_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

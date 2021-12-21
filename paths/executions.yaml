@@ -1,0 +1,162 @@
+/exec/poll/{execution_id}:
+  get:
+    tags:
+      - scheduled executions
+    summary: Returns the state of the specified execution.
+    description: Once the execution is done, the endpoint responds with `HTTP 303` and provides a resource for querying the result in the `Location` header.
+    parameters:
+      - $ref: '../components/parameters/execution-params.yaml#/execution_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/execution-sch.yaml#/executionOut'
+      '303':
+        description: See other
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/303'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/exec/result/{execution_id}:
+  get:
+    tags:
+      - scheduled executions
+    summary: Returns the result of the specified execution.
+    description: When execution is in progress and result is not ready yet, HTTP status code `409` is returned.
+    parameters:
+      - $ref: '../components/parameters/execution-params.yaml#/execution_id'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/execution-sch.yaml#/resultOut'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/409'
+/components/{component_id}/versions/{git_revision}/verify-credential:
+  post:
+    tags:
+      - scheduled executions
+    summary: Starts the process of verifying a credential for the specified component.
+    description: |
+      You need to have `workspaces.credential.edit` permission to access this resource.
+      The verification credential is an asynchronous process because it is accomplished by sending a request to an external API.
+    parameters:
+      - $ref: '../components/parameters/execution-params.yaml#/component_id'
+      - $ref: '../components/parameters/execution-params.yaml#/git_revision'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/execution-sch.yaml#/verifyCredential'
+    responses:
+      '202':
+        description: Accepted
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/execution-sch.yaml#/executionOut'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/components/{component_id}/versions/{git_revision}/dynamic-metadata:
+  post:
+    tags:
+      - scheduled executions
+    summary: Starts the process of retrieving dynamic metadata for the specified component.
+    description: |
+      You need to have `workspaces.flow.edit` permission to access this resource.
+      The retrieval of metamodel is an asynchronous process because it is accomplished by sending a request to an external API.
+    parameters:
+      - $ref: '../components/parameters/execution-params.yaml#/component_id'
+      - $ref: '../components/parameters/execution-params.yaml#/git_revision'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/execution-sch.yaml#/metadataIn'
+    responses:
+      '202':
+        description: Accepted
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/execution-sch.yaml#/executionOut'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/components/{component_id}/versions/{git_revision}/select-model:
+  post:
+    tags:
+      - scheduled executions
+    summary: Starts the process of retrieving component's select model for the specified component.
+    description: |
+      You need to have `workspaces.flow.edit` permission to access this resource.
+      The retrieval of select model is an asynchronous process because it is accomplished by sending a request to an external API.
+    parameters:
+      - $ref: '../components/parameters/execution-params.yaml#/component_id'
+      - $ref: '../components/parameters/execution-params.yaml#/git_revision'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/execution-sch.yaml#/selectModelIn'
+    responses:
+      '202':
+        description: Accepted
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/execution-sch.yaml#/executionOut'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'

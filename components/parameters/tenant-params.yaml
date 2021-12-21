@@ -1,0 +1,35 @@
+tenant_id:
+  in: path
+  name: tenant_id
+  description: Tenant identifier
+  required: true
+  schema:
+    type: string
+certificate_id:
+  in: path
+  name: certificate_id
+  description: Certificate identifier
+  required: true
+  schema:
+    type: string
+oauth-client_id:
+  in: path
+  name: oauth-client_id
+  description: Oauth-client identifier
+  required: true
+  schema:
+    type: string
+open_id_provider_id:
+  in: path
+  name: open_id_provider_id
+  description: OpenID Provider identifier
+  required: true
+  schema:
+    type: string
+saml_provider_id:
+  in: path
+  name: saml_provider_id
+  description: SAML Provider identifier
+  required: true
+  schema:
+    type: string

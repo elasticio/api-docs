@@ -1,0 +1,497 @@
+componentsOutAll:
+  type: object
+  required:
+    - data
+    - meta
+    - included
+    - links
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        $ref: '#/componentData'
+    meta:
+      type: object
+      example: '{}'
+    included:
+      $ref: '#/componentIncluded'
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/components
+componentsOut:
+  type: object
+  required:
+    - data
+    - meta
+    - included
+  properties:
+    data:
+      $ref: '#/componentData'
+    meta:
+      type: object
+      example: '{}'
+    included:
+      $ref: '#/componentIncluded'
+componentRepoIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+        - relationships
+      properties:
+        type:
+          $ref: '#/componentRepoOut/properties/data/properties/type'
+        attributes:
+          $ref: '#/componentRepoOut/properties/data/properties/attributes'
+        relationships:
+          type: object
+          required:
+            - team
+            - contract
+          properties:
+            team:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                        - team
+                    id:
+                      type: string
+                      description: Team ID the repository to create for
+                      example: 61b9ed068a96b4001138ffc5
+            contract:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                        - contract
+                    id:
+                      type: string
+                      description: Contract ID the repository to create for
+                      example: 61b9ed068a96b4001138ffc5
+componentRepoOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+        - relationships
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: 61b9ed068a96b4001138ffc5
+        type:
+          type: string
+          enum:
+            - component
+        links:
+          type: object
+          readOnly: true
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/components/61b9ed068a96b4001138ffc5
+        attributes:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+              description: Repository name
+              example: simple-trigger-component
+            icon:
+              type: string
+              writeOnly: true
+              description: Component icon as base64 string
+              example: 'iVBORw0KGgoAAAANSUhEUgAAADQAAAA8CAYAAAApK5mGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjYzQUQ2ODYxMUExMTFFOTk1NkY4RDc3MjQ0OTdBMTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjYzQUQ2ODcxMUExMTFFOTk1NkY4RDc3MjQ0OTdBMTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGNjNBRDY4NDExQTExMUU5OTU2RjhENzcyNDQ5N0ExNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGNjNBRDY4NTExQTExMUU5OTU2RjhENzcyNDQ5N0ExNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnvRw2oAAAQJSURBVHja3FpNTBNBFB4WaCkSIUr5KQoEI4oHDcYD8YQ3uZho8KARjQcjYryAiQe9mMhN4sFglBNRAgeDHOGkNREtYESQWgElUIzyU5BiKy0g+l47jdBuu9ntzHbXl3y0dHbmzTcz7293kw7XtxDOcgDQ5Jmdxu/XAJ95KhM4jp0FuAsYBBynsNPfsvRECMesA4wDGgCGTW0G+hu2XeKhn/WAlYC3gGZAdozrsK2FXlupRUJFgGeAF4ByGf3KaZ+ngEItEMoA3AE4ACfjGKca8ImOlZEIQkmAc4AxwE2AicHimuhYOOYZqkMVQhWA14AngHwOTgXHbKc6KngSQkWPlSqKY+Fa5SycIPMo1Cg9CnEc7QtyjrYUITT0jyyMlZHzGZFyPoKEO0VXXEy0IyVS4UEQCXjNPAIehwA+IBbAQ4RSN6UkdZxzPFaSLJZiCTRpfM87aVQrCU6BP93k/xAsU7pTeI2eZsklgsn473yYtzpJ94iDi14uhARTGrGcPhHzmqn2Di6kuBh/esnumO2//X7inXTqp2I15phjtv8cHSPrHq9+CJkKYqdenokv+rmngPZj2Lkjavua200W+9/ph5CU/SyPjnL13YLa9uOy9XEllKKm/fjm5oh/Zp4Y88xk+75SYsq3kG1FhSQ1MzPg+ey3G7VHKJb9JBuNpOxGQ4BAuGz4fNrbofQ9sW/ciBEJyY+hIe3ZkDHXrKgfHjfXqzfaI2QqsCjqt9DXxyzQMiWUZslT1I/V7jAlJGU/0WRp+APTNEjgbT+rC4vEPWwPZAhiMmu1ajMOrbmXie/bTOC737VA/HPz5NfENNlYCbrjjNrzoruDcUmThDz28QCiFXsYgyKcQf+APrLtCO9XvCviN6/TSbwTk/okZDRni3i2Xv3UQxE7FObOcXd43VPgTgjtJ8lg2FpCOBzc9Alq2w+67/mXvfolFG4/LptNXwVeLPvhvTvcCYXbD6sSIWGEsDLlUSIkjlBONpcSIYFHLp9LiSBFqIoE3xFgLhurq4FPzLZV2B18DluFyWkP4DkJvil1izB8RvS1rVONTVkiweev97FaCR05XMomwF7AQ1xcon3BObbQOTdRDhE25AJcARwBWDVMxkrneJnOWdIp4OO9Y4BTgCkNEcFnMNV0boNKvFwXoIzalieBRDx0DvsBnfG67RUA3qMtJcH3e/6oSAR1dVDdjXQuzOLQdwDeGDgKsKlAxkZ1naW6uQXWkKIaOYpkLtxFpQsnxHEU2uQcBZlHu1Xp0RYYGmtXHONg34MsnA+rXM5JXXxUdxpFhjaFBybvc7NOTkMBrzY84IkE8Ks8AjiPbBtTkkfhKQmVdcA92vaA/q+b8gGTxuvUNnooDgHqaRsX+SvAAEcsMLDm5qd5AAAAAElFTkSuQmCC'
+            team_name:
+              type: string
+              readOnly: true
+              description: Developer Team name
+              example: core
+            access:
+              type: string
+              readOnly: true
+              enum:
+                - team
+                - tenant
+                - global
+            whitelisted_contract_ids:
+              type: array
+              description: List of Contracts where this components is available for full Workspaces
+              items:
+                type: string
+                example: 5b4f337bff4304610483ba67
+        relationships:
+          type: object
+          readOnly: true
+          required:
+            - versions
+          properties:
+            versions:
+              type: object
+              required:
+                - links
+              properties:
+                links:
+                  type: object
+                  required:
+                    - related
+                  properties:
+                    related:
+                      type: string
+                      example: '/v2/components/5b4f337bff4304610483ba67/versions'
+    meta:
+      type: object
+      readOnly: true
+      example: '{}'
+componentsPatchIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+      properties:
+        type:
+          type: string
+          enum:
+            - component
+        attributes:
+          type: object
+          properties:
+            access:
+              type: string
+              description: |
+                A value should be `tenant` for increasing access from `team` level
+              enum:
+                - tenant
+            whitelisted_contract_ids:
+              type: array
+              description: List of Contracts where this components is available for full Workspaces
+              items:
+                type: string
+                example: 5b4f337bff4304610483ba67
+versionsOut:
+  type: object
+  required:
+    - data
+    - meta
+    - links
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/version'
+    meta:
+      type: object
+      example: '{}'
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: '/v2/components/5b4f337bff4304610483ba67/versions'
+descriptorOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      $ref: '../schemas/flow-sch.yaml#/descriptor'
+    meta:
+      type: object
+      example: '{}'
+componentData:
+  type: object
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      example: 5b4f337bff4304610483ba67
+    type:
+      type: string
+      enum:
+        - component
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: /v2/components/5b4f337bff4304610483ba67
+    attributes:
+      type: object
+      required:
+        - name
+        - team_name
+        - access
+        - whitelisted_contract_ids
+      properties:
+        name:
+          type: string
+          description: Repository name
+          example: simple-trigger-component
+        team_name:
+          type: string
+          readOnly: true
+          description: Developer Team name
+          example: core
+        access:
+          type: string
+          readOnly: true
+          enum:
+            - team
+            - tenant
+            - globalversion
+        whitelisted_contract_ids:
+          type: array
+          description: List of Contracts where this components is available for full Workspaces
+          items:
+            type: string
+            example: 5b4f337bff4304610483ba67
+    relationships:
+      type: object
+      required:
+        - versions
+        - latest_version
+      properties:
+        versions:
+          type: object
+          required:
+            - links
+          properties:
+            links:
+              type: object
+              required:
+                - related
+              properties:
+                related:
+                  type: string
+                  example: '/v2/components/5b4f337bff4304610483ba67/versions'
+        latest_version:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  example: db12f2a7291fd904d004786cb9f11220c90421aa
+                type:
+                  type: string
+                  enum:
+                    - version
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: '/v2/components/5b4f337bff4304610483ba67/versions/latest'
+componentIncluded:
+  type: array
+  items:
+    anyOf:
+      - $ref: '../schemas/flow-sch.yaml#/descriptor'
+      - $ref: '#/version'
+version:
+  type: object
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      example: db12f2a7291fd904d004786cb9f11220c90421aa
+    type:
+      type: string
+      enum:
+        - version
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: '/v2/versions/db12f2a7291fd904d004786cb9f11220c90421aa'
+    attributes:
+      type: object
+      required:
+        - date
+        - version_number
+      properties:
+        date:
+          type: integer
+          description: The unix time stamp
+          example: 1452180641922
+        version_number:
+          type: string
+          example: '2'
+    relationships:
+      type: object
+      required:
+        - descriptor
+        - component
+      properties:
+        descriptor:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  example: db12f2a7291fd904d004786cb9f11220c90421aa
+                type:
+                  type: string
+                  enum:
+                    - descriptor
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: '/v2/components/5b4f337bff4304610483ba67/versions/db12f2a7291fd904d004786cb9f11220c90421aa/descriptor'
+        component:
+          type: object
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - component
+            links:
+              type: object
+              required:
+                - self
+              properties:
+                self:
+                  type: string
+                  example: '/v2/components/5b4f337bff4304610483ba67'
+envvarsData:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - component-env
+        links:
+          type: object
+          readOnly: true
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/component-envs/5b4f337bff4304610483ba67
+        attributes:
+          type: object
+          required:
+            - vars
+          properties:
+            vars:
+              type: object
+              description: JSON object representing environmental variables mapped to their values
+              example: '{"my_env_var":"env_var_value"}'
+    meta:
+      type: object
+      readOnly: true
+      example: '{}'

@@ -1,0 +1,573 @@
+/contracts:
+  get:
+    tags:
+       - contracts
+    summary: Lists all contracts for a specific user
+    parameters:
+      - $ref: '../components/parameters/system-params.yaml#/page-size'
+      - $ref: '../components/parameters/system-params.yaml#/page-number'
+    description: You need to be a member of the Contract’s scope to access this resource
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/contract-sch.yaml#/contractsListOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+  post:
+    tags:
+      - contracts
+    summary: Creates a contract
+    description: You need to be a user with `TenantAdmin` role to access this resource
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/contract-sch.yaml#/contractIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/contract-sch.yaml#/contractOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+/contracts/{contract_id}:
+  get:
+    tags:
+      - contracts
+    summary: Returns the specified contract.
+    description: You need to be a member of specified contract or a user with `TenantAdmin` role to access this resource
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+      - $ref: '../components/parameters/workspace-params.yaml#/include'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/contract-sch.yaml#/contractByIdOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  patch:
+    tags:
+      - contracts
+    summary: Update the specified contract
+    description: You need `contracts.contract.edit` permission to update `name` of the contract and to be a user with `TenantAdmin` role to update the set of available roles of the contract.
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/contract-sch.yaml#/contractEditIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/contract-sch.yaml#/contractOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - contracts
+    summary: Remove the specified contract.
+    description: |
+      You need to be a user with `TenantAdmin` role to access this resource.
+      ### This endpoint will delete a Contract’s scope along with everything it includes. These items are listed below:
+      * Accounts (Credentials)
+      * Agents
+      * DataSamples
+      * InviteTokens
+      * Flow’s DynamicMetadata
+      * Flow’s DynamicSelectModel
+      * Flow’s ExecStat
+      * Flow’s ExecutionResult
+      * Flow’s MarathonEvent
+      * Flow’s RequestBin
+      * Flow’s TaskHooksData
+      * Flow’s TaskStatError
+      * Flow’s TaskVersion
+      * Workspaces
+      * Teams
+      * Repos
+      * RepoBuilds
+      * User accounts who were only the members of the deleted Contract’s scope, as well as ssh keys associated with him/her.
+      ### Note, the deletion process is asynchronous. The actual data deletion will be performed after an API response, as it requires time for termination of all the Contract’s flows containers.
+      ### A Contract can't be deleted while any of its components are being used in another contract flow.
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/contracts/{contract_id}/members:
+  get:
+    tags:
+       - contracts
+    summary: Lists all members for a specified contract
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+    description: You need to be a member of the Contract’s scope to access this resource
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/contract-sch.yaml#/membersListOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  post:
+    tags:
+      - contracts
+    summary: Adds existed platform user as a member to the specified contract.
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+    description: You have to be a user with `TenantAdmin` role to access this resource.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/contract-sch.yaml#/memberIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/contract-sch.yaml#/memberObjectOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/409'
+/contracts/{contract_id}/members/{user_id}:
+  patch:
+    tags:
+      - contracts
+    summary: Update membership for the specified member
+    description: You need have `contracts.membership.edit` permission to access this resource.
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+      - $ref: '../components/parameters/contract-params.yaml#/user_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/contract-sch.yaml#/memberIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/contract-sch.yaml#/memberObjectOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/409'
+  delete:
+    tags:
+      - contracts
+    summary: Remove membership of the specified user for defined contract.
+    description: |
+      You need have `contracts.membership.edit` permission or to be a user with `TenantAdmin` role to access this resource.
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+      - $ref: '../components/parameters/contract-params.yaml#/user_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/contracts/{contract_id}/invites:
+  get:
+    tags:
+       - contracts
+    summary: Lists all pending members for a specified contract
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+    description: You need to be a member of the Contract’s scope to access this resource
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/contract-sch.yaml#/invitesListOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  post:
+    tags:
+      - contracts
+    summary: Invites user to the defined contract and workspace, if last one is specified
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+    description: You need have `contracts.membership.edit` permission or to be a user with `TenantAdmin` role to access this resource. To provide the `workspase_id` as an additional parameter user has to have permission `workspaces.workspace.edit` and belong to the provided workspace.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/contract-sch.yaml#/inviteIn'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/contract-sch.yaml#/inviteObjectOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/409'
+/contracts/{contract_id}/invites/{invite_id}:
+  patch:
+    tags:
+      - contracts
+    summary: Update the specified invitation
+    description: You need have `contracts.membership.edit` permission or to be a user with `TenantAdmin` role to access this resource. To provide the `workspase_id` as an additional parameter user has to have permission `workspaces.workspace.edit` and belong to the provided workspace.
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+      - $ref: '../components/parameters/contract-params.yaml#/invite_id'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/contract-sch.yaml#/inviteIn'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/contract-sch.yaml#/inviteObjectOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+  delete:
+    tags:
+      - contracts
+    summary: Remove the specified invitation.
+    description: |
+      You need have `contracts.membership.edit` permission or to be a user with `TenantAdmin` role to access this resource.
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+      - $ref: '../components/parameters/contract-params.yaml#/invite_id'
+    responses:
+      '204':
+        description: No Content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/contracts/{contract_id}/roles:
+  get:
+    tags:
+       - contracts
+    summary: Lists all roles for a specified contract
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+    description: You need to be a member of the Contract’s scope to access this resource
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/contract-sch.yaml#/contractRolesOut'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/contracts/{contract_id}/suspend:
+  post:
+    tags:
+       - contracts
+    summary: Suspends the specified contract
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+    description: You need to have the `Service Account` record type or the `TenantAdmin` role to access this resource. The process is asynchronous. Suspending is completed once all of the flows in a given Contract will be stopped. While the contract gets suspended, all the writing requests will be rejected.
+    responses:
+      '202':
+        description: Accepted
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+/contracts/{contract_id}/unsuspend:
+  post:
+    tags:
+       - contracts
+    summary: Resumes the specified contract
+    parameters:
+      - $ref: '../components/parameters/contract-params.yaml#/contract_id'
+    description: You need to have the `Service Account` record type or the `TenantAdmin` role to access this resource.
+    responses:
+      '204':
+        description: No content
+        content:
+          application/json:
+            schema:
+              type: object
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/401'
+      '403':
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/404'
+      '409':
+        description: Conflict
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/errors-sch.yaml#/409'

@@ -1,0 +1,133 @@
+versionOutAll:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        $ref: '#/versionData'
+    meta:
+      type: object
+      required:
+        - page
+        - per_page
+        - total
+        - total_pages
+      properties:
+        page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 50
+        total:
+          type: integer
+          example: 21
+        total_pages:
+          type: integer
+          example: 1
+versionOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      $ref: '#/versionData'
+    meta:
+      type: object
+      example: '{}'
+versionData:
+  required:
+    - id
+    - type
+    - links
+    - attributes
+    - relationships
+  properties:
+    id:
+      type: string
+      example: abfa4217d0ad4f232c2908e1db1d3a19fbbf6a62
+    type:
+      type: string
+      enum:
+        - flow-version
+    links:
+      type: object
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          example: '/v2/flows/5b4f337bff4304610483ba67/versions/abfa4217d0ad4f232c2908e1db1d3a19fbbf6a62'
+    attributes:
+      type: object
+      required:
+        - name
+        - description
+        - graph
+        - created_at
+        - nodes_config
+      properties:
+        name:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/name'
+        description:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/description'
+        graph:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/graph'
+        created_at:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/created_at'
+        nodes_config:
+          $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/nodes_config'
+    relationships:
+      type: object
+      required:
+        - user
+        - flow
+      properties:
+        user:
+          type: object
+          readOnly: true
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  description: User ID
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - user
+        flow:
+          type: object
+          readOnly: true
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+              properties:
+                id:
+                  type: string
+                  description: Flow ID
+                  example: 5b4f337bff4304610483ba67
+                type:
+                  type: string
+                  enum:
+                    - flow

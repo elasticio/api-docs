@@ -1,0 +1,319 @@
+metadataIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+        - relationships
+      properties:
+        type:
+          description: A value must be `dynamic-metadata`.
+          type: string
+          enum:
+            - dynamic-metadata
+        attributes:
+          type: object
+          required:
+            - module
+            - fields
+          properties:
+            module:
+              description: Name of the component’s module as defined in `component.json`.
+              type: string
+              example: createPetWithPromiseUsingDynamicMetadata
+            fields:
+              description: Contains values for component’s fields.
+              type: object
+              example: '{"key":"value"}'
+        relationships:
+          $ref: '#/relationships'
+selectModelIn:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+        - relationships
+      properties:
+        type:
+          description: A value must be `select-model`.
+          type: string
+          enum:
+            - select-model
+        attributes:
+          type: object
+          required:
+            - module
+            - method
+            - fields
+          properties:
+            module:
+              description: Name of the component’s module as defined in `component.json`.
+              type: string
+              example: createPetWithPromiseUsingDynamicMetadata
+            method:
+              description: Name of the method, which returns select model data.
+              type: string
+              example: getStatusModel
+            fields:
+              description: Contains values for component’s fields.
+              type: object
+              example: '{"key":"value"}'
+        relationships:
+          $ref: '#/relationships'
+verifyCredential:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+        - relationships
+      properties:
+        type:
+          description: A value must be `verify-credential`.
+          type: string
+          enum:
+            - verify-credential
+        attributes:
+          type: object
+          required:
+            - fields
+          properties:
+            fields:
+              description: An object which represents the configuration of credential.
+              type: object
+              example: '{"api_key":"api_secret"}'
+        relationships:
+          type: object
+          required:
+            - workspace
+          properties:
+            workspace:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      description: Workspace identifier.
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      description: Value must be `workspace`
+                      type: string
+                      enum:
+                        - workspace
+            agent:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      description: Agent identifier.
+                      type: string
+                      example: 5b4f337bff4304610483ba67
+                    type:
+                      description: Value must be `agent`
+                      type: string
+                      enum:
+                        - agent
+executionOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - execution-result
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/exec/result/5b4f337bff4304610483ba67
+        attributes:
+          type: object
+          required:
+            - result
+            - status
+          properties:
+            result:
+              type: object
+              example: '{}'
+            status:
+              type: string
+              example: Pending request, waiting other process
+    meta:
+      type: object
+      example: '{}'
+resultOut:
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: object
+      required:
+        - id
+        - type
+        - links
+        - attributes
+      properties:
+        id:
+          type: string
+          example: 5b4f337bff4304610483ba67
+        type:
+          type: string
+          enum:
+            - execution-result
+        links:
+          type: object
+          required:
+            - self
+          properties:
+            self:
+              type: string
+              example: /v2/exec/result/5b4f337bff4304610483ba67
+        attributes:
+          type: object
+          required:
+            - result
+          properties:
+            result:
+              type: object
+              properties:
+              anyOf:
+                - $ref: '#/dataresult'
+                - $ref: '#/errorresult'
+    meta:
+      type: object
+      example: '{}'
+
+dataresult:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      example: '{
+          "some_field_of_result":"value",
+          "another_field":"another_value"
+        }'
+errorresult:
+  type: object
+  required:
+    - error
+  properties:
+    error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          example: Execution 5b4f337bff4304610483ba67.verifycredentials failed
+relationships:
+  type: object
+  required:
+    - workspace
+  properties:
+    workspace:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - id
+            - type
+          properties:
+            id:
+              description: Workspace identifier.
+              type: string
+              example: 5b4f337bff4304610483ba67
+            type:
+              description: Value must be `workspace`
+              type: string
+              enum:
+                - workspace
+    credential:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - id
+            - type
+          properties:
+            id:
+              description: Credential identifier. If credentials are specified in the component’s descriptor, create a credential first and use its id.
+              type: string
+              example: 5b4f337bff4304610483ba67
+            type:
+              description: Value must be `credential`
+              type: string
+              enum:
+                - credential
+    agent:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - id
+            - type
+          properties:
+            id:
+              description: Agent identifier.
+              type: string
+              example: 5b4f337bff4304610483ba67
+            type:
+              description: Value must be `agent`
+              type: string
+              enum:
+                - agent

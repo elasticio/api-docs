@@ -1,0 +1,24 @@
+workspace_id:
+  in: path
+  name: workspace_id
+  description: Workspace identifier
+  required: true
+  schema:
+    type: string
+include:
+  in: query
+  name: include
+  description: |
+    Include full resource objects in response for related entities, or not. Possible values: `members` and/or `invites`
+  schema:
+    type: string
+    enum:
+      - members
+      - invites
+      - members,invites
+contract_id:
+  in: query
+  name: contract_id
+  description: Contract identifier
+  schema:
+    type: string

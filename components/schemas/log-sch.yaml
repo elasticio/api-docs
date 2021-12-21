@@ -1,0 +1,73 @@
+logsOut:
+  type: object
+  required:
+    - total
+    - hits
+  properties:
+    total:
+      type: integer
+      description: Total number of Logs
+      maximum: 10000
+      example: 2645
+    hits:
+      type: array
+      items:
+        type: object
+        required:
+          - id
+          - workspace_id
+          - flow_id
+          - user_id
+          - component_id
+          - step_id
+          - exec_id
+          - method
+          - api_username
+          - component_name
+          - timestamp
+          - level
+          - message
+        properties:
+          id:
+            type: string
+            example: 12621fe1-59c6-11ec-a480-42010a1c0fcc
+          workspace_id:
+            type: string
+            example: 5b4f337bff4304610483ba67
+          flow_id:
+            type: string
+            example: 5b4f337bff4304610483ba67
+          user_id:
+            type: string
+            example: 5b4f337bff4304610483ba67
+          component_id:
+            type: string
+            example: 5b4f337bff4304610483ba67
+          step_id:
+            type: string
+            example: step_1
+          exec_id:
+            type: string
+            example: fa21c1aba6be4c7f9c55e5f84e75911c
+          thread_id:
+            type: string
+            example: fbb15272-250f-4b01-bfb4-d87e2403517e
+          method:
+            type: string
+            example: execute
+          api_username:
+            type: string
+            example: task-5b4f337bff4304610483ba67
+          component_name:
+            type: string
+            example: Node.js_Code
+          timestamp:
+            type: string
+            format: date-time
+            example: '2021-12-10T14:32:58.324Z'
+          level:
+            type: integer
+            example: 30
+          message:
+            type: string
+            example: Disconnecting...

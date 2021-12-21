@@ -1,0 +1,23 @@
+from:
+  in: query
+  name: from
+  description: |
+    Start Date of the period (inclusive). Format – ISO 8601.
+  required: true
+  schema:
+    type: string
+to:
+  in: query
+  name: to
+  description: |
+    End Date of the period (inclusive). Format – ISO 8601.
+  required: true
+  schema:
+    type: string
+group_by:
+  in: query
+  name: group_by
+  description: |
+    Param to specify aggregation period. Format - ‘day’, 'month’
+  schema:
+    type: string

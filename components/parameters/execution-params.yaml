@@ -1,0 +1,22 @@
+execution_id:
+  in: path
+  name: execution_id
+  description: Execution identifier
+  required: true
+  schema:
+    type: string
+component_id:
+  in: path
+  name: component_id
+  description: Component identifier
+  required: true
+  schema:
+    type: string
+git_revision:
+  in: path
+  name: git_revision
+  description: |
+    Revision of the component’s build. For latest version use `latest`.
+  required: true
+  schema:
+    type: string
