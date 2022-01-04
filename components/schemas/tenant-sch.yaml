@@ -1168,11 +1168,6 @@ tenantAttributes:
     feature_flags:
       type: object
       properties:
-        old_mapper_enabled:
-          type: boolean
-          description: |
-            Enable ability to use deprecated mapper UI. Default: "false"
-          example: false
         contract_component_whitelist:
           type: boolean
           description: |
