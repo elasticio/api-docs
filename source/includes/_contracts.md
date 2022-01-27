@@ -1311,7 +1311,6 @@ HTTP/1.1 204 No Content
 The endpoint deletes a Contract's scope along with everything it includes. These items are listed below:
 
 * Accounts (Credentials)
-* Agents
 * DataSamples
 * InviteTokens
 * Flow's DynamicMetadata

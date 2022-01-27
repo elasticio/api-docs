@@ -354,7 +354,7 @@ The flow with given ID
               "code":"{{Put your custom Node.js code here}}"
             },
             "id":"step_2",
-            "agent_id":"{AGENT_ID}",
+            "vpn_agent_id":"{VPN_AGENT_ID}",
             "selected_data_samples":[
               "{DATA_SAMPLE_ID}"
             ]
@@ -489,7 +489,7 @@ Content-Type: application/json
             "command":"components/code:execute@latest",
             "name":"My component",
             "description":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-            "agent_id":"{AGENT_ID}",
+            "vpn_agent_id":"{VPN_AGENT_ID}",
             "fields":{
               "code":"// Please note only Node.js code is supported here\nasync function run(msg) {\n\tconsole.log('Incoming message is %s', JSON.stringify(msg));\n\tconst body = { result : 'Hello world!' };\n\t// You can emit as many data messages as required\n\tawait this.emit('data', { body });\n\tconsole.log('Execution finished');\n}"
             },

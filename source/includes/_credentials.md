@@ -107,14 +107,14 @@ Content-Type: application/json
           "links":{
             "self":"/v2/workspaces/59d341e9037f7200184a408b"
           },
-          "agent":{
-            "data":{
-              "id":"59a410d76b670400182f190e",
-              "type":"agent"
-            },
-            "links":{
-              "self":"/v2/agents/59a410d76b670400182f190e"
-            }
+        },
+        "vpn_agent":{
+          "data":{
+            "id":"59a410d76b670400182f190e",
+            "type":"vpn-agent"
+          },
+          "links":{
+            "self":"/v2/agents/vpn/59a410d76b670400182f190e"
           }
         }
       }
@@ -320,13 +320,13 @@ Content-Type: application/json
           "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       },
-      "agent":{
+      "vpn_agent":{
         "data":{
           "id":"5a09deda2d5f49665afb739a",
-          "type":"agent"
+          "type":"vpn-agent"
         },
         "links":{
-          "self":"/v2/agents/5a09deda2d5f49665afb739a"
+          "self":"/v2/agents/vpn/5a09deda2d5f49665afb739a"
         }
       }
     }
@@ -353,9 +353,9 @@ This resource allows you to create a credential.
 | relationships.component.data.type | yes | A value must be ``component`` |
 | relationships.workspace.data.id | yes | The Workspace id this credential is for |
 | relationships.workspace.data.type | yes | A value must be ``workspace`` |
-| relationships.agent | no | The agent relation object |
-| relationships.agent.data.id | no | The agent id this credential is for |
-| relationships.agent.data.type | no | A value must be ``agent`` |
+| relationships.vpn_agent | no | The vpn agent relation object |
+| relationships.vpn_agent.data.id | no | The vpn agent id this credential is for |
+| relationships.vpn_agent.data.type | no | A value must be `vpn-agent` |
 
 
 ### attributes.keys structure
@@ -381,10 +381,10 @@ The value structure of a key in `attributes.keys` depends on
 - `WebhookAuthView` - object with structure:
 
  ![object with structure](https://user-images.githubusercontent.com/28867440/107536973-10d72380-6bcb-11eb-999c-33bb71c7939a.png)
-  
+
   **Note.** This view must be the only view in a `credentials.fields` list and its key must be `auth`, so
   `attributes.keys` will look like:
-  
+
   ![will look like](https://user-images.githubusercontent.com/28867440/107537499-9c50b480-6bcb-11eb-86f7-9b0477db78ea.png)
 
 
@@ -419,13 +419,13 @@ curl {{ api_base_url }}/v2/credentials/{CREDENTIAL_ID}/ \
                 }
             },
             "relationships": {
-               "agent": {
+               "vpn_agent": {
                    "data": {
                        "id": "59a410d76b670400182f190e",
-                           "type": "agent"
-                       }
-                   }
-               }
+                       "type": "vpn-agent"
+                    }
+                }
+            }
            }
         }'
 ```
@@ -481,13 +481,13 @@ Content-Type: application/json
           "self":"/v2/workspaces/59d341e9037f7200184a408b"
         }
       },
-      "agent":{
+      "vpn_agent":{
         "data":{
           "id":"5a09deda2d5f49665afb739a",
-          "type":"agent"
+          "type":"vpn-agent"
         },
         "links":{
-          "self":"/v2/agents/5a09deda2d5f49665afb739a"
+          "self":"/v2/agents/vpn/5a09deda2d5f49665afb739a"
         }
       }
     }
@@ -515,9 +515,9 @@ This resource allows you to update a credential.
 | type | yes | A value must be ``credential`` |
 | attributes.name | no | Credential name. Will remain untouched if value omitted. |
 | attributes.keys | no | An object which represents component's configuration. Will remain untouched if value omitted. Please note, that ``keys`` object is overwritten entirely. |
-| relationships.agent | no | The agent relation object. Will remain untouched if omitted. |
-| relationships.agent.data.id | no | The agent id this credential is for. |
-| relationships.agent.data.type | no | A value must be ``agent`` |
+| relationships.vpn_agent | no | The vpn agent relation object. Will remain untouched if omitted. |
+| relationships.vpn_agent.data.id | no | The vpn agent id this credential is for. |
+| relationships.vpn_agent.data.type | no | A value must be `vpn-agent` |
 
 ### Authorization
 This request is authorized to only a user with `workspaces.credential.edit` permission
