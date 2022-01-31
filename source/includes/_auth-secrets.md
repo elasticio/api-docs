@@ -135,7 +135,7 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets \
           }
        },
        "relationships":{
-          "auth-client":{
+          "auth_client":{
              "data":{
                 "id":"{AUTH-CLIENT_ID}",
                 "type":"auth-client"
