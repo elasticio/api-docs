@@ -39,7 +39,7 @@ Content-Type: application/json
             "command":"{{ repo_name }}/timer:timer@latest",
             "name":"",
             "description":"",
-            "agent_id":"5a09deda2d5f49665afb739a",
+            "vpn_agent_id":"5a09deda2d5f49665afb739a",
             "fields":{
               "interval":"minute"
             }
@@ -49,14 +49,14 @@ Content-Type: application/json
             "command":"{{ repo_name }}/email:send@latest",
             "name":"",
             "description":"",
-            "agent_id":"5a09deda2d5f49665afb739a"
+            "vpn_agent_id":"5a09deda2d5f49665afb739a"
           },
           {
             "id":"step_3",
             "command":"{{ repo_name }}/code:execute@latest",
             "name":"",
             "description":"",
-            "agent_id":"5a09deda2d5f49665afb739a",
+            "vpn_agent_id":"5a09deda2d5f49665afb739a",
             "fields":{
               "code":"//Your NodeJS code"
             }
@@ -205,7 +205,7 @@ Content-Type: application/json
             "command":"{{ repo_name }}/timer:timer@latest",
             "name":"",
             "description":"",
-            "agent_id":"5a09deda2d5f49665afb739a",
+            "vpn_agent_id":"5a09deda2d5f49665afb739a",
             "fields":{
               "interval":"minute"
             }
@@ -215,14 +215,14 @@ Content-Type: application/json
             "command":"{{ repo_name }}/email:send@latest",
             "name":"",
             "description":"",
-            "agent_id":"5a09deda2d5f49665afb739a"
+            "vpn_agent_id":"5a09deda2d5f49665afb739a"
           },
           {
             "id":"step_3",
             "command":"{{ repo_name }}/code:execute@latest",
             "name":"",
             "description":"",
-            "agent_id":"5a09deda2d5f49665afb739a",
+            "vpn_agent_id":"5a09deda2d5f49665afb739a",
             "fields":{
               "code":"//Your NodeJS code"
             }

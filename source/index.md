@@ -8,7 +8,6 @@ toc_footers:
   - {{ toc_footer }}
 
 includes:
-  - agents
   - auth-clients
   - auth-secrets
   - components

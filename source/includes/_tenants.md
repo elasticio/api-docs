@@ -67,7 +67,6 @@
       ],
       },
       "email_templates":{
-        "agent-request": true,
         "contract-deleted": true,
         "contract-invite-empty-contract": true,
         "contract-invite-new-user": true,
@@ -216,7 +215,6 @@ Content-Type: application/json
         }
       ],
       "email_templates":{
-        "agent-request": true,
         "contract-deleted": true,
         "contract-invite-empty-contract": true,
         "contract-invite-new-user": true,
@@ -401,7 +399,6 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       "docs_base_url":"https://docs.example.com/",
       "component_docs_base_url":"https://docs.example.com/components/",
       "email_templates":{
-        "agent-request": true,
         "contract-deleted": true,
         "contract-invite-empty-contract": true,
         "contract-invite-new-user": true,
@@ -567,7 +564,6 @@ Content-Type: application/json
         "webhooks":"{{cert_id}}"
       },
       "email_templates":{
-        "agent-request": true,
         "contract-deleted": true,
         "contract-invite-empty-contract": true,
         "contract-invite-new-user": true,
@@ -786,7 +782,6 @@ Content-Type: application/json
         "component_docs_base_url":"https://docs.example.com/components/",
         "ssl_certificates":{},
       "email_templates":{
-        "agent-request": true,
         "contract-deleted": true,
         "contract-invite-empty-contract": true,
         "contract-invite-new-user": true,
@@ -933,7 +928,6 @@ Content-Type: application/json
       "component_docs_base_url":"https://docs.example.com/components/",
       "ssl_certificates":{},
       "email_templates":{
-        "agent-request": true,
         "contract-deleted": true,
         "contract-invite-empty-contract": true,
         "contract-invite-new-user": true,
@@ -3130,7 +3124,6 @@ Returns empty body
 ## List of emails sent by the Platform
 The Platform sends various emails when triggered. Here is the list of templates that you can customize:
 
-- **agent-request** Agent has been requested
 - **contract-deleted** Contract has been deleted
 - **contract-invite-empty-contract** New user has been invited to an empty Contract
 - **contract-invite-new-user** New user has been invited to the Contract

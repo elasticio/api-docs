@@ -866,7 +866,6 @@ HTTP/1.1 204 No Content
 This endpoint will delete the Workspace along with the following items that were inside the Workspace:
 
 * Credentials
-* Agents
 * DataSamples
 * InviteTokens
 * Lookups

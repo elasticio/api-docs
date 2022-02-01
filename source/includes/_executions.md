@@ -138,8 +138,8 @@ This request is authorized for the users with the `workspaces.credential.edit` p
 | attributes.fields | Yes | An object which represents the configuration of credential. The semantics are same as in [creating a credential](#create-a-credential).
 | relationships.workspace.data.id | Yes | ID of the Workspace |
 | relationships.workspace.data.type | Yes | Value must be `workspace` |
-| relationships.agent.data.id | No | ID of the agent |
-| relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
+| relationships.vpn_agent.data.id | No | ID of the vpn agent |
+| relationships.vpn_agent.data.type | No | In case, vpn_agent specified, this must be `vpn-agent` |
 
 
 
@@ -236,8 +236,8 @@ This request is authorized for the users with the `workspaces.flow.edit` permiss
 | relationships.workspace.data.type | Yes | Value must be `workspace` |
 | relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
 | relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
-| relationships.agent.data.id | No | ID of the agent |
-| relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
+| relationships.vpn_agent.data.id | No | ID of the vpn agent |
+| relationships.vpn_agent.data.type | No | In case, vpn_agent specified, this must be `vpn-agent` |
 
 ## Retrieve component's select model
 
@@ -333,8 +333,8 @@ This request is authorized for the users with the `workspaces.flow.edit` permiss
 | relationships.workspace.data.type | Yes | Value must be `workspace` |
 | relationships.credential.data.id | No | If credentials are specified in the component's descriptor, [create a credential](#create-a-credential) first and use its id.
 | relationships.credential.data.type | No | If credentials are specified in the component's descriptor, value ``credential`` must be used here.
-| relationships.agent.data.id | No | ID of the agent |
-| relationships.agent.data.type | No | In case, agent specified, this must be `agent` |
+| relationships.vpn_agent.data.id | No | ID of the vpn agent |
+| relationships.vpn_agent.data.type | No | In case, vpn_agent specified, this must be `vpn-agent` |
 
 ## Poll a result of an execution
 
