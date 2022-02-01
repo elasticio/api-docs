@@ -47,7 +47,7 @@ API documentation v2. It adheres to the [JSON API](http://jsonapi.org) specifica
 
 ## Authentication
 
-We use a standard [HTTP Basic Authtentication](http://en.wikipedia.org/wiki/Basic_access_authentication)
+We use a standard [HTTP Basic Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication)
 mechanism to authenticate each API call with the {{ product_name }}.
 
 *   `{EMAIL}` - **email address** you use to login to the platform.
