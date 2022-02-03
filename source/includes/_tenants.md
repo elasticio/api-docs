@@ -140,7 +140,6 @@
         ]
       },
       "feature_flags":{
-          "old_mapper_enabled":false,
           "enabled_totp":true,
           "contract_component_whitelist":true
       },
@@ -288,7 +287,6 @@ Content-Type: application/json
         ]
       },
       "feature_flags":{
-          "old_mapper_enabled":false,
           "enabled_totp":true,
           "contract_component_whitelist":true
       },
@@ -364,7 +362,6 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.html_meta.description        | no       | Customer meta description in html pages    |
 | attributes.html_meta.author             | no       | Customer meta author in html pages  |
 | attributes.html_meta.keywords           | no       | Customer meta keywords in html pages     |
-| attributes.feature_flags.old_mapper_enabled       | no | Enable ability to use deprecated mapper UI. Default: "false" |
 | attributes.feature_flags.enabled_totp   | no | Enable ability to use two-factor authentication. Default: "false" |
 | attributes.feature_flags.contract_component_whitelist   | no | Enable component whitelisting on contract level. Default: "false" |
 | attributes.signin_v_2       | no | Enable new design for registration page |
@@ -479,7 +476,6 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
         }
       ],
       "feature_flags":{
-          "old_mapper_enabled":false,
           "enabled_totp":true,
           "contract_component_whitelist":true
       },
@@ -628,7 +624,6 @@ Content-Type: application/json
         }
       ],
       "feature_flags":{
-          "old_mapper_enabled":false,
           "enabled_totp":true,
           "contract_component_whitelist":true
       },
@@ -708,7 +703,6 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.custom_stylesheets\[]         | no       | Customer css stylesheets. |
 | attributes.custom_scripts\[]             | no       | Customer js-scripts.      |
 | attributes.default_workspace_type       | no       | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`        |
-| attributes.feature_flags.old_mapper_enabled       | no | Enable ability to use deprecated mapper UI. Default: "false" |
 | attributes.feature_flags.enabled_totp   | no | Enable ability to use two-factor authentication. Default: "false" |
 | attributes.feature_flags.contract_component_whitelist   | no | Enable component whitelisting on contract level. Default: "false" |
 | attributes.signin_v_2       | no | Enable new design for registration page |
@@ -846,7 +840,7 @@ Content-Type: application/json
           }
         ],
         "feature_flags":{
-            "old_mapper_enabled":false
+            "contract_component_whitelist":true
         },
         "signin_v_2":{
             "logo_url": "//cdn.example.com/logo-mini.png",
@@ -992,7 +986,7 @@ Content-Type: application/json
         }
       ],
       "feature_flags":{
-        "old_mapper_enabled":false
+        "contract_component_whitelist":true
       },
       "signin_v_2":{
         "logo_url": "//cdn.example.com/logo-mini.png",
