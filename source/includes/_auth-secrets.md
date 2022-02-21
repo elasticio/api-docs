@@ -131,7 +131,10 @@ curl {{ api_base_url }}/v2/workspaces/{WORKSPACE_ID}/secrets \
             "access_token": "{ACCESS_TOKEN}",
             "refresh_token": "{REFRESH_TOKEN}",
             "expires_in": "{EXPIRES_IN}",
-            "additional_params": "{ADDITIONAL_PARAMS}"
+            "additional_params": "{ADDITIONAL_PARAMS}",
+            "fields": {
+                    "base_url": "https://example.com"
+                }
           }
        },
        "relationships":{
@@ -164,7 +167,10 @@ Content-Type: application/json
           "access_token": "{ACCESS_TOKEN}",
           "refresh_token": "{REFRESH_TOKEN}",
           "expires_in": "{EXPIRES_IN}",
-          "additional_params": "{ADDITIONAL_PARAMS}"
+          "additional_params": "{ADDITIONAL_PARAMS}",
+          "fields": {
+                    "base_url": "https://example.com"
+                }
         }
      },
      "relationships":{
@@ -236,6 +242,7 @@ This request is authorized for the Workspace's scope members with the `workspace
 | attributes.credentials.refresh_token     | no       | Auth Secret refresh token |
 | attributes.credentials.expires_in        | no       | Auth Secret expires in. If not specified and ``auth-client`` is ``oauth2`` then the value will be taken from ``token_expires_in`` of linked ``auth-client``|
 | attributes.credentials.additional_params | no (if ``auth-client`` is ``oauth2``) | Auth Secret additional parameters |
+|attributes.credentials.fields|no|If component has OAuthFieldView in component.json you can define additional fields in auth-secret for storing data|
 | relationships.auth_client.data.type      | yes      | Allowed value: ``auth-client``  |
 | relationships.auth_client.data.id        | yes      | Auth Client ID |
 
