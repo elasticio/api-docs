@@ -35,7 +35,7 @@
         "annotations": {
             "{{customAnnotationName}}": "{{customAnnotationValue}}"
         }
-      }
+      },
       "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
@@ -189,7 +189,7 @@ Content-Type: application/json
         "annotations": {
             "{{customAnnotationName}}": "{{customAnnotationValue}}"
         }
-      }
+      },
       "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
@@ -495,7 +495,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
         "annotations": {
             "{{customAnnotationName}}": "{{customAnnotationValue}}"
         }
-      }
+      },
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png",
           "google_provider_id": "{{google_provider_id}}"
