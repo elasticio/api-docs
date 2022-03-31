@@ -31,6 +31,11 @@
       "terms_of_usage_url":"https://www.example.com/tou/",
       "privacy_policy_url":"https://www.example.com/privacy-policy/",
       "imprint_url":"https://www.example.com/legal-disclosure/",
+      "ingress_config": {
+        "annotations": {
+            "{{customAnnotationName}}": "{{customAnnotationValue}}"
+        }
+      },
       "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
@@ -180,6 +185,11 @@ Content-Type: application/json
       "terms_of_usage_url":"https://www.example.com/tou/",
       "privacy_policy_url":"https://www.example.com/privacy-policy/",
       "imprint_url":"https://www.example.com/legal-disclosure/",
+      "ingress_config": {
+        "annotations": {
+            "{{customAnnotationName}}": "{{customAnnotationValue}}"
+        }
+      },
       "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
@@ -330,6 +340,8 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.terms_of_usage_url           | no       | The URL which redirects to the terms of usage page |
 | attributes.privacy_policy_url           | no       | The URL which redirects to the privacy policy page |
 | attributes.imprint_url                  | no       | The URL which redirects to the imprint page   |
+| attributes.ingress_config               | no       | The tenant ingress configuration |
+| attributes.ingress_config.annotations   | no       | Custom ingress annotations to be added for tenant ingress |
 | attributes.mailchimp_api_key            | no       | The MailChimp API key   |
 | attributes.mailchimp_list_id            | no       | The MailChimp list id |
 | attributes.mandrill_api_key             | no       | The mandrill API key |
@@ -479,6 +491,11 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
           "enabled_totp":true,
           "contract_component_whitelist":true
       },
+      "ingress_config": {
+        "annotations": {
+            "{{customAnnotationName}}": "{{customAnnotationValue}}"
+        }
+      },
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png",
           "google_provider_id": "{{google_provider_id}}"
@@ -521,6 +538,11 @@ Content-Type: application/json
       "terms_of_usage_url":"https://www.example.com/tou/",
       "privacy_policy_url":"https://www.example.com/privacy-policy/",
       "imprint_url":"https://www.example.com/legal-disclosure/",
+      "ingress_config": {
+        "annotations": {
+            "{{customAnnotationName}}": "{{customAnnotationValue}}"
+        }
+      },
       "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
@@ -670,6 +692,8 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.terms_of_usage_url           | no       | The URL which redirects to the terms of usage page|
 | attributes.privacy_policy_url           | no       | The URL which redirects to the privacy policy page|
 | attributes.imprint_url                  | no       | The URL which redirects to the imprint page|
+| attributes.ingress_config               | no       | The tenant ingress configuration |
+| attributes.ingress_config.annotations   | no       | Custom ingress annotations to be added for tenant ingress |
 | attributes.mailchimp_api_key            | no       | The MailChimp API key|
 | attributes.mailchimp_list_id            | no       | The MailChimp list id|
 | attributes.mandrill_email_from          | no       | An email of the letters sender|
@@ -759,6 +783,11 @@ Content-Type: application/json
         "terms_of_usage_url":"https://www.example.com/tou/",
         "privacy_policy_url":"https://www.example.com/privacy-policy/",
         "imprint_url":"https://www.example.com/legal-disclosure/",
+        "ingress_config": {
+            "annotations": {
+                "{{customAnnotationName}}": "{{customAnnotationValue}}"
+            }
+        },
         "mailchimp_api_key":"{{mailchimp_api_key}}",
         "mailchimp_list_id":"{{mailchimp_list_id}}",
         "mandrill_email_from":"foo@foo.bar",
@@ -905,6 +934,11 @@ Content-Type: application/json
       "terms_of_usage_url":"https://www.example.com/tou/",
       "privacy_policy_url":"https://www.example.com/privacy-policy/",
       "imprint_url":"https://www.example.com/legal-disclosure/",
+       "ingress_config": {
+           "annotations": {
+               "{{customAnnotationName}}": "{{customAnnotationValue}}"
+           }
+       },
       "mailchimp_api_key":"{{mailchimp_api_key}}",
       "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
