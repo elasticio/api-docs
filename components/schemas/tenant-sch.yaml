@@ -1247,6 +1247,16 @@ tenantAttributes:
         - full
         - limited
       example: full
+    ingress_config:
+      type: object
+      description: |
+        The tenant ingress configuration
+      properties:
+        annotations:
+          type: object
+          description: |
+            Custom ingress annotations to be added for tenant ingress
+          example: {"customAnnotationName": "customAnnotationValue"}
     html_meta:
       type: object
       properties:
