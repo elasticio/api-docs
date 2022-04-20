@@ -375,6 +375,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.html_meta.author             | no       | Customer meta author in html pages  |
 | attributes.html_meta.keywords           | no       | Customer meta keywords in html pages     |
 | attributes.feature_flags.enabled_totp   | no | Enable ability to use two-factor authentication. Default: "false" |
+| attributes.feature_flags.forced_totp    | no | Enforce users to setup two-factor authentication. Requires `attributes.feature_flags.enabled_totp` to be enabled. Default: "false" |
 | attributes.feature_flags.contract_component_whitelist   | no | Enable component whitelisting on contract level. Default: "false" |
 | attributes.signin_v_2       | no | Enable new design for registration page |
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
@@ -728,6 +729,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.custom_scripts\[]             | no       | Customer js-scripts.      |
 | attributes.default_workspace_type       | no       | The type of Workspaces which will be created in given Tenant. The value must be `full` or `limited`        |
 | attributes.feature_flags.enabled_totp   | no | Enable ability to use two-factor authentication. Default: "false" |
+| attributes.feature_flags.forced_totp    | no | Enforce users to setup two-factor authentication. Requires `attributes.feature_flags.enabled_totp` to be enabled. Default: "false" |
 | attributes.feature_flags.contract_component_whitelist   | no | Enable component whitelisting on contract level. Default: "false" |
 | attributes.signin_v_2       | no | Enable new design for registration page |
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
