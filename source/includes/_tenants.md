@@ -146,7 +146,8 @@
       },
       "feature_flags":{
           "enabled_totp":true,
-          "contract_component_whitelist":true
+          "contract_component_whitelist":true,
+          "sensitive_actions_reauth": true
       },
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png"
@@ -298,7 +299,8 @@ Content-Type: application/json
       },
       "feature_flags":{
           "enabled_totp":true,
-          "contract_component_whitelist":true
+          "contract_component_whitelist":true,
+          "sensitive_actions_reauth": true
       },
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png"
@@ -377,6 +379,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.feature_flags.enabled_totp   | no | Enable ability to use two-factor authentication. Default: "false" |
 | attributes.feature_flags.forced_totp    | no | Enforce users to setup two-factor authentication. Requires `attributes.feature_flags.enabled_totp` to be enabled. Default: "false" |
 | attributes.feature_flags.contract_component_whitelist   | no | Enable component whitelisting on contract level. Default: "false" |
+| attributes.feature_flags.sensitive_actions_reauth  | no | Enable Reauthentication for sensitive endpoints. Default: "false" |
 | attributes.signin_v_2       | no | Enable new design for registration page |
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
 | attributes.logout_redirect_url       | no | The URL to redirect user to after logout from frontend |
@@ -490,7 +493,8 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       ],
       "feature_flags":{
           "enabled_totp":true,
-          "contract_component_whitelist":true
+          "contract_component_whitelist":true,
+          "sensitive_actions_reauth": true
       },
       "ingress_config": {
         "annotations": {
@@ -648,7 +652,8 @@ Content-Type: application/json
       ],
       "feature_flags":{
           "enabled_totp":true,
-          "contract_component_whitelist":true
+          "contract_component_whitelist":true,
+          "sensitive_actions_reauth": true
       },
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png",
@@ -731,6 +736,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.feature_flags.enabled_totp   | no | Enable ability to use two-factor authentication. Default: "false" |
 | attributes.feature_flags.forced_totp    | no | Enforce users to setup two-factor authentication. Requires `attributes.feature_flags.enabled_totp` to be enabled. Default: "false" |
 | attributes.feature_flags.contract_component_whitelist   | no | Enable component whitelisting on contract level. Default: "false" |
+| attributes.feature_flags.sensitive_actions_reauth  | no | Enable Reauthentication for sensitive endpoints. Default: "false" |
 | attributes.signin_v_2       | no | Enable new design for registration page |
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
 | attributes.signin_v_2.google_provider_id       | no | Google OIDC Provider `id` in this tenant. Enables Google Sign In and Sign Up |
@@ -871,7 +877,9 @@ Content-Type: application/json
           }
         ],
         "feature_flags":{
-            "contract_component_whitelist":true
+          "enabled_totp":true,
+          "contract_component_whitelist":true,
+          "sensitive_actions_reauth": true
         },
         "signin_v_2":{
             "logo_url": "//cdn.example.com/logo-mini.png",
@@ -1022,7 +1030,9 @@ Content-Type: application/json
         }
       ],
       "feature_flags":{
-        "contract_component_whitelist":true
+          "enabled_totp":true,
+          "contract_component_whitelist":true,
+          "sensitive_actions_reauth": true
       },
       "signin_v_2":{
         "logo_url": "//cdn.example.com/logo-mini.png",
