@@ -1182,7 +1182,17 @@ tenantAttributes:
           type: boolean
           description:  |
             Enforce users to setup two-factor authentication. Requires `attributes.feature_flags.enabled_totp` to be enabled. Default: "false"
-          example: true        
+          example: true
+        email_verification:
+          type: boolean
+          description:  |
+            Whether we send email verification letter to user during registration. Requires attributes.signin_v_2 to be enabled. Default: "true"
+          example: true
+        sensitive_actions_reauth:
+          type: boolean
+          description:  |
+            Enable Reauthentication for sensitive endpoints. Default: "false"
+          example: true
     signin_v_2:
       type: object
       description: Enable new design for registration page
