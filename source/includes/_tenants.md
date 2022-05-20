@@ -152,7 +152,8 @@
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png"
       },
-      "logout_redirect_url": "https://sso.example.com/logout"
+      "logout_redirect_url": "https://sso.example.com/logout",
+      "email_domains_blacklist": ["gmail.com"]
     }
   }
 }`
@@ -305,7 +306,8 @@ Content-Type: application/json
       "signin_v_2":{
           "logo_url": "//cdn.example.com/logo-mini.png"
       },
-      "logout_redirect_url": "https://sso.example.com/logout"
+      "logout_redirect_url": "https://sso.example.com/logout",
+      "email_domains_blacklist": ["gmail.com"]
     }
   },
   "meta":{}
@@ -385,6 +387,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.signin_v_2.logo_url       | no | The URL of image which will be displayed on new registration page. In case it's not specified, the `attributes.header_logo_url` will be used |
 | attributes.logout_redirect_url       | no | The URL to redirect user to after logout from frontend |
 | attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
+| attributes.email_domains_blacklist | no | Array of email domains with which users are not allowed to register |
 
 ###
 
@@ -510,7 +513,8 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
           "type": "openid",
           "id": "{{provider_id}}"
       },
-      "logout_redirect_url": "https://sso.example.com/logout"
+      "logout_redirect_url": "https://sso.example.com/logout",
+      "email_domains_blacklist": ["gmail.com"]
     }
   }
 }'
@@ -664,7 +668,8 @@ Content-Type: application/json
           "type": "openid",
           "id": "{{provider_id}}"
       },
-      "logout_redirect_url": "https://sso.example.com/logout"
+      "logout_redirect_url": "https://sso.example.com/logout",
+      "email_domains_blacklist": ["gmail.com"]
     },
     "meta":{}
   }
@@ -748,6 +753,7 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.logout_redirect_url       | no | The URL to redirect user to after logout from frontend. Set to `null` to unset |
 | attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 | attributes.support_user_id             | no | An ID of user from platform support team|
+| attributes.email_domains_blacklist | no | Array of email domains with which users are not allowed to register |
 
 _Note_: If the default installation's certificate is a wildcard one (e.g. `*.example.com`) and the Tenant's domains match to this certificate (e.g. `my-tenant-api.example.com`), then there is no need to provide separate certificates for these domains. To remove existing certificates, set them to `null` (e.g. `"app": null`).
 
@@ -891,7 +897,8 @@ Content-Type: application/json
           "type": "openid",
           "id": "{{provider_id}}"
         },
-        "logout_redirect_url": "https://sso.example.com/logout"
+        "logout_redirect_url": "https://sso.example.com/logout",
+        "email_domains_blacklist": ["gmail.com"]
       },
       "meta":{},
     }
@@ -1044,7 +1051,8 @@ Content-Type: application/json
           "type": "openid",
           "id": "{{provider_id}}"
       },
-      "logout_redirect_url": "https://sso.example.com/logout"
+      "logout_redirect_url": "https://sso.example.com/logout",
+      "email_domains_blacklist": ["gmail.com"]
     }
   },
   "meta":{}
