@@ -1186,7 +1186,7 @@ tenantAttributes:
         email_verification:
           type: boolean
           description:  |
-            Whether we send email verification letter to user during registration. Requires attributes.signin_v_2 to be enabled. Default: "true"
+            Whether we send email verification letter to user during registration. Default: "true"
           example: true
         sensitive_actions_reauth:
           type: boolean
