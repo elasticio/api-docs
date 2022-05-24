@@ -380,7 +380,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.html_meta.keywords           | no       | Customer meta keywords in html pages     |
 | attributes.feature_flags.enabled_totp   | no | Enable ability to use two-factor authentication. Default: "false" |
 | attributes.feature_flags.forced_totp    | no | Enforce users to setup two-factor authentication. Requires `attributes.feature_flags.enabled_totp` to be enabled. Default: "false" |
-| attributes.feature_flags.email_verification    | no | Whether we send email verification letter to user during registration. Requires `attributes.signin_v_2` to be enabled. Default: "true" |
+| attributes.feature_flags.email_verification    | no | Whether we send email verification letter to user during registration. |
 | attributes.feature_flags.contract_component_whitelist   | no | Enable component whitelisting on contract level. Default: "false" |
 | attributes.feature_flags.sensitive_actions_reauth  | no | Enable Reauthentication for sensitive endpoints. Default: "false" |
 | attributes.signin_v_2       | no | Enable new design for registration page |
