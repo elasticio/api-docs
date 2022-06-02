@@ -1,14 +1,3 @@
+/dist
+/tmp
 node_modules
-*.gz
-.idea
-lib-cov
-coverage.html
-coverage
-reports
-/*.png
-.DS_Store
-coverage
-.env
-build
-build_v*
-tags
