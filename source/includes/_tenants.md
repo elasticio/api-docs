@@ -153,7 +153,7 @@
           "logo_url": "//cdn.example.com/logo-mini.png"
       },
       "logout_redirect_url": "https://sso.example.com/logout",
-      "email_domains_blacklist": ["gmail.com"]
+      "email_domains_blacklist": ["gmail.*", "hotmail.*"]
     }
   }
 }`
@@ -307,7 +307,7 @@ Content-Type: application/json
           "logo_url": "//cdn.example.com/logo-mini.png"
       },
       "logout_redirect_url": "https://sso.example.com/logout",
-      "email_domains_blacklist": ["gmail.com"]
+      "email_domains_blacklist": ["gmail.*", "hotmail.*"]
     }
   },
   "meta":{}
@@ -514,7 +514,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
           "id": "{{provider_id}}"
       },
       "logout_redirect_url": "https://sso.example.com/logout",
-      "email_domains_blacklist": ["gmail.com"]
+      "email_domains_blacklist": ["gmail.*", "hotmail.*"]
     }
   }
 }'
@@ -669,7 +669,7 @@ Content-Type: application/json
           "id": "{{provider_id}}"
       },
       "logout_redirect_url": "https://sso.example.com/logout",
-      "email_domains_blacklist": ["gmail.com"]
+      "email_domains_blacklist": ["gmail.*", "hotmail.*"]
     },
     "meta":{}
   }
@@ -898,7 +898,7 @@ Content-Type: application/json
           "id": "{{provider_id}}"
         },
         "logout_redirect_url": "https://sso.example.com/logout",
-        "email_domains_blacklist": ["gmail.com"]
+        "email_domains_blacklist": ["gmail.*", "hotmail.*"]
       },
       "meta":{},
     }
@@ -1052,7 +1052,7 @@ Content-Type: application/json
           "id": "{{provider_id}}"
       },
       "logout_redirect_url": "https://sso.example.com/logout",
-      "email_domains_blacklist": ["gmail.com"]
+      "email_domains_blacklist": ["gmail.*", "hotmail.*"]
     }
   },
   "meta":{}
