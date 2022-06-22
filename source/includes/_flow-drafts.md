@@ -84,6 +84,7 @@ Content-Type: application/json
           }
         ]
       },
+      "snapshot":"{BODY OF SNAPSHOT}"
       "created_at":"2018-03-30T10:08:43.582Z",
       "updated_at":"2018-03-30T10:08:43.582Z"
     },
@@ -302,7 +303,7 @@ This resource allows you to create/update a flow draft.
 | attributes.graph |    no    | Flow graph representing component connections |
 | attributes.cron  |    no    | Cron expression |
 | attributes.stats_enabled | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
-
+| attributes.snapshot |    no    | Snapshot summary |
 
 ### Returns
 
