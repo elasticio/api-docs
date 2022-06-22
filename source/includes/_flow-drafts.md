@@ -173,7 +173,8 @@ Returns a flow draft
                 }
               }
             ]
-          }
+          },
+          "snapshot":"{BODY OF SNAPSHOT}"
         }
       }
     }'
@@ -250,6 +251,7 @@ Content-Type: application/json
           }
         ]
       },
+      "snapshot":"{BODY OF SNAPSHOT}"
       "created_at":"2018-03-30T10:08:43.582Z",
       "updated_at":"2018-03-30T10:08:43.582Z"
     },
