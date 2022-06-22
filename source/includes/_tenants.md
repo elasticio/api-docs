@@ -307,7 +307,7 @@ Content-Type: application/json
           "logo_url": "//cdn.example.com/logo-mini.png"
       },
       "logout_redirect_url": "https://sso.example.com/logout",
-      "email_domains_blacklist": ["gmail.*", "hostmail.*"]
+      "email_domains_blacklist": ["gmail.*", "hotmail.*"]
     }
   },
   "meta":{}
