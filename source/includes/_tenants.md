@@ -36,8 +36,6 @@
             "{{customAnnotationName}}": "{{customAnnotationValue}}"
         }
       },
-      "mailchimp_api_key":"{{mailchimp_api_key}}",
-      "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
       "mandrill_api_key":"{{mandrill_api_key}}",
       "segment_write_key":"{{segment_write_key}}",
@@ -192,8 +190,6 @@ Content-Type: application/json
             "{{customAnnotationName}}": "{{customAnnotationValue}}"
         }
       },
-      "mailchimp_api_key":"{{mailchimp_api_key}}",
-      "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
       "mandrill_api_key":"{{mandrill_api_key}}",
       "segment_write_key":"{{segment_write_key}}",
@@ -346,8 +342,6 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.imprint_url                  | no       | The URL which redirects to the imprint page   |
 | attributes.ingress_config               | no       | The tenant ingress configuration |
 | attributes.ingress_config.annotations   | no       | Custom ingress annotations to be added for tenant ingress |
-| attributes.mailchimp_api_key            | no       | The MailChimp API key   |
-| attributes.mailchimp_list_id            | no       | The MailChimp list id |
 | attributes.mandrill_api_key             | no       | The mandrill API key |
 | attributes.segment_write_key            | no       | Segment write key |
 | attributes.google_tag_manager_id        | no       | Google Tag Manager container `ID` without `GTM-` prefix |
@@ -553,8 +547,6 @@ Content-Type: application/json
             "{{customAnnotationName}}": "{{customAnnotationValue}}"
         }
       },
-      "mailchimp_api_key":"{{mailchimp_api_key}}",
-      "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
       "mandrill_api_key":"{{mandrill_api_key}}",
       "segment_write_key":"{{segment_write_key}}",
@@ -706,8 +698,6 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.imprint_url                  | no       | The URL which redirects to the imprint page|
 | attributes.ingress_config               | no       | The tenant ingress configuration |
 | attributes.ingress_config.annotations   | no       | Custom ingress annotations to be added for tenant ingress |
-| attributes.mailchimp_api_key            | no       | The MailChimp API key|
-| attributes.mailchimp_list_id            | no       | The MailChimp list id|
 | attributes.mandrill_email_from          | no       | An email of the letters sender|
 | attributes.mandrill_api_key             | no       | The mandrill API key|
 | attributes.segment_write_key            | no       | Segment write key |
@@ -804,8 +794,6 @@ Content-Type: application/json
                 "{{customAnnotationName}}": "{{customAnnotationValue}}"
             }
         },
-        "mailchimp_api_key":"{{mailchimp_api_key}}",
-        "mailchimp_list_id":"{{mailchimp_list_id}}",
         "mandrill_email_from":"foo@foo.bar",
         "mandrill_api_key":"{{mandrill_api_key}}",
         "segment_write_key":"{{segment_write_key}}",
@@ -958,8 +946,6 @@ Content-Type: application/json
                "{{customAnnotationName}}": "{{customAnnotationValue}}"
            }
        },
-      "mailchimp_api_key":"{{mailchimp_api_key}}",
-      "mailchimp_list_id":"{{mailchimp_list_id}}",
       "mandrill_email_from":"foo@foo.bar",
       "mandrill_api_key":"{{mandrill_api_key}}",
       "segment_write_key":"{{segment_write_key}}",
