@@ -944,14 +944,6 @@ tenantAttributes:
       type: string
       description: The URL which redirects to the imprint page
       example: https://www.example.com/legal-disclosure/
-    mailchimp_api_key:
-      type: string
-      description: The MailChimp API key
-      example: abc123abc123abc123abc123abc123-us1
-    mailchimp_list_id:
-      type: string
-      description: The MailChimp list id
-      example: 7bab35f1af
     mandrill_email_from:
       type: string
       description: An email of the letters sender
@@ -992,9 +984,6 @@ tenantAttributes:
       type: boolean
       example: false
     powered_by_elasticio:
-      type: boolean
-      example: true
-    css_enabled:
       type: boolean
       example: true
     docs_base_url:
