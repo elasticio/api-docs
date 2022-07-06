@@ -1154,6 +1154,13 @@ tenantAttributes:
             type: string
             description: Customer js-scripts
             example: http://path-to-2.js
+     email_domains_blacklist:
+      type: array
+      items:
+        type: string
+        description: Array of email domains with which users are not allowed to register
+        example: | 
+          ["yahoo.*","hotmail.com"]
     feature_flags:
       type: object
       properties:
