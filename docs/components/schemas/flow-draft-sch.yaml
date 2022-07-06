@@ -72,6 +72,10 @@ draftData:
           $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/nodes_config'
         stats_enabled:
           $ref: '../schemas/flow-sch.yaml#/flowData/properties/attributes/properties/stats_enabled'
+        snapshot:
+          type: object
+          description: Snapshot summary
+          example: {"Body of snapshot"}
     relationships:
       type: object
       required:
