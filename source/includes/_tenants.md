@@ -33,7 +33,9 @@
       "imprint_url":"https://www.example.com/legal-disclosure/",
       "ingress_config": {
         "annotations": {
-            "{{customAnnotationName}}": "{{customAnnotationValue}}"
+            "app": {
+                "{{customAnnotationName}}": "{{customAnnotationValue}}"
+            }
         }
       },
       "mandrill_email_from":"foo@foo.bar",
@@ -186,7 +188,9 @@ Content-Type: application/json
       "imprint_url":"https://www.example.com/legal-disclosure/",
       "ingress_config": {
         "annotations": {
-            "{{customAnnotationName}}": "{{customAnnotationValue}}"
+            "app": {
+                "{{customAnnotationName}}": "{{customAnnotationValue}}"
+            }
         }
       },
       "mandrill_email_from":"foo@foo.bar",
@@ -323,7 +327,7 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 
 ### Payload Parameters
 
-| Parameter                                                 | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+| Parameter                                                 | Required | Description
 |-----------------------------------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | type                                                      | yes      | A value should be "tenant"                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | attributes.name                                           | yes      | Name of the Tenant                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
@@ -342,7 +346,11 @@ This request is authorized for the users with the `tenants.tenant.create` permis
 | attributes.privacy_policy_url                             | no       | The URL which redirects to the privacy policy page                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | attributes.imprint_url                                    | no       | The URL which redirects to the imprint page                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | attributes.ingress_config                                 | no       | The tenant ingress configuration                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| attributes.ingress_config.annotations                     | no       | Custom ingress annotations to be added for tenant ingress                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| attributes.ingress_config.annotations                     | no       | Custom ingress annotations to be added for tenant ingresses                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| attributes.ingress_config.annotations.app                 | no       | Annotations for the frontend                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| attributes.ingress_config.annotations.api                 | no       | Annotations for the api                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| attributes.ingress_config.annotations.webhooks            | no       | Annotations for the webhooks                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| attributes.ingress_config.annotations.apidocs             | no       | Annotations for the api docs                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | attributes.mandrill_api_key                               | no       | The mandrill API key                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | attributes.segment_write_key                              | no       | Segment write key                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | attributes.google_tag_manager_id                          | no       | Google Tag Manager container `ID` without `GTM-` prefix                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -486,7 +494,7 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       "custom_scripts":[
         {
           "src":"http://path-to-1.js",
-          "location":"body" 
+          "location":"body"
         },
         {
           "src":"http://path-to-2.js"
@@ -499,7 +507,9 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       },
       "ingress_config": {
         "annotations": {
-            "{{customAnnotationName}}": "{{customAnnotationValue}}"
+            "app": {
+                "{{customAnnotationName}}": "{{customAnnotationValue}}"
+            }
         }
       },
       "signin_v_2":{
@@ -546,7 +556,9 @@ Content-Type: application/json
       "imprint_url":"https://www.example.com/legal-disclosure/",
       "ingress_config": {
         "annotations": {
-            "{{customAnnotationName}}": "{{customAnnotationValue}}"
+            "app": {
+                "{{customAnnotationName}}": "{{customAnnotationValue}}"
+            }
         }
       },
       "mandrill_email_from":"foo@foo.bar",
@@ -701,7 +713,11 @@ This request is authorized for the users with the `tenants.tenant.edit` permissi
 | attributes.privacy_policy_url                             | no       | The URL which redirects to the privacy policy page                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | attributes.imprint_url                                    | no       | The URL which redirects to the imprint page                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | attributes.ingress_config                                 | no       | The tenant ingress configuration                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| attributes.ingress_config.annotations                     | no       | Custom ingress annotations to be added for tenant ingress                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| attributes.ingress_config.annotations                     | no       | Custom ingress annotations to be added for tenant ingresses                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| attributes.ingress_config.annotations.app                 | no       | Annotations for the frontend                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| attributes.ingress_config.annotations.api                 | no       | Annotations for the api                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| attributes.ingress_config.annotations.webhooks            | no       | Annotations for the webhooks                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| attributes.ingress_config.annotations.apidocs             | no       | Annotations for the api docs                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | attributes.mandrill_email_from                            | no       | An email of the letters sender                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | attributes.mandrill_api_key                               | no       | The mandrill API key                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | attributes.segment_write_key                              | no       | Segment write key                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -795,7 +811,9 @@ Content-Type: application/json
         "imprint_url":"https://www.example.com/legal-disclosure/",
         "ingress_config": {
             "annotations": {
-                "{{customAnnotationName}}": "{{customAnnotationValue}}"
+                "app": {
+                    "{{customAnnotationName}}": "{{customAnnotationValue}}"
+                }
             }
         },
         "mandrill_email_from":"foo@foo.bar",
@@ -946,7 +964,9 @@ Content-Type: application/json
       "imprint_url":"https://www.example.com/legal-disclosure/",
        "ingress_config": {
            "annotations": {
-               "{{customAnnotationName}}": "{{customAnnotationValue}}"
+              "app": {
+                "{{customAnnotationName}}": "{{customAnnotationValue}}"
+              }
            }
        },
       "mandrill_email_from":"foo@foo.bar",
