@@ -1150,10 +1150,19 @@ tenantAttributes:
         required:
           - src
         properties:
-          href:
+          src:
             type: string
-            description: Customer js-scripts
+            description: The URL of js-script
             example: http://path-to-2.js
+          location:
+            type: string
+            description: |
+              A value can be `head` or `body`. Location where js-script will be added inside html page. Default: "head"
+            enum:
+              - head
+              - body
+            default: head
+            example: head
      email_domains_blacklist:
       type: array
       items:
