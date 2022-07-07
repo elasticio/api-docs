@@ -61,7 +61,8 @@
       ],
       "custom_scripts":[
         {
-          "src":"http://path-to-1.js"
+          "src":"http://path-to-1.js",
+          "location":"body"
         },
         {
           "src":"http://path-to-2.js"
@@ -213,10 +214,12 @@ Content-Type: application/json
       ],
       "custom_scripts":[
         {
-          "src":"http://path-to-1.js"
+          "src":"http://path-to-1.js",
+          "location":"body"
         },
         {
-          "src":"http://path-to-2.js"
+          "src":"http://path-to-2.js",
+          "location":"head"
         }
       ],
       "email_templates":{
@@ -480,7 +483,8 @@ curl {{ api_base_url }}/v2/tenants/{TENANT_ID} \
       ],
       "custom_scripts":[
         {
-          "src":"http://path-to-1.js"
+          "src":"http://path-to-1.js",
+          "location":"body" 
         },
         {
           "src":"http://path-to-2.js"
@@ -568,10 +572,12 @@ Content-Type: application/json
       ],
       "custom_scripts":[
         {
-          "src":"http://path-to-1.js"
+          "src":"http://path-to-1.js",
+          "location":"body"
         },
         {
-          "src":"http://path-to-2.js"
+          "src":"http://path-to-2.js",
+          "location":"head"
         }
       ],
       "ssl_certificates":{
