@@ -1276,7 +1276,19 @@ tenantAttributes:
           type: object
           description: |
             Custom ingress annotations to be added for tenant ingress
-          example: {"customAnnotationName": "customAnnotationValue"}
+          properties:
+            app:
+              type: object
+              example: {"nginx/123": "123","nginx/456": "456"}
+            api:
+              type: object
+              example: {"nginx/123": "123","nginx/456": "456"}
+            webhooks:
+              type: object
+              example: {"nginx/mtls": "true","nginx/456": "456"}
+            apidocs:
+              type: object
+              example: {"nginx/mtls": "true","nginx/456": "456"}
     html_meta:
       type: object
       properties:
