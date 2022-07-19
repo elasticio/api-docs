@@ -40,10 +40,10 @@ commands:
 jobs:
     build-docker-image:
         parameters:
-            audit:
+            push:
                 type: boolean
                 default: true
-            push:
+            audit:
                 type: boolean
                 default: true
         docker:
