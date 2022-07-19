@@ -23,7 +23,7 @@ commands:
           steps:
             - run:
                 name: Auditing Docker image
-                working_directory: ~/api-docs
+                working_directory: ~/project
                 command: grype -q -c .grype.yaml elasticio/api-docs:${CIRCLE_SHA1}
       - when:
           condition: << parameters.push >>
