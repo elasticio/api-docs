@@ -1,0 +1,9 @@
+check-for-app-update: false
+search:
+  scope: "all-layers"
+fail-on-severity: 'high'
+# vulnerabilities which doesn't affect any component
+ignore:
+  # npm packages are audited by another tool, ignore them
+  - package:
+      type: npm
