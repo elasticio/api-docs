@@ -4,6 +4,3 @@ search:
 fail-on-severity: 'high'
 # vulnerabilities which doesn't affect any component
 ignore:
-  # npm packages are audited by another tool, ignore them
-  - package:
-      type: npm
