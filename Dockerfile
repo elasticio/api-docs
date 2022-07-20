@@ -1,4 +1,4 @@
-FROM nginx:mainline AS base
+FROM nginx:1.23.0 AS base
 WORKDIR /usr/src/api-docs
 COPY .nginx/.conf /etc/nginx/nginx.conf
 COPY docs ./docs
@@ -38,7 +38,8 @@ RUN rm -rf ./source && \
     rm -rf ./v2 && \
     mv ./build ./v2
 
-FROM base AS release
+FROM nginx:1.23.0-alpine AS release
+WORKDIR /usr/src/api-docs
 COPY --from=dependencies /usr/src/api-docs/v2 ./v2
 COPY --from=dependencies /usr/src/api-docs/docs ./docs
 
