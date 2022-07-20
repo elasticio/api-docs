@@ -47,7 +47,7 @@ jobs:
         type: boolean
         default: true
     docker:
-      - image: circleci/node:8-stretch
+      - image: cimg/node:8-stretch
     steps:
       - build_app:
           push: << parameters.push >>
@@ -55,7 +55,7 @@ jobs:
   tag_release:
     working_directory: ~/api-docs
     docker:
-      - image: circleci/node:12.19.1-stretch
+      - image: cimg/node:12.19.1-stretch
     steps:
       - checkout:
           path: ~/api-docs
