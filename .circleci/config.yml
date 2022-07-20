@@ -47,7 +47,7 @@ jobs:
         type: boolean
         default: true
     docker:
-      - image: cimg/node:8
+      - image: cimg/node:12.19.1-stretch
     steps:
       - build_app:
           push: << parameters.push >>
