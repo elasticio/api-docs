@@ -29,6 +29,9 @@ commands:
           condition: << parameters.push >>
           steps:
             - run:
+                name: Tagging Docker Images
+                command: docker tag elasticio/api-docs:${CIRCLE_SHA1} elasticio/api-docs:${CIRCLE_BRANCH}
+            - run:
                 name: Logging in into Docker Hub
                 command: docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
             - run:
