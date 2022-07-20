@@ -2,5 +2,5 @@ check-for-app-update: false
 search:
   scope: "all-layers"
 fail-on-severity: 'high'
-# vulnerabilities which doesn't affect any component
+# vulnerabilities which doesn't affect the image
 ignore:
