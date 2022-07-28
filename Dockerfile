@@ -1,10 +1,10 @@
-FROM nginx:1.23.0 AS base
+FROM nginx:1.23.0-alpine AS base
 WORKDIR /usr/src/api-docs
 COPY .nginx/.conf /etc/nginx/nginx.conf
 COPY docs ./docs
 
-FROM base AS dependencies
-
+FROM nginx:1.23.0 AS dependencies
+WORKDIR /usr/src/api-docs
 ARG toc_footer="<a href='http://www.elastic.io/en/demo-request/'>Sign Up for a Developer Key</a>"
 ARG api_base_url="https://api.elastic.io"
 ARG product_name="elastic.io"
@@ -38,8 +38,7 @@ RUN rm -rf ./source && \
     rm -rf ./v2 && \
     mv ./build ./v2
 
-FROM nginx:1.23.0-alpine AS release
-WORKDIR /usr/src/api-docs
+FROM base AS release
 COPY --from=dependencies /usr/src/api-docs/v2 ./v2
 COPY --from=dependencies /usr/src/api-docs/docs ./docs
 
