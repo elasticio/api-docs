@@ -99,10 +99,10 @@ Parameter       | Required | Description
 --------------- | -------- | -----------
 type            | yes      | A value should be "contract"
 attributes.name | yes      | Name of the Contract
-attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
+attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle)
 attributes.available_roles[] | no      | The subset of Tenants roles the particular Contract belongs to
 attributes.support_user_id   | no      | An ID of user from platform support team
-attributes.custom_data   | no      | Custom contract data in an arbitrary format. Max size after stringify is 1 MB
+attributes.custom_data   | no      | Custom contract data in an arbitrary format. This field is **not intended to store sensitive data**. Max size after stringify is 1 MB
 
 ### Returns
 
@@ -218,7 +218,7 @@ attributes.name | yes      | Name of the Contract
 attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 attributes.available_roles[] | no      | The subset of Tenants roles the particular Contract belongs to
 attributes.support_user_id   | no      | An ID of user from platform support team
-attributes.custom_data   | no      | Custom contract data in an arbitrary format. Max size after stringify is 1 MB
+attributes.custom_data   | no      | Custom contract data in an arbitrary format. This field is **not intended to store sensitive data**. Max size after stringify is 1 MB
 
 ### Returns
 
