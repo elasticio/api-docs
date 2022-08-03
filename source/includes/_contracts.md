@@ -23,6 +23,7 @@ Every Contract must have at least one Owner. The Owner’s Role has a predefined
           "attributes":{
             "name":"My Contract",
             "support_user_id":"{{user_id}}",
+            "custom_data":{"description": "Contract description"},
             "available_roles":[
               {
                 "scope":"contracts",
@@ -54,6 +55,7 @@ Content-Type: application/json
     "attributes":{
       "name":"My Contract",
       "support_user_id":"{{user_id}}",
+      "custom_data":{"description": "Contract description"},
       "available_roles":[
         {
           "role":"admin",
@@ -100,6 +102,7 @@ attributes.name | yes      | Name of the Contract
 attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 attributes.available_roles[] | no      | The subset of Tenants roles the particular Contract belongs to
 attributes.support_user_id   | no      | An ID of user from platform support team
+attributes.custom_data   | no      | Custom contract data in an arbitrary format. Max size after stringify is 1 MB
 
 ### Returns
 
@@ -124,6 +127,7 @@ Returns Contract object if the call succeeded
           "attributes":{
              "name":"New Contract Name",
              "support_user_id":"{{user_id}}",
+             "custom_data":{"description": "Contract description"},
              "available_roles":[
               {
                 "scope":"contracts",
@@ -159,6 +163,7 @@ Content-Type: application/json
     "attributes":{
       "name":"New Contract Name",
       "support_user_id":"{{user_id}}",
+      "custom_data":{"description": "Contract description"},
       "available_roles":[
         {
           "role":"admin",
@@ -198,8 +203,11 @@ This endpoint allows to change Contracts' name and to update available roles in 
 
 #### Authorization
 
-For updating Contract name this request is authorized to the users with `contracts.contract.edit` permission. For updating the set of available roles of the particular Contract this request is authorized to the user with `TenantAdmin` role.
-
+For updating Contract name this request is authorized to the users with `contracts.contract.edit` permission.
+For updating the set of available roles of the particular Contract this request is authorized to the user with
+`TenantAdmin` role.
+For updating the custom data this request is authorized to the users with `contracts.contract.edit_custom_data`
+permission.
 
 ### Payload Parameters
 
@@ -210,6 +218,7 @@ attributes.name | yes      | Name of the Contract
 attributes.flow_stats_enabled_default | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle) |
 attributes.available_roles[] | no      | The subset of Tenants roles the particular Contract belongs to
 attributes.support_user_id   | no      | An ID of user from platform support team
+attributes.custom_data   | no      | Custom contract data in an arbitrary format. Max size after stringify is 1 MB
 
 ### Returns
 
@@ -340,7 +349,9 @@ This endpoint returns a Contract object for a specific contract's id.
 
 #### Authorization
 
-A client has to be a member of the Contract's scope or belong to the `Tenant Admin` users group (please contact our support department to get this specific role).
+A client has to be a member of the Contract's scope or belong to the `Tenant Admin` users group (please contact our
+support department to get this specific role). To make custom data to be included in a response, a user must have
+`contracts.contract.get_custom_data` permission.
 
 
 ### URL Parameters
@@ -456,7 +467,8 @@ This endpoint returns all the Contract's objects for a specific user.
 
 #### Authorization
 
-A client has to be a member of the Contract's scope.
+A client has to be a member of the Contract's scope. To make custom data to be included in a response, a user must have
+`contracts.contract.get_custom_data` permission.
 
 
 
