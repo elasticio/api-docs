@@ -1040,7 +1040,9 @@ curl {{ api_base_url }}/v2/components/ \
         "data":{
           "type":"component",
           "attributes":{
-            "name":"mycomponent"
+            "name":"mycomponent",
+            "docker_repo_name":"dockername",
+            "docker_target_tag":"dockertag"
           },
           "relationships":{
             "team":{
@@ -1077,7 +1079,9 @@ Content-Type: application/json
     "attributes":{
       "name":"{REPOSITORY_NAME}",
       "team_name":"{TEAM_NAME}",
-      "access": "team"
+      "access": "team",
+      "docker_repo_name":"dockername",
+      "docker_target_tag":"dockertag"
     },
     "relationships":{
       "versions":{
@@ -1105,6 +1109,8 @@ If you don't have any teams yet, please [create a team](#create-team) first.
 | type | yes | A value must be ``component`` |
 | attributes.name | yes | Repository name |
 | attributes.icon | no | Component icon as base64 string |
+| attributes.docker_repo_name | no | String representing component's name in docker registry. Available only if team supports docker registry |
+| attributes.docker_target_tag | no | String representing component's tag in docker registry. Available only if team supports docker registry |
 | relationships.team.data.id | yes | Team ID the repository to create for |
 | relationships.team.data.type | yes | A value must be ``team`` |
 | relationships.contract.data.id | no | Contract ID the repository to create for |
