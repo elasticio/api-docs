@@ -4,3 +4,6 @@ search:
 fail-on-severity: 'high'
 # vulnerabilities which doesn't affect the image
 ignore:
+  # we don't use zlib in the container at all
+  - vulnerability: CVE-2022-37434
+
