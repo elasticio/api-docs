@@ -188,7 +188,11 @@ Returns team metadata object if the call succeeded.
    {  
   "data":{  
     "attributes":{  
-      "name":"309myteam"
+      "name":"309myteam",
+      "docker_registry":{
+        "uri":"docker_registry_uri",
+        "credentials":{}
+      }
     },
     "relationships":{  
       "contract":{  
@@ -256,6 +260,8 @@ This resource allows you to create a new team.
 | :--- | :--- | :--- |
 | type | yes | A value must be ``team`` |
 | attributes.name | no | A team name. |
+| attributes.docker_registry.uri | no | Docker Registry URI |
+| attributes.docker_registry.credentials | no | Docker Registry credentials  |
 | relationships.contract.data.id | yes | An Id of the contract |
 | relationships.contract.data.type | yes | A value must be ``contract``  |
 
