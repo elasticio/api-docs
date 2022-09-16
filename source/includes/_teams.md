@@ -273,6 +273,102 @@ This request is authorized to a user with the `contracts.devTeam.edit` permissio
 Returns teams metadata object if the call succeeded.
 
 
+## Update a team
+
+
+> Example Request:
+
+
+```shell
+ curl {{ api_base_url }}/v2/teams/{TEAM_ID} \
+   -X PATCH \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Content-Type: application/json' -d '
+   {  
+  "data":{
+    "id": "{TEAM_ID}",
+    "type": "team",
+    "attributes":{
+      "docker_registry":{
+        "uri":"docker_registry_uri",
+        "credentials":{}
+      }
+    }
+  }
+}'
+```
+
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 Ok
+Content-Type: application/json
+
+{
+  "data":{
+    "id":"5aabe01bbd6d6400079b45c4",
+    "type":"team",
+    "links":{
+      "self":"/v2/teams/5aabe01bbd6d6433079b45c4"
+    },
+    "attributes":{
+      "name":"309myteam"
+    },
+    "relationships":{
+      "contract":{
+        "data":{
+          "id":"59d341e9037f72001833408b",
+          "type":"contract"
+        },
+        "links":{
+          "self":"/v2/contract/59d341e9037f7200133a408b"
+        }
+      },
+      "users":{
+        "data":[
+          {
+            "id":"59d22e7eeb86533018adc248",
+            "type":"user"
+          }
+        ]
+      }
+    }
+  },
+  "meta":{}
+}
+```
+
+This resource allows you to update a new team.
+
+### HTTP Request
+
+`PATCH {{ api_base_url }}/v2/teams/{TEAM_ID}`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| TEAM_ID | yes | Team identifier |
+
+### Body Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| id | yes | Team Id must be same as url parameter |
+| type | yes | A value must be ``team`` |
+| attributes.docker_registry.uri | no | Docker Registry URI |
+| attributes.docker_registry.credentials | no | Docker Registry credentials  |
+
+### Authorization
+This request is authorized to a user with the `contracts.devTeam.edit` permission.
+
+### Returns
+
+Returns teams metadata object if the call succeeded.
+
+
 ## Add a new member to a team
 
 
