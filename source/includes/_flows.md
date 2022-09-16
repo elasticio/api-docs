@@ -433,6 +433,7 @@ The flow with given ID
           "prefetch": 3,
           "replicas": 2,
           "disable_dynamic_flow_control": true,
+          "persistent_messages": true,
           "log_level": "info"
         }
       }
@@ -563,6 +564,7 @@ Content-Type: application/json
         "step_2": {
           "prefetch": 3,
           "disable_dynamic_flow_control": true,
+          "persistent_messages": true,
           "log_level": "info"
         }
       },
@@ -632,6 +634,7 @@ This resource allows you to create a new flow.
 | attributes.nodes_config.{STEP_ID}.passthrough.disabled         | no    | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
 | attributes.nodes_config.{STEP_ID}.log_level                    | no    | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``fatal``, default: ``info``
 | attributes.nodes_config.{STEP_ID}.disable_dynamic_flow_control | no    | This parameter configures disabling publisher confirms in sailor. Supports only for components with JVM sailor version above 3.3.5.  May be any of: ``true``, ``false``
+| attributes.nodes_config.{STEP_ID}.persistent_messages | no    | This parameter configures messages persistence in sailor. Supports only for components with JVM sailor version above '3.4.0' and NodeJS sailor above '2.7.0'.  May be any of: ``true``, ``false``
 | attributes.stats_enabled | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle)
 | relationships.workspace.data.id                                | yes   | An Id of the Workspace
 | relationships.workspace.data.type                              | yes   | A value must be ``workspace``
@@ -671,6 +674,7 @@ curl {{ api_base_url }}/v2/flows/{FLOW_ID} \
                 "step_2": {
                   "prefetch": 3,
                   "disable_dynamic_flow_control": true,
+                  "persistent_messages": true,
                   "replicas": 2,
                   "log_level": "info"
                 }
@@ -747,6 +751,7 @@ Content-Type: application/json
         "step_2": {
           "prefetch": 3,
           "disable_dynamic_flow_control": true,
+          "persistent_messages": true,
           "log_level": "info"
         }
       }
@@ -821,6 +826,7 @@ This resource allows you to update the given flow. A new version of the flow wil
 | attributes.nodes_config.{STEP_ID}.passthrough.disabled         | no  | This parameter toggles passthrough for a step. May be any of: ``true``, ``false``
 | attributes.nodes_config.{STEP_ID}.log_level                    | no    | Log level of component running in this step. Possible values are: ``trace``, ``debug``, ``info``, ``warn``, ``error``, ``fatal``, default: ``info``
 | attributes.nodes_config.{STEP_ID}.disable_dynamic_flow_control | no    | This parameter configures disabling publisher confirms in sailor. Supports only for components with JVM sailor version above 3.3.5.  May be any of: ``true``, ``false``
+| attributes.nodes_config.{STEP_ID}.persistent_messages | no    | This parameter configures messages persistence in sailor. Supports only for components with JVM sailor version above '3.4.0' and NodeJS sailor above '2.7.0'.  May be any of: ``true``, ``false``
 | attributes.stats_enabled | no | Boolean `true`/`false`. Read more: [Flow Stats Toggle](#flow-stats-toggle)
 
 
@@ -911,6 +917,7 @@ HTTP/1.1 202 Accepted
         "step_2": {
           "prefetch": 3,
           "disable_dynamic_flow_control": true,
+          "persistent_messages": true,
           "log_level": "info"
         }
       }
