@@ -1483,3 +1483,45 @@ The component should be accessible to the client (e.g. component from the own te
 ### Returns
 
 Returns environment variables
+
+
+
+## Force pull of a component version from external docker registry
+
+
+> Example Request:
+
+```shell
+curl {{ api_base_url }}/v2/components/{COMPONENT_ID}/docker-pull/{VERSION} \
+   -X POST \
+   -u {EMAIL}:{APIKEY} \
+   -H 'Accept: application/json' \
+   -H 'Content-Type: application/json'
+```
+
+
+> Example Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
+
+This endpoint forces pull of a component version from external docker registry
+
+
+
+### HTTP Request
+
+`POST {{ api_base_url }}/v2/components/{COMPONENT_ID}/docker-pull/{VERSION}`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| COMPONENT_ID | yes | Component ID |
+| VERSION | no | Component version. Default is ``latest`` |
+
+
+### Authorization
+This request is authorized to a user with `contracts.repository.edit` permission. The component must belong to one of the user’s team.

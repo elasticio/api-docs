@@ -4,6 +4,9 @@ source 'http://rubygems.org'
 
 gem "rouge", "1.7.2"
 
+# Fix version below 6.0 due to breaking change
+gem "haml", "~>5.2.2"
+
 gem "middleman", "~>3.3.0"
 
 # For syntax highlighting
