@@ -1524,4 +1524,4 @@ This endpoint forces pull of a component version from external docker registry
 
 
 ### Authorization
-The component should be accessible to the client (e.g. component from the own team or shared one).
+This request is authorized to a user with `contracts.repository.edit` permission. The component must belong to one of the user’s team.
