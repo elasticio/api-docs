@@ -44,6 +44,5 @@ COPY --from=dependencies /usr/src/api-docs/docs ./docs
 
 RUN mkdir -p /var/cache/nginx && \
     chown -R nginx:nginx /usr/src/api-docs /var/cache/nginx
-RUN apk upgrade libxml2
 USER nginx
 EXPOSE 8000
