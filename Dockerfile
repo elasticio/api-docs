@@ -1,4 +1,4 @@
-FROM nginx:1.23.0-alpine AS base
+FROM nginx:1.23.1-alpine AS base
 WORKDIR /usr/src/api-docs
 COPY .nginx/.conf /etc/nginx/nginx.conf
 COPY docs ./docs
